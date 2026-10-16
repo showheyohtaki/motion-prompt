@@ -1,0 +1,42 @@
+// Motion Prompt #077 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#077
+//
+// 横向滚动 / Horizontal scroll
+// 分类: lp (落地页与网页效果) · element 05 · 子类: 滚动效果
+// 示例效果: 页面下滚时区块保持不动，四张编号作品卡片向左经过。
+// 效果规格:
+//   - 滚动：0.3–3.0 s 为 0→420 px，3.5–4.5 s 为 420→0，三次缓入缓出。
+//   - WORKS 标题滚出；区块在滚动 40 px 时到达顶部并保持固定。
+//   - 四张卡片各 200 × 112，间隔 20，两侧内边距 34；横向总位移 = 34·2 + 200·4 + 20·3 − 511 = 417 px。
+//   - 卡片 x = start x − p × 417，p = (scroll − 40) / 380，与滚动线性对应，无缓动。
+//   - 卡片横移时滚动条滑块向下移动。
+// 适用场景: 适合在纵向长页中横排展示作品、案例或产品。
+// 标签: horizontal-scroll, sideways, scrolltrigger, pin, gallery, portfolio, scroll
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#077
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 05
+// 05 横スクロール（縦にスクロールすると、カードの列が横へ流れる）
+CELLS[4] = (k, w, h, u) => {
+  frame(k);
+  const y = steps([[0.3, 0], [3.0, 420], [3.5, 420], [4.5, 0]], u);
+  const PIN0 = 40, PD = 380, N = 4, PWD = 200, GAP = 20;
+  const top = y < PIN0 ? PIN0 - y : 0, p = clamp((y - PIN0) / PD);
+  const travel = 34 * 2 + N * PWD + (N - 1) * GAP - VW;
+  view(k, () => {
+    txt(k, 'WORKS', 34, 30 - y, `800 20px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
+    k.save(); k.translate(0, top);
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH + 40);
+    for (let i = 0; i < N; i++) {
+      const x = 34 + i * (PWD + GAP) - p * travel;
+      pic(k, x, 18, PWD, 112, i % 3, 8);
+      txt(k, '0' + (i + 1), x + 14, 118, `800 22px ${EN}`, '#fff');
+      bars(k, x, 140, 120, 1, '#CBD2DE');
+    }
+    k.restore();
+    sbar(k, y / 420, 0.36);
+  });
+};

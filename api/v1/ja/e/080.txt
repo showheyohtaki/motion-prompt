@@ -30,7 +30,7 @@ CELLS[7] = (k, w, h, u) => {
     txt(k, '忙しい人のための', 70, 50, `700 14px ${JP}`, C.sub); txt(k, '台所の新しい相棒', 70, 80, `800 24px ${JP}`, C.ink);
     bars(k, 70, 96, 330, 4, C.faint, 6, 12, 0.8);
     for (const [base, parts] of rows) {
-      k.font = F; const ws = parts.map(s => k.measureText(s).width); let x = (VW - ws.reduce((a, b) => a + b, 0)) / 2;
+      k.font = F; const ws = parts.map(s => k.measureText(mpText(s)).width); let x = (VW - ws.reduce((a, b) => a + b, 0)) / 2;
       const t0 = enteredAt(SY, base - 20, LINE, u), q = t0 === null ? 0 : eOut(P(u, t0, t0 + DUR));
       if (q > 0) { k.fillStyle = MARK; k.fillRect(x + ws[0], base - 8, ws[1] * q, 11); }
       parts.forEach((s, i) => { txt(k, s, x, base, F, i === 1 ? C.ink : '#4A5368'); x += ws[i]; });

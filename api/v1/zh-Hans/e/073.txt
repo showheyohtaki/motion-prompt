@@ -1,0 +1,42 @@
+// Motion Prompt #073 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#073
+//
+// 视差滚动 / Parallax scrolling
+// 分类: lp (落地页与网页效果) · element 01 · 子类: 滚动效果
+// 示例效果: 页面下滚时标题正常上移，天空、太阳与远近山坡移动得更慢。
+// 效果规格:
+//   - 浏览器窗口视口为 511 × 168；滚动于 0.3–1.9 s 从 0→120 px，2.9–4.3 s 从 120→0，三次缓入缓出。
+//   - 各层位移为 scroll × factor：天空与太阳 0.15，远山 0.4，近山 0.7。
+//   - 标题 28 px、按钮与下一章节以 1.0 正常滚动。
+//   - 白色下一章节从首屏底部 168 px 处开始，滑过移动较慢的背景。
+//   - 右侧滚动条滑块随滚动移动。
+// 适用场景: 适合为首屏或章节照片增加纵深感。
+// 标签: parallax, parallax-scrolling, scroll, depth, layers, hero, background
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#073
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 01
+// 01 パララックススクロール（スクロールすると、空・山・見出しが違う速さで動く）
+CELLS[0] = (k, w, h, u) => {
+  frame(k);
+  const s = steps([[0.3, 0], [1.9, 1], [2.9, 1], [4.3, 0]], u), y = s * 120;
+  view(k, () => {
+    const g = k.createLinearGradient(0, 0, 0, 200); g.addColorStop(0, '#9DB6FB'); g.addColorStop(1, '#E6ECFF');
+    k.save(); k.translate(0, -y * 0.15);                         // 空と太陽: 0.15倍
+    k.fillStyle = g; k.fillRect(0, 0, VW, 260); k.fillStyle = C.acc; k.beginPath(); k.arc(392, 54, 25, 0, 7); k.fill(); k.restore();
+    k.save(); k.translate(0, -y * 0.4); mount(k, VW, 190, M1, '#7D9AF4', 0); k.restore();   // 遠い山: 0.4倍
+    k.save(); k.translate(0, -y * 0.7); mount(k, VW, 205, M2, '#4B6BDB', 1); k.restore();   // 近い山: 0.7倍
+    k.save(); k.translate(0, -y);                                // 見出し・ボタン・次のセクション: 1倍
+    txt(k, '山へ、行こう。', 34, 64, `800 28px ${JP}`, '#fff', 'left', 'alphabetic', '1px');
+    bars(k, 34, 78, 160, 2, 'rgba(255,255,255,.85)');
+    btn(k, 34, 106, 92, 26, '予約する');
+    k.fillStyle = '#fff'; k.fillRect(0, VH, VW, 200);
+    txt(k, '人気のコース', 34, VH + 34, `800 16px ${JP}`, C.ink);
+    for (let i = 0; i < 3; i++) { pic(k, 34 + i * 152, VH + 50, 136, 58, i, 6); bars(k, 34 + i * 152, VH + 116, 110, 1, C.faint); }
+    k.restore();
+    sbar(k, s * 0.35, 0.4);
+  });
+};

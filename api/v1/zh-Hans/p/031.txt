@@ -1,0 +1,17 @@
+请使用“升镜头（Crane up）”，它属于“镜头运动与转场”。
+Motion Prompt #031
+
+含义：相机整体向上升起
+示例效果：相机上升并向下转动，直到俯视人物。
+规格：
+- 镜头：高度 1.4 m→9 m，同时向前移动 0 m→1.5 m。
+- 朝向：向下转动以保持前方 8 m 的人物在画面内；pitch = -0.86 × atan2(height - 1.0, 8 - forward)，约 -2.5°→-44°。
+- 时间：0.5–3.4 s，历时 2.9 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+- 主体静止，随相机上升而变小，地面网格铺满画面，地平线从顶部离开。
+- 回位：3.4–4.2 s 停留，最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+- 右上角显示高度：↑ 1.4m→↑ 9.0m。
+适用场景：适合场景结束时远离人物展示全貌，或揭示场所规模。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/031.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

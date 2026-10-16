@@ -1,0 +1,36 @@
+// Motion Prompt #054 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#054
+//
+// 文字提示 / Tooltip
+// 分类: ui (UI 组件) · element 06 · 子类: 浮层与展开
+// 示例效果: 悬停问号图标，上方深色气泡显示简短说明；移开后消失。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；半径 13 的蓝环问号图标位于标签旁 (196, 121)。
+//   - 光标只悬停不点击：1.05 s 到达问号，停留至 3.15 s，4.1 s 前离开卡片。
+//   - 显示量 a 在 1.15–1.35 s 按 easeOutCubic 从 0→1，不透明度 a，同时上移 6 px 到位。
+//   - 气泡颜色 #26282c、尺寸 184×36、圆角半径 8、顶部 y 64；宽 16、高 8 的向下三角指向图标，文字为白色 15 px。
+//   - 3.25–3.45 s 线性从 1→0 隐藏。
+// 适用场景: 适合为图标或缩写添加不占页面空间的单行提示。
+// 标签: tooltip, hint, hover, help, info, title
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#054
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 06
+// 06 ツールチップ（Tooltip）
+CELLS[5] = ui((w, h, t) => {
+  pageLines(24, 16, 494);
+  bar(24, 116, 150, C.line2, 11); ring(196, 121, 13, C.blue, 2.2); text('?', 196, 122, 16, C.blue, 700, 'center', NUMF);
+  fillRR(24, 146, 494, 34, 8, C.block);
+  const a = eo(seg(t, 1.15, 1.35)) * (1 - seg(t, 3.25, 3.45));
+  if (a > 0) {
+    X.save(); X.globalAlpha = a; const yy = 64 + 6 * (1 - a);
+    fillRR(196 - 92, yy, 184, 36, 8, C.dark);
+    X.beginPath(); X.moveTo(196 - 8, yy + 36); X.lineTo(196, yy + 44); X.lineTo(196 + 8, yy + 36); X.fillStyle = C.dark; X.fill();
+    text('小さな説明が出る', 196, yy + 18, 15, '#fff', 600, 'center'); X.restore();
+  }
+  // 乗せるだけ（クリックしない）
+  pointer([[.3, w + 30, h + 30], [1.05, 200, 126], [3.15, 200, 126], [4.1, w + 30, h + 30]], [], t);
+});

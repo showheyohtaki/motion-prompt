@@ -1,0 +1,28 @@
+// Motion Prompt #037 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#037
+//
+// 慢动作 / Slow motion
+// 分类: camera (镜头运动与转场) · element 13 · 子类: 拍摄方式与时间效果
+// 示例效果: 固定镜头前，人物缓慢跳起落下，树叶缓慢飘落，整段动作被拉长。
+// 效果规格:
+//   - 镜头完全固定，高 1.3 m，仅主体移动。
+//   - 前方 7 m 的人物在 0.5–4.3 s 内完成一次跳跃，历时 3.8 s；高度 = 4q(1-q)×1.1 m，峰值 1.1 m，q 随时间线性变化。
+//   - 腾空时双臂抬起；起跳前静立 0.5 s，落地后静立 0.4 s。
+//   - 九片叶子在 4.7 s 内从 3.4 m 高处旋转落地，每片错开周期的 1/9。
+//   - 右上角显示 120fps ×0.25，播放时长拉长 4×。
+//   - 无停留或交叉淡化，每 4.7 s 无缝循环。
+// 适用场景: 适合仔细观察短暂动作或表情，或强调情绪高点。
+// 标签: slow motion, slow-mo, slomo, high frame rate, 120fps, time stretch, jump
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#037
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 13
+// 13 スローモーション
+CELLS[12] = shot((k, w, h, u) => {
+  const q = P(u, 0.5, 4.3);
+  world(k, w, h, cam({ y: 1.3 }), { person: { z: 7, y: jumpY(q), armUp: q > 0 && q < 1 }, extra: leaves(u, 1) });
+  return '120fps ×0.25';
+});

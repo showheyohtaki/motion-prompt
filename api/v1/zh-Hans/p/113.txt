@@ -1,0 +1,15 @@
+请使用“高调（High-key）”，它属于“摄影效果、光线与风格”。
+Motion Prompt #113
+
+含义：整体明亮、接近白色且阴影很浅
+示例效果：风景和人物转为接近白色的浅色，阴影很淡，右下直方图峰移向右端。
+规格：
+- 场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。
+- 天空 #FAF9F7→#FFFFFF，山丘 #EAEDF1→#F5F6F8，人物 #4D5A75→#B9C0CE，阴影 #33405A→#A6AEBF，太阳 #F5A524→#FFD889。
+- 直方图 96×46 px、20 根柱，峰中心 0.56→0.85，宽度 0.2→0.09。
+- 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+适用场景：适合干净、明亮、柔和的产品照和人像。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/113.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

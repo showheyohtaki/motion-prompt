@@ -1,10 +1,8 @@
 # Motion Prompt
 
-**English** | [日本語](README.ja.md)
+**English** | [日本語](README.ja.md) | [简体中文](README.zh-Hans.md)
 
-> 日本語の説明は [README.ja.md](README.ja.md) にあります。
-> 中文用户：名称一览目前只有英文和日文。把 [`make-your-own/prompts/en/01-translate.md`](make-your-own/prompts/en/01-translate.md) 交给 Claude Code、Codex 等编程 AI，就可以制作中文或其他语言的版本。
-> Other languages: the name lists are in English and Japanese for now. Give [`make-your-own/prompts/en/01-translate.md`](make-your-own/prompts/en/01-translate.md) to a coding AI to make a version in your language.
+> 日本語の説明は [README.ja.md](README.ja.md) にあります。简体中文说明见 [README.zh-Hans.md](README.zh-Hans.md)；画廊与 CLI 支持 `zh-Hans`。 Other languages can be added following [CONTRIBUTING.md](CONTRIBUTING.md).
 
 A library of names for the things you ask an AI to make. Each name comes with a moving sample, a one-line meaning and an example of how to ask for it. Five sets are in it now, 24 names each and 120 in all: motion-graphics moves (`motion`), camera moves (`camera`), UI component names (`ui`), landing page and web effects (`lp`), and photo looks, lighting and styles (`photo`). It also comes with the prompts to make the same kind of library for your own field, in your own language.
 
@@ -140,7 +138,9 @@ Read https://github.com/showheyohtaki/motion-prompt and install the motion-promp
 npx skills add showheyohtaki/motion-prompt
 ```
 
-**As a Claude Code plugin.**
+**For Simplified Chinese, use `--lang zh-Hans` (the alias `zh-CN` also works), for example `pick --lang zh-Hans`, `get 12 --lang zh-Hans` and `kit motion --lang zh-Hans`.
+
+As a Claude Code plugin.**
 
 ```text
 /plugin marketplace add showheyohtaki/motion-prompt
@@ -203,7 +203,7 @@ Three files make up the skill: the instructions (`SKILL.md`), notes on moving an
 | Command | What it does |
 |---|---|
 | `pick` / `pick --pack camera` | opens the gallery and prints what arrives with "Send to AI": numbers, names, specs and your note. Waits up to 15 minutes |
-| `search typewriter text` / `search 文字 登場` | finds elements for a scene (English or Japanese words) |
+| `search typewriter text` / `search 文字 登場` | finds elements for a scene (English, Japanese or Chinese words) |
 | `list` / `list --pack motion` | an overview of all packs, or one pack listed element by element |
 | `get 12 #045` | prints the spec and then the code for those numbers (8 at most in one call) |
 | `kit motion` | the shared code of a pack |
@@ -218,9 +218,9 @@ The script makes GET requests for the text files below and nothing else. Nothing
 | File | Contents |
 |---|---|
 | `catalog.json` | version, count, packs, and every element's names, meaning, summary, spec and tags |
-| `{ja,en}/catalog.tsv` | the index as tab-separated text (id, pack, category, title, tags, summary) |
-| `{ja,en}/e/{id}.txt` | a single element: attribution line, what it shows, the spec, then its code |
-| `{ja,en}/p/{id}.txt` | the copy-paste prompt for one element |
+| `{ja,en,zh-Hans}/catalog.tsv` | the index as tab-separated text (id, pack, category, title, tags, summary) |
+| `{ja,en,zh-Hans}/e/{id}.txt` | a single element: attribution line, what it shows, the spec, then its code |
+| `{ja,en,zh-Hans}/p/{id}.txt` | the copy-paste prompt for one element |
 | `kit/{pack}.js` | the shared code of a pack |
 
 If you clone this whole repository, the CLI reads the local `api/v1` first and needs no network. Downloaded data is kept on disk, and the saved copy is used when the source cannot be reached.

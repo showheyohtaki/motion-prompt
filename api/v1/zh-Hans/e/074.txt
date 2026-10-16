@@ -1,0 +1,44 @@
+// Motion Prompt #074 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#074
+//
+// 滚动淡入 / Fade-in on scroll
+// 分类: lp (落地页与网页效果) · element 02 · 子类: 滚动效果
+// 示例效果: 页面滚动时，标题、卡片和正文进入视口后分别上移并淡入。
+// 效果规格:
+//   - 滚动：0.35–1.0 s 为 0→95 px，1.5–2.1 s 为 95→200 px，3.2–4.4 s 为 200→0，均三次缓入缓出。
+//   - 触发线为视口高度的 85%，距顶部 143 px；元素顶边越过触发线时触发，类似 Intersection Observer。
+//   - 触发后 0.7 s 内，不透明度 0→1，向下偏移 28 px→0，使用三次缓出。
+//   - 三个元素初始均在视口下方：页面 y 172 px 的标题、206 px 的三张卡片行、334 px 的正文；卡片同行同时出现。
+//   - 向上返回时，离开视口底部的元素在不可见处复位，下次重新播放。
+// 适用场景: 适合长落地页，让内容随阅读逐段出现。
+// 标签: fade-in, scroll-reveal, reveal-on-scroll, intersection-observer, aos, entrance, scroll
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#074
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 02
+// 02 スクロールでフェードイン（画面に入った要素が、下から浮かび上がって現れる）
+CELLS[1] = (k, w, h, u) => {
+  frame(k);
+  const SY = t => steps([[0.35, 0], [1.0, 95], [1.5, 95], [2.1, 200], [3.2, 200], [4.4, 0]], t), y = SY(u);
+  const LINE = VH * 0.85, DUR = 0.7, RISE = 28;
+  view(k, () => {
+    k.save(); k.translate(0, -y);
+    txt(k, '暮らしを、軽く。', 34, 52, `800 24px ${JP}`, C.ink); bars(k, 34, 68, 190, 3); btn(k, 34, 108, 96, 26, '詳しく見る');
+    pic(k, 286, 18, 196, 110, 0, 8);
+    const items = [
+      [172, () => txt(k, '選ばれる3つの理由', VW / 2, 172 + 20, `800 18px ${JP}`, C.ink, 'center')],
+      [206, () => { for (let i = 0; i < 3; i++) { const x = 34 + i * 152; k.fillStyle = C.soft; rr(k, x, 206, 136, 106, 8); k.fill(); pic(k, x + 8, 214, 120, 56, i, 5); bars(k, x + 10, 280, 112, 2, '#CBD2DE'); } }],
+      [334, () => bars(k, 110, 334, 290, 3, C.faint, 7, 13)]
+    ];
+    for (const [top, draw] of items) {
+      const t0 = enteredAt(SY, top, LINE, u); if (t0 === null) continue;
+      const q = eOut(P(u, t0, t0 + DUR));
+      k.save(); k.globalAlpha = q; k.translate(0, RISE * (1 - q)); draw(); k.restore();
+    }
+    k.restore();
+    sbar(k, y / 200, 0.5);
+  });
+};

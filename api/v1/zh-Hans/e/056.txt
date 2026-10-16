@@ -1,0 +1,35 @@
+// Motion Prompt #056 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#056
+//
+// 轻提示 / Toast notification
+// 分类: ui (UI 组件) · element 08 · 子类: 浮层与展开
+// 示例效果: 点击保存后，右下角滑入深色通知，计时条走完后滑出。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；光标 1.0 s 点击左下蓝色 110×36 保存按钮，再向左下离开。
+//   - 提示颜色 #26282c、尺寸 214×52、圆角半径 10，距右边 18 px、底边 16 px；1.05–1.4 s 按 easeOutCubic 从右侧 240 px 滑入。
+//   - 内部为蓝圆中的白色勾和白色 15 px 已保存文字。
+//   - 底部高 3 px 的剩余时间线在 1.4–3.2 s 内从 194 px 线性缩至 0。
+//   - 3.2–3.55 s 按 easeInOutCubic 向右滑出 240 px。
+// 适用场景: 适合确认保存或发送结果，同时保持用户操作连贯。
+// 标签: toast, snackbar, notification, alert, message, auto-dismiss
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#056
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 08
+// 08 トースト（Toast notification）
+CELLS[7] = ui((w, h, t) => {
+  bar(24, 16, 90, C.line2, 10); strokeRR(24, 34, 300, 34, 7, C.line2, 1.5); bar(24, 82, 90, C.line2, 10); strokeRR(24, 100, 300, 34, 7, C.line2, 1.5);
+  fillRR(24, 146, 110, 36, 8, C.blue); text('保存', 79, 164, 16, '#fff', 600, 'center');
+  const tin = eo(seg(t, 1.05, 1.4)), tout = eio(seg(t, 3.2, 3.55));
+  if (tin > 0 && tout < 1) {
+    const tw0 = 214, th = 52, tx = w - 18 - tw0 + (1 - tin) * 240 + tout * 240, ty = h - 16 - th;
+    shadowed(() => fillRR(tx, ty, tw0, th, 10, C.dark), 18, 6, .25);
+    circle(tx + 26, ty + 24, 11, C.blue); check(tx + 26, ty + 24, 5, '#fff', 2.4);
+    text('保存しました', tx + 46, ty + 24, 15, '#fff', 600);
+    const life = 1 - seg(t, 1.4, 3.2); fillRR(tx + 10, ty + th - 7, (tw0 - 20) * life, 3, 1.5, C.sb);
+  }
+  pointer([[.3, -30, h + 30], [.95, 84, 168], [1.5, 84, 168], [2.2, -40, h + 40]], [1.0], t);
+});

@@ -1,0 +1,37 @@
+// Motion Prompt #095 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#095
+//
+// 动态渐变 / Animated gradient
+// 分类: lp (落地页与网页效果) · element 23 · 子类: 加载、导航与循环动效
+// 示例效果: 标题后方橙、浅橙、蓝和浅蓝柔和色块绕圈移动，不断改变混合方式。
+// 效果规格:
+//   - 底色 #FFF1EB，上叠四个径向渐变，从中心色到边缘透明，各不透明度 0.85。
+//   - 橙色半径 230、浅橙 #FFB08F 半径 210、蓝色半径 240、浅蓝 #9DB6FB 半径 200。
+//   - 各中心每 4.8 s 沿椭圆一圈；x 半径 70、60、80、50，y 半径 30、40、30、35，起始角 0、2.1、4.2、1.0 rad。
+//   - 上方是白色 34 px 标题和按钮，仅渐变移动。
+// 适用场景: 适合不使用照片的首屏或标题背景，增添颜色和动感。
+// 标签: gradient, animated-gradient, mesh-gradient, background, hero, ambient, loop
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#095
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 23
+// 23 グラデーションアニメーション（背景のグラデーションの色が、ゆっくり流れるように動き続ける）
+CELLS[22] = (k, w, h, u) => {
+  frame(k);
+  const a = 2 * Math.PI * u / CYC;                        // 4.8秒で1周
+  const BLOBS = [[C.acc, 150, 60, 230, 70, 30, 0], ['#FFB08F', 380, 40, 210, 60, 40, 2.1], [C.blue, 330, 150, 240, 80, 30, 4.2], ['#9DB6FB', 90, 170, 200, 50, 35, 1.0]];
+  view(k, () => {
+    k.fillStyle = '#FFF1EB'; k.fillRect(0, 0, VW, VH);
+    for (const [col, x0, y0, r, ax, ay, ph] of BLOBS) {
+      const x = x0 + ax * Math.cos(a + ph), y = y0 + ay * Math.sin(a + ph);
+      const g = k.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(255,255,255,0)');
+      k.globalAlpha = 0.85; k.fillStyle = g; k.fillRect(0, 0, VW, VH); k.globalAlpha = 1;
+    }
+    txt(k, 'Hello, Future.', 40, 82, `800 34px ${EN}`, '#fff', 'left', 'alphabetic', '1px');
+    bars(k, 40, 100, 200, 2, 'rgba(255,255,255,.8)', 6, 12, 0.6);
+    btn(k, 40, 128, 104, 26, 'はじめる', '#fff', C.ink);
+  });
+};

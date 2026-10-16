@@ -1,0 +1,24 @@
+// Motion Prompt #036 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#036
+//
+// 荷兰角 / Dutch angle
+// 分类: camera (镜头运动与转场) · element 12 · 子类: 拍摄方式与时间效果
+// 示例效果: 水平相机绕镜头轴滚转，停在地平线倾斜的角度。
+// 效果规格:
+//   - 镜头：机位固定，高 1.5 m；仅滚转从 0→0.36 rad，约 21°，整个画面绕中心旋转。
+//   - 时间：0.6–2.2 s，历时 1.6 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体静立在前方 7 m，地平线、建筑和人物均倾斜相同角度。
+//   - 停留：2.2–4.2 s 保持倾斜，让观众看清构图。
+//   - 最后 0.5 s 交叉淡化回水平起点，每轮 4.7 s。
+//   - 右上角显示角度 ∠ 0°→∠ 21°。
+// 适用场景: 适合表现不安、紧张或异常感。
+// 标签: dutch angle, dutch tilt, canted angle, oblique, roll, tension, tilted horizon
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#036
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 12
+// 12 ダッチアングル
+CELLS[11] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ roll: lerp(0, 0.36, p) }), { person: { z: 7 } }), p => `∠ ${Math.round(lerp(0, 0.36, p) * 57.3)}°`, 0.6, 2.2));

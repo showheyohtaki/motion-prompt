@@ -1,0 +1,33 @@
+// Motion Prompt #060 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#060
+//
+// 分段控制器 / Segmented control
+// 分类: ui (UI 组件) · element 12 · 子类: 切换与输入
+// 示例效果: 点击日、周、月，蓝色选中背景滑动，下方柱状图改变高度。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；灰色底框 300×40、圆角半径 10，位置 (121, 12)，分为宽 100 的日、周、月三段，原文字为日文。
+//   - 选中背景为蓝色 92×32、圆角半径 8、阴影模糊 6，选中文字白色。
+//   - 光标 1.0 s 点击周，2.1 s 点击月，3.3 s 点击日；每次用 0.25 s 按 easeInOutCubic 滑动。
+//   - 下方七根柱宽 34、间距 58 px，第六根蓝色；随选中项在三组高度约 30–85、40–100、60–115 的数据间变化，使用相同缓动。
+// 适用场景: 适合同一内容的两到四种视图，例如日、周、月。
+// 标签: segmented-control, segmented-button, button-group, toggle-group, switcher, view-switch
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#060
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 12
+// 12 セグメントコントロール（Segmented control）
+CELLS[11] = ui((w, h, t) => {
+  const pos = eio(seg(t, 1.0, 1.25)) + eio(seg(t, 2.1, 2.35)) - 2 * eio(seg(t, 3.3, 3.55));
+  const sx = 121, sy = 12, sw = 300, sh = 40, cw = sw / 3;
+  fillRR(sx, sy, sw, sh, 10, '#efedeb');
+  shadowed(() => fillRR(sx + 4 + pos * cw, sy + 4, cw - 8, sh - 8, 8, C.blue), 6, 2, .2);
+  ['日', '週', '月'].forEach((s, i) => { const near = 1 - clamp(Math.abs(pos - i)); text(s, sx + cw * i + cw / 2, sy + sh / 2 + 1, 17, near > .5 ? '#fff' : '#6d6b69', 700, 'center'); });
+  const sets = [[30, 55, 40, 70, 50, 85, 60], [60, 40, 90, 75, 100, 55, 80], [95, 70, 110, 60, 85, 115, 100]];
+  const fi = Math.floor(pos), fr = pos - fi, gi = Math.min(2, fi + 1);
+  X.fillStyle = C.line; X.fillRect(60, 182, 422, 1.5);
+  for (let k = 0; k < 7; k++) { const bh = lerp(sets[fi][k], sets[gi][k], eio(fr)); fillRR(72 + k * 58, 180 - bh, 34, bh, 5, k === 5 ? C.blue : C.mb); }
+  pointer([[.3, w + 30, h + 30], [.95, 276, 36], [1.6, 276, 36], [2.05, 376, 36], [2.8, 376, 36], [3.25, 176, 36], [3.7, 176, 36], [4.25, w + 30, h + 30]], [1.0, 2.1, 3.3], t);
+});

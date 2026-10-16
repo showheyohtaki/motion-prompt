@@ -1,0 +1,48 @@
+// Motion Prompt #084 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#084
+//
+// 磁吸按钮 / Magnetic button
+// 分类: lp (落地页与网页效果) · element 12 · 子类: 悬停与点击交互
+// 示例效果: 光标靠近时按钮被吸引并跟随，离开后晃动回原位。
+// 效果规格:
+//   - 中央橙色按钮 168 × 52、圆角半径 26；吸引范围为距按钮中心半径 110 px。
+//   - 范围内目标偏移 = (cursor − button centre) × 0.35；60 fps 下每帧向目标前进剩余距离的 18%。
+//   - 离开范围后，在 1.1 s 内以 elastic.out(1, 0.3) 从当前偏移回到 0；公式为 2^(−10x)·sin((x − 0.075)·2π/0.3) + 1。
+//   - 光标从左进入、绕按钮移动、从右离开。
+// 适用场景: 适合突出注册或联系等主要按钮。
+// 标签: magnetic, magnetic-button, hover, cursor, elastic, cta, interaction
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#084
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 12
+// 12 マグネティックボタン（カーソルが近づくと、ボタンが吸い寄せられ、離れるとぷるんと戻る）
+CELLS[11] = (k, w, h, u) => {
+  frame(k);
+  const BX = VW / 2, BY = 84, R = 110, PULL = 0.35;
+  const cur = t => path([[0, -20, 130], [0.9, 170, 104], [1.5, 300, 62], [2.1, 318, 110], [2.7, 205, 66], [3.1, 250, 92], [3.6, 545, 120], [4.8, 545, 120]], t);
+  const inside = t => { const [x, y] = cur(t); return Math.hypot(x - BX, y - BY) < R; };
+  // 範囲に入った時刻から 60fps で目標（カーソルとの差 × 0.35）へ毎フレーム 18% ずつ近づく
+  const pull = t => {
+    let t0 = t; for (let i = 0; i < 600 && inside(t0 - 1 / 120); i++) t0 -= 1 / 120;
+    let ox = 0, oy = 0; for (let s = t0; s <= t; s += 1 / 60) { const [x, y] = cur(s); ox += ((x - BX) * PULL - ox) * 0.18; oy += ((y - BY) * PULL - oy) * 0.18; }
+    return [ox, oy];
+  };
+  let ox = 0, oy = 0;
+  if (inside(u)) [ox, oy] = pull(u);
+  else {
+    let t1 = u; for (let i = 0; i < 600 && !inside(t1); i++) t1 -= 1 / 120;
+    if (inside(t1)) { const [lx, ly] = pull(t1), e = 1 - eEl(P(u, t1, t1 + 1.1)); ox = lx * e; oy = ly * e; }
+  }
+  view(k, () => {
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
+    k.save(); k.translate(BX + ox, BY + oy);
+    k.shadowColor = 'rgba(255,90,44,.35)'; k.shadowBlur = 16; k.shadowOffsetY = 6;
+    k.fillStyle = C.acc; rr(k, -84, -26, 168, 52, 26); k.fill(); k.shadowColor = 'transparent';
+    txt(k, 'お問い合わせ', 0, 1, `800 16px ${JP}`, '#fff', 'center', 'middle');
+    k.restore();
+    const [cx, cy] = cur(u); cursor(k, cx, cy);
+  });
+};

@@ -1,0 +1,16 @@
+请使用“抽屉面板（Drawer (Off-canvas)）”，它属于“UI 组件”。
+Motion Prompt #050
+
+含义：从屏幕侧边滑出的面板
+示例效果：点击菜单后高面板从左侧滑入，点击外部则滑回。
+规格：
+- 542×191 卡片，周期 4.5 s；光标于 1.0 s 点击左上方 110×34 菜单按钮。
+- 展开量 a 在 1.0–1.38 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.36·a。
+- 白色面板宽 210，与卡片等高，x = −210 + 210·a，从左边缘滑入；阴影模糊 22、alpha 0.25。
+- 顶部是半径 14 的头像与姓名，下方四行菜单相隔 32 px；首行以浅蓝底选中。
+- 关闭：3.3 s 光标点击外部 (420, 120)；a 乘以作用于 3.3–3.65 s 的 1 − easeInOutCubic，使面板滑回。
+适用场景：适合按需显示导航或筛选，尤其适用于移动端。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/050.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

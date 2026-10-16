@@ -1,0 +1,42 @@
+// Motion Prompt #016 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#016
+//
+// 视差 / Parallax
+// 分类: motion (动态图形) · element 16 · 子类: 运动细节
+// 示例效果: 风景横向移动，近处图层移动更多，远处更少，产生纵深。
+// 效果规格:
+//   - 镜头横移按正弦波变化，幅度 ±108 px，每 4.7 s 往返一次。
+//   - 各层沿相反方向偏移 pan × factor；由远到近系数为：星星 0.05、月亮 0.1、远山 0.28、中景山脊 0.6、前景山坡和树 1.25、最近的深色形状 2.1。
+//   - 远层使用接近背景的深色，近层更亮；最近层是底部的大块深色剪影。
+//   - 各层在画面两侧至少延伸 200 px，避免露出边缘。
+// 适用场景: 适合让平面插画、照片、背景和滚动场景具有层次。
+// 标签: parallax, depth, layers, pan, 2.5d, background, landscape
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#016
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 16
+// 16 パララックス（手前ほど大きく、奥ほど小さく動いて、奥行きが出る）
+const PLX = (() => {
+  const R = rand(16), ridge = (base, amp, step, seed) => { const r = rand(seed), pts = []; for (let x = -220; x <= CW + 220; x += step) pts.push([x, base - amp * (0.35 + 0.65 * r())], [x + step / 2, base + amp * 0.1 * r()]); return pts; };
+  const stars = []; for (let i = 0; i < 16; i++) stars.push([R() * (CW + 80) - 40, 12 + R() * 80, 1.5 + R() * 2]);
+  const trees = []; for (let i = 0; i < 9; i++) trees.push([-160 + i * 108 + R() * 30, 34 + R() * 24, i % 3]);
+  return { far: ridge(150, 78, 120, 3), mid: ridge(172, 74, 92, 8), stars, trees };
+})();
+CELLS[15] = (k, w, h, u) => {
+  const pan = 108 * Math.sin(u / CYC * Math.PI * 2);
+  const g = k.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#0F1A3D'); g.addColorStop(1, '#27408F'); k.fillStyle = g; k.fillRect(0, 0, w, h);
+  k.fillStyle = '#fff'; for (const s of PLX.stars) { k.globalAlpha = 0.8; k.beginPath(); k.arc(s[0] - pan * 0.05, s[1], s[2], 0, 7); k.fill(); } k.globalAlpha = 1;
+  // 月（いちばん奥・ほぼ動かない）
+  k.fillStyle = C.yel; k.beginPath(); k.arc(390 - pan * 0.1, 56, 30, 0, 7); k.fill();
+  const poly = (pts, m, col) => { k.fillStyle = col; k.beginPath(); k.moveTo(-260, h + 10); pts.forEach(p => k.lineTo(p[0] - pan * m, p[1])); k.lineTo(w + 260, h + 10); k.closePath(); k.fill(); };
+  poly(PLX.far, 0.28, '#31499C');
+  poly(PLX.mid, 0.6, C.blue);
+  // 手前の丘と木
+  k.fillStyle = C.mint; k.beginPath(); k.moveTo(-300, h + 10); for (let x = -300; x <= w + 300; x += 20) k.lineTo(x - pan * 1.25, 176 + 12 * Math.sin(x * 0.012)); k.lineTo(w + 300, h + 10); k.closePath(); k.fill();
+  for (const t of PLX.trees) { const x = t[0] - pan * 1.25, by = 180 + 12 * Math.sin(t[0] * 0.012), hh = t[1] * 1.45; k.fillStyle = C.navy; k.fillRect(x - 4, by - 16, 8, 22); k.fillStyle = t[2] === 0 ? C.coral : '#12A57B'; k.beginPath(); k.moveTo(x, by - hh); k.lineTo(x + 20, by - 12); k.lineTo(x - 20, by - 12); k.closePath(); k.fill(); }
+  // いちばん手前（ボケた葉影のように大きく速く動く）
+  k.fillStyle = '#0A1230';[[-40, 60], [300, 44], [620, 66]].forEach(([x, r]) => { k.beginPath(); k.arc(x - pan * 2.1, h + 18, r, 0, 7); k.fill(); });
+};

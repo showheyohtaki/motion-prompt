@@ -1,0 +1,15 @@
+请使用“光标跟随（Cursor follower）”，它属于“落地页与网页效果”。
+Motion Prompt #083
+
+含义：图形略带延迟地跟随指针
+示例效果：光标在页面移动，橙色圆略微落后跟随。
+规格：
+- 光标路径 x = 255 + 175·sin(2πt/4.8)，y = 86 + 46·sin(4πt/4.8)，横向 8 字形，每 4.8 s 一圈。
+- 橙圆半径 17、不透明度 0.88，画在光标下方。
+- 跟随规则：60 fps 下每帧走完剩余距离的 12%，x += (cursor x − x) × 0.12。
+- 保留可见的箭头光标。
+适用场景：适合品牌站和作品集，增添趣味和直接交互感。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/083.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

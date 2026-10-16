@@ -1,0 +1,36 @@
+// Motion Prompt #106 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#106
+//
+// 移轴效果 / Tilt-shift
+// 分类: photo (摄影效果、光线与风格) · element 10 · 子类: 镜头与相机效果
+// 示例效果: 街道上下模糊，只有中间道路、汽车和小人物清晰，使街道像模型。
+// 效果规格:
+//   - 街角建筑、树和路灯位于 y 132–162 道路后，无大人物；四个高 23–26 px 的小人物脚在 y 172，汽车每 5 s 从 x −60 行至 600。
+//   - 清晰带 y 66–176 保持清晰。
+//   - 模糊：y 0–42 与 y 190–208 从 0→7 px；y 42–66 与 y 176–190 从 0→3 px。
+//   - 带边缘有虚线，线段 6 px、空隙 5 px，#8E8E93，不透明度 75%。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合让城市或活动场景像玩具模型世界。
+// 标签: tilt-shift, miniature, miniature effect, fake miniature, selective focus, toy town, focus band
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#106
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 10
+// ティルトシフト: 上下の帯がぼけて中央の帯だけピントが合い、街と小さな人と車が模型のように見える
+CELLS[9] = cell((k, u) => {
+  const a = env(u), carX = lerp(-60, 600, u / CYC);
+  const minis = D => { [[196, 26], [322, 26], [340, 23], [452, 25]].forEach(([x, h]) => figure(D, x, 172, h, BASE.person)); };
+  const [S, ks] = layer('tilt'); stageStreet(ks, BASE, { car: carX, person: false, after: minis });
+  const [B1, k1] = layer('tilt-1'); k1.filter = `blur(${(3 * a).toFixed(2)}px)`; k1.drawImage(S, 0, 0); k1.filter = 'none';
+  const [B2, k2] = layer('tilt-2'); k2.filter = `blur(${(7 * a).toFixed(2)}px)`; k2.drawImage(S, 0, 0); k2.filter = 'none';
+  k.drawImage(S, 0, 0);
+  const band = (img, y0, y1) => { k.save(); k.beginPath(); k.rect(0, y0, CW, y1 - y0); k.clip(); k.drawImage(img, 0, 0); k.restore(); };
+  band(B2, 0, 42); band(B1, 42, 66); band(B1, 176, 190); band(B2, 190, CH);
+  // ピントの帯の目印（写真アプリの線）
+  k.save(); k.globalAlpha = 0.75 * a; k.strokeStyle = '#8E8E93'; k.lineWidth = 1.4; k.setLineDash([6, 5]);
+  k.beginPath(); k.moveTo(0, 66); k.lineTo(CW, 66); k.moveTo(0, 176); k.lineTo(CW, 176); k.stroke(); k.setLineDash([]);
+  k.restore();
+});

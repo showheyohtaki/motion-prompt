@@ -1,0 +1,31 @@
+// Motion Prompt #113 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#113
+//
+// 高调 / High-key
+// 分类: photo (摄影效果、光线与风格) · element 17 · 子类: 色调与后期风格
+// 示例效果: 风景和人物转为接近白色的浅色，阴影很淡，右下直方图峰移向右端。
+// 效果规格:
+//   - 场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。
+//   - 天空 #FAF9F7→#FFFFFF，山丘 #EAEDF1→#F5F6F8，人物 #4D5A75→#B9C0CE，阴影 #33405A→#A6AEBF，太阳 #F5A524→#FFD889。
+//   - 直方图 96×46 px、20 根柱，峰中心 0.56→0.85，宽度 0.2→0.09。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合干净、明亮、柔和的产品照和人像。
+// 标签: high-key, high key, bright, white background, airy, low contrast
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#113
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 17
+// ハイキー: 明るい色だけになり、影はごく薄く、明るさの山が右端へ寄る
+CELLS[16] = cell((k, u) => {
+  const a = env(u);
+  const HIGH = {
+    sky: '#FFFFFF', sky2: '#FFFFFF', far: '#F5F6F8', mid: '#EEF0F3', ground: '#FBFBFA', ground2: '#F3F3F1', mark: '#FFFFFF', cast: '#F3F3F1',
+    bld: '#FBFBFA', edge: '#E9E9E7', win: '#F2F2F0', winOff: '#F2F2F0', tree: '#F0F0EE', trunk: '#E5E5E3', post: '#DADAD8', bulb: '#E5E5E3',
+    person: '#B9C0CE', shade: '#A6AEBF', lit: '#FFE6AE', car: '#E4E7EC', glass: '#FFFFFF', tire: '#C5CAD3', sun: '#FFD889', glow: '#FFF3D8'
+  };
+  stageLand(k, pal(BASE, HIGH, a));
+  histo(k, lerp(0.56, 0.85, a), lerp(0.2, 0.09, a));
+});

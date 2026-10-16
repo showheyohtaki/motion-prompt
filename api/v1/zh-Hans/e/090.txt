@@ -1,0 +1,44 @@
+// Motion Prompt #090 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#090
+//
+// 懒加载 / Lazy loading
+// 分类: lp (落地页与网页效果) · element 18 · 子类: 加载、导航与循环动效
+// 示例效果: 灰色占位滚入视口后先显示转圈，图片就绪后淡入；首行从一开始已加载。
+// 效果规格:
+//   - 3 × 3 网格，占位各 151 × 92，首行初始可见；滚动为 0.35–1.1 s 的 0→110 px，1.7–2.5 s 的 110→225 px，3.5–4.5 s 的 225→0，三次缓入缓出。
+//   - 占位顶边越过视口底部 168 px 时开始加载，每列比左侧列晚 0.12 s。
+//   - 占位中央半径 11 的加载圆环旋转 0.45 s，每 0.8 s 一圈。
+//   - 随后图片在 0.35 s 内按三次缓出从不透明度 0→1；未加载的占位显示图片图标。
+//   - 离开视口底部的占位在不可见处复位。
+// 适用场景: 适合图片较多的页面，加快首屏加载。
+// 标签: lazy-loading, lazy-load, images, placeholder, performance, spinner, gallery
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#090
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 18
+// 18 遅延読み込み（画面に入った画像だけ、その時点で読み込まれて表示される）
+CELLS[17] = (k, w, h, u) => {
+  frame(k);
+  const SY = t => steps([[0.35, 0], [1.1, 110], [1.7, 110], [2.5, 225], [3.5, 225], [4.5, 0]], t), y = SY(u);
+  const COLX = [15, 180, 345], IW = 151, IH = 92, ROWS = [12, 168, 276], WAIT = 0.45, FADE = 0.35;
+  view(k, () => {
+    k.save(); k.translate(0, -y);
+    txt(k, 'ギャラリー', 15, 140, `800 18px ${JP}`, C.ink); bars(k, 120, 128, 200, 1);
+    ROWS.forEach((top, r) => COLX.forEach((x, c) => {
+      const t0 = r === 0 ? -1e9 : enteredAt(SY, top, VH, u), age = t0 === null ? -1 : u - t0 - c * 0.12;
+      k.fillStyle = C.skel; rr(k, x, top, IW, IH, 6); k.fill();
+      if (age < WAIT + FADE) {   // まだの画像: 灰色の枠と画像の印
+        k.save(); k.translate(x + IW / 2, top + IH / 2); k.strokeStyle = '#B9C1CF'; k.lineWidth = 2; k.lineJoin = 'round';
+        if (age >= 0 && age < WAIT) spinner(k, 0, 0, 11, u, C.blue);
+        else { rr(k, -15, -11, 30, 22, 3); k.stroke(); k.beginPath(); k.moveTo(-11, 7); k.lineTo(-3, -1); k.lineTo(3, 5); k.lineTo(7, 1); k.lineTo(11, 6); k.stroke(); }
+        k.restore();
+      }
+      if (age >= WAIT) { k.save(); k.globalAlpha = eOut(P(age, WAIT, WAIT + FADE)); pic(k, x, top, IW, IH, (r + c) % 3, 6); k.restore(); }
+    }));
+    k.restore();
+    sbar(k, y / 225, 0.45);
+  });
+};

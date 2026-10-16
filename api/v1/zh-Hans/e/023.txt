@@ -1,0 +1,42 @@
+// Motion Prompt #023 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#023
+//
+// 故障效果 / Glitch
+// 分类: motion (动态图形) · element 23 · 子类: 转场与强调
+// 示例效果: 文字切片横向错位、颜色分离并出现小色条，不产生亮度闪烁。
+// 效果规格:
+//   - 白色粗体文字 104 px；4.7 s 内两次故障：0.55–1.25 s（5 步）和 2.9–3.74 s（6 步），其余静止。
+//   - 每步持续 0.14 s，显示一种固定扰动，逐步切换而非平滑变化。
+//   - 分色：珊瑚色副本左移 7–16 px、下移 2 px；青色（#22D3EE）副本右移相同距离、上移 2 px；白字在最上层。
+//   - 切片错位：2–4 条水平切片，高 10–35 px，位于 y 40–150，向左或右错位 18–64 px。
+//   - 随机位置出现三个小色条，珊瑚、青、黄，宽 30–120、高 5–12。
+//   - 背景亮度不变，无全画面闪烁；随机值使用固定种子。
+// 适用场景: 适合标题和转场中的数字、故障或不安氛围。
+// 标签: glitch, rgb-split, chromatic-aberration, distortion, digital, error, slice
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#023
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 23
+// 23 グリッチ（文字が横にずれ、色がずれ、帯が走る。明るさの点滅はさせない）
+const TMP = mkCanvas(CW, CH), TK = TMP.getContext('2d');
+const GL = (() => { const R = rand(231), st = []; for (let s = 0; s < 12; s++) { const sl = [], n = 2 + Math.floor(R() * 3); for (let i = 0; i < n; i++) sl.push({ y: Math.floor(40 + R() * 110), h: 10 + Math.floor(R() * 26), dx: Math.round((R() < .5 ? -1 : 1) * (18 + R() * 46)) }); const bars = []; for (let i = 0; i < 3; i++) bars.push({ x: 30 + R() * 420, y: 30 + R() * 150, w: 30 + R() * 90, h: 5 + R() * 7, c: i }); st.push({ sl, bars, rgb: 7 + Math.round(R() * 9) }); } return st; })();
+const GLC = mkCanvas(CW, CH), GK = GLC.getContext('2d'), GLT = mkCanvas(CW, CH), GT = GLT.getContext('2d');
+CELLS[22] = (k, w, h, u) => {
+  const content = kk => { txt(kk, 'GLITCH', w / 2, h / 2 + 4, `800 104px ${DISP}`, '#fff', 'center', 'middle', '2px'); };
+  const step = 0.14; let si = -1;
+  if (u >= 0.55 && u < 0.55 + step * 5) si = Math.floor((u - 0.55) / step);
+  else if (u >= 2.9 && u < 2.9 + step * 6) si = 5 + Math.floor((u - 2.9) / step);
+  stage(k);
+  if (si < 0) { content(k); return; }
+  const S = GL[si];
+  TK.setTransform(1, 0, 0, 1, 0, 0); TK.clearRect(0, 0, w, h); content(TK);
+  const tint = col => { GT.setTransform(1, 0, 0, 1, 0, 0); GT.globalCompositeOperation = 'source-over'; GT.clearRect(0, 0, w, h); GT.drawImage(TMP, 0, 0); GT.globalCompositeOperation = 'source-in'; GT.fillStyle = col; GT.fillRect(0, 0, w, h); GT.globalCompositeOperation = 'source-over'; return GLT; };
+  GK.setTransform(1, 0, 0, 1, 0, 0); GK.fillStyle = C.navy; GK.fillRect(0, 0, w, h);
+  GK.drawImage(tint(C.coral), -S.rgb, 2); GK.drawImage(tint('#22D3EE'), S.rgb, -2); GK.drawImage(TMP, 0, 0);
+  k.drawImage(GLC, 0, 0);
+  for (const sl of S.sl) { k.fillStyle = C.navy; k.fillRect(0, sl.y, w, sl.h); k.drawImage(GLC, 0, sl.y, w, sl.h, sl.dx, sl.y, w, sl.h); }
+  for (const b of S.bars) { k.fillStyle = [C.coral, '#22D3EE', C.yel][b.c]; k.fillRect(b.x, b.y, b.w, b.h); }
+};

@@ -16,7 +16,7 @@ const SITE = 'https://showheyohtaki.github.io/motion-prompt/';
 const REPO = 'https://github.com/showheyohtaki/motion-prompt';
 const LICENCE = 'MIT License (c) 2026 Shohei Ohtaki';
 const VERSION = 1;
-const LANGS = ['ja', 'en'];   // languages of the gallery, the API folders and the copyable prompt
+const LANGS = ['ja', 'en', 'zh-Hans'];   // languages of the gallery, the API folders and the copyable prompt
 const BASE_LANG = 'en';       // every text field needs this one; any other language code is optional
 
 const args = process.argv.slice(2);
@@ -41,9 +41,19 @@ function mpPrompt(el, packTitle, lang) {
   var en = lang === 'en';
   var spec = el.spec[lang].map(function (s) { return '- ' + s; }).join('\n');
   var ref = base + 'api/v1/' + lang + '/e/' + el.id + '.txt';
-  var kit = base + 'api/v1/kit/' + el.pack + '.js';
+  var kit = base + 'api/v1/' + (lang === 'zh-Hans' ? 'zh-Hans/' : '') + 'kit/' + el.pack + '.js';
   var same = el.name.en === el.name.ja;
   var mean = el.meaning && (el.meaning[lang] || el.meaning.en);
+  if (lang === 'zh-Hans') {
+    return [
+      '请使用“' + el.name[lang] + (el.name[lang] === el.name.en ? '' : '（' + el.name.en + '）') + '”，它属于“' + packTitle + '”。',
+      'Motion Prompt #' + el.id, ''
+    ].concat(mean ? ['含义：' + mean] : [], [
+      '示例效果：' + el.summary[lang], '规格：', spec, '适用场景：' + el.use[lang], '',
+      '参考实现（Canvas 2D，画面仅由时间决定）：' + ref, '共享辅助代码：' + kit,
+      '保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。'
+    ]).join('\n');
+  }
   if (en) {
     return [
       'Please use "' + el.name.en + '"' + (same ? '' : ' (' + el.name.ja + ')') + ', one of the names in "' + packTitle + '".',
@@ -340,6 +350,9 @@ const kitOf = Object.fromEntries(packs.map(p => [p.dir, p.cut.kitText]));
 
 // ---------------------------------------------------------------- text renderers
 const T = {
+  'zh-Hans': { what: '示例效果', spec: '效果规格', use: '适用场景', size: '尺寸', cycle: '周期', needs: 'Needs', demo: '动态示例', pack: '分类', cat: '子类', tags: '标签',
+    sig: 'cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。',
+    code: '以下是示例代码，CELLS、常量和辅助函数位于 kit 中。' },
   ja: { what: '何が起きるか', spec: '動きの仕様', use: '使いどころ', size: 'サイズ', cycle: '1周', needs: 'Needs', demo: '動く見本', pack: 'パック', cat: 'カテゴリ', tags: 'タグ',
     sig: 'cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。',
     code: 'ここから要素のコード。CELLS や定数・補助関数は kit にある。' },
@@ -351,7 +364,7 @@ const T = {
 function elementTxt(el, lang) {
   const t = T[lang], p = packOf[el.pack];
   const cat = p.categories.find(c => c.slug === el.category);
-  const name = lang === 'ja' ? `${el.name.ja} / ${el.name.en}` : `${el.name.en} / ${el.name.ja}`;
+  const name = lang === 'zh-Hans' ? `${el.name[lang]} / ${el.name.en}` : lang === 'ja' ? `${el.name.ja} / ${el.name.en}` : `${el.name.en} / ${el.name.ja}`;
   const head = [
     `Motion Prompt #${el.id} · ${LICENCE} · ${SITE}#${el.id}`,
     '',
@@ -363,7 +376,7 @@ function elementTxt(el, lang) {
     `${t.use}: ${el.use[lang]}`,
     `${t.tags}: ${el.tags.join(', ')}`,
     `${t.size}: ${el.width}x${el.height} px · ${t.cycle}: ${el.cycle} s`,
-    `${t.needs}: kit ${el.pack} -> ${SITE}api/v1/kit/${el.pack}.js`,
+    `${t.needs}: kit ${el.pack} -> ${SITE}api/v1/${lang === 'zh-Hans' ? 'zh-Hans/' : ''}kit/${el.pack}.js`,
     `${t.demo}: ${SITE}#${el.id}`,
     '',
     t.sig,
@@ -372,7 +385,7 @@ function elementTxt(el, lang) {
   return head.join('\n') + '\n\n' + codeById[el.id] + '\n';
 }
 
-function kitJs(p) {
+function kitJs(p, lang = 'en') {
   const range = p.first === p.last ? `#${p.first}` : `#${p.first}-${p.last}`;
   const W = p.width, H = p.height, C = p.cycle;
   const head = [
@@ -396,7 +409,7 @@ function kitJs(p) {
     '       })();',
     'Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.',
   ].map(l => (l ? `// ${l}` : '//'));
-  return head.join('\n') + '\n\n' + kitOf[p.pack] + '\n';
+  return head.join('\n') + '\n\n' + (lang === 'zh-Hans' ? kitOf[p.pack].replace("MP_LANGUAGE : 'ja'", "MP_LANGUAGE : 'zh-Hans'") : kitOf[p.pack]) + '\n';
 }
 
 const tsvCell = s => String(s).replace(/[\t\r\n]+/g, ' ').trim();
@@ -404,7 +417,7 @@ function catalogTsv(lang) {
   const head = `# Motion Prompt catalog (${lang}) · ${catalog.count} elements · ${SITE} · columns: id\tpack\tcategory\ttitle\ttags\tsummary`;
   const rows = catalog.elements.map(el => {
     const cat = packOf[el.pack].categories.find(c => c.slug === el.category);
-    const title = lang === 'ja' ? `${el.name.ja} (${el.name.en})` : `${el.name.en} (${el.name.ja})`;
+    const title = lang === 'zh-Hans' ? `${el.name[lang]} (${el.name.en})` : lang === 'ja' ? `${el.name.ja} (${el.name.en})` : `${el.name.en} (${el.name.ja})`;
     return [el.id, el.pack, cat ? cat[lang] : el.category, title, el.tags.join(','), el.summary[lang]].map(tsvCell).join('\t');
   });
   return [head, ...rows].join('\n') + '\n';
@@ -414,6 +427,10 @@ function catalogTsv(lang) {
 // One file per language the pack is written in: README.md (en), README.<lang>.md (the others).
 // Headings fall back to English for a language that has no block here; add a block to translate them.
 const DOC = {
+  'zh-Hans': { gen: '由 tools/build.mjs 根据 meta.json 生成。请编辑 meta.json，不要直接修改本文件。', names: '个术语', pack: '分类', langs: '语言',
+    intro: '找到名称后直接告诉 AI。补充时长、幅度和运动对象，可以更接近你想要的效果。',
+    no: '编号', name: '名称', en: '英文名', meaning: '含义', ask: '向 AI 提出需求的示例',
+    more: '点击编号可打开动态示例。单个术语的时间、缓动数值与参考代码位于：', all: '全部分类', preview: '示例' },
   en: { gen: 'Generated by tools/build.mjs from meta.json. Edit meta.json, not this file.', names: 'names', pack: 'pack', langs: 'Languages',
     intro: 'Find the name, then say it to your AI. Add how long, how strong and what moves, and the result gets closer to what you had in mind.',
     no: '#', name: 'Name', en: 'English', meaning: 'What it is', ask: 'How to ask an AI',
@@ -502,7 +519,10 @@ for (const lang of LANGS) {
     files.set(`api/v1/${lang}/p/${el.id}.txt`, mpPrompt(el, packOf[el.pack].title[lang], lang) + '\n');
   }
 }
-for (const p of catalog.packs) files.set(`api/v1/kit/${p.pack}.js`, kitJs(p));
+for (const p of catalog.packs) {
+  files.set(`api/v1/kit/${p.pack}.js`, kitJs(p));
+  files.set(`api/v1/zh-Hans/kit/${p.pack}.js`, kitJs(p, 'zh-Hans'));
+}
 for (const src of packs) for (const lang of src.langs) files.set(`packs/${src.dir}/${readmeName(lang)}`, packReadme(src, packOf[src.dir], lang));
 files.set('packs/README.md', packsIndex());
 files.set('assets/catalog.js',

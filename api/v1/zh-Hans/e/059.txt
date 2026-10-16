@@ -1,0 +1,32 @@
+// Motion Prompt #059 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#059
+//
+// 开关 / Toggle switch
+// 分类: ui (UI 组件) · element 11 · 子类: 切换与输入
+// 示例效果: 三行设置中的前两个开关依次开启，再关闭。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；三行设置相距 60 px，带分隔线；x 450 处轨道 64×34、圆角半径 17，白色滑块半径 13、带阴影。
+//   - 点击时间：第 1 行 1.0 s 开，第 2 行 1.8 s 开，第 1 行 3.0 s 关，第 2 行 3.6 s 关，第 3 行保持关闭。
+//   - 每次切换在 0.2 s 内按 easeOutCubic 变化，滑块移动 30 px，从 17→47。
+//   - 轨道随进度从灰色 #d9d7d5 混合至蓝色 #1f5ae8。
+// 适用场景: 适合立即生效、只有两种状态的设置。
+// 标签: toggle, switch, toggle-switch, on-off, boolean, settings
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#059
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 11
+// 11 トグルスイッチ（Toggle switch）
+CELLS[10] = ui((w, h, t) => {
+  const st = [eo(seg(t, 1.0, 1.2)) * (1 - eo(seg(t, 3.0, 3.2))), eo(seg(t, 1.8, 2.0)) * (1 - eo(seg(t, 3.6, 3.8))), 0];
+  for (let i = 0; i < 3; i++) {
+    const y = 14 + i * 60; bar(24, y + 10, [170, 140, 190][i], C.line2, 11); bar(24, y + 30, [260, 220, 240][i], C.line, 8);
+    if (i < 2) { X.fillStyle = C.line; X.fillRect(24, y + 52, 494, 1.5); }
+    const k = st[i], tx = 450, ty = y + 10;
+    fillRR(tx, ty, 64, 34, 17, k > .5 ? C.blue : '#d9d7d5'); if (k > 0 && k < 1) { X.globalAlpha = k; fillRR(tx, ty, 64, 34, 17, C.blue); X.globalAlpha = 1; }
+    shadowed(() => circle(tx + 17 + 30 * k, ty + 17, 13, '#fff'), 4, 1, .25);
+  }
+  pointer([[.3, w + 30, h + 30], [.95, 486, 30], [1.35, 486, 30], [1.75, 486, 90], [2.5, 486, 90], [2.95, 486, 30], [3.25, 486, 30], [3.55, 486, 90], [3.85, 486, 90], [4.3, w + 30, h + 30]], [1.0, 1.8, 3.0, 3.6], t);
+});

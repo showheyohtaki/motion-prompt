@@ -1,0 +1,30 @@
+// Motion Prompt #034 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#034
+//
+// 手持镜头 / Handheld
+// 分类: camera (镜头运动与转场) · element 10 · 子类: 拍摄方式与时间效果
+// 示例效果: 画面整体有轻微不规则晃动，像手持相机拍摄。
+// 效果规格:
+//   - 镜头：位置几乎固定，偏航、俯仰、滚转和高度各叠加不同周期的正弦波，T = 2π×u/4.7。
+//   - 偏航（rad）= 0.016·sin(3T) + 0.008·sin(7T+1) + 0.004·sin(13T+2)，最大约 ±1.6°。
+//   - 俯仰（rad）= 0.012·sin(4T+2) + 0.006·sin(9T+0.5) + 0.003·sin(17T+1.2)，最大约 ±1.2°。
+//   - 滚转（rad）= 0.02·sin(5T+1) + 0.008·sin(11T+3)，最大约 ±1.6°；高度 = 1.5 + 0.03·sin(6T) m。
+//   - 主体静立在前方 6.5 m，晃动持续进行，无缓动或停留。
+//   - 各频率倍数均为整数，每 4.7 s 无缝循环；右上角显示 HANDHELD。
+// 适用场景: 适合纪录片风格或增强身临其境的感觉。
+// 标签: handheld, camera shake, shaky, documentary, wobble, noise, realism
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#034
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 10
+// 10 手持ち
+CELLS[9] = shot((k, w, h, u) => {
+  const T = u * 2 * Math.PI / CYC;   // 周期をサイクルに合わせて継ぎ目なし
+  const n = (a, b, c2) => Math.sin(T * a + b) * c2;
+  const yaw = n(3, 0, .016) + n(7, 1, .008) + n(13, 2, .004), pitch = n(4, 2, .012) + n(9, .5, .006) + n(17, 1.2, .003), roll = n(5, 1, .02) + n(11, 3, .008);
+  world(k, w, h, cam({ yaw, pitch, roll, y: 1.5 + n(6, 0, .03) }), { person: { z: 6.5 } });
+  return 'HANDHELD';
+});

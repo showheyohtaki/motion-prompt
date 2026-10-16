@@ -1,0 +1,45 @@
+// Motion Prompt #057 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#057
+//
+// 标签页 / Tabs
+// 分类: ui (UI 组件) · element 09 · 子类: 切换与输入
+// 示例效果: 依次点击概览、价格、评价，蓝色下划线滑动，下方内容切换。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；三标签 x 为 24、114、204，宽 70、70、100；y 50 有 2 px 分隔线，下划线为 4 px 蓝色。
+//   - 1.0 s 点击第二个标签，2.2 s 点击第三个，3.4 s 点击第一个。
+//   - 每次点击后，下划线位置与宽度在 0.25 s 内按 easeInOutCubic 移至新标签，从第三个回第一个时经过中间。
+//   - 选中标签为蓝色粗体，其余灰色；切换发生于 1.1、2.3、3.5 s。
+//   - 旧内容在 0.2 s 内线性淡出，0.1 s 后新内容在 0.2 s 内上移 8 px 并淡入。
+// 适用场景: 适合在同一空间展示多个相关视图并切换。
+// 标签: tabs, tab-bar, tabbed, navigation, switch-view, underline
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#057
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 09
+// 09 タブ（Tabs）
+CELLS[8] = ui((w, h, t) => {
+  const labs = ['概要', '料金', 'レビュー'], xs = [24, 114, 204], ws = [70, 70, 100];
+  const c1 = eio(seg(t, 1.0, 1.25)), c2 = eio(seg(t, 2.2, 2.45)), c3 = eio(seg(t, 3.4, 3.65));
+  const pos = c1 + c2 - 2 * c3; // 0 -> 1 -> 2 -> 0
+  const fi = Math.floor(pos), fr = pos - fi, gi = Math.min(2, fi + 1);
+  const ux = lerp(xs[fi], xs[gi], fr), uw = lerp(ws[fi], ws[gi], fr);
+  const act = t < 1.1 ? 0 : t < 2.3 ? 1 : t < 3.5 ? 2 : 0;
+  labs.forEach((s, i) => text(s, xs[i] + ws[i] / 2, 28, 17, i === act ? C.blue : '#8a8886', i === act ? 700 : 500, 'center'));
+  X.fillStyle = C.line; X.fillRect(0, 50, w, 2); fillRR(ux, 48, uw, 4, 2, C.blue);
+  // 中身（切替時にクロスフェード）
+  const tabAlpha = [
+    1 - seg(t, 1.0, 1.2) + seg(t, 3.45, 3.65),
+    seg(t, 1.1, 1.3) - seg(t, 2.2, 2.4),
+    seg(t, 2.3, 2.5) - seg(t, 3.4, 3.6)];
+  tabAlpha.forEach((a, i) => {
+    a = clamp(a); if (a <= 0) return; X.save(); X.globalAlpha = a; X.translate(0, 8 * (1 - a));
+    if (i === 0) { bar(24, 70, 220, C.line2, 11); bar(24, 94, 494); bar(24, 112, 400); fillRR(24, 134, 494, 46, 8, C.block); }
+    if (i === 1) { for (let k = 0; k < 3; k++) { const x = 24 + k * 168; fillRR(x, 68, 158, 112, 10, k === 1 ? C.lb : '#f6f5f3'); strokeRR(x, 68, 158, 112, 10, k === 1 ? C.sb : C.line, 1.5); bar(x + 16, 84, 60, k === 1 ? C.blue : C.line2, 10); text(['¥0', '¥980', '¥1,980'][k], x + 16, 118, 22, k === 1 ? C.blue : '#555', 700, 'left', NUMF); bar(x + 16, 148, 110); } }
+    if (i === 2) { for (let k = 0; k < 3; k++) { const y = 70 + k * 38; circle(40, y + 14, 14, k === 0 ? C.mb : C.line); bar(64, y + 4, 120, C.line2, 10); bar(64, y + 20, 360); } }
+    X.restore();
+  });
+  pointer([[.3, w + 30, h + 30], [.95, 152, 34], [1.6, 152, 34], [2.15, 256, 34], [2.8, 256, 34], [3.35, 62, 34], [3.7, 62, 34], [4.25, w + 30, h + 30]], [1.0, 2.2, 3.4], t);
+});

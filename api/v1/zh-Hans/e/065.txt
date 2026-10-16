@@ -1,0 +1,41 @@
+// Motion Prompt #065 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#065
+//
+// 汉堡菜单 / Hamburger menu
+// 分类: ui (UI 组件) · element 17 · 子类: 导航与状态反馈
+// 示例效果: 点击页头右侧三横线后变为 ×，下方菜单展开，再次点击关闭。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；白色页头高 44，右侧 (500, 22) 有三根长 24、粗 3、间距 8 px 的线。
+//   - 1.0 s 与 3.3 s 点击；展开量 a 在 1.0–1.3 s 从 0→1，在 3.3–3.6 s 从 1→0，easeInOutCubic。
+//   - 转为 ×：上下两线各向中央移动 8 px 并旋转 ±45°，中线以不透明度 1 − a 淡出；展开时为蓝色。
+//   - 白色菜单高 140，顶部 y = 44 − 140 + 140·a，在页头下裁切并向下展开；阴影模糊 16，四个菜单项，第一项蓝色。
+// 适用场景: 适合窄屏下将主导航收进一个按钮。
+// 标签: hamburger-menu, hamburger, menu-icon, nav-toggle, mobile-menu, menu
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#065
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 17
+// 17 ハンバーガーメニュー（Hamburger menu）
+CELLS[16] = ui((w, h, t) => {
+  const a = eio(seg(t, 1.0, 1.3)) * (1 - eio(seg(t, 3.3, 3.6)));
+  pageLines(24, 66, 494); fillRR(24, 134, 494, 46, 8, C.block);
+  if (a > 0) {
+    X.save(); X.beginPath(); X.rect(0, 44, w, h); X.clip();
+    const mh = 140, my = 44 - mh + mh * a;
+    shadowed(() => { X.fillStyle = '#fff'; X.fillRect(0, my, w, mh); }, 16, 6, .16);
+    for (let k = 0; k < 4; k++) { const y = my + 14 + k * 32; bar(24, y + 6, [110, 150, 90, 130][k], k === 0 ? C.blue : C.line2, 11); if (k < 3) { X.fillStyle = C.line; X.fillRect(24, y + 26, w - 48, 1); } }
+    X.restore();
+  }
+  X.fillStyle = '#fff'; X.fillRect(0, 0, w, 44); X.fillStyle = C.line; X.fillRect(0, 44, w, 1.5);
+  fillRR(24, 15, 76, 16, 4, C.mb);
+  // 三本線 → ×
+  const hx = w - 42, hy = 22; X.save(); X.translate(hx, hy); X.strokeStyle = a > .02 ? C.blue : '#333'; X.lineWidth = 3; X.lineCap = 'round';
+  X.save(); X.translate(0, -8 * (1 - a)); X.rotate(Math.PI / 4 * a); X.beginPath(); X.moveTo(-12, 0); X.lineTo(12, 0); X.stroke(); X.restore();
+  X.globalAlpha = 1 - a; X.beginPath(); X.moveTo(-12, 0); X.lineTo(12, 0); X.stroke(); X.globalAlpha = 1;
+  X.save(); X.translate(0, 8 * (1 - a)); X.rotate(-Math.PI / 4 * a); X.beginPath(); X.moveTo(-12, 0); X.lineTo(12, 0); X.stroke(); X.restore();
+  X.restore();
+  pointer([[.3, w + 30, h + 30], [.95, w - 38, 26], [3.5, w - 38, 26], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
+});

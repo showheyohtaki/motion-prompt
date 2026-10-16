@@ -3,23 +3,23 @@
   "order": 3,
   "title": {
     "ja": "UIパーツの名前",
-    "en": "UI component names"
+    "zh-Hans": "UI 组件", "en": "UI component names"
   },
   "categories": [
     {
       "slug": "open-overlay",
       "ja": "開く・重なるパーツ",
-      "en": "Opening & overlays"
+      "zh-Hans": "浮层与展开", "en": "Opening & overlays"
     },
     {
       "slug": "select-switch",
       "ja": "選ぶ・切り替えるパーツ",
-      "en": "Choosing & switching"
+      "zh-Hans": "切换与输入", "en": "Choosing & switching"
     },
     {
       "slug": "navigate-status",
       "ja": "案内する・状態を伝えるパーツ",
-      "en": "Navigation & status"
+      "zh-Hans": "导航与状态反馈", "en": "Navigation & status"
     }
   ],
   "elements": [
@@ -29,19 +29,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "モーダル",
-        "en": "Modal dialog"
+        "zh-Hans": "模态对话框", "en": "Modal dialog"
       },
       "meaning": {
         "ja": "画面を暗くして中央に窓が出る",
-        "en": "A window opens in the middle while the page behind dims"
+        "zh-Hans": "打开浮窗并暂时阻止操作背景", "en": "A window opens in the middle while the page behind dims"
       },
       "ask": {
         "ja": "削除ボタンを押したらモーダルで確認を出して。背景は4割ほど暗くし、0.3秒で少し拡大しながらフェードイン。",
-        "en": "When the delete button is pressed, show a confirmation in a modal dialog. Dim the page about 40% and fade it in over 0.3 s with a slight scale-up."
+        "zh-Hans": "点击删除按钮后显示模态确认对话框，页面变暗约 40%，用 0.3 s 淡入并略微放大。", "en": "When the delete button is pressed, show a confirmation in a modal dialog. Dim the page about 40% and fade it in over 0.3 s with a slight scale-up."
       },
       "summary": {
         "ja": "「開く」ボタンを押すと画面全体が暗くなり、中央に小窓が少し拡大しながら出る。×を押すと閉じる。",
-        "en": "Clicking \"Open\" dims the whole page and a small window scales up slightly into the centre; clicking × closes it."
+        "zh-Hans": "点击打开后整页变暗，小窗口略微放大着出现在中央，点击 × 关闭。", "en": "Clicking \"Open\" dims the whole page and a small window scales up slightly into the centre; clicking × closes it."
       },
       "spec": {
         "ja": [
@@ -51,7 +51,7 @@
           "窓の中: 見出しの太線・本文2行・右下に青いボタン 88×30・右上に×",
           "閉じる: カーソルが3.0秒に×へ移り3.3秒にクリック。a に (1 − easeInOutCubic(3.3〜3.58秒)) を掛けて消す"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；光标于 0.95 s 到达左下方 120×36 的打开按钮，1.0 s 点击。", "展开量 a 在 1.0–1.32 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.42·a。", "窗口为白色 280×140，圆角半径 12，中心 (271, 97)；阴影模糊 24、y 偏移 8、alpha 0.25；缩放 0.9 + 0.1·a，不透明度 a。", "内部包含粗体标题条、两行文字、右下方蓝色 88×30 按钮和右上方 ×。", "关闭：光标于 3.0 s 前到达 ×，3.3 s 点击；a 乘以 1 − easeInOutCubic，作用于 3.3–3.58 s。"], "en": [
           "4.5 s cycle on a 542×191 card. The cursor reaches the \"Open\" button (120×36, lower left) at 0.95 s and clicks at 1.0 s.",
           "Open amount a: 0→1 over 1.0–1.32 s with easeOutCubic. A full-card scrim rgba(18,20,28) at opacity 0.42·a.",
           "Window: white 280×140, radius 12, centred at (271, 97), shadow blur 24, offset y 8, alpha 0.25. Scale 0.9 + 0.1·a, opacity a.",
@@ -61,7 +61,7 @@
       },
       "use": {
         "ja": "確認・入力など、今の作業を止めて1つのことに集中させたいとき。",
-        "en": "Use it when the user must stop and deal with one thing, such as a confirmation or a short form."
+        "zh-Hans": "适合需要用户暂停并处理一件事的确认或短表单。", "en": "Use it when the user must stop and deal with one thing, such as a confirmation or a short form."
       },
       "tags": [
         "modal",
@@ -80,19 +80,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "ドロワー",
-        "en": "Drawer (Off-canvas)"
+        "zh-Hans": "抽屉面板", "en": "Drawer (Off-canvas)"
       },
       "meaning": {
         "ja": "横からメニューが引き出される",
-        "en": "A menu panel slides in from the side of the screen"
+        "zh-Hans": "从屏幕侧边滑出的面板", "en": "A menu panel slides in from the side of the screen"
       },
       "ask": {
         "ja": "メニューボタンを押したら左からドロワーを出して。幅は画面の4割、0.4秒で引き出し、背景は少し暗く。",
-        "en": "Open a drawer from the left when the menu button is pressed: 40% of the screen wide, sliding in over 0.4 s, with the page slightly dimmed."
+        "zh-Hans": "点击菜单按钮后从左侧打开抽屉，宽度占屏幕 40%，用 0.4 s 滑入，页面略微变暗。", "en": "Open a drawer from the left when the menu button is pressed: 40% of the screen wide, sliding in over 0.4 s, with the page slightly dimmed."
       },
       "summary": {
         "ja": "「メニュー」を押すと左から縦長のパネルが引き出され、外側を押すと戻る。",
-        "en": "Clicking \"Menu\" slides a tall panel in from the left; clicking outside slides it back."
+        "zh-Hans": "点击菜单后高面板从左侧滑入，点击外部则滑回。", "en": "Clicking \"Menu\" slides a tall panel in from the left; clicking outside slides it back."
       },
       "spec": {
         "ja": [
@@ -102,7 +102,7 @@
           "パネルの中: 上に丸アイコン（半径14）と名前、下に32px間隔で4行のメニュー。1行目は薄い青の帯で選択中",
           "閉じる: カーソルがパネルの外 (420, 120) を3.3秒にクリック。a に (1 − easeInOutCubic(3.3〜3.65秒)) を掛けて左へ戻す"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；光标于 1.0 s 点击左上方 110×34 菜单按钮。", "展开量 a 在 1.0–1.38 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.36·a。", "白色面板宽 210，与卡片等高，x = −210 + 210·a，从左边缘滑入；阴影模糊 22、alpha 0.25。", "顶部是半径 14 的头像与姓名，下方四行菜单相隔 32 px；首行以浅蓝底选中。", "关闭：3.3 s 光标点击外部 (420, 120)；a 乘以作用于 3.3–3.65 s 的 1 − easeInOutCubic，使面板滑回。"], "en": [
           "4.5 s cycle on a 542×191 card. The cursor clicks the \"Menu\" button (110×34, top left) at 1.0 s.",
           "Open amount a: 0→1 over 1.0–1.38 s with easeOutCubic. Full-card scrim rgba(18,20,28) at opacity 0.36·a.",
           "Panel: white, 210 wide, full card height, x = −210 + 210·a so it slides in from the left edge. Shadow blur 22, alpha 0.25.",
@@ -112,7 +112,7 @@
       },
       "use": {
         "ja": "スマホの全体メニューや、絞り込み条件など、場所を取る操作を横に隠しておきたいとき。",
-        "en": "Use it to keep navigation or filters off screen until needed, especially on mobile."
+        "zh-Hans": "适合按需显示导航或筛选，尤其适用于移动端。", "en": "Use it to keep navigation or filters off screen until needed, especially on mobile."
       },
       "tags": [
         "drawer",
@@ -131,19 +131,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "ボトムシート",
-        "en": "Bottom sheet"
+        "zh-Hans": "底部面板", "en": "Bottom sheet"
       },
       "meaning": {
         "ja": "下からパネルがせり上がる",
-        "en": "A panel slides up from the bottom of the screen"
+        "zh-Hans": "从屏幕底部升起的面板", "en": "A panel slides up from the bottom of the screen"
       },
       "ask": {
         "ja": "「詳細を見る」を押したらボトムシートで詳細を出して。高さは画面の4割、0.4秒でせり上げ、下へ引くと閉じる。",
-        "en": "Show the details in a bottom sheet when \"View details\" is tapped: 40% of the screen tall, rising over 0.4 s, closing when dragged down."
+        "zh-Hans": "点击查看详情后弹出高度占屏幕 40% 的底部面板，0.4 s 升起，向下拖动关闭。", "en": "Show the details in a bottom sheet when \"View details\" is tapped: 40% of the screen tall, rising over 0.4 s, closing when dragged down."
       },
       "summary": {
         "ja": "指で「詳細を見る」を押すと下からパネルがせり上がり、上端のつまみを下へ引くと閉じる。",
-        "en": "A finger taps \"View details\" and a panel rises from the bottom; dragging its handle down closes it."
+        "zh-Hans": "手指点击查看详情，面板从底部升起；向下拖动把手关闭。", "en": "A finger taps \"View details\" and a panel rises from the bottom; dragging its handle down closes it."
       },
       "spec": {
         "ja": [
@@ -153,7 +153,7 @@
           "シートの中: 見出しの太線と、アイコン（26×26）付きの2行",
           "閉じる: 指が2.75秒につまみ (271, 68) に乗り、3.0〜3.6秒に下へ引く。a に (1 − easeInOutCubic(3.0〜3.6秒)) を掛け、シートが指と一緒に下へ消える"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；半透明圆形手指半径 17、白边，于 1.0 s 点击底部中央 170×36 的查看详情按钮。", "展开量在 1.05–1.45 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.36·a。", "白色面板高 136，顶部圆角半径 18，上边缘 y = 191 − 136·a；阴影模糊 22、y 偏移 −4；顶部中央有 52×6 把手。", "内部是粗体标题条和两行带 26×26 图标的条目。", "关闭：手指 2.75 s 落在把手 (271, 68)，3.0–3.6 s 向下拖动；a 乘以此区间的 1 − easeInOutCubic，面板跟随手指从底部离开。"], "en": [
           "4.5 s cycle on a 542×191 card. A finger (semi-transparent circle, radius 17, white rim) taps the \"View details\" pill (170×36, bottom centre) at 1.0 s.",
           "Open amount: 0→1 over 1.05–1.45 s with easeOutCubic. Full-card scrim rgba(18,20,28) at opacity 0.36·a.",
           "Sheet: white, 136 tall, top corners radius 18, top edge at y = 191 − 136·a. Shadow blur 22, offset y −4. A 52×6 grab handle at top centre.",
@@ -163,7 +163,7 @@
       },
       "use": {
         "ja": "スマホで、今の画面を残したまま詳細や選択肢を出したいとき。",
-        "en": "Use it on mobile to show details or choices while keeping the current screen in view."
+        "zh-Hans": "适合移动端展示详情或选项，同时保留当前页面背景。", "en": "Use it on mobile to show details or choices while keeping the current screen in view."
       },
       "tags": [
         "bottom-sheet",
@@ -181,19 +181,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "アコーディオン",
-        "en": "Accordion"
+        "zh-Hans": "折叠面板", "en": "Accordion"
       },
       "meaning": {
         "ja": "押すと中身が開閉する",
-        "en": "Click a heading to show or hide its content"
+        "zh-Hans": "点击标题展开或收起内容", "en": "Click a heading to show or hide its content"
       },
       "ask": {
         "ja": "よくある質問をアコーディオンにして。押した項目だけ0.35秒で開き、矢印を180度回して。",
-        "en": "Make the FAQ an accordion: the clicked item opens over 0.35 s and its arrow turns 180°."
+        "zh-Hans": "把常见问题做成折叠面板，点击后在 0.35 s 内展开，箭头旋转 180°。", "en": "Make the FAQ an accordion: the clicked item opens over 0.35 s and its arrow turns 180°."
       },
       "summary": {
         "ja": "3段の見出しのうち1段目を押すと下に本文が開き、下の段が押し下げられる。もう一度押すと閉じる。",
-        "en": "Clicking the first of three headings opens its content and pushes the rows below down; clicking again closes it."
+        "zh-Hans": "点击三条标题中的第一条，内容展开并推低下方条目，再次点击收起。", "en": "Clicking the first of three headings opens its content and pushes the rows below down; clicking again closes it."
       },
       "spec": {
         "ja": [
@@ -203,7 +203,7 @@
           "1段目の高さを 34 → 92（+58×ex）に伸ばし、下の段をその分押し下げる。本文2行は枠の中に切り抜いて不透明度 ex で出す",
           "開いている間、矢印は 180°×ex 回り、枠は薄い青・見出しは青になる"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；三条标题宽 494、高 34、圆角半径 8、间隔 6，右侧有向下箭头。", "光标于 0.95 s 到达首条标题，1.0 s 和 3.3 s 点击。", "展开量 ex 在 1.0–1.35 s 按 easeInOutCubic 从 0→1，再于 3.3–3.62 s 从 1→0。", "首行高度从 34 增至 92，即 +58·ex，推低后续条目；两行内容裁切在行内，以不透明度 ex 淡入。", "展开时箭头旋转 180°·ex，边框变浅蓝、标题变蓝。"], "en": [
           "4.5 s cycle on a 542×191 card. Three headings (494 wide, 34 tall, radius 8, gap 6) with a down chevron at the right.",
           "The cursor reaches the first heading at 0.95 s and clicks at 1.0 s and 3.3 s.",
           "Open amount ex: 0→1 over 1.0–1.35 s with easeInOutCubic, then 1→0 over 3.3–3.62 s.",
@@ -213,7 +213,7 @@
       },
       "use": {
         "ja": "FAQや詳細な説明など、見出しだけ並べて中身は必要な人にだけ見せたいとき。",
-        "en": "Use it for FAQs or long details where people scan the headings and open only what they need."
+        "zh-Hans": "适合常见问题或长详情，让用户扫读标题后按需展开。", "en": "Use it for FAQs or long details where people scan the headings and open only what they need."
       },
       "tags": [
         "accordion",
@@ -231,19 +231,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "ドロップダウン",
-        "en": "Dropdown (select)"
+        "zh-Hans": "下拉选择框", "en": "Dropdown (select)"
       },
       "meaning": {
         "ja": "押すと選択肢が下に広がる",
-        "en": "Click a field to drop a list of options below it"
+        "zh-Hans": "点击字段展开选项列表", "en": "Click a field to drop a list of options below it"
       },
       "ask": {
         "ja": "都道府県の入力欄をドロップダウンにして。押したら0.25秒で選択肢を下に開き、選んだら閉じて値を入れて。",
-        "en": "Make the prefecture field a dropdown: open the options below it in 0.25 s and close it with the value filled in once one is picked."
+        "zh-Hans": "把地区字段做成下拉选择框，0.25 s 展开下方选项，选中后回填并收起。", "en": "Make the prefecture field a dropdown: open the options below it in 0.25 s and close it with the value filled in once one is picked."
       },
       "summary": {
         "ja": "入力欄を押すと下に4つの選択肢が開き、「名古屋」を選ぶと閉じて欄に入る。",
-        "en": "Clicking the field opens four options below it; picking \"Nagoya\" closes the list and fills the field."
+        "zh-Hans": "点击字段后在下方展开四个选项，选择名古屋后收起并回填。", "en": "Clicking the field opens four options below it; picking \"Nagoya\" closes the list and fills the field."
       },
       "spec": {
         "ja": [
@@ -253,7 +253,7 @@
           "2.3秒に名古屋をクリック: 一覧は2.3〜2.45秒に (1 − easeInOutCubic) で閉じ、プレースホルダーは2.2〜2.3秒に消え、「名古屋」が2.32〜2.42秒に出る",
           "戻し: 名古屋は3.9〜4.08秒に消え、プレースホルダーが4.1〜4.3秒に戻る（文字を重ねない）"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；260×38 字段圆角半径 8，显示占位文字和箭头；1.0 s 光标点击。", "展开量在 1.0–1.25 s 按 easeOutCubic 从 0→1；白色 260×112 列表下移 6 px 并淡入，阴影模糊 18；箭头旋转 180°，字段边框变为 2 px 蓝色。", "四个选项间隔 26 px，日文为东京、大阪、名古屋、福冈；随光标下移，1.55 s 起大阪浅蓝高亮，1.95 s 起名古屋高亮。", "2.3 s 点击名古屋，列表于 2.3–2.45 s 按 1 − easeInOutCubic 收起；占位文字于 2.2–2.3 s 淡出，名古屋于 2.32–2.42 s 淡入。", "复位：名古屋于 3.9–4.08 s 淡出，占位文字于 4.1–4.3 s 恢复，避免文字重叠。"], "en": [
           "4.5 s cycle on a 542×191 card. A 260×38 field (radius 8) shows a placeholder and a chevron; the cursor clicks it at 1.0 s.",
           "Open amount: 0→1 over 1.0–1.25 s with easeOutCubic. The list (white 260×112, shadow blur 18) fades in while dropping 6 px. The chevron turns 180° and the field border becomes 2 px blue.",
           "Four options 26 px apart (Tokyo, Osaka, Nagoya, Fukuoka in Japanese). As the cursor moves down, Osaka is highlighted light blue from 1.55 s and Nagoya from 1.95 s.",
@@ -263,7 +263,7 @@
       },
       "use": {
         "ja": "フォームで、決まった候補の中から1つを選ばせたいとき。",
-        "en": "Use it in a form when people pick one value from a fixed list."
+        "zh-Hans": "适合表单中从固定列表选择一个值。", "en": "Use it in a form when people pick one value from a fixed list."
       },
       "tags": [
         "dropdown",
@@ -281,19 +281,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "ツールチップ",
-        "en": "Tooltip"
+        "zh-Hans": "文字提示", "en": "Tooltip"
       },
       "meaning": {
         "ja": "乗せると小さな説明が出る",
-        "en": "Hover over something to show a short label"
+        "zh-Hans": "悬停时显示简短说明", "en": "Hover over something to show a short label"
       },
       "ask": {
         "ja": "「?」アイコンにツールチップを付けて。カーソルを乗せて0.2秒で上に説明を出し、離れたら消して。",
-        "en": "Add a tooltip to the \"?\" icon: show the note above it 0.2 s after hover, and hide it when the cursor leaves."
+        "zh-Hans": "给问号图标加文字提示，悬停 0.2 s 后在上方显示，移开即隐藏。", "en": "Add a tooltip to the \"?\" icon: show the note above it 0.2 s after hover, and hide it when the cursor leaves."
       },
       "summary": {
         "ja": "カーソルを「?」に乗せると、上に黒い吹き出しで短い説明が出る。離れると消える。",
-        "en": "Hovering over a \"?\" icon shows a short note in a dark bubble above it; it disappears when the cursor leaves."
+        "zh-Hans": "悬停问号图标，上方深色气泡显示简短说明；移开后消失。", "en": "Hovering over a \"?\" icon shows a short note in a dark bubble above it; it disappears when the cursor leaves."
       },
       "spec": {
         "ja": [
@@ -303,7 +303,7 @@
           "吹き出し: #26282c の 184×36・角丸8、上端 y 64。下に幅16・高さ8の三角で「?」を指す。白い15pxの文字「小さな説明が出る」",
           "消える: 3.25〜3.45秒に直線で 1→0"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；半径 13 的蓝环问号图标位于标签旁 (196, 121)。", "光标只悬停不点击：1.05 s 到达问号，停留至 3.15 s，4.1 s 前离开卡片。", "显示量 a 在 1.15–1.35 s 按 easeOutCubic 从 0→1，不透明度 a，同时上移 6 px 到位。", "气泡颜色 #26282c、尺寸 184×36、圆角半径 8、顶部 y 64；宽 16、高 8 的向下三角指向图标，文字为白色 15 px。", "3.25–3.45 s 线性从 1→0 隐藏。"], "en": [
           "4.5 s cycle on a 542×191 card. A \"?\" icon (blue ring, radius 13) at (196, 121) next to a label.",
           "The cursor only hovers, no click: it arrives on \"?\" at 1.05 s, stays until 3.15 s and leaves the card by 4.1 s.",
           "Show amount a: 0→1 over 1.15–1.35 s with easeOutCubic; opacity a, rising 6 px into place.",
@@ -313,7 +313,7 @@
       },
       "use": {
         "ja": "アイコンや略語など、見ればすぐ分かる補足を1行だけ添えたいとき。",
-        "en": "Use it to add a one-line hint to an icon or abbreviation without taking space on the page."
+        "zh-Hans": "适合为图标或缩写添加不占页面空间的单行提示。", "en": "Use it to add a one-line hint to an icon or abbreviation without taking space on the page."
       },
       "tags": [
         "tooltip",
@@ -330,19 +330,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "ポップオーバー",
-        "en": "Popover"
+        "zh-Hans": "气泡卡片", "en": "Popover"
       },
       "meaning": {
         "ja": "押すと吹き出しの小窓が出る",
-        "en": "Click a button to open a small panel pointing at it"
+        "zh-Hans": "点击后显示指向触发按钮的小面板", "en": "Click a button to open a small panel pointing at it"
       },
       "ask": {
         "ja": "「詳細」ボタンにポップオーバーを付けて。押したら右に吹き出しの小窓を0.3秒で出し、OKで閉じて。",
-        "en": "Attach a popover to the \"Details\" button: clicking opens a small panel to its right over 0.3 s, and OK closes it."
+        "zh-Hans": "给详情按钮加右侧气泡卡片，0.3 s 展开，点击确定关闭。", "en": "Attach a popover to the \"Details\" button: clicking opens a small panel to its right over 0.3 s, and OK closes it."
       },
       "summary": {
         "ja": "「詳細」を押すと右に、三角でボタンを指す白い小窓が出る。小窓のOKを押すと閉じる。",
-        "en": "Clicking \"Details\" opens a small white panel to its right with a pointer at the button; clicking OK inside closes it."
+        "zh-Hans": "点击详情后，其右侧出现带指向箭头的白色面板，点击内部确定关闭。", "en": "Clicking \"Details\" opens a small white panel to its right with a pointer at the button; clicking OK inside closes it."
       },
       "spec": {
         "ja": [
@@ -352,7 +352,7 @@
           "中身: 見出しの太線・本文2行・下に枠のボタン 70×26 と青いOK 72×26",
           "閉じる: カーソルが3.0秒にOK (402, 157) へ移り3.3秒にクリック。a に (1 − easeInOutCubic(3.3〜3.5秒)) を掛ける"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；108×36 的蓝色描边详情按钮位于 (24, 112)，1.0 s 点击。", "显示量 a 在 1.0–1.28 s 按 easeOutCubic 从 0→1，不透明度 a，从右侧滑入 6 px。", "白色面板 300×120，圆角半径 10，位置 (156, 62)，边框 1 px、阴影模糊 22、y 偏移 6；左边缘 y 122–138 处有宽 10 的三角指向按钮。", "内部是粗体标题条、两行文字、70×26 描边按钮和蓝色 72×26 确定按钮。", "关闭：3.0 s 前光标到达确定按钮 (402, 157)，3.3 s 点击；a 乘以作用于 3.3–3.5 s 的 1 − easeInOutCubic。"], "en": [
           "4.5 s cycle on a 542×191 card. An outlined blue \"Details\" button (108×36) at (24, 112); the cursor clicks it at 1.0 s.",
           "Show amount a: 0→1 over 1.0–1.28 s with easeOutCubic; opacity a, sliding 6 px in from the right.",
           "Panel: white 300×120, radius 10, at (156, 62), 1 px border, shadow blur 22, offset y 6. A 10-wide triangle on its left edge (y 122–138) points at the button.",
@@ -362,7 +362,7 @@
       },
       "use": {
         "ja": "ボタンの近くで、短い設定や確認をその場で済ませたいとき。",
-        "en": "Use it for a short setting or confirmation that belongs right next to the button that opened it."
+        "zh-Hans": "适合紧邻触发按钮的简短设置或确认。", "en": "Use it for a short setting or confirmation that belongs right next to the button that opened it."
       },
       "tags": [
         "popover",
@@ -379,19 +379,19 @@
       "category": "open-overlay",
       "name": {
         "ja": "トースト",
-        "en": "Toast notification"
+        "zh-Hans": "轻提示", "en": "Toast notification"
       },
       "meaning": {
         "ja": "隅に通知が出て自動で消える",
-        "en": "A short message appears in a corner and goes away on its own"
+        "zh-Hans": "短消息出现后自动消失", "en": "A short message appears in a corner and goes away on its own"
       },
       "ask": {
         "ja": "保存したら右下にトーストで「保存しました」と出して。0.35秒で右から出し、2秒後に自動で消して。",
-        "en": "After saving, show \"Saved\" as a toast at the bottom right: slide it in from the right in 0.35 s and dismiss it automatically after 2 s."
+        "zh-Hans": "保存后在右下显示已保存轻提示，0.35 s 从右侧滑入，2 s 后自动消失。", "en": "After saving, show \"Saved\" as a toast at the bottom right: slide it in from the right in 0.35 s and dismiss it automatically after 2 s."
       },
       "summary": {
         "ja": "「保存」を押すと右下に黒い通知が右から滑り込み、残り時間の線が縮みきると右へ消える。",
-        "en": "Clicking \"Save\" slides a dark notice into the bottom-right corner; when its time bar runs out it slides away."
+        "zh-Hans": "点击保存后，右下角滑入深色通知，计时条走完后滑出。", "en": "Clicking \"Save\" slides a dark notice into the bottom-right corner; when its time bar runs out it slides away."
       },
       "spec": {
         "ja": [
@@ -401,7 +401,7 @@
           "下端に残り時間の線（幅194→0・高さ3）を1.4〜3.2秒に直線で縮める",
           "消える: 3.2〜3.55秒に easeInOutCubic で右へ240px滑り出る"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；光标 1.0 s 点击左下蓝色 110×36 保存按钮，再向左下离开。", "提示颜色 #26282c、尺寸 214×52、圆角半径 10，距右边 18 px、底边 16 px；1.05–1.4 s 按 easeOutCubic 从右侧 240 px 滑入。", "内部为蓝圆中的白色勾和白色 15 px 已保存文字。", "底部高 3 px 的剩余时间线在 1.4–3.2 s 内从 194 px 线性缩至 0。", "3.2–3.55 s 按 easeInOutCubic 向右滑出 240 px。"], "en": [
           "4.5 s cycle on a 542×191 card. The cursor clicks the blue \"Save\" button (110×36, bottom left) at 1.0 s and leaves to the bottom left.",
           "Toast: #26282c, 214×52, radius 10, 18 px from the right and 16 px from the bottom; slides in 240 px from the right over 1.05–1.4 s with easeOutCubic.",
           "Inside: a white check in a blue circle and white 15 px text \"Saved\".",
@@ -411,7 +411,7 @@
       },
       "use": {
         "ja": "保存・送信などの結果を、作業を止めずに短く知らせたいとき。",
-        "en": "Use it to confirm a result such as a save or send without interrupting the user."
+        "zh-Hans": "适合确认保存或发送结果，同时保持用户操作连贯。", "en": "Use it to confirm a result such as a save or send without interrupting the user."
       },
       "tags": [
         "toast",
@@ -428,19 +428,19 @@
       "category": "select-switch",
       "name": {
         "ja": "タブ",
-        "en": "Tabs"
+        "zh-Hans": "标签页", "en": "Tabs"
       },
       "meaning": {
         "ja": "見出しを押して中身を切り替える",
-        "en": "Click a label to switch which panel is shown"
+        "zh-Hans": "点击标签切换内容面板", "en": "Click a label to switch which panel is shown"
       },
       "ask": {
         "ja": "料金ページの上にタブを3つ置いて。押したら下線を0.25秒で滑らせ、中身を0.2秒のクロスフェードで切り替えて。",
-        "en": "Put three tabs at the top of the pricing page. On click, slide the underline over 0.25 s and cross-fade the content in 0.2 s."
+        "zh-Hans": "价格页顶部放三个标签页，下划线用 0.25 s 滑动，内容用 0.2 s 叠化。", "en": "Put three tabs at the top of the pricing page. On click, slide the underline over 0.25 s and cross-fade the content in 0.2 s."
       },
       "summary": {
         "ja": "「概要・料金・レビュー」のタブを順に押すと、青い下線が滑って移り、下の中身が入れ替わる。",
-        "en": "Clicking the tabs \"Overview, Pricing, Reviews\" in turn slides a blue underline across and swaps the content below."
+        "zh-Hans": "依次点击概览、价格、评价，蓝色下划线滑动，下方内容切换。", "en": "Clicking the tabs \"Overview, Pricing, Reviews\" in turn slides a blue underline across and swaps the content below."
       },
       "spec": {
         "ja": [
@@ -450,7 +450,7 @@
           "文字: 選択中は青・太字、それ以外は灰色。切り替わりは1.1・2.3・3.5秒",
           "中身: 前のパネルが0.2秒で直線的に消え、0.1秒後に次のパネルが0.2秒で出る（出るとき8px下から上がる）"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；三标签 x 为 24、114、204，宽 70、70、100；y 50 有 2 px 分隔线，下划线为 4 px 蓝色。", "1.0 s 点击第二个标签，2.2 s 点击第三个，3.4 s 点击第一个。", "每次点击后，下划线位置与宽度在 0.25 s 内按 easeInOutCubic 移至新标签，从第三个回第一个时经过中间。", "选中标签为蓝色粗体，其余灰色；切换发生于 1.1、2.3、3.5 s。", "旧内容在 0.2 s 内线性淡出，0.1 s 后新内容在 0.2 s 内上移 8 px 并淡入。"], "en": [
           "4.5 s cycle on a 542×191 card. Three tabs at x 24, 114, 204, widths 70, 70, 100; a 2 px divider at y 50 and a 4 px blue underline.",
           "The cursor clicks the second tab at 1.0 s, the third at 2.2 s and the first at 3.4 s.",
           "Underline: position and width move to the new tab over 0.25 s from each click with easeInOutCubic (from the third back to the first it passes through the middle).",
@@ -460,7 +460,7 @@
       },
       "use": {
         "ja": "同じ場所で、並んだ種類の情報を切り替えて見せたいとき。",
-        "en": "Use it to show several related views in the same space and let people switch between them."
+        "zh-Hans": "适合在同一空间展示多个相关视图并切换。", "en": "Use it to show several related views in the same space and let people switch between them."
       },
       "tags": [
         "tabs",
@@ -477,19 +477,19 @@
       "category": "select-switch",
       "name": {
         "ja": "カルーセル",
-        "en": "Carousel"
+        "zh-Hans": "轮播图", "en": "Carousel"
       },
       "meaning": {
         "ja": "横に送って順番に見せる",
-        "en": "Slides that move sideways to show one item at a time"
+        "zh-Hans": "横向滑动切换展示项", "en": "Slides that move sideways to show one item at a time"
       },
       "ask": {
         "ja": "トップの画像をカルーセルにして。右矢印で1枚ずつ0.4秒で送り、下に今の位置の点を出して。",
-        "en": "Turn the top images into a carousel: the right arrow moves one slide in 0.4 s, with position dots below."
+        "zh-Hans": "把顶部图片做成轮播图，右箭头每次用 0.4 s 切一张，下方显示位置圆点。", "en": "Turn the top images into a carousel: the right arrow moves one slide in 0.4 s, with position dots below."
       },
       "summary": {
         "ja": "右の矢印を押すたびに、横に並んだ3種類の絵が1枚ずつ左へ送られ、下の点が移る。",
-        "en": "Each click on the right arrow slides a row of three different images one step to the left, and the dot below moves."
+        "zh-Hans": "每次点击右箭头，三张不同图片向左移动一格，下方指示点切换。", "en": "Each click on the right arrow slides a row of three different images one step to the left, and the dot below moves."
       },
       "spec": {
         "ja": [
@@ -499,7 +499,7 @@
           "各クリックで、0.4秒かけて easeInOutCubic で列を左へ348px（1枚＋間隔）送る",
           "絵は3種類（山の風景・丸3つ・棒グラフ）の繰り返しなので、3回送ると最初の絵に戻る"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；轮播项 330×138、圆角半径 8，居中，间隔 18 px，两侧露出相邻项边缘。", "左右为半径 18、阴影模糊 10 的白色圆形箭头按钮；下方三个点，当前蓝色 16×8，其余 8×8。", "光标于 1.0、2.1、3.2 s 点击右箭头 (514, 88)。", "每次点击在 0.4 s 内按 easeInOutCubic 向左移动 348 px，即一张图加间隔。", "风景、三个圆、柱状图这三张图循环，三次移动后回到第一张。"], "en": [
           "4.5 s cycle on a 542×191 card. Slides 330×138, radius 8, centred with an 18 px gap; the neighbours peek in at the edges.",
           "White round buttons (radius 18, shadow blur 10) with chevrons at left and right; three dots below (current one blue 16×8, others 8×8).",
           "The cursor clicks the right arrow (514, 88) at 1.0, 2.1 and 3.2 s.",
@@ -509,7 +509,7 @@
       },
       "use": {
         "ja": "限られた場所で、画像やおすすめを何枚も順に見せたいとき。",
-        "en": "Use it to show several images or featured items in limited space, one at a time."
+        "zh-Hans": "适合在有限空间依次展示图片或精选条目。", "en": "Use it to show several images or featured items in limited space, one at a time."
       },
       "tags": [
         "carousel",
@@ -526,19 +526,19 @@
       "category": "select-switch",
       "name": {
         "ja": "トグルスイッチ",
-        "en": "Toggle switch"
+        "zh-Hans": "开关", "en": "Toggle switch"
       },
       "meaning": {
         "ja": "オン・オフを切り替える",
-        "en": "Flip a setting on or off"
+        "zh-Hans": "切换设置的开启与关闭状态", "en": "Flip a setting on or off"
       },
       "ask": {
         "ja": "通知設定の各行にトグルスイッチを置いて。押したら0.2秒でつまみを滑らせ、オンは青にして。",
-        "en": "Put a toggle switch on each notification setting: the knob slides in 0.2 s and the track turns blue when on."
+        "zh-Hans": "通知设置使用开关，滑块用 0.2 s 移动，开启时轨道变蓝。", "en": "Put a toggle switch on each notification setting: the knob slides in 0.2 s and the track turns blue when on."
       },
       "summary": {
         "ja": "設定の3行のうち上の2つのスイッチを順にオンにし、その後オフに戻す。",
-        "en": "The switches on the first two of three setting rows are turned on in turn, then off again."
+        "zh-Hans": "三行设置中的前两个开关依次开启，再关闭。", "en": "The switches on the first two of three setting rows are turned on in turn, then off again."
       },
       "spec": {
         "ja": [
@@ -547,7 +547,7 @@
           "1回の切り替えは0.2秒・easeOutCubic。つまみを30px（17→47）滑らせる",
           "溝の色は灰色 #d9d7d5 から青 #1f5ae8 へ、切り替えの進み具合で重ねて変える"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；三行设置相距 60 px，带分隔线；x 450 处轨道 64×34、圆角半径 17，白色滑块半径 13、带阴影。", "点击时间：第 1 行 1.0 s 开，第 2 行 1.8 s 开，第 1 行 3.0 s 关，第 2 行 3.6 s 关，第 3 行保持关闭。", "每次切换在 0.2 s 内按 easeOutCubic 变化，滑块移动 30 px，从 17→47。", "轨道随进度从灰色 #d9d7d5 混合至蓝色 #1f5ae8。"], "en": [
           "4.5 s cycle on a 542×191 card. Three setting rows 60 px apart with dividers. At x 450 a 64×34 track (radius 17) and a white knob (radius 13, shadow).",
           "Clicks: row 1 on at 1.0 s, row 2 on at 1.8 s, row 1 off at 3.0 s, row 2 off at 3.6 s. Row 3 stays off.",
           "Each switch takes 0.2 s with easeOutCubic; the knob slides 30 px (17 → 47).",
@@ -556,7 +556,7 @@
       },
       "use": {
         "ja": "設定画面で、すぐ反映されるオン・オフを並べたいとき。",
-        "en": "Use it for settings that take effect immediately and have only two states."
+        "zh-Hans": "适合立即生效、只有两种状态的设置。", "en": "Use it for settings that take effect immediately and have only two states."
       },
       "tags": [
         "toggle",
@@ -573,19 +573,19 @@
       "category": "select-switch",
       "name": {
         "ja": "セグメントコントロール",
-        "en": "Segmented control"
+        "zh-Hans": "分段控制器", "en": "Segmented control"
       },
       "meaning": {
         "ja": "並んだボタンで表示を切り替える",
-        "en": "A row of joined buttons that switches the view"
+        "zh-Hans": "一排相连按钮用于切换视图", "en": "A row of joined buttons that switches the view"
       },
       "ask": {
         "ja": "グラフの上に「日・週・月」のセグメントコントロールを置いて。押したら選択の背景を0.25秒で滑らせ、グラフも同時に変えて。",
-        "en": "Put a Day / Week / Month segmented control above the chart: the selected background slides over 0.25 s and the chart changes with it."
+        "zh-Hans": "图表上方加日、周、月分段控制器，选中背景用 0.25 s 滑动，图表同步变化。", "en": "Put a Day / Week / Month segmented control above the chart: the selected background slides over 0.25 s and the chart changes with it."
       },
       "summary": {
         "ja": "「日・週・月」を押すと青い選択部分が滑って移り、下の棒グラフの高さが変わる。",
-        "en": "Clicking Day, Week or Month slides a blue highlight across and the bar chart below changes height."
+        "zh-Hans": "点击日、周、月，蓝色选中背景滑动，下方柱状图改变高度。", "en": "Clicking Day, Week or Month slides a blue highlight across and the bar chart below changes height."
       },
       "spec": {
         "ja": [
@@ -594,7 +594,7 @@
           "カーソルが1.0秒に「週」、2.1秒に「月」、3.3秒に「日」をクリック。選択部分は各0.25秒、easeInOutCubic で滑る",
           "下の棒グラフ: 幅34・58px間隔の7本（6本目だけ青）。高さを3組のデータ（例 30〜85 / 40〜100 / 60〜115）の間で、選択部分と同時に easeInOutCubic で変える"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；灰色底框 300×40、圆角半径 10，位置 (121, 12)，分为宽 100 的日、周、月三段，原文字为日文。", "选中背景为蓝色 92×32、圆角半径 8、阴影模糊 6，选中文字白色。", "光标 1.0 s 点击周，2.1 s 点击月，3.3 s 点击日；每次用 0.25 s 按 easeInOutCubic 滑动。", "下方七根柱宽 34、间距 58 px，第六根蓝色；随选中项在三组高度约 30–85、40–100、60–115 的数据间变化，使用相同缓动。"], "en": [
           "4.5 s cycle on a 542×191 card. A grey 300×40 base (radius 10) at (121, 12), split into three 100-wide segments: Day, Week, Month (in Japanese).",
           "Selection: blue 92×32, radius 8, shadow blur 6; the selected label is white.",
           "The cursor clicks Week at 1.0 s, Month at 2.1 s and Day at 3.3 s; the selection slides over 0.25 s each with easeInOutCubic.",
@@ -603,7 +603,7 @@
       },
       "use": {
         "ja": "同じデータの見え方を、2〜4通りから切り替えたいとき。",
-        "en": "Use it to switch between two to four views of the same content, such as day, week and month."
+        "zh-Hans": "适合同一内容的两到四种视图，例如日、周、月。", "en": "Use it to switch between two to four views of the same content, such as day, week and month."
       },
       "tags": [
         "segmented-control",
@@ -620,19 +620,19 @@
       "category": "select-switch",
       "name": {
         "ja": "チップ",
-        "en": "Filter chips"
+        "zh-Hans": "筛选标签", "en": "Filter chips"
       },
       "meaning": {
         "ja": "押して絞り込み条件を付け外し",
-        "en": "Small pills you click to add or remove a filter"
+        "zh-Hans": "点击小标签组合筛选条件", "en": "Small pills you click to add or remove a filter"
       },
       "ask": {
         "ja": "一覧の上に絞り込みのチップを並べて。押したらチェックを付けて青くし、0.15秒で一覧を絞り込んで。",
-        "en": "Add filter chips above the list: a clicked chip gets a check mark and turns blue, and the list filters within 0.15 s."
+        "zh-Hans": "列表上方加入筛选标签，选中后打勾并变蓝，0.15 s 内更新列表。", "en": "Add filter chips above the list: a clicked chip gets a check mark and turns blue, and the list filters within 0.15 s."
       },
       "summary": {
         "ja": "「新着」「無料」のチップを押すとチェックが付いて青くなり、条件に合わないカードが薄くなる。",
-        "en": "Clicking the \"New\" and \"Free\" chips adds a check mark and turns them blue, and cards that do not match fade out."
+        "zh-Hans": "点击最新和免费标签后出现勾号并变蓝，不匹配的卡片淡出。", "en": "Clicking the \"New\" and \"Free\" chips adds a check mark and turns them blue, and cards that do not match fade out."
       },
       "spec": {
         "ja": [
@@ -641,7 +641,7 @@
           "1回の切り替えは0.15秒・easeOutCubic。チップが18px広がって左にチェックが出て、地は薄い青・枠と文字は青",
           "下の一覧: カード4枚（242×54、2列2段）。条件に合わないカードは不透明度を 1 → 0.12 に下げる"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；全部、最新、热门、免费四个日文标签，高 34、圆角半径 17，宽为文字宽 +32，自左侧起间隔 10 px。", "点击：0.95 s 开启最新，1.75 s 开启免费，3.0 s 关闭最新，3.6 s 关闭免费。", "各变化在 0.15 s 内按 easeOutCubic 完成；标签加宽 18 px 容纳勾号，底色浅蓝，边框和文字蓝色。", "下方四张卡片 242×54，两行两列；不匹配项不透明度从 1 降至 0.12。"], "en": [
           "4.5 s cycle on a 542×191 card. Four chips (\"All, New, Popular, Free\" in Japanese): 34 tall, radius 17, width = text + 32, 10 px apart from the left.",
           "Clicks: New on at 0.95 s, Free on at 1.75 s, New off at 3.0 s, Free off at 3.6 s.",
           "Each change takes 0.15 s with easeOutCubic: the chip widens 18 px to make room for a check mark; fill light blue, border and text blue.",
@@ -650,7 +650,7 @@
       },
       "use": {
         "ja": "一覧や検索結果を、条件を重ねて手早く絞り込ませたいとき。",
-        "en": "Use it to let people narrow a list or search results by combining a few quick filters."
+        "zh-Hans": "适合用几个快捷条件组合缩小列表或搜索结果。", "en": "Use it to let people narrow a list or search results by combining a few quick filters."
       },
       "tags": [
         "chips",
@@ -667,19 +667,19 @@
       "category": "select-switch",
       "name": {
         "ja": "レンジスライダー",
-        "en": "Range slider"
+        "zh-Hans": "范围滑块", "en": "Range slider"
       },
       "meaning": {
         "ja": "つまみ2つで範囲を選ぶ",
-        "en": "Two handles on one track pick a minimum and a maximum"
+        "zh-Hans": "双滑块选择最小值与最大值", "en": "Two handles on one track pick a minimum and a maximum"
       },
       "ask": {
         "ja": "価格の絞り込みをレンジスライダーにして。つまみは2つ、動かしている間は値を吹き出しで出して。",
-        "en": "Make the price filter a range slider with two handles, showing each value in a bubble while it is dragged."
+        "zh-Hans": "价格筛选使用双滑块，拖动时在气泡中显示各自数值。", "en": "Make the price filter a range slider with two handles, showing each value in a bubble while it is dragged."
       },
       "summary": {
         "ja": "価格のスライダーで、左のつまみを右へ、右のつまみを左へ動かして範囲を狭め、元に戻す。",
-        "en": "On a price slider, the left handle is dragged right and the right handle left to narrow the range, then both go back."
+        "zh-Hans": "拖动价格滑块的两端缩小范围，再各自回到原位。", "en": "On a price slider, the left handle is dragged right and the right handle left to narrow the range, then both go back."
       },
       "spec": {
         "ja": [
@@ -689,7 +689,7 @@
           "各つまみの上に値の吹き出し（高さ28・ドラッグ中は青地に白文字）。右上に「¥1,000 〜 ¥10,000」の形で範囲を青で出し、100円単位で更新",
           "カーソルがつまみに乗って一緒に動く（押す時刻 1.0・2.1・2.95・3.55秒）"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；轨道 x 54–488，高 8，y 120，两滑块之间为蓝色；范围 ¥0–¥10,000。", "滑块白色、半径 13、蓝边 3 px；拖动时半径 15，并有半径 24 的浅蓝光晕。", "下限在 1.0–1.6 s 从 0.1→0.3，即 ¥1,000→¥3,000，3.55–3.9 s 返回；上限在 2.1–2.6 s 从 1.0→0.8，即 ¥10,000→¥8,000，2.95–3.3 s 返回；均为 easeInOutCubic。", "各滑块上方有高 28 的数值气泡，拖动时蓝底白字；右上方蓝字显示 ¥1,000 – ¥10,000 范围，以 ¥100 为步长更新。", "光标位于被拖动的滑块上，按下时间为 1.0、2.1、2.95、3.55 s。"], "en": [
           "4.5 s cycle on a 542×191 card. Track: x 54–488, 8 tall, at y 120; the part between the two handles is blue. Range ¥0–¥10,000.",
           "Handles: white, radius 13, 3 px blue rim; while dragged, radius 15 with a light-blue halo of radius 24.",
           "Low handle: 0.1 → 0.3 (¥1,000 → ¥3,000) over 1.0–1.6 s, back over 3.55–3.9 s. High handle: 1.0 → 0.8 (¥10,000 → ¥8,000) over 2.1–2.6 s, back over 2.95–3.3 s. All easeInOutCubic.",
@@ -699,7 +699,7 @@
       },
       "use": {
         "ja": "価格・日付・数量などを、下限と上限の範囲で絞り込ませたいとき。",
-        "en": "Use it to filter by a range, such as price, date or size, with a minimum and a maximum."
+        "zh-Hans": "适合价格、日期或尺寸等最小值与最大值范围筛选。", "en": "Use it to filter by a range, such as price, date or size, with a minimum and a maximum."
       },
       "tags": [
         "range-slider",
@@ -716,19 +716,19 @@
       "category": "select-switch",
       "name": {
         "ja": "ステッパー",
-        "en": "Stepper (+/−)"
+        "zh-Hans": "步进器", "en": "Stepper (+/−)"
       },
       "meaning": {
         "ja": "＋/−ボタンで数を増減する",
-        "en": "Plus and minus buttons that change a number by one"
+        "zh-Hans": "通过加减按钮逐次修改数值", "en": "Plus and minus buttons that change a number by one"
       },
       "ask": {
         "ja": "数量の欄をステッパーにして。＋と−で1ずつ増減し、押すたびに数字を0.25秒で少し弾ませて。",
-        "en": "Make the quantity field a stepper: + and − change it by one, and the number pops slightly for 0.25 s on each press."
+        "zh-Hans": "数量字段使用步进器，加减每次变化 1，数字每次用 0.25 s 轻弹一下。", "en": "Make the quantity field a stepper: + and − change it by one, and the number pops slightly for 0.25 s on each press."
       },
       "summary": {
         "ja": "＋を3回押して数が1から4に増え、−を3回押して1に戻る。押すたびに数字が少し弾む。",
-        "en": "Pressing + three times raises the number from 1 to 4, and pressing − three times brings it back to 1; the number pops on each press."
+        "zh-Hans": "按加号三次使数值从 1 变 4，再按减号三次回到 1，每次数字轻弹。", "en": "Pressing + three times raises the number from 1 to 4, and pressing − three times brings it back to 1; the number pops on each press."
       },
       "spec": {
         "ja": [
@@ -737,7 +737,7 @@
           "押した側の区画を、押す0.05秒前から0.15秒後まで薄い青にする",
           "数字: 押すたびに拡大率 1.18 → 1 を0.25秒で直線的に戻し、その間は青"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；200×60 框位于 (171, 52)，圆角半径 12；左侧 60 px 为减号，右侧 60 px 为蓝色加号，中间是粗体 30 px 数字。", "加号点击在 0.9、1.35、1.8 s，使 1→4；减号在 2.8、3.25、3.7 s，使 4→1。", "每次点击前 0.05 s 至后 0.15 s，被按区域染为浅蓝。", "数字每次从 1.18 在 0.25 s 内线性缩回 1，期间为蓝色。"], "en": [
           "4.5 s cycle on a 542×191 card. A 200×60 box (radius 12) at (171, 52): \"−\" in the left 60 px, a blue \"+\" in the right 60 px, and a bold 30 px number in the middle.",
           "Clicks: + at 0.9, 1.35, 1.8 s (1 → 4), − at 2.8, 3.25, 3.7 s (4 → 1).",
           "The pressed segment is tinted light blue from 0.05 s before to 0.15 s after each click.",
@@ -746,7 +746,7 @@
       },
       "use": {
         "ja": "カートの数量や人数など、小さな数を1つずつ変えさせたいとき。",
-        "en": "Use it for small whole numbers changed one at a time, such as quantity or number of guests."
+        "zh-Hans": "适合数量或人数等每次增减一的小整数。", "en": "Use it for small whole numbers changed one at a time, such as quantity or number of guests."
       },
       "tags": [
         "stepper",
@@ -764,19 +764,19 @@
       "category": "select-switch",
       "name": {
         "ja": "ページネーション",
-        "en": "Pagination"
+        "zh-Hans": "分页", "en": "Pagination"
       },
       "meaning": {
         "ja": "番号でページを送る",
-        "en": "Numbered buttons that move between pages"
+        "zh-Hans": "通过页码切换列表页面", "en": "Numbered buttons that move between pages"
       },
       "ask": {
         "ja": "検索結果の下にページネーションを付けて。今のページは青い丸にし、押したら0.2秒で丸を移して一覧を入れ替えて。",
-        "en": "Add pagination under the search results: the current page is a blue circle that moves in 0.2 s on click, and the list is replaced."
+        "zh-Hans": "搜索结果下方加分页，当前页蓝色圆圈用 0.2 s 移动，并替换列表内容。", "en": "Add pagination under the search results: the current page is a blue circle that moves in 0.2 s on click, and the list is replaced."
       },
       "summary": {
         "ja": "下の番号で2、3と押すと青い丸が移り、上の一覧が切り替わる。最後に1へ戻る。",
-        "en": "Clicking 2 and then 3 in the page numbers moves the blue circle and swaps the list above; finally it goes back to 1."
+        "zh-Hans": "依次点击页码 2、3、1，蓝圆移动，上方列表替换。", "en": "Clicking 2 and then 3 in the page numbers moves the blue circle and swaps the list above; finally it goes back to 1."
       },
       "spec": {
         "ja": [
@@ -785,7 +785,7 @@
           "青い丸は各0.2秒、easeInOutCubic で1ページ44pxずつ移る（3から1へは一度に88px）",
           "上の一覧（3行）は1.05・2.15・3.35秒の前後0.2秒で不透明度を 1→0→1 と下げて、中身を入れ替える"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；‹ 1 2 3 4 5 › 居中，直径各 36、间隔 8 px，y 160；当前页是半径 18 的蓝圆和白字。", "光标 1.0 s 点击 2，2.1 s 点击 3，3.3 s 点击 1。", "蓝圆每页移动 44 px，每次 0.2 s，easeInOutCubic；3 回 1 时移动 88 px。", "上方三行列表在 1.05、2.15、3.35 s 各前后 0.2 s 内以 1→0→1 改变不透明度，在最低点切换内容。"], "en": [
           "4.5 s cycle on a 542×191 card. \"‹ 1 2 3 4 5 ›\" centred, each 36 in diameter with 8 px gaps, at y 160. A blue circle (radius 18) marks the current page, with white text.",
           "The cursor clicks 2 at 1.0 s, 3 at 2.1 s and 1 at 3.3 s.",
           "The blue circle moves 44 px per page over 0.2 s each with easeInOutCubic (88 px at once from 3 back to 1).",
@@ -794,7 +794,7 @@
       },
       "use": {
         "ja": "検索結果や記事一覧など、長い一覧をページに分けて見せたいとき。",
-        "en": "Use it to split a long list, such as search results or articles, into numbered pages."
+        "zh-Hans": "适合把搜索结果或文章等长列表拆为编号页面。", "en": "Use it to split a long list, such as search results or articles, into numbered pages."
       },
       "tags": [
         "pagination",
@@ -811,19 +811,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "ハンバーガーメニュー",
-        "en": "Hamburger menu"
+        "zh-Hans": "汉堡菜单", "en": "Hamburger menu"
       },
       "meaning": {
         "ja": "三本線を押すとメニューが開く",
-        "en": "A three-line icon that opens the menu"
+        "zh-Hans": "三横线图标点击后展开菜单", "en": "A three-line icon that opens the menu"
       },
       "ask": {
         "ja": "スマホのヘッダー右にハンバーガーメニューを置いて。押したら三本線を0.3秒で×に変え、メニューを上から下ろして。",
-        "en": "Put a hamburger menu at the right of the mobile header: on tap, morph the three lines into × in 0.3 s and drop the menu down from the top."
+        "zh-Hans": "移动端页头右侧放汉堡菜单，点击后用 0.3 s 变成 ×，菜单从顶部展开。", "en": "Put a hamburger menu at the right of the mobile header: on tap, morph the three lines into × in 0.3 s and drop the menu down from the top."
       },
       "summary": {
         "ja": "ヘッダー右の三本線を押すと×に変わり、ヘッダーの下からメニューが下りてくる。もう一度押すと閉じる。",
-        "en": "Clicking the three-line icon at the header's right turns it into ×, and a menu drops down from under the header; clicking again closes it."
+        "zh-Hans": "点击页头右侧三横线后变为 ×，下方菜单展开，再次点击关闭。", "en": "Clicking the three-line icon at the header's right turns it into ×, and a menu drops down from under the header; clicking again closes it."
       },
       "spec": {
         "ja": [
@@ -832,7 +832,7 @@
           "三本線→×: 上下の線を中央へ8px寄せつつ ±45°回し、中の線を不透明度 1−a で消す。開いている間は青",
           "メニュー: 白・高さ140。上端 y = 44 − 140 + 140×a でヘッダーの下から下りる（ヘッダーの下だけ見せる）。影 blur 16。中に4項目、1つ目は青"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；白色页头高 44，右侧 (500, 22) 有三根长 24、粗 3、间距 8 px 的线。", "1.0 s 与 3.3 s 点击；展开量 a 在 1.0–1.3 s 从 0→1，在 3.3–3.6 s 从 1→0，easeInOutCubic。", "转为 ×：上下两线各向中央移动 8 px 并旋转 ±45°，中线以不透明度 1 − a 淡出；展开时为蓝色。", "白色菜单高 140，顶部 y = 44 − 140 + 140·a，在页头下裁切并向下展开；阴影模糊 16，四个菜单项，第一项蓝色。"], "en": [
           "4.5 s cycle on a 542×191 card. A white 44-tall header; three lines (24 long, 3 thick, 8 px apart) at (500, 22) on the right.",
           "The cursor clicks at 1.0 s and 3.3 s. Open amount a: 0→1 over 1.0–1.3 s, 1→0 over 3.3–3.6 s, easeInOutCubic.",
           "Lines to ×: the top and bottom lines move 8 px to the centre and rotate ±45°; the middle line fades with opacity 1 − a. Blue while open.",
@@ -841,7 +841,7 @@
       },
       "use": {
         "ja": "スマホなど幅の狭い画面で、全体メニューを1つのボタンにしまいたいとき。",
-        "en": "Use it on narrow screens to tuck the main navigation behind one button."
+        "zh-Hans": "适合窄屏下将主导航收进一个按钮。", "en": "Use it on narrow screens to tuck the main navigation behind one button."
       },
       "tags": [
         "hamburger-menu",
@@ -858,19 +858,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "パンくずリスト",
-        "en": "Breadcrumbs"
+        "zh-Hans": "面包屑导航", "en": "Breadcrumbs"
       },
       "meaning": {
         "ja": "今いる場所を階層で示す",
-        "en": "A trail of links showing where the page sits in the site"
+        "zh-Hans": "显示页面层级位置的链接路径", "en": "A trail of links showing where the page sits in the site"
       },
       "ask": {
         "ja": "記事ページの上にパンくずリストを付けて。「ホーム › 講座 › Web制作」の形で、今のページは太字でリンクなし。",
-        "en": "Add breadcrumbs above the article: \"Home › Courses › Web design\", with the current page in bold and not linked."
+        "zh-Hans": "文章上方加首页 › 课程 › 网页设计面包屑，当前页加粗且不作为链接。", "en": "Add breadcrumbs above the article: \"Home › Courses › Web design\", with the current page in bold and not linked."
       },
       "summary": {
         "ja": "パンくずの「講座」を押すと一つ上の一覧ページに戻り、一覧のカードを押すと元の詳細ページへ進む。",
-        "en": "Clicking \"Courses\" in the breadcrumbs goes up to the list page; clicking a card there returns to the detail page."
+        "zh-Hans": "点击面包屑中的课程返回列表，再点击卡片回到详情。", "en": "Clicking \"Courses\" in the breadcrumbs goes up to the list page; clicking a card there returns to the detail page."
       },
       "spec": {
         "ja": [
@@ -880,7 +880,7 @@
           "中身: 詳細ページ（見出しと本文）から、3枚のカード（158×118・山の絵付き）の一覧へ不透明度で切り替える",
           "戻る: カーソルが1枚目のカードに乗り（2.45〜2.8秒に青い枠）、2.7秒にクリック。2.7〜2.95秒に元の詳細ページへ"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；顶部以日文 17 px 显示首页 › 课程 › 网页设计，链接蓝色，当前页黑色粗体；y 46 处分隔。", "光标悬停课程，0.9–1.2 s 显示下划线，1.0 s 点击。", "上级切换量在 1.0–1.25 s 按 easeInOutCubic 从 0→1；› 网页设计淡出，课程变成黑色粗体当前页。", "内容从标题加文字的详情页，叠化到三张 158×118、带风景图的卡片列表。", "返回：光标移到首张卡片，2.45–2.8 s 蓝边高亮，2.7 s 点击；2.7–2.95 s 恢复详情页。"], "en": [
           "4.5 s cycle on a 542×191 card. At the top \"Home › Courses › Web design\" (in Japanese, 17 px): links blue, current page black and bold; a divider at y 46.",
           "The cursor hovers \"Courses\" (underline 0.9–1.2 s) and clicks at 1.0 s.",
           "Up amount: 0→1 over 1.0–1.25 s with easeInOutCubic. \"› Web design\" fades out and \"Courses\" becomes the current page (black, bold).",
@@ -890,7 +890,7 @@
       },
       "use": {
         "ja": "階層の深いサイトで、今いる場所と上の階層への戻り道を示したいとき。",
-        "en": "Use it on sites with deep hierarchies to show where the page is and give a way back up."
+        "zh-Hans": "适合层级较深的网站，显示当前位置并提供上级入口。", "en": "Use it on sites with deep hierarchies to show where the page is and give a way back up."
       },
       "tags": [
         "breadcrumbs",
@@ -907,19 +907,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "メガメニュー",
-        "en": "Mega menu"
+        "zh-Hans": "巨型菜单", "en": "Mega menu"
       },
       "meaning": {
         "ja": "大きな一覧メニューが広がる",
-        "en": "A wide panel of grouped links that opens from the main menu"
+        "zh-Hans": "主导航展开的宽幅分组链接面板", "en": "A wide panel of grouped links that opens from the main menu"
       },
       "ask": {
         "ja": "ヘッダーの「製品」にメガメニューを付けて。乗せたら0.25秒で全幅のパネルを下ろし、3列のリンクと画像を並べて。",
-        "en": "Give \"Products\" in the header a mega menu: on hover, drop a full-width panel in 0.25 s with three columns of links and an image."
+        "zh-Hans": "页头产品项悬停后用 0.25 s 展开全宽菜单，包含三列链接和一张图。", "en": "Give \"Products\" in the header a mega menu: on hover, drop a full-width panel in 0.25 s with three columns of links and an image."
       },
       "summary": {
         "ja": "ヘッダーの「製品」にカーソルを乗せると、全幅のパネルが下りて3列のリンクと画像が並ぶ。離れると閉じる。",
-        "en": "Hovering over \"Products\" in the header drops a full-width panel with three columns of links and an image; it closes when the cursor leaves."
+        "zh-Hans": "悬停产品后，全宽面板下拉显示三列链接与图片，移开关闭。", "en": "Hovering over \"Products\" in the header drops a full-width panel with three columns of links and an image; it closes when the cursor leaves."
       },
       "spec": {
         "ja": [
@@ -929,7 +929,7 @@
           "中身: 130px間隔の3列（青い見出しと3つのリンク）と、右に絵 104×112。カーソルが下りて1.75〜2.9秒に2列目の2つ目のリンクを薄い青で強調",
           "閉じる: カーソルが2.9秒からパネルの外へ出て、3.15〜3.4秒に (1 − easeInOutCubic) で消える"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；页头高 42，包含日文 16 px 产品、价格、支持，各带下箭头。", "仅悬停：1.0 s 到达产品；a 在 1.05–1.3 s 按 easeOutCubic 从 0→1，产品变蓝并加下划线。", "白色面板全宽、高 146，在页头下方下移 12 px 并按 a 淡入；阴影模糊 18、y 偏移 8。", "内部三列相距 130 px，各有蓝色标题和三条链接，右侧图片为 104×112；光标下移，第二列第二条于 1.75–2.9 s 浅蓝高亮。", "2.9 s 起光标离开面板，3.15–3.4 s 按 1 − easeInOutCubic 淡出。"], "en": [
           "4.5 s cycle on a 542×191 card. A 42-tall header with \"Products, Pricing, Support\" (in Japanese, 16 px, each with a down chevron).",
           "The cursor only hovers: it reaches \"Products\" at 1.0 s. Open amount a: 0→1 over 1.05–1.3 s with easeOutCubic; \"Products\" turns blue with an underline.",
           "Panel: white, full width, 146 tall, dropping 12 px into place under the header while fading in with a. Shadow blur 18, offset y 8.",
@@ -939,7 +939,7 @@
       },
       "use": {
         "ja": "製品やサービスが多いサイトで、全体を一度に見渡せるメニューにしたいとき。",
-        "en": "Use it on sites with many products or sections so visitors can see the whole range at once."
+        "zh-Hans": "适合产品或栏目较多的网站，让用户一次看到完整范围。", "en": "Use it on sites with many products or sections so visitors can see the whole range at once."
       },
       "tags": [
         "mega-menu",
@@ -956,19 +956,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "ステップインジケーター",
-        "en": "Step indicator"
+        "zh-Hans": "步骤指示器", "en": "Step indicator"
       },
       "meaning": {
         "ja": "手続きの何番目かを示す",
-        "en": "Shows which step of a process you are on"
+        "zh-Hans": "显示流程的当前步骤与进度", "en": "Shows which step of a process you are on"
       },
       "ask": {
         "ja": "申し込みフォームの上にステップインジケーターを付けて。入力・確認・支払い・完了の4段階で、済んだ段階はチェックにして。",
-        "en": "Add a step indicator above the sign-up form with four steps: Details, Review, Payment, Done; completed steps show a check."
+        "zh-Hans": "注册表单顶部放信息、确认、支付、完成四步指示器，已完成步骤显示勾。", "en": "Add a step indicator above the sign-up form with four steps: Details, Review, Payment, Done; completed steps show a check."
       },
       "summary": {
         "ja": "「次へ」を押すたびに、4段階の丸が順にチェックに変わり、青い線が次の段階へ伸びる。",
-        "en": "Each click on \"Next\" turns the next of four step circles into a check and extends the blue line to the following step."
+        "zh-Hans": "每次点击下一步，当前步骤变勾，蓝线延长至后续步骤。", "en": "Each click on \"Next\" turns the next of four step circles into a check and extends the blue line to the following step."
       },
       "spec": {
         "ja": [
@@ -978,7 +978,7 @@
           "青い線は1回につき127px、0.3秒の easeInOutCubic で伸びる。3回目で4つすべてがチェックになる",
           "戻し: 3.75〜4.05秒に段階の表示ごと消し、4.05〜4.3秒に1段目の状態で出し直す"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；日文信息、确认、支付、完成四步，x 为 80、207、334、461，y 35；圆半径 17，以 4 px 灰线连接。", "光标在 0.9、1.7、2.5 s 点击右下方 110×38 下一步按钮。", "每次当前步骤变蓝圆白勾，下一步成为蓝圆白字当前项；未到达步骤白底灰边。", "蓝线每次在 0.3 s 内按 easeInOutCubic 延长 127 px；第三次后四步均打勾。", "复位：3.75–4.05 s 指示器淡出，4.05–4.3 s 在第一步状态淡入。"], "en": [
           "4.5 s cycle on a 542×191 card. Four steps (\"Details, Review, Payment, Done\" in Japanese) at x 80, 207, 334, 461, y 35; circles of radius 17 joined by a 4 px grey line.",
           "The cursor clicks \"Next\" (110×38, bottom right) at 0.9, 1.7 and 2.5 s.",
           "On each click the current step becomes a blue circle with a white check and the next becomes the current one (blue circle, white number). Steps not reached are white with a grey rim.",
@@ -988,7 +988,7 @@
       },
       "use": {
         "ja": "申し込みや購入など、何段階かに分かれた手続きで今の位置を示したいとき。",
-        "en": "Use it in multi-step flows such as sign-up or checkout to show progress and what is left."
+        "zh-Hans": "适合注册或结算等多步流程，显示进度和剩余步骤。", "en": "Use it in multi-step flows such as sign-up or checkout to show progress and what is left."
       },
       "tags": [
         "step-indicator",
@@ -1006,19 +1006,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "スケルトン",
-        "en": "Skeleton screen"
+        "zh-Hans": "骨架屏", "en": "Skeleton screen"
       },
       "meaning": {
         "ja": "読み込み中に灰色の枠を出す",
-        "en": "Grey shapes stand in for content while it loads"
+        "zh-Hans": "加载时以灰色块预示内容布局", "en": "Grey shapes stand in for content while it loads"
       },
       "ask": {
         "ja": "一覧の読み込み中はスケルトンを出して。中身と同じ形の灰色の枠にして、光が左から右へ0.9秒で流れるように。",
-        "en": "While the list loads, show a skeleton screen: grey blocks in the shape of the content, with a shine sweeping left to right every 0.9 s."
+        "zh-Hans": "列表加载时显示骨架屏，灰块形状对应内容，每 0.9 s 从左向右扫一道光。", "en": "While the list loads, show a skeleton screen: grey blocks in the shape of the content, with a shine sweeping left to right every 0.9 s."
       },
       "summary": {
         "ja": "再読み込みを押すと、一覧の中身が同じ形の灰色の枠に変わり、光が横に流れる。読み込みが済むと中身に戻る。",
-        "en": "Clicking reload turns the list into grey blocks of the same shape with a sweeping shine; the content returns when loading ends."
+        "zh-Hans": "点击刷新后列表变成同形灰块并带扫光，加载结束后恢复内容。", "en": "Clicking reload turns the list into grey blocks of the same shape with a sweeping shine; the content returns when loading ends."
       },
       "spec": {
         "ja": [
@@ -1027,7 +1027,7 @@
           "光: 白の帯（幅160、両端は透明・中央は不透明度0.75）を、0.9秒ごとに左（x −200）から右（x 742）へ流す。枠の上だけに重ねる",
           "3.0〜3.3秒に直線で中身へ戻す"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；两行列表，每行有 96×56 图片和三行文字；1.0 s 点击右上刷新图标。", "1.05–1.2 s 线性切换为大小位置相同的 #e9e7e5 灰色圆角块。", "白色光带宽 160，边缘透明、中间不透明度 0.75，每 0.9 s 从 x −200 扫到 x 742，仅画在灰块范围内。", "3.0–3.3 s 线性恢复内容。"], "en": [
           "4.5 s cycle on a 542×191 card. A two-row list (a 96×56 picture and three text lines each). The cursor clicks the reload icon at top right at 1.0 s.",
           "Over 1.05–1.2 s (linear) the content switches to grey #e9e7e5 rounded blocks of the same size and position.",
           "Shine: a white band 160 wide (transparent at the edges, opacity 0.75 in the middle) sweeps from x −200 to x 742 every 0.9 s, drawn only over the blocks.",
@@ -1036,7 +1036,7 @@
       },
       "use": {
         "ja": "読み込みに少し時間がかかる一覧やカードで、待っている間も画面の形を見せたいとき。",
-        "en": "Use it for lists or cards that take a moment to load, so the layout is visible while people wait."
+        "zh-Hans": "适合需要等待加载的列表和卡片，让用户先看到布局。", "en": "Use it for lists or cards that take a moment to load, so the layout is visible while people wait."
       },
       "tags": [
         "skeleton",
@@ -1053,19 +1053,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "スピナー",
-        "en": "Spinner"
+        "zh-Hans": "加载转圈", "en": "Spinner"
       },
       "meaning": {
         "ja": "くるくる回って待ちを示す",
-        "en": "A spinning circle that means \"please wait\""
+        "zh-Hans": "旋转圆环表示等待", "en": "A spinning circle that means \"please wait\""
       },
       "ask": {
         "ja": "送信中はボタンの上にスピナーを出して。1秒に1回転強で回し、終わったら青い丸のチェックに替えて。",
-        "en": "While sending, show a spinner over the form, turning a little over once per second, then replace it with a blue check when done."
+        "zh-Hans": "发送时在表单上方显示每秒转一圈多的加载圆环，完成后换成蓝色勾。", "en": "While sending, show a spinner over the form, turning a little over once per second, then replace it with a blue check when done."
       },
       "summary": {
         "ja": "「送信」を押すと画面が白くかすみ、中央で青い弧が回る。済むとチェックに変わって消える。",
-        "en": "Clicking \"Send\" washes the card white and a blue arc spins in the middle; when finished it changes to a check and fades."
+        "zh-Hans": "点击发送后卡片蒙白，中央蓝弧旋转，完成后变成勾并淡出。", "en": "Clicking \"Send\" washes the card white and a blue arc spins in the middle; when finished it changes to a check and fades."
       },
       "spec": {
         "ja": [
@@ -1075,7 +1075,7 @@
           "2.95〜3.05秒にスピナーを消し、2.95〜3.2秒に青い丸（半径28）と白いチェックを拡大率 0.7→1（easeOutCubic）で出す",
           "3.75〜4.0秒に直線で幕ごと消す"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；1.0 s 点击底部中央 120×40 发送按钮。", "1.05–1.2 s，白色遮罩（不透明度 0.78）和加载圆环线性淡入，覆盖卡片。", "圆环位于 (271, 92)，浅色底环半径 26、厚 6，上方蓝弧 243°，即 1.35π，圆头；每秒旋转 1.3 圈，即 468°/s。", "2.95–3.05 s 圆环淡出；2.95–3.2 s 带白勾的蓝圆半径 28，按 easeOutCubic 从 0.7→1 缩放。", "3.75–4.0 s 全部线性淡出。"], "en": [
           "4.5 s cycle on a 542×191 card. The cursor clicks \"Send\" (120×40, bottom centre) at 1.0 s.",
           "Over 1.05–1.2 s (linear) a white scrim (opacity 0.78) and the spinner fade in over the whole card.",
           "Spinner at (271, 92): a pale ring, radius 26, 6 thick, with a blue 243° (1.35π) arc on top (round caps), turning 1.3 times per second (468°/s).",
@@ -1085,7 +1085,7 @@
       },
       "use": {
         "ja": "送信・保存など、終わるまでの時間が読めない短い待ちを示したいとき。",
-        "en": "Use it for short waits of unknown length, such as sending or saving."
+        "zh-Hans": "适合发送或保存等时长未知的短暂等待。", "en": "Use it for short waits of unknown length, such as sending or saving."
       },
       "tags": [
         "spinner",
@@ -1102,19 +1102,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "バッジ",
-        "en": "Badge"
+        "zh-Hans": "徽标", "en": "Badge"
       },
       "meaning": {
         "ja": "件数を小さな丸で示す",
-        "en": "A small dot with a number showing a count"
+        "zh-Hans": "用小圆点或数字显示数量", "en": "A small dot with a number showing a count"
       },
       "ask": {
         "ja": "ヘッダーのベルにバッジを付けて未読数を出して。増えるたびに0.3秒で少し弾ませ、開いたら消して。",
-        "en": "Add a badge to the bell in the header to show the unread count: it pops for 0.3 s each time the count goes up and disappears when opened."
+        "zh-Hans": "页头铃铛上显示未读数徽标，数量增加时弹跳 0.3 s，打开后消失。", "en": "Add a badge to the bell in the header to show the unread count: it pops for 0.3 s each time the count goes up and disappears when opened."
       },
       "summary": {
         "ja": "ヘッダーのベルに通知が届くたび、右上の青い丸の数が1・2・3と増える。ベルを押すと消える。",
-        "en": "Each time a notification arrives, the blue dot on the bell in the header counts up 1, 2, 3; clicking the bell clears it."
+        "zh-Hans": "每次通知到来，铃铛上的蓝圆依次显示 1、2、3，点击铃铛清空。", "en": "Each time a notification arrives, the blue dot on the bell in the header counts up 1, 2, 3; clicking the bell clears it."
       },
       "spec": {
         "ja": [
@@ -1124,7 +1124,7 @@
           "届くたびに拡大率 1.3→1 を0.3秒で戻し、同時に波紋（半径 12→28、不透明度 0.5→0）を0.5秒で広げる",
           "カーソルが2.95秒にベルへ着き3.0秒にクリック。3.0〜3.25秒に easeInOutCubic でバッジを0まで縮める"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；页头高 54，右侧 (482, 27) 为线描铃铛。", "徽标是铃铛右上方（+12, −12）的蓝圆，半径 12、白边 2.5 px，数字为白色 14 px。", "通知在 0.7、1.3、1.9 s 到达，计数 1→2→3；首次于 0.7–0.9 s 按 easeOutCubic 缩放出现。", "每次到来，缩放在 0.3 s 内从 1.3 回到 1，并在 0.5 s 内发出波纹，半径 12→28、不透明度 0.5→0。", "2.95 s 光标到达铃铛，3.0 s 点击；3.0–3.25 s 徽标按 easeInOutCubic 缩至 0。"], "en": [
           "4.5 s cycle on a 542×191 card. A 54-tall header with a line-drawn bell at (482, 27) on the right.",
           "Badge: a blue circle of radius 12 at the bell's top right (+12, −12), 2.5 px white rim, white 14 px number.",
           "Notifications arrive at 0.7, 1.3 and 1.9 s: the count goes 1 → 2 → 3. The first scales in over 0.7–0.9 s with easeOutCubic.",
@@ -1134,7 +1134,7 @@
       },
       "use": {
         "ja": "未読・新着・カートの中身など、件数を目立たせたいとき。",
-        "en": "Use it to call attention to a count, such as unread messages or items in a cart."
+        "zh-Hans": "适合突出未读消息或购物车条目数量。", "en": "Use it to call attention to a count, such as unread messages or items in a cart."
       },
       "tags": [
         "badge",
@@ -1151,19 +1151,19 @@
       "category": "navigate-status",
       "name": {
         "ja": "エンプティステート",
-        "en": "Empty state"
+        "zh-Hans": "空状态", "en": "Empty state"
       },
       "meaning": {
         "ja": "中身がないときの案内画面",
-        "en": "The screen shown when there is nothing to list yet"
+        "zh-Hans": "列表没有内容时显示的界面", "en": "The screen shown when there is nothing to list yet"
       },
       "ask": {
         "ja": "リストが空になったらエンプティステートを出して。線画のアイコン、「まだ何もありません」、追加するボタンを0.35秒で出して。",
-        "en": "When the list is empty, show an empty state: a line icon, \"Nothing here yet\" and an add button, fading in over 0.35 s."
+        "zh-Hans": "列表为空时显示线描图标、暂无内容和添加按钮，用 0.35 s 淡入。", "en": "When the list is empty, show an empty state: a line icon, \"Nothing here yet\" and an add button, fading in over 0.35 s."
       },
       "summary": {
         "ja": "一覧の2行をごみ箱で順に消すと、空の箱の線画と「まだ何もありません」「追加する」ボタンが出る。",
-        "en": "Deleting the two list rows with their trash icons brings up an empty-box drawing, \"Nothing here yet\" and an \"Add\" button."
+        "zh-Hans": "点击垃圾桶删除两行内容后，显示空箱插画、暂无内容和添加按钮。", "en": "Deleting the two list rows with their trash icons brings up an empty-box drawing, \"Nothing here yet\" and an \"Add\" button."
       },
       "spec": {
         "ja": [
@@ -1172,7 +1172,7 @@
           "1.95〜2.3秒に直線で、空の状態を8px下から上げつつ出す: 青い線画の受け箱、「まだ何もありません」（16px）、青い「追加する」ボタン（112×34）",
           "カーソルが3.3秒に「追加する」をクリック。空の状態は3.25〜3.45秒に消え、2行が3.35〜3.7秒に easeOutCubic で左から戻る"
         ],
-        "en": [
+        "zh-Hans": ["542×191 卡片，周期 4.5 s；两行列表各 494×48、圆角半径 8，右侧垃圾桶图标。", "0.95 s 和 1.65 s 点击垃圾桶；各行在 0.3 s 内按 easeInOutCubic 左移 60 px 并淡出，第二行上移 58 px 占据首行位置。", "1.95–2.3 s 空状态线性淡入并上移 8 px，包括蓝色线描收件箱、日文 16 px 暂无内容和蓝色 112×34 添加按钮。", "3.3 s 点击添加；空状态于 3.25–3.45 s 淡出，两行内容于 3.35–3.7 s 按 easeOutCubic 从左侧返回。"], "en": [
           "4.5 s cycle on a 542×191 card. A two-row list (494×48, radius 8, a trash icon at the right).",
           "The cursor clicks the trash icons at 0.95 s and 1.65 s. Each row slides 60 px left while fading out over 0.3 s (easeInOutCubic); the second row moves up 58 px into the first slot.",
           "Over 1.95–2.3 s (linear) the empty state fades in while rising 8 px: a blue line drawing of an inbox tray, \"Nothing here yet\" (16 px, in Japanese) and a blue \"Add\" button (112×34).",
@@ -1181,7 +1181,7 @@
       },
       "use": {
         "ja": "初めて使う画面や、検索で何も見つからないときに、次にすることを案内したいとき。",
-        "en": "Use it for first-use screens or no-results pages to tell people what to do next."
+        "zh-Hans": "适合首次使用或无结果页面，告诉用户下一步能做什么。", "en": "Use it for first-use screens or no-results pages to tell people what to do next."
       },
       "tags": [
         "empty-state",

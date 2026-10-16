@@ -1,6 +1,16 @@
 /* Motion Prompt · pack "camera" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
-MotionPrompt.pack('camera', function () {
+MotionPrompt.pack('camera', function (MP_LANGUAGE) {
   // @kit
+  // Text is the only locale-dependent part of the drawing. Standalone kits
+  // may set MP_LANGUAGE before this code; all geometry and timing stay fixed.
+  const MP_LANG = typeof MP_LANGUAGE === 'string' ? MP_LANGUAGE : 'ja';
+  const MP_LABELS = {"♪ 静か": "♪ 安静", "♪ 大音量": "♪ 大音量", "♪ Bの音": "♪ B 的声音", "♪ Aの音": "♪ A 的声音", "映像": "画面", "音": "声音", "映像A": "画面 A", "映像B": "画面 B"};
+  function mpText(value) {
+    const s = String(value);
+    if (MP_LANG !== 'zh-Hans') return s;
+    if (Object.prototype.hasOwnProperty.call(MP_LABELS, s)) return MP_LABELS[s];
+    return s;
+  }
   // カメラワーク＆切り替え 24（カード 539x208）。各コマは時間 u の純関数。
   // 1つの動きは CYC=4.7秒。切り替え（19〜21）は A→B の次に B→A と戻るので、パックの周期は CYC×2=9.4秒。
   const CW = 539, CH = 208, FPS = 30;
@@ -24,9 +34,9 @@ MotionPrompt.pack('camera', function () {
   function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
   function txt(ctx, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
-    ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = base; ctx.letterSpacing = ls; ctx.fillText(s, x, y); ctx.letterSpacing = '0px';
+    ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = base; ctx.letterSpacing = ls; ctx.fillText(mpText(s), x, y); ctx.letterSpacing = '0px';
   }
-  function tw(ctx, s, font, ls = '0px') { ctx.font = font; ctx.letterSpacing = ls; const w = ctx.measureText(s).width; ctx.letterSpacing = '0px'; return w; }
+  function tw(ctx, s, font, ls = '0px') { ctx.font = font; ctx.letterSpacing = ls; const w = ctx.measureText(mpText(s)).width; ctx.letterSpacing = '0px'; return w; }
 
   // ============================== 3D SCENE ==============================
   // 世界座標: Y上・カメラは +Z を向く（yaw=0）。単位はメートル。焦点距離 f はピクセル。

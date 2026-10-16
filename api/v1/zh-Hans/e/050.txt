@@ -1,0 +1,35 @@
+// Motion Prompt #050 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#050
+//
+// 抽屉面板 / Drawer (Off-canvas)
+// 分类: ui (UI 组件) · element 02 · 子类: 浮层与展开
+// 示例效果: 点击菜单后高面板从左侧滑入，点击外部则滑回。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；光标于 1.0 s 点击左上方 110×34 菜单按钮。
+//   - 展开量 a 在 1.0–1.38 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.36·a。
+//   - 白色面板宽 210，与卡片等高，x = −210 + 210·a，从左边缘滑入；阴影模糊 22、alpha 0.25。
+//   - 顶部是半径 14 的头像与姓名，下方四行菜单相隔 32 px；首行以浅蓝底选中。
+//   - 关闭：3.3 s 光标点击外部 (420, 120)；a 乘以作用于 3.3–3.65 s 的 1 − easeInOutCubic，使面板滑回。
+// 适用场景: 适合按需显示导航或筛选，尤其适用于移动端。
+// 标签: drawer, off-canvas, offcanvas, side-menu, navigation-drawer, sheet, sidebar, slide-in
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#050
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 02
+// 02 ドロワー（Drawer (Off-canvas)）
+CELLS[1] = ui((w, h, t) => {
+  strokeRR(24, 14, 110, 34, 8, C.line2, 1.5); text('メニュー', 79, 31, 15, '#555', 600, 'center');
+  bar(160, 26, 140, C.line2, 11); pageLines(24, 70, 494); fillRR(24, 138, 494, 42, 8, C.block);
+  const a = eo(seg(t, 1.0, 1.38)) * (1 - eio(seg(t, 3.3, 3.65)));
+  if (a > 0) {
+    X.fillStyle = `rgba(18,20,28,${.36 * a})`; X.fillRect(0, 0, w, h);
+    const pw = 210, px = -pw + pw * a;
+    shadowed(() => { X.fillStyle = '#fff'; X.fillRect(px, 0, pw, h); }, 22, 0, .25);
+    circle(px + 34, 32, 14, C.mb); bar(px + 58, 27, 100, C.line2, 10);
+    for (let i = 0; i < 4; i++) { const y = 62 + i * 32; if (i === 0) fillRR(px + 12, y - 2, pw - 24, 28, 6, C.lb); fillRR(px + 22, y + 5, 14, 14, 3, i === 0 ? C.blue : C.line2); bar(px + 46, y + 7, 90 + (i % 2) * 30, i === 0 ? C.sb : C.line); }
+  }
+  pointer([[.3, w + 30, h + 30], [.95, 70, 34], [1.6, 70, 34], [3.0, 420, 120], [3.6, 420, 120], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
+});

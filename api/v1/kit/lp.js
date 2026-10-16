@@ -18,6 +18,16 @@
 // Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
 
 // @kit
+// Text is the only locale-dependent part of the drawing. Standalone kits
+// may set MP_LANGUAGE before this code; all geometry and timing stay fixed.
+const MP_LANG = typeof MP_LANGUAGE === 'string' ? MP_LANGUAGE : 'ja';
+const MP_LABELS = {"料金": "价格", "特長": "特点", "無料で試す": "免费试用", "山へ、行こう。": "去山里走走。", "予約する": "立即预订", "人気のコース": "热门课程", "暮らしを、軽く。": "让生活更轻松。", "詳しく見る": "了解详情", "選ばれる3つの理由": "选择我们的三个理由", "新しい毎日を、": "开启新的一天", "期間限定キャンペーン実施中": "限时优惠进行中", "3ステップで完成": "三步即可完成", "使ってみる": "试用体验", "知ってもらう": "了解我们", "はじめてのWebデザイン": "网页设计入门", "毎日のごはんが": "每日三餐", "たった10分で": "只需十分钟", "作れる。": "轻松完成。", "はじめてでも": "初次下厨", "失敗しないレシピ": "也能掌握的食谱", "だけ。": "精选推荐。", "忙しい人のための": "献给忙碌的你", "台所の新しい相棒": "厨房里的新伙伴", "山の宿": "山中小屋", "海の宿": "海滨旅舍", "星の宿": "观星小屋", "夏の山小屋": "夏日山间小屋", "海辺のカフェ": "海边咖啡馆", "作品を見る": "查看作品", "お問い合わせ": "联系我们", "お申し込み": "报名申请", "送信する": "提交", "サービス": "服务", "実績": "案例", "会社概要": "关于我们", "はじめての方へ": "初次使用指南", "申し込む": "立即报名", "ちょっと待って！": "请稍等！", "今なら初回 10%OFF": "首次体验限时九折", "クーポンを受け取る": "领取优惠券", "ようこそ。": "欢迎。", "始める": "开始", "ギャラリー": "图片库", "← 一覧へ": "← 返回列表", "ちょうどいい道具を。": "找到称手的工具。", "はじめる": "开始", "アプリで、": "用应用，", "もっと身軽に。": "让生活更轻松。", "ダウンロード": "下载", "BEFORE": "处理前", "AFTER": "处理后", "WORKS": "作品", "Hello, Future.": "你好，未来。", "CREATIVE STUDIO": "创意工作室", "Project 02": "项目 02"};
+function mpText(value) {
+  const s = String(value);
+  if (MP_LANG !== 'zh-Hans') return s;
+  if (Object.prototype.hasOwnProperty.call(MP_LABELS, s)) return MP_LABELS[s];
+  return s;
+}
 // LP・Webサイトの演出の名前 24（各カード 539x208・4.8秒周期。各コマは時間 u の純関数）
 // カードの中にブラウザの窓を1つ描き、その中の簡略化したページで演出を見せる。
 // きっかけ（スクロールバー・カーソル・クリック）も一緒に描く。色は 地・文字・差し色（朱）＋写真用の青。
@@ -41,7 +51,7 @@ const mod = (a, n) => ((a % n) + n) % n;
 const eEl = x => x <= 0 ? 0 : x >= 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x - 0.075) * 2 * Math.PI / 0.3) + 1;
 function rr(k, x, y, w, h, r) { k.beginPath(); k.roundRect(x, y, w, h, r); }
 function txt(k, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
-  k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(s, x, y); k.letterSpacing = '0px';
+  k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(mpText(s), x, y); k.letterSpacing = '0px';
 }
 // キーフレーム [[秒, 値], …] を easeInOut（3乗）でつなぐ。u は周期で折り返す
 function steps(keys, u) {

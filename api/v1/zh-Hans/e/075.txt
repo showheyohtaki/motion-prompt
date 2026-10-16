@@ -1,0 +1,42 @@
+// Motion Prompt #075 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#075
+//
+// 吸顶页头 / Sticky header
+// 分类: lp (落地页与网页效果) · element 03 · 子类: 滚动效果
+// 示例效果: 公告条滚出后，下方页头停在顶部，内容继续从其下方滚过。
+// 效果规格:
+//   - 滚动：0.4–1.3 s 为 0→110 px，1.9–2.8 s 为 110→250 px，3.4–4.4 s 为 250→0，三次缓入缓出。
+//   - 最上方是高 22 px 的藏蓝公告条，下方是高 34 px、含标志、三个菜单项和按钮的页头。
+//   - 页头位置 = max(22 − scroll, 0)，公告条离开后停在顶部，等价于 position: sticky; top: 0。
+//   - 接下来 24 px 的滚动中，页头下方 12 px 阴影不透明度从 0 增至 0.16。
+//   - 照片、标题和三张卡片在页头下方正常滚动。
+// 适用场景: 适合长页面中保持菜单和主要操作可用。
+// 标签: sticky, sticky-header, fixed-header, position-sticky, navigation, header, scroll
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#075
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 03
+// 03 追従ヘッダー（スクロールすると、ヘッダーが画面の上で止まってついてくる）
+CELLS[2] = (k, w, h, u) => {
+  frame(k);
+  const y = steps([[0.4, 0], [1.3, 110], [1.9, 110], [2.8, 250], [3.4, 250], [4.4, 0]], u);
+  const STRIP = 22;
+  view(k, () => {
+    k.save(); k.translate(0, -y);
+    pic(k, 24, 70, 214, 112, 0, 8);
+    txt(k, '新しい毎日を、', 262, 104, `800 22px ${JP}`, C.ink); bars(k, 262, 120, 210, 3); btn(k, 262, 160, 100, 26, '詳しく見る');
+    k.fillStyle = C.soft; k.fillRect(0, 212, VW, 240);
+    txt(k, '特長', VW / 2, 246, `800 18px ${JP}`, C.ink, 'center');
+    for (let i = 0; i < 3; i++) { const x = 34 + i * 152; k.fillStyle = '#fff'; rr(k, x, 262, 136, 120, 8); k.fill(); pic(k, x + 8, 270, 120, 58, i, 5); bars(k, x + 10, 340, 110, 3, C.faint, 6, 11); }
+    k.fillStyle = C.ink; k.fillRect(0, 0, VW, STRIP);
+    txt(k, '期間限定キャンペーン実施中', VW / 2, STRIP / 2 + 0.5, `600 11px ${JP}`, '#fff', 'center', 'middle');
+    k.restore();
+    const hy = Math.max(STRIP - y, 0), sh = clamp((y - STRIP) / 24);
+    if (sh > 0) { const g = k.createLinearGradient(0, hy + 34, 0, hy + 46); g.addColorStop(0, `rgba(28,35,51,${0.16 * sh})`); g.addColorStop(1, 'rgba(28,35,51,0)'); k.fillStyle = g; k.fillRect(0, hy + 34, VW, 12); }
+    header(k, hy);
+    sbar(k, y / 250, 0.42);
+  });
+};

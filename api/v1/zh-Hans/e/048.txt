@@ -1,0 +1,24 @@
+// Motion Prompt #048 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#048
+//
+// L 型剪辑 / L-cut
+// 分类: camera (镜头运动与转场) · element 24 · 子类: 转场
+// 示例效果: 画面切换后，前一场景的声音继续片刻，上方是画面，下方是音视频时间轴。
+// 效果规格:
+//   - 衔接：画面直接硬切，仅声音较晚切到下一场景 B；错开时间为时间轴的 20%，即 0.72 s。
+//   - 播放头在 0.4–4.0 s 内匀速从左向右，历时 3.6 s；画面在 55% 处切换，约 2.38 s；声音在 75% 处切换，约 3.10 s。
+//   - 55–75% 的错开区间内，画面已是 B、声音仍是 A；以浅蓝带和两条蓝色虚线突出。
+//   - 布局：上方 134 px 为固定镜头、主体静止的画面；下方 74 px 为视频与音频两行时间轴，A 灰色、B 浅蓝，音频行有波形。
+//   - 标签：画面左下为 映像A / 映像B（画面 A / B）；右下是当前声音，从灰色 ♪ Aの音 变为蓝色 ♪ Bの音。
+//   - 最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+// 适用场景: 适合保留说话声，同时展示听者反应或相关画面。
+// 标签: l-cut, l cut, split edit, audio lag, sound carries over, audio transition, edit
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#048
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 24
+// 24 Lカット: 映像が先に次の場面（B）へ切り替わり、前の場面（A）の音が残る
+CELLS[23] = shot(splitCell(-0.2), 134);

@@ -1,0 +1,42 @@
+// Motion Prompt #089 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#089
+//
+// 预加载画面 / Preloader
+// 分类: lp (落地页与网页效果) · element 17 · 子类: 加载、导航与循环动效
+// 示例效果: 藏蓝屏幕中标志下的数字从 0% 增至 100%，随后上移揭开下方淡入的页面。
+// 效果规格:
+//   - 藏蓝屏幕铺满视口，包含标志、28 px 数字与 180 × 4 进度条。
+//   - 0.25–2.1 s 按三次缓出从 0→100%，四舍五入为整数；橙色进度条同步填充。
+//   - 2.3–2.85 s 整屏按三次缓入缓出向上移动 168 px 退场。
+//   - 2.35–2.95 s 页面标题和照片按三次缓出从下方 14 px 升起，不透明度 0→1。
+//   - 4.25–4.75 s 加载屏从顶部回落，显示 0%，进入下一轮。
+// 适用场景: 适合图片或视频较多的网站，将等待过程融入品牌展示。
+// 标签: preloader, loading-screen, loader, percentage, intro, splash, curtain
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#089
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 17
+// 17 ローディング画面（数字が100%まで進むと、幕が上がってページが現れる）
+CELLS[16] = (k, w, h, u) => {
+  frame(k);
+  const n = Math.round(100 * eOut(P(u, 0.25, 2.1)));
+  const cy = u < 4.25 ? -VH * eIO(P(u, 2.3, 2.85)) : -VH * (1 - eIO(P(u, 4.25, 4.75)));
+  const show = eOut(P(u, 2.35, 2.95));
+  view(k, () => {
+    header(k, 0);
+    k.save(); k.globalAlpha = show; k.translate(0, 14 * (1 - show));
+    txt(k, 'ようこそ。', 34, 82, `800 26px ${JP}`, C.ink); bars(k, 34, 98, 200, 3); btn(k, 34, 136, 96, 24, '始める');
+    pic(k, 270, 46, 214, 112, 0, 8); k.restore();
+    if (cy > -VH) {
+      k.save(); k.translate(0, cy); k.fillStyle = C.ink; k.fillRect(0, 0, VW, VH);
+      logo(k, VW / 2 - 40, 56, '#fff');
+      txt(k, (u >= 4.25 ? 0 : n) + '%', VW / 2, 98, `800 28px ${EN}`, '#fff', 'center', 'middle');
+      k.fillStyle = 'rgba(255,255,255,.15)'; rr(k, VW / 2 - 90, 122, 180, 4, 2); k.fill();
+      k.fillStyle = C.acc; rr(k, VW / 2 - 90, 122, 180 * (u >= 4.25 ? 0 : n / 100), 4, 2); k.fill();
+      k.restore();
+    }
+  });
+};

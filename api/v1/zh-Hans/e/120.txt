@@ -1,0 +1,42 @@
+// Motion Prompt #120 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#120
+//
+// 双重曝光 / Double exposure
+// 分类: photo (摄影效果、光线与风格) · element 24 · 子类: 色调与后期风格
+// 示例效果: 背景变白，缩小后的山丘、房屋、树和太阳仅出现在半身像内部。
+// 效果规格:
+//   - 场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。
+//   - 半身像外背景为白色 #FFFFFF。
+//   - 半身像内部是同一风景的 0.7×，太阳位于头部右上，山脊经过颈部。
+//   - 内部颜色：天空 #D3DBE6，山丘 #9AA8BD 与 #76869F，地面 #55647E，树 #3F4C66。
+//   - 按效果量将双重曝光图叠在原画面上。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合把人物与地点、记忆或内心世界相连的海报和封面。
+// 标签: double exposure, multiple exposure, blend, silhouette, surreal, composite
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#120
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 24
+// 二重露光: 背景が白く飛び、胸像の形の中にだけ丘と家と木と太陽が写り込む
+CELLS[23] = cell((k, u) => {
+  const a = env(u);
+  const DX = Object.assign({}, BASE, { sky: '#D3DBE6', sky2: '#D3DBE6', far: '#9AA8BD', mid: '#76869F', ground: '#55647E', bld: '#E8ECF2', edge: '#55647E', win: '#9AA8BD', winOff: '#9AA8BD', tree: '#3F4C66', trunk: '#3F4C66' });
+  const draw = kk => {
+    kk.fillStyle = '#FFFFFF'; kk.fillRect(0, 0, CW, CH);
+    kk.save(); bustPath(kk, QX, QY, QR); kk.clip();
+    // 風景を0.7倍にして、太陽が頭の右上、丘の稜線が首のあたりに来るように置く
+    kk.translate(QX, QY); kk.scale(0.7, 0.7); kk.translate(-415, -77);
+    kk.fillStyle = DX.sky; kk.fillRect(0, -200, CW * 2, CH * 3);
+    stageLand(kk, DX, { person: false });
+    kk.fillStyle = DX.ground; kk.fillRect(-CW, 200, CW * 3, CH * 3);
+    kk.restore();
+  };
+  if (a >= 0.999) { draw(k); return; }   // 効果が入りきったら直接描く（拡大表示でも輪郭がくっきり）
+  stageLand(k, BASE);
+  if (a < 0.002) return;
+  const [L, kl] = layer('dx'); draw(kl);   // 入り・戻りの途中は、別の面に描いて重ねる
+  k.save(); k.globalAlpha = a; k.drawImage(L, 0, 0); k.restore();
+});

@@ -57,7 +57,7 @@ Usage: node motion-prompt.mjs <command> [options]
 
   pick                  open the gallery so the user can pick; prints what they picked   [--pack <pack>]
                         [--timeout <seconds, default ${PICK_TIMEOUT}>] [--no-open] [--local]
-  search <words...>     best matches (English or Japanese words)   [--pack <pack>] [--limit N]
+  search <words...>     best matches (English, Japanese or Chinese words)   [--pack <pack>] [--limit N]
   list                  packs, categories and counts
   list --pack <pack>    every element in one pack
   get <id> [<id>...]    code + spec for up to ${MAX_GET} elements (accepts 12, 012, #012 or a demo URL)
@@ -66,7 +66,7 @@ Usage: node motion-prompt.mjs <command> [options]
   info                  data source, counts, version, cache folder
 
 Options:
-  --lang ja|en          language of names and text (default en; Japanese search words switch to ja)
+  --lang ja|en|zh-Hans          language of names and text (default en; kana search switches to ja, Han-only search to zh-Hans; zh-CN is an alias)
   --out <dir>           write files into <dir> instead of printing (get, prompt, kit)
   --refresh             ignore the disk cache
   --no-open             pick: print the gallery URL instead of opening a browser
@@ -76,6 +76,34 @@ Environment:
   MOTION_PROMPT_CACHE   cache folder (default ~/.cache/motion-prompt, then the temp folder)
   MOTION_PROMPT_TTL     seconds before the cached catalog is fetched again (default 21600)
 Exit codes: 0 ok · 1 not found · 2 usage · 3 no data source reachable · 4 pick timed out`;
+
+const HELP_ZH = `motion-prompt ${VERSION} — 与 AI 沟通创意的术语库
+${SITE}
+
+用法：node motion-prompt.mjs <命令> [选项]
+
+  pick                  打开素材库并等待用户选择，再返回所选内容
+  search <关键词...>    搜索英文、日文或中文术语
+  list                  列出分类；--pack <分类> 列出该分类的示例
+  get <编号...>         获取规格与代码，每次最多 ${MAX_GET} 项
+  prompt <编号...>      获取可复制的提示词
+  kit <分类>            获取该分类所需的共享辅助代码
+  info                  查看数据来源、数量、版本和缓存位置
+
+选项：
+  --lang zh-Hans        使用简体中文（也接受 zh-CN），另支持 ja、en
+  --pack <分类>        按 motion、camera、ui、lp、photo 筛选
+  --limit N            搜索返回数量
+  --out <目录>         将 get、prompt、kit 的结果写入目录
+  --refresh            忽略磁盘缓存
+  --local              pick 从本地完整仓库提供素材库
+  --no-open            pick 仅打印链接，不自动打开浏览器
+  --timeout <秒>       pick 等待时间，默认 ${PICK_TIMEOUT} 秒
+
+默认输出英文；含假名的搜索词自动使用日语，仅含汉字的搜索词使用简体中文。
+日文纯汉字查询可显式指定 --lang ja。
+环境变量：MOTION_PROMPT_BASE 数据目录或网址，MOTION_PROMPT_CACHE 缓存目录，MOTION_PROMPT_TTL 缓存秒数。
+退出码：0 成功，1 未找到，2 用法错误，3 无可用数据源，4 选择超时。`;
 
 // ---------- data sources ----------
 
@@ -231,9 +259,11 @@ class Store {
 
 // ---------- catalog helpers ----------
 
-const HAS_JA = /[぀-ヿ㐀-鿿ｦ-ﾟ]/;
+const HAS_JA = /[぀-ヿｦ-ﾟ]/;
+const HAS_HAN = /[㐀-鿿]/;
+const normalizeLang = v => /^zh(?:-hans(?:-[a-z]+)?|-cn|-sg)?$/i.test(v || '') ? 'zh-Hans' : /^(ja|en)$/i.test(v || '') ? v.toLowerCase() : null;
 const tx = (v, lang) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : String(v[lang] ?? v.en ?? v.ja ?? ''));
-const both = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : `${tx(v.ja, 'ja')} ${tx(v.en, 'en')}`);
+const both = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : Object.values(v).map(x => tx(x, 'en')).join(' '));
 const packKey = (p) => String(p.pack ?? p.id ?? p.slug ?? p.name ?? '');
 const pad = (n) => String(n).padStart(3, '0');
 const demoUrl = (id) => `${SITE}#${id}`;
@@ -249,7 +279,7 @@ function categoryLabel(cat, e, lang) {
   const p = packsOf(cat).find((x) => packKey(x) === e.pack);
   const c = p && Array.isArray(p.categories) ? p.categories.find((x) => x.slug === e.category) : null;
   if (!c) return { label: e.category || '', haystack: e.category || '' };
-  return { label: tx(c, lang) || c.slug, haystack: `${c.slug} ${c.ja ?? ''} ${c.en ?? ''}` };
+  return { label: tx(c, lang) || c.slug, haystack: `${c.slug} ${both(c)}` };
 }
 
 function requirePack(cat, name) {
@@ -289,7 +319,7 @@ function line(cat, e, lang) {
 
 function score(cat, e, tokens) {
   const name = both(e.name).toLowerCase();
-  const names = [tx(e.name, 'ja'), tx(e.name, 'en')].map((s) => s.toLowerCase());
+  const names = Object.values(e.name || {}).map((s) => s.toLowerCase());
   const tags = (e.tags || []).map((t) => String(t).toLowerCase());
   const slug = String(e.slug || '').toLowerCase();
   const catHay = `${categoryLabel(cat, e, 'en').haystack} ${e.pack} ${both((packsOf(cat).find((p) => packKey(p) === e.pack) || {}).title)}`.toLowerCase();
@@ -344,12 +374,14 @@ async function cmdSearch(store, args, flags, lang) {
     .filter((h) => h.matched > 0)
     .sort((a, b) => b.matched - a.matched || b.total - a.total || a.e.id.localeCompare(b.e.id));
   if (!hits.length) {
-    console.log(`No match for "${args.join(' ')}"${pack ? ` in pack ${pack}` : ''}. Try other words (English tags match best), or browse with "list --pack <pack>".`);
+    console.log(lang === 'zh-Hans'
+      ? `未找到“${args.join(' ')}”${pack ? `（分类 ${pack}）` : ''}。请换个关键词，或使用 list --pack <pack> --lang zh-Hans 浏览。`
+      : `No match for "${args.join(' ')}"${pack ? ` in pack ${pack}` : ''}. Try other words (English tags match best), or browse with "list --pack <pack>".`);
     return;
   }
   for (const h of hits.slice(0, limit)) console.log(line(cat, h.e, lang));
-  if (hits.length > limit) console.log(`… ${hits.length - limit} more. Narrow with --pack or raise --limit.`);
-  console.log(`\nNext: get <id> for the code and spec. Demo: ${SITE}#<id>`);
+  if (hits.length > limit) console.log(lang === 'zh-Hans' ? `… 另有 ${hits.length - limit} 项。使用 --pack 筛选或提高 --limit。` : `… ${hits.length - limit} more. Narrow with --pack or raise --limit.`);
+  console.log(lang === 'zh-Hans' ? `\n下一步：get <id> --lang zh-Hans 获取代码与规格。示例：${SITE}#<id>` : `\nNext: get <id> for the code and spec. Demo: ${SITE}#<id>`);
 }
 
 async function cmdList(store, flags, lang) {
@@ -377,7 +409,7 @@ async function cmdList(store, flags, lang) {
     }
     for (const [label, n] of counts) console.log(`  - ${label} (${n})`);
   }
-  console.log(`\n${cat.elements.length} elements. Browse one pack with: list --pack <pack>`);
+  console.log(lang === 'zh-Hans' ? `\n共 ${cat.elements.length} 个示例。查看单个分类：list --pack <pack> --lang zh-Hans` : `\n${cat.elements.length} elements. Browse one pack with: list --pack <pack>`);
 }
 
 async function cmdGet(store, args, flags, lang) {
@@ -390,7 +422,7 @@ async function cmdGet(store, args, flags, lang) {
   }
   emit(files, flags.out);
   const kits = [...new Set(ids.map((id) => cat.elements.find((x) => x.id === id).pack))];
-  const note = `Needs kit: ${kits.join(', ')} — run "kit <pack>" once per pack before using this code.`;
+  const note = lang === 'zh-Hans' ? `所需辅助代码：${kits.join(', ')}，使用前对每类运行一次 "kit <pack> --lang zh-Hans"。` : `Needs kit: ${kits.join(', ')} — run "kit <pack>" once per pack before using this code.`;
   if (flags.out) console.log(note); else process.stdout.write(`\n// ${note}\n`);
 }
 
@@ -402,25 +434,26 @@ async function cmdPrompt(store, args, flags, lang) {
   emit(files, flags.out);
 }
 
-async function cmdKit(store, args, flags) {
+async function cmdKit(store, args, flags, lang) {
   if (args.length !== 1) throw new CliError(EXIT.USAGE, 'kit needs exactly one pack name, e.g. "kit motion".');
   const cat = await store.loadCatalog();
   const pack = requirePack(cat, args[0]);
-  emit([{ name: `kit-${pack}.js`, text: await store.file(`kit/${pack}.js`) }], flags.out);
+  emit([{ name: `kit-${pack}.js`, text: await store.file(`${lang === 'zh-Hans' ? 'zh-Hans/' : ''}kit/${pack}.js`) }], flags.out);
 }
 
-async function cmdInfo(store) {
+async function cmdInfo(store, lang) {
+  const zh = lang === 'zh-Hans';
   console.log(`motion-prompt skill ${VERSION}`);
   console.log(`Gallery:        ${SITE}`);
-  console.log(`Sources (${store.origin}):`);
+  console.log(`${zh ? '数据来源' : 'Sources'} (${store.origin}):`);
   for (const b of store.bases) console.log(`  ${b}`);
   let cat = null;
   let error = null;
   try { cat = await store.loadCatalog(); } catch (err) { error = err; }
-  console.log(`Cache folder:   ${store.remote ? store.cacheDir() : '(not used for local files)'}`);
+  console.log(`${zh ? '缓存目录' : 'Cache folder'}:   ${store.remote ? store.cacheDir() : zh ? '（本地文件不使用缓存）' : '(not used for local files)'}`);
   if (!cat) { console.log('Catalog:        unavailable'); throw error; }
-  console.log(`In use:         ${store.fromCache ? `disk cache${store.usedBase ? '' : ' (no request made)'}` : store.usedBase}`);
-  console.log(`Catalog:        version ${cat.version ?? '?'} · ${cat.elements.length} elements`);
+  console.log(`${zh ? '当前使用' : 'In use'}:         ${store.fromCache ? zh ? '磁盘缓存' : `disk cache${store.usedBase ? '' : ' (no request made)'}` : store.usedBase}`);
+  console.log(zh ? `目录：版本 ${cat.version ?? '?'} · ${cat.elements.length} 个示例` : `Catalog:        version ${cat.version ?? '?'} · ${cat.elements.length} elements`);
   for (const p of packsOf(cat)) {
     const n = cat.elements.filter((e) => e.pack === packKey(p)).length;
     if (n) console.log(`  ${packKey(p)}: ${n}`);
@@ -498,6 +531,13 @@ function openBrowser(url) {
 }
 
 const PICK_TEXT = {
+  'zh-Hans': {
+    done: '已发送给 AI', close: '可以关闭此页。请返回 AI，告诉它如何使用这些示例。',
+    ignored: '以下编号不在目录中，未发送：', bad: '无法读取选择',
+    badBody: '请返回素材库，再次点击“发送给 AI”。AI 仍在等待。',
+    none: '所选编号均不在目录中', other: '此接收地址属于另一个请求',
+    otherBody: '请使用 AI 打开的素材库中的“发送给 AI”。'
+  },
   ja: {
     done: 'AIに渡しました', close: 'この画面は閉じて大丈夫です。AIの画面に戻って、どう使うかを伝えてください。',
     ignored: 'カタログに無い番号は渡していません: ', bad: '選択を読み取れませんでした',
@@ -537,7 +577,7 @@ function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
       try { url = new URL(req.url, origin); } catch { return send(res, 400, 'Bad request'); }
       const q = url.searchParams;
       if (url.pathname === '/' && q.has('t')) {
-        const lang = flags.lang || (q.get('lang') === 'ja' ? 'ja' : q.get('lang') === 'en' ? 'en' : 'en');
+        const lang = flags.lang || normalizeLang(q.get('lang')) || 'en';
         const T = PICK_TEXT[lang];
         const given = Buffer.from(String(q.get('t')));
         const want = Buffer.from(token);
@@ -575,30 +615,28 @@ function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
 }
 
 function printPick(cat, { ids, unknown, note, lang }) {
-  const other = lang === 'ja' ? 'en' : 'ja';
-  const out = [`The user picked ${ids.length} element${ids.length === 1 ? '' : 's'} in the Motion Prompt gallery, in this order.`];
-  out.push(note ? `Note from the user: ${note}` : 'Note from the user: (none)');
-  out.push('');
+  const zh = lang === 'zh-Hans', other = lang === 'ja' || zh ? 'en' : 'ja';
+  const out = [zh ? `用户在 Motion Prompt 中按顺序选择了 ${ids.length} 个示例。` : `The user picked ${ids.length} element${ids.length === 1 ? '' : 's'} in the Motion Prompt gallery, in this order.`];
+  out.push(zh ? `用户备注：${note || '（无）'}` : note ? `Note from the user: ${note}` : 'Note from the user: (none)', '');
   ids.forEach((id, i) => {
-    const e = cat.elements.find((x) => x.id === id);
-    const name = tx(e.name, lang);
-    const alt = tx(e.name, other);
+    const e = cat.elements.find(x => x.id === id), name = tx(e.name, lang), alt = tx(e.name, other);
     out.push(`${i + 1}. #${e.id}  ${name}${alt && alt !== name ? ` / ${alt}` : ''}  [${e.pack} / ${categoryLabel(cat, e, lang).label}]`);
-    if (e.meaning) out.push(`   Meaning: ${tx(e.meaning, lang)}`);
-    if (e.ask) out.push(`   How to ask: ${tx(e.ask, lang)}`);
+    if (e.meaning) out.push(`   ${zh ? '含义' : 'Meaning'}: ${tx(e.meaning, lang)}`);
+    if (e.ask) out.push(`   ${zh ? '请求示例' : 'How to ask'}: ${tx(e.ask, lang)}`);
     const spec = e.spec ? (Array.isArray(e.spec) ? e.spec : e.spec[lang] || e.spec.en || []) : [];
-    if (spec.length) { out.push('   Spec:'); for (const s of spec) out.push(`   - ${s}`); }
-    out.push(`   Demo: ${demoUrl(e.id)}`);
-    out.push('');
+    if (spec.length) { out.push(zh ? '   规格：' : '   Spec:'); for (const line of spec) out.push(`   - ${line}`); }
+    out.push(`   ${zh ? '动态示例' : 'Demo'}: ${demoUrl(e.id)}`, '');
   });
-  if (unknown.length) out.push(`Ignored (not in the catalog): ${unknown.map((u) => `#${u}`).join(', ')}`, '');
-  const packs = [...new Set(ids.map((id) => cat.elements.find((x) => x.id === id).pack))];
-  out.push(`Next: use exactly these elements, no more and no fewer. Run "get ${ids.join(' ')}" for the code (at most ${MAX_GET} ids per call) and "kit <pack>" once for each of: ${packs.join(', ')}.`);
+  if (unknown.length) out.push(`${zh ? '忽略目录中不存在的编号' : 'Ignored (not in the catalog)'}: ${unknown.map(u => `#${u}`).join(', ')}`, '');
+  const packs = [...new Set(ids.map(id => cat.elements.find(x => x.id === id).pack))];
+  out.push(zh
+    ? `下一步：严格使用这些示例，不增不减。运行 "get ${ids.join(' ')} --lang ${lang}" 获取代码，每次最多 ${MAX_GET} 项；对以下分类各运行一次 "kit <pack> --lang ${lang}"：${packs.join(', ')}。`
+    : `Next: use exactly these elements, no more and no fewer. Run "get ${ids.join(' ')}" for the code (at most ${MAX_GET} ids per call) and "kit <pack>" once for each of: ${packs.join(', ')}.`);
   process.stdout.write(`${out.join('\n')}\n`);
 }
 
 async function cmdPick(store, args, flags) {
-  if (args.length) throw new CliError(EXIT.USAGE, 'pick takes no ids or words. Options: --pack <pack> --lang ja|en --timeout <seconds> --no-open --local');
+  if (args.length) throw new CliError(EXIT.USAGE, 'pick takes no ids or words. Options: --pack <pack> --lang ja|en|zh-Hans --timeout <seconds> --no-open --local');
   const timeoutSec = flags.timeout === undefined ? PICK_TIMEOUT : Number(flags.timeout);
   if (!Number.isFinite(timeoutSec) || timeoutSec < 1 || timeoutSec > 86400) throw new CliError(EXIT.USAGE, '--timeout must be a number of seconds between 1 and 86400.');
   const root = flags.local ? repoRoot() : null;
@@ -621,7 +659,7 @@ async function cmdPick(store, args, flags) {
   if (flags['no-open']) console.log('Not opened (--no-open). Open this URL in a browser, or give it to the user to open.');
   else if (await openBrowser(galleryUrl)) console.log('Opened in the default browser. If no browser window appeared, open the URL above yourself.');
   else console.log('Could not open a browser from here. Open the URL above in a browser, or give it to the user to open.');
-  console.log(`Waiting for the user to pick and press "Send to AI" (up to ${timeoutSec} s)…\n`);
+  console.log(flags.lang === 'zh-Hans' ? `等待用户选择并点击“发送给 AI”，最长 ${timeoutSec} s…\n` : `Waiting for the user to pick and press "Send to AI" (up to ${timeoutSec} s)…\n`);
 
   printPick(cat, await waiting);
 }
@@ -631,17 +669,22 @@ async function cmdPick(store, args, flags) {
 async function main() {
   const { flags, command, args } = parseArgs(process.argv.slice(2));
   if (flags.version) { console.log(VERSION); return; }
-  if (flags.help || !command || command === 'help') { console.log(HELP); return; }
-  if (flags.lang && !['ja', 'en'].includes(flags.lang)) throw new CliError(EXIT.USAGE, '--lang must be ja or en.');
-  const lang = flags.lang || (command === 'search' && HAS_JA.test(args.join(' ')) ? 'ja' : 'en');
+
+  if (flags.lang) {
+    const normalized = normalizeLang(flags.lang);
+    if (!normalized) throw new CliError(EXIT.USAGE, '--lang must be ja, en or zh-Hans (zh-CN is also accepted).');
+    flags.lang = normalized;
+  }
+  if (flags.help || !command || command === 'help') { console.log(flags.lang === 'zh-Hans' ? HELP_ZH : HELP); return; }
+  const lang = flags.lang || (command === 'search' ? HAS_JA.test(args.join(' ')) ? 'ja' : HAS_HAN.test(args.join(' ')) ? 'zh-Hans' : 'en' : 'en');
   const store = new Store({ refresh: flags.refresh });
   switch (command) {
     case 'search': return cmdSearch(store, args, flags, lang);
     case 'list': return cmdList(store, flags, lang);
     case 'get': return cmdGet(store, args, flags, lang);
     case 'prompt': return cmdPrompt(store, args, flags, lang);
-    case 'kit': return cmdKit(store, args, flags);
-    case 'info': return cmdInfo(store);
+    case 'kit': return cmdKit(store, args, flags, lang);
+    case 'info': return cmdInfo(store, lang);
     case 'pick': return cmdPick(store, args, flags);
     default: throw new CliError(EXIT.USAGE, `Unknown command "${command}". Run with --help.`);
   }

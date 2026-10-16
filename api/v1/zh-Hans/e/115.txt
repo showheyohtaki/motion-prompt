@@ -1,0 +1,26 @@
+// Motion Prompt #115 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#115
+//
+// 黑白 / Black and white
+// 分类: photo (摄影效果、光线与风格) · element 19 · 子类: 色调与后期风格
+// 示例效果: 同一风景褪去颜色，太阳和人物受光处变灰，仅凭明暗辨认形状。
+// 效果规格:
+//   - 场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。
+//   - 按亮度 0.2126R + 0.7152G + 0.0722B 转灰度，以 140 为中心将对比度乘 1.25。
+//   - 例如人物 #4D5A75→约 #4D4D4D，太阳 #F5A524→约 #B5B5B5。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合经典气质，或形状、光线和表情比颜色更重要的画面。
+// 标签: black and white, monochrome, b&w, grayscale, desaturated, classic
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#115
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 19
+// モノクロ: 色を抜き、明るさだけで見せる（コントラストを少し強める）
+CELLS[18] = cell((k, u) => {
+  const a = env(u);
+  const GRAY = mapPal(BASE, c => { const g = clamp((lum(c) - 140) * 1.25 + 140, 0, 255); return toHex([g, g, g]); });
+  stageLand(k, pal(BASE, GRAY, a));
+});

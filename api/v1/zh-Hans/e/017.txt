@@ -1,0 +1,31 @@
+// Motion Prompt #017 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#017
+//
+// 遮罩转场 / Mask transition
+// 分类: motion (动态图形) · element 17 · 子类: 转场与强调
+// 示例效果: 圆形或星形窗口扩张，在内部显现下一场景。
+// 效果规格:
+//   - 白天→夜晚→白天，每半段 2.35 s；切换发生在各半段的 0.45–1.6 s，历时 1.15 s，使用三次缓入缓出。
+//   - 下一场景叠在当前场景之上，由形状裁切；形状扩张直至覆盖整个画面。
+//   - 白天→夜晚：圆心位于太阳中心（112, 104），半径 0→470。
+//   - 夜晚→白天：五角星以月亮中心（427, 104）为中心，外半径 0→1150，扩张同时旋转 1.2 rad，约 69°。
+//   - 扩张时形状边缘带宽 7 的白色轮廓线。
+// 适用场景: 适合从画面中的太阳、标志或按钮等物体开始切换场景。
+// 标签: mask, transition, iris, wipe, shape-wipe, reveal, scene-change
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#017
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 17
+// 17 マスクトランジション（丸や星の形の「窓」が広がり、その中に次の画面が見える）
+CELLS[16] = abCell((k, w, h, u, a, b) => {
+  const p = eIO(P(u, TA - 0.05, TB + 0.1));
+  SCR[a](k, w, h);
+  if (p > 0) {
+    const c = a === 0 ? SUN : MOON, shape = () => { if (a === 0) { k.beginPath(); k.arc(c[0], c[1], lerp(0, 470, p), 0, 7); } else star(k, c[0], c[1], lerp(0, 1150, p), p * 1.2, 0.5); };
+    k.save(); shape(); k.clip(); SCR[b](k, w, h); k.restore();
+    if (p < 1) { k.strokeStyle = '#fff'; k.lineWidth = 7; k.lineJoin = 'round'; shape(); k.stroke(); }
+  }
+});

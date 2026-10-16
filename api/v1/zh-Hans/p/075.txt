@@ -1,0 +1,16 @@
+请使用“吸顶页头（Sticky header）”，它属于“落地页与网页效果”。
+Motion Prompt #075
+
+含义：滚动时页头停留在屏幕顶部
+示例效果：公告条滚出后，下方页头停在顶部，内容继续从其下方滚过。
+规格：
+- 滚动：0.4–1.3 s 为 0→110 px，1.9–2.8 s 为 110→250 px，3.4–4.4 s 为 250→0，三次缓入缓出。
+- 最上方是高 22 px 的藏蓝公告条，下方是高 34 px、含标志、三个菜单项和按钮的页头。
+- 页头位置 = max(22 − scroll, 0)，公告条离开后停在顶部，等价于 position: sticky; top: 0。
+- 接下来 24 px 的滚动中，页头下方 12 px 阴影不透明度从 0 增至 0.16。
+- 照片、标题和三张卡片在页头下方正常滚动。
+适用场景：适合长页面中保持菜单和主要操作可用。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/075.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

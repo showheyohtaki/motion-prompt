@@ -18,6 +18,16 @@
 // Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
 
 // @kit
+// Text is the only locale-dependent part of the drawing. Standalone kits
+// may set MP_LANGUAGE before this code; all geometry and timing stay fixed.
+const MP_LANG = typeof MP_LANGUAGE === 'string' ? MP_LANGUAGE : 'ja';
+const MP_LABELS = {"開く": "打开", "メニュー": "菜单", "詳細を見る": "查看详情", "選択してください": "请选择", "名古屋": "名古屋", "東京": "东京", "大阪": "大阪", "福岡": "福冈", "小さな説明が出る": "这里显示简短说明", "詳細": "详情", "保存": "保存", "保存しました": "已保存", "概要": "概览", "料金": "价格", "レビュー": "评价", "日": "日", "週": "周", "月": "月", "すべて": "全部", "新着": "最新", "人気": "热门", "無料": "免费", "価格": "价格", "ホーム": "首页", "講座": "课程", "Web制作": "网页设计", "製品": "产品", "サポート": "支持", "入力": "信息", "確認": "确认", "支払い": "支付", "完了": "完成", "次へ": "下一步", "送信": "发送", "まだ何もありません": "暂无内容", "追加する": "添加"};
+function mpText(value) {
+  const s = String(value);
+  if (MP_LANG !== 'zh-Hans') return s;
+  if (Object.prototype.hasOwnProperty.call(MP_LABELS, s)) return MP_LABELS[s];
+  return s;
+}
 // UIパーツの名前 24（カード 542x191 = 元動画のカード窓 542x222 から窓の上枠 31px を除いた中身）。
 // 各コマは時間 u の純関数。1周期 CYC=4.5秒。カーソル（指）の動きがきっかけで部品が動く。
 const CW = 542, CH = 191, CYC = 4.5;
@@ -45,8 +55,8 @@ function rr(x, y, w, h, r) { r = Math.min(r, w / 2, h / 2); X.beginPath(); X.mov
 function fillRR(x, y, w, h, r, c) { rr(x, y, w, h, r); X.fillStyle = c; X.fill(); }
 function strokeRR(x, y, w, h, r, c, lw = 1.5) { rr(x, y, w, h, r); X.strokeStyle = c; X.lineWidth = lw; X.stroke(); }
 function bar(x, y, w, c = C.line, h = 9) { fillRR(x, y, w, h, h / 2, c); }
-function text(s, x, y, size, color, weight = 500, align = 'left', font = JP) { X.font = `${weight} ${size}px ${font}`; X.fillStyle = color; X.textAlign = align; X.textBaseline = 'middle'; X.fillText(s, x, y); }
-function tw(s, size, weight = 500, font = JP) { X.font = `${weight} ${size}px ${font}`; return X.measureText(s).width; }
+function text(s, x, y, size, color, weight = 500, align = 'left', font = JP) { X.font = `${weight} ${size}px ${font}`; X.fillStyle = color; X.textAlign = align; X.textBaseline = 'middle'; X.fillText(mpText(s), x, y); }
+function tw(s, size, weight = 500, font = JP) { X.font = `${weight} ${size}px ${font}`; return X.measureText(mpText(s)).width; }
 function circle(x, y, r, c) { X.beginPath(); X.arc(x, y, r, 0, Math.PI * 2); X.fillStyle = c; X.fill(); }
 function ring(x, y, r, c, lw = 2) { X.beginPath(); X.arc(x, y, r, 0, Math.PI * 2); X.strokeStyle = c; X.lineWidth = lw; X.stroke(); }
 function shadowed(fn, blur = 18, oy = 6, a = .14) { X.save(); X.shadowColor = `rgba(20,24,40,${a})`; X.shadowBlur = blur; X.shadowOffsetY = oy; fn(); X.restore(); }

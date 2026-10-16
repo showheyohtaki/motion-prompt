@@ -1,0 +1,16 @@
+请使用“轻提示（Toast notification）”，它属于“UI 组件”。
+Motion Prompt #056
+
+含义：短消息出现后自动消失
+示例效果：点击保存后，右下角滑入深色通知，计时条走完后滑出。
+规格：
+- 542×191 卡片，周期 4.5 s；光标 1.0 s 点击左下蓝色 110×36 保存按钮，再向左下离开。
+- 提示颜色 #26282c、尺寸 214×52、圆角半径 10，距右边 18 px、底边 16 px；1.05–1.4 s 按 easeOutCubic 从右侧 240 px 滑入。
+- 内部为蓝圆中的白色勾和白色 15 px 已保存文字。
+- 底部高 3 px 的剩余时间线在 1.4–3.2 s 内从 194 px 线性缩至 0。
+- 3.2–3.55 s 按 easeInOutCubic 向右滑出 240 px。
+适用场景：适合确认保存或发送结果，同时保持用户操作连贯。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/056.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

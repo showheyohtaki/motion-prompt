@@ -73,6 +73,14 @@ button { cursor: pointer; }
   :root:not([data-theme="light"]) .i-moon { display: none; }
 }
 
+:lang(zh-Hans) { --font: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; }
+:lang(zh-Hans) h1 {
+  font-family: "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-size: clamp(40px, 5.6vw, 84px);
+  word-break: normal; letter-spacing: -.02em;
+}
+:lang(zh-Hans) .zh-phrase { white-space: nowrap; }
+
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; padding-block: 72px 64px; align-items: end; }
 .eyebrow { font-size: 14px; color: var(--muted); letter-spacing: .04em; margin-bottom: 20px; }
@@ -294,8 +302,12 @@ html.has-tray { scroll-padding-bottom: calc(var(--tray-h, 0px) + 16px); }
 }
 @media (max-width: 480px) {
   .top-gh { display: none; }
-  .top-nav { gap: 4px; }
-  .top-link { padding: 6px 8px; }
+  .top-in { gap: 8px; }
+  .logo { font-size: 15px; }
+  .top-nav { gap: 2px; }
+  .top-link { padding: 6px; font-size: 13px; }
+  .seg { margin-left: 0; }
+  .seg-b { padding-inline: 6px; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

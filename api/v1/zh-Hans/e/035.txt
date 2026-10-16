@@ -1,0 +1,38 @@
+// Motion Prompt #035 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#035
+//
+// FPV 穿越机镜头 / FPV drone shot
+// 分类: camera (镜头运动与转场) · element 11 · 子类: 拍摄方式与时间效果
+// 示例效果: 第一人称视角低空快速穿过两排树，机身左右侧倾。
+// 效果规格:
+//   - 镜头：以恒定 14 m/s 向前飞行，显示为 50km/h，无缓动；俯仰固定 -0.05 rad。
+//   - 穿行：T = 2π×u/4.7，每 4.7 s 摆动两次；横向 0.6·sin(2T-0.4) m，高度 1.4 + 0.5·sin(2T) m。
+//   - 侧倾：滚转 0.22·sin(2T+0.6) rad，约 ±12.6°；偏航 0.05·sin(2T) rad，约 ±2.9°。
+//   - 无主体；两侧各距 3.6 m 的树高 4.2 m、间距 8 m，两排错开 4 m，迎面快速掠过。
+//   - 速度线：10 根半透明灰色放射线，长约 32–76 px，靠边更长，向外流动并循环。
+//   - 无停留和交叉淡化复位，每 4.7 s 重启时树列相位会跳变。
+// 适用场景: 适合表现速度、沉浸感，或连续穿越某个场所。
+// 标签: fpv, drone, fly through, first person, banking, speed, aerial
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#035
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 11
+// 11 FPV
+CELLS[10] = shot((k, w, h, u) => {
+  const sp = 14, z = u * sp, T = u * 2 * Math.PI / CYC;
+  const c = cam({ z, y: 1.4 + 0.5 * Math.sin(T * 2), roll: 0.22 * Math.sin(T * 2 + 0.6), yaw: 0.05 * Math.sin(T * 2), x: 0.6 * Math.sin(T * 2 - 0.4), pitch: -0.05 });
+  const ex = [];
+  const L = 8, base = Math.floor(z / L) * L;
+  for (let i = 0; i < 12; i++) { const zz = base + i * L; ex.push([-3.6, 0, zz, (kk, s) => tree(kk, s, 4.2)]); ex.push([3.6, 0, zz + L / 2, (kk, s) => tree(kk, s, 4.2, C.blueXL)]); }
+  world(k, w, h, c, {
+    buildings: false, trees: false, extra: ex, gridX: 20,
+    after: (kk) => {   // スピード線
+      kk.strokeStyle = 'rgba(150,150,155,.45)'; kk.lineWidth = 2;
+      for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 + 0.3, ph = mod(u * 2.2 + i * 0.37, 1); const r0 = 120 + ph * 160; kk.beginPath(); kk.moveTo(Math.cos(a) * r0 * 1.9, Math.sin(a) * r0 * 0.8); kk.lineTo(Math.cos(a) * (r0 + 40) * 1.9, Math.sin(a) * (r0 + 40) * 0.8); kk.stroke(); }
+    }
+  });
+  return `${Math.round(sp * 3.6)}km/h`;
+});

@@ -25,7 +25,7 @@ CELLS[21] = (k, w, h, u) => {
   view(k, () => {
     bars(k, 34, 20, 180, 1, C.ink, 10); bars(k, 34, 38, 300, 1);
     k.fillStyle = C.ink; k.fillRect(0, 58, VW, 58);
-    k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(s).width); k.letterSpacing = '0px';
+    k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(mpText(s)).width); k.letterSpacing = '0px';
     const unit = ws.reduce((a, b) => a + b + GAPW, 0);
     let x = -mod(u / CYC, 1) * unit;                 // 1周期で1組ぶん左へ
     for (let rep = 0; x < VW; rep++) WORDS.forEach((s, i) => {

@@ -3,23 +3,23 @@
   "order": 5,
   "title": {
     "ja": "写真の表現・光と画風",
-    "en": "Photo looks, lighting & styles"
+    "zh-Hans": "摄影效果、光线与风格", "en": "Photo looks, lighting & styles"
   },
   "categories": [
     {
       "slug": "lighting",
       "ja": "光の当て方・時間帯",
-      "en": "Lighting & time of day"
+      "zh-Hans": "布光与时段", "en": "Lighting & time of day"
     },
     {
       "slug": "lens-camera",
       "ja": "レンズ・カメラの効果",
-      "en": "Lens & camera effects"
+      "zh-Hans": "镜头与相机效果", "en": "Lens & camera effects"
     },
     {
       "slug": "tone-finish",
       "ja": "仕上げ・画風",
-      "en": "Tones & finishing looks"
+      "zh-Hans": "色调与后期风格", "en": "Tones & finishing looks"
     }
   ],
   "elements": [
@@ -29,19 +29,19 @@
       "category": "lighting",
       "name": {
         "ja": "逆光",
-        "en": "Backlighting"
+        "zh-Hans": "逆光", "en": "Backlighting"
       },
       "meaning": {
         "ja": "被写体の真後ろから光を当てる",
-        "en": "The light source sits behind the subject"
+        "zh-Hans": "光源位于主体后方", "en": "The light source sits behind the subject"
       },
       "ask": {
         "ja": "草原に立つ人物を逆光で。夕日を頭の真後ろに置き、髪の輪郭が光ってふんわりとかすむように。",
-        "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze."
+        "zh-Hans": "草地人像用逆光，低处太阳正对头后，发丝边缘发亮，带柔和薄雾。", "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze."
       },
       "summary": {
         "ja": "画面の外にあった太陽が人物の頭の真後ろへ回り込む。胸像の縁が細く光り、全体に淡い光の色がかかり、カメラ側の体は暗く沈む。",
-        "en": "The sun moves from outside the frame to directly behind the person's head; a thin bright edge appears around the figure, a pale warm haze covers the frame and the side facing the camera darkens."
+        "zh-Hans": "太阳从画面外移到人物头后，轮廓出现亮边，画面覆盖浅暖雾，朝向相机的一侧变暗。", "en": "The sun moves from outside the frame to directly behind the person's head; a thin bright edge appears around the figure, a pale warm haze covers the frame and the side facing the camera darkens."
       },
       "spec": {
         "ja": [
@@ -51,7 +51,7 @@
           "人物 #4D5A75 → #33405A。空 #FAF9F7 → #FFF4DC、全体に #FFE3A3 を22%重ねる",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 受光面为纯琥珀色 #FFC75A，阴影为纯色 #33405A。", "太阳半径 20 px，从画面左上外侧 (x 40, y −40) 移至头后 (x 270, y 56)；两圈平面光晕半径为太阳的 2.6× 和 1.7×，#FFE3A3，不透明度 35% 和 60%。", "人物先描 7 px 轮廓线再填充，外侧留下 3.5 px 亮边。", "人物 #4D5A75→#33405A，天空 #FAF9F7→#FFF4DC，全画面叠加不透明度 22% 的 #FFE3A3。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). light is a flat amber #FFC75A shape, shadow a flat #33405A one",
           "Sun: radius 20 px, from outside the frame (top left, x 40, y −40) to directly behind the head (x 270, y 56), with flat rings of 2.6× and 1.7× the radius (#FFE3A3 at 35% and 60%)",
           "Outline: the figure is stroked with a 7 px line and then filled, leaving a 3.5 px bright edge outside it",
@@ -61,7 +61,7 @@
       },
       "use": {
         "ja": "やわらかく明るい人物写真や、光に包まれた雰囲気を出したいとき。",
-        "en": "For airy, glowing portraits or any image that should feel bathed in light."
+        "zh-Hans": "适合通透发光的人像或沐浴在光中的画面。", "en": "For airy, glowing portraits or any image that should feel bathed in light."
       },
       "tags": [
         "backlighting",
@@ -79,19 +79,19 @@
       "category": "lighting",
       "name": {
         "ja": "リムライト",
-        "en": "Rim light"
+        "zh-Hans": "轮廓光", "en": "Rim light"
       },
       "meaning": {
         "ja": "後ろからの光で輪郭だけを光らせる",
-        "en": "A light from behind that outlines the subject's edge"
+        "zh-Hans": "后侧光勾勒主体边缘", "en": "A light from behind that outlines the subject's edge"
       },
       "ask": {
         "ja": "黒背景の人物に、斜め後ろ左右からリムライト。顔は暗いままで、頭と肩の輪郭だけ細く光らせて。",
-        "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows."
+        "zh-Hans": "黑色背景人像，两侧后方打轮廓光，脸保持暗，只让头肩轮廓发亮。", "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows."
       },
       "summary": {
         "ja": "周りが暗く落ち、斜め後ろ左右の2灯で、暗い人物の頭と肩の両側にだけ細い光の縁が出る。右下の図で2灯の位置を示す。",
-        "en": "The surroundings go dark and two lights behind the person, left and right, draw thin bright edges only along both sides of the head and shoulders; the plan at the bottom right shows where the two lights are."
+        "zh-Hans": "周围变暗，人物左右后方的两盏灯仅勾亮头肩两侧细边，右下示意图显示灯位。", "en": "The surroundings go dark and two lights behind the person, left and right, draw thin bright edges only along both sides of the head and shoulders; the plan at the bottom right shows where the two lights are."
       },
       "spec": {
         "ja": [
@@ -101,7 +101,7 @@
           "右下の配置図（66×66px）: 光は真上から見て ±135°（斜め後ろ左右）。右上の表示「±135°」",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。", "背景由明转暗，天空 #2B2D33、地面 #24252A；人物 #4D5A75→#1F2128。", "亮边：两份琥珀色 #FFC75A 人物副本分别左移与右移 3.5 px、上移 2.5 px，置于暗色人物后，形成宽 3.5 px 的边缘。", "右下 66×66 px 俯视图显示后方左右 ±135° 灯位，右上显示 ±135°。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). ",
           "Background: light scene → dark scene (sky #2B2D33, ground #24252A); figure #4D5A75 → #1F2128",
           "Bright edges: two copies of the figure in amber #FFC75A, shifted 3.5 px left and right and 2.5 px up, placed behind the dark figure (3.5 px wide edges)",
@@ -111,7 +111,7 @@
       },
       "use": {
         "ja": "暗い背景から人物や商品を切り離して、形をくっきり見せたいとき。",
-        "en": "To separate a person or product from a dark background and show its shape."
+        "zh-Hans": "适合从深色背景分离人物或产品，并显示外形。", "en": "To separate a person or product from a dark background and show its shape."
       },
       "tags": [
         "rim light",
@@ -129,19 +129,19 @@
       "category": "lighting",
       "name": {
         "ja": "シルエット",
-        "en": "Silhouette"
+        "zh-Hans": "剪影", "en": "Silhouette"
       },
       "meaning": {
         "ja": "明るい空を背に、被写体を黒い形だけで見せる",
-        "en": "The subject shows as a black shape against a bright sky"
+        "zh-Hans": "主体成为明亮背景前的深色轮廓", "en": "The subject shows as a black shape against a bright sky"
       },
       "ask": {
         "ja": "夕焼けの浜辺でジャンプする人物をシルエットで。露出は空に合わせて、人物とヤシの木は真っ黒に。",
-        "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black."
+        "zh-Hans": "夕阳海滩上跳跃的人物剪影，按天空曝光，让人物和棕榈树变成纯黑。", "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black."
       },
       "summary": {
         "ja": "露出を明るい夕空に合わせていくと、人物・建物・街灯・木が細部のない黒い形になり、空だけが明るく残る。",
-        "en": "As the exposure is set for the bright evening sky, the person, buildings, lamp and tree turn into flat black shapes with no detail and only the sky stays bright."
+        "zh-Hans": "按明亮晚霞曝光，人物、建筑、路灯和树变为无细节的黑色形状，仅天空保持明亮。", "en": "As the exposure is set for the bright evening sky, the person, buildings, lamp and tree turn into flat black shapes with no detail and only the sky stays bright."
       },
       "spec": {
         "ja": [
@@ -152,7 +152,7 @@
           "右上の表示: ±0.0 EV → −2.0 EV",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。", "天空从 #FAF9F7 变为顶部 #FFEDC4，地平线附近 y 92–150 为 #FFCF73 色带。", "天空以外变为 #2A2D36，远山 #4A4546，人物 #22252D。", "太阳半径 20 px、x 404，从 y 60 下沉到 y 128，一半被山挡住。", "右上曝光补偿 ±0.0 EV→−2.0 EV。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). ",
           "Sky: #FAF9F7 → #FFEDC4 at the top and a #FFCF73 band near the horizon (y 92–150)",
           "Everything but the sky becomes #2A2D36, the far hills #4A4546; the figure #22252D",
@@ -163,7 +163,7 @@
       },
       "use": {
         "ja": "夕日や窓の光を背景に、形とポーズだけで印象を残したいとき。",
-        "en": "When the shape and pose should carry the picture, against a sunset or a bright window."
+        "zh-Hans": "适合夕阳或明窗前，依靠轮廓和姿态表达的画面。", "en": "When the shape and pose should carry the picture, against a sunset or a bright window."
       },
       "tags": [
         "silhouette",
@@ -180,19 +180,19 @@
       "category": "lighting",
       "name": {
         "ja": "スプリットライティング",
-        "en": "Split lighting"
+        "zh-Hans": "分割光", "en": "Split lighting"
       },
       "meaning": {
         "ja": "真横からの光で顔を半分ずつ明暗に分ける",
-        "en": "Light from the side splits the face into lit and dark halves"
+        "zh-Hans": "侧面光让脸一半明亮、一半阴暗", "en": "Light from the side splits the face into lit and dark halves"
       },
       "ask": {
         "ja": "男性の横からスプリットライティングで。光は真横90°、鼻筋を境に顔の左半分は影に沈めて。",
-        "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow."
+        "zh-Hans": "人像采用分割光，灯在侧面 90°，以鼻梁为界，另一半脸处于阴影。", "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow."
       },
       "summary": {
         "ja": "光が正面寄り（20°）から真横（90°）へ回り、頭の影が三日月から半分へ広がって、顔が鼻筋の位置で縦に明暗2つに分かれる。",
-        "en": "The light swings from near the front (20°) to directly at the side (90°); the shadow on the head grows from a crescent to exactly half, splitting the face down the middle."
+        "zh-Hans": "灯从靠前 20° 转至正侧 90°，头部阴影从月牙扩大至一半，从中线分割脸部。", "en": "The light swings from near the front (20°) to directly at the side (90°); the shadow on the head grows from a crescent to exactly half, splitting the face down the middle."
       },
       "spec": {
         "ja": [
@@ -202,7 +202,7 @@
           "胴（半幅56px）: 境 x = 270 + cos(角度)·56 より右が影、左端の帯が光",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 背景变暗，天空 #E7E5E1。", "光从画面左侧照入，角度 20°→90°；右下为灯位图，右上显示 90° · ↑0°。", "头部 x = 270 + cos(angle)·√(29² − dy²) 右侧为阴影 #33405A，左侧为受光 #FFC75A；90° 时边界为竖直中线。", "身体半宽 56 px，x = 270 + cos(angle)·56 右侧为阴影，左边缘条带受光。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). the background drops to a darker scene (sky #E7E5E1)",
           "Light: from the left of the frame, angle 20° → 90° (plan at the bottom right, top-right readout \"90° · ↑0°\")",
           "Head: right of x = 270 + cos(angle)·√(29² − dy²) is shadow #33405A, left is light #FFC75A; at 90° the edge is the straight centre line",
@@ -212,7 +212,7 @@
       },
       "use": {
         "ja": "強さや緊張感のある人物写真にしたいとき。",
-        "en": "For dramatic, tense or moody portraits."
+        "zh-Hans": "适合戏剧性、紧张或情绪浓重的人像。", "en": "For dramatic, tense or moody portraits."
       },
       "tags": [
         "split lighting",
@@ -229,19 +229,19 @@
       "category": "lighting",
       "name": {
         "ja": "レンブラントライティング",
-        "en": "Rembrandt lighting"
+        "zh-Hans": "伦勃朗光", "en": "Rembrandt lighting"
       },
       "meaning": {
         "ja": "影側の頬に三角形の光が残る斜め上からの光",
-        "en": "High side light that leaves a lit triangle on the shadow cheek"
+        "zh-Hans": "侧上方光在背光脸颊留下亮三角", "en": "High side light that leaves a lit triangle on the shadow cheek"
       },
       "ask": {
         "ja": "老人の肖像をレンブラントライティングで。光は斜め45°・上から、影側の頬に小さな三角形の光を残して。",
-        "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek."
+        "zh-Hans": "老人肖像用伦勃朗光，从侧上方 45° 打光，背光侧脸颊留一小块三角亮区。", "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek."
       },
       "summary": {
         "ja": "斜め45°・上45°の光が入り、顔の右側が影に沈む中で、影側の頬にだけ小さな逆三角形の光が残る。",
-        "en": "A light 45° to the side and 45° up comes on; the right side of the face falls into shadow except for a small inverted triangle of light on the shadow-side cheek."
+        "zh-Hans": "侧方 45°、上方 45° 的灯亮起，右脸进入阴影，仅背光侧脸颊留一个小倒三角亮区。", "en": "A light 45° to the side and 45° up comes on; the right side of the face falls into shadow except for a small inverted triangle of light on the shadow-side cheek."
       },
       "spec": {
         "ja": [
@@ -251,7 +251,7 @@
           "胴: 左端（中心から−0.45×56px より左）が光、右（+0.3×56px より右）が影。右下の配置図で光は45°、右上の表示「45° · ↑45°」",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 背景变暗，天空 #E7E5E1。", "头部 x = 270 + 0.04·29 右侧为阴影 #33405A，左侧为受光 #FFC75A。", "亮三角顶点为 (x 270+0.24R, y 78−0.12R)、(x 270+0.7R, y 78−0.12R)、(x 270+0.24R, y 78+0.5R)，R = 29，约宽 13 px、高 18 px，与受光侧之间隔约宽 6 px 的阴影。", "身体中心 −0.45×56 px 左侧受光，+0.3×56 px 右侧为阴影；示意图灯位为 45°，右上显示 45° · ↑45°。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). the background drops to a darker scene (sky #E7E5E1)",
           "Head: right of x = 270 + 0.04·29 is shadow #33405A, left is light #FFC75A",
           "Light triangle: (x 270+0.24R, y 78−0.12R), (x 270+0.7R, y 78−0.12R), (x 270+0.24R, y 78+0.5R) with R = 29 (about 13 px wide, 18 px tall), separated from the lit side by a shadow strip about 6 px wide",
@@ -261,7 +261,7 @@
       },
       "use": {
         "ja": "絵画のような重みと立体感のある人物写真にしたいとき。",
-        "en": "For portraits with a painterly, sculpted, classic look."
+        "zh-Hans": "适合有绘画感、立体感和古典气质的人像。", "en": "For portraits with a painterly, sculpted, classic look."
       },
       "tags": [
         "rembrandt lighting",
@@ -278,19 +278,19 @@
       "category": "lighting",
       "name": {
         "ja": "バタフライライティング",
-        "en": "Butterfly lighting"
+        "zh-Hans": "蝴蝶光", "en": "Butterfly lighting"
       },
       "meaning": {
         "ja": "正面の高い位置から当て、鼻の下に蝶形の影",
-        "en": "High frontal light that casts a butterfly shadow under the nose"
+        "zh-Hans": "正面高位光在鼻下形成蝶形阴影", "en": "High frontal light that casts a butterfly shadow under the nose"
       },
       "ask": {
         "ja": "女性のビューティーポートレートをバタフライライティングで。光は顔の正面・真上寄り45°、鼻の下に小さな蝶の形の影を。",
-        "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose."
+        "zh-Hans": "美妆人像用蝴蝶光，正前方上仰 45° 的高位灯，鼻下留小蝶形阴影。", "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose."
       },
       "summary": {
         "ja": "顔の正面・高い位置からの光が入り、顔は左右対称に明るくなり、あごの下にだけ左右対称の小さな影が落ちる。",
-        "en": "A light in front of the face and high above comes on; the face lights evenly on both sides and only a small symmetrical shadow falls under the chin."
+        "zh-Hans": "正前方高处灯亮起，脸部两侧均匀受光，下巴下仅留一小块对称阴影。", "en": "A light in front of the face and high above comes on; the face lights evenly on both sides and only a small symmetrical shadow falls under the chin."
       },
       "spec": {
         "ja": [
@@ -300,7 +300,7 @@
           "胴: 中心から ±0.8×56px が光、外側の細い帯は元の色。右下の配置図で光はカメラ側（0°）、右上の表示「0° · ↑45°」",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 背景变暗，天空 #E7E5E1。", "头部完全受光，#FFC75A，没有阴影侧。", "下巴下阴影为椭圆，中心 y 78+1.06R，宽 0.72R、高 0.38R，R = 29，约 21×11 px，颜色 #33405A。", "身体中心 ±0.8×56 px 内受光，外侧细条保留底色；示意图灯在相机侧 0°，右上显示 0° · ↑45°。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). the background drops to a darker scene (sky #E7E5E1)",
           "Head: entirely lit #FFC75A (no shadow side)",
           "Shadow under the chin: an ellipse centred at y 78+1.06R, 0.72R wide and 0.38R tall (R = 29, about 21×11 px), colour #33405A",
@@ -310,7 +310,7 @@
       },
       "use": {
         "ja": "顔立ちをきれいに見せたい美容・ファッションの人物写真で。",
-        "en": "For beauty and fashion portraits that flatter the face."
+        "zh-Hans": "适合突出面容的美妆和时尚人像。", "en": "For beauty and fashion portraits that flatter the face."
       },
       "tags": [
         "butterfly lighting",
@@ -327,19 +327,19 @@
       "category": "lighting",
       "name": {
         "ja": "ゴールデンアワー",
-        "en": "Golden hour"
+        "zh-Hans": "黄金时刻", "en": "Golden hour"
       },
       "meaning": {
         "ja": "日没前・日の出後の低く赤みのある光",
-        "en": "The low, warm light just after sunrise or before sunset"
+        "zh-Hans": "日出后或日落前的低角度暖光", "en": "The low, warm light just after sunrise or before sunset"
       },
       "ask": {
         "ja": "草原の人物をゴールデンアワーの光で。太陽は地平線近く、影が長く伸びて全体が橙色に。",
-        "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange."
+        "zh-Hans": "黄金时刻的田野人物，太阳接近地平线，长阴影，整体暖橙色。", "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange."
       },
       "summary": {
         "ja": "太陽が地平線近くまで下り、空と地面が橙に染まり、人物の左側が光り、街灯と木の影が右へ長く伸びる。",
-        "en": "The sun drops to just above the horizon; sky and ground turn orange, the left side of the person lights up and the shadows of the lamp and tree stretch far to the right."
+        "zh-Hans": "太阳降至地平线上方，天地变橙，人物左侧受光，路灯和树影向右拉长。", "en": "The sun drops to just above the horizon; sky and ground turn orange, the left side of the person lights up and the shadows of the lamp and tree stretch far to the right."
       },
       "spec": {
         "ja": [
@@ -350,7 +350,7 @@
           "影: 街灯と木の根元から右へ、長さ 0 → 150px（色 #DDAA6E）。右上の時刻 12:00 → 17:40",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。", "太阳半径 18 px，从 (x 110, y −30) 移至 (x 96, y 136)，半遮于山后。", "天空 #FAF9F7→顶部 #FFE8BC、地平线附近 #FFCF80；地面 #F1F0EE→#F6DDB0；人物受光 #FFB547、阴影 #3E3650。", "头部光从左侧约 66° 入射，边界右侧为阴影；身体左亮右暗。", "路灯和树影从脚部向右，长度 0→150 px，颜色 #DDAA6E；右上时间 12:00→17:40。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). ",
           "Sun: radius 18 px, from (x 110, y −30) to (x 96, y 136), half hidden by the hills",
           "Colour: sky #FAF9F7 → #FFE8BC at the top and #FFCF80 near the horizon, ground #F1F0EE → #F6DDB0; light on the figure #FFB547, shadow #3E3650",
@@ -361,7 +361,7 @@
       },
       "use": {
         "ja": "あたたかく、なつかしく、やさしい雰囲気の写真にしたいとき。",
-        "en": "For warm, nostalgic, gentle-feeling images."
+        "zh-Hans": "适合温暖、怀旧、柔和的画面。", "en": "For warm, nostalgic, gentle-feeling images."
       },
       "tags": [
         "golden hour",
@@ -378,19 +378,19 @@
       "category": "lighting",
       "name": {
         "ja": "ブルーアワー",
-        "en": "Blue hour"
+        "zh-Hans": "蓝调时刻", "en": "Blue hour"
       },
       "meaning": {
         "ja": "日没後・日の出前の、空が深い青になる時間",
-        "en": "The time after sunset or before sunrise when the sky turns deep blue"
+        "zh-Hans": "日落后或日出前的深蓝天空时段", "en": "The time after sunset or before sunrise when the sky turns deep blue"
       },
       "ask": {
         "ja": "港町の夜景をブルーアワーで。空は深い青、ビルの窓と街灯の暖かい光が水面に映るように。",
-        "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water."
+        "zh-Hans": "蓝调时刻的港口城市，深蓝天空，暖窗灯和路灯倒映水面。", "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water."
       },
       "summary": {
         "ja": "太陽が沈みきると、空が深い青の2段になり、建物の窓と街灯がアンバーに灯り、人物は青い影の形になる。",
-        "en": "Once the sun has set, the sky turns two bands of deep blue, the windows and street lamp come on in amber and the person becomes a dark blue shape."
+        "zh-Hans": "日落后天空变为两层深蓝，窗户和路灯亮成琥珀色，人物成为深蓝形状。", "en": "Once the sun has set, the sky turns two bands of deep blue, the windows and street lamp come on in amber and the person becomes a dark blue shape."
       },
       "spec": {
         "ja": [
@@ -401,7 +401,7 @@
           "右上の時刻 12:00 → 18:35",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。", "太阳半径 18 px、x 120；效果到达 70% 时从 y 40 沉到 y 190，效果 40%–80% 期间淡出。", "天空顶部 #2C3B5E、近地平线 #4A6191，地面 #283452，建筑 #34446B，人物 #1C2439。", "每三扇窗亮一扇，路灯灯泡也变为 #FFC75A；灯泡周围有半径 13 px 和 8 px 的平面光晕，#FFE3A3，不透明度 35% 和 60%。", "右上时间 12:00→18:35。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 1: a head-and-shoulders figure in front of a horizon at y 150 (head centre x 270, y 78, radius 29 px, no face or hair). ",
           "Sun: radius 18 px at x 120, sinking from y 40 to y 190 while the effect reaches 70%, fading out between 40% and 80%",
           "Colour: sky #2C3B5E at the top and #4A6191 near the horizon, ground #283452, buildings #34446B, figure #1C2439",
@@ -412,7 +412,7 @@
       },
       "use": {
         "ja": "夜景を、真っ暗になる前の青い空と街の灯りの両方で見せたいとき。",
-        "en": "For city and night scenes that need both a blue sky and glowing lights."
+        "zh-Hans": "适合同时需要蓝色天空与发光灯火的城市夜景。", "en": "For city and night scenes that need both a blue sky and glowing lights."
       },
       "tags": [
         "blue hour",
@@ -429,19 +429,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "ボケ",
-        "en": "Bokeh"
+        "zh-Hans": "散景", "en": "Bokeh"
       },
       "meaning": {
         "ja": "ピントの外の点光源が丸くやわらかくぼける",
-        "en": "Out-of-focus points of light melt into soft discs"
+        "zh-Hans": "失焦光点化为柔和光斑", "en": "Out-of-focus points of light melt into soft discs"
       },
       "ask": {
         "ja": "夜の街に立つ人物を、背景の街の灯りが大きな丸いボケになるように。f/1.4で、人物にはピントを合わせて。",
-        "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person."
+        "zh-Hans": "夜间城市人像，人物清晰，身后街灯形成大圆散景，光圈 f/1.4。", "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person."
       },
       "summary": {
         "ja": "絞りを開けていくと、ピントの合った人物はそのまま、背景の建物はぼけ、街灯と遠くの灯りが大きく薄い光の丸に広がる。",
-        "en": "As the aperture opens, the in-focus person stays sharp, the buildings behind soften and the street lamps and distant lights spread into large, pale discs."
+        "zh-Hans": "光圈打开时，人物保持清晰，背景建筑变软，街灯和远处灯光扩成浅色大光斑。", "en": "As the aperture opens, the in-focus person stays sharp, the buildings behind soften and the street lamps and distant lights spread into large, pale discs."
       },
       "spec": {
         "ja": [
@@ -452,7 +452,7 @@
           "人物はくっきりのまま。右上の絞り f/16 → f/1.4（8段）",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。 背景变暗，天空 #E7E5E1。", "人物以外背景模糊从 0→6 px。", "三盏路灯尺寸 1.25，另有 12 盏灯相距 45 px、y 44–114、尺寸 0.6–1.2、固定种子；光斑半径 = (2.4 + 15 × effect) × size。", "光斑不透明度 100%→55%；路灯琥珀色 #FFC75A，远灯 #FFE3A3，带 1.2 px 琥珀色边。", "人物始终清晰；右上光圈 f/16→f/1.4，共 8 档。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). the background drops to a darker scene (sky #E7E5E1)",
           "Background blur (everything but the person): 0 → 6 px",
           "Lights: the three lamps (size 1.25) and 12 more spaced 45 px apart (y 44–114, size 0.6–1.2, fixed seed); disc radius = (2.4 + 15 × effect) × size",
@@ -463,7 +463,7 @@
       },
       "use": {
         "ja": "人物や商品を背景から浮かせ、夜や祝祭のやわらかな雰囲気を出したいとき。",
-        "en": "To lift a person or product off the background and add a soft, festive night mood."
+        "zh-Hans": "适合突出人物或产品，营造柔和的节庆夜景。", "en": "To lift a person or product off the background and add a soft, festive night mood."
       },
       "tags": [
         "bokeh",
@@ -481,19 +481,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "ティルトシフト",
-        "en": "Tilt-shift"
+        "zh-Hans": "移轴效果", "en": "Tilt-shift"
       },
       "meaning": {
         "ja": "上下をぼかして本物の町を模型のように見せる",
-        "en": "Blur top and bottom so a real scene looks like a miniature"
+        "zh-Hans": "通过选择性模糊让实景像微缩模型", "en": "Blur top and bottom so a real scene looks like a miniature"
       },
       "ask": {
         "ja": "高い所から見下ろした町をティルトシフトで。中央の帯だけピントを合わせて上下を強くぼかし、色を濃くしてミニチュア風に。",
-        "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model."
+        "zh-Hans": "高角度城镇图做移轴效果，仅中间窄带清晰，上下强模糊，颜色鲜艳，像微缩模型。", "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model."
       },
       "summary": {
         "ja": "街の上下の帯がぼけていき、道と車と小さな人たちの並ぶ中央の帯だけにピントが残って、模型の街のように見える。",
-        "en": "The top and bottom bands of the street blur while only the middle band with the road, the car and the small people stays in focus, so the street looks like a model."
+        "zh-Hans": "街道上下模糊，只有中间道路、汽车和小人物清晰，使街道像模型。", "en": "The top and bottom bands of the street blur while only the middle band with the road, the car and the small people stays in focus, so the street looks like a model."
       },
       "spec": {
         "ja": [
@@ -503,7 +503,7 @@
           "帯の境に破線（6px線・5px間・#8E8E93・75%）",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["街角建筑、树和路灯位于 y 132–162 道路后，无大人物；四个高 23–26 px 的小人物脚在 y 172，汽车每 5 s 从 x −60 行至 600。", "清晰带 y 66–176 保持清晰。", "模糊：y 0–42 与 y 190–208 从 0→7 px；y 42–66 与 y 176–190 从 0→3 px。", "带边缘有虚线，线段 6 px、空隙 5 px，#8E8E93，不透明度 75%。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "The street corner (buildings, trees and lamps behind a road at y 132–162) without the large person; four small people 23–26 px tall stand on the pavement (feet at y 172); the car drives from x −60 to 600 every 5 s",
           "Focus band: y 66–176 stays sharp",
           "Blur: y 0–42 and y 190–208 go 0 → 7 px; y 42–66 and y 176–190 go 0 → 3 px",
@@ -513,7 +513,7 @@
       },
       "use": {
         "ja": "街や行事を、かわいらしい模型の世界のように見せたいとき。",
-        "en": "To make a city or event look like a toy model world."
+        "zh-Hans": "适合让城市或活动场景像玩具模型世界。", "en": "To make a city or event look like a toy model world."
       },
       "tags": [
         "tilt-shift",
@@ -531,19 +531,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "長時間露光",
-        "en": "Long exposure"
+        "zh-Hans": "长曝光", "en": "Long exposure"
       },
       "meaning": {
         "ja": "シャッターを長く開け、動く光を線にする",
-        "en": "Keep the shutter open long so moving lights become lines"
+        "zh-Hans": "延长快门时间，让移动光源留下轨迹", "en": "Keep the shutter open long so moving lights become lines"
       },
       "ask": {
         "ja": "夜の道路を長時間露光で。シャッター8秒で、車の形は消えて、ヘッドライトとテールランプだけが白と赤の光の線になるように。",
-        "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails."
+        "zh-Hans": "夜间道路用 8 s 长曝光，让车辆消失，只留白色车头灯与红色尾灯轨迹。", "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails."
       },
       "summary": {
         "ja": "街が夜になり、走る車の本体は薄く消えていき、後ろに赤い尾灯の線が伸び、反対車線には白とアンバーの光の線が通る。",
-        "en": "The street turns to night; the moving car fades to almost nothing, a red tail-light line stretches out behind it and white and amber lines run along the opposite lane."
+        "zh-Hans": "街道入夜，行驶汽车几乎消失，身后拉出红尾灯线，对向车道出现白色与琥珀色光轨。", "en": "The street turns to night; the moving car fades to almost nothing, a red tail-light line stretches out behind it and white and amber lines run along the opposite lane."
       },
       "spec": {
         "ja": [
@@ -554,7 +554,7 @@
           "右上のシャッター速度 1/250 → 8″",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。 转为夜色，天空 #2C3B5E，每三扇窗亮一扇 #FFC75A。", "汽车每 5 s 从 x −60→600，车身不透明度 100%→10%。", "尾灯从 x −60 延伸至汽车：y 145 处 #FF5B4D、宽 2.6 px，y 149 处 #FF8A6E、宽 1.4 px。", "对向车道全宽光轨随效果淡入：y 135 为 #FFE9B8、2.6 px；y 138.5 为 #FFC75A、1.6 px；y 141.5 为 #FFE9B8、1.2 px。", "右上快门速度 1/250→8″。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). colours go to night (sky #2C3B5E, one window in three #FFC75A)",
           "Car: x −60 → 600 every 5 s; body opacity 100% → 10%",
           "Tail-light line: from x −60 to the car: #FF5B4D 2.6 px at y 145 and #FF8A6E 1.4 px at y 149",
@@ -565,7 +565,7 @@
       },
       "use": {
         "ja": "夜の街の流れや、水・雲のなめらかな動きを1枚で見せたいとき。",
-        "en": "To show traffic flow, or silky water and clouds, in a single still."
+        "zh-Hans": "适合在一张照片中表现车流，或柔滑水面和云层。", "en": "To show traffic flow, or silky water and clouds, in a single still."
       },
       "tags": [
         "long exposure",
@@ -582,19 +582,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "流し撮り",
-        "en": "Panning shot"
+        "zh-Hans": "追随拍摄", "en": "Panning shot"
       },
       "meaning": {
         "ja": "動く被写体を追って撮り、背景だけ流す",
-        "en": "Follow a moving subject so only the background streaks"
+        "zh-Hans": "跟随运动主体，使背景产生拖影", "en": "Follow a moving subject so only the background streaks"
       },
       "ask": {
         "ja": "走る赤い車を流し撮りで。シャッター1/15秒、車はくっきり、背景の木や建物は横に流れるように。",
-        "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways."
+        "zh-Hans": "用 1/15 s 快门追拍驶过的红车，让车身清晰，身后树木建筑横向拖影。", "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways."
       },
       "summary": {
         "ja": "走る車をカメラが追い、車は画面の中央でくっきりしたまま、背景の建物や木や街灯だけが横に流れる。",
-        "en": "The camera follows the moving car: the car stays sharp in the middle of the frame while only the buildings, trees and lamps behind it streak sideways."
+        "zh-Hans": "相机跟随汽车，使车保持清晰居中，只有背后的建筑、树和路灯横向拖影。", "en": "The camera follows the moving car: the car stays sharp in the middle of the frame while only the buildings, trees and lamps behind it streak sideways."
       },
       "spec": {
         "ja": [
@@ -605,7 +605,7 @@
           "右上のシャッター速度 1/1000 → 1/15",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["街角建筑、树和路灯位于 y 132–162 道路后，无前景大人物。", "无效果时汽车在 5 s 内从 x −80 行至 620；有效果时保持 x 270 ±10 px。", "背景在横向 46 px 范围分布绘制 12 次再取平均，展开范围 0→46 px。", "车轮辐条每 5 s 旋转 12 圈。", "右上快门速度 1/1000→1/15。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Street corner: buildings, trees and lamps behind a road at y 132–162 (no large person in front)",
           "Car: without the effect it drives from x −80 to 620 in 5 s; with it, it stays at x 270 ±10 px",
           "Streak: the background is drawn 12 times spread over 46 px sideways and averaged (spread 0 → 46 px)",
@@ -616,7 +616,7 @@
       },
       "use": {
         "ja": "車・自転車・ランナーなどのスピード感を、1枚の写真で見せたいとき。",
-        "en": "To show the speed of a car, bike or runner in a still photo."
+        "zh-Hans": "适合静态照片中表现汽车、自行车或跑者的速度。", "en": "To show the speed of a car, bike or runner in a still photo."
       },
       "tags": [
         "panning",
@@ -633,19 +633,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "レンズフレア",
-        "en": "Lens flare"
+        "zh-Hans": "镜头眩光", "en": "Lens flare"
       },
       "meaning": {
         "ja": "強い光でレンズの中に光の輪や玉が出る",
-        "en": "Rings and spots of light from a bright source in the lens"
+        "zh-Hans": "强光在镜头内产生光环和光斑", "en": "Rings and spots of light from a bright source in the lens"
       },
       "ask": {
         "ja": "山の上の太陽を入れて、レンズフレアを。太陽から画面の中心をはさんで反対側へ、色のついた光の玉が並ぶように。",
-        "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side."
+        "zh-Hans": "山景中太阳入画，彩色眩光沿太阳经过画面中心延伸至对侧。", "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side."
       },
       "summary": {
         "ja": "太陽が建物の陰から空へ出ると、太陽に光の筋が出て、太陽から画面の中心をはさんだ反対側まで、光の玉と六角形と輪が一列に並ぶ。",
-        "en": "As the sun comes out from behind a building, rays appear around it and a line of light dots, hexagons and a ring runs from the sun through the centre of the frame to the opposite side."
+        "zh-Hans": "太阳从建筑后露出，周围出现光芒，光点、六边形和圆环沿穿过画面中心的直线排列。", "en": "As the sun comes out from behind a building, rays appear around it and a line of light dots, hexagons and a ring runs from the sun through the centre of the frame to the opposite side."
       },
       "spec": {
         "ja": [
@@ -656,7 +656,7 @@
           "色はアンバー #FFC75A と #FFE3A3、不透明度 40〜70% × 効果の量",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。", "太阳半径 13 px，从建筑后 (x 428, y 74) 移至空中 (x 474, y 30)。", "八根光芒从太阳中心外 17 px 延伸至 26 或 44 px，交替长 9 与 27 px；琥珀色、宽 1.6 px、不透明度 75%。", "眩光位于太阳穿过中心的直线上，t = 0.45、0.8、1.15、1.45、1.75、2.0，t = 1 为中心；依次是 7 px 圆、13 px 六边形、5 px 圆、22 px 六边形、9 px 圆、30 px 圆环，环线宽 3 px。", "颜色为琥珀 #FFC75A 与 #FFE3A3，不透明度 40–70% × 效果量。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). ",
           "Sun: radius 13 px, from behind a building (x 428, y 74) to open sky (x 474, y 30)",
           "Rays: 8, from 17 px out from the centre of the sun to 26 px or 44 px, alternating (9 px and 27 px long; amber, 1.6 px, 75%)",
@@ -667,7 +667,7 @@
       },
       "use": {
         "ja": "太陽や照明のまぶしさ、夏の日差し、映画のような光を足したいとき。",
-        "en": "To add glare, summer sunshine or a cinematic light feel."
+        "zh-Hans": "适合增加耀眼感、夏日阳光或电影光感。", "en": "To add glare, summer sunshine or a cinematic light feel."
       },
       "tags": [
         "lens flare",
@@ -684,19 +684,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "魚眼レンズ",
-        "en": "Fisheye lens"
+        "zh-Hans": "鱼眼镜头", "en": "Fisheye lens"
       },
       "meaning": {
         "ja": "中心がふくらみ、直線が丸く曲がる超広角",
-        "en": "Ultra-wide lens that bulges the centre and bends straight lines"
+        "zh-Hans": "超广角使中心鼓起、直线弯曲", "en": "Ultra-wide lens that bulges the centre and bends straight lines"
       },
       "ask": {
         "ja": "街の通りを魚眼レンズで。画角180°で、ビルの縦の線が外側へ丸く曲がるように。",
-        "en": "City street through a fisheye lens, 180° view, the building edges bowing outward."
+        "zh-Hans": "城市街道用 180° 鱼眼视角，建筑边缘向外弯曲。", "en": "City street through a fisheye lens, 180° view, the building edges bowing outward."
       },
       "summary": {
         "ja": "街角の中心がふくらみ、建物の縦の線と道の横の線が外側へ丸く曲がり、四隅はそのまま残る。",
-        "en": "The middle of the street scene bulges out; the vertical lines of the buildings and the lines of the road bow outward while the corners stay where they are."
+        "zh-Hans": "街景中央鼓出，建筑竖线和道路线外弯，角落位置不变。", "en": "The middle of the street scene bulges out; the vertical lines of the buildings and the lines of the road bow outward while the corners stay where they are."
       },
       "spec": {
         "ja": [
@@ -707,7 +707,7 @@
           "右上の焦点距離 24mm → 8mm",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。", "变形：距中心 d 的点沿径向移至原距离的 g = (1 + k) / (1 + k·d²/R²) 倍；R 是中心至角落距离 289 px。", "k 从 0→1.25，中心放大 2.25×，角落不动。", "变形前每条轮廓每 6 px 分段，使直线能变为曲线。", "右上焦距 24mm→8mm。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). ",
           "Warp: a point at distance d from the centre moves to g = (1 + k) / (1 + k·d²/R²) times that distance, R = distance from the centre to a corner (289 px)",
           "k: 0 → 1.25; the centre is magnified 2.25×, the corners do not move",
@@ -718,7 +718,7 @@
       },
       "use": {
         "ja": "迫力・遊び心・のぞき穴のような視点を出したいとき（スケボー、ミュージックビデオなど）。",
-        "en": "For bold, playful or peephole-like views (skateboarding, music videos)."
+        "zh-Hans": "适合滑板、音乐视频等大胆、有趣或猫眼视角。", "en": "For bold, playful or peephole-like views (skateboarding, music videos)."
       },
       "tags": [
         "fisheye",
@@ -735,19 +735,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "色収差",
-        "en": "Chromatic aberration"
+        "zh-Hans": "色差", "en": "Chromatic aberration"
       },
       "meaning": {
         "ja": "明暗の境に赤や青紫の色ずれが出る",
-        "en": "Red and blue-violet colour fringes along high-contrast edges"
+        "zh-Hans": "高反差边缘出现不同颜色的色边", "en": "Red and blue-violet colour fringes along high-contrast edges"
       },
       "ask": {
         "ja": "白い空と黒い枝の写真に、色収差を少し。画面の端に向かって、枝の縁に赤と青紫の色ずれが出るように。",
-        "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners."
+        "zh-Hans": "白天空前黑树枝带轻微色差，边缘出现红与蓝紫色边，四角更明显。", "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners."
       },
       "summary": {
         "ja": "街角の絵を赤・緑・青に分け、少しずつ違う大きさで重ねると、人物や建物や街灯の縁に赤と青緑のずれが出て、画面の端ほど大きくなる。",
-        "en": "The street scene is split into red, green and blue and the three are laid back together at slightly different sizes, so red and cyan fringes appear on the edges of the person, buildings and lamps, larger towards the sides."
+        "zh-Hans": "街景拆成红绿蓝，以略不同尺寸重新叠合，人物、建筑和路灯边缘出现红青色边，越靠两侧越强。", "en": "The street scene is split into red, green and blue and the three are laid back together at slightly different sizes, so red and cyan fringes appear on the edges of the person, buildings and lamps, larger towards the sides."
       },
       "spec": {
         "ja": [
@@ -757,7 +757,7 @@
           "ずれ: 画面の左右の端で赤と青が約11px離れる、中心では0",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。", "拆分：图像分别乘以红 #FF0000、绿 #00FF00、蓝 #0000FF 得到三份，再在黑底上加色叠回。", "以中心缩放：红 1 + 2s，绿 1 + s，蓝 1，s = 0→0.02。", "红蓝在左右边缘最终相距约 11 px，中心偏移为 0。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). ",
           "Split: the image is multiplied by red #FF0000, green #00FF00 and blue #0000FF into three copies and added back together over black",
           "Scale about the centre: red 1 + 2s, green 1 + s, blue 1, with s = 0 → 0.02",
@@ -767,7 +767,7 @@
       },
       "use": {
         "ja": "古いレンズやVHS、グリッチのような、少し崩れた質感を足したいとき。",
-        "en": "To add an imperfect old-lens, VHS or glitch feel."
+        "zh-Hans": "适合旧镜头、VHS 或故障般的不完美质感。", "en": "To add an imperfect old-lens, VHS or glitch feel."
       },
       "tags": [
         "chromatic aberration",
@@ -784,19 +784,19 @@
       "category": "lens-camera",
       "name": {
         "ja": "周辺減光（ビネット）",
-        "en": "Vignette"
+        "zh-Hans": "暗角", "en": "Vignette"
       },
       "meaning": {
         "ja": "画面の四隅が暗くなり、中央に目が集まる",
-        "en": "The corners darken and draw the eye to the centre"
+        "zh-Hans": "画面四角变暗，视线集中到中央", "en": "The corners darken and draw the eye to the centre"
       },
       "ask": {
         "ja": "海辺の写真に、ビネットを強めに。四隅だけなだらかに暗くして、中央の人物に目が行くように。",
-        "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle."
+        "zh-Hans": "海滩照片加明显暗角，四角逐渐变暗，将视线引向中央人物。", "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle."
       },
       "summary": {
         "ja": "画面の四隅からなだらかに暗くなり、中央の人物と道のあたりだけが明るく残る。",
-        "en": "The frame darkens smoothly from the corners while the person and the road in the middle stay bright."
+        "zh-Hans": "画面从四角平滑变暗，中央人物和道路保持明亮。", "en": "The frame darkens smoothly from the corners while the person and the road in the middle stay bright."
       },
       "spec": {
         "ja": [
@@ -805,7 +805,7 @@
           "楕円の半径（横）334px の45%までは素通し、そこから外へ向かって 0 → 70% の濃さで rgb(32,35,43) を重ねる",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。", "椭圆以画面中心为中心，垂直半径 = 水平半径 × 208/539 × 1.35。", "水平半径 334 px 的前 45% 透明，之后 rgb(32,35,43) 向边缘从 0% 增至 70%。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 2: a street corner; buildings, trees and street lamps (x 114, 292, 494) behind a road at y 132–162; the person stands front left (feet at x 176, y 200, 124 px tall). ",
           "Shape: an ellipse centred on the frame (vertical radius = horizontal × 208/539 × 1.35)",
           "Clear out to 45% of the 334 px horizontal radius, then rgb(32,35,43) rising from 0% to 70% towards the edge",
@@ -814,7 +814,7 @@
       },
       "use": {
         "ja": "主役に視線を集めたいとき、古いレンズの雰囲気を出したいとき。",
-        "en": "To focus attention on the subject, or to suggest an old lens."
+        "zh-Hans": "适合集中主体注意力或模拟旧镜头。", "en": "To focus attention on the subject, or to suggest an old lens."
       },
       "tags": [
         "vignette",
@@ -831,19 +831,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "ハイキー",
-        "en": "High-key"
+        "zh-Hans": "高调", "en": "High-key"
       },
       "meaning": {
         "ja": "明るい色だけで作る、白っぽく影の薄い写真",
-        "en": "A bright, white-toned image with very light shadows"
+        "zh-Hans": "整体明亮、接近白色且阴影很浅", "en": "A bright, white-toned image with very light shadows"
       },
       "ask": {
         "ja": "白い机の上のカップと瓶を、ハイキーで。背景は真っ白、影はごく薄く、全体を明るい色だけでまとめて。",
-        "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones."
+        "zh-Hans": "白桌上的杯瓶静物用高调，纯白背景、极浅阴影，只保留浅色调。", "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones."
       },
       "summary": {
         "ja": "風景と人物が白に近い明るい色だけになり、影はごく薄くなって、右下のヒストグラムの山が右端へ寄る。",
-        "en": "The landscape and the person turn to light, near-white colours with very faint shadows, and the hump of the histogram at the bottom right moves to the right end."
+        "zh-Hans": "风景和人物转为接近白色的浅色，阴影很淡，右下直方图峰移向右端。", "en": "The landscape and the person turn to light, near-white colours with very faint shadows, and the hump of the histogram at the bottom right moves to the right end."
       },
       "spec": {
         "ja": [
@@ -852,7 +852,7 @@
           "ヒストグラム（96×46px・20本）: 山の中心 0.56 → 0.85、幅 0.2 → 0.09",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "天空 #FAF9F7→#FFFFFF，山丘 #EAEDF1→#F5F6F8，人物 #4D5A75→#B9C0CE，阴影 #33405A→#A6AEBF，太阳 #F5A524→#FFD889。", "直方图 96×46 px、20 根柱，峰中心 0.56→0.85，宽度 0.2→0.09。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Colour: sky #FAF9F7 → #FFFFFF, hills #EAEDF1 → #F5F6F8, figure #4D5A75 → #B9C0CE, shadow #33405A → #A6AEBF, sun #F5A524 → #FFD889",
           "Histogram (96×46 px, 20 bars): peak centre 0.56 → 0.85, width 0.2 → 0.09",
@@ -861,7 +861,7 @@
       },
       "use": {
         "ja": "清潔感・軽やかさ・やさしさを出したい商品や人物の写真で。",
-        "en": "For clean, light, gentle product shots and portraits."
+        "zh-Hans": "适合干净、明亮、柔和的产品照和人像。", "en": "For clean, light, gentle product shots and portraits."
       },
       "tags": [
         "high-key",
@@ -878,19 +878,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "ローキー",
-        "en": "Low-key"
+        "zh-Hans": "低调", "en": "Low-key"
       },
       "meaning": {
         "ja": "暗い色が中心の、光の当たる所だけが浮かぶ写真",
-        "en": "A dark image where only the lit parts stand out"
+        "zh-Hans": "以暗色为主，只突出受光部分", "en": "A dark image where only the lit parts stand out"
       },
       "ask": {
         "ja": "黒背景のウイスキーの瓶をローキーで。横からの1灯だけで、光の当たる縁だけ浮かび、画面の大半は黒に沈めて。",
-        "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black."
+        "zh-Hans": "黑底威士忌瓶用低调，单侧光，只留受光边缘，大部分画面深黑。", "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black."
       },
       "summary": {
         "ja": "画面の大半が暗く沈み、太陽も消えて、横から日の当たる胸像の右の縁だけが光って浮かぶ。ヒストグラムの山は左端へ寄る。",
-        "en": "Most of the frame sinks into darkness and the sun goes out; only the right edge of the bust, lit from the side, stays bright. The histogram hump moves to the left end."
+        "zh-Hans": "画面大部变暗、太阳消失，仅半身像侧光照亮的右边缘保持明亮，直方图峰移左。", "en": "Most of the frame sinks into darkness and the sun goes out; only the right edge of the bust, lit from the side, stays bright. The histogram hump moves to the left end."
       },
       "spec": {
         "ja": [
@@ -900,7 +900,7 @@
           "ヒストグラム: 山の中心 0.56 → 0.14、幅 0.2 → 0.08",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "天空 #FAF9F7→#2B2D33，山丘→#313339 与 #36383E，地面→#24252A，人物→#25272E；太阳及光晕变为天空色并消失。", "半身像受光右边缘保留，#FFC75A→#FFB547。", "直方图峰中心 0.56→0.14，宽度 0.2→0.08。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Colour: sky #FAF9F7 → #2B2D33, hills → #313339 and #36383E, ground → #24252A, figure → #25272E; the sun and its rings take the sky colour and disappear",
           "The lit right edge of the bust stays, #FFC75A → #FFB547",
@@ -910,7 +910,7 @@
       },
       "use": {
         "ja": "高級感・緊張感・ミステリアスな雰囲気を出したいとき。",
-        "en": "For luxurious, tense or mysterious images."
+        "zh-Hans": "适合奢华、紧张或神秘的画面。", "en": "For luxurious, tense or mysterious images."
       },
       "tags": [
         "low-key",
@@ -928,19 +928,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "モノクロ",
-        "en": "Black and white"
+        "zh-Hans": "黑白", "en": "Black and white"
       },
       "meaning": {
         "ja": "色を抜いて明るさだけで見せる",
-        "en": "Remove colour and show brightness only"
+        "zh-Hans": "去除颜色，仅保留明暗", "en": "Remove colour and show brightness only"
       },
       "ask": {
         "ja": "海辺のスナップをモノクロで。コントラストは少し強めに、空と砂の明るさの差を残して。",
-        "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand."
+        "zh-Hans": "海滩快照转黑白，稍提高对比度，保留天空和沙地的明度差。", "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand."
       },
       "summary": {
         "ja": "同じ風景から色が抜け、太陽も人物の縁の光も灰色になり、明るさの差だけで形が見える。",
-        "en": "The colour drains from the same landscape; the sun and the light on the figure turn grey and the shapes read only by their brightness."
+        "zh-Hans": "同一风景褪去颜色，太阳和人物受光处变灰，仅凭明暗辨认形状。", "en": "The colour drains from the same landscape; the sun and the light on the figure turn grey and the shapes read only by their brightness."
       },
       "spec": {
         "ja": [
@@ -949,7 +949,7 @@
           "例: 人物 #4D5A75 → 約 #4D4D4D、太陽 #F5A524 → 約 #B5B5B5",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "按亮度 0.2126R + 0.7152G + 0.0722B 转灰度，以 140 为中心将对比度乘 1.25。", "例如人物 #4D5A75→约 #4D4D4D，太阳 #F5A524→约 #B5B5B5。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Conversion: each colour becomes the grey of its luminance (0.2126R + 0.7152G + 0.0722B), contrast ×1.25 around 140",
           "For example the figure #4D5A75 → about #4D4D4D, the sun #F5A524 → about #B5B5B5",
@@ -958,7 +958,7 @@
       },
       "use": {
         "ja": "時代を感じさせたいとき、色より形・光・表情を見せたいとき。",
-        "en": "For a timeless feel, or when shape, light and expression matter more than colour."
+        "zh-Hans": "适合经典气质，或形状、光线和表情比颜色更重要的画面。", "en": "For a timeless feel, or when shape, light and expression matter more than colour."
       },
       "tags": [
         "black and white",
@@ -975,19 +975,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "デュオトーン",
-        "en": "Duotone"
+        "zh-Hans": "双色调", "en": "Duotone"
       },
       "meaning": {
         "ja": "暗部と明部を2色だけで表す",
-        "en": "Show the image in two colours, one for darks and one for lights"
+        "zh-Hans": "用一种颜色映射暗部，另一种映射亮部", "en": "Show the image in two colours, one for darks and one for lights"
       },
       "ask": {
         "ja": "人物写真を濃い藍とピンクのデュオトーンに。暗い所は藍、明るい所はピンクの2色だけで。",
-        "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else."
+        "zh-Hans": "人像用藏蓝与粉色双色调，暗部藏蓝、亮部粉色，不引入其他颜色。", "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else."
       },
       "summary": {
         "ja": "同じ風景の色が、暗い所は藍、明るい所はピンクの2色の間だけに置き換わる。",
-        "en": "The colours of the same landscape are replaced by a range between just two colours: indigo in the darks and pink in the lights."
+        "zh-Hans": "风景颜色替换为深部靛蓝、亮部粉色之间的双色范围。", "en": "The colours of the same landscape are replaced by a range between just two colours: indigo in the darks and pink in the lights."
       },
       "spec": {
         "ja": [
@@ -996,7 +996,7 @@
           "変換: 各色の明るさ L から t = ((L − 70) / 180)^2.4 を求め、2色を t で混ぜる（明るい色どうしの差を広げる）",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "暗端颜色 #1F2A5C，亮端 #FF9FB2。", "由各颜色亮度 L 得到 t = ((L − 70) / 180)^2.4，按 t 混合两色，以拉开亮调层次。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Two colours: #1F2A5C for the dark end, #FF9FB2 for the light end",
           "Conversion: from each colour’s luminance L, t = ((L − 70) / 180)^2.4, and the two colours are mixed by t (this spreads the light tones apart)",
@@ -1005,7 +1005,7 @@
       },
       "use": {
         "ja": "ポスター・音楽・SNSの画像を、ブランドの色で統一したいとき。",
-        "en": "To unify posters, music artwork or social images in brand colours."
+        "zh-Hans": "适合以品牌色统一海报、音乐封面或社交图片。", "en": "To unify posters, music artwork or social images in brand colours."
       },
       "tags": [
         "duotone",
@@ -1022,19 +1022,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "ティール＆オレンジ",
-        "en": "Teal and orange"
+        "zh-Hans": "青橙色调", "en": "Teal and orange"
       },
       "meaning": {
         "ja": "影を青緑、肌や明部を橙に寄せる色調",
-        "en": "Pushes shadows to teal and skin and highlights to orange"
+        "zh-Hans": "阴影偏青，肤色与高光偏橙", "en": "Pushes shadows to teal and skin and highlights to orange"
       },
       "ask": {
         "ja": "街を歩く人物を映画のようなティール＆オレンジで。影と空は青緑、肌と夕日は橙に寄せて。",
-        "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange."
+        "zh-Hans": "城市步行人物用电影青橙色调，阴影和天空偏青，皮肤和阳光偏橙。", "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange."
       },
       "summary": {
         "ja": "同じ風景の空・丘・地面・人物の影が青緑へ、日の当たる人物の縁と太陽が橙へ寄り、補色の対比になる。",
-        "en": "In the same landscape the sky, hills, ground and the shadowed figure shift to teal while the sunlit edge of the figure and the sun shift to orange, a complementary contrast."
+        "zh-Hans": "天空、山丘、地面和人物阴影转青，受光边缘和太阳转橙，形成互补对比。", "en": "In the same landscape the sky, hills, ground and the shadowed figure shift to teal while the sunlit edge of the figure and the sun shift to orange, a complementary contrast."
       },
       "spec": {
         "ja": [
@@ -1043,7 +1043,7 @@
           "橙: 人物の縁の光 #FF9248、太陽 #FF8236、光の輪 #FFC48C",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "青色部分：天空 #CFE6E3，山丘 #8CC1BE 与 #62A2A1，地面 #3F8083，树 #2F6A6E，人物 #1D4E53。", "橙色部分：人物受光 #FF9248，太阳 #FF8236，太阳光晕 #FFC48C。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Teal: sky #CFE6E3, hills #8CC1BE and #62A2A1, ground #3F8083, trees #2F6A6E, figure #1D4E53",
           "Orange: the light on the figure #FF9248, sun #FF8236, sun rings #FFC48C",
@@ -1052,7 +1052,7 @@
       },
       "use": {
         "ja": "映画のポスターや予告編のような、色の対比が強い画にしたいとき。",
-        "en": "For a blockbuster, trailer-like look with strong colour contrast."
+        "zh-Hans": "适合色彩对比强烈的大片或预告片风格。", "en": "For a blockbuster, trailer-like look with strong colour contrast."
       },
       "tags": [
         "teal and orange",
@@ -1069,19 +1069,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "フィルムグレイン",
-        "en": "Film grain"
+        "zh-Hans": "胶片颗粒", "en": "Film grain"
       },
       "meaning": {
         "ja": "フィルム写真のような細かい粒子を乗せる",
-        "en": "Fine, film-like grain over the image"
+        "zh-Hans": "画面覆盖细微胶片质感颗粒", "en": "Fine, film-like grain over the image"
       },
       "ask": {
         "ja": "海辺の写真にフィルムグレインを。細かい粒子を全体に、黒は少し浮かせて暖かい色に。",
-        "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm."
+        "zh-Hans": "海滩照片加细微胶片颗粒，遍布全图，黑位稍抬高并偏暖。", "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm."
       },
       "summary": {
         "ja": "同じ風景の全体に細かい粒が乗り、色が少し暖かいクリーム色に寄る。",
-        "en": "Fine grain appears over the whole of the same landscape and the colours lean slightly towards a warm cream."
+        "zh-Hans": "同一风景全图出现细颗粒，颜色略向暖奶油色偏移。", "en": "Fine grain appears over the whole of the same landscape and the colours lean slightly towards a warm cream."
       },
       "spec": {
         "ja": [
@@ -1091,7 +1091,7 @@
           "色: すべての色を #F2DDBE へ16%寄せる",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "2,600 个固定种子方形颗粒，尺寸 0.8–1.7 px；55% 为深色 #3A3530，45% 为白色。", "颗粒不透明度 16–38% × 效果量，颗粒静止，不闪烁。", "各颜色向 #F2DDBE 混合 16%。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Grain: 2,600 squares (fixed seed), 0.8–1.7 px; 55% dark #3A3530, 45% white",
           "Grain opacity: 16–38% × the effect; the grain does not move (no flicker)",
@@ -1101,7 +1101,7 @@
       },
       "use": {
         "ja": "デジタルのつるっとした感じを消して、フィルムの手触りを出したいとき。",
-        "en": "To remove the clean digital look and add an analogue film texture."
+        "zh-Hans": "适合减弱干净数字感，增加模拟胶片纹理。", "en": "To remove the clean digital look and add an analogue film texture."
       },
       "tags": [
         "film grain",
@@ -1119,19 +1119,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "ライトリーク",
-        "en": "Light leak"
+        "zh-Hans": "漏光", "en": "Light leak"
       },
       "meaning": {
         "ja": "フィルムに光がもれたような赤橙のにじみ",
-        "en": "Red-orange glow as if light leaked onto the film"
+        "zh-Hans": "红橙色光像漏入胶片一样侵入画面", "en": "Red-orange glow as if light leaked onto the film"
       },
       "ask": {
         "ja": "夏の思い出の写真に、ライトリークを右端から。赤と橙の光がにじみ込むように。",
-        "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in."
+        "zh-Hans": "夏日回忆照片右边缘漏入红橙色光。", "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in."
       },
       "summary": {
         "ja": "同じ風景の右端から、外側ほど淡い黄、端ほど赤い光のにじみが帯になって入り、ゆっくり揺れる。",
-        "en": "From the right edge of the same landscape a band of leaked light comes in, pale yellow on the inside and red at the edge, swaying slowly."
+        "zh-Hans": "同一风景右边缘漏入缓慢摆动的光带，内侧淡黄，边缘红色。", "en": "From the right edge of the same landscape a band of leaked light comes in, pale yellow on the inside and red at the edge, swaying slowly."
       },
       "spec": {
         "ja": [
@@ -1140,7 +1140,7 @@
           "横の半径と色: 250px #FFD089 35%、170px #FF9A3D 40%、95px #FF5A3A 45%、45px #FF3B30 50%（横の半径は 0 → この値に広がる）",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "四个高椭圆中心在右边缘外 30 px，周期内摆动 ±6 px，垂直半径为画面高度的 1.1×。", "水平半径及颜色：250 px #FFD089、35%；170 px #FF9A3D、40%；95 px #FF5A3A、45%；45 px #FF3B30、50%；各半径从 0 增至目标值。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Shape: four tall ellipses centred 30 px outside the right edge (swaying ±6 px over the loop), vertical radius 1.1× the frame height",
           "Horizontal radius and colour: 250 px #FFD089 at 35%, 170 px #FF9A3D at 40%, 95 px #FF5A3A at 45%, 45 px #FF3B30 at 50% (each grows from 0 to this radius)",
@@ -1149,7 +1149,7 @@
       },
       "use": {
         "ja": "思い出・夏・青春のような、なつかしく偶然っぽい雰囲気を出したいとき。",
-        "en": "For nostalgic, summery, accidental-looking memories."
+        "zh-Hans": "适合怀旧、夏日和偶然拍下的回忆感。", "en": "For nostalgic, summery, accidental-looking memories."
       },
       "tags": [
         "light leak",
@@ -1166,19 +1166,19 @@
       "category": "tone-finish",
       "name": {
         "ja": "二重露光（多重露光）",
-        "en": "Double exposure"
+        "zh-Hans": "双重曝光", "en": "Double exposure"
       },
       "meaning": {
         "ja": "2枚の写真を1枚に重ねて写し込む",
-        "en": "Two photos layered into one frame"
+        "zh-Hans": "两幅影像叠合在同一画面", "en": "Two photos layered into one frame"
       },
       "ask": {
         "ja": "横顔のシルエットに森と山の風景を二重露光で重ねて。背景は白、顔の中にだけ風景が見えるように。",
-        "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head."
+        "zh-Hans": "白底侧脸剪影叠合森林山景，只在人物轮廓内显示风景。", "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head."
       },
       "summary": {
         "ja": "背景が白く飛び、胸像の形の中にだけ、縮めた丘・家・木・太陽の風景が写り込む。",
-        "en": "The background turns white and the landscape of hills, house, trees and sun appears, scaled down, only inside the shape of the bust."
+        "zh-Hans": "背景变白，缩小后的山丘、房屋、树和太阳仅出现在半身像内部。", "en": "The background turns white and the landscape of hills, house, trees and sun appears, scaled down, only inside the shape of the bust."
       },
       "spec": {
         "ja": [
@@ -1189,7 +1189,7 @@
           "切り替え: 元の写真の上に、二重露光の絵を効果の量で重ねる",
           "時間: 0.4〜1.4秒で効果が入り、4.0秒まで保ち、4.8秒までに元へ戻る（1周5秒、3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当））"
         ],
-        "en": [
+        "zh-Hans": ["场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。", "半身像外背景为白色 #FFFFFF。", "半身像内部是同一风景的 0.7×，太阳位于头部右上，山脊经过颈部。", "内部颜色：天空 #D3DBE6，山丘 #9AA8BD 与 #76869F，地面 #55647E，树 #3F4C66。", "按效果量将双重曝光图叠在原画面上。", "时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。"], "en": [
           "Scene 3: a bust on the left (head centre x 140, y 82, radius 28 px) and hills, a house, trees and the sun (x 432, y 54, radius 15 px) on the right. ",
           "Background: white #FFFFFF outside the bust",
           "Inside the bust: the same landscape at 0.7×, placed so the sun sits at the top right of the head and the ridge of the hills runs across the neck",
@@ -1200,7 +1200,7 @@
       },
       "use": {
         "ja": "人物と場所・記憶・内面を1枚で結びつけたい、ポスターやジャケットで。",
-        "en": "For posters and covers that tie a person to a place, a memory or an inner world."
+        "zh-Hans": "适合把人物与地点、记忆或内心世界相连的海报和封面。", "en": "For posters and covers that tie a person to a place, a memory or an inner world."
       },
       "tags": [
         "double exposure",

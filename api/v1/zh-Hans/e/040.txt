@@ -1,0 +1,37 @@
+// Motion Prompt #040 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#040
+//
+// 定格 / Freeze frame
+// 分类: camera (镜头运动与转场) · element 16 · 子类: 拍摄方式与时间效果
+// 示例效果: 人物跳到最高点时画面停止，1.4 s 后从同一帧继续。
+// 效果规格:
+//   - 镜头完全固定，高 1.3 m；停止的是素材时间。
+//   - 1.6 s 定格，3.0 s 恢复，持续 1.4 s；素材时间在 0–1.6 s 正常运行，定格时停在 1.6 s，之后按 u-1.4 继续。
+//   - 前方 7 m 人物的跳跃在素材时间 0.6–2.6 s 内呈抛物线，峰值 1.1 m；定格恰在进度 50% 的最高点。
+//   - 九片落叶也同时停止，其下落速度是第 13 项慢动作的 1.5×。
+//   - 定格标记：5 px 蓝边和底部中央暂停图标，白色圆角底框 68×40 px、两根蓝条，淡入淡出各 0.12 s。
+//   - 仅在定格时右上角显示 FREEZE；无交叉淡化复位。
+// 适用场景: 适合突出决定性瞬间，或停下来叠加姓名和字幕。
+// 标签: freeze frame, still frame, pause, hold, stop motion, highlight
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#040
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 16
+// 16 フリーズフレーム
+CELLS[15] = shot((k, w, h, u) => {
+  // 跳躍の頂点で 1.4 秒止める
+  const tj = u < 1.6 ? u : u < 3.0 ? 1.6 : u - 1.4;   // 実時間→映像時間
+  const q = P(tj, 0.6, 2.6);
+  const frozen = u >= 1.6 && u < 3.0;
+  world(k, w, h, cam({ y: 1.3 }), { person: { z: 7, y: jumpY(q), armUp: q > 0 && q < 1 }, extra: leaves(tj, 1.5) });
+  if (frozen) {
+    const a = Math.min(1, (u - 1.6) / 0.12, (3.0 - u) / 0.12);
+    k.save(); k.globalAlpha = a; k.strokeStyle = C.blue; k.lineWidth = 5; k.strokeRect(2.5, 2.5, w - 5, h - 5);
+    k.fillStyle = 'rgba(255,255,255,.88)'; rr(k, w / 2 - 34, h - 58, 68, 40, 8); k.fill();
+    k.fillStyle = C.blue; k.fillRect(w / 2 - 12, h - 49, 8, 22); k.fillRect(w / 2 + 4, h - 49, 8, 22); k.restore();
+  }
+  return frozen ? 'FREEZE' : '';
+});

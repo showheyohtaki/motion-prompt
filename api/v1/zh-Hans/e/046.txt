@@ -1,0 +1,50 @@
+// Motion Prompt #046 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#046
+//
+// 突切 / Smash cut
+// 分类: camera (镜头运动与转场) · element 22 · 子类: 转场
+// 示例效果: 安睡人物的平静画面毫无预警地切到强烈场景，音量表同时跳高。
+// 效果规格:
+//   - 衔接：2.4 s 硬切，0 帧；无转场效果，依靠内容反差。
+//   - 前镜头 0–2.4 s：相机固定、高 1.2 m、焦距 330 px；人物躺在 7 m 外，三个 z 字母上浮淡出；音量表约为 8 格中的 0–1 格，0.08±0.04。
+//   - 后镜头 2.4–4.2 s：焦距 2.6×，即 858 px，构图更紧；滚转 -0.12 rad，约 -7°；人物双臂抬起，周围有 18 根蓝色放射线。
+//   - 后镜头震动：滚转 ±0.03 rad，约每秒 6 次；偏航 ±0.006 rad，约每秒 8 次；音量为 0.85±0.15，接近满格。
+//   - 最后 0.5 s 按二次缓入缓出交叉淡化回安静场景。
+//   - 右上角由 ♪ 静か（安静）变为 ♪ 大音量（大音量）。
+// 适用场景: 适合喜剧或惊吓，瞬间表现平静与混乱、预期与现实的反差。
+// 标签: smash cut, hard cut, abrupt, contrast, quiet to loud, comedy, transition
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#046
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 22
+// 22 スマッシュカット（静かな場面 → 急に激しい場面）
+function meter(k, w, h, lv) {   // 音量メーター（左下）
+  const x = 24, y = h - 22, n = 8;
+  for (let i = 0; i < n; i++) { k.fillStyle = (i + 0.5) / n < lv ? C.blue : C.g2; k.fillRect(x + i * 9, y - 6 - i * 2.2, 6, 6 + i * 2.2); }
+}
+CELLS[21] = shot((k, w, h, u) => {
+  const cut = 2.4, r = P(u, CYC - RESET, CYC);
+  const quiet = (kk, uu) => {
+    world(kk, w, h, cam({ y: 1.2 }), {
+      buildings: false, sun: [24, 26, 170], sunCol: C.blueXL, extra: [[0.4, 0, 7, (k2) => { k2.fillStyle = C.blue; rr(k2, -0.8, 0, 1.6, 0.34, 0.15); k2.fill(); k2.beginPath(); k2.arc(-0.95, 0.24, 0.17, 0, 7); k2.fill(); }]],
+      after: (k2, cc) => { const p0 = proj(cc, -0.6, 1.0, 7); for (let i = 0; i < 3; i++) { const ph = mod(uu * 0.35 + i / 3, 1); k2.globalAlpha = Math.sin(ph * Math.PI) * 0.8; txt(k2, 'z', p0.x - 10 - ph * 20 - i * 4, p0.y - ph * 50, `600 ${16 + i * 4}px ${EN}`, C.sub, 'center', 'middle'); } k2.globalAlpha = 1; }
+    });
+    meter(kk, w, h, 0.08 + 0.04 * Math.sin(uu * 5));
+  };
+  const loud = (kk, uu) => {
+    const T = uu * 40;
+    const c = cam({ y: 1.25, f: F0 * 2.6, roll: -0.12 + Math.sin(T) * 0.03, yaw: Math.sin(T * 1.3) * 0.006 });
+    world(kk, w, h, c, {
+      buildings: false, trees: false, mountains: false, grid: true, sun: null,
+      person: { x: 0, z: 7, armUp: true, walk: 0.6 },
+      after: (k2) => { k2.strokeStyle = C.blue; k2.lineWidth = 3.5; for (let i = 0; i < 18; i++) { const a = i / 18 * Math.PI * 2 + 0.1; const r0 = 92 + (i % 3) * 14; k2.beginPath(); k2.moveTo(Math.cos(a) * r0 * 1.7, Math.sin(a) * r0); k2.lineTo(Math.cos(a) * 500, Math.sin(a) * 300); k2.stroke(); } }
+    });
+    meter(kk, w, h, 0.85 + 0.15 * Math.sin(uu * 31));
+  };
+  if (u < cut) quiet(k, u);
+  else blend(k, kk => loud(kk, u), kk => quiet(kk, 0), eIOs(r));
+  return u < cut || r > .5 ? '♪ 静か' : '♪ 大音量';
+});

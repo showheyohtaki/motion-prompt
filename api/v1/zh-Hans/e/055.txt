@@ -1,0 +1,39 @@
+// Motion Prompt #055 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#055
+//
+// 气泡卡片 / Popover
+// 分类: ui (UI 组件) · element 07 · 子类: 浮层与展开
+// 示例效果: 点击详情后，其右侧出现带指向箭头的白色面板，点击内部确定关闭。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；108×36 的蓝色描边详情按钮位于 (24, 112)，1.0 s 点击。
+//   - 显示量 a 在 1.0–1.28 s 按 easeOutCubic 从 0→1，不透明度 a，从右侧滑入 6 px。
+//   - 白色面板 300×120，圆角半径 10，位置 (156, 62)，边框 1 px、阴影模糊 22、y 偏移 6；左边缘 y 122–138 处有宽 10 的三角指向按钮。
+//   - 内部是粗体标题条、两行文字、70×26 描边按钮和蓝色 72×26 确定按钮。
+//   - 关闭：3.0 s 前光标到达确定按钮 (402, 157)，3.3 s 点击；a 乘以作用于 3.3–3.5 s 的 1 − easeInOutCubic。
+// 适用场景: 适合紧邻触发按钮的简短设置或确认。
+// 标签: popover, popup, callout, bubble, flyout, overlay
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#055
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 07
+// 07 ポップオーバー（Popover）
+CELLS[6] = ui((w, h, t) => {
+  pageLines(24, 16, 494);
+  strokeRR(24, 112, 108, 36, 8, C.blue, 2); text('詳細', 78, 130, 15, C.blue, 600, 'center');
+  fillRR(24, 160, 494, 22, 6, C.block);
+  const a = eo(seg(t, 1.0, 1.28)) * (1 - eio(seg(t, 3.3, 3.5)));
+  if (a > 0) {
+    X.save(); X.globalAlpha = a; X.translate(6 * (1 - a), 0);
+    const px = 156, py = 62, pw = 300, ph = 120;
+    shadowed(() => { fillRR(px, py, pw, ph, 10, '#fff'); }, 22, 6, .2); strokeRR(px, py, pw, ph, 10, C.border, 1);
+    X.beginPath(); X.moveTo(px + 1, 122); X.lineTo(px - 10, 130); X.lineTo(px + 1, 138); X.fillStyle = '#fff'; X.fill();
+    X.beginPath(); X.moveTo(px, 122); X.lineTo(px - 10, 130); X.lineTo(px, 138); X.strokeStyle = C.border; X.lineWidth = 1; X.stroke();
+    bar(px + 18, py + 18, 130, C.ink, 11); bar(px + 18, py + 42, 250); bar(px + 18, py + 60, 200);
+    strokeRR(px + 130, py + 82, 70, 26, 6, C.line2, 1.5); fillRR(px + 210, py + 82, 72, 26, 6, C.blue); text('OK', px + 246, py + 95, 14, '#fff', 700, 'center', NUMF);
+    X.restore();
+  }
+  pointer([[.3, w + 30, h + 30], [.95, 84, 134], [1.6, 84, 134], [3.0, 402, 157], [3.5, 402, 157], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
+});

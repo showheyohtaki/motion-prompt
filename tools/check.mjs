@@ -16,6 +16,7 @@
 // (info)         some sampled frames show only a flat background — normal before an entrance, listed for reference
 //
 // Playwright is not a dependency of this repo. It is loaded from MP_PLAYWRIGHT, or resolved as 'playwright'.
+// Set MP_PYTHON when the Python executable is not named python3 (for example on Windows).
 import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
@@ -128,7 +129,7 @@ const packs = catalog.packs.filter(p => !ONLY || p.pack === ONLY);
 if (!packs.length) { console.error(`no pack "${ONLY}" in the catalog`); process.exit(2); }
 
 const port = await freePort();
-const server = spawn('python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'], { cwd: ROOT, stdio: 'ignore' });
+const server = spawn(process.env.MP_PYTHON || 'python3', ['-m', 'http.server', String(port), '--bind', '127.0.0.1'], { cwd: ROOT, stdio: 'ignore' });
 let browser, fails = 0, warns = 0, total = 0;
 try {
   const base = `http://127.0.0.1:${port}`;

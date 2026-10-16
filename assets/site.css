@@ -10,7 +10,8 @@
   --accent-ink: #ffffff;
   --stage: #0f1830;
   --shade: rgba(16, 16, 20, .56);
-  --font: "SF Pro Display", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font-original: "SF Pro Display", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", system-ui, sans-serif;
+  --font: var(--font-original);
   --mono: "SF Mono", ui-monospace, Menlo, Consolas, monospace;
   --top-h: 56px;
   color-scheme: light;
@@ -72,6 +73,11 @@ button { cursor: pointer; }
   :root:not([data-theme="light"]) .i-sun { display: block; }
   :root:not([data-theme="light"]) .i-moon { display: none; }
 }
+
+:root:lang(zh-Hans) { --font: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; }
+:root:lang(zh-Hans) .logo { font-family: var(--font-original); }
+:lang(zh-Hans) .zh-phrase { white-space: nowrap; }
+.lang-select { display: none; }
 
 /* ---------- hero ---------- */
 .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 56px; padding-block: 72px 64px; align-items: end; }
@@ -296,6 +302,12 @@ html.has-tray { scroll-padding-bottom: calc(var(--tray-h, 0px) + 16px); }
   .top-gh { display: none; }
   .top-nav { gap: 4px; }
   .top-link { padding: 6px 8px; }
+  .seg { display: none; }
+  .lang-select {
+    display: block; max-width: 76px; padding: 5px 3px;
+    border: 1px solid var(--line-strong); border-radius: 7px;
+    background: var(--bg); color: var(--ink); font: 600 12px/1.4 var(--mono);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

@@ -23,7 +23,7 @@
 // 06 タイプライター（入力欄に1文字ずつ打たれ、打ち終わると送信ボタンが点く）
 CELLS[5] = (k, w, h, u) => {
   stage(k);
-  const S = 'ねこの動画つくって', N = [...S].length, t0 = 0.3, dt = 0.24, done = t0 + N * dt;
+  const S = mpText('ねこの動画つくって'), N = [...S].length, t0 = 0.3, dt = 0.24, done = t0 + N * dt;
   const BX = 34, BY = 58, BW = w - 68, BH = 92;
   const sendT = done + 0.55, clr = P(u, sendT + 0.12, sendT + 0.4);
   k.fillStyle = '#fff'; rr(k, BX, BY, BW, BH, 30); k.fill();

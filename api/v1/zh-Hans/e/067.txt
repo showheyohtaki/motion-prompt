@@ -1,0 +1,39 @@
+// Motion Prompt #067 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#067
+//
+// 巨型菜单 / Mega menu
+// 分类: ui (UI 组件) · element 19 · 子类: 导航与状态反馈
+// 示例效果: 悬停产品后，全宽面板下拉显示三列链接与图片，移开关闭。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；页头高 42，包含日文 16 px 产品、价格、支持，各带下箭头。
+//   - 仅悬停：1.0 s 到达产品；a 在 1.05–1.3 s 按 easeOutCubic 从 0→1，产品变蓝并加下划线。
+//   - 白色面板全宽、高 146，在页头下方下移 12 px 并按 a 淡入；阴影模糊 18、y 偏移 8。
+//   - 内部三列相距 130 px，各有蓝色标题和三条链接，右侧图片为 104×112；光标下移，第二列第二条于 1.75–2.9 s 浅蓝高亮。
+//   - 2.9 s 起光标离开面板，3.15–3.4 s 按 1 − easeInOutCubic 淡出。
+// 适用场景: 适合产品或栏目较多的网站，让用户一次看到完整范围。
+// 标签: mega-menu, megamenu, dropdown-navigation, navigation, header-menu, multi-column
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#067
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 19
+// 19 メガメニュー（Mega menu）
+CELLS[18] = ui((w, h, t) => {
+  const a = eo(seg(t, 1.05, 1.3)) * (1 - eio(seg(t, 3.15, 3.4)));
+  pageLines(24, 62, 494); fillRR(24, 130, 494, 50, 8, C.block);
+  X.fillStyle = '#fff'; X.fillRect(0, 0, w, 42); X.fillStyle = C.line; X.fillRect(0, 42, w, 1.5);
+  fillRR(24, 14, 70, 16, 4, C.mb);
+  const nav = [['製品', 190], ['料金', 262], ['サポート', 334]];
+  nav.forEach(([s, x], i) => { const on = i === 0 && a > .3; text(s, x, 22, 16, on ? C.blue : '#555', on ? 700 : 600); if (on) fillRR(x, 36, tw(s, 16, 700), 3, 1.5, C.blue); chevron(x + tw(s, 16, 700) + 10, 22, 3.5, 0, on ? C.blue : '#999', 1.8); });
+  if (a > 0) {
+    X.save(); X.globalAlpha = a; X.beginPath(); X.rect(0, 43, w, h); X.clip(); const py = 43 - 12 * (1 - a);
+    shadowed(() => { X.fillStyle = '#fff'; X.fillRect(0, py, w, 146); }, 18, 8, .16);
+    for (let c = 0; c < 3; c++) { const cx = 24 + c * 130; bar(cx, py + 16, 80, C.blue, 10); for (let k = 0; k < 3; k++) { const hov = c === 1 && k === 1 && t > 1.75 && t < 2.9; if (hov) fillRR(cx - 6, py + 34 + k * 26, 112, 22, 5, C.lb); bar(cx, py + 40 + k * 26, [90, 70, 100][(k + c) % 3], hov ? C.sb : C.line2, 9); } }
+    mountains(414, py + 14, 104, 112);
+    X.restore();
+  }
+  // 乗せるだけで開く（クリックしない）
+  pointer([[.3, w + 30, h + 30], [1.0, 205, 26], [1.4, 205, 26], [1.8, 196, 98], [2.9, 196, 98], [3.2, 300, 200], [3.9, w + 30, h + 30]], [], t);
+});

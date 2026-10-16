@@ -1,0 +1,31 @@
+// Motion Prompt #030 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#030
+//
+// 环绕镜头 / Orbit (Arc shot)
+// 分类: camera (镜头运动与转场) · element 06 · 子类: 镜头运动
+// 示例效果: 相机绕主体沿圆周移动，人物居中，背景树木和建筑横向掠过。
+// 效果规格:
+//   - 镜头：以人物（前方 9 m）为圆心、半径 6 m，沿圆周从 -0.95 rad→+0.95 rad 移动，即 -54°→+54°，总计约 109°。
+//   - 朝向始终指向圆心，yaw = -angle；高度 1.7 m，俯仰固定 -0.07 rad，约向下 4°。
+//   - 时间：0.5–3.6 s，历时 3.1 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体静止；脸上的白点随角度横移以显示绕行动作，地面有半径 1.3 m 的虚线圆。
+//   - 背景：半径 10 m 的圆周上均匀分布 12 棵树，镜头环绕时从人物身后横向经过。
+//   - 回位：3.6–4.2 s 停留，最后 0.5 s 交叉淡化回起点；右上角显示 -54°→+54°。
+// 适用场景: 适合立体展示人物或产品，或强调登场和关键时刻。
+// 标签: orbit, arc shot, circle, 360, rotate around, revolve, camera move
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#030
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 06
+// 06 オービット: 被写体を中心に円を描いて回り込む
+CELLS[5] = shot(camCell((k, w, h, p) => {
+  const a = lerp(-0.95, 0.95, p), R = 6, P0 = [0, 0, 9];
+  const c = cam({ x: P0[0] + Math.sin(a) * R, z: P0[2] - Math.cos(a) * R, yaw: -a, y: 1.7, pitch: -0.07 });
+  world(k, w, h, c, {
+    person: { z: 9, face: a }, ring: [0, 9, 10], buildings: true, trees: false,
+    after: (kk, cc) => { kk.strokeStyle = C.blueM; kk.lineWidth = 2; kk.setLineDash([5, 5]); kk.beginPath(); for (let i = 0; i <= 48; i++) { const b = i / 48 * Math.PI * 2; const q = proj(cc, Math.sin(b) * 1.3, 0, 9 + Math.cos(b) * 1.3); i ? kk.lineTo(q.x, q.y) : kk.moveTo(q.x, q.y); } kk.stroke(); kk.setLineDash([]); }
+  });
+}, p => `${Math.round(lerp(-0.95, 0.95, p) * 57.3)}°`.replace(/^(\d)/, '+$1'), 0.5, 3.6));

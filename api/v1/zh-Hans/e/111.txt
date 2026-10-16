@@ -1,0 +1,32 @@
+// Motion Prompt #111 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#111
+//
+// 色差 / Chromatic aberration
+// 分类: photo (摄影效果、光线与风格) · element 15 · 子类: 镜头与相机效果
+// 示例效果: 街景拆成红绿蓝，以略不同尺寸重新叠合，人物、建筑和路灯边缘出现红青色边，越靠两侧越强。
+// 效果规格:
+//   - 场景 2：街角，y 132–162 的道路后有建筑、树和路灯，路灯 x 为 114、292、494；人物在左前方，脚位于 x 176、y 200，身高 124 px。
+//   - 拆分：图像分别乘以红 #FF0000、绿 #00FF00、蓝 #0000FF 得到三份，再在黑底上加色叠回。
+//   - 以中心缩放：红 1 + 2s，绿 1 + s，蓝 1，s = 0→0.02。
+//   - 红蓝在左右边缘最终相距约 11 px，中心偏移为 0。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合旧镜头、VHS 或故障般的不完美质感。
+// 标签: chromatic aberration, color fringing, rgb split, lens aberration, fringe, glitch
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#111
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 15
+// 色収差: 赤・緑・青を少しずつ違う大きさで重ね、画面の端ほど縁に赤と青のずれが出る
+CELLS[14] = cell((k, u) => {
+  const a = env(u), s = 0.02 * a, cx = CW / 2, cy = CH / 2;
+  if (s < 0.0005) { stageStreet(k, BASE); return; }
+  const [S, ks] = layer('ca'); stageStreet(ks, BASE);
+  k.fillStyle = '#000000'; k.fillRect(0, 0, CW, CH);
+  for (const [col, sc] of [['#FF0000', 1 + 2 * s], ['#00FF00', 1 + s], ['#0000FF', 1]]) {
+    const [L, kl] = layer('ca-' + col); kl.drawImage(S, 0, 0); kl.globalCompositeOperation = 'multiply'; kl.fillStyle = col; kl.fillRect(0, 0, CW, CH); kl.globalCompositeOperation = 'source-over';
+    k.save(); k.globalCompositeOperation = 'lighter'; k.translate(cx, cy); k.scale(sc, sc); k.translate(-cx, -cy); k.drawImage(L, 0, 0); k.restore();
+  }
+});

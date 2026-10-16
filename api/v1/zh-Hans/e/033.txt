@@ -1,0 +1,36 @@
+// Motion Prompt #033 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#033
+//
+// 焦点转移 / Rack focus
+// 分类: camera (镜头运动与转场) · element 09 · 子类: 拍摄方式与时间效果
+// 示例效果: 相机不动，焦点从前景花朵移至后方人物，清晰与模糊对调。
+// 效果规格:
+//   - 镜头：位置、方向和焦距均固定，高 1.1 m；仅模糊程度变化。
+//   - 模糊：前景花朵（左 0.75 m、距 2 m）从 0 px→7 px；人物与背景从 6 px→0 px，人物在右 0.9 m、距 9 m；地面网格使用背景模糊的 0.6×。
+//   - 时间：1.0–2.6 s，历时 1.6 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 焦点框为蓝色角括号，沿直线从花朵移向人物，半宽 46 px→30 px。
+//   - 花朵和人物均不移动。
+//   - 回位：2.6–4.2 s 停留，最后 0.5 s 交叉淡化回起点；右上角显示对焦距离 ◎ 2m→◎ 9m。
+// 适用场景: 适合不切镜头地将注意力从前景移到背景或反向转移。
+// 标签: rack focus, focus pull, pull focus, depth of field, blur, bokeh, foreground
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#033
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 09
+// 09 ラックフォーカス
+CELLS[8] = shot(camCell((k, w, h, p) => {
+  world(k, w, h, cam({ y: 1.1 }), {
+    person: { x: 0.9, z: 9 }, blurFg: 7 * p, blurBg: 6 * (1 - p),
+    extra: [[-0.75, 0, 2.0, (kk, s) => { kk.fillStyle = C.g3; kk.fillRect(-0.025, 0, 0.05, 0.75); kk.fillStyle = C.blueM; for (let i = 0; i < 6; i++) { kk.beginPath(); kk.ellipse(Math.cos(i) * 0.09, 0.8 + Math.sin(i) * 0.09, 0.08, 0.05, i, 0, 7); kk.fill(); } kk.fillStyle = C.blue; kk.beginPath(); kk.arc(0, 0.8, 0.05, 0, 7); kk.fill(); }, true]],
+    after: (kk, cc) => {   // ピント位置の枠
+      const a = proj(cc, -0.75, 0.8, 2.0), b = proj(cc, 0.9, 0.9, 9);
+      const x = lerp(a.x, b.x, p), y = lerp(a.y, b.y, p), r = lerp(46, 30, p);
+      kk.strokeStyle = C.blue; kk.lineWidth = 2; kk.beginPath();
+      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sy]) => { kk.moveTo(x + sx * r, y + sy * r - sy * 9); kk.lineTo(x + sx * r, y + sy * r); kk.lineTo(x + sx * r - sx * 9, y + sy * r); });
+      kk.stroke();
+    }
+  });
+}, p => `◎ ${lerp(2, 9, p).toFixed(0)}m`, 1.0, 2.6));

@@ -1,0 +1,55 @@
+// Motion Prompt #062 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#062
+//
+// 范围滑块 / Range slider
+// 分类: ui (UI 组件) · element 14 · 子类: 切换与输入
+// 示例效果: 拖动价格滑块的两端缩小范围，再各自回到原位。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；轨道 x 54–488，高 8，y 120，两滑块之间为蓝色；范围 ¥0–¥10,000。
+//   - 滑块白色、半径 13、蓝边 3 px；拖动时半径 15，并有半径 24 的浅蓝光晕。
+//   - 下限在 1.0–1.6 s 从 0.1→0.3，即 ¥1,000→¥3,000，3.55–3.9 s 返回；上限在 2.1–2.6 s 从 1.0→0.8，即 ¥10,000→¥8,000，2.95–3.3 s 返回；均为 easeInOutCubic。
+//   - 各滑块上方有高 28 的数值气泡，拖动时蓝底白字；右上方蓝字显示 ¥1,000 – ¥10,000 范围，以 ¥100 为步长更新。
+//   - 光标位于被拖动的滑块上，按下时间为 1.0、2.1、2.95、3.55 s。
+// 适用场景: 适合价格、日期或尺寸等最小值与最大值范围筛选。
+// 标签: range-slider, slider, dual-thumb, min-max, price-filter, range
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#062
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 14
+// 14 レンジスライダー（Range slider）
+CELLS[13] = ui((w, h, t) => {
+  // つまみ2つで範囲を選ぶ：下限 ¥1,000→¥3,000、上限 ¥10,000→¥8,000、のち元へ戻す
+  const LO = tt => .1 + .2 * eio(seg(tt, 1.0, 1.6)) - .2 * eio(seg(tt, 3.55, 3.9));
+  const HI = tt => 1.0 - .2 * eio(seg(tt, 2.1, 2.6)) + .2 * eio(seg(tt, 2.95, 3.3));
+  const x0 = 54, x1 = 488, ty = 120, X_ = v => lerp(x0, x1, v);
+  const lo = LO(t), hi = HI(t), lx = X_(lo), hx = X_(hi);
+  const yen = v => '¥' + (Math.round(v * 100) * 100).toLocaleString('en-US');
+  text('価格', 24, 26, 16, '#555', 700);
+  text(yen(lo) + ' 〜 ' + yen(hi), w - 24, 26, 17, C.blue, 700, 'right', NUMF);
+  fillRR(x0, ty - 4, x1 - x0, 8, 4, '#e3e1df'); fillRR(lx, ty - 4, hx - lx, 8, 4, C.blue);
+  const loAct = (t > 1.0 && t < 1.7) || (t > 3.55 && t < 3.95), hiAct = t > 2.1 && t < 3.3;
+  [[lx, lo, loAct], [hx, hi, hiAct]].forEach(([kx, v, act]) => {
+    if (act) circle(kx, ty, 24, 'rgba(31,90,232,.14)');
+    shadowed(() => circle(kx, ty, act ? 15 : 13, '#fff'), 6, 2, .25); ring(kx, ty, act ? 15 : 13, C.blue, 3);
+    const val = yen(v), bw = tw(val, 15, 700, NUMF) + 18, bx = clamp(kx - bw / 2, 4, w - 4 - bw);
+    fillRR(bx, ty - 60, bw, 28, 7, act ? C.blue : C.lb);
+    X.beginPath(); X.moveTo(kx - 6, ty - 32); X.lineTo(kx, ty - 26); X.lineTo(kx + 6, ty - 32); X.fillStyle = act ? C.blue : C.lb; X.fill();
+    text(val, bx + bw / 2, ty - 46, 15, act ? '#fff' : C.blue, 700, 'center', NUMF);
+  });
+  text('¥0', x0, 154, 14, '#9a9896', 500, 'center', NUMF); text('¥10,000', x1 - 10, 154, 14, '#9a9896', 500, 'center', NUMF);
+  bar(24, 174, 220, C.line, 8);
+  const off = [w + 30, h + 30], L = tt => [X_(LO(tt)), ty + 4], Hh = tt => [X_(HI(tt)), ty + 4];
+  const mv = (a, b, ta, tb) => track([[ta, a[0], a[1]], [tb, b[0], b[1]]], t);
+  let pos;
+  if (t < 1.0) pos = mv(off, L(1.0), .3, .95);
+  else if (t < 1.7) pos = L(t);
+  else if (t < 2.1) pos = mv(L(1.7), Hh(2.1), 1.7, 2.05);
+  else if (t < 3.3) pos = Hh(t);
+  else if (t < 3.55) pos = mv(Hh(3.3), L(3.55), 3.3, 3.52);
+  else if (t < 3.95) pos = L(t);
+  else pos = mv(L(3.95), off, 3.95, 4.3);
+  pointer([[0, pos[0], pos[1]]], [1.0, 2.1, 2.95, 3.55], t);
+});

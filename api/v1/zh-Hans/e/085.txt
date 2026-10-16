@@ -1,0 +1,40 @@
+// Motion Prompt #085 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#085
+//
+// 涟漪效果 / Ripple effect
+// 分类: lp (落地页与网页效果) · element 13 · 子类: 悬停与点击交互
+// 示例效果: 每次点击，白圆从点击点扩大至覆盖按钮后淡出。
+// 效果规格:
+//   - 橙色按钮 280 × 56、圆角半径 10；0.7 s 在中心左侧点击，2.9 s 在中心右侧点击。
+//   - 圆心为点击点，半径用 0.6 s 按三次缓出从 0 增至按钮最远角的距离。
+//   - 白色圆不透明度 0.4，在点击后 0.3–0.8 s 淡至 0。
+//   - 圆裁切在按钮内，overflow: hidden；按钮文字在上方。
+// 适用场景: 适合在按钮或列表项的实际点击处给出反馈。
+// 标签: ripple, ink-ripple, material, click, tap, feedback, button
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#085
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 13
+// 13 リップルエフェクト（押した場所から、ボタンの中に波紋が広がる）
+CELLS[12] = (k, w, h, u) => {
+  frame(k);
+  const B = { x: 115, y: 78, w: 280, h: 56 }, TAPS = [[0.7, 165, 110], [2.9, 345, 100]], DUR = 0.6;
+  const [cx, cy] = path([[0, 430, 160], [0.55, 165, 110], [1.6, 165, 110], [2.7, 345, 100], [3.6, 345, 100], [4.4, 430, 160], [4.8, 430, 160]], u);
+  view(k, () => {
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
+    txt(k, 'お申し込み', VW / 2, 38, `800 18px ${JP}`, C.ink, 'center'); bars(k, VW / 2 - 110, 50, 220, 1, C.faint, 6, 11, 1);
+    k.save(); k.shadowColor = 'rgba(28,35,51,.18)'; k.shadowBlur = 8; k.shadowOffsetY = 3; k.fillStyle = C.acc; rr(k, B.x, B.y, B.w, B.h, 10); k.fill(); k.restore();
+    k.save(); rr(k, B.x, B.y, B.w, B.h, 10); k.clip();
+    for (const [tc, px, py] of TAPS) {
+      const d = u - tc; if (d < 0 || d > 0.8) continue;
+      const Rm = Math.max(Math.hypot(px - B.x, py - B.y), Math.hypot(px - B.x - B.w, py - B.y), Math.hypot(px - B.x, py - B.y - B.h), Math.hypot(px - B.x - B.w, py - B.y - B.h));
+      k.fillStyle = `rgba(255,255,255,${0.4 * (1 - P(d, 0.3, 0.8))})`; k.beginPath(); k.arc(px, py, Rm * eOut(P(d, 0, DUR)), 0, 7); k.fill();
+    }
+    k.restore();
+    txt(k, '送信する', VW / 2, B.y + B.h / 2 + 1, `800 17px ${JP}`, '#fff', 'center', 'middle');
+    click(k, cx, cy, u, TAPS.map(a => a[0]));
+  });
+};

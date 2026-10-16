@@ -1,0 +1,41 @@
+// Motion Prompt #101 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#101
+//
+// 伦勃朗光 / Rembrandt lighting
+// 分类: photo (摄影效果、光线与风格) · element 05 · 子类: 布光与时段
+// 示例效果: 侧方 45°、上方 45° 的灯亮起，右脸进入阴影，仅背光侧脸颊留一个小倒三角亮区。
+// 效果规格:
+//   - 场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 背景变暗，天空 #E7E5E1。
+//   - 头部 x = 270 + 0.04·29 右侧为阴影 #33405A，左侧为受光 #FFC75A。
+//   - 亮三角顶点为 (x 270+0.24R, y 78−0.12R)、(x 270+0.7R, y 78−0.12R)、(x 270+0.24R, y 78+0.5R)，R = 29，约宽 13 px、高 18 px，与受光侧之间隔约宽 6 px 的阴影。
+//   - 身体中心 −0.45×56 px 左侧受光，+0.3×56 px 右侧为阴影；示意图灯位为 45°，右上显示 45° · ↑45°。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合有绘画感、立体感和古典气质的人像。
+// 标签: rembrandt lighting, portrait lighting, triangle, 45 degree light, chiaroscuro, painterly
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#101
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 05
+// レンブラントライティング: 斜め45°・上からの光。影側の頬に三角形の光が残る
+CELLS[4] = cell((k, u) => {
+  const a = env(u), R = PR, W = torsoW(R);
+  stagePortrait(k, pal(BASE, DIM, a));
+  const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a);
+  bust(k, PX, PY, R, BASE.person, kk => {
+    kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.fill();
+    kk.fillStyle = sh; kk.fillRect(PX + 0.04 * R, PY - R - 2, R * 2, R * 2 + 4);       // 鼻筋から右は影
+    kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.clip();
+    kk.fillStyle = lit; kk.beginPath();                                                   // 影側の頬に残る光の三角形
+    kk.moveTo(PX + 0.24 * R, PY - 0.12 * R); kk.lineTo(PX + 0.7 * R, PY - 0.12 * R); kk.lineTo(PX + 0.24 * R, PY + 0.5 * R); kk.closePath(); kk.fill();
+  });
+  bust(k, PX, PY, R, 'rgba(0,0,0,0)', kk => {
+    kk.fillStyle = 'rgba(0,0,0,0)';
+    torso(kk, PX, PY, R, PX - W, PX - 0.45 * W, lit);
+    torso(kk, PX, PY, R, PX + 0.3 * W, PX + W, sh);
+  });
+  plan(k, [[Math.PI / 4, a]]);
+  hud(k, '45° · ↑45°');
+});

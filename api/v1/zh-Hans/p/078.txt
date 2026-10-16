@@ -1,0 +1,15 @@
+请使用“滚动吸附（Scroll snap）”，它属于“落地页与网页效果”。
+Motion Prompt #078
+
+含义：滚动结束时自动对齐区块
+示例效果：轻微滚动后页面自动补足剩余距离，使下一节顶边对齐视口顶部。
+规格：
+- 各区块与视口同高，为 168 px；首块浅蓝，第二块藏蓝。
+- 每 2.4 s 吸附一次；0.45–0.85 s 用户只滚动 34 px，三次缓出。
+- 0.9–1.5 s 页面自动移动剩余 134 px，对齐下一节顶部，三次缓出。
+- 第二个 2.4 s 以同样方式向上返回首块，表现 scroll-snap-type: y mandatory。
+适用场景：适合类似幻灯片、逐屏阅读的页面。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/078.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

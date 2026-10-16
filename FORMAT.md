@@ -1,9 +1,11 @@
 # Motion Prompt — pack and API format
 
+English | [简体中文](FORMAT.zh-Hans.md)
+
 Motion Prompt is a library of names: the words a field uses for the things you ask an AI to make, each
 with a moving sample. Each element is a small, dependency-free Canvas 2D animation that is a
 **pure function of time**, with its name and a one-line meaning in several languages, an example
-of how to ask for it, and a copyable prompt (ja/en), so people can tell Claude Code / Codex
+of how to ask for it, and a copyable prompt (ja/en/zh-Hans), so people can tell Claude Code / Codex
 "use #012 and #045" or "swap this title for #005".
 
 Repo: GitHub `showheyohtaki/motion-prompt` (MIT) → GitHub Pages
@@ -132,7 +134,7 @@ A field without the new language shows its English text in that list. The headin
 list ("Name", "What it is", …) are English unless you add a block for the language to `DOC` in
 `tools/build.mjs`; add its display name to `LANG_NAME` there too.
 
-The gallery, `api/v1/<lang>/` and the copyable prompt are served in `ja` and `en` only (`LANGS` in
+The gallery, `api/v1/<lang>/` and the copyable prompt are served in `ja`, `en` and `zh-Hans` (`LANGS` in
 `tools/build.mjs`). In those, a pack with no Japanese shows its English text. Other languages are
 carried in `api/v1/catalog.json` and shown in the generated lists.
 
@@ -140,7 +142,7 @@ carried in `api/v1/catalog.json` and shown in the generated lists.
 
 ```
 api/v1/catalog.json                 { version, count, packs:[…], elements:[{ id, pack, no, slug, category, width, height, cycle, name, meaning, ask, summary, spec, use, tags }] }
-api/v1/<lang>/catalog.tsv           header comment line, then: id  pack  category  title  tags  summary      (lang = ja | en)
+api/v1/<lang>/catalog.tsv           header comment line, then: id  pack  category  title  tags  summary      (lang = ja | en | zh-Hans)
 api/v1/<lang>/e/<id>.txt            one element: license line, info header (name, what it shows, spec, use, size, cycle, "Needs: kit <pack>", live demo URL), then the element code block
 api/v1/<lang>/p/<id>.txt            the copy-paste prompt for that element (same text the site's "copy prompt" button copies)
 api/v1/kit/<pack>.js                @kit + all @shared blocks of the pack, plus a short header showing how to run one element standalone
@@ -157,8 +159,21 @@ Live demo deep link: `https://showheyohtaki.github.io/motion-prompt/#<id>`.
   `packs/<pack>/README*.md`). `--check` validates without writing. If `assets/preview-<pack>.gif` exists,
   the pack's lists show it.
 - `node tools/check.mjs` draws every element at several times and reports exceptions, blank frames and loop seams.
-  It needs Playwright available to Node (it is not a dependency of this repo).
+  It needs Playwright available to Node (it is not a dependency of this repo); use `MP_PLAYWRIGHT` to select it. `MP_PYTHON` can select the Python executable instead of the default `python3`.
 - Preview a pack: serve the repo root (`python3 -m http.server 8000`) and open
   `dev/preview.html?pack=<pack>` (playing), `&t=1.2` (frozen) or `&only=5` (one element).
 - A pack's `cycle` may be longer than one pass of the motion (camera uses 9.4s).
 - The kit's first line uses the pack's ID range, e.g. `#001-024`.
+
+## Simplified Chinese reference code
+
+`api/v1/zh-Hans/kit/<pack>.js` is a generated variant of the shared kit with
+`MP_LANG` defaulting to `zh-Hans`. Use `kit <pack> --lang zh-Hans` with Chinese
+`get` output. The original `api/v1/kit/` remains the default for ja/en.
+Pack factories may receive a language argument from the runtime. The text
+helpers capture this language when a factory is created, so cells still depend
+only on time and do not read the DOM language. No animation parameters change.
+
+`node tools/check-localization.mjs` checks source coverage, generated prompts,
+the gallery, the examples page, standalone Chinese code and the local pick flow.
+It uses Playwright via `MP_PLAYWRIGHT`, like `tools/check.mjs`.

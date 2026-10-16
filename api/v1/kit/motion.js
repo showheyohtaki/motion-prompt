@@ -18,6 +18,16 @@
 // Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
 
 // @kit
+// Text is the only locale-dependent part of the drawing. Standalone kits
+// may set MP_LANGUAGE before this code; all geometry and timing stay fixed.
+const MP_LANG = typeof MP_LANGUAGE === 'string' ? MP_LANGUAGE : 'ja';
+const MP_LABELS = {"はじめまして": "你好，很高兴认识你", "ねこの動画つくって": "制作一段猫咪视频吧", "のびる": "拉伸中", "はねる": "弹跳中", "まわる": "旋转中", "ドン!": "砰！", "一定": "匀速", "緩急": "缓动"};
+function mpText(value) {
+  const s = String(value);
+  if (MP_LANG !== 'zh-Hans') return s;
+  if (Object.prototype.hasOwnProperty.call(MP_LABELS, s)) return MP_LABELS[s];
+  return s;
+}
 // モーショングラフィックスの演出の名前 24（各カード 539x208・4.7秒周期。各コマは時間 u の純関数）
 // カードの中だけ共通パレット（濃紺の地＋青・コーラル・黄・ミント）。
 const CW = 539, CH = 208;
@@ -45,7 +55,7 @@ const spring = (t, w = 14, d = 7) => t <= 0 ? 0 : 1 - Math.exp(-d * t) * Math.co
 function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
 function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 function txt(ctx, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
-  ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = base; ctx.letterSpacing = ls; ctx.fillText(s, x, y); ctx.letterSpacing = '0px';
+  ctx.font = font; ctx.fillStyle = col; ctx.textAlign = align; ctx.textBaseline = base; ctx.letterSpacing = ls; ctx.fillText(mpText(s), x, y); ctx.letterSpacing = '0px';
 }
 function rand(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
 function hex(c) { return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
@@ -72,7 +82,7 @@ function goo(draw, blur, paint) {
   GK1.globalCompositeOperation = 'source-atop'; paint(GK1); GK1.globalCompositeOperation = 'source-over';
   return G1;
 }
-function chars(k, s, font, ls = 0) { k.font = font; const ws = [...s].map(ch => k.measureText(ch).width + ls); const tot = ws.reduce((a, b) => a + b, 0) - ls; let x = -tot / 2; return [...s].map((ch, i) => { const o = { ch, x: x + (ws[i] - ls) / 2, w: ws[i] - ls }; x += ws[i]; return o; }); }
+function chars(k, s, font, ls = 0) { s = mpText(s); k.font = font; const ws = [...s].map(ch => k.measureText(ch).width + ls); const tot = ws.reduce((a, b) => a + b, 0) - ls; let x = -tot / 2; return [...s].map((ch, i) => { const o = { ch, x: x + (ws[i] - ls) / 2, w: ws[i] - ls }; x += ws[i]; return o; }); }
 const CELLS = [];
 
 // @shared

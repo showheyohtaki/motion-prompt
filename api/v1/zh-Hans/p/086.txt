@@ -1,0 +1,15 @@
+请使用“下划线动画（Underline animation）”，它属于“落地页与网页效果”。
+Motion Prompt #086
+
+含义：悬停时链接下划线从左展开
+示例效果：光标所在链接下，橙线从左长出，移开时向右消失。
+规格：
+- 三个粗体 20 px 链接，间距 56；光标从左到右各停约 1 s，命中区域比文字左右各宽 6 px。
+- 橙色下划线厚 3，位于基线下方 8 px。
+- 悬停时宽度在 0.3 s 内按三次缓出，从左端由 0→100%。
+- 移开时左端在 0.3 s 内移向右侧，使线向右退出，类似以右侧为 transform-origin 的 scaleX。
+适用场景：适合以轻量方式标示菜单和文字链接的指针位置。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/086.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

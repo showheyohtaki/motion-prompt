@@ -1,0 +1,36 @@
+// Motion Prompt #039 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#039
+//
+// 延时摄影 / Time-lapse
+// 分类: camera (镜头运动与转场) · element 15 · 子类: 拍摄方式与时间效果
+// 示例效果: 固定镜头将 06:00–18:00 压缩成几秒，太阳、云、人和影子快速变化。
+// 效果规格:
+//   - 镜头完全固定，高 1.6 m，俯仰 +0.08 rad，约上仰 5°。
+//   - 时间：0.4–4.1 s 内经过 12 小时，历时 3.7 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 太阳沿弧线从左向右，a = -1.25 rad→+1.25 rad；位于深度 170 m，坐标 (sin a×120, cos a×60 - 8) m。
+//   - 三朵云合计向右漂移 140 m，每 80 m 循环；七个小人物各穿越 18 m 宽度 6 次，奇偶人物方向相反。
+//   - 半透明灰色建筑阴影背向太阳，并随太阳移动而转动。
+//   - 最后 0.5 s 交叉淡化回起点；右上角时钟从 06:00→18:00，以 10 分钟为步长。
+// 适用场景: 适合在短片中展示长时间经过，或城市、天空、任务的变化。
+// 标签: time-lapse, timelapse, fast forward, time compression, sun, clouds, day to night
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#039
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 15
+// 15 タイムラプス: 太陽が動き、雲と人が早送り
+CELLS[14] = shot(camCell((k, w, h, p, u) => {
+  const a = lerp(-1.25, 1.25, p);
+  const clouds = [[-20 + mod(p * 140 + 0, 80) - 10, 18, 90, 2.2], [-50 + mod(p * 140 + 40, 80), 24, 120, 3], [-10 + mod(p * 140 + 20, 80) - 30, 13, 70, 1.6]];
+  const ex = [];
+  for (let i = 0; i < 7; i++) { const ph = mod(p * 6 + i / 7, 1), dir = i % 2 ? 1 : -1; ex.push([dir * lerp(-9, 9, ph), 0, 10 + i * 1.3, (kk) => { kk.fillStyle = i % 3 ? C.g4 : C.blueM; kk.fillRect(-0.12, 0, 0.24, 0.9); kk.beginPath(); kk.arc(0, 1.05, 0.13, 0, 7); kk.fill(); }]); }
+  world(k, w, h, cam({ y: 1.6, pitch: 0.08 }), {
+    sun: [Math.sin(a) * 120, Math.cos(a) * 60 - 8, 170], sunCol: C.blueM, clouds, extra: ex,
+    after: (kk, cc) => {   // 建物の影
+      kk.fillStyle = 'rgba(160,160,165,.22)';
+      BLD.slice(0, 6).forEach(([x, bw, bh]) => { const L = bh * 0.9; const q1 = proj(cc, x - bw / 2, 0, 48), q2 = proj(cc, x + bw / 2, 0, 48), q3 = proj(cc, x + bw / 2 - Math.sin(a) * L, 0, 48 - Math.cos(a) * L * 0.4 - 1), q4 = proj(cc, x - bw / 2 - Math.sin(a) * L, 0, 48 - Math.cos(a) * L * 0.4 - 1); kk.beginPath(); kk.moveTo(q1.x, q1.y); kk.lineTo(q2.x, q2.y); kk.lineTo(q3.x, q3.y); kk.lineTo(q4.x, q4.y); kk.fill(); });
+    }
+  });
+}, p => { const m = Math.round(lerp(6 * 60, 18 * 60, p) / 10) * 10; return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`; }, 0.4, 4.1));

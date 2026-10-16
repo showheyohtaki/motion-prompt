@@ -1,0 +1,41 @@
+// Motion Prompt #071 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#071
+//
+// 徽标 / Badge
+// 分类: ui (UI 组件) · element 23 · 子类: 导航与状态反馈
+// 示例效果: 每次通知到来，铃铛上的蓝圆依次显示 1、2、3，点击铃铛清空。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；页头高 54，右侧 (482, 27) 为线描铃铛。
+//   - 徽标是铃铛右上方（+12, −12）的蓝圆，半径 12、白边 2.5 px，数字为白色 14 px。
+//   - 通知在 0.7、1.3、1.9 s 到达，计数 1→2→3；首次于 0.7–0.9 s 按 easeOutCubic 缩放出现。
+//   - 每次到来，缩放在 0.3 s 内从 1.3 回到 1，并在 0.5 s 内发出波纹，半径 12→28、不透明度 0.5→0。
+//   - 2.95 s 光标到达铃铛，3.0 s 点击；3.0–3.25 s 徽标按 easeInOutCubic 缩至 0。
+// 适用场景: 适合突出未读消息或购物车条目数量。
+// 标签: badge, notification-badge, counter, count, dot, unread
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#071
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 23
+// 23 バッジ（Badge）
+CELLS[22] = ui((w, h, t) => {
+  X.fillStyle = '#fff'; X.fillRect(0, 0, w, 54); X.fillStyle = C.line; X.fillRect(0, 54, w, 1.5);
+  fillRR(24, 19, 76, 16, 4, C.mb);
+  // ベル
+  const bx = w - 60, by = 27; X.save(); X.translate(bx, by);
+  X.beginPath(); X.moveTo(-12, 8); X.quadraticCurveTo(-11, -12, 0, -13); X.quadraticCurveTo(11, -12, 12, 8); X.lineTo(15, 11); X.lineTo(-15, 11); X.closePath();
+  X.strokeStyle = '#333'; X.lineWidth = 2.4; X.lineJoin = 'round'; X.stroke(); X.beginPath(); X.arc(0, 14, 4, 0, Math.PI); X.stroke(); X.restore();
+  const arr = [.7, 1.3, 1.9]; let n = 0; arr.forEach(c => { if (t >= c) n++; });
+  const clear = eio(seg(t, 3.0, 3.25));
+  if (n > 0 && clear < 1) {
+    const last = arr.filter(c => t >= c).pop(), pop = 1 - seg(t, last, last + .3);
+    const s = (n === 1 ? eo(seg(t, .7, .9)) : 1) * (1 + .3 * pop) * (1 - clear);
+    // 届いた合図の波紋
+    const k = seg(t, last, last + .5); if (k > 0 && k < 1) ring(bx + 12, by - 12, 12 + 16 * k, `rgba(31,90,232,${.5 * (1 - k)})`, 2.5);
+    X.save(); X.translate(bx + 12, by - 12); X.scale(s, s); circle(0, 0, 12, C.blue); ring(0, 0, 12, '#fff', 2.5); text(String(n), 0, 1, 14, '#fff', 800, 'center', NUMF); X.restore();
+  }
+  bar(24, 76, 220, C.line2, 12); bar(24, 102, 494); bar(24, 120, 400); fillRR(24, 140, 494, 40, 8, C.block);
+  pointer([[.3, w + 30, h + 30], [2.3, w + 30, h + 30], [2.95, bx + 2, by + 4], [3.4, bx + 2, by + 4], [4.1, w + 30, h + 30]], [3.0], t);
+});

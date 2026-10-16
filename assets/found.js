@@ -78,13 +78,15 @@
     },
   };
 
+  I18N['zh-Hans'] = window.MP_ZH_HANS.found;
+
   var store = {
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private mode etc. */ } },
     del: function (k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } },
   };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
-  var state = { lang: root.lang === 'en' ? 'en' : 'ja', data: null };
+  var state = { lang: I18N[root.lang] ? root.lang : 'ja', data: null };
   var cards = [];   // { item, el, box, status, shown, token }
 
   function t(key, vars) {
@@ -148,7 +150,7 @@
     return loadWidgets().then(function (tw) {
       if (c.token !== token) return;
       return tw.widgets.createTweet(c.item.id, c.box, {
-        lang: state.lang, theme: isDark() ? 'dark' : 'light', dnt: true, conversation: 'none', align: 'center',
+        lang: state.lang === 'zh-Hans' ? 'zh-cn' : state.lang, theme: isDark() ? 'dark' : 'light', dnt: true, conversation: 'none', align: 'center',
       }).then(function (el) {
         if (c.token !== token) return;
         if (el) { setStatus(c, null); c.el.classList.remove('is-gone'); }
@@ -235,20 +237,24 @@
       });
     });
     $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    $('.lang-select').value = lang;
     $$('[data-href-' + lang + ']').forEach(function (a) { a.href = a.getAttribute('data-href-' + lang); });
     applyTheme();
   }
   function applyTheme() { $('#theme').setAttribute('aria-label', t(isDark() ? 'themeToLight' : 'themeToDark')); }
-  $$('[data-lang]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var lang = b.getAttribute('data-lang');
-      if (lang === state.lang) return;
-      state.lang = lang;
-      store.set('mp-lang', lang);
-      applyText();
-      if (state.data) build();  // rebuild redraws the embeds in the new language
-    });
-  });
+  function setLang(lang) {
+    if (lang === state.lang) return;
+    state.lang = lang;
+    store.set('mp-lang', lang);
+    if (/[?&]lang=/.test(location.search)) {
+      var q = new URLSearchParams(location.search); q.set('lang', lang);
+      history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
+    }
+    applyText();
+    if (state.data) build();  // rebuild redraws the embeds in the new language
+  }
+  $$('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('.lang-select').addEventListener('change', function () { setLang(this.value); });
   $('#theme').addEventListener('click', function () {
     var next = isDark() ? 'light' : 'dark';
     root.setAttribute('data-theme', next);

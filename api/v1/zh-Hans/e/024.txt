@@ -1,0 +1,50 @@
+// Motion Prompt #024 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#024
+//
+// 冲击震动 / Impact shake
+// 分类: motion (动态图形) · element 24 · 子类: 转场与强调
+// 示例效果: 厚重标题板砸向地面，撞击带动整个画面震动。
+// 效果规格:
+//   - 每 2.35 s 落下一次，先黄色板，再珊瑚色板；板尺寸 250 × 100，圆角半径 18。
+//   - 下落：0.3–0.62 s，从画面上方落至地面，使用三次缓入加速；下落时垂直拉伸 1.12×。
+//   - 0.62 s 落地；全画面震动 1.1 s：x 为 15 px × e^(−5t) × sin(2π·5t)，y 为 11 px × e^(−5t) × cos(2π·6.5t)，旋转为 0.02 rad × e^(−5t) × sin(2π·5t + 0.6)。
+//   - 落地后 0.3 s 内垂直压缩最多 22% 并恢复，横向等量加宽，锚点在底边。
+//   - 四个背景块晚 0.03–0.06 s 跃起最多 24 px，持续 0.5 s；六根白线和六团尘土从地面散开，在 0.55 s 内淡出。
+//   - 退场：1.85–2.2 s，板按 backIn（s = 1.6）向上移 300 px。
+// 适用场景: 适合让重要标题或数字落地时显得有重量、有冲击力。
+// 标签: shake, impact, camera-shake, slam, drop, thud, headline, emphasis
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#024
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 24
+// 24 インパクトシェイク（重い見出しの板がドンと落ち、その衝撃で画面ごと揺れる）
+CELLS[23] = (k, w, h, u) => {
+  const T = CYC / 2, n = Math.floor(u / T), lu = u - n * T;
+  const floor = h - 30, SW = 250, SH = 100, tI = 0.62, tau = lu - tI;
+  let y = lu < 0.3 ? -SH - 20 : lu < tI ? lerp(-SH - 20, floor - SH, eIn(P(lu, 0.3, tI))) : floor - SH;
+  y -= 300 * backIn(P(lu, 1.85, 2.2), 1.6);
+  let dx = 0, dy = 0, rot = 0;
+  if (tau > 0 && tau < 1.1) { const e = Math.exp(-5 * tau), ph = 2 * Math.PI * 5 * tau; dx = 15 * e * Math.sin(ph); dy = 11 * e * Math.cos(ph * 1.3); rot = 0.02 * e * Math.sin(ph + 0.6); }
+  k.fillStyle = C.navy; k.fillRect(0, 0, w, h);
+  k.save(); k.translate(w / 2 + dx, h / 2 + dy); k.rotate(rot); k.translate(-w / 2, -h / 2);
+  k.fillStyle = C.navy; k.fillRect(-40, -40, w + 80, h + 80);
+  // 背景の小物（衝撃で少し跳ねる）
+  [[34, 62, 86, C.navy2, 0.06], [104, 46, 54, C.navy3, 0.03], [w - 150, 50, 66, C.navy3, 0.03], [w - 90, 62, 104, C.navy2, 0.06]].forEach(([x, bw, bh, col, dl]) => { const t = tau - dl, hop = t > 0 && t < 0.5 ? -24 * Math.sin(Math.PI * t / 0.5) * (1 - t) : 0; k.fillStyle = col; rr(k, x, floor - bh + hop, bw, bh, [10, 10, 0, 0]); k.fill(); k.fillStyle = C.blue; k.globalAlpha = 0.55; rr(k, x + 10, floor - bh + 12 + hop, bw - 20, 8, 4); k.fill(); k.globalAlpha = 1; });
+  k.fillStyle = C.navy3; k.fillRect(-40, floor, w + 80, 5);
+  // 衝撃の線とほこり
+  if (tau > 0 && tau < 0.55) {
+    const q = eOut(tau / 0.55); k.strokeStyle = '#fff'; k.lineCap = 'round'; k.lineWidth = 7 * (1 - q);
+    for (let i = 0; i < 6; i++) { const s = i % 2 ? 1 : -1, j = Math.floor(i / 2), a = -0.12 - j * 0.34, r0 = 140 + 46 * q, r1 = r0 + 32; k.beginPath(); k.moveTo(w / 2 + s * Math.cos(a) * r0, floor - 4 + Math.sin(a) * r0); k.lineTo(w / 2 + s * Math.cos(a) * r1, floor - 4 + Math.sin(a) * r1); if (q < 0.97) k.stroke(); }
+    k.fillStyle = C.dim; k.globalAlpha = 0.8 * (1 - q); for (let i = 0; i < 6; i++) { const s = i % 2 ? 1 : -1, d = 130 + q * (50 + i * 14); k.beginPath(); k.arc(w / 2 + s * d, floor - 8 - q * (6 + i * 4), 9 + q * 8 - i, 0, 7); k.fill(); } k.globalAlpha = 1;
+  }
+  const sq = tau > 0 && tau < 0.3 ? 1 - 0.22 * Math.sin(tau / 0.3 * Math.PI) : (lu < tI && lu > 0.3 ? 1.12 : 1);
+  k.save(); k.translate(w / 2, y + SH); k.scale(2 - sq, sq);
+  k.fillStyle = n ? C.coral : C.yel; rr(k, -SW / 2, -SH, SW, SH, 18); k.fill();
+  k.fillStyle = 'rgba(15,26,61,.14)'; rr(k, -SW / 2, -16, SW, 16, [0, 0, 18, 18]); k.fill();
+  txt(k, n ? 'SALE' : 'NEW!', 0, -SH / 2 + 4, `800 74px ${DISP}`, n ? '#fff' : C.navy, 'center', 'middle', '2px');
+  k.restore();
+  k.restore();
+};

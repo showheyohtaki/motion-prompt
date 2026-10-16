@@ -1,0 +1,25 @@
+// Motion Prompt #026 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#026
+//
+// 垂直摇镜头 / Tilt
+// 分类: camera (镜头运动与转场) · element 02 · 子类: 镜头运动
+// 示例效果: 机位不变，向上转动镜头，从地面上的人物看到塔顶。
+// 效果规格:
+//   - 镜头：机位固定，高 1.4 m；仅俯仰角从 -0.06 rad→+0.36 rad，即 -3°→+21°，总计约 24°。
+//   - 时间：0.5–3.4 s，历时 2.9 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体：人物静立在前方 7 m；后方 26 m 处有高 9.5 m 的塔，天线尖端高 11.8 m。
+//   - 画面整体向下滑动，人物从底部离开，塔顶和天线进入画面。
+//   - 回位：3.4–4.2 s 停留，最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+//   - 右上角以整数度显示角度：-3°→+21°。
+// 适用场景: 适合展示建筑或人物的高度和尺度。
+// 标签: tilt, tilt up, pitch, vertical, look up, camera move
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#026
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 02
+// 02 ティルト
+CELLS[1] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ pitch: lerp(-0.06, 0.36, p), y: 1.4 }), { person: { z: 7 }, tower: [0, 26], buildings: false, sun: [7, 13, 40], sunScale: 0.4 }),
+  p => `${Math.round(lerp(-0.06, 0.36, p) * 57.3)}°`.replace(/^(\d)/, '+$1')));

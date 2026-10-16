@@ -1,0 +1,35 @@
+// Motion Prompt #052 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#052
+//
+// 折叠面板 / Accordion
+// 分类: ui (UI 组件) · element 04 · 子类: 浮层与展开
+// 示例效果: 点击三条标题中的第一条，内容展开并推低下方条目，再次点击收起。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；三条标题宽 494、高 34、圆角半径 8、间隔 6，右侧有向下箭头。
+//   - 光标于 0.95 s 到达首条标题，1.0 s 和 3.3 s 点击。
+//   - 展开量 ex 在 1.0–1.35 s 按 easeInOutCubic 从 0→1，再于 3.3–3.62 s 从 1→0。
+//   - 首行高度从 34 增至 92，即 +58·ex，推低后续条目；两行内容裁切在行内，以不透明度 ex 淡入。
+//   - 展开时箭头旋转 180°·ex，边框变浅蓝、标题变蓝。
+// 适用场景: 适合常见问题或长详情，让用户扫读标题后按需展开。
+// 标签: accordion, collapsible, expand, collapse, disclosure, faq, details
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#052
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 04
+// 04 アコーディオン（Accordion）
+CELLS[3] = ui((w, h, t) => {
+  const ex = eio(seg(t, 1.0, 1.35)) * (1 - eio(seg(t, 3.3, 3.62)));
+  let y = 12; const H0 = 34, EX = 58;
+  for (let i = 0; i < 3; i++) {
+    const extra = i === 0 ? EX * ex : 0;
+    strokeRR(24, y, 494, H0 + extra, 8, i === 0 && ex > .05 ? C.sb : C.line2, 1.5);
+    bar(42, y + 12, [180, 220, 150][i], i === 0 && ex > .05 ? C.blue : C.line2, 10);
+    chevron(494, y + 17, 6, i === 0 ? Math.PI * ex : 0, i === 0 && ex > .05 ? C.blue : '#9a9896');
+    if (i === 0 && ex > 0) { X.save(); rr(24, y, 494, H0 + extra, 8); X.clip(); X.globalAlpha = ex; bar(42, y + H0 + 6, 420); bar(42, y + H0 + 24, 320); X.restore(); }
+    y += H0 + extra + 6;
+  }
+  pointer([[.3, w + 30, h + 30], [.95, 300, 31], [1.6, 300, 31], [3.0, 300, 31], [3.55, 300, 31], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
+});

@@ -1,0 +1,25 @@
+// Motion Prompt #027 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#027
+//
+// 推镜头 / Dolly in
+// 分类: camera (镜头运动与转场) · element 03 · 子类: 镜头运动
+// 示例效果: 相机向主体前进，近物迅速变大并掠过，远山几乎不变。
+// 效果规格:
+//   - 镜头：沿纵深向前移动 0 m→5.8 m；高度 1.5 m，方向与焦距固定，焦距 330 px，显示为 24mm。
+//   - 时间：0.5–3.4 s，历时 2.9 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体：人物静立在前方 8 m；距离从 8 m→2.2 m，画面中的人物约放大 3.6×。
+//   - 有视差：前景木桩（左 1.5 m、深 3.6 m）和岩石（右 1.6 m、深 4.8 m）中途移出画面；120 m 以外的山大小几乎不变。
+//   - 回位：3.4–4.2 s 停留，最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+//   - 右上角一直显示 24mm，这是与第 04 项变焦推近的区别。
+// 适用场景: 适合保留空间纵深地靠近人物表情或细节。
+// 标签: dolly, dolly in, push in, track in, move forward, parallax, camera move
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#027
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 03
+// 03 ドリーイン: カメラ位置が前へ（手前は大きく、奥はほぼそのまま）
+CELLS[2] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ z: lerp(0, 5.8, p) }), { person: { z: 8 }, fg: [[-1.5, 3.6], [1.6, 4.8, 'rock']] }),
+  p => mm(F0)));

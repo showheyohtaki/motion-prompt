@@ -1,0 +1,37 @@
+// Motion Prompt #002 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#002
+//
+// 交错动画 / Stagger
+// 分类: motion (动态图形) · element 02 · 子类: 入场与文字
+// 示例效果: 图表柱从左到右依次升起，每根稍有延迟。
+// 效果规格:
+//   - 每 2.35 s 一轮。七根柱宽 44、间距 20，高度依次为 52、84、68、112、92、136、158；颜色循环使用蓝、珊瑚、黄、薄荷绿。
+//   - 第 i 根柱（从 0 计数）于 0.15 + 0.12·i s 开始，以基线为锚点，在 0.5 s 内按 backOut（s = 2.6）从 0 长至全高，越过目标后回落。
+//   - 白点半径 6.5，位于柱顶上方 16 px，比对应柱晚 0.34 s 出现，使用弹簧曲线 1 − e^(−7t)·cos(16t)。
+//   - 退场：柱从 1.78 + 0.045·i s 开始，按三次缓入在 0.26 s 内缩回；点先从 1.70 + 0.045·i s 开始，在 0.2 s 内消失。
+// 适用场景: 适合列表项、图表柱和卡片依次出现，引导视线移动。
+// 标签: stagger, sequence, delay, cascade, bar-chart, list, entrance
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#002
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 02
+// 02 スタガー（グラフの棒が、少しずつ時間をずらして順に立ち上がる）
+CELLS[1] = (k, w, h, u) => {
+  stage(k);
+  const N = 7, BW = 44, G = 20, x0 = (w - (N * BW + (N - 1) * G)) / 2, base = h - 30;
+  const HS = [52, 84, 68, 112, 92, 136, 158];
+  k.fillStyle = C.navy3; rr(k, x0 - 18, base, N * BW + (N - 1) * G + 36, 5, 2.5); k.fill();
+  const lu = mod(u, CYC / 2);
+  for (let i = 0; i < N; i++) {
+    const t0 = 0.15 + i * 0.12, g = backOut(P(lu, t0, t0 + 0.5), 2.6) * (1 - eIn(P(lu, 1.78 + i * 0.045, 2.04 + i * 0.045)));
+    if (g <= 0.001) continue;
+    const hh = HS[i] * g, x = x0 + i * (BW + G);
+    k.fillStyle = PAL[i % 4]; rr(k, x, base - hh, BW, hh, [12, 12, 3, 3]); k.fill();
+    // 棒の上の点（さらに遅れて出る）
+    const d = spring(lu - t0 - 0.34, 16, 7) * (1 - eIn(P(lu, 1.7 + i * 0.045, 1.9 + i * 0.045)));
+    if (d > 0.01) { k.fillStyle = '#fff'; k.beginPath(); k.arc(x + BW / 2, base - hh - 16, 6.5 * d, 0, 7); k.fill(); }
+  }
+};

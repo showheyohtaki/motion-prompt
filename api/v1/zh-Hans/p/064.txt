@@ -1,0 +1,15 @@
+请使用“分页（Pagination）”，它属于“UI 组件”。
+Motion Prompt #064
+
+含义：通过页码切换列表页面
+示例效果：依次点击页码 2、3、1，蓝圆移动，上方列表替换。
+规格：
+- 542×191 卡片，周期 4.5 s；‹ 1 2 3 4 5 › 居中，直径各 36、间隔 8 px，y 160；当前页是半径 18 的蓝圆和白字。
+- 光标 1.0 s 点击 2，2.1 s 点击 3，3.3 s 点击 1。
+- 蓝圆每页移动 44 px，每次 0.2 s，easeInOutCubic；3 回 1 时移动 88 px。
+- 上方三行列表在 1.05、2.15、3.35 s 各前后 0.2 s 内以 1→0→1 改变不透明度，在最低点切换内容。
+适用场景：适合把搜索结果或文章等长列表拆为编号页面。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/064.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

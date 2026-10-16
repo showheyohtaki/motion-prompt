@@ -1,0 +1,25 @@
+// Motion Prompt #025 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#025
+//
+// 水平摇镜头 / Pan
+// 分类: camera (镜头运动与转场) · element 01 · 子类: 镜头运动
+// 示例效果: 机位不变，从左向右转动镜头；由于是旋转，远近图层以相同角度横向移动。
+// 效果规格:
+//   - 镜头：机位固定，高 1.5 m；仅偏航角从 -0.32 rad→+0.32 rad，即 -18°→+18°，总计约 37°。
+//   - 时间：0.5–3.4 s，转动历时 2.9 s，使用三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体：身高约 1.8 m 的人物静立在前方 8 m，画面中从右向左滑动。
+//   - 无视差：山、建筑、树和人物以相同角度移动；539×208 卡片上的焦距为 330 px。
+//   - 回位：3.4–4.2 s 停留，最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+//   - 右上角以整数度显示角度：-18°→+18°。
+// 适用场景: 适合展示宽阔场所，或将视线从场景一侧移到另一侧。
+// 标签: pan, panning, yaw, rotate, horizontal, camera move, reveal
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#025
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 01
+// 01 パン: 回転なので全ての層が同じだけ横に流れる
+CELLS[0] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ yaw: lerp(-0.32, 0.32, p) }), { person: { x: 0, z: 8 } }),
+  p => `${Math.round(lerp(-0.32, 0.32, p) * 57.3)}°`.replace(/^(\d)/, '+$1')));

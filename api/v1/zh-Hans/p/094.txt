@@ -1,0 +1,15 @@
+请使用“跑马灯（Marquee）”，它属于“落地页与网页效果”。
+Motion Prompt #094
+
+含义：文字或标志组成连续滚动带
+示例效果：藏蓝带内，大号服务名由橙点分隔，不断向左无缝移动。
+规格：
+- 藏蓝带高 58、与视口等宽；文字白色、30 px、粗字重、字间距 1 px。
+- 一组四个词 WEB DESIGN / BRANDING / MOTION / UI/UX，间隔 64 px，每个空隙有半径 6 的橙点。
+- 每 4.8 s 匀速左移一组宽度，此处约 881 px；实测组宽并按该宽度循环偏移，避免可见接缝。
+- 重复该组直到填满视口宽度。
+适用场景：适合有动感地展示服务名、客户标志或宣传语。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/094.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

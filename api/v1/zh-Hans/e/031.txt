@@ -1,0 +1,27 @@
+// Motion Prompt #031 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#031
+//
+// 升镜头 / Crane up
+// 分类: camera (镜头运动与转场) · element 07 · 子类: 镜头运动
+// 示例效果: 相机上升并向下转动，直到俯视人物。
+// 效果规格:
+//   - 镜头：高度 1.4 m→9 m，同时向前移动 0 m→1.5 m。
+//   - 朝向：向下转动以保持前方 8 m 的人物在画面内；pitch = -0.86 × atan2(height - 1.0, 8 - forward)，约 -2.5°→-44°。
+//   - 时间：0.5–3.4 s，历时 2.9 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+//   - 主体静止，随相机上升而变小，地面网格铺满画面，地平线从顶部离开。
+//   - 回位：3.4–4.2 s 停留，最后 0.5 s 交叉淡化回起点，每轮 4.7 s。
+//   - 右上角显示高度：↑ 1.4m→↑ 9.0m。
+// 适用场景: 适合场景结束时远离人物展示全貌，或揭示场所规模。
+// 标签: crane, crane up, jib, boom up, rise, high angle, camera move
+// 尺寸: 539x208 px · 周期: 9.4 s
+// Needs: kit camera -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/camera.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#031
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 07
+// 07 クレーンアップ: カメラが上昇し、見下ろしになる
+CELLS[6] = shot(camCell((k, w, h, p) => {
+  const y = lerp(1.4, 9, p), z = lerp(0, 1.5, p);
+  world(k, w, h, cam({ y, z, pitch: -0.86 * Math.atan2(y - 1.0, 8 - z) }), { person: { z: 8 } });
+}, p => `↑ ${lerp(1.4, 9, p).toFixed(1)}m`));

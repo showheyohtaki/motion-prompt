@@ -1,0 +1,37 @@
+// Motion Prompt #066 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#066
+//
+// 面包屑导航 / Breadcrumbs
+// 分类: ui (UI 组件) · element 18 · 子类: 导航与状态反馈
+// 示例效果: 点击面包屑中的课程返回列表，再点击卡片回到详情。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；顶部以日文 17 px 显示首页 › 课程 › 网页设计，链接蓝色，当前页黑色粗体；y 46 处分隔。
+//   - 光标悬停课程，0.9–1.2 s 显示下划线，1.0 s 点击。
+//   - 上级切换量在 1.0–1.25 s 按 easeInOutCubic 从 0→1；› 网页设计淡出，课程变成黑色粗体当前页。
+//   - 内容从标题加文字的详情页，叠化到三张 158×118、带风景图的卡片列表。
+//   - 返回：光标移到首张卡片，2.45–2.8 s 蓝边高亮，2.7 s 点击；2.7–2.95 s 恢复详情页。
+// 适用场景: 适合层级较深的网站，显示当前位置并提供上级入口。
+// 标签: breadcrumbs, breadcrumb, trail, hierarchy, navigation, path
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#066
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 18
+// 18 パンくずリスト（Breadcrumbs）
+CELLS[17] = ui((w, h, t) => {
+  const up = eio(seg(t, 1.0, 1.25)) * (1 - eio(seg(t, 2.7, 2.95))); // 1=「講座」の階層にいる
+  let x = 24; const y = 24;
+  text('ホーム', x, y, 17, C.blue, 600); x += tw('ホーム', 17, 600) + 10; text('›', x, y, 17, '#aaa', 500); x += 18;
+  const kx = x, kw = tw('講座', 17, 700);
+  const hoverK = t > .9 && t < 1.2;
+  text('講座', x, y, 17, up > .5 ? C.ink : C.blue, up > .5 ? 700 : 600); if (hoverK) { X.fillStyle = C.blue; X.fillRect(x, y + 12, kw, 2); }
+  x += kw + 10;
+  X.globalAlpha = 1 - up; text('›', x, y, 17, '#aaa', 500); text('Web制作', x + 18, y, 17, C.ink, 700); X.globalAlpha = 1;
+  X.fillStyle = C.line; X.fillRect(24, 46, 494, 1.5);
+  // 中身：詳細ページ ⇄ 一覧ページ
+  if (up < 1) { X.save(); X.globalAlpha = 1 - up; bar(24, 64, 200, C.ink, 13); bar(24, 92, 494); bar(24, 110, 420); fillRR(24, 132, 494, 48, 8, C.block); X.restore(); }
+  if (up > 0) { X.save(); X.globalAlpha = up; for (let k = 0; k < 3; k++) { const cx = 24 + k * 168, hov = k === 0 && t > 2.45 && t < 2.8; strokeRR(cx, 62, 158, 118, 8, hov ? C.blue : C.line2, hov ? 2 : 1.5); mountains(cx + 10, 72, 138, 58, k % 2); bar(cx + 10, 142, 90, k === 0 ? C.sb : C.line2, 10); bar(cx + 10, 160, 120, C.line, 7); } X.restore(); }
+  pointer([[.3, w + 30, h + 30], [.95, kx + kw / 2, 30], [1.6, kx + kw / 2, 30], [2.4, 104, 120], [3.1, 104, 120], [3.9, w + 30, h + 30]], [1.0, 2.7], t);
+});

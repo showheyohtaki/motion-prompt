@@ -1,0 +1,15 @@
+请使用“空状态（Empty state）”，它属于“UI 组件”。
+Motion Prompt #072
+
+含义：列表没有内容时显示的界面
+示例效果：点击垃圾桶删除两行内容后，显示空箱插画、暂无内容和添加按钮。
+规格：
+- 542×191 卡片，周期 4.5 s；两行列表各 494×48、圆角半径 8，右侧垃圾桶图标。
+- 0.95 s 和 1.65 s 点击垃圾桶；各行在 0.3 s 内按 easeInOutCubic 左移 60 px 并淡出，第二行上移 58 px 占据首行位置。
+- 1.95–2.3 s 空状态线性淡入并上移 8 px，包括蓝色线描收件箱、日文 16 px 暂无内容和蓝色 112×34 添加按钮。
+- 3.3 s 点击添加；空状态于 3.25–3.45 s 淡出，两行内容于 3.35–3.7 s 按 easeOutCubic 从左侧返回。
+适用场景：适合首次使用或无结果页面，告诉用户下一步能做什么。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/072.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

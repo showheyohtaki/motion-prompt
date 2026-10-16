@@ -1,0 +1,38 @@
+// Motion Prompt #094 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#094
+//
+// 跑马灯 / Marquee
+// 分类: lp (落地页与网页效果) · element 22 · 子类: 加载、导航与循环动效
+// 示例效果: 藏蓝带内，大号服务名由橙点分隔，不断向左无缝移动。
+// 效果规格:
+//   - 藏蓝带高 58、与视口等宽；文字白色、30 px、粗字重、字间距 1 px。
+//   - 一组四个词 WEB DESIGN / BRANDING / MOTION / UI/UX，间隔 64 px，每个空隙有半径 6 的橙点。
+//   - 每 4.8 s 匀速左移一组宽度，此处约 881 px；实测组宽并按该宽度循环偏移，避免可见接缝。
+//   - 重复该组直到填满视口宽度。
+// 适用场景: 适合有动感地展示服务名、客户标志或宣传语。
+// 标签: marquee, ticker, infinite-loop, scrolling-text, logo-strip, band, loop
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#094
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 22
+// 22 マーキー（文字の帯が、途切れずに横へ流れ続ける）
+CELLS[21] = (k, w, h, u) => {
+  frame(k);
+  const WORDS = ['WEB DESIGN', 'BRANDING', 'MOTION', 'UI/UX'], F = `800 30px ${EN}`, GAPW = 64;
+  view(k, () => {
+    bars(k, 34, 20, 180, 1, C.ink, 10); bars(k, 34, 38, 300, 1);
+    k.fillStyle = C.ink; k.fillRect(0, 58, VW, 58);
+    k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(mpText(s)).width); k.letterSpacing = '0px';
+    const unit = ws.reduce((a, b) => a + b + GAPW, 0);
+    let x = -mod(u / CYC, 1) * unit;                 // 1周期で1組ぶん左へ
+    for (let rep = 0; x < VW; rep++) WORDS.forEach((s, i) => {
+      txt(k, s, x, 88, F, '#fff', 'left', 'middle', '1px');
+      k.fillStyle = C.acc; k.beginPath(); k.arc(x + ws[i] + GAPW / 2, 88, 6, 0, 7); k.fill();
+      x += ws[i] + GAPW;
+    });
+    for (let i = 0; i < 3; i++) { k.fillStyle = C.soft; rr(k, 34 + i * 152, 130, 136, 30, 6); k.fill(); bars(k, 46 + i * 152, 142, 90, 1, C.faint); }
+  });
+};

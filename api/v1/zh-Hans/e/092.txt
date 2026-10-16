@@ -1,0 +1,44 @@
+// Motion Prompt #092 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#092
+//
+// 页面转场 / Page transition
+// 分类: lp (落地页与网页效果) · element 20 · 子类: 加载、导航与循环动效
+// 示例效果: 点击作品卡片后橙色面板从左覆盖，地址改变，再向右退出显示详情；返回列表时同样处理。
+// 效果规格:
+//   - 0.8 s 点击卡片；0.9–1.3 s 橙色全视口面板从左进入，中央有标志，按三次缓入缓出覆盖全部内容。
+//   - 1.3 s 完全覆盖时，页面与地址栏一起从 /works 切至 /works/02。
+//   - 1.4–1.85 s 面板按三次缓入缓出向右离开。
+//   - 3.0 s 点击返回列表；3.1–3.5 s 面板进入，3.5 s 页面切换，3.6–4.05 s 面板退出。
+//   - 面板覆盖整个视口，包括页头。
+// 适用场景: 适合品牌站和作品集中的页面衔接。
+// 标签: page-transition, transition, view-transitions, navigation, wipe, barba, spa
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#092
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 20
+// 20 ページ遷移アニメーション（リンクを押すと、色の幕が横切って次のページに切り替わる）
+CELLS[19] = (k, w, h, u) => {
+  frame(k, u >= 1.3 && u < 3.5 ? 'example.com/works/02' : 'example.com/works');
+  const CLK = [0.8, 3.0];
+  const cover = t0 => eIO(P(u, t0, t0 + 0.4)), uncover = t0 => eIO(P(u, t0, t0 + 0.45));
+  // 幕の左端: 入る −VW→0、出る 0→VW
+  const xs = u < 1.4 ? -VW * (1 - cover(0.9)) : u < 3.1 ? VW * uncover(1.4) : u < 3.6 ? -VW * (1 - cover(3.1)) : VW * uncover(3.6);
+  const pageB = u >= 1.3 && u < 3.5;
+  const [cx, cy] = path([[0, 420, 150], [0.65, 255, 100], [2.6, 255, 100], [2.85, 46, 50], [3.3, 46, 50], [4.6, 420, 150], [4.8, 420, 150]], u);
+  view(k, () => {
+    header(k, 0);
+    if (!pageB) {
+      txt(k, 'WORKS', 34, 62, `800 18px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
+      for (let i = 0; i < 3; i++) { const x = 34 + i * 152; pic(k, x, 74, 136, 60, i, 6); bars(k, x, 142, 100, 1, C.ink, 7); }
+    } else {
+      txt(k, '← 一覧へ', 34, 55, `700 12px ${JP}`, C.sub, 'left', 'middle');
+      pic(k, 34, 68, 240, 90, 1, 8);
+      txt(k, 'Project 02', 296, 96, `800 22px ${EN}`, C.ink); bars(k, 296, 110, 180, 3);
+    }
+    if (xs > -VW && xs < VW) { k.fillStyle = C.acc; k.fillRect(xs, 0, VW, VH); logo(k, xs + VW / 2 - 40, VH / 2, '#fff'); }
+    click(k, cx, cy, u, CLK);
+  });
+};

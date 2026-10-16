@@ -130,6 +130,8 @@
     },
   };
 
+  I18N['zh-Hans'] = window.MP_ZH_HANS.gallery;
+
   // ------------------------------------------------------------------ state
   var store = {
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -138,7 +140,7 @@
   var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
   var state = {
-    lang: root.lang === 'en' ? 'en' : 'ja',
+    lang: I18N[root.lang] ? root.lang : 'ja',
     pack: 'all', cat: 'all', q: '',
     playing: !reduceMotion.matches,
     open: null,           // id shown in the detail view
@@ -159,7 +161,7 @@
   }
   function names(el) {
     var ja = state.lang === 'ja';
-    return { main: ja ? el.name.ja : el.name.en, sub: ja ? el.name.en : el.name.ja };
+    return { main: el.name[state.lang] || el.name.en, sub: ja || state.lang === 'zh-Hans' ? el.name.en : el.name.ja };
   }
   function h(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -312,6 +314,7 @@
     var p = packBy[el.pack];
     var c = p.categories.filter(function (x) { return x.slug === el.category; })[0] || {};
     return ['#' + el.id, el.id, String(+el.id), el.slug, el.pack, el.name.ja, el.name.en, el.meaning ? el.meaning.ja + ' ' + el.meaning.en : '', el.summary.ja, el.summary.en,
+      el.name['zh-Hans'], el.meaning && el.meaning['zh-Hans'], el.summary['zh-Hans'], p.title['zh-Hans'], c['zh-Hans'],
       el.tags.join(' '), p.title.ja, p.title.en, c.ja || '', c.en || ''].join(' ').toLowerCase();
   }
   function matches(el) {
@@ -456,7 +459,7 @@
     el.tags.forEach(function (s) { tags.appendChild(h('li', { text: s })); });
     $('#d-prompt').textContent = PROMPT(el, p.title[lang], lang);
     var kit = $('#d-kit'), txt = $('#d-txt');
-    kit.href = 'api/v1/kit/' + el.pack + '.js'; kit.textContent = t('kitLink', { pack: el.pack });
+    kit.href = 'api/v1/' + (lang === 'zh-Hans' ? 'zh-Hans/' : '') + 'kit/' + el.pack + '.js'; kit.textContent = t('kitLink', { pack: el.pack });
     txt.href = 'api/v1/' + lang + '/e/' + el.id + '.txt'; txt.textContent = t('txtLink', { id: el.id });
     var pre = $('#d-code'); pre.textContent = t('codeLoading');
     fetchCode(el.id, lang).then(function (code) {
@@ -695,7 +698,7 @@
   $('#tray-share').addEventListener('click', function () {
     var btn = this;
     if (!state.picks.length) return;
-    copyText(SITE + '?pick=' + state.picks.join(',')).then(function (ok) { flash(btn, ok); });
+    copyText(SITE + '?pick=' + state.picks.join(',') + (state.lang === 'zh-Hans' ? '&lang=zh-Hans' : '')).then(function (ok) { flash(btn, ok); });
   });
   $('#tray-clear').addEventListener('click', function () {
     state.picks = []; savePicks();
@@ -714,6 +717,7 @@
   function applyText() {
     var lang = state.lang;
     root.lang = lang;
+    MP.setLanguage(lang);
     $$('[data-t]').forEach(function (n) { n.textContent = t(n.getAttribute('data-t'), { n: CAT.count }); });
     $$('[data-t-html]').forEach(function (n) { n.innerHTML = t(n.getAttribute('data-t-html')); }); // own strings only
     $$('[data-t-attr]').forEach(function (n) {
@@ -722,6 +726,7 @@
       });
     });
     $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    $('.lang-select').value = lang;
     $('#fact-count').textContent = CAT.count;
     $('#fact-packs').textContent = CAT.packs.length;
     $('#tsv-link').href = 'api/v1/' + lang + '/catalog.tsv';
@@ -741,10 +746,12 @@
       var q = new URLSearchParams(location.search); q.set('lang', lang);
       history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
     }
+    markDirty();
     applyText(); buildChips(); buildGrid(); renderTray();
     if (state.open) fillDetail(elBy[state.open]);
   }
   $$('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('.lang-select').addEventListener('change', function () { setLang(this.value); });
 
   function isDark() {
     var a = root.getAttribute('data-theme');

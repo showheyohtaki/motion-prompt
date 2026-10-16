@@ -1,0 +1,50 @@
+// Motion Prompt #006 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#006
+//
+// 打字机效果 / Typewriter
+// 分类: motion (动态图形) · element 06 · 子类: 入场与文字
+// 示例效果: 输入框内逐字输入文字，随后发送按钮亮起并被按下。
+// 效果规格:
+//   - 每 4.7 s 一轮。白色输入框为 471 × 92，圆角半径 30；从 0.3 s 开始，每隔 0.24 s 出现一个字，共九个字，2.46 s 输入结束。
+//   - 每个新字的缩放从 1.35 回到 1，公式为 1 + 0.35·e^(−16t)。
+//   - 珊瑚色光标尺寸 5 × 44，位于最后一个字之后；输入时常亮，其余时间以 0.94 s 为周期闪烁，亮 0.5 s。
+//   - 发送按钮半径 30，起初灰色；从 2.58 s 开始，蓝色圆盘按弹簧曲线 1 − e^(−6.5t)·cos(15t) 出现。
+//   - 按下动作：2.96–3.21 s，按钮按半个正弦波最多缩小 20%；文字于 3.13–3.41 s 上移 70 px 并淡出。
+//   - 文字淡出一半时（约 3.27 s）光标回到起点；蓝色于 3.51–3.81 s 淡出。
+// 适用场景: 适合展示提示词、搜索词或聊天消息的输入过程。
+// 标签: typewriter, typing, text, cursor, input, prompt, chat, type-on
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#006
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 06
+// 06 タイプライター（入力欄に1文字ずつ打たれ、打ち終わると送信ボタンが点く）
+CELLS[5] = (k, w, h, u) => {
+  stage(k);
+  const S = mpText('ねこの動画つくって'), N = [...S].length, t0 = 0.3, dt = 0.24, done = t0 + N * dt;
+  const BX = 34, BY = 58, BW = w - 68, BH = 92;
+  const sendT = done + 0.55, clr = P(u, sendT + 0.12, sendT + 0.4);
+  k.fillStyle = '#fff'; rr(k, BX, BY, BW, BH, 30); k.fill();
+  const f = `600 36px ${JP}`; k.font = f;
+  let n = clamp(Math.floor((u - t0) / dt) + 1, 0, N); if (u < t0) n = 0;
+  let x = BX + 32; const y = BY + BH / 2 + 2;
+  k.save(); rr(k, BX, BY, BW - 86, BH, 30); k.clip();
+  [...S].slice(0, n).forEach((ch, i) => {
+    const age = u - (t0 + i * dt), pop = 1 + 0.35 * Math.exp(-age * 16), cw = k.measureText(ch).width;
+    k.save(); k.translate(x + cw / 2, y - clr * 70); k.scale(pop, pop); k.globalAlpha = 1 - clr;
+    txt(k, ch, 0, 0, f, C.navy, 'center', 'middle'); k.restore(); k.font = f; x += cw + 1;
+  });
+  k.restore();
+  if (clr > 0.5) x = BX + 32;
+  // カーソル（打っている間は点灯。待ちの間は0.94秒周期でゆっくり明滅）
+  const typing = u >= t0 - 0.05 && u < done + 0.1, blink = typing ? 1 : (mod(u, 0.94) < 0.5 ? 1 : 0);
+  if (blink) { k.fillStyle = C.coral; rr(k, x + 4, y - 23, 5, 44, 2.5); k.fill(); }
+  // 送信ボタン
+  const on = spring(u - done - 0.12, 15, 6.5) * (1 - P(u, sendT + 0.5, sendT + 0.8)), press = 1 - 0.2 * Math.sin(Math.PI * P(u, sendT - 0.05, sendT + 0.2));
+  const bx = BX + BW - 48, by = BY + BH / 2;
+  k.fillStyle = '#DDE3F3'; k.beginPath(); k.arc(bx, by, 30, 0, 7); k.fill();
+  if (on > 0.01) { k.fillStyle = C.blue; k.beginPath(); k.arc(bx, by, 30 * Math.min(on, 1.25) * press, 0, 7); k.fill(); }
+  k.strokeStyle = '#fff'; k.lineWidth = 6; k.lineCap = 'round'; k.lineJoin = 'round'; k.beginPath(); k.moveTo(bx, by + 12); k.lineTo(bx, by - 12); k.moveTo(bx - 11, by - 2); k.lineTo(bx, by - 13); k.lineTo(bx + 11, by - 2); k.stroke();
+};

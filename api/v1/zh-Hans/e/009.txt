@@ -1,0 +1,55 @@
+// Motion Prompt #009 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#009
+//
+// 缓动 / Easing
+// 分类: motion (动态图形) · element 09 · 子类: 运动细节
+// 示例效果: 两个方块在相同时间内走过相同距离：上方匀速，下方使用缓动。
+// 效果规格:
+//   - 每 4.7 s 往返一次；两个边长 62 px、圆角半径 16 的方块横移 316 px，去程 0.2–1.75 s（1.55 s），停留 0.8 s，回程 2.55–4.1 s。
+//   - 上方匀速：线性运动，形状和颜色不变。
+//   - 下方缓动：cubic-bezier(.86, 0, .14, 1)，起步慢、中间快、停止慢。
+//   - 下方方块按速度水平拉伸至最多 1.5×、垂直压缩至 0.8×，比例由 speed ÷ 3.6 决定并限制在 0–1。
+//   - 身后有 3 根速度线（最长 150 px × 0.8–1.25）和 4 个残影，每个相隔 0.035 s。
+//   - 每条轨道用 12 个点标示等时间间隔的位置：上方均匀分布，下方集中在两端。
+// 适用场景: 适合移动、缩放和旋转，让动作自然加减速。
+// 标签: easing, ease-in-out, cubic-bezier, linear, timing, curve, acceleration
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#009
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 09
+// 09 イージング（同じ距離・同じ時間。上は一定の速さ、下は緩急あり）
+const EZ = bez(.86, 0, .14, 1);
+const EZT = [0.2, 1.75, 2.55, 4.1];
+const ezPos = u => { if (u < EZT[0]) return 0; if (u < EZT[1]) return P(u, EZT[0], EZT[1]); if (u < EZT[2]) return 1; if (u < EZT[3]) return 1 - P(u, EZT[2], EZT[3]); return 0; };
+const ezE = u => { if (u < EZT[0]) return 0; if (u < EZT[1]) return EZ(P(u, EZT[0], EZT[1])); if (u < EZT[2]) return 1; if (u < EZT[3]) return 1 - EZ(P(u, EZT[2], EZT[3])); return 0; };
+CELLS[8] = (k, w, h, u) => {
+  stage(k);
+  const x0 = 162, x1 = 478, D = x1 - x0, y1 = 58, y2 = 150, S = 62;
+  const lin = ezPos(u), mv = (u >= EZT[0] && u < EZT[1]) ? 1 : (u >= EZT[2] && u < EZT[3]) ? -1 : 0, pp = mv === 1 ? P(u, EZT[0], EZT[1]) : mv === -1 ? P(u, EZT[2], EZT[3]) : 0;
+  const ez = mv === 1 ? EZ(pp) : mv === -1 ? 1 - EZ(pp) : lin;
+  const vel = mv ? (EZ(Math.min(1, pp + 0.01)) - EZ(Math.max(0, pp - 0.01))) / 0.02 : 0, vn = clamp(vel / 3.6);
+  // ラベル
+  txt(k, '一定', 24, y1 + 1, `700 34px ${JP}`, C.dim, 'left', 'middle');
+  txt(k, '緩急', 24, y2 + 1, `700 34px ${JP}`, C.yel, 'left', 'middle');
+  // レール＋0.1秒ごとの位置
+  [[y1, x => x, '#34489A'], [y2, EZ, '#34489A']].forEach(([y, f, col]) => {
+    k.strokeStyle = C.navy2; k.lineWidth = 6; k.lineCap = 'round'; k.beginPath(); k.moveTo(x0, y); k.lineTo(x1, y); k.stroke();
+    k.fillStyle = col; for (let i = 0; i <= 11; i++) { k.beginPath(); k.arc(x0 + f(i / 11) * D, y, 5, 0, 7); k.fill(); }
+  });
+  // 上：一定（形も色も動かない）
+  k.fillStyle = '#6677AD'; rr(k, x0 + lin * D - S / 2, y1 - S / 2, S, S, 16); k.fill();
+  // 下：緩急あり（速いところで伸び、尾を引く）
+  const X = x0 + ez * D;
+  if (vn > 0.05) {
+    k.lineCap = 'round';
+    [[-20, C.yel, 1], [0, C.coral, 1.25], [20, C.yel, 0.8]].forEach(([dy, col, m]) => { k.strokeStyle = col; k.globalAlpha = 0.9 * vn; k.lineWidth = 10; k.beginPath(); k.moveTo(X - mv * (S / 2), y2 + dy); k.lineTo(X - mv * (S / 2 + 150 * vn * m), y2 + dy); k.stroke(); });
+    k.globalAlpha = 1;
+  }
+  // 残像（少し前の位置を薄く重ねる）
+  for (let g = 4; g >= 1; g--) { const gx = x0 + ezE(u - g * 0.035) * D; if (Math.abs(gx - X) > 3) { k.globalAlpha = 0.16 * (5 - g) / 4 + 0.06; k.fillStyle = C.coral; rr(k, gx - S / 2, y2 - S / 2, S, S, 16); k.fill(); } } k.globalAlpha = 1;
+  const sx = 1 + 0.5 * vn, sy = 1 - 0.2 * vn;
+  k.save(); k.translate(X, y2); k.scale(sx, sy); k.fillStyle = C.coral; rr(k, -S / 2, -S / 2, S, S, 16); k.fill(); k.fillStyle = 'rgba(255,255,255,.9)'; k.beginPath(); k.arc(S / 2 - 18, -S / 2 + 18, 6, 0, 7); k.fill(); k.restore();
+};

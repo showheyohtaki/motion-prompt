@@ -1,0 +1,42 @@
+// Motion Prompt #010 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#010
+//
+// 过冲回弹 / Overshoot
+// 分类: motion (动态图形) · element 10 · 子类: 运动细节
+// 示例效果: 仪表指针越过目标，回摆后停稳。
+// 效果规格:
+//   - 每 4.7 s 一轮；半圆仪表半径 128、线宽 26，目标是全量程的 0.7，即从左端起 126°。
+//   - 0.25 s 开始：value = 0.7 × (1 − e^(−4.6t)·cos(10.5t))；约 0.3 s 后超出目标约 25%，随后振荡并停在目标。
+//   - 超出目标的部分画为珊瑚色，目标位置用黄色刻度标记。
+//   - 填充弧线为蓝→薄荷绿渐变；白色指针宽 9。
+//   - 回程从 3.7 s 开始：value = 0.7 × e^(−7.5t)·cos(8.5t)，返回 0，停止前略低于 0。
+// 适用场景: 适合为元素到位增添力度和弹性。
+// 标签: overshoot, spring, bounce, settle, elastic, gauge, meter, needle
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#010
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 10
+// 10 オーバーシュート（メーターの針が、目標を行き過ぎてから戻って止まる）
+CELLS[9] = (k, w, h, u) => {
+  stage(k);
+  const X = w / 2, Y = h - 26, R = 128, TG = 0.7;
+  let v;
+  if (u < 0.25) v = 0; else if (u < 3.7) { const t = u - 0.25; v = TG * (1 - Math.exp(-4.6 * t) * Math.cos(10.5 * t)); } else { const t = u - 3.7; v = TG * Math.exp(-7.5 * t) * Math.cos(8.5 * t); }
+  const ang = x => Math.PI + x * Math.PI;
+  k.lineCap = 'round';
+  k.strokeStyle = C.navy2; k.lineWidth = 26; k.beginPath(); k.arc(X, Y, R, ang(0), ang(1)); k.stroke();
+  if (v > 0.005) { const g = k.createLinearGradient(X - R, 0, X + R, 0); g.addColorStop(0, C.blue); g.addColorStop(1, C.mint); k.strokeStyle = g; k.beginPath(); k.arc(X, Y, R, ang(0), ang(v)); k.stroke(); }
+  // 行き過ぎた分（目標より先）はコーラルで見せる
+  if (v > TG + 0.004) { k.strokeStyle = C.coral; k.lineCap = 'butt'; k.beginPath(); k.arc(X, Y, R, ang(TG), ang(v)); k.stroke(); k.lineCap = 'round'; }
+  // 目標の印
+  const ta = ang(TG);
+  k.strokeStyle = C.yel; k.lineWidth = 7; k.beginPath(); k.moveTo(X + Math.cos(ta) * (R - 22), Y + Math.sin(ta) * (R - 22)); k.lineTo(X + Math.cos(ta) * (R + 30), Y + Math.sin(ta) * (R + 30)); k.stroke();
+  k.fillStyle = C.yel; k.beginPath(); k.arc(X + Math.cos(ta) * (R + 38), Y + Math.sin(ta) * (R + 38), 8, 0, 7); k.fill();
+  // 針
+  const a = ang(v);
+  k.strokeStyle = '#fff'; k.lineWidth = 9; k.beginPath(); k.moveTo(X, Y); k.lineTo(X + Math.cos(a) * (R - 26), Y + Math.sin(a) * (R - 26)); k.stroke();
+  k.fillStyle = '#fff'; k.beginPath(); k.arc(X, Y, 17, 0, 7); k.fill(); k.fillStyle = C.coral; k.beginPath(); k.arc(X, Y, 8, 0, 7); k.fill();
+};

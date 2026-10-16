@@ -1,0 +1,38 @@
+// Motion Prompt #005 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#005
+//
+// 遮罩显现 / Mask reveal
+// 分类: motion (动态图形) · element 05 · 子类: 入场与文字
+// 示例效果: 标题文字从一条分隔线所标记的不可见边界后滑出。
+// 效果规格:
+//   - 每 2.35 s 一轮。珊瑚色分隔线为 380 × 6，y = 124；于 0.1–0.5 s 从中心展开（三次缓入缓出），于 2.05–2.3 s 缩回。
+//   - 上方文字为白色粗体 98 px，裁切至分隔线上方（y 8–119）；于 0.35–1.0 s 从下方 120 px 移入，使用五次缓出。
+//   - 下方文字为黄色 32 px，裁切至分隔线下方（y 129–181）；于 0.55–1.15 s 从上方 60 px 移入，使用五次缓出。
+//   - 退场：上方文字于 1.7–2.05 s 上移 150 px（backIn，s = 1.2，先略向下预备）；下方文字于 1.75–2.05 s 下移 70 px（三次缓入）。
+//   - 不透明度始终不变，文字仅因离开裁切区域而隐藏。
+// 适用场景: 适合整洁、有条理的标题入场。
+// 标签: mask, reveal, clip, wipe, title, text, slide-up, headline
+// 尺寸: 539x208 px · 周期: 4.7 s
+// Needs: kit motion -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/motion.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#005
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 05
+// 05 マスクリビール（見えない枠＝線の向こうから、見出しがせり上がる）
+CELLS[4] = (k, w, h, u) => {
+  stage(k);
+  const T = CYC / 2, lu = mod(u, T), X = w / 2, LY = 124;
+  const lg = eIO(P(lu, 0.1, 0.5)) * (1 - eIO(P(lu, 2.05, 2.3)));
+  // 上の段：線の下から上へ
+  const up = (1 - eOut5(P(lu, 0.35, 1.0))) * 120 + backIn(P(lu, 1.7, 2.05), 1.2) * -150;
+  k.save(); k.beginPath(); k.rect(0, 8, w, LY - 8 - 5); k.clip();
+  txt(k, 'Hello!', X, LY - 14 + up, `800 98px ${DISP}`, '#fff', 'center', 'alphabetic', '1px');
+  k.restore();
+  // 下の段：線の上から下へ
+  const dn = (1 - eOut5(P(lu, 0.55, 1.15))) * -60 + eIn(P(lu, 1.75, 2.05)) * 70;
+  k.save(); k.beginPath(); k.rect(0, LY + 5, w, 52); k.clip();
+  txt(k, 'はじめまして', X, LY + 44 + dn, `700 32px ${JP}`, C.yel, 'center', 'alphabetic', '6px');
+  k.restore();
+  if (lg > 0.005) { k.fillStyle = C.coral; rr(k, X - 190 * lg, LY - 3, 380 * lg, 6, 3); k.fill(); }
+};

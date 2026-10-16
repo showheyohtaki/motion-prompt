@@ -31,6 +31,17 @@ node <skill-dir>/scripts/motion-prompt.mjs <command>
 
 `--lang ja` gives Japanese names and text; the default is `--lang en`, and `search` switches to Japanese by itself when the words are Japanese (`pick` prints in the language the user browsed in, unless you pass `--lang`). `--out <dir>` writes files instead of printing them (`get`, `kit`, `prompt`). `--refresh` skips the disk cache.
 
+## Simplified Chinese
+
+For a Simplified Chinese request, use `--lang zh-Hans` consistently for `pick`,
+`list`, `get`, `prompt` and `kit`. `zh-CN` is an accepted alias. Ask users to
+press “选择” (Pick) and “发送给 AI” (Send to AI). Pasted selections starting
+with “我在 motion-prompt 素材库中选择了以下” carry the same IDs and ordering
+as English/Japanese selections. Treat “备注” as the user's note.
+Chinese `get` output uses `api/v1/zh-Hans/kit/<pack>.js`; fetch its kit with the
+same language flag so copied Canvas text is Chinese without the gallery.
+Keep the user's language when explaining the workflow; see [中文说明](../../README.zh-Hans.md).
+
 ## Let the user pick
 
 This is the main way to use the library. People often do not know what a move is called, and they should not have to. Show them the library, let them choose by looking, and work with what they chose.

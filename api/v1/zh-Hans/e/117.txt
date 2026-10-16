@@ -1,0 +1,30 @@
+// Motion Prompt #117 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#117
+//
+// 青橙色调 / Teal and orange
+// 分类: photo (摄影效果、光线与风格) · element 21 · 子类: 色调与后期风格
+// 示例效果: 天空、山丘、地面和人物阴影转青，受光边缘和太阳转橙，形成互补对比。
+// 效果规格:
+//   - 场景 3：左侧半身像头部中心 x 140、y 82、半径 28 px；右侧有山丘、房屋、树和太阳，太阳 x 432、y 54、半径 15 px。
+//   - 青色部分：天空 #CFE6E3，山丘 #8CC1BE 与 #62A2A1，地面 #3F8083，树 #2F6A6E，人物 #1D4E53。
+//   - 橙色部分：人物受光 #FF9248，太阳 #FF8236，太阳光晕 #FFC48C。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合色彩对比强烈的大片或预告片风格。
+// 标签: teal and orange, orange and teal, cinematic, color grading, blockbuster, film look
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#117
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 21
+// ティール＆オレンジ: 空と影を青緑、日の当たる肌と太陽を橙に寄せる
+CELLS[20] = cell((k, u) => {
+  const a = env(u);
+  const TO = {
+    sky: '#CFE6E3', sky2: '#B7DAD6', far: '#8CC1BE', mid: '#62A2A1', ground: '#3F8083', ground2: '#2F6A6E', mark: '#CFE6E3', cast: '#2F6A6E',
+    bld: '#A8D1CE', edge: '#4E8E8F', win: '#62A2A1', winOff: '#62A2A1', tree: '#2F6A6E', trunk: '#1F5357', post: '#1F5357', bulb: '#1F5357',
+    person: '#1D4E53', shade: '#143F43', lit: '#FF9248', car: '#2F6A6E', glass: '#CFE6E3', tire: '#143F43', sun: '#FF8236', glow: '#FFC48C'
+  };
+  stageLand(k, pal(BASE, TO, a));
+});

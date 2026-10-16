@@ -1,0 +1,47 @@
+// Motion Prompt #088 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#088
+//
+// 离站挽留弹窗 / Exit-intent popup
+// 分类: lp (落地页与网页效果) · element 16 · 子类: 悬停与点击交互
+// 示例效果: 光标朝页面顶部的标签和关闭按钮离开时，背景变暗并弹出挽留窗口，× 可关闭。
+// 效果规格:
+//   - 光标于 0.7–1.25 s 按三次缓入缓出，从页面上移至浏览器地址栏。
+//   - 越过视口顶边 y = 0 时触发，约 1.07 s，类似 document 的 mouseleave 且 clientY ≤ 0。
+//   - 触发后 0.05–0.45 s 按三次缓出打开：藏蓝背景不透明度 0→0.5；弹窗 260 × 132、圆角半径 12，不透明度 0→1、缩放 0.9→1。
+//   - 内部为标题、橙色折扣行、优惠券按钮和右上角 ×。
+//   - 2.9 s 点击 ×，0.03–0.25 s 后线性消失。
+// 适用场景: 适合向即将离开且尚未转化的访客提供最后一次优惠。
+// 标签: exit-intent, popup, mouseleave, coupon, conversion, retention, lp
+// 尺寸: 539x208 px · 周期: 4.8 s
+// Needs: kit lp -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#088
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 16
+// 16 離脱防止ポップアップ（カーソルがタブや閉じるボタンの方へ出ていくと、引き止める小窓が出る）
+CELLS[15] = (k, w, h, u) => {
+  frame(k);
+  const OX = WIN.x, OY = WIN.y + WIN.bar;               // カーソルは窓の外（タブ・アドレスバー）まで出るので、カードの座標で描く
+  const [cx, cy] = path([[0, 440, 150], [0.7, 300, 120], [1.25, 360, -18], [1.9, 372, -20], [2.6, 366, 38], [3.3, 366, 38], [4.4, 440, 150], [4.8, 440, 150]], u);
+  const CLOSE = 2.9;
+  let TRIG = 0.7; while (TRIG < 1.3 && path([[0.7, 300, 120], [1.25, 360, -18]], TRIG)[1] >= 0) TRIG += 1 / 240;   // 表示域の上端（y = 0）を越えた時刻（約1.07秒）
+  const m = eOut(P(u, TRIG + 0.05, TRIG + 0.45)) * (1 - P(u, CLOSE + 0.03, CLOSE + 0.25));
+  const D = { x: 125.5, y: 18, w: 260, h: 132 };
+  view(k, () => {
+    header(k, 0);
+    pic(k, 24, 46, 222, 110, 0, 8); txt(k, 'はじめての方へ', 264, 82, `800 19px ${JP}`, C.ink); bars(k, 264, 96, 210, 3); btn(k, 264, 132, 100, 24, '申し込む');
+    if (m > 0) {
+      k.fillStyle = `rgba(28,35,51,${0.5 * m})`; k.fillRect(0, 0, VW, VH);
+      k.save(); k.globalAlpha = m; k.translate(D.x + D.w / 2, D.y + D.h / 2); const s = 0.9 + 0.1 * m; k.scale(s, s); k.translate(-D.w / 2, -D.h / 2);
+      k.fillStyle = '#fff'; rr(k, 0, 0, D.w, D.h, 12); k.fill();
+      txt(k, 'ちょっと待って！', D.w / 2, 34, `800 17px ${JP}`, C.ink, 'center');
+      txt(k, '今なら初回 10%OFF', D.w / 2, 60, `800 15px ${JP}`, C.acc, 'center');
+      btn(k, D.w / 2 - 75, 80, 150, 30, 'クーポンを受け取る', C.acc, '#fff', 12);
+      k.strokeStyle = C.sub; k.lineWidth = 2; k.lineCap = 'round'; k.beginPath(); k.moveTo(D.w - 26, 14); k.lineTo(D.w - 14, 26); k.moveTo(D.w - 14, 14); k.lineTo(D.w - 26, 26); k.stroke();
+      k.restore();
+    }
+  });
+  // カーソルの × のクリック（窓の中）と、窓の外への移動
+  k.save(); k.beginPath(); k.rect(0, 0, CW, CH); k.clip(); k.translate(OX, OY); click(k, cx, cy, u, [CLOSE]); k.restore();
+};

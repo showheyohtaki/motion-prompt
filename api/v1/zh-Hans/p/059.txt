@@ -1,0 +1,15 @@
+请使用“开关（Toggle switch）”，它属于“UI 组件”。
+Motion Prompt #059
+
+含义：切换设置的开启与关闭状态
+示例效果：三行设置中的前两个开关依次开启，再关闭。
+规格：
+- 542×191 卡片，周期 4.5 s；三行设置相距 60 px，带分隔线；x 450 处轨道 64×34、圆角半径 17，白色滑块半径 13、带阴影。
+- 点击时间：第 1 行 1.0 s 开，第 2 行 1.8 s 开，第 1 行 3.0 s 关，第 2 行 3.6 s 关，第 3 行保持关闭。
+- 每次切换在 0.2 s 内按 easeOutCubic 变化，滑块移动 30 px，从 17→47。
+- 轨道随进度从灰色 #d9d7d5 混合至蓝色 #1f5ae8。
+适用场景：适合立即生效、只有两种状态的设置。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/059.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

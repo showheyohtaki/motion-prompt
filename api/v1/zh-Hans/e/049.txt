@@ -1,0 +1,38 @@
+// Motion Prompt #049 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#049
+//
+// 模态对话框 / Modal dialog
+// 分类: ui (UI 组件) · element 01 · 子类: 浮层与展开
+// 示例效果: 点击打开后整页变暗，小窗口略微放大着出现在中央，点击 × 关闭。
+// 效果规格:
+//   - 542×191 卡片，周期 4.5 s；光标于 0.95 s 到达左下方 120×36 的打开按钮，1.0 s 点击。
+//   - 展开量 a 在 1.0–1.32 s 按 easeOutCubic 从 0→1；全卡片遮罩颜色 rgba(18,20,28)，不透明度 0.42·a。
+//   - 窗口为白色 280×140，圆角半径 12，中心 (271, 97)；阴影模糊 24、y 偏移 8、alpha 0.25；缩放 0.9 + 0.1·a，不透明度 a。
+//   - 内部包含粗体标题条、两行文字、右下方蓝色 88×30 按钮和右上方 ×。
+//   - 关闭：光标于 3.0 s 前到达 ×，3.3 s 点击；a 乘以 1 − easeInOutCubic，作用于 3.3–3.58 s。
+// 适用场景: 适合需要用户暂停并处理一件事的确认或短表单。
+// 标签: modal, modal-dialog, dialog, popup, overlay, backdrop, lightbox, confirm
+// 尺寸: 542x191 px · 周期: 4.5 s
+// Needs: kit ui -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/ui.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#049
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 01
+// 01 モーダル（Modal dialog）
+CELLS[0] = ui((w, h, t) => {
+  pageLines(24, 18, 494);
+  fillRR(24, 92, 120, 36, 8, C.blue); text('開く', 84, 110, 16, '#fff', 600, 'center');
+  fillRR(170, 92, 348, 36, 8, C.block); fillRR(24, 142, 494, 38, 8, C.block);
+  const a = eo(seg(t, 1.0, 1.32)) * (1 - eio(seg(t, 3.3, 3.58)));
+  if (a > 0) {
+    X.fillStyle = `rgba(18,20,28,${.42 * a})`; X.fillRect(0, 0, w, h);
+    X.save(); X.globalAlpha = a; X.translate(271, 97); const s = .9 + .1 * a; X.scale(s, s);
+    shadowed(() => fillRR(-140, -70, 280, 140, 12, '#fff'), 24, 8, .25);
+    bar(-116, -48, 120, C.ink, 11); bar(-116, -20, 232); bar(-116, -2, 180);
+    fillRR(28, 26, 88, 30, 7, C.blue);
+    X.strokeStyle = '#9a9896'; X.lineWidth = 2.2; X.lineCap = 'round'; X.beginPath(); X.moveTo(110, -54); X.lineTo(120, -44); X.moveTo(120, -54); X.lineTo(110, -44); X.stroke();
+    X.restore();
+  }
+  pointer([[.3, w + 30, h + 30], [.95, 86, 114], [1.5, 86, 114], [3.0, 389, 50], [3.5, 389, 50], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
+});

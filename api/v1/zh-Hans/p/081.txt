@@ -1,0 +1,15 @@
+请使用“悬停抬升（Hover lift）”，它属于“落地页与网页效果”。
+Motion Prompt #081
+
+含义：悬停时元素抬高并加深阴影
+示例效果：只有光标下的卡片稍微抬升、阴影扩散，移开后回落。
+规格：
+- 三张 146 × 128、圆角半径 10 的卡片，光标从左到右各停约 1 s。
+- 悬停后在 0.3 s 内按三次缓出抬升 10 px，移开后同样用 0.3 s 返回，类似 CSS transition。
+- 阴影随抬升变化：模糊 6→22 px，y 偏移 2→12 px，不透明度 0.08→0.22。
+- 页面浅灰、卡片白色，突出阴影。
+适用场景：适合让卡片和按钮显得可点击。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/081.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

@@ -1,6 +1,6 @@
 # Make your own
 
-**English** | [日本語](README.ja.md)
+**English** | [日本語](README.ja.md) | [简体中文](README.zh-Hans.md)
 
 Prompts, a render script and two finished examples for making a "names" set of your own: 3 looping videos of 8 cards each, where every card is a small animation that shows what one name means, plus a one-page cheat-sheet image.
 

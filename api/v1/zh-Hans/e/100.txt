@@ -1,0 +1,35 @@
+// Motion Prompt #100 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#100
+//
+// 分割光 / Split lighting
+// 分类: photo (摄影效果、光线与风格) · element 04 · 子类: 布光与时段
+// 示例效果: 灯从靠前 20° 转至正侧 90°，头部阴影从月牙扩大至一半，从中线分割脸部。
+// 效果规格:
+//   - 场景 1：人物半身像位于 y 150 的地平线前，头部中心 x 270、y 78，半径 29 px，无五官或头发。 背景变暗，天空 #E7E5E1。
+//   - 光从画面左侧照入，角度 20°→90°；右下为灯位图，右上显示 90° · ↑0°。
+//   - 头部 x = 270 + cos(angle)·√(29² − dy²) 右侧为阴影 #33405A，左侧为受光 #FFC75A；90° 时边界为竖直中线。
+//   - 身体半宽 56 px，x = 270 + cos(angle)·56 右侧为阴影，左边缘条带受光。
+//   - 时间：0.4–1.4 s 效果渐入，保持到 4.0 s，至 4.8 s 消退；每轮 5 s，三次缓入缓出，约 cubic-bezier(0.65,0,0.35,1)。
+// 适用场景: 适合戏剧性、紧张或情绪浓重的人像。
+// 标签: split lighting, side light, portrait lighting, half face, dramatic, chiaroscuro
+// 尺寸: 539x208 px · 周期: 5 s
+// Needs: kit photo -> https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/photo.js
+// 动态示例: https://showheyohtaki.github.io/motion-prompt/#100
+//
+// cells[i](k, w, h, u)：k 为 CanvasRenderingContext2D，调用前已清空并包裹 save/restore；w、h 为尺寸，u 为周期内秒数。画面仅由 u 决定。
+// 以下是示例代码，CELLS、常量和辅助函数位于 kit 中。
+
+// @element 04
+// スプリットライティング: 光が真横（90°）へ回り、顔の右半分が影に沈む
+CELLS[3] = cell((k, u) => {
+  const a = env(u), az = lerp(0.35, Math.PI / 2, a);
+  stagePortrait(k, pal(BASE, DIM, a));
+  const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a), W = torsoW(PR);
+  bust(k, PX, PY, PR, BASE.person, kk => {
+    kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, PR, 0, TAU); kk.fill();
+    headShade(kk, PX, PY, PR, az, 1, sh);
+    torso(kk, PX, PY, PR, PX - W, PX - Math.cos(az) * 0.4 * W - 0.4 * W, lit);
+    torso(kk, PX, PY, PR, PX + Math.cos(az) * W, PX + W, sh);
+  });
+  plan(k, [[az, a]]);
+  hud(k, `${Math.round(az * 180 / Math.PI)}° · ↑0°`);
+});

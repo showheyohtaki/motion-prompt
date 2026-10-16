@@ -1,6 +1,16 @@
 /* Motion Prompt · pack "lp" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
-MotionPrompt.pack('lp', function () {
+MotionPrompt.pack('lp', function (MP_LANGUAGE) {
   // @kit
+  // Text is the only locale-dependent part of the drawing. Standalone kits
+  // may set MP_LANGUAGE before this code; all geometry and timing stay fixed.
+  const MP_LANG = typeof MP_LANGUAGE === 'string' ? MP_LANGUAGE : 'ja';
+  const MP_LABELS = {"料金": "价格", "特長": "特点", "無料で試す": "免费试用", "山へ、行こう。": "去山里走走。", "予約する": "立即预订", "人気のコース": "热门课程", "暮らしを、軽く。": "让生活更轻松。", "詳しく見る": "了解详情", "選ばれる3つの理由": "选择我们的三个理由", "新しい毎日を、": "开启新的一天", "期間限定キャンペーン実施中": "限时优惠进行中", "3ステップで完成": "三步即可完成", "使ってみる": "试用体验", "知ってもらう": "了解我们", "はじめてのWebデザイン": "网页设计入门", "毎日のごはんが": "每日三餐", "たった10分で": "只需十分钟", "作れる。": "轻松完成。", "はじめてでも": "初次下厨", "失敗しないレシピ": "也能掌握的食谱", "だけ。": "精选推荐。", "忙しい人のための": "献给忙碌的你", "台所の新しい相棒": "厨房里的新伙伴", "山の宿": "山中小屋", "海の宿": "海滨旅舍", "星の宿": "观星小屋", "夏の山小屋": "夏日山间小屋", "海辺のカフェ": "海边咖啡馆", "作品を見る": "查看作品", "お問い合わせ": "联系我们", "お申し込み": "报名申请", "送信する": "提交", "サービス": "服务", "実績": "案例", "会社概要": "关于我们", "はじめての方へ": "初次使用指南", "申し込む": "立即报名", "ちょっと待って！": "请稍等！", "今なら初回 10%OFF": "首次体验限时九折", "クーポンを受け取る": "领取优惠券", "ようこそ。": "欢迎。", "始める": "开始", "ギャラリー": "图片库", "← 一覧へ": "← 返回列表", "ちょうどいい道具を。": "找到称手的工具。", "はじめる": "开始", "アプリで、": "用应用，", "もっと身軽に。": "让生活更轻松。", "ダウンロード": "下载", "BEFORE": "处理前", "AFTER": "处理后", "WORKS": "作品", "Hello, Future.": "你好，未来。", "CREATIVE STUDIO": "创意工作室", "Project 02": "项目 02"};
+  function mpText(value) {
+    const s = String(value);
+    if (MP_LANG !== 'zh-Hans') return s;
+    if (Object.prototype.hasOwnProperty.call(MP_LABELS, s)) return MP_LABELS[s];
+    return s;
+  }
   // LP・Webサイトの演出の名前 24（各カード 539x208・4.8秒周期。各コマは時間 u の純関数）
   // カードの中にブラウザの窓を1つ描き、その中の簡略化したページで演出を見せる。
   // きっかけ（スクロールバー・カーソル・クリック）も一緒に描く。色は 地・文字・差し色（朱）＋写真用の青。
@@ -24,7 +34,7 @@ MotionPrompt.pack('lp', function () {
   const eEl = x => x <= 0 ? 0 : x >= 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x - 0.075) * 2 * Math.PI / 0.3) + 1;
   function rr(k, x, y, w, h, r) { k.beginPath(); k.roundRect(x, y, w, h, r); }
   function txt(k, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
-    k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(s, x, y); k.letterSpacing = '0px';
+    k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(mpText(s), x, y); k.letterSpacing = '0px';
   }
   // キーフレーム [[秒, 値], …] を easeInOut（3乗）でつなぐ。u は周期で折り返す
   function steps(keys, u) {
@@ -311,7 +321,7 @@ MotionPrompt.pack('lp', function () {
       txt(k, '忙しい人のための', 70, 50, `700 14px ${JP}`, C.sub); txt(k, '台所の新しい相棒', 70, 80, `800 24px ${JP}`, C.ink);
       bars(k, 70, 96, 330, 4, C.faint, 6, 12, 0.8);
       for (const [base, parts] of rows) {
-        k.font = F; const ws = parts.map(s => k.measureText(s).width); let x = (VW - ws.reduce((a, b) => a + b, 0)) / 2;
+        k.font = F; const ws = parts.map(s => k.measureText(mpText(s)).width); let x = (VW - ws.reduce((a, b) => a + b, 0)) / 2;
         const t0 = enteredAt(SY, base - 20, LINE, u), q = t0 === null ? 0 : eOut(P(u, t0, t0 + DUR));
         if (q > 0) { k.fillStyle = MARK; k.fillRect(x + ws[0], base - 8, ws[1] * q, 11); }
         parts.forEach((s, i) => { txt(k, s, x, base, F, i === 1 ? C.ink : '#4A5368'); x += ws[i]; });
@@ -436,7 +446,7 @@ MotionPrompt.pack('lp', function () {
     const cur = t => path([[0, 120, 150], [0.45, 170, 80], [1.3, 186, 84], [1.55, 268, 80], [2.4, 282, 84], [2.65, 372, 80], [3.5, 390, 84], [3.95, 430, 150], [4.8, 120, 150]], t);
     view(k, () => {
       logo(k, 22, 28); bars(k, 90, 132, 331, 2, C.faint, 6, 12, 0.6);
-      k.font = F; const ws = LINKS.map(s => k.measureText(s).width); let x = (VW - ws.reduce((a, b) => a + b, 0) - GAP * (LINKS.length - 1)) / 2;
+      k.font = F; const ws = LINKS.map(s => k.measureText(mpText(s)).width); let x = (VW - ws.reduce((a, b) => a + b, 0) - GAP * (LINKS.length - 1)) / 2;
       LINKS.forEach((s, i) => {
         const x0 = x, x1 = x + ws[i], inside = t => { const [a, b] = cur(t); return a > x0 - 6 && a < x1 + 6 && b > LY - 22 && b < LY + 14; };
         txt(k, s, x0, LY, F, C.ink);
@@ -468,7 +478,7 @@ MotionPrompt.pack('lp', function () {
       k.globalCompositeOperation = 'saturation'; k.fillStyle = '#888'; k.fillRect(F.x, F.y, F.w, F.h);
       k.globalCompositeOperation = 'source-over'; k.fillStyle = 'rgba(28,35,51,.18)'; k.fillRect(F.x, F.y, F.w, F.h);
       k.restore();
-      const tag = (s, x, al) => { k.font = `800 11px ${EN}`; const tw = k.measureText(s).width + 16; const bx = al ? x - tw : x; k.fillStyle = 'rgba(28,35,51,.55)'; rr(k, bx, F.y + 10, tw, 20, 10); k.fill(); txt(k, s, bx + tw / 2, F.y + 20.5, `800 11px ${EN}`, '#fff', 'center', 'middle', '1px'); };
+      const tag = (s, x, al) => { k.font = `800 11px ${EN}`; const tw = k.measureText(mpText(s)).width + 16; const bx = al ? x - tw : x; k.fillStyle = 'rgba(28,35,51,.55)'; rr(k, bx, F.y + 10, tw, 20, 10); k.fill(); txt(k, s, bx + tw / 2, F.y + 20.5, `800 11px ${EN}`, '#fff', 'center', 'middle', '1px'); };
       k.save(); rr(k, F.x, F.y, F.w, F.h, 10); k.clip(); tag('BEFORE', F.x + 10, false); tag('AFTER', F.x + F.w - 10, true); k.restore();
       k.fillStyle = '#fff'; k.fillRect(hx - 1.5, F.y, 3, F.h);
       k.save(); k.shadowColor = 'rgba(28,35,51,.3)'; k.shadowBlur = 8; k.shadowOffsetY = 2; k.fillStyle = '#fff'; k.beginPath(); k.arc(hx, hy, 17, 0, 7); k.fill(); k.restore();
@@ -638,7 +648,7 @@ MotionPrompt.pack('lp', function () {
     view(k, () => {
       bars(k, 34, 20, 180, 1, C.ink, 10); bars(k, 34, 38, 300, 1);
       k.fillStyle = C.ink; k.fillRect(0, 58, VW, 58);
-      k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(s).width); k.letterSpacing = '0px';
+      k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(mpText(s)).width); k.letterSpacing = '0px';
       const unit = ws.reduce((a, b) => a + b + GAPW, 0);
       let x = -mod(u / CYC, 1) * unit;                 // 1周期で1組ぶん左へ
       for (let rep = 0; x < VW; rep++) WORDS.forEach((s, i) => {

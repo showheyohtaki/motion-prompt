@@ -1,0 +1,16 @@
+请使用“视差滚动（Parallax scrolling）”，它属于“落地页与网页效果”。
+Motion Prompt #073
+
+含义：滚动时背景层比内容移动得慢
+示例效果：页面下滚时标题正常上移，天空、太阳与远近山坡移动得更慢。
+规格：
+- 浏览器窗口视口为 511 × 168；滚动于 0.3–1.9 s 从 0→120 px，2.9–4.3 s 从 120→0，三次缓入缓出。
+- 各层位移为 scroll × factor：天空与太阳 0.15，远山 0.4，近山 0.7。
+- 标题 28 px、按钮与下一章节以 1.0 正常滚动。
+- 白色下一章节从首屏底部 168 px 处开始，滑过移动较慢的背景。
+- 右侧滚动条滑块随滚动移动。
+适用场景：适合为首屏或章节照片增加纵深感。
+
+参考实现（Canvas 2D，画面仅由时间决定）：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/e/073.txt
+共享辅助代码：https://showheyohtaki.github.io/motion-prompt/api/v1/zh-Hans/kit/lp.js
+保留参考实现的形状、时间和缓动数值，仅根据当前项目替换文字、颜色与素材。

@@ -237,24 +237,24 @@
       });
     });
     $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    $('.lang-select').value = lang;
     $$('[data-href-' + lang + ']').forEach(function (a) { a.href = a.getAttribute('data-href-' + lang); });
     applyTheme();
   }
   function applyTheme() { $('#theme').setAttribute('aria-label', t(isDark() ? 'themeToLight' : 'themeToDark')); }
-  $$('[data-lang]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var lang = b.getAttribute('data-lang');
-      if (lang === state.lang) return;
-      state.lang = lang;
-      store.set('mp-lang', lang);
-      if (/[?&]lang=/.test(location.search)) {
-        var q = new URLSearchParams(location.search); q.set('lang', lang);
-        history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
-      }
-      applyText();
-      if (state.data) build();  // rebuild redraws the embeds in the new language
-    });
-  });
+  function setLang(lang) {
+    if (lang === state.lang) return;
+    state.lang = lang;
+    store.set('mp-lang', lang);
+    if (/[?&]lang=/.test(location.search)) {
+      var q = new URLSearchParams(location.search); q.set('lang', lang);
+      history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
+    }
+    applyText();
+    if (state.data) build();  // rebuild redraws the embeds in the new language
+  }
+  $$('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('.lang-select').addEventListener('change', function () { setLang(this.value); });
   $('#theme').addEventListener('click', function () {
     var next = isDark() ? 'light' : 'dark';
     root.setAttribute('data-theme', next);

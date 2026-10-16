@@ -726,6 +726,7 @@
       });
     });
     $$('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false'); });
+    $('.lang-select').value = lang;
     $('#fact-count').textContent = CAT.count;
     $('#fact-packs').textContent = CAT.packs.length;
     $('#tsv-link').href = 'api/v1/' + lang + '/catalog.tsv';
@@ -750,6 +751,7 @@
     if (state.open) fillDetail(elBy[state.open]);
   }
   $$('[data-lang]').forEach(function (b) { b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); }); });
+  $('.lang-select').addEventListener('change', function () { setLang(this.value); });
 
   function isDark() {
     var a = root.getAttribute('data-theme');

@@ -11,7 +11,7 @@ import { createRequire } from 'node:module';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8');
+const read = name => fs.readFileSync(path.join(ROOT, name), 'utf8').replace(/\r\n/g, '\n');
 const catalog = JSON.parse(read('api/v1/catalog.json'));
 const zh = 'zh-Hans', languages = ['ja', 'en', zh];
 const cli = path.join(ROOT, 'skills/motion-prompt/scripts/motion-prompt.mjs');
@@ -112,6 +112,25 @@ try {
     }).slice(0, 8).map(e => e.tagName + '.' + e.className));
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `overflow at ${width}: ${overflow}`);
   }
+  await page.setViewportSize({ width: 360, height: 800 });
+  for (const route of ['/', '/found.html']) {
+    await page.goto(`${base}${route}?lang=zh-Hans`);
+    const selector = page.locator('.lang-select');
+    assert.ok(await selector.isVisible());
+    assert.equal(await page.locator('.logo').evaluate(e => getComputedStyle(e).fontSize), '17px');
+    for (const lang of ['en', 'ja', zh]) {
+      await selector.selectOption(lang);
+      assert.equal(await page.locator('html').getAttribute('lang'), lang);
+      assert.equal(await selector.inputValue(), lang);
+      assert.equal(await page.locator(`[data-lang="${lang}"]`).getAttribute('aria-pressed'), 'true');
+      assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+    }
+    await page.reload();
+    assert.equal(await selector.inputValue(), zh);
+  }
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(`${base}/?lang=zh-Hans`);
+  await page.waitForSelector('.tile');
   const out = process.env.MP_REVIEW_DIR;
   if (out) {
     fs.mkdirSync(out, { recursive: true });

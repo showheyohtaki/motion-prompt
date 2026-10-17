@@ -1,298 +1,1345 @@
 {
-  "pack": "camera", "order": 2,
-  "title": { "ja": "カメラワークと切り替え", "en": "Camera moves & transitions" },
+  "pack": "camera",
+  "order": 2,
+  "title": {
+    "ja": "カメラワークと切り替え",
+    "en": "Camera moves & transitions",
+    "es": "Movimientos de cámara y transiciones"
+  },
   "categories": [
-    { "slug": "camera-movement", "ja": "カメラの動き", "en": "Camera Movement" },
-    { "slug": "shooting-style-time", "ja": "撮り方・時間の演出", "en": "Shooting Style & Time" },
-    { "slug": "transitions", "ja": "切り替え（トランジション）", "en": "Transitions" }
+    {
+      "slug": "camera-movement",
+      "ja": "カメラの動き",
+      "en": "Camera Movement",
+      "es": "Movimientos de cámara"
+    },
+    {
+      "slug": "shooting-style-time",
+      "ja": "撮り方・時間の演出",
+      "en": "Shooting Style & Time",
+      "es": "Estilo de toma y tiempo"
+    },
+    {
+      "slug": "transitions",
+      "ja": "切り替え（トランジション）",
+      "en": "Transitions",
+      "es": "Transiciones"
+    }
   ],
   "elements": [
-    { "no": "01", "slug": "pan", "category": "camera-movement",
-      "name": { "ja": "パン", "en": "Pan" },
-      "meaning": { "ja": "カメラを横に振る", "en": "Pivot the camera left or right" },
-      "ask": { "ja": "カメラの位置は固定で、街並みを左から右へゆっくりパン。5秒かけて。", "en": "Slow pan from left to right across the skyline, camera fixed in place, over 5 seconds." },
-      "summary": { "ja": "カメラの位置は変えず、首を左から右へ振る。回転なので手前も奥も同じ量だけ横に流れる。", "en": "The camera stays in place and pivots from left to right; because it is a rotation, near and far layers slide sideways by the same amount." },
-      "spec": {
-        "ja": ["カメラ: 位置固定（高さ1.5m）、ヨーだけ -0.32rad → +0.32rad（-18° → +18°、計約37°）", "時間: 0.5秒から3.4秒まで2.9秒かけて回す。イージングは3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物（身長約1.8m）は正面8m先で動かない。画面上では右から左へ流れる", "視差なし: 山・建物・木・人物が同じ角度ぶん動く（焦点距離330px、539×208のカード）", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）", "右上に角度を整数の度で表示（-18° → +18°）"],
-        "en": ["Camera: position fixed (height 1.5 m); yaw only, -0.32 rad → +0.32 rad (-18° → +18°, about 37° in total)", "Timing: rotate from 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: a person (about 1.8 m tall) stands still 8 m ahead and slides right-to-left in frame", "No parallax: mountains, buildings, trees and the person all shift by the same angle (focal length 330 px on a 539×208 card)", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)", "Top-right readout shows the angle in whole degrees (-18° → +18°)"]
+    {
+      "no": "01",
+      "slug": "pan",
+      "category": "camera-movement",
+      "name": {
+        "ja": "パン",
+        "en": "Pan",
+        "es": "Paneo (pan)"
       },
-      "use": { "ja": "横に広い場所を見せるとき、または視線を左右の別の対象へ移すとき。", "en": "To reveal a wide location or to shift attention from one side of the scene to the other." },
-      "tags": ["pan", "panning", "yaw", "rotate", "horizontal", "camera move", "reveal"] },
-
-    { "no": "02", "slug": "tilt", "category": "camera-movement",
-      "name": { "ja": "ティルト", "en": "Tilt" },
-      "meaning": { "ja": "カメラを縦に振る", "en": "Pivot the camera up or down" },
-      "ask": { "ja": "人物の足元から塔の先まで、ゆっくりティルトアップ。", "en": "Slow tilt up from the person's feet to the top of the tower." },
-      "summary": { "ja": "カメラの位置は変えず、首を下から上へ振る。足元の人物から塔の先端まで見上げていく。", "en": "The camera stays in place and pivots upward, from a person at ground level up to the top of a tower." },
-      "spec": {
-        "ja": ["カメラ: 位置固定（高さ1.4m）、ピッチだけ -0.06rad → +0.36rad（-3° → +21°、計約24°）", "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は7m先で動かない。その奥26mに高さ9.5mの塔（先端のアンテナは11.8mまで）", "画面上は全体が上から下へ流れ、人物は下へ切れていき、塔の上部と先端のアンテナが入ってくる", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）", "右上に角度を整数の度で表示（-3° → +21°）"],
-        "en": ["Camera: position fixed (height 1.4 m); pitch only, -0.06 rad → +0.36 rad (-3° → +21°, about 24° in total)", "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: a person stands still 7 m ahead; a 9.5 m tower (antenna tip at 11.8 m) stands 26 m away behind", "On screen everything slides downward: the person leaves at the bottom while the tower top and its antenna enter", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)", "Top-right readout shows the angle in whole degrees (-3° → +21°)"]
+      "meaning": {
+        "ja": "カメラを横に振る",
+        "en": "Pivot the camera left or right",
+        "es": "Girar la cámara a la izquierda o a la derecha"
       },
-      "use": { "ja": "建物や人物の高さ・大きさを見せるとき。", "en": "To show the height or scale of a building or a person." },
-      "tags": ["tilt", "tilt up", "pitch", "vertical", "look up", "camera move"] },
-
-    { "no": "03", "slug": "dolly-in", "category": "camera-movement",
-      "name": { "ja": "ドリーイン", "en": "Dolly in" },
-      "meaning": { "ja": "カメラごと被写体に近づく", "en": "Move the camera toward the subject" },
-      "ask": { "ja": "人物の顔へゆっくりドリーイン。ズームではなく、カメラごと近づく。", "en": "Slow dolly in toward her face; move the camera, do not zoom." },
-      "summary": { "ja": "カメラそのものが被写体へ前進する。手前の物ほど大きく速く流れ、奥の山はほとんど変わらない。", "en": "The camera itself moves toward the subject; near objects grow and pass quickly while the distant mountains barely change." },
-      "spec": {
-        "ja": ["カメラ: 前（奥行き方向）へ 0m → 5.8m 進む。高さ1.5m、向きと焦点距離（330px＝24mm表示）は固定", "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は8m先で動かない。距離が8m → 2.2mになり、画面上の大きさは約3.6倍", "視差あり: 手前の杭（左1.5m・奥3.6m）と岩（右1.6m・奥4.8m）は途中で画面外へ抜ける。120m以上先の山はほぼ同じ大きさ", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）", "右上の表示は 24mm のまま変わらない（04 ズームインとの違い）"],
-        "en": ["Camera: moves forward (in depth) 0 m → 5.8 m; height 1.5 m, direction and focal length (330 px, shown as 24mm) fixed", "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: a person stands still 8 m ahead; distance goes 8 m → 2.2 m, so they appear about 3.6× larger", "Parallax: a foreground post (1.5 m left, 3.6 m deep) and a rock (1.6 m right, 4.8 m deep) pass out of frame; mountains 120 m+ away stay almost the same size", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)", "The top-right readout stays at 24mm (the difference from 04 Zoom in)"]
+      "ask": {
+        "ja": "カメラの位置は固定で、街並みを左から右へゆっくりパン。5秒かけて。",
+        "en": "Slow pan from left to right across the skyline, camera fixed in place, over 5 seconds.",
+        "es": "Paneo lento de izquierda a derecha por el horizonte de la ciudad, con la cámara fija, en 5 segundos."
       },
-      "use": { "ja": "人物の感情や一点へ、空間の奥行きを感じさせながら寄るとき。", "en": "To move in on a person or detail while keeping a sense of depth." },
-      "tags": ["dolly", "dolly in", "push in", "track in", "move forward", "parallax", "camera move"] },
-
-    { "no": "04", "slug": "zoom-in", "category": "camera-movement",
-      "name": { "ja": "ズームイン", "en": "Zoom in" },
-      "meaning": { "ja": "レンズで寄る（位置は動かない）", "en": "Magnify with the lens (camera stays put)" },
-      "ask": { "ja": "カメラは動かさず、窓辺の人物へ3秒でズームイン。", "en": "The camera stays still; zoom in on the person at the window over 3 seconds." },
-      "summary": { "ja": "カメラの位置は動かさず、レンズの焦点距離だけを伸ばす。画面全体が同じ比率で拡大する。", "en": "The camera does not move; only the focal length gets longer, so the whole picture enlarges by the same ratio." },
-      "spec": {
-        "ja": ["カメラ: 位置・向きは固定（高さ1.5m）。焦点距離だけ 330px → 1200px（24mm → 87mm表示、約3.6倍）", "倍率は指数補間: f = 330 × (8/2.2)^p。p は 0.5秒〜3.4秒（2.9秒）の3次イーズインアウト", "被写体: 人物は8m先で動かない。最終の大きさは 03 ドリーインと同じ約3.6倍", "視差なし: 手前の杭・岩、人物、建物、山がすべて同じ比率で大きくなる（重なり方が変わらない）", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）", "右上に焦点距離を mm で表示（24mm → 87mm）"],
-        "en": ["Camera: position and direction fixed (height 1.5 m); only the focal length changes, 330 px → 1200 px (shown as 24mm → 87mm, about 3.6×)", "Exponential interpolation: f = 330 × (8/2.2)^p, where p is a cubic ease-in-out from 0.5 s to 3.4 s (2.9 s)", "Subject: a person stands still 8 m ahead; the final size matches 03 Dolly in (about 3.6×)", "No parallax: the foreground post and rock, the person, buildings and mountains all scale by the same ratio (overlaps do not change)", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)", "Top-right readout shows the focal length in mm (24mm → 87mm)"]
+      "summary": {
+        "ja": "カメラの位置は変えず、首を左から右へ振る。回転なので手前も奥も同じ量だけ横に流れる。",
+        "en": "The camera stays in place and pivots from left to right; because it is a rotation, near and far layers slide sideways by the same amount."
       },
-      "use": { "ja": "その場から動かずに一点へ注目を集めるとき。ドリーインより平面的で観察する印象になる。", "en": "To direct attention to one point without moving the camera; it looks flatter and more observational than a dolly in." },
-      "tags": ["zoom", "zoom in", "focal length", "lens", "magnify", "telephoto", "camera move"] },
-
-    { "no": "05", "slug": "tracking-shot", "category": "camera-movement",
-      "name": { "ja": "トラッキング", "en": "Tracking shot" },
-      "meaning": { "ja": "被写体と並んで動く", "en": "Move along with the subject" },
-      "ask": { "ja": "歩く人物を真横からトラッキング。同じ速さで並んで動く。", "en": "Tracking shot from the side, moving along with the walking person at the same speed." },
-      "summary": { "ja": "歩く人物と同じ速さでカメラが真横に並走する。人物は画面中央のまま、手前の杭ほど速く後ろへ流れる。", "en": "The camera moves sideways at the same speed as a walking person; the person stays centred while nearer posts sweep past faster." },
       "spec": {
-        "ja": ["カメラ: 右へ等速 1.7m/s で横移動（x = -4.0m → +4.0m、4.7秒）。高さ1.3m、向きは正面のまま。イージングなし", "被写体: 人物はカメラと同じ x を歩く（奥7.5m）。画面中央から動かない。脚と腕は sin(u×7)×0.42rad で振る", "視差: 奥4mに1.6m間隔で並ぶ杭が最も速く左へ流れ、木、建物（48m先）の順に遅くなり、山はほぼ動かない", "右上に「→ 1.7m/s」を表示", "くり返し: 4.7秒ごとに開始位置へ戻る（杭と地面の格子は継ぎ目が合うが、背景の建物と木は位置が飛ぶ）"],
-        "en": ["Camera: moves right at a constant 1.7 m/s (x = -4.0 m → +4.0 m in 4.7 s); height 1.3 m, facing straight ahead; no easing", "Subject: a person walks at the same x as the camera (7.5 m away) and stays in the centre of frame; legs and arms swing by sin(u×7)×0.42 rad", "Parallax: posts every 1.6 m at 4 m depth sweep left fastest, then trees, then buildings (48 m away); mountains hardly move", "Top-right readout shows \"→ 1.7m/s\"", "Repeat: jumps back to the start every 4.7 s (posts and ground grid line up at the seam; background buildings and trees jump)"]
+        "ja": [
+          "カメラ: 位置固定（高さ1.5m）、ヨーだけ -0.32rad → +0.32rad（-18° → +18°、計約37°）",
+          "時間: 0.5秒から3.4秒まで2.9秒かけて回す。イージングは3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物（身長約1.8m）は正面8m先で動かない。画面上では右から左へ流れる",
+          "視差なし: 山・建物・木・人物が同じ角度ぶん動く（焦点距離330px、539×208のカード）",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）",
+          "右上に角度を整数の度で表示（-18° → +18°）"
+        ],
+        "en": [
+          "Camera: position fixed (height 1.5 m); yaw only, -0.32 rad → +0.32 rad (-18° → +18°, about 37° in total)",
+          "Timing: rotate from 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: a person (about 1.8 m tall) stands still 8 m ahead and slides right-to-left in frame",
+          "No parallax: mountains, buildings, trees and the person all shift by the same angle (focal length 330 px on a 539×208 card)",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
+          "Top-right readout shows the angle in whole degrees (-18° → +18°)"
+        ]
       },
-      "use": { "ja": "歩く・走る人物に付いていき、移動している感じを保ったまま表情や動作を見せるとき。", "en": "To follow a walking or running subject and keep the sense of movement while showing their action." },
-      "tags": ["tracking", "tracking shot", "follow", "truck", "lateral", "sideways", "parallax", "walk"] },
-
-    { "no": "06", "slug": "orbit-arc-shot", "category": "camera-movement",
-      "name": { "ja": "オービット", "en": "Orbit (Arc shot)" },
-      "meaning": { "ja": "被写体の周りを回り込む", "en": "Circle around the subject" },
-      "ask": { "ja": "立っている人物の周りを半周オービット。人物は画面の中央のまま。", "en": "Half orbit around the standing person, keeping them in the center of the frame." },
-      "summary": { "ja": "被写体を中心に、カメラが円を描いて回り込む。人物は中央のまま、背景の木と建物が横に大きく流れる。", "en": "The camera travels on a circle around the subject; the person stays centred while the trees and buildings behind sweep sideways." },
+      "use": {
+        "ja": "横に広い場所を見せるとき、または視線を左右の別の対象へ移すとき。",
+        "en": "To reveal a wide location or to shift attention from one side of the scene to the other."
+      },
+      "tags": [
+        "pan",
+        "panning",
+        "yaw",
+        "rotate",
+        "horizontal",
+        "camera move",
+        "reveal"
+      ]
+    },
+    {
+      "no": "02",
+      "slug": "tilt",
+      "category": "camera-movement",
+      "name": {
+        "ja": "ティルト",
+        "en": "Tilt",
+        "es": "Tilt"
+      },
+      "meaning": {
+        "ja": "カメラを縦に振る",
+        "en": "Pivot the camera up or down",
+        "es": "Girar la cámara hacia arriba o hacia abajo"
+      },
+      "ask": {
+        "ja": "人物の足元から塔の先まで、ゆっくりティルトアップ。",
+        "en": "Slow tilt up from the person's feet to the top of the tower.",
+        "es": "Tilt lento hacia arriba, de los pies de la persona hasta la punta de la torre."
+      },
+      "summary": {
+        "ja": "カメラの位置は変えず、首を下から上へ振る。足元の人物から塔の先端まで見上げていく。",
+        "en": "The camera stays in place and pivots upward, from a person at ground level up to the top of a tower."
+      },
       "spec": {
-        "ja": ["カメラ: 人物（正面9m先）を中心とする半径6mの円周上を -0.95rad → +0.95rad（-54° → +54°、計約109°）移動", "向き: 常に中心を向く（ヨー = -角度）。高さ1.7m、ピッチ -0.07rad（約4°下向き）で固定", "時間: 0.5秒から3.6秒まで3.1秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は動かない。顔の白い点が角度に応じて横へずれ、回り込みが分かる。足元に半径1.3mの点線の円", "背景: 半径10mに12本の木を等間隔で並べ、回り込むと人物の後ろを横切る", "戻り: 3.6〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード。右上に角度（-54° → +54°）"],
-        "en": ["Camera: travels on a circle of radius 6 m centred on the person (9 m ahead), from -0.95 rad → +0.95 rad (-54° → +54°, about 109° in total)", "Direction: always faces the centre (yaw = -angle); height 1.7 m, pitch fixed at -0.07 rad (about 4° down)", "Timing: 0.5 s to 3.6 s (3.1 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: the person does not move; a white dot on the face shifts sideways with the angle; a dashed circle of radius 1.3 m marks the ground", "Background: 12 trees evenly spaced on a 10 m radius cross behind the person as the camera moves round", "Return: hold 3.6–4.2 s, then cross-fade back over the last 0.5 s; top-right readout shows the angle (-54° → +54°)"]
+        "ja": [
+          "カメラ: 位置固定（高さ1.4m）、ピッチだけ -0.06rad → +0.36rad（-3° → +21°、計約24°）",
+          "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は7m先で動かない。その奥26mに高さ9.5mの塔（先端のアンテナは11.8mまで）",
+          "画面上は全体が上から下へ流れ、人物は下へ切れていき、塔の上部と先端のアンテナが入ってくる",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）",
+          "右上に角度を整数の度で表示（-3° → +21°）"
+        ],
+        "en": [
+          "Camera: position fixed (height 1.4 m); pitch only, -0.06 rad → +0.36 rad (-3° → +21°, about 24° in total)",
+          "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: a person stands still 7 m ahead; a 9.5 m tower (antenna tip at 11.8 m) stands 26 m away behind",
+          "On screen everything slides downward: the person leaves at the bottom while the tower top and its antenna enter",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
+          "Top-right readout shows the angle in whole degrees (-3° → +21°)"
+        ]
       },
-      "use": { "ja": "人物や商品を立体的に見せたいとき、登場や決めの場面を強調するとき。", "en": "To show a person or product in three dimensions, or to emphasise an entrance or a key moment." },
-      "tags": ["orbit", "arc shot", "circle", "360", "rotate around", "revolve", "camera move"] },
-
-    { "no": "07", "slug": "crane-up", "category": "camera-movement",
-      "name": { "ja": "クレーンアップ", "en": "Crane up" },
-      "meaning": { "ja": "カメラが上へ昇っていく", "en": "Lift the camera up" },
-      "ask": { "ja": "人物の目の高さから、街全体が見える高さまでクレーンアップ。", "en": "Crane up from eye level until the whole town comes into view." },
-      "summary": { "ja": "カメラが真上へ上昇しながら下を向き、人物を見下ろす構図になる。", "en": "The camera rises while tilting down until it looks down on the person." },
+      "use": {
+        "ja": "建物や人物の高さ・大きさを見せるとき。",
+        "en": "To show the height or scale of a building or a person."
+      },
+      "tags": [
+        "tilt",
+        "tilt up",
+        "pitch",
+        "vertical",
+        "look up",
+        "camera move"
+      ]
+    },
+    {
+      "no": "03",
+      "slug": "dolly-in",
+      "category": "camera-movement",
+      "name": {
+        "ja": "ドリーイン",
+        "en": "Dolly in",
+        "es": "Dolly in"
+      },
+      "meaning": {
+        "ja": "カメラごと被写体に近づく",
+        "en": "Move the camera toward the subject",
+        "es": "Acercar la cámara al sujeto"
+      },
+      "ask": {
+        "ja": "人物の顔へゆっくりドリーイン。ズームではなく、カメラごと近づく。",
+        "en": "Slow dolly in toward her face; move the camera, do not zoom.",
+        "es": "Dolly in lento hacia su cara; que se mueva la cámara, sin zoom."
+      },
+      "summary": {
+        "ja": "カメラそのものが被写体へ前進する。手前の物ほど大きく速く流れ、奥の山はほとんど変わらない。",
+        "en": "The camera itself moves toward the subject; near objects grow and pass quickly while the distant mountains barely change."
+      },
       "spec": {
-        "ja": ["カメラ: 高さ 1.4m → 9m へ上昇。同時に前へ 0m → 1.5m 進む", "向き: 人物（8m先）を画面に収めるよう下へ振る。ピッチ = -0.86 × atan2(高さ-1.0, 8-前進量)。約 -2.5° → -44°", "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は動かない。上昇につれて小さくなり、地面の格子が画面いっぱいに広がって地平線は上へ抜ける", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）", "右上に高さを表示（↑ 1.4m → ↑ 9.0m）"],
-        "en": ["Camera: rises from 1.4 m to 9 m while moving forward 0 m → 1.5 m", "Direction: tilts down to keep the person (8 m ahead) in frame; pitch = -0.86 × atan2(height - 1.0, 8 - forward), about -2.5° → -44°", "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: the person does not move; they get smaller as the camera rises, the ground grid fills the frame and the horizon leaves at the top", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)", "Top-right readout shows the height (↑ 1.4m → ↑ 9.0m)"]
+        "ja": [
+          "カメラ: 前（奥行き方向）へ 0m → 5.8m 進む。高さ1.5m、向きと焦点距離（330px＝24mm表示）は固定",
+          "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は8m先で動かない。距離が8m → 2.2mになり、画面上の大きさは約3.6倍",
+          "視差あり: 手前の杭（左1.5m・奥3.6m）と岩（右1.6m・奥4.8m）は途中で画面外へ抜ける。120m以上先の山はほぼ同じ大きさ",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）",
+          "右上の表示は 24mm のまま変わらない（04 ズームインとの違い）"
+        ],
+        "en": [
+          "Camera: moves forward (in depth) 0 m → 5.8 m; height 1.5 m, direction and focal length (330 px, shown as 24mm) fixed",
+          "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: a person stands still 8 m ahead; distance goes 8 m → 2.2 m, so they appear about 3.6× larger",
+          "Parallax: a foreground post (1.5 m left, 3.6 m deep) and a rock (1.6 m right, 4.8 m deep) pass out of frame; mountains 120 m+ away stay almost the same size",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
+          "The top-right readout stays at 24mm (the difference from 04 Zoom in)"
+        ]
       },
-      "use": { "ja": "場面の終わりに人物から離れて全体を見せるとき、場所の広さを明かすとき。", "en": "To pull away from a person at the end of a scene or to reveal how large the location is." },
-      "tags": ["crane", "crane up", "jib", "boom up", "rise", "high angle", "camera move"] },
-
-    { "no": "08", "slug": "dolly-zoom-vertigo", "category": "camera-movement",
-      "name": { "ja": "ドリーズーム", "en": "Dolly zoom (Vertigo)" },
-      "meaning": { "ja": "人物はそのまま背景だけ伸び縮み", "en": "Subject stays, background warps" },
-      "ask": { "ja": "気づいた瞬間の顔にドリーズーム。人物の大きさは変えず、背景だけが遠ざかる。", "en": "Dolly zoom on his face at the moment he realizes: he stays the same size while the background stretches away." },
-      "summary": { "ja": "カメラを引きながら同じ比率でズームする。人物の大きさは変わらず、背景だけが迫ってくる。", "en": "The camera pulls back while zooming in by the same ratio; the person keeps the same size and only the background closes in." },
+      "use": {
+        "ja": "人物の感情や一点へ、空間の奥行きを感じさせながら寄るとき。",
+        "en": "To move in on a person or detail while keeping a sense of depth."
+      },
+      "tags": [
+        "dolly",
+        "dolly in",
+        "push in",
+        "track in",
+        "move forward",
+        "parallax",
+        "camera move"
+      ]
+    },
+    {
+      "no": "04",
+      "slug": "zoom-in",
+      "category": "camera-movement",
+      "name": {
+        "ja": "ズームイン",
+        "en": "Zoom in",
+        "es": "Zoom in"
+      },
+      "meaning": {
+        "ja": "レンズで寄る（位置は動かない）",
+        "en": "Magnify with the lens (camera stays put)",
+        "es": "Acercar con el lente (la cámara no se mueve)"
+      },
+      "ask": {
+        "ja": "カメラは動かさず、窓辺の人物へ3秒でズームイン。",
+        "en": "The camera stays still; zoom in on the person at the window over 3 seconds.",
+        "es": "La cámara queda quieta; zoom in a la persona en la ventana durante 3 segundos."
+      },
+      "summary": {
+        "ja": "カメラの位置は動かさず、レンズの焦点距離だけを伸ばす。画面全体が同じ比率で拡大する。",
+        "en": "The camera does not move; only the focal length gets longer, so the whole picture enlarges by the same ratio."
+      },
       "spec": {
-        "ja": ["カメラ: 人物（8m先）との距離 d を 3.2m → 8m に広げる（4.8m後退）。高さ1.3m", "焦点距離: f = 330 × d/8 px。132px → 330px（10mm → 24mm表示）。距離と焦点距離の比を一定に保つ", "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は動かず、画面上の高さも一定。頭（1.8m）と足元に幅160pxの青い点線を引き、大きさが変わらないことを示す", "背景: 建物（48m先）は約2.2倍、山は約2.4倍に拡大して人物の後ろに迫る。人物より手前の地面は逆に縮む", "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"],
-        "en": ["Camera: distance d to the person (8 m ahead) widens from 3.2 m → 8 m (a 4.8 m pull-back); height 1.3 m", "Focal length: f = 330 × d/8 px, i.e. 132 px → 330 px (shown as 10mm → 24mm), keeping distance ÷ focal length constant", "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: the person does not move and keeps the same height in frame; blue dashed lines 160 px wide at head (1.8 m) and feet show the size is constant", "Background: buildings (48 m away) grow about 2.2× and mountains about 2.4×, closing in behind the person, while the ground in front of the person shrinks", "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"]
+        "ja": [
+          "カメラ: 位置・向きは固定（高さ1.5m）。焦点距離だけ 330px → 1200px（24mm → 87mm表示、約3.6倍）",
+          "倍率は指数補間: f = 330 × (8/2.2)^p。p は 0.5秒〜3.4秒（2.9秒）の3次イーズインアウト",
+          "被写体: 人物は8m先で動かない。最終の大きさは 03 ドリーインと同じ約3.6倍",
+          "視差なし: 手前の杭・岩、人物、建物、山がすべて同じ比率で大きくなる（重なり方が変わらない）",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）",
+          "右上に焦点距離を mm で表示（24mm → 87mm）"
+        ],
+        "en": [
+          "Camera: position and direction fixed (height 1.5 m); only the focal length changes, 330 px → 1200 px (shown as 24mm → 87mm, about 3.6×)",
+          "Exponential interpolation: f = 330 × (8/2.2)^p, where p is a cubic ease-in-out from 0.5 s to 3.4 s (2.9 s)",
+          "Subject: a person stands still 8 m ahead; the final size matches 03 Dolly in (about 3.6×)",
+          "No parallax: the foreground post and rock, the person, buildings and mountains all scale by the same ratio (overlaps do not change)",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
+          "Top-right readout shows the focal length in mm (24mm → 87mm)"
+        ]
       },
-      "use": { "ja": "人物が何かに気づいた瞬間や、不安・動揺を映像で表すとき。", "en": "For a moment of realisation, or to show unease or shock visually." },
-      "tags": ["dolly zoom", "vertigo", "zolly", "push pull", "background stretch", "unease", "camera move"] },
-
-    { "no": "09", "slug": "rack-focus", "category": "shooting-style-time",
-      "name": { "ja": "ラックフォーカス", "en": "Rack focus" },
-      "meaning": { "ja": "ピントを手前と奥のあいだで送る", "en": "Shift focus between near and far" },
-      "ask": { "ja": "手前のカップから奥の人物へ、1秒でラックフォーカス。", "en": "Rack focus from the cup in the foreground to the person behind it, in 1 second." },
-      "summary": { "ja": "カメラは動かさず、ピントを手前の花から奥の人物へ送る。ぼけている側が入れ替わる。", "en": "The camera does not move; focus shifts from a flower in the foreground to a person behind it, swapping which one is blurred." },
+      "use": {
+        "ja": "その場から動かずに一点へ注目を集めるとき。ドリーインより平面的で観察する印象になる。",
+        "en": "To direct attention to one point without moving the camera; it looks flatter and more observational than a dolly in."
+      },
+      "tags": [
+        "zoom",
+        "zoom in",
+        "focal length",
+        "lens",
+        "magnify",
+        "telephoto",
+        "camera move"
+      ]
+    },
+    {
+      "no": "05",
+      "slug": "tracking-shot",
+      "category": "camera-movement",
+      "name": {
+        "ja": "トラッキング",
+        "en": "Tracking shot",
+        "es": "Travelling (tracking shot)"
+      },
+      "meaning": {
+        "ja": "被写体と並んで動く",
+        "en": "Move along with the subject",
+        "es": "Moverse junto con el sujeto"
+      },
+      "ask": {
+        "ja": "歩く人物を真横からトラッキング。同じ速さで並んで動く。",
+        "en": "Tracking shot from the side, moving along with the walking person at the same speed.",
+        "es": "Travelling lateral, moviéndose junto a la persona que camina a su misma velocidad."
+      },
+      "summary": {
+        "ja": "歩く人物と同じ速さでカメラが真横に並走する。人物は画面中央のまま、手前の杭ほど速く後ろへ流れる。",
+        "en": "The camera moves sideways at the same speed as a walking person; the person stays centred while nearer posts sweep past faster."
+      },
       "spec": {
-        "ja": ["カメラ: 位置・向き・焦点距離すべて固定（高さ1.1m）。変わるのはぼかしの量だけ", "ぼかし: 手前の花（左0.75m・奥2m）を 0px → 7px、人物と背景（人物は右0.9m・奥9m）を 6px → 0px。地面の格子は背景の0.6倍", "時間: 1.0秒から2.6秒まで1.6秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "ピント枠: 青い四隅の枠が花から人物へ直線移動し、一辺の半分が 46px → 30px に縮む", "被写体: 花も人物も動かない", "戻り: 2.6〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード。右上にピント距離（◎ 2m → ◎ 9m）"],
-        "en": ["Camera: position, direction and focal length all fixed (height 1.1 m); only the blur amounts change", "Blur: the foreground flower (0.75 m left, 2 m away) goes 0 px → 7 px; the person and background (person 0.9 m right, 9 m away) go 6 px → 0 px; the ground grid uses 0.6× the background blur", "Timing: 1.0 s to 2.6 s (1.6 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Focus marker: blue corner brackets travel in a straight line from the flower to the person, half-width shrinking 46 px → 30 px", "Subject: neither the flower nor the person moves", "Return: hold 2.6–4.2 s, then cross-fade back over the last 0.5 s; top-right readout shows focus distance (◎ 2m → ◎ 9m)"]
+        "ja": [
+          "カメラ: 右へ等速 1.7m/s で横移動（x = -4.0m → +4.0m、4.7秒）。高さ1.3m、向きは正面のまま。イージングなし",
+          "被写体: 人物はカメラと同じ x を歩く（奥7.5m）。画面中央から動かない。脚と腕は sin(u×7)×0.42rad で振る",
+          "視差: 奥4mに1.6m間隔で並ぶ杭が最も速く左へ流れ、木、建物（48m先）の順に遅くなり、山はほぼ動かない",
+          "右上に「→ 1.7m/s」を表示",
+          "くり返し: 4.7秒ごとに開始位置へ戻る（杭と地面の格子は継ぎ目が合うが、背景の建物と木は位置が飛ぶ）"
+        ],
+        "en": [
+          "Camera: moves right at a constant 1.7 m/s (x = -4.0 m → +4.0 m in 4.7 s); height 1.3 m, facing straight ahead; no easing",
+          "Subject: a person walks at the same x as the camera (7.5 m away) and stays in the centre of frame; legs and arms swing by sin(u×7)×0.42 rad",
+          "Parallax: posts every 1.6 m at 4 m depth sweep left fastest, then trees, then buildings (48 m away); mountains hardly move",
+          "Top-right readout shows \"→ 1.7m/s\"",
+          "Repeat: jumps back to the start every 4.7 s (posts and ground grid line up at the seam; background buildings and trees jump)"
+        ]
       },
-      "use": { "ja": "カットを割らずに、見てほしい対象を手前から奥（または逆）へ移すとき。", "en": "To move attention from foreground to background (or back) without cutting." },
-      "tags": ["rack focus", "focus pull", "pull focus", "depth of field", "blur", "bokeh", "foreground"] },
-
-    { "no": "10", "slug": "handheld", "category": "shooting-style-time",
-      "name": { "ja": "手持ち", "en": "Handheld" },
-      "meaning": { "ja": "手で持って撮ったように小さく揺らす（ハンドヘルド）", "en": "A slight shake, as if the camera were held by hand" },
-      "ask": { "ja": "手持ちで、歩く人物の後ろをついていく。揺れは弱めに。", "en": "Handheld shot following behind the walking person, with only a slight shake." },
-      "summary": { "ja": "三脚を使わず手で持ったような、小さく不規則な揺れを画面全体に加える。", "en": "Adds a small, irregular shake to the whole frame, as if the camera were held by hand instead of on a tripod." },
+      "use": {
+        "ja": "歩く・走る人物に付いていき、移動している感じを保ったまま表情や動作を見せるとき。",
+        "en": "To follow a walking or running subject and keep the sense of movement while showing their action."
+      },
+      "tags": [
+        "tracking",
+        "tracking shot",
+        "follow",
+        "truck",
+        "lateral",
+        "sideways",
+        "parallax",
+        "walk"
+      ]
+    },
+    {
+      "no": "06",
+      "slug": "orbit-arc-shot",
+      "category": "camera-movement",
+      "name": {
+        "ja": "オービット",
+        "en": "Orbit (Arc shot)",
+        "es": "Órbita (plano en arco)"
+      },
+      "meaning": {
+        "ja": "被写体の周りを回り込む",
+        "en": "Circle around the subject",
+        "es": "Rodear al sujeto"
+      },
+      "ask": {
+        "ja": "立っている人物の周りを半周オービット。人物は画面の中央のまま。",
+        "en": "Half orbit around the standing person, keeping them in the center of the frame.",
+        "es": "Media órbita alrededor de la persona de pie, manteniéndola en el centro del cuadro."
+      },
+      "summary": {
+        "ja": "被写体を中心に、カメラが円を描いて回り込む。人物は中央のまま、背景の木と建物が横に大きく流れる。",
+        "en": "The camera travels on a circle around the subject; the person stays centred while the trees and buildings behind sweep sideways."
+      },
       "spec": {
-        "ja": ["カメラ: 位置はほぼ固定。ヨー・ピッチ・ロール・高さに、周期の違う正弦波を重ねた揺れを足す（T = 2π×u/4.7）", "ヨー(rad) = 0.016·sin(3T) + 0.008·sin(7T+1) + 0.004·sin(13T+2)。最大で約±1.6°", "ピッチ(rad) = 0.012·sin(4T+2) + 0.006·sin(9T+0.5) + 0.003·sin(17T+1.2)。最大で約±1.2°", "ロール(rad) = 0.02·sin(5T+1) + 0.008·sin(11T+3)。最大で約±1.6°。高さ = 1.5 + 0.03·sin(6T) m", "被写体: 人物は6.5m先で動かない。イージングや止めはなく揺れ続ける", "係数がすべて整数倍なので4.7秒で継ぎ目なく戻る。右上に「HANDHELD」"],
-        "en": ["Camera: position almost fixed; yaw, pitch, roll and height each get a sum of sine waves with different periods (T = 2π×u/4.7)", "Yaw (rad) = 0.016·sin(3T) + 0.008·sin(7T+1) + 0.004·sin(13T+2), at most about ±1.6°", "Pitch (rad) = 0.012·sin(4T+2) + 0.006·sin(9T+0.5) + 0.003·sin(17T+1.2), at most about ±1.2°", "Roll (rad) = 0.02·sin(5T+1) + 0.008·sin(11T+3), at most about ±1.6°; height = 1.5 + 0.03·sin(6T) m", "Subject: a person stands still 6.5 m ahead; the shake runs continuously with no easing or hold", "All multipliers are integers, so it loops seamlessly every 4.7 s; top-right readout shows \"HANDHELD\""]
+        "ja": [
+          "カメラ: 人物（正面9m先）を中心とする半径6mの円周上を -0.95rad → +0.95rad（-54° → +54°、計約109°）移動",
+          "向き: 常に中心を向く（ヨー = -角度）。高さ1.7m、ピッチ -0.07rad（約4°下向き）で固定",
+          "時間: 0.5秒から3.6秒まで3.1秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は動かない。顔の白い点が角度に応じて横へずれ、回り込みが分かる。足元に半径1.3mの点線の円",
+          "背景: 半径10mに12本の木を等間隔で並べ、回り込むと人物の後ろを横切る",
+          "戻り: 3.6〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード。右上に角度（-54° → +54°）"
+        ],
+        "en": [
+          "Camera: travels on a circle of radius 6 m centred on the person (9 m ahead), from -0.95 rad → +0.95 rad (-54° → +54°, about 109° in total)",
+          "Direction: always faces the centre (yaw = -angle); height 1.7 m, pitch fixed at -0.07 rad (about 4° down)",
+          "Timing: 0.5 s to 3.6 s (3.1 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: the person does not move; a white dot on the face shifts sideways with the angle; a dashed circle of radius 1.3 m marks the ground",
+          "Background: 12 trees evenly spaced on a 10 m radius cross behind the person as the camera moves round",
+          "Return: hold 3.6–4.2 s, then cross-fade back over the last 0.5 s; top-right readout shows the angle (-54° → +54°)"
+        ]
       },
-      "use": { "ja": "ドキュメンタリーのような臨場感や、その場にいる感じを出すとき。", "en": "To give a documentary feel or the sense of being present in the scene." },
-      "tags": ["handheld", "camera shake", "shaky", "documentary", "wobble", "noise", "realism"] },
-
-    { "no": "11", "slug": "fpv-drone-shot", "category": "shooting-style-time",
-      "name": { "ja": "FPV", "en": "FPV drone shot" },
-      "meaning": { "ja": "ドローンで突き進む疾走感", "en": "Fast, immersive fly-through" },
-      "ask": { "ja": "FPVドローンで、森の木々の間をすり抜けて川の上へ出る。", "en": "FPV drone shot weaving between the trees and out over the river." },
-      "summary": { "ja": "並木の間を低空・高速で前進しながら、機体を左右に傾けて蛇行する一人称視点。", "en": "A first-person view flying low and fast between two rows of trees, banking from side to side." },
+      "use": {
+        "ja": "人物や商品を立体的に見せたいとき、登場や決めの場面を強調するとき。",
+        "en": "To show a person or product in three dimensions, or to emphasise an entrance or a key moment."
+      },
+      "tags": [
+        "orbit",
+        "arc shot",
+        "circle",
+        "360",
+        "rotate around",
+        "revolve",
+        "camera move"
+      ]
+    },
+    {
+      "no": "07",
+      "slug": "crane-up",
+      "category": "camera-movement",
+      "name": {
+        "ja": "クレーンアップ",
+        "en": "Crane up",
+        "es": "Grúa ascendente (crane up)"
+      },
+      "meaning": {
+        "ja": "カメラが上へ昇っていく",
+        "en": "Lift the camera up",
+        "es": "Elevar la cámara"
+      },
+      "ask": {
+        "ja": "人物の目の高さから、街全体が見える高さまでクレーンアップ。",
+        "en": "Crane up from eye level until the whole town comes into view.",
+        "es": "Grúa ascendente desde la altura de los ojos hasta que se vea todo el pueblo."
+      },
+      "summary": {
+        "ja": "カメラが真上へ上昇しながら下を向き、人物を見下ろす構図になる。",
+        "en": "The camera rises while tilting down until it looks down on the person."
+      },
       "spec": {
-        "ja": ["カメラ: 前へ等速 14m/s（50km/h表示）。イージングなしで進み続ける。ピッチは -0.05rad で固定", "蛇行（T = 2π×u/4.7、4.7秒に2往復）: 横位置 0.6·sin(2T-0.4) m、高さ 1.4 + 0.5·sin(2T) m", "傾き: ロール 0.22·sin(2T+0.6) rad（約±12.6°）、ヨー 0.05·sin(2T) rad（約±2.9°）", "被写体なし。左右3.6mの位置に高さ4.2mの木を8m間隔で並べ、左右は4mずらす。次々に手前へ流れる", "スピード線: 中心から放射状に10本、長さ約32〜76px（横方向ほど長い）、半透明の灰色。外側へ流れて循環する", "止め・戻りのクロスフェードなし（4.7秒ごとに木の並びの位相がずれて切り替わる）"],
-        "en": ["Camera: flies forward at a constant 14 m/s (shown as 50km/h) with no easing; pitch fixed at -0.05 rad", "Weave (T = 2π×u/4.7, two swings per 4.7 s): sideways 0.6·sin(2T-0.4) m, height 1.4 + 0.5·sin(2T) m", "Bank: roll 0.22·sin(2T+0.6) rad (about ±12.6°), yaw 0.05·sin(2T) rad (about ±2.9°)", "No subject. Trees 4.2 m tall stand 3.6 m to each side, every 8 m, the two rows offset by 4 m, and rush toward the camera", "Speed lines: 10 radial strokes about 32–76 px long (longer toward the sides) in translucent grey, flowing outward and recycling", "No hold and no cross-fade reset (the tree rows shift phase when it restarts every 4.7 s)"]
+        "ja": [
+          "カメラ: 高さ 1.4m → 9m へ上昇。同時に前へ 0m → 1.5m 進む",
+          "向き: 人物（8m先）を画面に収めるよう下へ振る。ピッチ = -0.86 × atan2(高さ-1.0, 8-前進量)。約 -2.5° → -44°",
+          "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は動かない。上昇につれて小さくなり、地面の格子が画面いっぱいに広がって地平線は上へ抜ける",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）",
+          "右上に高さを表示（↑ 1.4m → ↑ 9.0m）"
+        ],
+        "en": [
+          "Camera: rises from 1.4 m to 9 m while moving forward 0 m → 1.5 m",
+          "Direction: tilts down to keep the person (8 m ahead) in frame; pitch = -0.86 × atan2(height - 1.0, 8 - forward), about -2.5° → -44°",
+          "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: the person does not move; they get smaller as the camera rises, the ground grid fills the frame and the horizon leaves at the top",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
+          "Top-right readout shows the height (↑ 1.4m → ↑ 9.0m)"
+        ]
       },
-      "use": { "ja": "スピード感と没入感を出すとき。場所の中を一気に通り抜けて見せるとき。", "en": "For speed and immersion, or to fly through a location in one continuous move." },
-      "tags": ["fpv", "drone", "fly through", "first person", "banking", "speed", "aerial"] },
-
-    { "no": "12", "slug": "dutch-angle", "category": "shooting-style-time",
-      "name": { "ja": "ダッチアングル", "en": "Dutch angle" },
-      "meaning": { "ja": "画面を斜めに傾ける", "en": "Tilt the frame diagonally" },
-      "ask": { "ja": "不安な場面なので、ダッチアングルで15度ほど傾けて。", "en": "Use a Dutch angle of about 15 degrees for this uneasy scene." },
-      "summary": { "ja": "水平だったカメラを光軸まわりに傾け、地平線を斜めにしたまま止める。", "en": "A level camera rolls around its lens axis and holds with the horizon on a diagonal." },
+      "use": {
+        "ja": "場面の終わりに人物から離れて全体を見せるとき、場所の広さを明かすとき。",
+        "en": "To pull away from a person at the end of a scene or to reveal how large the location is."
+      },
+      "tags": [
+        "crane",
+        "crane up",
+        "jib",
+        "boom up",
+        "rise",
+        "high angle",
+        "camera move"
+      ]
+    },
+    {
+      "no": "08",
+      "slug": "dolly-zoom-vertigo",
+      "category": "camera-movement",
+      "name": {
+        "ja": "ドリーズーム",
+        "en": "Dolly zoom (Vertigo)",
+        "es": "Dolly zoom (efecto vértigo)"
+      },
+      "meaning": {
+        "ja": "人物はそのまま背景だけ伸び縮み",
+        "en": "Subject stays, background warps",
+        "es": "El sujeto se queda igual y el fondo se deforma"
+      },
+      "ask": {
+        "ja": "気づいた瞬間の顔にドリーズーム。人物の大きさは変えず、背景だけが遠ざかる。",
+        "en": "Dolly zoom on his face at the moment he realizes: he stays the same size while the background stretches away.",
+        "es": "Dolly zoom sobre su cara en el momento en que se da cuenta: él queda del mismo tamaño y el fondo se estira."
+      },
+      "summary": {
+        "ja": "カメラを引きながら同じ比率でズームする。人物の大きさは変わらず、背景だけが迫ってくる。",
+        "en": "The camera pulls back while zooming in by the same ratio; the person keeps the same size and only the background closes in."
+      },
       "spec": {
-        "ja": ["カメラ: 位置固定（高さ1.5m）。ロールだけ 0 → 0.36rad（約21°）。画面中央を軸に全体が回る", "時間: 0.6秒から2.2秒まで1.6秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "被写体: 人物は7m先で動かない。地平線・建物・人物がそろって同じ角度だけ傾く", "止め: 2.2〜4.2秒は傾いたまま保つ（傾けた構図そのものを見せる時間）", "戻り: 最後の0.5秒で水平の開始状態へクロスフェード（1周4.7秒）", "右上に角度を表示（∠ 0° → ∠ 21°）"],
-        "en": ["Camera: position fixed (height 1.5 m); roll only, 0 → 0.36 rad (about 21°); the whole picture turns around the frame centre", "Timing: 0.6 s to 2.2 s (1.6 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Subject: a person stands still 7 m ahead; horizon, buildings and person all tilt by the same angle", "Hold: stays tilted from 2.2 s to 4.2 s (time to read the tilted composition itself)", "Return: cross-fade back to the level start over the last 0.5 s (one pass = 4.7 s)", "Top-right readout shows the angle (∠ 0° → ∠ 21°)"]
+        "ja": [
+          "カメラ: 人物（8m先）との距離 d を 3.2m → 8m に広げる（4.8m後退）。高さ1.3m",
+          "焦点距離: f = 330 × d/8 px。132px → 330px（10mm → 24mm表示）。距離と焦点距離の比を一定に保つ",
+          "時間: 0.5秒から3.4秒まで2.9秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は動かず、画面上の高さも一定。頭（1.8m）と足元に幅160pxの青い点線を引き、大きさが変わらないことを示す",
+          "背景: 建物（48m先）は約2.2倍、山は約2.4倍に拡大して人物の後ろに迫る。人物より手前の地面は逆に縮む",
+          "戻り: 3.4〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"
+        ],
+        "en": [
+          "Camera: distance d to the person (8 m ahead) widens from 3.2 m → 8 m (a 4.8 m pull-back); height 1.3 m",
+          "Focal length: f = 330 × d/8 px, i.e. 132 px → 330 px (shown as 10mm → 24mm), keeping distance ÷ focal length constant",
+          "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: the person does not move and keeps the same height in frame; blue dashed lines 160 px wide at head (1.8 m) and feet show the size is constant",
+          "Background: buildings (48 m away) grow about 2.2× and mountains about 2.4×, closing in behind the person, while the ground in front of the person shrinks",
+          "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
+        ]
       },
-      "use": { "ja": "不安・緊張・違和感を画面で表すとき。", "en": "To express unease, tension or the feeling that something is wrong." },
-      "tags": ["dutch angle", "dutch tilt", "canted angle", "oblique", "roll", "tension", "tilted horizon"] },
-
-    { "no": "13", "slug": "slow-motion", "category": "shooting-style-time",
-      "name": { "ja": "スローモーション", "en": "Slow motion" },
-      "meaning": { "ja": "動きをゆっくり見せる", "en": "Play the action slower" },
-      "ask": { "ja": "水しぶきが上がる瞬間を、スローモーションで。", "en": "Show the moment of the splash in slow motion." },
-      "summary": { "ja": "固定カメラの前で人物がゆっくり跳び上がり、葉もゆっくり落ちる。動き全体を引き伸ばして見せる。", "en": "In front of a fixed camera a person rises and falls slowly through a jump while leaves drift down slowly; the whole action is stretched out." },
+      "use": {
+        "ja": "人物が何かに気づいた瞬間や、不安・動揺を映像で表すとき。",
+        "en": "For a moment of realisation, or to show unease or shock visually."
+      },
+      "tags": [
+        "dolly zoom",
+        "vertigo",
+        "zolly",
+        "push pull",
+        "background stretch",
+        "unease",
+        "camera move"
+      ]
+    },
+    {
+      "no": "09",
+      "slug": "rack-focus",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "ラックフォーカス",
+        "en": "Rack focus",
+        "es": "Cambio de foco (rack focus)"
+      },
+      "meaning": {
+        "ja": "ピントを手前と奥のあいだで送る",
+        "en": "Shift focus between near and far",
+        "es": "Pasar el foco de cerca a lejos"
+      },
+      "ask": {
+        "ja": "手前のカップから奥の人物へ、1秒でラックフォーカス。",
+        "en": "Rack focus from the cup in the foreground to the person behind it, in 1 second.",
+        "es": "Cambio de foco de la taza en primer plano a la persona detrás, en 1 segundo."
+      },
+      "summary": {
+        "ja": "カメラは動かさず、ピントを手前の花から奥の人物へ送る。ぼけている側が入れ替わる。",
+        "en": "The camera does not move; focus shifts from a flower in the foreground to a person behind it, swapping which one is blurred."
+      },
       "spec": {
-        "ja": ["カメラ: 完全に固定（高さ1.3m）。動くのは被写体だけ", "被写体: 人物（7m先）が1回の跳躍に3.8秒かける（0.5秒〜4.3秒）。高さ = 4q(1-q)×1.1m の放物線、頂点1.1m。q は等速", "跳んでいる間は両腕を上げる。跳ぶ前の0.5秒と着地後の0.4秒は立ったまま", "葉: 9枚が高さ3.4mから地面まで4.7秒かけて落ち、回転する。位相を1/9ずつずらして循環", "右上に「120fps ×0.25」を表示（4倍に引き伸ばした再生という設定）", "止め・クロスフェードなし。4.7秒で継ぎ目なくくり返す"],
-        "en": ["Camera: completely fixed (height 1.3 m); only the subject moves", "Subject: a person 7 m away takes 3.8 s for one jump (0.5 s to 4.3 s); height = 4q(1-q)×1.1 m, a parabola peaking at 1.1 m, with q linear in time", "Both arms are raised while airborne; the person stands still for 0.5 s before the jump and 0.4 s after landing", "Leaves: 9 leaves fall from 3.4 m to the ground over 4.7 s while rotating, each offset by 1/9 of the cycle", "Top-right readout shows \"120fps ×0.25\" (playback stretched 4×)", "No hold and no cross-fade; loops seamlessly every 4.7 s"]
+        "ja": [
+          "カメラ: 位置・向き・焦点距離すべて固定（高さ1.1m）。変わるのはぼかしの量だけ",
+          "ぼかし: 手前の花（左0.75m・奥2m）を 0px → 7px、人物と背景（人物は右0.9m・奥9m）を 6px → 0px。地面の格子は背景の0.6倍",
+          "時間: 1.0秒から2.6秒まで1.6秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "ピント枠: 青い四隅の枠が花から人物へ直線移動し、一辺の半分が 46px → 30px に縮む",
+          "被写体: 花も人物も動かない",
+          "戻り: 2.6〜4.2秒は止め、最後の0.5秒で開始状態へクロスフェード。右上にピント距離（◎ 2m → ◎ 9m）"
+        ],
+        "en": [
+          "Camera: position, direction and focal length all fixed (height 1.1 m); only the blur amounts change",
+          "Blur: the foreground flower (0.75 m left, 2 m away) goes 0 px → 7 px; the person and background (person 0.9 m right, 9 m away) go 6 px → 0 px; the ground grid uses 0.6× the background blur",
+          "Timing: 1.0 s to 2.6 s (1.6 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Focus marker: blue corner brackets travel in a straight line from the flower to the person, half-width shrinking 46 px → 30 px",
+          "Subject: neither the flower nor the person moves",
+          "Return: hold 2.6–4.2 s, then cross-fade back over the last 0.5 s; top-right readout shows focus distance (◎ 2m → ◎ 9m)"
+        ]
       },
-      "use": { "ja": "一瞬の動きや表情をじっくり見せたいとき、感情の山場を強調するとき。", "en": "To let viewers study a brief action or expression, or to emphasise an emotional peak." },
-      "tags": ["slow motion", "slow-mo", "slomo", "high frame rate", "120fps", "time stretch", "jump"] },
-
-    { "no": "14", "slug": "speed-ramp", "category": "shooting-style-time",
-      "name": { "ja": "スピードランプ", "en": "Speed ramp" },
-      "meaning": { "ja": "速い→遅いと速さを変える", "en": "Change speed mid-shot" },
-      "ask": { "ja": "ジャンプの頂点だけ遅くなるスピードランプ。前後は通常の速さで。", "en": "Speed ramp: normal speed, slowing at the top of the jump, then back to normal." },
-      "summary": { "ja": "1つのショットの途中で再生速度を速い状態から遅い状態へ滑らかに変える。左下のグラフが速度を示す。", "en": "Within one shot the playback speed changes smoothly from fast to slow; a graph at bottom left shows the speed." },
+      "use": {
+        "ja": "カットを割らずに、見てほしい対象を手前から奥（または逆）へ移すとき。",
+        "en": "To move attention from foreground to background (or back) without cutting."
+      },
+      "tags": [
+        "rack focus",
+        "focus pull",
+        "pull focus",
+        "depth of field",
+        "blur",
+        "bokeh",
+        "foreground"
+      ]
+    },
+    {
+      "no": "10",
+      "slug": "handheld",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "手持ち",
+        "en": "Handheld",
+        "es": "Cámara en mano"
+      },
+      "meaning": {
+        "ja": "手で持って撮ったように小さく揺らす（ハンドヘルド）",
+        "en": "A slight shake, as if the camera were held by hand",
+        "es": "Un leve temblor, como si alguien sostuviera la cámara"
+      },
+      "ask": {
+        "ja": "手持ちで、歩く人物の後ろをついていく。揺れは弱めに。",
+        "en": "Handheld shot following behind the walking person, with only a slight shake.",
+        "es": "Toma con cámara en mano siguiendo por detrás a la persona que camina, con apenas un leve temblor."
+      },
+      "summary": {
+        "ja": "三脚を使わず手で持ったような、小さく不規則な揺れを画面全体に加える。",
+        "en": "Adds a small, irregular shake to the whole frame, as if the camera were held by hand instead of on a tripod."
+      },
       "spec": {
-        "ja": ["カメラ: 完全に固定（高さ1.3m）。変わるのは再生速度だけ", "再生速度: 2.4倍 → 0.25倍。切り替えは1.2秒から1.9秒までの0.7秒、2次のイーズインアウト（cubic-bezier(0.45,0,0.55,1) 相当）", "被写体: 人物（8m先）が左6mから右へ走る。位置 x = -6 + 映像時間×2.0 m。速い区間で一気に近づく", "跳躍: x が -1.5m〜2.5m の間で放物線、頂点0.99m、両腕を上げる。約0.94秒で踏み切り、滞空の大半をスローで見せて約3.68秒で着地", "グラフ: 左下に幅120×高さ40pxの速度曲線と現在位置の青い点（半径5px）", "戻り: 4.2秒で止め、最後の0.5秒で開始状態へクロスフェード。右上に倍率（×2.4 → ×0.3）"],
-        "en": ["Camera: completely fixed (height 1.3 m); only the playback speed changes", "Playback speed: 2.4× → 0.25×; the change takes 0.7 s (1.2 s to 1.9 s) with a quadratic ease-in-out (about cubic-bezier(0.45,0,0.55,1))", "Subject: a person 8 m away runs from 6 m left toward the right; x = -6 + footage time × 2.0 m; they close in quickly during the fast section", "Jump: a parabola while x is between -1.5 m and 2.5 m, peak 0.99 m, arms raised; take-off at about 0.94 s, most of the airtime plays in slow motion, landing at about 3.68 s", "Graph: a 120×40 px speed curve at bottom left with a blue dot (radius 5 px) at the current time", "Return: stops at 4.2 s, then cross-fades back over the last 0.5 s; top-right readout shows the rate (×2.4 → ×0.3)"]
+        "ja": [
+          "カメラ: 位置はほぼ固定。ヨー・ピッチ・ロール・高さに、周期の違う正弦波を重ねた揺れを足す（T = 2π×u/4.7）",
+          "ヨー(rad) = 0.016·sin(3T) + 0.008·sin(7T+1) + 0.004·sin(13T+2)。最大で約±1.6°",
+          "ピッチ(rad) = 0.012·sin(4T+2) + 0.006·sin(9T+0.5) + 0.003·sin(17T+1.2)。最大で約±1.2°",
+          "ロール(rad) = 0.02·sin(5T+1) + 0.008·sin(11T+3)。最大で約±1.6°。高さ = 1.5 + 0.03·sin(6T) m",
+          "被写体: 人物は6.5m先で動かない。イージングや止めはなく揺れ続ける",
+          "係数がすべて整数倍なので4.7秒で継ぎ目なく戻る。右上に「HANDHELD」"
+        ],
+        "en": [
+          "Camera: position almost fixed; yaw, pitch, roll and height each get a sum of sine waves with different periods (T = 2π×u/4.7)",
+          "Yaw (rad) = 0.016·sin(3T) + 0.008·sin(7T+1) + 0.004·sin(13T+2), at most about ±1.6°",
+          "Pitch (rad) = 0.012·sin(4T+2) + 0.006·sin(9T+0.5) + 0.003·sin(17T+1.2), at most about ±1.2°",
+          "Roll (rad) = 0.02·sin(5T+1) + 0.008·sin(11T+3), at most about ±1.6°; height = 1.5 + 0.03·sin(6T) m",
+          "Subject: a person stands still 6.5 m ahead; the shake runs continuously with no easing or hold",
+          "All multipliers are integers, so it loops seamlessly every 4.7 s; top-right readout shows \"HANDHELD\""
+        ]
       },
-      "use": { "ja": "動きの見せ場だけをスローにして、前後はテンポよく進めたいとき。", "en": "To slow down only the key part of an action while keeping the lead-in quick." },
-      "tags": ["speed ramp", "time remap", "ramping", "fast to slow", "variable speed", "velocity"] },
-
-    { "no": "15", "slug": "time-lapse", "category": "shooting-style-time",
-      "name": { "ja": "タイムラプス", "en": "Time-lapse" },
-      "meaning": { "ja": "長い時間を早送りで見せる", "en": "Compress hours into seconds" },
-      "ask": { "ja": "夕方から夜まで、街の灯りがともっていくタイムラプス。", "en": "Time-lapse of the city from dusk to night as the lights come on." },
-      "summary": { "ja": "固定カメラのまま、朝6時から夕方18時までを数秒に縮める。太陽・雲・人・影が早送りで動く。", "en": "With a fixed camera, 06:00 to 18:00 is compressed into a few seconds; sun, clouds, people and shadows move in fast forward." },
+      "use": {
+        "ja": "ドキュメンタリーのような臨場感や、その場にいる感じを出すとき。",
+        "en": "To give a documentary feel or the sense of being present in the scene."
+      },
+      "tags": [
+        "handheld",
+        "camera shake",
+        "shaky",
+        "documentary",
+        "wobble",
+        "noise",
+        "realism"
+      ]
+    },
+    {
+      "no": "11",
+      "slug": "fpv-drone-shot",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "FPV",
+        "en": "FPV drone shot",
+        "es": "Toma FPV con dron"
+      },
+      "meaning": {
+        "ja": "ドローンで突き進む疾走感",
+        "en": "Fast, immersive fly-through",
+        "es": "Un vuelo rápido e inmersivo"
+      },
+      "ask": {
+        "ja": "FPVドローンで、森の木々の間をすり抜けて川の上へ出る。",
+        "en": "FPV drone shot weaving between the trees and out over the river.",
+        "es": "Toma FPV con dron zigzagueando entre los árboles y saliendo sobre el río."
+      },
+      "summary": {
+        "ja": "並木の間を低空・高速で前進しながら、機体を左右に傾けて蛇行する一人称視点。",
+        "en": "A first-person view flying low and fast between two rows of trees, banking from side to side."
+      },
       "spec": {
-        "ja": ["カメラ: 完全に固定（高さ1.6m、ピッチ +0.08rad＝約5°上向き）", "時間: 0.4秒から4.1秒まで3.7秒で12時間ぶん進める。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "太陽: 角度 a = -1.25rad → +1.25rad の弧を左から右へ。位置は (sin a×120, cos a×60 - 8) m、奥170m", "雲3つ: 右へ合計140m流れ、80mごとに循環。人影7つ: 左右18mの幅をそれぞれ6回横切る（奇数番と偶数番は逆向き）", "建物の影: 太陽と反対側へ伸び、太陽の動きに合わせて向きが振れる（半透明の灰色）", "戻り: 最後の0.5秒で開始状態へクロスフェード。右上の時計は 06:00 → 18:00 を10分刻みで表示"],
-        "en": ["Camera: completely fixed (height 1.6 m, pitch +0.08 rad, about 5° up)", "Timing: 12 hours pass in 3.7 s (0.4 s to 4.1 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "Sun: travels left to right along an arc, angle a = -1.25 rad → +1.25 rad; position (sin a×120, cos a×60 - 8) m at 170 m depth", "Three clouds drift 140 m to the right in total, wrapping every 80 m; seven small figures each cross an 18 m width 6 times (odd and even ones in opposite directions)", "Building shadows fall away from the sun and swing as it moves (translucent grey)", "Return: cross-fade back to the start over the last 0.5 s; the top-right clock runs 06:00 → 18:00 in 10-minute steps"]
+        "ja": [
+          "カメラ: 前へ等速 14m/s（50km/h表示）。イージングなしで進み続ける。ピッチは -0.05rad で固定",
+          "蛇行（T = 2π×u/4.7、4.7秒に2往復）: 横位置 0.6·sin(2T-0.4) m、高さ 1.4 + 0.5·sin(2T) m",
+          "傾き: ロール 0.22·sin(2T+0.6) rad（約±12.6°）、ヨー 0.05·sin(2T) rad（約±2.9°）",
+          "被写体なし。左右3.6mの位置に高さ4.2mの木を8m間隔で並べ、左右は4mずらす。次々に手前へ流れる",
+          "スピード線: 中心から放射状に10本、長さ約32〜76px（横方向ほど長い）、半透明の灰色。外側へ流れて循環する",
+          "止め・戻りのクロスフェードなし（4.7秒ごとに木の並びの位相がずれて切り替わる）"
+        ],
+        "en": [
+          "Camera: flies forward at a constant 14 m/s (shown as 50km/h) with no easing; pitch fixed at -0.05 rad",
+          "Weave (T = 2π×u/4.7, two swings per 4.7 s): sideways 0.6·sin(2T-0.4) m, height 1.4 + 0.5·sin(2T) m",
+          "Bank: roll 0.22·sin(2T+0.6) rad (about ±12.6°), yaw 0.05·sin(2T) rad (about ±2.9°)",
+          "No subject. Trees 4.2 m tall stand 3.6 m to each side, every 8 m, the two rows offset by 4 m, and rush toward the camera",
+          "Speed lines: 10 radial strokes about 32–76 px long (longer toward the sides) in translucent grey, flowing outward and recycling",
+          "No hold and no cross-fade reset (the tree rows shift phase when it restarts every 4.7 s)"
+        ]
       },
-      "use": { "ja": "長い時間の経過や、街・空・作業の変化を短く見せるとき。", "en": "To show a long stretch of time, or how a city, sky or task changes, in a short clip." },
-      "tags": ["time-lapse", "timelapse", "fast forward", "time compression", "sun", "clouds", "day to night"] },
-
-    { "no": "16", "slug": "freeze-frame", "category": "shooting-style-time",
-      "name": { "ja": "フリーズフレーム", "en": "Freeze frame" },
-      "meaning": { "ja": "動きを一瞬止める", "en": "Pause the action for a beat" },
-      "ask": { "ja": "振り向いた瞬間でフリーズフレーム。1秒止めて、名前を出す。", "en": "Freeze frame at the moment she turns around; hold for 1 second and show her name." },
-      "summary": { "ja": "跳び上がった人物が頂点に来た瞬間に映像を止め、1.4秒後に続きから再開する。", "en": "The picture stops at the moment a jumping person reaches the top, then resumes from the same frame 1.4 s later." },
+      "use": {
+        "ja": "スピード感と没入感を出すとき。場所の中を一気に通り抜けて見せるとき。",
+        "en": "For speed and immersion, or to fly through a location in one continuous move."
+      },
+      "tags": [
+        "fpv",
+        "drone",
+        "fly through",
+        "first person",
+        "banking",
+        "speed",
+        "aerial"
+      ]
+    },
+    {
+      "no": "12",
+      "slug": "dutch-angle",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "ダッチアングル",
+        "en": "Dutch angle",
+        "es": "Plano holandés (dutch angle)"
+      },
+      "meaning": {
+        "ja": "画面を斜めに傾ける",
+        "en": "Tilt the frame diagonally",
+        "es": "Inclinar el cuadro en diagonal"
+      },
+      "ask": {
+        "ja": "不安な場面なので、ダッチアングルで15度ほど傾けて。",
+        "en": "Use a Dutch angle of about 15 degrees for this uneasy scene.",
+        "es": "Usa un plano holandés de unos 15 grados para esta escena inquietante."
+      },
+      "summary": {
+        "ja": "水平だったカメラを光軸まわりに傾け、地平線を斜めにしたまま止める。",
+        "en": "A level camera rolls around its lens axis and holds with the horizon on a diagonal."
+      },
       "spec": {
-        "ja": ["カメラ: 完全に固定（高さ1.3m）。止まるのは映像の時間", "停止: 1.6秒で止め、3.0秒で再開（1.4秒間）。映像時間は 0〜1.6秒は等速、停止中は1.6秒のまま、再開後は u-1.4", "被写体: 人物（7m先）の跳躍は映像時間0.6〜2.6秒の放物線、頂点1.1m。停止位置は頂点ちょうど（進み50%）", "停止中は落ち葉9枚も止まる。葉の速さは 13 スローモーションの1.5倍", "停止の印: 太さ5pxの青い枠と、下中央の一時停止マーク（68×40pxの白い角丸に青い縦棒2本）。出入りは0.12秒のフェード", "右上に停止中だけ「FREEZE」を表示。戻りのクロスフェードなし"],
-        "en": ["Camera: completely fixed (height 1.3 m); what stops is the footage time", "Freeze: stops at 1.6 s and resumes at 3.0 s (1.4 s); footage time runs normally for 0–1.6 s, stays at 1.6 s while frozen, then continues as u-1.4", "Subject: the jump of a person 7 m away is a parabola over footage time 0.6–2.6 s, peak 1.1 m; the freeze lands exactly on the peak (50% through)", "Nine falling leaves also stop during the freeze; they fall 1.5× as fast as in 13 Slow motion", "Freeze markers: a 5 px blue border and a pause icon at bottom centre (two blue bars on a 68×40 px white rounded box), fading in and out over 0.12 s", "Top-right readout shows \"FREEZE\" only while frozen; no cross-fade reset"]
+        "ja": [
+          "カメラ: 位置固定（高さ1.5m）。ロールだけ 0 → 0.36rad（約21°）。画面中央を軸に全体が回る",
+          "時間: 0.6秒から2.2秒まで1.6秒。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "被写体: 人物は7m先で動かない。地平線・建物・人物がそろって同じ角度だけ傾く",
+          "止め: 2.2〜4.2秒は傾いたまま保つ（傾けた構図そのものを見せる時間）",
+          "戻り: 最後の0.5秒で水平の開始状態へクロスフェード（1周4.7秒）",
+          "右上に角度を表示（∠ 0° → ∠ 21°）"
+        ],
+        "en": [
+          "Camera: position fixed (height 1.5 m); roll only, 0 → 0.36 rad (about 21°); the whole picture turns around the frame centre",
+          "Timing: 0.6 s to 2.2 s (1.6 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Subject: a person stands still 7 m ahead; horizon, buildings and person all tilt by the same angle",
+          "Hold: stays tilted from 2.2 s to 4.2 s (time to read the tilted composition itself)",
+          "Return: cross-fade back to the level start over the last 0.5 s (one pass = 4.7 s)",
+          "Top-right readout shows the angle (∠ 0° → ∠ 21°)"
+        ]
       },
-      "use": { "ja": "決定的な瞬間を強調するとき、止めた画に名前や説明のテロップを載せるとき。", "en": "To emphasise a decisive moment, or to pause so a name or caption can be placed over the frame." },
-      "tags": ["freeze frame", "still frame", "pause", "hold", "stop motion", "highlight"] },
-
-    { "no": "17", "slug": "jump-cut", "category": "transitions",
-      "name": { "ja": "ジャンプカット", "en": "Jump cut" },
-      "meaning": { "ja": "同じ画角のまま時間を飛ばす", "en": "Same framing, skip ahead in time" },
-      "ask": { "ja": "同じ画角のままジャンプカットでつないで、準備の様子をテンポよく見せる。", "en": "Use jump cuts from the same framing to move quickly through the preparation." },
-      "summary": { "ja": "カメラの位置も画角も同じまま、人物の位置と時刻だけが飛ぶ。同じ場面の中で時間を省く切り方。", "en": "Camera position and framing stay the same while the person's position and the clock jump; time is skipped inside one scene." },
+      "use": {
+        "ja": "不安・緊張・違和感を画面で表すとき。",
+        "en": "To express unease, tension or the feeling that something is wrong."
+      },
+      "tags": [
+        "dutch angle",
+        "dutch tilt",
+        "canted angle",
+        "oblique",
+        "roll",
+        "tension",
+        "tilted horizon"
+      ]
+    },
+    {
+      "no": "13",
+      "slug": "slow-motion",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "スローモーション",
+        "en": "Slow motion",
+        "es": "Cámara lenta"
+      },
+      "meaning": {
+        "ja": "動きをゆっくり見せる",
+        "en": "Play the action slower",
+        "es": "Reproducir la acción más despacio"
+      },
+      "ask": {
+        "ja": "水しぶきが上がる瞬間を、スローモーションで。",
+        "en": "Show the moment of the splash in slow motion.",
+        "es": "Muestra el momento del salpicón en cámara lenta."
+      },
+      "summary": {
+        "ja": "固定カメラの前で人物がゆっくり跳び上がり、葉もゆっくり落ちる。動き全体を引き伸ばして見せる。",
+        "en": "In front of a fixed camera a person rises and falls slowly through a jump while leaves drift down slowly; the whole action is stretched out."
+      },
       "spec": {
-        "ja": ["つなぎ方: つなぎの効果なしの直結（0フレーム）。5ショットを0.94秒ずつ（4.7秒÷5）", "カメラ: 全ショット同じ位置・同じ画角（高さ1.4m、正面向き）。背景は1pxも動かない", "変わるもの: 人物（7m先）の横位置が -2.2m → 1.4m → -0.4m → 2.4m → 0.6m と飛ぶ。2・4番目は両腕を上げた姿勢", "各ショットの中では人物は動かない（位置と姿勢の差だけで飛びを見せる）", "右上の時計: 10:02 → 10:17 → 10:41 → 11:06 → 11:30。同じ場所で時間が飛んだことを示す", "5番目から1番目へも直結で戻る"],
-        "en": ["Join: a straight cut with no effect (0 frames); 5 shots of 0.94 s each (4.7 s ÷ 5)", "Camera: identical position and framing in every shot (height 1.4 m, facing forward); the background does not move by a pixel", "What changes: the person (7 m away) jumps in sideways position, -2.2 m → 1.4 m → -0.4 m → 2.4 m → 0.6 m; in shots 2 and 4 both arms are raised", "Within each shot the person is still (the jump is shown only by the difference in position and pose)", "Top-right clock: 10:02 → 10:17 → 10:41 → 11:06 → 11:30, showing that time was skipped in the same place", "Shot 5 cuts straight back to shot 1"]
+        "ja": [
+          "カメラ: 完全に固定（高さ1.3m）。動くのは被写体だけ",
+          "被写体: 人物（7m先）が1回の跳躍に3.8秒かける（0.5秒〜4.3秒）。高さ = 4q(1-q)×1.1m の放物線、頂点1.1m。q は等速",
+          "跳んでいる間は両腕を上げる。跳ぶ前の0.5秒と着地後の0.4秒は立ったまま",
+          "葉: 9枚が高さ3.4mから地面まで4.7秒かけて落ち、回転する。位相を1/9ずつずらして循環",
+          "右上に「120fps ×0.25」を表示（4倍に引き伸ばした再生という設定）",
+          "止め・クロスフェードなし。4.7秒で継ぎ目なくくり返す"
+        ],
+        "en": [
+          "Camera: completely fixed (height 1.3 m); only the subject moves",
+          "Subject: a person 7 m away takes 3.8 s for one jump (0.5 s to 4.3 s); height = 4q(1-q)×1.1 m, a parabola peaking at 1.1 m, with q linear in time",
+          "Both arms are raised while airborne; the person stands still for 0.5 s before the jump and 0.4 s after landing",
+          "Leaves: 9 leaves fall from 3.4 m to the ground over 4.7 s while rotating, each offset by 1/9 of the cycle",
+          "Top-right readout shows \"120fps ×0.25\" (playback stretched 4×)",
+          "No hold and no cross-fade; loops seamlessly every 4.7 s"
+        ]
       },
-      "use": { "ja": "話や作業の間を詰めてテンポを上げるとき、時間の経過を短く示すとき。", "en": "To tighten pauses in talk or work and raise the pace, or to show time passing quickly." },
-      "tags": ["jump cut", "cut", "time skip", "same framing", "vlog", "ellipsis", "edit"] },
-
-    { "no": "18", "slug": "match-cut", "category": "transitions",
-      "name": { "ja": "マッチカット", "en": "Match cut" },
-      "meaning": { "ja": "形や動きをそろえて場面を変える", "en": "Cut on a matching shape or motion" },
-      "ask": { "ja": "丸いコーヒーカップから、同じ位置にある満月へマッチカット。", "en": "Match cut from the round coffee cup to a full moon in the same position." },
-      "summary": { "ja": "投げ上げたボールが、次のカットでは同じ位置・同じ大きさの太陽になる。形をそろえて別の場面へつなぐ。", "en": "A thrown ball becomes, in the next shot, a sun at the same position and size; two different scenes are joined on a matching shape." },
+      "use": {
+        "ja": "一瞬の動きや表情をじっくり見せたいとき、感情の山場を強調するとき。",
+        "en": "To let viewers study a brief action or expression, or to emphasise an emotional peak."
+      },
+      "tags": [
+        "slow motion",
+        "slow-mo",
+        "slomo",
+        "high frame rate",
+        "120fps",
+        "time stretch",
+        "jump"
+      ]
+    },
+    {
+      "no": "14",
+      "slug": "speed-ramp",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "スピードランプ",
+        "en": "Speed ramp",
+        "es": "Rampa de velocidad (speed ramp)"
+      },
+      "meaning": {
+        "ja": "速い→遅いと速さを変える",
+        "en": "Change speed mid-shot",
+        "es": "Cambiar la velocidad en medio de la toma"
+      },
+      "ask": {
+        "ja": "ジャンプの頂点だけ遅くなるスピードランプ。前後は通常の速さで。",
+        "en": "Speed ramp: normal speed, slowing at the top of the jump, then back to normal.",
+        "es": "Rampa de velocidad: velocidad normal, frena en lo más alto del salto y vuelve a la normal."
+      },
+      "summary": {
+        "ja": "1つのショットの途中で再生速度を速い状態から遅い状態へ滑らかに変える。左下のグラフが速度を示す。",
+        "en": "Within one shot the playback speed changes smoothly from fast to slow; a graph at bottom left shows the speed."
+      },
       "spec": {
-        "ja": ["つなぎ方: 2.3秒で直結（0フレーム）。前後で青い円の位置（中心から右120px・上46px）と半径17pxを一致させる", "前の絵（0〜2.3秒）: 固定カメラ（高さ1.4m）。人物（左1.2m・奥7m）が0.5秒から両腕を上げてボールを投げる。3次のイーズアウト（cubic-bezier(0.33,1,0.68,1) 相当）", "ボール: 人物の頭上（高さ2.3m）から一致点へ移動。半径 5px → 17px、途中は最大30px上へふくらむ弧", "後の絵（2.3〜4.7秒）: 別の場所（建物なし・高さ1.2m）。同じ位置の青い円が太陽になり、2.4秒かけて14px下がる", "目印: 半径26pxの青い点線の円を、カットの前後0.7秒だけフェードで表示", "右上に「SHOT 1」→「SHOT 2」。4.7秒でSHOT 1へ直結で戻る"],
-        "en": ["Join: a straight cut at 2.3 s (0 frames); the blue circle has the same position (120 px right, 46 px above centre) and radius 17 px on both sides", "Outgoing shot (0–2.3 s): fixed camera (height 1.4 m); a person (1.2 m left, 7 m away) throws a ball from 0.5 s, cubic ease-out (about cubic-bezier(0.33,1,0.68,1))", "Ball: travels from above the person's head (2.3 m high) to the match point; radius 5 px → 17 px, on an arc bulging up to 30 px", "Incoming shot (2.3–4.7 s): a different place (no buildings, height 1.2 m); the blue circle in the same spot is now the sun and sinks 14 px over 2.4 s", "Marker: a blue dashed circle of radius 26 px fades in and out within 0.7 s either side of the cut", "Top-right readout shows \"SHOT 1\" → \"SHOT 2\"; at 4.7 s it cuts straight back to SHOT 1"]
+        "ja": [
+          "カメラ: 完全に固定（高さ1.3m）。変わるのは再生速度だけ",
+          "再生速度: 2.4倍 → 0.25倍。切り替えは1.2秒から1.9秒までの0.7秒、2次のイーズインアウト（cubic-bezier(0.45,0,0.55,1) 相当）",
+          "被写体: 人物（8m先）が左6mから右へ走る。位置 x = -6 + 映像時間×2.0 m。速い区間で一気に近づく",
+          "跳躍: x が -1.5m〜2.5m の間で放物線、頂点0.99m、両腕を上げる。約0.94秒で踏み切り、滞空の大半をスローで見せて約3.68秒で着地",
+          "グラフ: 左下に幅120×高さ40pxの速度曲線と現在位置の青い点（半径5px）",
+          "戻り: 4.2秒で止め、最後の0.5秒で開始状態へクロスフェード。右上に倍率（×2.4 → ×0.3）"
+        ],
+        "en": [
+          "Camera: completely fixed (height 1.3 m); only the playback speed changes",
+          "Playback speed: 2.4× → 0.25×; the change takes 0.7 s (1.2 s to 1.9 s) with a quadratic ease-in-out (about cubic-bezier(0.45,0,0.55,1))",
+          "Subject: a person 8 m away runs from 6 m left toward the right; x = -6 + footage time × 2.0 m; they close in quickly during the fast section",
+          "Jump: a parabola while x is between -1.5 m and 2.5 m, peak 0.99 m, arms raised; take-off at about 0.94 s, most of the airtime plays in slow motion, landing at about 3.68 s",
+          "Graph: a 120×40 px speed curve at bottom left with a blue dot (radius 5 px) at the current time",
+          "Return: stops at 4.2 s, then cross-fades back over the last 0.5 s; top-right readout shows the rate (×2.4 → ×0.3)"
+        ]
       },
-      "use": { "ja": "時間や場所が大きく離れた2つの場面を、形や動きの共通点で意味を持たせてつなぐとき。", "en": "To link two scenes far apart in time or place through a shared shape or motion." },
-      "tags": ["match cut", "graphic match", "shape match", "cut", "transition", "edit"] },
-
-    { "no": "19", "slug": "whip-pan", "category": "transitions",
-      "name": { "ja": "ホイップパン", "en": "Whip pan" },
-      "meaning": { "ja": "素早く振ってブレで次へ", "en": "Fast pan blur into the next shot" },
-      "ask": { "ja": "ホイップパンで右へ素早く振って、次の場所へつなぐ。", "en": "Whip pan to the right and land in the next location." },
-      "summary": { "ja": "カメラを素早く横に振り、流れてぼけた映像の中で次の場面に入れ替える。", "en": "The camera swings sideways very fast and the next scene is swapped in during the streaked blur." },
+      "use": {
+        "ja": "動きの見せ場だけをスローにして、前後はテンポよく進めたいとき。",
+        "en": "To slow down only the key part of an action while keeping the lead-in quick."
+      },
+      "tags": [
+        "speed ramp",
+        "time remap",
+        "ramping",
+        "fast to slow",
+        "variable speed",
+        "velocity"
+      ]
+    },
+    {
+      "no": "15",
+      "slug": "time-lapse",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "タイムラプス",
+        "en": "Time-lapse",
+        "es": "Time-lapse"
+      },
+      "meaning": {
+        "ja": "長い時間を早送りで見せる",
+        "en": "Compress hours into seconds",
+        "es": "Comprimir horas en segundos"
+      },
+      "ask": {
+        "ja": "夕方から夜まで、街の灯りがともっていくタイムラプス。",
+        "en": "Time-lapse of the city from dusk to night as the lights come on.",
+        "es": "Time-lapse de la ciudad del atardecer a la noche mientras se encienden las luces."
+      },
+      "summary": {
+        "ja": "固定カメラのまま、朝6時から夕方18時までを数秒に縮める。太陽・雲・人・影が早送りで動く。",
+        "en": "With a fixed camera, 06:00 to 18:00 is compressed into a few seconds; sun, clouds, people and shadows move in fast forward."
+      },
       "spec": {
-        "ja": ["つなぎ方: 1.7秒から2.5秒までの0.8秒。前半0.4秒は前の絵を振り出し、後半0.4秒は次の絵が振り込んで止まる", "前半: 前の絵のヨーを 0 → +0.45rad（約26°）、2次のイーズインアウト。後半: 次の絵のヨーを -0.45rad → 0、同じイージング", "入れ替え: 進み50%の瞬間に直結で差し替える。ぶれが最大なので切れ目は見えない", "ぶれ: 前後1.6フレームぶん（30fps）の範囲を9枚描いて平均する", "カメラ: 高さ1.4m。振っている間以外は固定。被写体（Aは人物、Bは車と街）は動かない", "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"],
-        "en": ["Join: 0.8 s, from 1.7 s to 2.5 s; in the first 0.4 s the outgoing shot swings away, in the last 0.4 s the incoming shot swings in and settles", "First half: outgoing yaw 0 → +0.45 rad (about 26°), quadratic ease-in-out; second half: incoming yaw -0.45 rad → 0, same easing", "Swap: a straight replacement at the 50% point, hidden because the blur is at its strongest", "Blur: 9 renders spread over ±1.6 frames (at 30 fps) are averaged", "Camera: height 1.4 m, fixed except during the swing; the subjects (a person in A, a car and city in B) do not move", "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""]
+        "ja": [
+          "カメラ: 完全に固定（高さ1.6m、ピッチ +0.08rad＝約5°上向き）",
+          "時間: 0.4秒から4.1秒まで3.7秒で12時間ぶん進める。3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "太陽: 角度 a = -1.25rad → +1.25rad の弧を左から右へ。位置は (sin a×120, cos a×60 - 8) m、奥170m",
+          "雲3つ: 右へ合計140m流れ、80mごとに循環。人影7つ: 左右18mの幅をそれぞれ6回横切る（奇数番と偶数番は逆向き）",
+          "建物の影: 太陽と反対側へ伸び、太陽の動きに合わせて向きが振れる（半透明の灰色）",
+          "戻り: 最後の0.5秒で開始状態へクロスフェード。右上の時計は 06:00 → 18:00 を10分刻みで表示"
+        ],
+        "en": [
+          "Camera: completely fixed (height 1.6 m, pitch +0.08 rad, about 5° up)",
+          "Timing: 12 hours pass in 3.7 s (0.4 s to 4.1 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "Sun: travels left to right along an arc, angle a = -1.25 rad → +1.25 rad; position (sin a×120, cos a×60 - 8) m at 170 m depth",
+          "Three clouds drift 140 m to the right in total, wrapping every 80 m; seven small figures each cross an 18 m width 6 times (odd and even ones in opposite directions)",
+          "Building shadows fall away from the sun and swing as it moves (translucent grey)",
+          "Return: cross-fade back to the start over the last 0.5 s; the top-right clock runs 06:00 → 18:00 in 10-minute steps"
+        ]
       },
-      "use": { "ja": "勢いを保ったまま場所や話題を切り替えるとき。", "en": "To change location or topic while keeping the energy up." },
-      "tags": ["whip pan", "swish pan", "motion blur", "fast pan", "transition", "energy"] },
-
-    { "no": "20", "slug": "cross-dissolve", "category": "transitions",
-      "name": { "ja": "クロスディゾルブ", "en": "Cross dissolve" },
-      "meaning": { "ja": "前後の映像を重ねて溶かす", "en": "Blend one shot into the next" },
-      "ask": { "ja": "朝の部屋から夜の同じ部屋へ、1秒のクロスディゾルブ。", "en": "Cross dissolve from the room in the morning to the same room at night, 1 second." },
-      "summary": { "ja": "前の絵に次の絵を重ね、不透明度を上げていって入れ替える。途中は2つの絵が透けて重なる。", "en": "The next picture is laid over the current one and its opacity rises until it takes over; both show through each other midway." },
+      "use": {
+        "ja": "長い時間の経過や、街・空・作業の変化を短く見せるとき。",
+        "en": "To show a long stretch of time, or how a city, sky or task changes, in a short clip."
+      },
+      "tags": [
+        "time-lapse",
+        "timelapse",
+        "fast forward",
+        "time compression",
+        "sun",
+        "clouds",
+        "day to night"
+      ]
+    },
+    {
+      "no": "16",
+      "slug": "freeze-frame",
+      "category": "shooting-style-time",
+      "name": {
+        "ja": "フリーズフレーム",
+        "en": "Freeze frame",
+        "es": "Congelado (freeze frame)"
+      },
+      "meaning": {
+        "ja": "動きを一瞬止める",
+        "en": "Pause the action for a beat",
+        "es": "Detener la acción un momento"
+      },
+      "ask": {
+        "ja": "振り向いた瞬間でフリーズフレーム。1秒止めて、名前を出す。",
+        "en": "Freeze frame at the moment she turns around; hold for 1 second and show her name.",
+        "es": "Congela el cuadro cuando ella se da vuelta; sostenlo 1 segundo y muestra su nombre."
+      },
+      "summary": {
+        "ja": "跳び上がった人物が頂点に来た瞬間に映像を止め、1.4秒後に続きから再開する。",
+        "en": "The picture stops at the moment a jumping person reaches the top, then resumes from the same frame 1.4 s later."
+      },
       "spec": {
-        "ja": ["つなぎ方: 1.5秒から3.0秒までの1.5秒。次の絵の不透明度を 0 → 100%", "イージング: 2次のイーズインアウト（cubic-bezier(0.45,0,0.55,1) 相当）。中間の2.25秒で50%", "前の絵は不透明のまま下に置き、その上に次の絵を重ねる（前の絵を先に消さない）", "カメラ: 両方の絵とも固定（Aは高さ1.4m、Bは高さ1.6m・ピッチ+0.1rad）。被写体も動かない", "0〜1.5秒は前の絵だけ、3.0〜4.7秒は次の絵だけを見せる", "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"],
-        "en": ["Join: 1.5 s, from 1.5 s to 3.0 s; the incoming picture's opacity goes 0 → 100%", "Easing: quadratic ease-in-out (about cubic-bezier(0.45,0,0.55,1)); 50% at 2.25 s", "The outgoing picture stays fully opaque underneath and the incoming one is drawn on top (the outgoing one is not faded out first)", "Camera: fixed in both pictures (A at height 1.4 m; B at height 1.6 m, pitch +0.1 rad); the subjects do not move either", "Only the outgoing picture shows for 0–1.5 s, only the incoming one for 3.0–4.7 s", "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""]
+        "ja": [
+          "カメラ: 完全に固定（高さ1.3m）。止まるのは映像の時間",
+          "停止: 1.6秒で止め、3.0秒で再開（1.4秒間）。映像時間は 0〜1.6秒は等速、停止中は1.6秒のまま、再開後は u-1.4",
+          "被写体: 人物（7m先）の跳躍は映像時間0.6〜2.6秒の放物線、頂点1.1m。停止位置は頂点ちょうど（進み50%）",
+          "停止中は落ち葉9枚も止まる。葉の速さは 13 スローモーションの1.5倍",
+          "停止の印: 太さ5pxの青い枠と、下中央の一時停止マーク（68×40pxの白い角丸に青い縦棒2本）。出入りは0.12秒のフェード",
+          "右上に停止中だけ「FREEZE」を表示。戻りのクロスフェードなし"
+        ],
+        "en": [
+          "Camera: completely fixed (height 1.3 m); what stops is the footage time",
+          "Freeze: stops at 1.6 s and resumes at 3.0 s (1.4 s); footage time runs normally for 0–1.6 s, stays at 1.6 s while frozen, then continues as u-1.4",
+          "Subject: the jump of a person 7 m away is a parabola over footage time 0.6–2.6 s, peak 1.1 m; the freeze lands exactly on the peak (50% through)",
+          "Nine falling leaves also stop during the freeze; they fall 1.5× as fast as in 13 Slow motion",
+          "Freeze markers: a 5 px blue border and a pause icon at bottom centre (two blue bars on a 68×40 px white rounded box), fading in and out over 0.12 s",
+          "Top-right readout shows \"FREEZE\" only while frozen; no cross-fade reset"
+        ]
       },
-      "use": { "ja": "時間の経過や場所の移動を穏やかに伝えるとき、回想へ入るとき。", "en": "To convey a gentle passage of time or change of place, or to move into a memory." },
-      "tags": ["cross dissolve", "dissolve", "crossfade", "fade", "opacity", "blend", "transition"] },
-
-    { "no": "21", "slug": "wipe", "category": "transitions",
-      "name": { "ja": "ワイプ", "en": "Wipe" },
-      "meaning": { "ja": "境目が横切って画面が入れ替わる", "en": "A moving edge replaces the shot" },
-      "ask": { "ja": "左から右へのワイプで、次の場面に入れ替える。", "en": "Wipe from left to right into the next scene." },
-      "summary": { "ja": "縦の境界線が左から右へ動き、通過した側から次の絵に置き換わる。", "en": "A vertical edge moves from left to right and the next picture replaces the current one behind it." },
+      "use": {
+        "ja": "決定的な瞬間を強調するとき、止めた画に名前や説明のテロップを載せるとき。",
+        "en": "To emphasise a decisive moment, or to pause so a name or caption can be placed over the frame."
+      },
+      "tags": [
+        "freeze frame",
+        "still frame",
+        "pause",
+        "hold",
+        "stop motion",
+        "highlight"
+      ]
+    },
+    {
+      "no": "17",
+      "slug": "jump-cut",
+      "category": "transitions",
+      "name": {
+        "ja": "ジャンプカット",
+        "en": "Jump cut",
+        "es": "Jump cut"
+      },
+      "meaning": {
+        "ja": "同じ画角のまま時間を飛ばす",
+        "en": "Same framing, skip ahead in time",
+        "es": "Mismo encuadre, saltando adelante en el tiempo"
+      },
+      "ask": {
+        "ja": "同じ画角のままジャンプカットでつないで、準備の様子をテンポよく見せる。",
+        "en": "Use jump cuts from the same framing to move quickly through the preparation.",
+        "es": "Usa jump cuts con el mismo encuadre para pasar rápido por la preparación."
+      },
+      "summary": {
+        "ja": "カメラの位置も画角も同じまま、人物の位置と時刻だけが飛ぶ。同じ場面の中で時間を省く切り方。",
+        "en": "Camera position and framing stay the same while the person's position and the clock jump; time is skipped inside one scene."
+      },
       "spec": {
-        "ja": ["つなぎ方: 1.7秒から2.8秒までの1.1秒。境界線が左端の外（x=-4px）から右端の外（x=543px）へ移動", "イージング: 3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）", "境界線の左側に次の絵、右側に前の絵を表示。どちらの絵も位置は動かさない（押し出しではなく切り抜き）", "境界: 幅4pxの青い縦線を、移動中だけ表示", "カメラ: 両方の絵とも固定。被写体も動かない", "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"],
-        "en": ["Join: 1.1 s, from 1.7 s to 2.8 s; the edge travels from just outside the left side (x = -4 px) to just outside the right side (x = 543 px)", "Easing: cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))", "The incoming picture shows left of the edge and the outgoing one right of it; neither picture moves (a reveal by clipping, not a push)", "Edge: a 4 px blue vertical line, visible only while it is moving", "Camera: fixed in both pictures; the subjects do not move either", "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""]
+        "ja": [
+          "つなぎ方: つなぎの効果なしの直結（0フレーム）。5ショットを0.94秒ずつ（4.7秒÷5）",
+          "カメラ: 全ショット同じ位置・同じ画角（高さ1.4m、正面向き）。背景は1pxも動かない",
+          "変わるもの: 人物（7m先）の横位置が -2.2m → 1.4m → -0.4m → 2.4m → 0.6m と飛ぶ。2・4番目は両腕を上げた姿勢",
+          "各ショットの中では人物は動かない（位置と姿勢の差だけで飛びを見せる）",
+          "右上の時計: 10:02 → 10:17 → 10:41 → 11:06 → 11:30。同じ場所で時間が飛んだことを示す",
+          "5番目から1番目へも直結で戻る"
+        ],
+        "en": [
+          "Join: a straight cut with no effect (0 frames); 5 shots of 0.94 s each (4.7 s ÷ 5)",
+          "Camera: identical position and framing in every shot (height 1.4 m, facing forward); the background does not move by a pixel",
+          "What changes: the person (7 m away) jumps in sideways position, -2.2 m → 1.4 m → -0.4 m → 2.4 m → 0.6 m; in shots 2 and 4 both arms are raised",
+          "Within each shot the person is still (the jump is shown only by the difference in position and pose)",
+          "Top-right clock: 10:02 → 10:17 → 10:41 → 11:06 → 11:30, showing that time was skipped in the same place",
+          "Shot 5 cuts straight back to shot 1"
+        ]
       },
-      "use": { "ja": "場面や話題の区切りをはっきり見せたいとき、比較の前後を切り替えるとき。", "en": "To mark a clear change of scene or topic, or to switch between the two sides of a comparison." },
-      "tags": ["wipe", "linear wipe", "reveal", "clip", "edge", "left to right", "transition"] },
-
-    { "no": "22", "slug": "smash-cut", "category": "transitions",
-      "name": { "ja": "スマッシュカット", "en": "Smash cut" },
-      "meaning": { "ja": "対照的な場面へ前触れなく切り替える", "en": "Abrupt cut to a contrasting scene" },
-      "ask": { "ja": "静かな寝室から、騒がしい交差点へスマッシュカット。", "en": "Smash cut from the quiet bedroom to a noisy intersection." },
-      "summary": { "ja": "人物が寝ている静かな場面から、前触れなく激しい場面へ直結で切り替える。音量メーターも一気に上がる。", "en": "A quiet scene of a person asleep cuts with no warning straight to an intense one; the volume meter jumps at the same moment." },
+      "use": {
+        "ja": "話や作業の間を詰めてテンポを上げるとき、時間の経過を短く示すとき。",
+        "en": "To tighten pauses in talk or work and raise the pace, or to show time passing quickly."
+      },
+      "tags": [
+        "jump cut",
+        "cut",
+        "time skip",
+        "same framing",
+        "vlog",
+        "ellipsis",
+        "edit"
+      ]
+    },
+    {
+      "no": "18",
+      "slug": "match-cut",
+      "category": "transitions",
+      "name": {
+        "ja": "マッチカット",
+        "en": "Match cut",
+        "es": "Match cut (corte por coincidencia)"
+      },
+      "meaning": {
+        "ja": "形や動きをそろえて場面を変える",
+        "en": "Cut on a matching shape or motion",
+        "es": "Cortar sobre una forma o movimiento que coincide"
+      },
+      "ask": {
+        "ja": "丸いコーヒーカップから、同じ位置にある満月へマッチカット。",
+        "en": "Match cut from the round coffee cup to a full moon in the same position.",
+        "es": "Match cut de la taza de café redonda a una luna llena en la misma posición."
+      },
+      "summary": {
+        "ja": "投げ上げたボールが、次のカットでは同じ位置・同じ大きさの太陽になる。形をそろえて別の場面へつなぐ。",
+        "en": "A thrown ball becomes, in the next shot, a sun at the same position and size; two different scenes are joined on a matching shape."
+      },
       "spec": {
-        "ja": ["つなぎ方: 2.4秒で直結（0フレーム）。つなぎの効果は入れず、前後の落差で見せる", "前の絵（0〜2.4秒）: 固定カメラ（高さ1.2m、焦点距離330px）。7m先で横になった人物、「z」の文字が3つ浮かんで消える。音量メーターは8段中ほぼ0〜1段（0.08±0.04）", "後の絵（2.4〜4.2秒）: 焦点距離を2.6倍（858px）にして寄り、ロール -0.12rad（約-7°）で傾ける。人物は両腕を上げ、放射状の青い線18本", "後の絵の揺れ: ロール ±0.03rad（毎秒約6回）と ヨー ±0.006rad（毎秒約8回）で振る。音量メーターは0.85±0.15でほぼ満杯", "戻り: 最後の0.5秒で静かな絵へクロスフェード（2次のイーズインアウト）", "右上に「♪ 静か」→「♪ 大音量」"],
-        "en": ["Join: a straight cut at 2.4 s (0 frames); no transition effect, the contrast does the work", "Outgoing shot (0–2.4 s): fixed camera (height 1.2 m, focal length 330 px); a person lying down 7 m away, three \"z\" letters float up and fade; volume meter at about 0–1 of 8 bars (0.08±0.04)", "Incoming shot (2.4–4.2 s): focal length 2.6× (858 px) for a tight framing, rolled -0.12 rad (about -7°); the person has both arms raised, with 18 radial blue lines", "Shake in the incoming shot: roll ±0.03 rad (about 6 cycles per second) and yaw ±0.006 rad (about 8 per second); volume meter at 0.85±0.15, nearly full", "Return: cross-fade back to the quiet shot over the last 0.5 s (quadratic ease-in-out)", "Top-right readout shows \"♪ 静か\" (quiet) → \"♪ 大音量\" (loud)"]
+        "ja": [
+          "つなぎ方: 2.3秒で直結（0フレーム）。前後で青い円の位置（中心から右120px・上46px）と半径17pxを一致させる",
+          "前の絵（0〜2.3秒）: 固定カメラ（高さ1.4m）。人物（左1.2m・奥7m）が0.5秒から両腕を上げてボールを投げる。3次のイーズアウト（cubic-bezier(0.33,1,0.68,1) 相当）",
+          "ボール: 人物の頭上（高さ2.3m）から一致点へ移動。半径 5px → 17px、途中は最大30px上へふくらむ弧",
+          "後の絵（2.3〜4.7秒）: 別の場所（建物なし・高さ1.2m）。同じ位置の青い円が太陽になり、2.4秒かけて14px下がる",
+          "目印: 半径26pxの青い点線の円を、カットの前後0.7秒だけフェードで表示",
+          "右上に「SHOT 1」→「SHOT 2」。4.7秒でSHOT 1へ直結で戻る"
+        ],
+        "en": [
+          "Join: a straight cut at 2.3 s (0 frames); the blue circle has the same position (120 px right, 46 px above centre) and radius 17 px on both sides",
+          "Outgoing shot (0–2.3 s): fixed camera (height 1.4 m); a person (1.2 m left, 7 m away) throws a ball from 0.5 s, cubic ease-out (about cubic-bezier(0.33,1,0.68,1))",
+          "Ball: travels from above the person's head (2.3 m high) to the match point; radius 5 px → 17 px, on an arc bulging up to 30 px",
+          "Incoming shot (2.3–4.7 s): a different place (no buildings, height 1.2 m); the blue circle in the same spot is now the sun and sinks 14 px over 2.4 s",
+          "Marker: a blue dashed circle of radius 26 px fades in and out within 0.7 s either side of the cut",
+          "Top-right readout shows \"SHOT 1\" → \"SHOT 2\"; at 4.7 s it cuts straight back to SHOT 1"
+        ]
       },
-      "use": { "ja": "笑いや驚きを作るとき。静と動、予想と現実の落差を一瞬で見せるとき。", "en": "For comedy or shock, showing in an instant the gap between calm and chaos or between expectation and reality." },
-      "tags": ["smash cut", "hard cut", "abrupt", "contrast", "quiet to loud", "comedy", "transition"] },
-
-    { "no": "23", "slug": "j-cut", "category": "transitions",
-      "name": { "ja": "Jカット", "en": "J-cut" },
-      "meaning": { "ja": "次の場面の音が先に聞こえる", "en": "Next scene's audio starts first" },
-      "ask": { "ja": "Jカットで、次の場面の波の音を先に聞かせてから、海の映像に切り替える。", "en": "J-cut: let the sound of waves from the next scene start before cutting to the sea." },
-      "summary": { "ja": "映像が切り替わる前に、次の場面の音が先に入る。上に映像、下に映像と音のタイムラインを表示する。", "en": "The next scene's audio starts before the picture changes; the picture is shown on top with video and audio timelines below." },
+      "use": {
+        "ja": "時間や場所が大きく離れた2つの場面を、形や動きの共通点で意味を持たせてつなぐとき。",
+        "en": "To link two scenes far apart in time or place through a shared shape or motion."
+      },
+      "tags": [
+        "match cut",
+        "graphic match",
+        "shape match",
+        "cut",
+        "transition",
+        "edit"
+      ]
+    },
+    {
+      "no": "19",
+      "slug": "whip-pan",
+      "category": "transitions",
+      "name": {
+        "ja": "ホイップパン",
+        "en": "Whip pan",
+        "es": "Whip pan (barrido rápido)"
+      },
+      "meaning": {
+        "ja": "素早く振ってブレで次へ",
+        "en": "Fast pan blur into the next shot",
+        "es": "Un paneo rápido con desenfoque hacia la toma siguiente"
+      },
+      "ask": {
+        "ja": "ホイップパンで右へ素早く振って、次の場所へつなぐ。",
+        "en": "Whip pan to the right and land in the next location.",
+        "es": "Whip pan hacia la derecha y caer en la siguiente locación."
+      },
+      "summary": {
+        "ja": "カメラを素早く横に振り、流れてぼけた映像の中で次の場面に入れ替える。",
+        "en": "The camera swings sideways very fast and the next scene is swapped in during the streaked blur."
+      },
       "spec": {
-        "ja": ["つなぎ方: 映像は直結。音だけ映像より先に次の場面（B）へ切り替える。ずれはタイムライン全体の20%（0.72秒）", "再生ヘッド: 0.4秒から4.0秒まで3.6秒かけて等速で左から右へ。音の切り替えは35%（約1.66秒）、映像の切り替えは55%（約2.38秒）", "ずれている区間（35〜55%）は、映像がAのまま音だけBになる。区間を薄い青の帯と青い点線2本で強調", "画面構成: 上134pxが映像（固定カメラ・被写体は動かない）、下74pxが「映像」「音」の2段のタイムライン（A＝灰色、B＝薄い青、音の段に波形）", "表示: 映像の左下に「映像A / 映像B」、右下に今流れている音（「♪ Aの音」灰色 →「♪ Bの音」青）", "戻り: 最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"],
-        "en": ["Join: the picture is a straight cut; only the audio switches to the next scene (B) before the picture does. The offset is 20% of the timeline (0.72 s)", "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); audio switches at 35% (about 1.66 s), picture at 55% (about 2.38 s)", "In the offset section (35–55%) the picture is still A while the audio is already B; the section is marked with a pale blue band and two blue dashed lines", "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)", "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)", "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"]
+        "ja": [
+          "つなぎ方: 1.7秒から2.5秒までの0.8秒。前半0.4秒は前の絵を振り出し、後半0.4秒は次の絵が振り込んで止まる",
+          "前半: 前の絵のヨーを 0 → +0.45rad（約26°）、2次のイーズインアウト。後半: 次の絵のヨーを -0.45rad → 0、同じイージング",
+          "入れ替え: 進み50%の瞬間に直結で差し替える。ぶれが最大なので切れ目は見えない",
+          "ぶれ: 前後1.6フレームぶん（30fps）の範囲を9枚描いて平均する",
+          "カメラ: 高さ1.4m。振っている間以外は固定。被写体（Aは人物、Bは車と街）は動かない",
+          "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"
+        ],
+        "en": [
+          "Join: 0.8 s, from 1.7 s to 2.5 s; in the first 0.4 s the outgoing shot swings away, in the last 0.4 s the incoming shot swings in and settles",
+          "First half: outgoing yaw 0 → +0.45 rad (about 26°), quadratic ease-in-out; second half: incoming yaw -0.45 rad → 0, same easing",
+          "Swap: a straight replacement at the 50% point, hidden because the blur is at its strongest",
+          "Blur: 9 renders spread over ±1.6 frames (at 30 fps) are averaged",
+          "Camera: height 1.4 m, fixed except during the swing; the subjects (a person in A, a car and city in B) do not move",
+          "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""
+        ]
       },
-      "use": { "ja": "次の場面への期待を先に作りたいとき、会話や場面転換を自然につなぐとき。", "en": "To build anticipation for the next scene, or to make a change of scene or speaker feel natural." },
-      "tags": ["j-cut", "j cut", "split edit", "audio lead", "sound first", "audio transition", "edit"] },
-
-    { "no": "24", "slug": "l-cut", "category": "transitions",
-      "name": { "ja": "Lカット", "en": "L-cut" },
-      "meaning": { "ja": "前の場面の音が後まで残る", "en": "Previous scene's audio carries over" },
-      "ask": { "ja": "Lカットで、彼女の話し声を残したまま、聞き手の顔に切り替える。", "en": "L-cut: keep her voice going while cutting to the listener's face." },
-      "summary": { "ja": "映像が次の場面に切り替わったあとも、前の場面の音がしばらく残る。上に映像、下に映像と音のタイムラインを表示する。", "en": "The previous scene's audio carries on for a while after the picture has changed; the picture is shown on top with video and audio timelines below." },
+      "use": {
+        "ja": "勢いを保ったまま場所や話題を切り替えるとき。",
+        "en": "To change location or topic while keeping the energy up."
+      },
+      "tags": [
+        "whip pan",
+        "swish pan",
+        "motion blur",
+        "fast pan",
+        "transition",
+        "energy"
+      ]
+    },
+    {
+      "no": "20",
+      "slug": "cross-dissolve",
+      "category": "transitions",
+      "name": {
+        "ja": "クロスディゾルブ",
+        "en": "Cross dissolve",
+        "es": "Fundido encadenado"
+      },
+      "meaning": {
+        "ja": "前後の映像を重ねて溶かす",
+        "en": "Blend one shot into the next",
+        "es": "Mezclar una toma con la siguiente"
+      },
+      "ask": {
+        "ja": "朝の部屋から夜の同じ部屋へ、1秒のクロスディゾルブ。",
+        "en": "Cross dissolve from the room in the morning to the same room at night, 1 second.",
+        "es": "Fundido encadenado del cuarto en la mañana al mismo cuarto de noche, 1 segundo."
+      },
+      "summary": {
+        "ja": "前の絵に次の絵を重ね、不透明度を上げていって入れ替える。途中は2つの絵が透けて重なる。",
+        "en": "The next picture is laid over the current one and its opacity rises until it takes over; both show through each other midway."
+      },
       "spec": {
-        "ja": ["つなぎ方: 映像は直結。音だけ映像より後に次の場面（B）へ切り替える。ずれはタイムライン全体の20%（0.72秒）", "再生ヘッド: 0.4秒から4.0秒まで3.6秒かけて等速で左から右へ。映像の切り替えは55%（約2.38秒）、音の切り替えは75%（約3.10秒）", "ずれている区間（55〜75%）は、映像がBになっても音はAのまま。区間を薄い青の帯と青い点線2本で強調", "画面構成: 上134pxが映像（固定カメラ・被写体は動かない）、下74pxが「映像」「音」の2段のタイムライン（A＝灰色、B＝薄い青、音の段に波形）", "表示: 映像の左下に「映像A / 映像B」、右下に今流れている音（「♪ Aの音」灰色 →「♪ Bの音」青）", "戻り: 最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"],
-        "en": ["Join: the picture is a straight cut; only the audio switches to the next scene (B) after the picture does. The offset is 20% of the timeline (0.72 s)", "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); picture switches at 55% (about 2.38 s), audio at 75% (about 3.10 s)", "In the offset section (55–75%) the picture is already B while the audio is still A; the section is marked with a pale blue band and two blue dashed lines", "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)", "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)", "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"]
+        "ja": [
+          "つなぎ方: 1.5秒から3.0秒までの1.5秒。次の絵の不透明度を 0 → 100%",
+          "イージング: 2次のイーズインアウト（cubic-bezier(0.45,0,0.55,1) 相当）。中間の2.25秒で50%",
+          "前の絵は不透明のまま下に置き、その上に次の絵を重ねる（前の絵を先に消さない）",
+          "カメラ: 両方の絵とも固定（Aは高さ1.4m、Bは高さ1.6m・ピッチ+0.1rad）。被写体も動かない",
+          "0〜1.5秒は前の絵だけ、3.0〜4.7秒は次の絵だけを見せる",
+          "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"
+        ],
+        "en": [
+          "Join: 1.5 s, from 1.5 s to 3.0 s; the incoming picture's opacity goes 0 → 100%",
+          "Easing: quadratic ease-in-out (about cubic-bezier(0.45,0,0.55,1)); 50% at 2.25 s",
+          "The outgoing picture stays fully opaque underneath and the incoming one is drawn on top (the outgoing one is not faded out first)",
+          "Camera: fixed in both pictures (A at height 1.4 m; B at height 1.6 m, pitch +0.1 rad); the subjects do not move either",
+          "Only the outgoing picture shows for 0–1.5 s, only the incoming one for 3.0–4.7 s",
+          "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""
+        ]
       },
-      "use": { "ja": "話している人の声を残したまま、聞き手の反応や関連する映像を見せるとき。", "en": "To keep a speaker's voice running while showing the listener's reaction or related footage." },
-      "tags": ["l-cut", "l cut", "split edit", "audio lag", "sound carries over", "audio transition", "edit"] }
+      "use": {
+        "ja": "時間の経過や場所の移動を穏やかに伝えるとき、回想へ入るとき。",
+        "en": "To convey a gentle passage of time or change of place, or to move into a memory."
+      },
+      "tags": [
+        "cross dissolve",
+        "dissolve",
+        "crossfade",
+        "fade",
+        "opacity",
+        "blend",
+        "transition"
+      ]
+    },
+    {
+      "no": "21",
+      "slug": "wipe",
+      "category": "transitions",
+      "name": {
+        "ja": "ワイプ",
+        "en": "Wipe",
+        "es": "Cortinilla (wipe)"
+      },
+      "meaning": {
+        "ja": "境目が横切って画面が入れ替わる",
+        "en": "A moving edge replaces the shot",
+        "es": "Un borde que avanza reemplaza la toma"
+      },
+      "ask": {
+        "ja": "左から右へのワイプで、次の場面に入れ替える。",
+        "en": "Wipe from left to right into the next scene.",
+        "es": "Cortinilla de izquierda a derecha hacia la siguiente escena."
+      },
+      "summary": {
+        "ja": "縦の境界線が左から右へ動き、通過した側から次の絵に置き換わる。",
+        "en": "A vertical edge moves from left to right and the next picture replaces the current one behind it."
+      },
+      "spec": {
+        "ja": [
+          "つなぎ方: 1.7秒から2.8秒までの1.1秒。境界線が左端の外（x=-4px）から右端の外（x=543px）へ移動",
+          "イージング: 3次のイーズインアウト（cubic-bezier(0.65,0,0.35,1) 相当）",
+          "境界線の左側に次の絵、右側に前の絵を表示。どちらの絵も位置は動かさない（押し出しではなく切り抜き）",
+          "境界: 幅4pxの青い縦線を、移動中だけ表示",
+          "カメラ: 両方の絵とも固定。被写体も動かない",
+          "4.7秒ごとに A→B、B→A を交互に行う（往復で9.4秒）。右上に「A → B」「B → A」"
+        ],
+        "en": [
+          "Join: 1.1 s, from 1.7 s to 2.8 s; the edge travels from just outside the left side (x = -4 px) to just outside the right side (x = 543 px)",
+          "Easing: cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
+          "The incoming picture shows left of the edge and the outgoing one right of it; neither picture moves (a reveal by clipping, not a push)",
+          "Edge: a 4 px blue vertical line, visible only while it is moving",
+          "Camera: fixed in both pictures; the subjects do not move either",
+          "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"A → B\" / \"B → A\""
+        ]
+      },
+      "use": {
+        "ja": "場面や話題の区切りをはっきり見せたいとき、比較の前後を切り替えるとき。",
+        "en": "To mark a clear change of scene or topic, or to switch between the two sides of a comparison."
+      },
+      "tags": [
+        "wipe",
+        "linear wipe",
+        "reveal",
+        "clip",
+        "edge",
+        "left to right",
+        "transition"
+      ]
+    },
+    {
+      "no": "22",
+      "slug": "smash-cut",
+      "category": "transitions",
+      "name": {
+        "ja": "スマッシュカット",
+        "en": "Smash cut",
+        "es": "Smash cut (corte brusco)"
+      },
+      "meaning": {
+        "ja": "対照的な場面へ前触れなく切り替える",
+        "en": "Abrupt cut to a contrasting scene",
+        "es": "Corte abrupto a una escena que contrasta"
+      },
+      "ask": {
+        "ja": "静かな寝室から、騒がしい交差点へスマッシュカット。",
+        "en": "Smash cut from the quiet bedroom to a noisy intersection.",
+        "es": "Smash cut del dormitorio silencioso a una intersección ruidosa."
+      },
+      "summary": {
+        "ja": "人物が寝ている静かな場面から、前触れなく激しい場面へ直結で切り替える。音量メーターも一気に上がる。",
+        "en": "A quiet scene of a person asleep cuts with no warning straight to an intense one; the volume meter jumps at the same moment."
+      },
+      "spec": {
+        "ja": [
+          "つなぎ方: 2.4秒で直結（0フレーム）。つなぎの効果は入れず、前後の落差で見せる",
+          "前の絵（0〜2.4秒）: 固定カメラ（高さ1.2m、焦点距離330px）。7m先で横になった人物、「z」の文字が3つ浮かんで消える。音量メーターは8段中ほぼ0〜1段（0.08±0.04）",
+          "後の絵（2.4〜4.2秒）: 焦点距離を2.6倍（858px）にして寄り、ロール -0.12rad（約-7°）で傾ける。人物は両腕を上げ、放射状の青い線18本",
+          "後の絵の揺れ: ロール ±0.03rad（毎秒約6回）と ヨー ±0.006rad（毎秒約8回）で振る。音量メーターは0.85±0.15でほぼ満杯",
+          "戻り: 最後の0.5秒で静かな絵へクロスフェード（2次のイーズインアウト）",
+          "右上に「♪ 静か」→「♪ 大音量」"
+        ],
+        "en": [
+          "Join: a straight cut at 2.4 s (0 frames); no transition effect, the contrast does the work",
+          "Outgoing shot (0–2.4 s): fixed camera (height 1.2 m, focal length 330 px); a person lying down 7 m away, three \"z\" letters float up and fade; volume meter at about 0–1 of 8 bars (0.08±0.04)",
+          "Incoming shot (2.4–4.2 s): focal length 2.6× (858 px) for a tight framing, rolled -0.12 rad (about -7°); the person has both arms raised, with 18 radial blue lines",
+          "Shake in the incoming shot: roll ±0.03 rad (about 6 cycles per second) and yaw ±0.006 rad (about 8 per second); volume meter at 0.85±0.15, nearly full",
+          "Return: cross-fade back to the quiet shot over the last 0.5 s (quadratic ease-in-out)",
+          "Top-right readout shows \"♪ 静か\" (quiet) → \"♪ 大音量\" (loud)"
+        ]
+      },
+      "use": {
+        "ja": "笑いや驚きを作るとき。静と動、予想と現実の落差を一瞬で見せるとき。",
+        "en": "For comedy or shock, showing in an instant the gap between calm and chaos or between expectation and reality."
+      },
+      "tags": [
+        "smash cut",
+        "hard cut",
+        "abrupt",
+        "contrast",
+        "quiet to loud",
+        "comedy",
+        "transition"
+      ]
+    },
+    {
+      "no": "23",
+      "slug": "j-cut",
+      "category": "transitions",
+      "name": {
+        "ja": "Jカット",
+        "en": "J-cut",
+        "es": "Corte J (J-cut)"
+      },
+      "meaning": {
+        "ja": "次の場面の音が先に聞こえる",
+        "en": "Next scene's audio starts first",
+        "es": "El audio de la escena siguiente empieza antes"
+      },
+      "ask": {
+        "ja": "Jカットで、次の場面の波の音を先に聞かせてから、海の映像に切り替える。",
+        "en": "J-cut: let the sound of waves from the next scene start before cutting to the sea.",
+        "es": "Corte J: que el sonido de las olas de la siguiente escena empiece antes de cortar al mar."
+      },
+      "summary": {
+        "ja": "映像が切り替わる前に、次の場面の音が先に入る。上に映像、下に映像と音のタイムラインを表示する。",
+        "en": "The next scene's audio starts before the picture changes; the picture is shown on top with video and audio timelines below."
+      },
+      "spec": {
+        "ja": [
+          "つなぎ方: 映像は直結。音だけ映像より先に次の場面（B）へ切り替える。ずれはタイムライン全体の20%（0.72秒）",
+          "再生ヘッド: 0.4秒から4.0秒まで3.6秒かけて等速で左から右へ。音の切り替えは35%（約1.66秒）、映像の切り替えは55%（約2.38秒）",
+          "ずれている区間（35〜55%）は、映像がAのまま音だけBになる。区間を薄い青の帯と青い点線2本で強調",
+          "画面構成: 上134pxが映像（固定カメラ・被写体は動かない）、下74pxが「映像」「音」の2段のタイムライン（A＝灰色、B＝薄い青、音の段に波形）",
+          "表示: 映像の左下に「映像A / 映像B」、右下に今流れている音（「♪ Aの音」灰色 →「♪ Bの音」青）",
+          "戻り: 最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"
+        ],
+        "en": [
+          "Join: the picture is a straight cut; only the audio switches to the next scene (B) before the picture does. The offset is 20% of the timeline (0.72 s)",
+          "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); audio switches at 35% (about 1.66 s), picture at 55% (about 2.38 s)",
+          "In the offset section (35–55%) the picture is still A while the audio is already B; the section is marked with a pale blue band and two blue dashed lines",
+          "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
+          "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+          "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
+        ]
+      },
+      "use": {
+        "ja": "次の場面への期待を先に作りたいとき、会話や場面転換を自然につなぐとき。",
+        "en": "To build anticipation for the next scene, or to make a change of scene or speaker feel natural."
+      },
+      "tags": [
+        "j-cut",
+        "j cut",
+        "split edit",
+        "audio lead",
+        "sound first",
+        "audio transition",
+        "edit"
+      ]
+    },
+    {
+      "no": "24",
+      "slug": "l-cut",
+      "category": "transitions",
+      "name": {
+        "ja": "Lカット",
+        "en": "L-cut",
+        "es": "Corte L (L-cut)"
+      },
+      "meaning": {
+        "ja": "前の場面の音が後まで残る",
+        "en": "Previous scene's audio carries over",
+        "es": "El audio de la escena anterior sigue sonando"
+      },
+      "ask": {
+        "ja": "Lカットで、彼女の話し声を残したまま、聞き手の顔に切り替える。",
+        "en": "L-cut: keep her voice going while cutting to the listener's face.",
+        "es": "Corte L: que su voz siga mientras cortamos a la cara de quien escucha."
+      },
+      "summary": {
+        "ja": "映像が次の場面に切り替わったあとも、前の場面の音がしばらく残る。上に映像、下に映像と音のタイムラインを表示する。",
+        "en": "The previous scene's audio carries on for a while after the picture has changed; the picture is shown on top with video and audio timelines below."
+      },
+      "spec": {
+        "ja": [
+          "つなぎ方: 映像は直結。音だけ映像より後に次の場面（B）へ切り替える。ずれはタイムライン全体の20%（0.72秒）",
+          "再生ヘッド: 0.4秒から4.0秒まで3.6秒かけて等速で左から右へ。映像の切り替えは55%（約2.38秒）、音の切り替えは75%（約3.10秒）",
+          "ずれている区間（55〜75%）は、映像がBになっても音はAのまま。区間を薄い青の帯と青い点線2本で強調",
+          "画面構成: 上134pxが映像（固定カメラ・被写体は動かない）、下74pxが「映像」「音」の2段のタイムライン（A＝灰色、B＝薄い青、音の段に波形）",
+          "表示: 映像の左下に「映像A / 映像B」、右下に今流れている音（「♪ Aの音」灰色 →「♪ Bの音」青）",
+          "戻り: 最後の0.5秒で開始状態へクロスフェード（1周4.7秒）"
+        ],
+        "en": [
+          "Join: the picture is a straight cut; only the audio switches to the next scene (B) after the picture does. The offset is 20% of the timeline (0.72 s)",
+          "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); picture switches at 55% (about 2.38 s), audio at 75% (about 3.10 s)",
+          "In the offset section (55–75%) the picture is already B while the audio is still A; the section is marked with a pale blue band and two blue dashed lines",
+          "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
+          "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+          "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
+        ]
+      },
+      "use": {
+        "ja": "話している人の声を残したまま、聞き手の反応や関連する映像を見せるとき。",
+        "en": "To keep a speaker's voice running while showing the listener's reaction or related footage."
+      },
+      "tags": [
+        "l-cut",
+        "l cut",
+        "split edit",
+        "audio lag",
+        "sound carries over",
+        "audio transition",
+        "edit"
+      ]
+    }
   ]
 }

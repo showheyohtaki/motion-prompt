@@ -2,7 +2,7 @@
 
 # Camera moves & transitions
 
-24 names · #025–048 · pack `camera` · Languages: [日本語](README.ja.md)
+24 names · #025–048 · pack `camera` · Languages: [Español](README.es.md) / [日本語](README.ja.md)
 
 Find the name, then say it to your AI. Add how long, how strong and what moves, and the result gets closer to what you had in mind.
 

@@ -1,5 +1,5 @@
 {
- "version": "1.3ecb2619b4",
+ "version": "1.2ac9cdbd45",
  "site": "https://showheyohtaki.github.io/motion-prompt/",
  "repo": "https://github.com/showheyohtaki/motion-prompt",
  "count": 120,
@@ -9,27 +9,32 @@
    "order": 1,
    "title": {
     "ja": "モーショングラフィックスの動き",
-    "en": "Motion graphics moves"
+    "en": "Motion graphics moves",
+    "es": "Movimientos de motion graphics"
    },
    "langs": [
     "en",
+    "es",
     "ja"
    ],
    "categories": [
     {
      "slug": "entrances-text",
      "ja": "登場・文字の演出",
-     "en": "Entrances & text"
+     "en": "Entrances & text",
+     "es": "Entradas y texto"
     },
     {
      "slug": "motion-polish",
      "ja": "動きの味付け",
-     "en": "Motion polish"
+     "en": "Motion polish",
+     "es": "Acabado del movimiento"
     },
     {
      "slug": "transitions-highlights",
      "ja": "切り替え・見せ場",
-     "en": "Transitions & highlights"
+     "en": "Transitions & highlights",
+     "es": "Transiciones y realces"
     }
    ],
    "count": 24,
@@ -46,27 +51,32 @@
    "order": 2,
    "title": {
     "ja": "カメラワークと切り替え",
-    "en": "Camera moves & transitions"
+    "en": "Camera moves & transitions",
+    "es": "Movimientos de cámara y transiciones"
    },
    "langs": [
     "en",
+    "es",
     "ja"
    ],
    "categories": [
     {
      "slug": "camera-movement",
      "ja": "カメラの動き",
-     "en": "Camera Movement"
+     "en": "Camera Movement",
+     "es": "Movimientos de cámara"
     },
     {
      "slug": "shooting-style-time",
      "ja": "撮り方・時間の演出",
-     "en": "Shooting Style & Time"
+     "en": "Shooting Style & Time",
+     "es": "Estilo de toma y tiempo"
     },
     {
      "slug": "transitions",
      "ja": "切り替え（トランジション）",
-     "en": "Transitions"
+     "en": "Transitions",
+     "es": "Transiciones"
     }
    ],
    "count": 24,
@@ -83,27 +93,32 @@
    "order": 3,
    "title": {
     "ja": "UIパーツの名前",
-    "en": "UI component names"
+    "en": "UI component names",
+    "es": "Nombres de componentes de interfaz"
    },
    "langs": [
     "en",
+    "es",
     "ja"
    ],
    "categories": [
     {
      "slug": "open-overlay",
      "ja": "開く・重なるパーツ",
-     "en": "Opening & overlays"
+     "en": "Opening & overlays",
+     "es": "Abrir y superponer"
     },
     {
      "slug": "select-switch",
      "ja": "選ぶ・切り替えるパーツ",
-     "en": "Choosing & switching"
+     "en": "Choosing & switching",
+     "es": "Elegir y cambiar"
     },
     {
      "slug": "navigate-status",
      "ja": "案内する・状態を伝えるパーツ",
-     "en": "Navigation & status"
+     "en": "Navigation & status",
+     "es": "Navegación y estado"
     }
    ],
    "count": 24,
@@ -120,27 +135,32 @@
    "order": 4,
    "title": {
     "ja": "LP・Webサイトの演出",
-    "en": "Landing page & web effects"
+    "en": "Landing page & web effects",
+    "es": "Efectos de landing pages y sitios web"
    },
    "langs": [
     "en",
+    "es",
     "ja"
    ],
    "categories": [
     {
      "slug": "scroll",
      "ja": "スクロールで起きる演出",
-     "en": "Scroll effects"
+     "en": "Scroll effects",
+     "es": "Efectos al hacer scroll"
     },
     {
      "slug": "hover-click",
      "ja": "マウス・クリックへの反応",
-     "en": "Hover & click interactions"
+     "en": "Hover & click interactions",
+     "es": "Interacciones al pasar el cursor y al hacer clic"
     },
     {
      "slug": "loading-loops",
      "ja": "読み込み・移動・動き続ける演出",
-     "en": "Loading, navigation & ambient loops"
+     "en": "Loading, navigation & ambient loops",
+     "es": "Carga, navegación y bucles de ambiente"
     }
    ],
    "count": 24,
@@ -157,27 +177,32 @@
    "order": 5,
    "title": {
     "ja": "写真の表現・光と画風",
-    "en": "Photo looks, lighting & styles"
+    "en": "Photo looks, lighting & styles",
+    "es": "Looks de foto, iluminación y estilos"
    },
    "langs": [
     "en",
+    "es",
     "ja"
    ],
    "categories": [
     {
      "slug": "lighting",
      "ja": "光の当て方・時間帯",
-     "en": "Lighting & time of day"
+     "en": "Lighting & time of day",
+     "es": "Iluminación y hora del día"
     },
     {
      "slug": "lens-camera",
      "ja": "レンズ・カメラの効果",
-     "en": "Lens & camera effects"
+     "en": "Lens & camera effects",
+     "es": "Efectos de lente y cámara"
     },
     {
      "slug": "tone-finish",
      "ja": "仕上げ・画風",
-     "en": "Tones & finishing looks"
+     "en": "Tones & finishing looks",
+     "es": "Tonos y acabados"
     }
    ],
    "count": 24,
@@ -202,15 +227,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "ポップイン",
-    "en": "Pop-in"
+    "en": "Pop-in",
+    "es": "Pop-in"
    },
    "meaning": {
     "ja": "ポンと弾んで現れる",
-    "en": "Pops into view with a small bounce"
+    "en": "Pops into view with a small bounce",
+    "es": "Aparece de golpe con un pequeño rebote"
    },
    "ask": {
     "ja": "ロゴをポップインで出して。0.4秒で、行き過ぎは少しだけ。",
-    "en": "Bring the logo in with a pop-in, about 0.4 s, with a slight overshoot."
+    "en": "Bring the logo in with a pop-in, about 0.4 s, with a slight overshoot.",
+    "es": "Haz que el logo entre con un pop-in, de unos 0,4 s, con un leve overshoot."
    },
    "summary": {
     "ja": "アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポンと出る。",
@@ -260,15 +288,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "スタガー",
-    "en": "Stagger"
+    "en": "Stagger",
+    "es": "Stagger (escalonado)"
    },
    "meaning": {
     "ja": "少しずつ時間をずらして順に出す",
-    "en": "Items appear one after another, slightly offset in time"
+    "en": "Items appear one after another, slightly offset in time",
+    "es": "Los elementos aparecen uno tras otro, con un pequeño desfase"
    },
    "ask": {
     "ja": "5枚のカードをスタガーで出して。左から0.08秒ずつずらして。",
-    "en": "Bring in the five cards with a stagger, 0.08 s apart, left to right."
+    "en": "Bring in the five cards with a stagger, 0.08 s apart, left to right.",
+    "es": "Haz entrar las cinco tarjetas en stagger, con 0,08 s entre cada una, de izquierda a derecha."
    },
    "summary": {
     "ja": "グラフの棒が、少しずつ時間をずらして左から順に立ち上がる。",
@@ -313,15 +344,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "バースト",
-    "en": "Burst"
+    "en": "Burst",
+    "es": "Burst (estallido)"
    },
    "meaning": {
     "ja": "登場に合わせて線や粒が弾ける",
-    "en": "Lines and dots burst outward as something appears"
+    "en": "Lines and dots burst outward as something appears",
+    "es": "Líneas y puntos salen disparados cuando algo aparece"
    },
    "ask": {
     "ja": "ハートが出る瞬間に、まわりへバーストを入れて。短い線を8本、0.3秒で消す。",
-    "en": "Add a burst around the heart the moment it appears: 8 short lines that fade in 0.3 s."
+    "en": "Add a burst around the heart the moment it appears: 8 short lines that fade in 0.3 s.",
+    "es": "Agrega un burst alrededor del corazón cuando aparece: 8 líneas cortas que se desvanecen en 0,3 s."
    },
    "summary": {
     "ja": "「いいね」のハートが点くと同時に、まわりに輪・線・粒が弾ける。",
@@ -371,15 +405,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "ラインドロー",
-    "en": "Line draw"
+    "en": "Line draw",
+    "es": "Line draw (trazo de línea)"
    },
    "meaning": {
     "ja": "線が描かれるように伸びる",
-    "en": "A line extends as if it were being drawn"
+    "en": "A line extends as if it were being drawn",
+    "es": "Una línea se extiende como si se estuviera dibujando"
    },
    "ask": {
     "ja": "グラフの折れ線を、ラインドローで左から描いて。1.2秒かけて。",
-    "en": "Reveal the chart line with a line draw from the left, over 1.2 s."
+    "en": "Reveal the chart line with a line draw from the left, over 1.2 s.",
+    "es": "Revela la línea del gráfico con un line draw desde la izquierda, en 1,2 s."
    },
    "summary": {
     "ja": "グラフの線が描かれるように伸び、消えるときは後ろから追いかけて消える。",
@@ -428,15 +465,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "マスクリビール",
-    "en": "Mask reveal"
+    "en": "Mask reveal",
+    "es": "Mask reveal (revelado con máscara)"
    },
    "meaning": {
     "ja": "見えない枠の中から文字がせり上がる",
-    "en": "Text rises into view from behind an invisible edge"
+    "en": "Text rises into view from behind an invisible edge",
+    "es": "El texto sube desde detrás de un borde invisible"
    },
    "ask": {
     "ja": "タイトルをマスクリビールで下からせり上げて。0.6秒、行ごとに少しずらして。",
-    "en": "Bring the title in with a mask reveal from below, 0.6 s, each line slightly after the one before."
+    "en": "Bring the title in with a mask reveal from below, 0.6 s, each line slightly after the one before.",
+    "es": "Haz entrar el título con un mask reveal desde abajo, en 0,6 s, cada línea un poco después de la anterior."
    },
    "summary": {
     "ja": "1本の線を境に、見えない枠の向こうから見出しがせり上がる。",
@@ -484,15 +524,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "タイプライター",
-    "en": "Typewriter"
+    "en": "Typewriter",
+    "es": "Máquina de escribir"
    },
    "meaning": {
     "ja": "1文字ずつ打たれるように出る",
-    "en": "Text appears one character at a time, as if typed"
+    "en": "Text appears one character at a time, as if typed",
+    "es": "El texto aparece letra por letra, como si se tecleara"
    },
    "ask": {
     "ja": "この一文をタイプライターで出して。1文字0.05秒、末尾にカーソルを付けて。",
-    "en": "Show this sentence with a typewriter effect, 0.05 s per character, with a cursor at the end."
+    "en": "Show this sentence with a typewriter effect, 0.05 s per character, with a cursor at the end.",
+    "es": "Muestra esta frase con efecto máquina de escribir, 0,05 s por carácter, con un cursor al final."
    },
    "summary": {
     "ja": "入力欄に1文字ずつ打たれ、打ち終わると送信ボタンが点いて押される。",
@@ -542,15 +585,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "カウントアップ",
-    "en": "Count-up"
+    "en": "Count-up",
+    "es": "Contador (count-up)"
    },
    "meaning": {
     "ja": "数字が勢いよく増えていく",
-    "en": "A number runs up quickly to its final value"
+    "en": "A number runs up quickly to its final value",
+    "es": "Un número sube rápido hasta su valor final"
    },
    "ask": {
     "ja": "数字を0から1,280までカウントアップさせて。1.5秒で、最後はゆっくり止めて。",
-    "en": "Count the figure up from 0 to 1,280 in 1.5 s, slowing down at the end."
+    "en": "Count the figure up from 0 to 1,280 in 1.5 s, slowing down at the end.",
+    "es": "Haz que la cifra suba de 0 a 1.280 en 1,5 s, frenando al final."
    },
    "summary": {
     "ja": "数字が勢いよく増えて、最後にピタッと決まる。",
@@ -599,15 +645,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "キネティックタイポグラフィ",
-    "en": "Kinetic typography"
+    "en": "Kinetic typography",
+    "es": "Tipografía cinética"
    },
    "meaning": {
     "ja": "言葉に合わせて文字が動き回る",
-    "en": "Words move, scale and turn in time with what is said"
+    "en": "Words move, scale and turn in time with what is said",
+    "es": "Las palabras se mueven, crecen y giran al ritmo de lo que se dice"
    },
    "ask": {
     "ja": "このナレーションをキネティックタイポグラフィにして。強調する語は大きく、拍に合わせて出して。",
-    "en": "Turn this narration into kinetic typography: make the stressed words larger and land them on the beat."
+    "en": "Turn this narration into kinetic typography: make the stressed words larger and land them on the beat.",
+    "es": "Convierte esta narración en tipografía cinética: las palabras con énfasis más grandes y cayendo en el beat."
    },
    "summary": {
     "ja": "言葉の意味に合わせて文字が動く（のびる／はねる／まわる／ドン！）。",
@@ -657,15 +706,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "イージング",
-    "en": "Easing"
+    "en": "Easing",
+    "es": "Easing (aceleración)"
    },
    "meaning": {
     "ja": "緩急をつけて気持ちよく動かす",
-    "en": "Motion speeds up and slows down instead of moving at one speed"
+    "en": "Motion speeds up and slows down instead of moving at one speed",
+    "es": "El movimiento acelera y frena en lugar de ir a velocidad constante"
    },
    "ask": {
     "ja": "この移動にイージングをかけて。イーズアウトで、止まり際をゆっくりに。",
-    "en": "Add easing to this move: ease-out, slowing down as it stops."
+    "en": "Add easing to this move: ease-out, slowing down as it stops.",
+    "es": "Ponle easing a este movimiento: ease-out, que vaya frenando al detenerse."
    },
    "summary": {
     "ja": "同じ距離を同じ時間で動く2つの四角。上は一定の速さ、下は緩急あり。",
@@ -714,15 +766,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "オーバーシュート",
-    "en": "Overshoot"
+    "en": "Overshoot",
+    "es": "Overshoot (pasarse y volver)"
    },
    "meaning": {
     "ja": "行き過ぎてから戻って止まる",
-    "en": "Goes a little past the target, then settles back"
+    "en": "Goes a little past the target, then settles back",
+    "es": "Se pasa un poco del objetivo y luego se acomoda"
    },
    "ask": {
     "ja": "メーターの針をオーバーシュートさせて。目標を1割ほど越えてから戻して。",
-    "en": "Give the gauge needle an overshoot: about 10% past the target, then back."
+    "en": "Give the gauge needle an overshoot: about 10% past the target, then back.",
+    "es": "Dale overshoot a la aguja del indicador: un 10 % más allá del objetivo y luego de vuelta."
    },
    "summary": {
     "ja": "メーターの針が、目標を行き過ぎてから戻って止まる。",
@@ -770,15 +825,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "スクワッシュ＆ストレッチ",
-    "en": "Squash & stretch"
+    "en": "Squash & stretch",
+    "es": "Squash & stretch (aplastar y estirar)"
    },
    "meaning": {
     "ja": "つぶれて伸びて弾力を出す",
-    "en": "Squashes and stretches so that it feels elastic"
+    "en": "Squashes and stretches so that it feels elastic",
+    "es": "Se aplasta y se estira para sentirse elástico"
    },
    "ask": {
     "ja": "ボールの着地にスクワッシュ＆ストレッチを入れて。つぶれは弱めに。",
-    "en": "Add squash and stretch when the ball lands; keep the squash subtle."
+    "en": "Add squash and stretch when the ball lands; keep the squash subtle.",
+    "es": "Agrega squash and stretch cuando la pelota cae; que el aplastamiento sea sutil."
    },
    "summary": {
     "ja": "弾むキャラクターが、着地でつぶれ、飛ぶときに伸びる。",
@@ -825,15 +883,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "モーフィング",
-    "en": "Shape morph"
+    "en": "Shape morph",
+    "es": "Morphing de formas"
    },
    "meaning": {
     "ja": "形が別の形に変わる",
-    "en": "One shape turns smoothly into another"
+    "en": "One shape turns smoothly into another",
+    "es": "Una forma se transforma suavemente en otra"
    },
    "ask": {
     "ja": "丸を星にモーフィングさせて。0.8秒で、途中で色も青から黄へ。",
-    "en": "Morph the circle into a star in 0.8 s, changing the color from blue to yellow on the way."
+    "en": "Morph the circle into a star in 0.8 s, changing the color from blue to yellow on the way.",
+    "es": "Transforma el círculo en estrella en 0,8 s, cambiando el color de azul a amarillo en el camino."
    },
    "summary": {
     "ja": "丸 → 四角 → 星 → ハートと、形と色がなめらかに変わる。",
@@ -882,15 +943,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "リキッドモーション",
-    "en": "Liquid motion"
+    "en": "Liquid motion",
+    "es": "Movimiento líquido"
    },
    "meaning": {
     "ja": "液体のようにぬるっと動く",
-    "en": "Shapes move and merge like liquid"
+    "en": "Shapes move and merge like liquid",
+    "es": "Las formas se mueven y se unen como un líquido"
    },
    "ask": {
     "ja": "ロゴの登場をリキッドモーションにして。しずくが集まってロゴの形になるように。",
-    "en": "Make the logo entrance a liquid motion: drops gather and form the shape."
+    "en": "Make the logo entrance a liquid motion: drops gather and form the shape.",
+    "es": "Haz la entrada del logo con movimiento líquido: gotas que se juntan y forman la figura."
    },
    "summary": {
     "ja": "しずくが伸びて、ちぎれて、ぬるっと1つにまとまる。",
@@ -938,15 +1002,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "モーショントレイル",
-    "en": "Motion trail"
+    "en": "Motion trail",
+    "es": "Estela de movimiento (motion trail)"
    },
    "meaning": {
     "ja": "動いた跡に残像が尾を引く",
-    "en": "A fading trail follows a moving object"
+    "en": "A fading trail follows a moving object",
+    "es": "Una estela que se desvanece sigue al objeto en movimiento"
    },
    "ask": {
     "ja": "飛んでいく丸にモーショントレイルを付けて。残像は5個、後ろほど薄く。",
-    "en": "Add a motion trail to the flying circle: five copies that fade out behind it."
+    "en": "Add a motion trail to the flying circle: five copies that fade out behind it.",
+    "es": "Agrega una estela al círculo que vuela: cinco copias que se desvanecen detrás."
    },
    "summary": {
     "ja": "8の字に動く丸の跡に、残像が尾を引く。",
@@ -993,15 +1060,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "パーティクル",
-    "en": "Particles"
+    "en": "Particles",
+    "es": "Partículas"
    },
    "meaning": {
     "ja": "粒が飛び散る",
-    "en": "Many small pieces fly out and scatter"
+    "en": "Many small pieces fly out and scatter",
+    "es": "Muchas piezas pequeñas salen volando y se dispersan"
    },
    "ask": {
     "ja": "達成の瞬間に、下からパーティクルを噴き上げて。4色で、1.5秒で落ちきるように。",
-    "en": "At the moment of success, shoot particles up from the bottom: four colors, all fallen within 1.5 s."
+    "en": "At the moment of success, shoot particles up from the bottom: four colors, all fallen within 1.5 s.",
+    "es": "En el momento del éxito, lanza partículas desde abajo: cuatro colores, todas caídas en 1,5 s."
    },
    "summary": {
     "ja": "粒が下の口から次々と噴き出して、飛び散って落ちる。",
@@ -1048,15 +1118,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "パララックス",
-    "en": "Parallax"
+    "en": "Parallax",
+    "es": "Paralaje"
    },
    "meaning": {
     "ja": "手前と奥をずらして動かし奥行きを出す",
-    "en": "Near and far layers move at different speeds to show depth"
+    "en": "Near and far layers move at different speeds to show depth",
+    "es": "Las capas cercanas y lejanas se mueven a distinta velocidad para dar profundidad"
    },
    "ask": {
     "ja": "この風景を3層に分けて、パララックスで横に流して。手前ほど速く。",
-    "en": "Split this landscape into three layers and scroll them with parallax, nearer layers faster."
+    "en": "Split this landscape into three layers and scroll them with parallax, nearer layers faster.",
+    "es": "Divide este paisaje en tres capas y desplázalas con paralaje, las más cercanas más rápido."
    },
    "summary": {
     "ja": "横に動く景色。手前ほど大きく、奥ほど小さく動いて、奥行きが出る。",
@@ -1101,15 +1174,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "マスクトランジション",
-    "en": "Mask transition"
+    "en": "Mask transition",
+    "es": "Transición con máscara"
    },
    "meaning": {
     "ja": "形の中から次の画面が現れる",
-    "en": "The next scene appears inside a growing shape"
+    "en": "The next scene appears inside a growing shape",
+    "es": "La escena siguiente aparece dentro de una forma que crece"
    },
    "ask": {
     "ja": "次の場面へはマスクトランジションで。中央の丸が0.7秒で広がって切り替わるように。",
-    "en": "Go to the next scene with a mask transition: a circle grows from the center in 0.7 s."
+    "en": "Go to the next scene with a mask transition: a circle grows from the center in 0.7 s.",
+    "es": "Pasa a la siguiente escena con una transición con máscara: un círculo que crece desde el centro en 0,7 s."
    },
    "summary": {
     "ja": "丸や星の形の「窓」が広がり、その中に次の画面が見える。",
@@ -1156,15 +1232,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "シェイプトランジション",
-    "en": "Shape transition"
+    "en": "Shape transition",
+    "es": "Transición de formas"
    },
    "meaning": {
     "ja": "図形が画面を覆って切り替わる",
-    "en": "Shapes cover the screen and uncover the next scene"
+    "en": "Shapes cover the screen and uncover the next scene",
+    "es": "Unas formas cubren la pantalla y descubren la escena siguiente"
    },
    "ask": {
     "ja": "場面の切り替えはシェイプトランジションで。4色の斜めの帯が左から覆うように。",
-    "en": "Change scenes with a shape transition: four diagonal color bands sweep in from the left."
+    "en": "Change scenes with a shape transition: four diagonal color bands sweep in from the left.",
+    "es": "Cambia de escena con una transición de formas: cuatro franjas diagonales de color que entran desde la izquierda."
    },
    "summary": {
     "ja": "色のついた帯が画面を覆い隠し、抜けると次の画面になっている。",
@@ -1211,15 +1290,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "リキッドトランジション",
-    "en": "Liquid transition"
+    "en": "Liquid transition",
+    "es": "Transición líquida"
    },
    "meaning": {
     "ja": "液体が流れ込んで切り替わる",
-    "en": "Liquid flows in and replaces the scene"
+    "en": "Liquid flows in and replaces the scene",
+    "es": "Un líquido entra y reemplaza la escena"
    },
    "ask": {
     "ja": "ここはリキッドトランジションで。上から青いインクが垂れて画面を満たすように。",
-    "en": "Use a liquid transition here: blue ink drips down from the top and fills the frame."
+    "en": "Use a liquid transition here: blue ink drips down from the top and fills the frame.",
+    "es": "Usa aquí una transición líquida: tinta azul que gotea desde arriba y llena el cuadro."
    },
    "summary": {
     "ja": "ペンキのような液体が上から垂れて流れ込み、次の画面になる。",
@@ -1267,15 +1349,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "ズームスルー",
-    "en": "Zoom through"
+    "en": "Zoom through",
+    "es": "Zoom through (zoom a través)"
    },
    "meaning": {
     "ja": "物の中へ突き抜けて次へ",
-    "en": "Zooms into an object and passes through it into the next scene"
+    "en": "Zooms into an object and passes through it into the next scene",
+    "es": "Hace zoom hacia un objeto y lo atraviesa hasta la escena siguiente"
    },
    "ask": {
     "ja": "ロゴの「O」の穴へズームスルーして、次の場面へ。0.6秒で、加速しながら。",
-    "en": "Zoom through the hole of the \"O\" in the logo into the next scene, 0.6 s, accelerating."
+    "en": "Zoom through the hole of the \"O\" in the logo into the next scene, 0.6 s, accelerating.",
+    "es": "Haz un zoom through por el hueco de la \"O\" del logo hacia la siguiente escena, en 0,6 s, acelerando."
    },
    "summary": {
     "ja": "文字の「O」の穴へ突っ込んで、その先の画面へ抜ける。",
@@ -1322,15 +1407,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "フリップ",
-    "en": "Flip"
+    "en": "Flip",
+    "es": "Flip (volteo)"
    },
    "meaning": {
     "ja": "カードのように裏返る",
-    "en": "Turns over like a card to show the other side"
+    "en": "Turns over like a card to show the other side",
+    "es": "Se da vuelta como una tarjeta para mostrar el otro lado"
    },
    "ask": {
     "ja": "料金カードをフリップで裏返して、裏に詳細を出して。0.5秒で。",
-    "en": "Flip the pricing card to show the details on its back, in 0.5 s."
+    "en": "Flip the pricing card to show the details on its back, in 0.5 s.",
+    "es": "Voltea la tarjeta de precios con un flip para mostrar los detalles al reverso, en 0,5 s."
    },
    "summary": {
     "ja": "カードが縦の軸で回って裏返り、裏の面が出る。",
@@ -1377,15 +1465,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "ライトスイープ",
-    "en": "Light sweep"
+    "en": "Light sweep",
+    "es": "Barrido de luz (light sweep)"
    },
    "meaning": {
     "ja": "光が表面を横切る",
-    "en": "A band of light crosses a surface"
+    "en": "A band of light crosses a surface",
+    "es": "Una franja de luz cruza una superficie"
    },
    "ask": {
     "ja": "ロゴが止まったあとに、ライトスイープを1回。左上から右下へ、弱めに。",
-    "en": "After the logo settles, add one light sweep from top-left to bottom-right, subtle."
+    "en": "After the logo settles, add one light sweep from top-left to bottom-right, subtle.",
+    "es": "Cuando el logo se acomode, agrega un barrido de luz de arriba a la izquierda hacia abajo a la derecha, sutil."
    },
    "summary": {
     "ja": "ロゴの表面を、光の帯が斜めに横切る。",
@@ -1433,15 +1524,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "グリッチ",
-    "en": "Glitch"
+    "en": "Glitch",
+    "es": "Glitch"
    },
    "meaning": {
     "ja": "映像がバグったように乱れる",
-    "en": "The picture breaks up as if it were malfunctioning"
+    "en": "The picture breaks up as if it were malfunctioning",
+    "es": "La imagen se rompe como si fallara"
    },
    "ask": {
     "ja": "タイトルに一瞬だけグリッチを入れて。0.3秒、色ずれは弱めで、点滅はさせないで。",
-    "en": "Add a brief glitch to the title: 0.3 s, a mild color split, no flashing."
+    "en": "Add a brief glitch to the title: 0.3 s, a mild color split, no flashing.",
+    "es": "Agrega un glitch breve al título: 0,3 s, una separación de color leve, sin destellos."
    },
    "summary": {
     "ja": "文字が横にずれ、色がずれ、帯が走る。明るさの点滅はさせない。",
@@ -1490,15 +1584,18 @@
    "cycle": 4.7,
    "name": {
     "ja": "インパクトシェイク",
-    "en": "Impact shake"
+    "en": "Impact shake",
+    "es": "Sacudida de impacto (impact shake)"
    },
    "meaning": {
     "ja": "着地の衝撃で画面が揺れる",
-    "en": "The whole frame shakes when something lands"
+    "en": "The whole frame shakes when something lands",
+    "es": "Todo el cuadro tiembla cuando algo cae"
    },
    "ask": {
     "ja": "見出しがドンと落ちた瞬間に、インパクトシェイクを入れて。0.4秒で収まる程度に。",
-    "en": "Add an impact shake when the headline lands; it should settle within 0.4 s."
+    "en": "Add an impact shake when the headline lands; it should settle within 0.4 s.",
+    "es": "Agrega una sacudida de impacto cuando cae el titular; que se calme en 0,4 s."
    },
    "summary": {
     "ja": "重い見出しの板がドンと落ち、その衝撃で画面ごと揺れる。",
@@ -1548,15 +1645,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "パン",
-    "en": "Pan"
+    "en": "Pan",
+    "es": "Paneo (pan)"
    },
    "meaning": {
     "ja": "カメラを横に振る",
-    "en": "Pivot the camera left or right"
+    "en": "Pivot the camera left or right",
+    "es": "Girar la cámara a la izquierda o a la derecha"
    },
    "ask": {
     "ja": "カメラの位置は固定で、街並みを左から右へゆっくりパン。5秒かけて。",
-    "en": "Slow pan from left to right across the skyline, camera fixed in place, over 5 seconds."
+    "en": "Slow pan from left to right across the skyline, camera fixed in place, over 5 seconds.",
+    "es": "Paneo lento de izquierda a derecha por el horizonte de la ciudad, con la cámara fija, en 5 segundos."
    },
    "summary": {
     "ja": "カメラの位置は変えず、首を左から右へ振る。回転なので手前も奥も同じ量だけ横に流れる。",
@@ -1605,15 +1705,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ティルト",
-    "en": "Tilt"
+    "en": "Tilt",
+    "es": "Tilt"
    },
    "meaning": {
     "ja": "カメラを縦に振る",
-    "en": "Pivot the camera up or down"
+    "en": "Pivot the camera up or down",
+    "es": "Girar la cámara hacia arriba o hacia abajo"
    },
    "ask": {
     "ja": "人物の足元から塔の先まで、ゆっくりティルトアップ。",
-    "en": "Slow tilt up from the person's feet to the top of the tower."
+    "en": "Slow tilt up from the person's feet to the top of the tower.",
+    "es": "Tilt lento hacia arriba, de los pies de la persona hasta la punta de la torre."
    },
    "summary": {
     "ja": "カメラの位置は変えず、首を下から上へ振る。足元の人物から塔の先端まで見上げていく。",
@@ -1661,15 +1764,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ドリーイン",
-    "en": "Dolly in"
+    "en": "Dolly in",
+    "es": "Dolly in"
    },
    "meaning": {
     "ja": "カメラごと被写体に近づく",
-    "en": "Move the camera toward the subject"
+    "en": "Move the camera toward the subject",
+    "es": "Acercar la cámara al sujeto"
    },
    "ask": {
     "ja": "人物の顔へゆっくりドリーイン。ズームではなく、カメラごと近づく。",
-    "en": "Slow dolly in toward her face; move the camera, do not zoom."
+    "en": "Slow dolly in toward her face; move the camera, do not zoom.",
+    "es": "Dolly in lento hacia su cara; que se mueva la cámara, sin zoom."
    },
    "summary": {
     "ja": "カメラそのものが被写体へ前進する。手前の物ほど大きく速く流れ、奥の山はほとんど変わらない。",
@@ -1718,15 +1824,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ズームイン",
-    "en": "Zoom in"
+    "en": "Zoom in",
+    "es": "Zoom in"
    },
    "meaning": {
     "ja": "レンズで寄る（位置は動かない）",
-    "en": "Magnify with the lens (camera stays put)"
+    "en": "Magnify with the lens (camera stays put)",
+    "es": "Acercar con el lente (la cámara no se mueve)"
    },
    "ask": {
     "ja": "カメラは動かさず、窓辺の人物へ3秒でズームイン。",
-    "en": "The camera stays still; zoom in on the person at the window over 3 seconds."
+    "en": "The camera stays still; zoom in on the person at the window over 3 seconds.",
+    "es": "La cámara queda quieta; zoom in a la persona en la ventana durante 3 segundos."
    },
    "summary": {
     "ja": "カメラの位置は動かさず、レンズの焦点距離だけを伸ばす。画面全体が同じ比率で拡大する。",
@@ -1775,15 +1884,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "トラッキング",
-    "en": "Tracking shot"
+    "en": "Tracking shot",
+    "es": "Travelling (tracking shot)"
    },
    "meaning": {
     "ja": "被写体と並んで動く",
-    "en": "Move along with the subject"
+    "en": "Move along with the subject",
+    "es": "Moverse junto con el sujeto"
    },
    "ask": {
     "ja": "歩く人物を真横からトラッキング。同じ速さで並んで動く。",
-    "en": "Tracking shot from the side, moving along with the walking person at the same speed."
+    "en": "Tracking shot from the side, moving along with the walking person at the same speed.",
+    "es": "Travelling lateral, moviéndose junto a la persona que camina a su misma velocidad."
    },
    "summary": {
     "ja": "歩く人物と同じ速さでカメラが真横に並走する。人物は画面中央のまま、手前の杭ほど速く後ろへ流れる。",
@@ -1831,15 +1943,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "オービット",
-    "en": "Orbit (Arc shot)"
+    "en": "Orbit (Arc shot)",
+    "es": "Órbita (plano en arco)"
    },
    "meaning": {
     "ja": "被写体の周りを回り込む",
-    "en": "Circle around the subject"
+    "en": "Circle around the subject",
+    "es": "Rodear al sujeto"
    },
    "ask": {
     "ja": "立っている人物の周りを半周オービット。人物は画面の中央のまま。",
-    "en": "Half orbit around the standing person, keeping them in the center of the frame."
+    "en": "Half orbit around the standing person, keeping them in the center of the frame.",
+    "es": "Media órbita alrededor de la persona de pie, manteniéndola en el centro del cuadro."
    },
    "summary": {
     "ja": "被写体を中心に、カメラが円を描いて回り込む。人物は中央のまま、背景の木と建物が横に大きく流れる。",
@@ -1888,15 +2003,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "クレーンアップ",
-    "en": "Crane up"
+    "en": "Crane up",
+    "es": "Grúa ascendente (crane up)"
    },
    "meaning": {
     "ja": "カメラが上へ昇っていく",
-    "en": "Lift the camera up"
+    "en": "Lift the camera up",
+    "es": "Elevar la cámara"
    },
    "ask": {
     "ja": "人物の目の高さから、街全体が見える高さまでクレーンアップ。",
-    "en": "Crane up from eye level until the whole town comes into view."
+    "en": "Crane up from eye level until the whole town comes into view.",
+    "es": "Grúa ascendente desde la altura de los ojos hasta que se vea todo el pueblo."
    },
    "summary": {
     "ja": "カメラが真上へ上昇しながら下を向き、人物を見下ろす構図になる。",
@@ -1945,15 +2063,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ドリーズーム",
-    "en": "Dolly zoom (Vertigo)"
+    "en": "Dolly zoom (Vertigo)",
+    "es": "Dolly zoom (efecto vértigo)"
    },
    "meaning": {
     "ja": "人物はそのまま背景だけ伸び縮み",
-    "en": "Subject stays, background warps"
+    "en": "Subject stays, background warps",
+    "es": "El sujeto se queda igual y el fondo se deforma"
    },
    "ask": {
     "ja": "気づいた瞬間の顔にドリーズーム。人物の大きさは変えず、背景だけが遠ざかる。",
-    "en": "Dolly zoom on his face at the moment he realizes: he stays the same size while the background stretches away."
+    "en": "Dolly zoom on his face at the moment he realizes: he stays the same size while the background stretches away.",
+    "es": "Dolly zoom sobre su cara en el momento en que se da cuenta: él queda del mismo tamaño y el fondo se estira."
    },
    "summary": {
     "ja": "カメラを引きながら同じ比率でズームする。人物の大きさは変わらず、背景だけが迫ってくる。",
@@ -2002,15 +2123,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ラックフォーカス",
-    "en": "Rack focus"
+    "en": "Rack focus",
+    "es": "Cambio de foco (rack focus)"
    },
    "meaning": {
     "ja": "ピントを手前と奥のあいだで送る",
-    "en": "Shift focus between near and far"
+    "en": "Shift focus between near and far",
+    "es": "Pasar el foco de cerca a lejos"
    },
    "ask": {
     "ja": "手前のカップから奥の人物へ、1秒でラックフォーカス。",
-    "en": "Rack focus from the cup in the foreground to the person behind it, in 1 second."
+    "en": "Rack focus from the cup in the foreground to the person behind it, in 1 second.",
+    "es": "Cambio de foco de la taza en primer plano a la persona detrás, en 1 segundo."
    },
    "summary": {
     "ja": "カメラは動かさず、ピントを手前の花から奥の人物へ送る。ぼけている側が入れ替わる。",
@@ -2059,15 +2183,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "手持ち",
-    "en": "Handheld"
+    "en": "Handheld",
+    "es": "Cámara en mano"
    },
    "meaning": {
     "ja": "手で持って撮ったように小さく揺らす（ハンドヘルド）",
-    "en": "A slight shake, as if the camera were held by hand"
+    "en": "A slight shake, as if the camera were held by hand",
+    "es": "Un leve temblor, como si alguien sostuviera la cámara"
    },
    "ask": {
     "ja": "手持ちで、歩く人物の後ろをついていく。揺れは弱めに。",
-    "en": "Handheld shot following behind the walking person, with only a slight shake."
+    "en": "Handheld shot following behind the walking person, with only a slight shake.",
+    "es": "Toma con cámara en mano siguiendo por detrás a la persona que camina, con apenas un leve temblor."
    },
    "summary": {
     "ja": "三脚を使わず手で持ったような、小さく不規則な揺れを画面全体に加える。",
@@ -2116,15 +2243,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "FPV",
-    "en": "FPV drone shot"
+    "en": "FPV drone shot",
+    "es": "Toma FPV con dron"
    },
    "meaning": {
     "ja": "ドローンで突き進む疾走感",
-    "en": "Fast, immersive fly-through"
+    "en": "Fast, immersive fly-through",
+    "es": "Un vuelo rápido e inmersivo"
    },
    "ask": {
     "ja": "FPVドローンで、森の木々の間をすり抜けて川の上へ出る。",
-    "en": "FPV drone shot weaving between the trees and out over the river."
+    "en": "FPV drone shot weaving between the trees and out over the river.",
+    "es": "Toma FPV con dron zigzagueando entre los árboles y saliendo sobre el río."
    },
    "summary": {
     "ja": "並木の間を低空・高速で前進しながら、機体を左右に傾けて蛇行する一人称視点。",
@@ -2173,15 +2303,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ダッチアングル",
-    "en": "Dutch angle"
+    "en": "Dutch angle",
+    "es": "Plano holandés (dutch angle)"
    },
    "meaning": {
     "ja": "画面を斜めに傾ける",
-    "en": "Tilt the frame diagonally"
+    "en": "Tilt the frame diagonally",
+    "es": "Inclinar el cuadro en diagonal"
    },
    "ask": {
     "ja": "不安な場面なので、ダッチアングルで15度ほど傾けて。",
-    "en": "Use a Dutch angle of about 15 degrees for this uneasy scene."
+    "en": "Use a Dutch angle of about 15 degrees for this uneasy scene.",
+    "es": "Usa un plano holandés de unos 15 grados para esta escena inquietante."
    },
    "summary": {
     "ja": "水平だったカメラを光軸まわりに傾け、地平線を斜めにしたまま止める。",
@@ -2230,15 +2363,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "スローモーション",
-    "en": "Slow motion"
+    "en": "Slow motion",
+    "es": "Cámara lenta"
    },
    "meaning": {
     "ja": "動きをゆっくり見せる",
-    "en": "Play the action slower"
+    "en": "Play the action slower",
+    "es": "Reproducir la acción más despacio"
    },
    "ask": {
     "ja": "水しぶきが上がる瞬間を、スローモーションで。",
-    "en": "Show the moment of the splash in slow motion."
+    "en": "Show the moment of the splash in slow motion.",
+    "es": "Muestra el momento del salpicón en cámara lenta."
    },
    "summary": {
     "ja": "固定カメラの前で人物がゆっくり跳び上がり、葉もゆっくり落ちる。動き全体を引き伸ばして見せる。",
@@ -2287,15 +2423,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "スピードランプ",
-    "en": "Speed ramp"
+    "en": "Speed ramp",
+    "es": "Rampa de velocidad (speed ramp)"
    },
    "meaning": {
     "ja": "速い→遅いと速さを変える",
-    "en": "Change speed mid-shot"
+    "en": "Change speed mid-shot",
+    "es": "Cambiar la velocidad en medio de la toma"
    },
    "ask": {
     "ja": "ジャンプの頂点だけ遅くなるスピードランプ。前後は通常の速さで。",
-    "en": "Speed ramp: normal speed, slowing at the top of the jump, then back to normal."
+    "en": "Speed ramp: normal speed, slowing at the top of the jump, then back to normal.",
+    "es": "Rampa de velocidad: velocidad normal, frena en lo más alto del salto y vuelve a la normal."
    },
    "summary": {
     "ja": "1つのショットの途中で再生速度を速い状態から遅い状態へ滑らかに変える。左下のグラフが速度を示す。",
@@ -2343,15 +2482,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "タイムラプス",
-    "en": "Time-lapse"
+    "en": "Time-lapse",
+    "es": "Time-lapse"
    },
    "meaning": {
     "ja": "長い時間を早送りで見せる",
-    "en": "Compress hours into seconds"
+    "en": "Compress hours into seconds",
+    "es": "Comprimir horas en segundos"
    },
    "ask": {
     "ja": "夕方から夜まで、街の灯りがともっていくタイムラプス。",
-    "en": "Time-lapse of the city from dusk to night as the lights come on."
+    "en": "Time-lapse of the city from dusk to night as the lights come on.",
+    "es": "Time-lapse de la ciudad del atardecer a la noche mientras se encienden las luces."
    },
    "summary": {
     "ja": "固定カメラのまま、朝6時から夕方18時までを数秒に縮める。太陽・雲・人・影が早送りで動く。",
@@ -2400,15 +2542,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "フリーズフレーム",
-    "en": "Freeze frame"
+    "en": "Freeze frame",
+    "es": "Congelado (freeze frame)"
    },
    "meaning": {
     "ja": "動きを一瞬止める",
-    "en": "Pause the action for a beat"
+    "en": "Pause the action for a beat",
+    "es": "Detener la acción un momento"
    },
    "ask": {
     "ja": "振り向いた瞬間でフリーズフレーム。1秒止めて、名前を出す。",
-    "en": "Freeze frame at the moment she turns around; hold for 1 second and show her name."
+    "en": "Freeze frame at the moment she turns around; hold for 1 second and show her name.",
+    "es": "Congela el cuadro cuando ella se da vuelta; sostenlo 1 segundo y muestra su nombre."
    },
    "summary": {
     "ja": "跳び上がった人物が頂点に来た瞬間に映像を止め、1.4秒後に続きから再開する。",
@@ -2456,15 +2601,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ジャンプカット",
-    "en": "Jump cut"
+    "en": "Jump cut",
+    "es": "Jump cut"
    },
    "meaning": {
     "ja": "同じ画角のまま時間を飛ばす",
-    "en": "Same framing, skip ahead in time"
+    "en": "Same framing, skip ahead in time",
+    "es": "Mismo encuadre, saltando adelante en el tiempo"
    },
    "ask": {
     "ja": "同じ画角のままジャンプカットでつないで、準備の様子をテンポよく見せる。",
-    "en": "Use jump cuts from the same framing to move quickly through the preparation."
+    "en": "Use jump cuts from the same framing to move quickly through the preparation.",
+    "es": "Usa jump cuts con el mismo encuadre para pasar rápido por la preparación."
    },
    "summary": {
     "ja": "カメラの位置も画角も同じまま、人物の位置と時刻だけが飛ぶ。同じ場面の中で時間を省く切り方。",
@@ -2513,15 +2661,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "マッチカット",
-    "en": "Match cut"
+    "en": "Match cut",
+    "es": "Match cut (corte por coincidencia)"
    },
    "meaning": {
     "ja": "形や動きをそろえて場面を変える",
-    "en": "Cut on a matching shape or motion"
+    "en": "Cut on a matching shape or motion",
+    "es": "Cortar sobre una forma o movimiento que coincide"
    },
    "ask": {
     "ja": "丸いコーヒーカップから、同じ位置にある満月へマッチカット。",
-    "en": "Match cut from the round coffee cup to a full moon in the same position."
+    "en": "Match cut from the round coffee cup to a full moon in the same position.",
+    "es": "Match cut de la taza de café redonda a una luna llena en la misma posición."
    },
    "summary": {
     "ja": "投げ上げたボールが、次のカットでは同じ位置・同じ大きさの太陽になる。形をそろえて別の場面へつなぐ。",
@@ -2569,15 +2720,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ホイップパン",
-    "en": "Whip pan"
+    "en": "Whip pan",
+    "es": "Whip pan (barrido rápido)"
    },
    "meaning": {
     "ja": "素早く振ってブレで次へ",
-    "en": "Fast pan blur into the next shot"
+    "en": "Fast pan blur into the next shot",
+    "es": "Un paneo rápido con desenfoque hacia la toma siguiente"
    },
    "ask": {
     "ja": "ホイップパンで右へ素早く振って、次の場所へつなぐ。",
-    "en": "Whip pan to the right and land in the next location."
+    "en": "Whip pan to the right and land in the next location.",
+    "es": "Whip pan hacia la derecha y caer en la siguiente locación."
    },
    "summary": {
     "ja": "カメラを素早く横に振り、流れてぼけた映像の中で次の場面に入れ替える。",
@@ -2625,15 +2779,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "クロスディゾルブ",
-    "en": "Cross dissolve"
+    "en": "Cross dissolve",
+    "es": "Fundido encadenado"
    },
    "meaning": {
     "ja": "前後の映像を重ねて溶かす",
-    "en": "Blend one shot into the next"
+    "en": "Blend one shot into the next",
+    "es": "Mezclar una toma con la siguiente"
    },
    "ask": {
     "ja": "朝の部屋から夜の同じ部屋へ、1秒のクロスディゾルブ。",
-    "en": "Cross dissolve from the room in the morning to the same room at night, 1 second."
+    "en": "Cross dissolve from the room in the morning to the same room at night, 1 second.",
+    "es": "Fundido encadenado del cuarto en la mañana al mismo cuarto de noche, 1 segundo."
    },
    "summary": {
     "ja": "前の絵に次の絵を重ね、不透明度を上げていって入れ替える。途中は2つの絵が透けて重なる。",
@@ -2682,15 +2839,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "ワイプ",
-    "en": "Wipe"
+    "en": "Wipe",
+    "es": "Cortinilla (wipe)"
    },
    "meaning": {
     "ja": "境目が横切って画面が入れ替わる",
-    "en": "A moving edge replaces the shot"
+    "en": "A moving edge replaces the shot",
+    "es": "Un borde que avanza reemplaza la toma"
    },
    "ask": {
     "ja": "左から右へのワイプで、次の場面に入れ替える。",
-    "en": "Wipe from left to right into the next scene."
+    "en": "Wipe from left to right into the next scene.",
+    "es": "Cortinilla de izquierda a derecha hacia la siguiente escena."
    },
    "summary": {
     "ja": "縦の境界線が左から右へ動き、通過した側から次の絵に置き換わる。",
@@ -2739,15 +2899,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "スマッシュカット",
-    "en": "Smash cut"
+    "en": "Smash cut",
+    "es": "Smash cut (corte brusco)"
    },
    "meaning": {
     "ja": "対照的な場面へ前触れなく切り替える",
-    "en": "Abrupt cut to a contrasting scene"
+    "en": "Abrupt cut to a contrasting scene",
+    "es": "Corte abrupto a una escena que contrasta"
    },
    "ask": {
     "ja": "静かな寝室から、騒がしい交差点へスマッシュカット。",
-    "en": "Smash cut from the quiet bedroom to a noisy intersection."
+    "en": "Smash cut from the quiet bedroom to a noisy intersection.",
+    "es": "Smash cut del dormitorio silencioso a una intersección ruidosa."
    },
    "summary": {
     "ja": "人物が寝ている静かな場面から、前触れなく激しい場面へ直結で切り替える。音量メーターも一気に上がる。",
@@ -2796,15 +2959,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "Jカット",
-    "en": "J-cut"
+    "en": "J-cut",
+    "es": "Corte J (J-cut)"
    },
    "meaning": {
     "ja": "次の場面の音が先に聞こえる",
-    "en": "Next scene's audio starts first"
+    "en": "Next scene's audio starts first",
+    "es": "El audio de la escena siguiente empieza antes"
    },
    "ask": {
     "ja": "Jカットで、次の場面の波の音を先に聞かせてから、海の映像に切り替える。",
-    "en": "J-cut: let the sound of waves from the next scene start before cutting to the sea."
+    "en": "J-cut: let the sound of waves from the next scene start before cutting to the sea.",
+    "es": "Corte J: que el sonido de las olas de la siguiente escena empiece antes de cortar al mar."
    },
    "summary": {
     "ja": "映像が切り替わる前に、次の場面の音が先に入る。上に映像、下に映像と音のタイムラインを表示する。",
@@ -2853,15 +3019,18 @@
    "cycle": 9.4,
    "name": {
     "ja": "Lカット",
-    "en": "L-cut"
+    "en": "L-cut",
+    "es": "Corte L (L-cut)"
    },
    "meaning": {
     "ja": "前の場面の音が後まで残る",
-    "en": "Previous scene's audio carries over"
+    "en": "Previous scene's audio carries over",
+    "es": "El audio de la escena anterior sigue sonando"
    },
    "ask": {
     "ja": "Lカットで、彼女の話し声を残したまま、聞き手の顔に切り替える。",
-    "en": "L-cut: keep her voice going while cutting to the listener's face."
+    "en": "L-cut: keep her voice going while cutting to the listener's face.",
+    "es": "Corte L: que su voz siga mientras cortamos a la cara de quien escucha."
    },
    "summary": {
     "ja": "映像が次の場面に切り替わったあとも、前の場面の音がしばらく残る。上に映像、下に映像と音のタイムラインを表示する。",
@@ -2910,15 +3079,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "モーダル",
-    "en": "Modal dialog"
+    "en": "Modal dialog",
+    "es": "Ventana modal"
    },
    "meaning": {
     "ja": "画面を暗くして中央に窓が出る",
-    "en": "A window opens in the middle while the page behind dims"
+    "en": "A window opens in the middle while the page behind dims",
+    "es": "Una ventana se abre al centro y la página de atrás se oscurece"
    },
    "ask": {
     "ja": "削除ボタンを押したらモーダルで確認を出して。背景は4割ほど暗くし、0.3秒で少し拡大しながらフェードイン。",
-    "en": "When the delete button is pressed, show a confirmation in a modal dialog. Dim the page about 40% and fade it in over 0.3 s with a slight scale-up."
+    "en": "When the delete button is pressed, show a confirmation in a modal dialog. Dim the page about 40% and fade it in over 0.3 s with a slight scale-up.",
+    "es": "Al tocar el botón de borrar, muestra una confirmación en una ventana modal. Oscurece la página un 40 % y haz que aparezca en 0,3 s, creciendo un poco."
    },
    "summary": {
     "ja": "「開く」ボタンを押すと画面全体が暗くなり、中央に小窓が少し拡大しながら出る。×を押すと閉じる。",
@@ -2966,15 +3138,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ドロワー",
-    "en": "Drawer (Off-canvas)"
+    "en": "Drawer (Off-canvas)",
+    "es": "Drawer (menú lateral)"
    },
    "meaning": {
     "ja": "横からメニューが引き出される",
-    "en": "A menu panel slides in from the side of the screen"
+    "en": "A menu panel slides in from the side of the screen",
+    "es": "Un panel de menú entra desde un costado de la pantalla"
    },
    "ask": {
     "ja": "メニューボタンを押したら左からドロワーを出して。幅は画面の4割、0.4秒で引き出し、背景は少し暗く。",
-    "en": "Open a drawer from the left when the menu button is pressed: 40% of the screen wide, sliding in over 0.4 s, with the page slightly dimmed."
+    "en": "Open a drawer from the left when the menu button is pressed: 40% of the screen wide, sliding in over 0.4 s, with the page slightly dimmed.",
+    "es": "Abre un drawer desde la izquierda al tocar el botón de menú: 40 % del ancho, entrando en 0,4 s, con la página un poco oscurecida."
    },
    "summary": {
     "ja": "「メニュー」を押すと左から縦長のパネルが引き出され、外側を押すと戻る。",
@@ -3022,15 +3197,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ボトムシート",
-    "en": "Bottom sheet"
+    "en": "Bottom sheet",
+    "es": "Bottom sheet (panel inferior)"
    },
    "meaning": {
     "ja": "下からパネルがせり上がる",
-    "en": "A panel slides up from the bottom of the screen"
+    "en": "A panel slides up from the bottom of the screen",
+    "es": "Un panel sube desde abajo de la pantalla"
    },
    "ask": {
     "ja": "「詳細を見る」を押したらボトムシートで詳細を出して。高さは画面の4割、0.4秒でせり上げ、下へ引くと閉じる。",
-    "en": "Show the details in a bottom sheet when \"View details\" is tapped: 40% of the screen tall, rising over 0.4 s, closing when dragged down."
+    "en": "Show the details in a bottom sheet when \"View details\" is tapped: 40% of the screen tall, rising over 0.4 s, closing when dragged down.",
+    "es": "Muestra los detalles en un bottom sheet al tocar \"Ver detalles\": 40 % del alto, subiendo en 0,4 s, y que se cierre al arrastrarlo hacia abajo."
    },
    "summary": {
     "ja": "指で「詳細を見る」を押すと下からパネルがせり上がり、上端のつまみを下へ引くと閉じる。",
@@ -3077,15 +3255,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "アコーディオン",
-    "en": "Accordion"
+    "en": "Accordion",
+    "es": "Acordeón"
    },
    "meaning": {
     "ja": "押すと中身が開閉する",
-    "en": "Click a heading to show or hide its content"
+    "en": "Click a heading to show or hide its content",
+    "es": "Al tocar un título se muestra u oculta su contenido"
    },
    "ask": {
     "ja": "よくある質問をアコーディオンにして。押した項目だけ0.35秒で開き、矢印を180度回して。",
-    "en": "Make the FAQ an accordion: the clicked item opens over 0.35 s and its arrow turns 180°."
+    "en": "Make the FAQ an accordion: the clicked item opens over 0.35 s and its arrow turns 180°.",
+    "es": "Haz las preguntas frecuentes en acordeón: el elemento tocado se abre en 0,35 s y su flecha gira 180°."
    },
    "summary": {
     "ja": "3段の見出しのうち1段目を押すと下に本文が開き、下の段が押し下げられる。もう一度押すと閉じる。",
@@ -3132,15 +3313,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ドロップダウン",
-    "en": "Dropdown (select)"
+    "en": "Dropdown (select)",
+    "es": "Desplegable (select)"
    },
    "meaning": {
     "ja": "押すと選択肢が下に広がる",
-    "en": "Click a field to drop a list of options below it"
+    "en": "Click a field to drop a list of options below it",
+    "es": "Al tocar un campo se despliega una lista de opciones debajo"
    },
    "ask": {
     "ja": "都道府県の入力欄をドロップダウンにして。押したら0.25秒で選択肢を下に開き、選んだら閉じて値を入れて。",
-    "en": "Make the prefecture field a dropdown: open the options below it in 0.25 s and close it with the value filled in once one is picked."
+    "en": "Make the prefecture field a dropdown: open the options below it in 0.25 s and close it with the value filled in once one is picked.",
+    "es": "Haz el campo de provincia un desplegable: abre las opciones debajo en 0,25 s y ciérralo con el valor puesto al elegir."
    },
    "summary": {
     "ja": "入力欄を押すと下に4つの選択肢が開き、「名古屋」を選ぶと閉じて欄に入る。",
@@ -3187,15 +3371,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ツールチップ",
-    "en": "Tooltip"
+    "en": "Tooltip",
+    "es": "Tooltip"
    },
    "meaning": {
     "ja": "乗せると小さな説明が出る",
-    "en": "Hover over something to show a short label"
+    "en": "Hover over something to show a short label",
+    "es": "Al pasar el cursor aparece una etiqueta corta"
    },
    "ask": {
     "ja": "「?」アイコンにツールチップを付けて。カーソルを乗せて0.2秒で上に説明を出し、離れたら消して。",
-    "en": "Add a tooltip to the \"?\" icon: show the note above it 0.2 s after hover, and hide it when the cursor leaves."
+    "en": "Add a tooltip to the \"?\" icon: show the note above it 0.2 s after hover, and hide it when the cursor leaves.",
+    "es": "Agrega un tooltip al ícono \"?\": muestra la nota arriba 0,2 s después del hover y ocúltala cuando el cursor se va."
    },
    "summary": {
     "ja": "カーソルを「?」に乗せると、上に黒い吹き出しで短い説明が出る。離れると消える。",
@@ -3241,15 +3428,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ポップオーバー",
-    "en": "Popover"
+    "en": "Popover",
+    "es": "Popover"
    },
    "meaning": {
     "ja": "押すと吹き出しの小窓が出る",
-    "en": "Click a button to open a small panel pointing at it"
+    "en": "Click a button to open a small panel pointing at it",
+    "es": "Al tocar un botón se abre un panel pequeño que lo señala"
    },
    "ask": {
     "ja": "「詳細」ボタンにポップオーバーを付けて。押したら右に吹き出しの小窓を0.3秒で出し、OKで閉じて。",
-    "en": "Attach a popover to the \"Details\" button: clicking opens a small panel to its right over 0.3 s, and OK closes it."
+    "en": "Attach a popover to the \"Details\" button: clicking opens a small panel to its right over 0.3 s, and OK closes it.",
+    "es": "Agrega un popover al botón \"Detalles\": al tocarlo abre un panel pequeño a su derecha en 0,3 s, y \"Aceptar\" lo cierra."
    },
    "summary": {
     "ja": "「詳細」を押すと右に、三角でボタンを指す白い小窓が出る。小窓のOKを押すと閉じる。",
@@ -3295,15 +3485,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "トースト",
-    "en": "Toast notification"
+    "en": "Toast notification",
+    "es": "Notificación toast"
    },
    "meaning": {
     "ja": "隅に通知が出て自動で消える",
-    "en": "A short message appears in a corner and goes away on its own"
+    "en": "A short message appears in a corner and goes away on its own",
+    "es": "Un mensaje corto aparece en una esquina y se va solo"
    },
    "ask": {
     "ja": "保存したら右下にトーストで「保存しました」と出して。0.35秒で右から出し、2秒後に自動で消して。",
-    "en": "After saving, show \"Saved\" as a toast at the bottom right: slide it in from the right in 0.35 s and dismiss it automatically after 2 s."
+    "en": "After saving, show \"Saved\" as a toast at the bottom right: slide it in from the right in 0.35 s and dismiss it automatically after 2 s.",
+    "es": "Después de guardar, muestra \"Guardado\" como toast abajo a la derecha: que entre desde la derecha en 0,35 s y se cierre solo a los 2 s."
    },
    "summary": {
     "ja": "「保存」を押すと右下に黒い通知が右から滑り込み、残り時間の線が縮みきると右へ消える。",
@@ -3349,15 +3542,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "タブ",
-    "en": "Tabs"
+    "en": "Tabs",
+    "es": "Pestañas (tabs)"
    },
    "meaning": {
     "ja": "見出しを押して中身を切り替える",
-    "en": "Click a label to switch which panel is shown"
+    "en": "Click a label to switch which panel is shown",
+    "es": "Al tocar una etiqueta cambia el panel que se muestra"
    },
    "ask": {
     "ja": "料金ページの上にタブを3つ置いて。押したら下線を0.25秒で滑らせ、中身を0.2秒のクロスフェードで切り替えて。",
-    "en": "Put three tabs at the top of the pricing page. On click, slide the underline over 0.25 s and cross-fade the content in 0.2 s."
+    "en": "Put three tabs at the top of the pricing page. On click, slide the underline over 0.25 s and cross-fade the content in 0.2 s.",
+    "es": "Pon tres pestañas arriba de la página de precios. Al tocar, desliza el subrayado en 0,25 s y funde el contenido en 0,2 s."
    },
    "summary": {
     "ja": "「概要・料金・レビュー」のタブを順に押すと、青い下線が滑って移り、下の中身が入れ替わる。",
@@ -3403,15 +3599,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "カルーセル",
-    "en": "Carousel"
+    "en": "Carousel",
+    "es": "Carrusel"
    },
    "meaning": {
     "ja": "横に送って順番に見せる",
-    "en": "Slides that move sideways to show one item at a time"
+    "en": "Slides that move sideways to show one item at a time",
+    "es": "Diapositivas que se mueven de lado para mostrar un elemento a la vez"
    },
    "ask": {
     "ja": "トップの画像をカルーセルにして。右矢印で1枚ずつ0.4秒で送り、下に今の位置の点を出して。",
-    "en": "Turn the top images into a carousel: the right arrow moves one slide in 0.4 s, with position dots below."
+    "en": "Turn the top images into a carousel: the right arrow moves one slide in 0.4 s, with position dots below.",
+    "es": "Convierte las imágenes de arriba en un carrusel: la flecha derecha avanza una diapositiva en 0,4 s, con puntos de posición abajo."
    },
    "summary": {
     "ja": "右の矢印を押すたびに、横に並んだ3種類の絵が1枚ずつ左へ送られ、下の点が移る。",
@@ -3457,15 +3656,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "トグルスイッチ",
-    "en": "Toggle switch"
+    "en": "Toggle switch",
+    "es": "Interruptor (toggle)"
    },
    "meaning": {
     "ja": "オン・オフを切り替える",
-    "en": "Flip a setting on or off"
+    "en": "Flip a setting on or off",
+    "es": "Activa o desactiva una opción"
    },
    "ask": {
     "ja": "通知設定の各行にトグルスイッチを置いて。押したら0.2秒でつまみを滑らせ、オンは青にして。",
-    "en": "Put a toggle switch on each notification setting: the knob slides in 0.2 s and the track turns blue when on."
+    "en": "Put a toggle switch on each notification setting: the knob slides in 0.2 s and the track turns blue when on.",
+    "es": "Pon un interruptor en cada ajuste de notificaciones: la perilla se desliza en 0,2 s y la pista se pone azul al activarse."
    },
    "summary": {
     "ja": "設定の3行のうち上の2つのスイッチを順にオンにし、その後オフに戻す。",
@@ -3509,15 +3711,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "セグメントコントロール",
-    "en": "Segmented control"
+    "en": "Segmented control",
+    "es": "Control segmentado"
    },
    "meaning": {
     "ja": "並んだボタンで表示を切り替える",
-    "en": "A row of joined buttons that switches the view"
+    "en": "A row of joined buttons that switches the view",
+    "es": "Una fila de botones unidos que cambia la vista"
    },
    "ask": {
     "ja": "グラフの上に「日・週・月」のセグメントコントロールを置いて。押したら選択の背景を0.25秒で滑らせ、グラフも同時に変えて。",
-    "en": "Put a Day / Week / Month segmented control above the chart: the selected background slides over 0.25 s and the chart changes with it."
+    "en": "Put a Day / Week / Month segmented control above the chart: the selected background slides over 0.25 s and the chart changes with it.",
+    "es": "Pon un control segmentado Día / Semana / Mes sobre el gráfico: el fondo seleccionado se desliza en 0,25 s y el gráfico cambia con él."
    },
    "summary": {
     "ja": "「日・週・月」を押すと青い選択部分が滑って移り、下の棒グラフの高さが変わる。",
@@ -3561,15 +3766,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "チップ",
-    "en": "Filter chips"
+    "en": "Filter chips",
+    "es": "Chips de filtro"
    },
    "meaning": {
     "ja": "押して絞り込み条件を付け外し",
-    "en": "Small pills you click to add or remove a filter"
+    "en": "Small pills you click to add or remove a filter",
+    "es": "Pastillas pequeñas que se tocan para poner o quitar un filtro"
    },
    "ask": {
     "ja": "一覧の上に絞り込みのチップを並べて。押したらチェックを付けて青くし、0.15秒で一覧を絞り込んで。",
-    "en": "Add filter chips above the list: a clicked chip gets a check mark and turns blue, and the list filters within 0.15 s."
+    "en": "Add filter chips above the list: a clicked chip gets a check mark and turns blue, and the list filters within 0.15 s.",
+    "es": "Agrega chips de filtro sobre la lista: el chip tocado muestra un check y se pone azul, y la lista se filtra en 0,15 s."
    },
    "summary": {
     "ja": "「新着」「無料」のチップを押すとチェックが付いて青くなり、条件に合わないカードが薄くなる。",
@@ -3613,15 +3821,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "レンジスライダー",
-    "en": "Range slider"
+    "en": "Range slider",
+    "es": "Slider de rango"
    },
    "meaning": {
     "ja": "つまみ2つで範囲を選ぶ",
-    "en": "Two handles on one track pick a minimum and a maximum"
+    "en": "Two handles on one track pick a minimum and a maximum",
+    "es": "Dos manijas en una misma pista eligen un mínimo y un máximo"
    },
    "ask": {
     "ja": "価格の絞り込みをレンジスライダーにして。つまみは2つ、動かしている間は値を吹き出しで出して。",
-    "en": "Make the price filter a range slider with two handles, showing each value in a bubble while it is dragged."
+    "en": "Make the price filter a range slider with two handles, showing each value in a bubble while it is dragged.",
+    "es": "Haz el filtro de precio un slider de rango con dos manijas, mostrando cada valor en una burbuja mientras se arrastra."
    },
    "summary": {
     "ja": "価格のスライダーで、左のつまみを右へ、右のつまみを左へ動かして範囲を狭め、元に戻す。",
@@ -3667,15 +3878,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ステッパー",
-    "en": "Stepper (+/−)"
+    "en": "Stepper (+/−)",
+    "es": "Stepper (+/−)"
    },
    "meaning": {
     "ja": "＋/−ボタンで数を増減する",
-    "en": "Plus and minus buttons that change a number by one"
+    "en": "Plus and minus buttons that change a number by one",
+    "es": "Botones de más y menos que cambian un número de uno en uno"
    },
    "ask": {
     "ja": "数量の欄をステッパーにして。＋と−で1ずつ増減し、押すたびに数字を0.25秒で少し弾ませて。",
-    "en": "Make the quantity field a stepper: + and − change it by one, and the number pops slightly for 0.25 s on each press."
+    "en": "Make the quantity field a stepper: + and − change it by one, and the number pops slightly for 0.25 s on each press.",
+    "es": "Haz el campo de cantidad un stepper: + y − lo cambian de uno en uno, y el número rebota un poco 0,25 s en cada toque."
    },
    "summary": {
     "ja": "＋を3回押して数が1から4に増え、−を3回押して1に戻る。押すたびに数字が少し弾む。",
@@ -3720,15 +3934,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ページネーション",
-    "en": "Pagination"
+    "en": "Pagination",
+    "es": "Paginación"
    },
    "meaning": {
     "ja": "番号でページを送る",
-    "en": "Numbered buttons that move between pages"
+    "en": "Numbered buttons that move between pages",
+    "es": "Botones numerados para moverse entre páginas"
    },
    "ask": {
     "ja": "検索結果の下にページネーションを付けて。今のページは青い丸にし、押したら0.2秒で丸を移して一覧を入れ替えて。",
-    "en": "Add pagination under the search results: the current page is a blue circle that moves in 0.2 s on click, and the list is replaced."
+    "en": "Add pagination under the search results: the current page is a blue circle that moves in 0.2 s on click, and the list is replaced.",
+    "es": "Agrega paginación debajo de los resultados: la página actual es un círculo azul que se mueve en 0,2 s al tocar, y la lista se reemplaza."
    },
    "summary": {
     "ja": "下の番号で2、3と押すと青い丸が移り、上の一覧が切り替わる。最後に1へ戻る。",
@@ -3772,15 +3989,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ハンバーガーメニュー",
-    "en": "Hamburger menu"
+    "en": "Hamburger menu",
+    "es": "Menú hamburguesa"
    },
    "meaning": {
     "ja": "三本線を押すとメニューが開く",
-    "en": "A three-line icon that opens the menu"
+    "en": "A three-line icon that opens the menu",
+    "es": "Un ícono de tres líneas que abre el menú"
    },
    "ask": {
     "ja": "スマホのヘッダー右にハンバーガーメニューを置いて。押したら三本線を0.3秒で×に変え、メニューを上から下ろして。",
-    "en": "Put a hamburger menu at the right of the mobile header: on tap, morph the three lines into × in 0.3 s and drop the menu down from the top."
+    "en": "Put a hamburger menu at the right of the mobile header: on tap, morph the three lines into × in 0.3 s and drop the menu down from the top.",
+    "es": "Pon un menú hamburguesa a la derecha del encabezado móvil: al tocarlo, las tres líneas se vuelven × en 0,3 s y el menú baja desde arriba."
    },
    "summary": {
     "ja": "ヘッダー右の三本線を押すと×に変わり、ヘッダーの下からメニューが下りてくる。もう一度押すと閉じる。",
@@ -3824,15 +4044,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "パンくずリスト",
-    "en": "Breadcrumbs"
+    "en": "Breadcrumbs",
+    "es": "Migas de pan (breadcrumbs)"
    },
    "meaning": {
     "ja": "今いる場所を階層で示す",
-    "en": "A trail of links showing where the page sits in the site"
+    "en": "A trail of links showing where the page sits in the site",
+    "es": "Un rastro de enlaces que muestra dónde está la página dentro del sitio"
    },
    "ask": {
     "ja": "記事ページの上にパンくずリストを付けて。「ホーム › 講座 › Web制作」の形で、今のページは太字でリンクなし。",
-    "en": "Add breadcrumbs above the article: \"Home › Courses › Web design\", with the current page in bold and not linked."
+    "en": "Add breadcrumbs above the article: \"Home › Courses › Web design\", with the current page in bold and not linked.",
+    "es": "Agrega migas de pan sobre el artículo: \"Inicio › Cursos › Diseño web\", con la página actual en negrita y sin enlace."
    },
    "summary": {
     "ja": "パンくずの「講座」を押すと一つ上の一覧ページに戻り、一覧のカードを押すと元の詳細ページへ進む。",
@@ -3878,15 +4101,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "メガメニュー",
-    "en": "Mega menu"
+    "en": "Mega menu",
+    "es": "Megamenú"
    },
    "meaning": {
     "ja": "大きな一覧メニューが広がる",
-    "en": "A wide panel of grouped links that opens from the main menu"
+    "en": "A wide panel of grouped links that opens from the main menu",
+    "es": "Un panel ancho de enlaces agrupados que se abre desde el menú principal"
    },
    "ask": {
     "ja": "ヘッダーの「製品」にメガメニューを付けて。乗せたら0.25秒で全幅のパネルを下ろし、3列のリンクと画像を並べて。",
-    "en": "Give \"Products\" in the header a mega menu: on hover, drop a full-width panel in 0.25 s with three columns of links and an image."
+    "en": "Give \"Products\" in the header a mega menu: on hover, drop a full-width panel in 0.25 s with three columns of links and an image.",
+    "es": "Ponle un megamenú a \"Productos\" en el encabezado: al pasar el cursor baja un panel de ancho completo en 0,25 s, con tres columnas de enlaces y una imagen."
    },
    "summary": {
     "ja": "ヘッダーの「製品」にカーソルを乗せると、全幅のパネルが下りて3列のリンクと画像が並ぶ。離れると閉じる。",
@@ -3932,15 +4158,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "ステップインジケーター",
-    "en": "Step indicator"
+    "en": "Step indicator",
+    "es": "Indicador de pasos"
    },
    "meaning": {
     "ja": "手続きの何番目かを示す",
-    "en": "Shows which step of a process you are on"
+    "en": "Shows which step of a process you are on",
+    "es": "Muestra en qué paso de un proceso estás"
    },
    "ask": {
     "ja": "申し込みフォームの上にステップインジケーターを付けて。入力・確認・支払い・完了の4段階で、済んだ段階はチェックにして。",
-    "en": "Add a step indicator above the sign-up form with four steps: Details, Review, Payment, Done; completed steps show a check."
+    "en": "Add a step indicator above the sign-up form with four steps: Details, Review, Payment, Done; completed steps show a check.",
+    "es": "Agrega un indicador de pasos sobre el formulario de registro con cuatro pasos: Datos, Revisión, Pago, Listo; los completados llevan un check."
    },
    "summary": {
     "ja": "「次へ」を押すたびに、4段階の丸が順にチェックに変わり、青い線が次の段階へ伸びる。",
@@ -3987,15 +4216,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "スケルトン",
-    "en": "Skeleton screen"
+    "en": "Skeleton screen",
+    "es": "Skeleton screen (pantalla esqueleto)"
    },
    "meaning": {
     "ja": "読み込み中に灰色の枠を出す",
-    "en": "Grey shapes stand in for content while it loads"
+    "en": "Grey shapes stand in for content while it loads",
+    "es": "Formas grises ocupan el lugar del contenido mientras carga"
    },
    "ask": {
     "ja": "一覧の読み込み中はスケルトンを出して。中身と同じ形の灰色の枠にして、光が左から右へ0.9秒で流れるように。",
-    "en": "While the list loads, show a skeleton screen: grey blocks in the shape of the content, with a shine sweeping left to right every 0.9 s."
+    "en": "While the list loads, show a skeleton screen: grey blocks in the shape of the content, with a shine sweeping left to right every 0.9 s.",
+    "es": "Mientras carga la lista, muestra una pantalla esqueleto: bloques grises con la forma del contenido y un brillo que pasa de izquierda a derecha cada 0,9 s."
    },
    "summary": {
     "ja": "再読み込みを押すと、一覧の中身が同じ形の灰色の枠に変わり、光が横に流れる。読み込みが済むと中身に戻る。",
@@ -4039,15 +4271,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "スピナー",
-    "en": "Spinner"
+    "en": "Spinner",
+    "es": "Spinner (indicador de carga)"
    },
    "meaning": {
     "ja": "くるくる回って待ちを示す",
-    "en": "A spinning circle that means \"please wait\""
+    "en": "A spinning circle that means \"please wait\"",
+    "es": "Un círculo que gira y significa \"espera\""
    },
    "ask": {
     "ja": "送信中はボタンの上にスピナーを出して。1秒に1回転強で回し、終わったら青い丸のチェックに替えて。",
-    "en": "While sending, show a spinner over the form, turning a little over once per second, then replace it with a blue check when done."
+    "en": "While sending, show a spinner over the form, turning a little over once per second, then replace it with a blue check when done.",
+    "es": "Mientras se envía, muestra un spinner sobre el formulario, girando un poco más de una vuelta por segundo, y cámbialo por un check azul al terminar."
    },
    "summary": {
     "ja": "「送信」を押すと画面が白くかすみ、中央で青い弧が回る。済むとチェックに変わって消える。",
@@ -4093,15 +4328,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "バッジ",
-    "en": "Badge"
+    "en": "Badge",
+    "es": "Badge (contador)"
    },
    "meaning": {
     "ja": "件数を小さな丸で示す",
-    "en": "A small dot with a number showing a count"
+    "en": "A small dot with a number showing a count",
+    "es": "Un punto pequeño con un número que muestra una cantidad"
    },
    "ask": {
     "ja": "ヘッダーのベルにバッジを付けて未読数を出して。増えるたびに0.3秒で少し弾ませ、開いたら消して。",
-    "en": "Add a badge to the bell in the header to show the unread count: it pops for 0.3 s each time the count goes up and disappears when opened."
+    "en": "Add a badge to the bell in the header to show the unread count: it pops for 0.3 s each time the count goes up and disappears when opened.",
+    "es": "Agrega un badge a la campana del encabezado con los no leídos: que rebote 0,3 s cada vez que sube el número y desaparezca al abrirla."
    },
    "summary": {
     "ja": "ヘッダーのベルに通知が届くたび、右上の青い丸の数が1・2・3と増える。ベルを押すと消える。",
@@ -4147,15 +4385,18 @@
    "cycle": 4.5,
    "name": {
     "ja": "エンプティステート",
-    "en": "Empty state"
+    "en": "Empty state",
+    "es": "Estado vacío"
    },
    "meaning": {
     "ja": "中身がないときの案内画面",
-    "en": "The screen shown when there is nothing to list yet"
+    "en": "The screen shown when there is nothing to list yet",
+    "es": "La pantalla que se ve cuando todavía no hay nada que listar"
    },
    "ask": {
     "ja": "リストが空になったらエンプティステートを出して。線画のアイコン、「まだ何もありません」、追加するボタンを0.35秒で出して。",
-    "en": "When the list is empty, show an empty state: a line icon, \"Nothing here yet\" and an add button, fading in over 0.35 s."
+    "en": "When the list is empty, show an empty state: a line icon, \"Nothing here yet\" and an add button, fading in over 0.35 s.",
+    "es": "Cuando la lista esté vacía, muestra un estado vacío: un ícono de línea, \"Todavía no hay nada aquí\" y un botón para agregar, apareciendo en 0,35 s."
    },
    "summary": {
     "ja": "一覧の2行をごみ箱で順に消すと、空の箱の線画と「まだ何もありません」「追加する」ボタンが出る。",
@@ -4199,15 +4440,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "パララックススクロール",
-    "en": "Parallax scrolling"
+    "en": "Parallax scrolling",
+    "es": "Scroll con paralaje"
    },
    "meaning": {
     "ja": "スクロールで奥の層ほどゆっくり動く",
-    "en": "On scroll, background layers move slower than the content"
+    "en": "On scroll, background layers move slower than the content",
+    "es": "Al hacer scroll, las capas de fondo se mueven más lento que el contenido"
    },
    "ask": {
     "ja": "ファーストビューの背景をパララックススクロールにして。背景はスクロール量の0.3倍で動かして。",
-    "en": "Make the hero background a parallax scroll: move it at 0.3× the scroll distance."
+    "en": "Make the hero background a parallax scroll: move it at 0.3× the scroll distance.",
+    "es": "Haz el fondo del hero con scroll con paralaje: que se mueva a 0,3× de lo que se desplaza la página."
    },
    "summary": {
     "ja": "ページを下へスクロールすると、見出しはふつうに上がり、空と太陽・遠い山・近い山はそれより遅く動く。",
@@ -4254,15 +4498,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "スクロールでフェードイン",
-    "en": "Fade-in on scroll"
+    "en": "Fade-in on scroll",
+    "es": "Aparición al hacer scroll (fade-in)"
    },
    "meaning": {
     "ja": "画面に入った要素がふわっと現れる",
-    "en": "Elements fade in as they scroll into view"
+    "en": "Elements fade in as they scroll into view",
+    "es": "Los elementos aparecen al entrar en la vista"
    },
    "ask": {
     "ja": "各セクションの見出しとカードを、スクロールでフェードインさせて。下から30px、0.6秒で。",
-    "en": "Fade in each section's heading and cards on scroll: up from 30 px below, over 0.6 s."
+    "en": "Fade in each section's heading and cards on scroll: up from 30 px below, over 0.6 s.",
+    "es": "Haz que el título y las tarjetas de cada sección aparezcan al hacer scroll: subiendo desde 30 px abajo, en 0,6 s."
    },
    "summary": {
     "ja": "スクロールで画面に入った見出し・カード・本文が、それぞれ下から浮かび上がりながら現れる。",
@@ -4309,15 +4556,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "追従ヘッダー",
-    "en": "Sticky header"
+    "en": "Sticky header",
+    "es": "Encabezado fijo (sticky header)"
    },
    "meaning": {
     "ja": "スクロールしてもヘッダーが上に残る",
-    "en": "The header stays at the top while the page scrolls"
+    "en": "The header stays at the top while the page scrolls",
+    "es": "El encabezado se queda arriba mientras la página se desplaza"
    },
    "ask": {
     "ja": "ヘッダーを追従ヘッダーにして。上に張り付いたら下に薄い影を付けて。",
-    "en": "Make the header a sticky header, with a soft shadow once it sticks to the top."
+    "en": "Make the header a sticky header, with a soft shadow once it sticks to the top.",
+    "es": "Haz el encabezado sticky, con una sombra suave cuando se pega arriba."
    },
    "summary": {
     "ja": "上のお知らせの帯はスクロールで消えるが、その下のヘッダーは画面の上端に来たところで止まり、本文がその下を通っていく。",
@@ -4364,15 +4614,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ピン留め",
-    "en": "Pinning"
+    "en": "Pinning",
+    "es": "Pinning (anclaje)"
    },
    "meaning": {
     "ja": "セクションを止めて中身だけ進める",
-    "en": "A section stays fixed while scrolling advances its content"
+    "en": "A section stays fixed while scrolling advances its content",
+    "es": "Una sección queda fija mientras el scroll avanza su contenido"
    },
    "ask": {
     "ja": "「3ステップ」のセクションをピン留めして、スクロールで1ステップずつ写真と番号を切り替えて。",
-    "en": "Pin the three-step section and switch the photo and number one step at a time as the user scrolls."
+    "en": "Pin the three-step section and switch the photo and number one step at a time as the user scrolls.",
+    "es": "Ancla la sección de los tres pasos y cambia la foto y el número de un paso al siguiente a medida que se hace scroll."
    },
    "summary": {
     "ja": "濃紺のセクションが画面いっぱいに来たところで止まり、スクロールし続けると番号と写真がステップ1→2→3と切り替わり、終わると再び流れていく。",
@@ -4419,15 +4672,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "横スクロール",
-    "en": "Horizontal scroll"
+    "en": "Horizontal scroll",
+    "es": "Scroll horizontal"
    },
    "meaning": {
     "ja": "縦のスクロールで中身が横に流れる",
-    "en": "Scrolling down moves the content sideways"
+    "en": "Scrolling down moves the content sideways",
+    "es": "Al bajar, el contenido se mueve de lado"
    },
    "ask": {
     "ja": "実績のセクションを横スクロールにして。縦にスクロールした分だけ、カードを左へ流して。",
-    "en": "Turn the work section into a horizontal scroll: move the cards left as far as the user scrolls down."
+    "en": "Turn the work section into a horizontal scroll: move the cards left as far as the user scrolls down.",
+    "es": "Convierte la sección de trabajos en un scroll horizontal: que las tarjetas avancen a la izquierda tanto como se baje."
    },
    "summary": {
     "ja": "縦にスクロールすると、セクションが止まったまま、番号付きの作品カード4枚が左へ流れていく。",
@@ -4474,15 +4730,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "スクロールスナップ",
-    "en": "Scroll snap"
+    "en": "Scroll snap",
+    "es": "Scroll snap"
    },
    "meaning": {
     "ja": "スクロールが区切りの位置にピタッと止まる",
-    "en": "Scrolling settles exactly on the next section"
+    "en": "Scrolling settles exactly on the next section",
+    "es": "El scroll se detiene justo en la sección siguiente"
    },
    "ask": {
     "ja": "セクションごとにスクロールスナップさせて。少し回しただけで次のセクションの頭に合わせて。",
-    "en": "Add scroll snap per section, so a small scroll lands on the top of the next section."
+    "en": "Add scroll snap per section, so a small scroll lands on the top of the next section.",
+    "es": "Agrega scroll snap por sección, para que un scroll corto caiga en el inicio de la siguiente."
    },
    "summary": {
     "ja": "少しだけスクロールすると、残りは自動で送られて、次のセクションの頭がちょうど画面の上にそろう。",
@@ -4527,15 +4786,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "スクロールプログレスバー",
-    "en": "Scroll progress bar"
+    "en": "Scroll progress bar",
+    "es": "Barra de progreso de lectura"
    },
    "meaning": {
     "ja": "読み進めた割合を上の線で見せる",
-    "en": "A bar at the top shows how far you have read"
+    "en": "A bar at the top shows how far you have read",
+    "es": "Una barra arriba muestra cuánto has leído"
    },
    "ask": {
     "ja": "記事ページの上にスクロールプログレスバーを付けて。太さ4px、色はブランドの朱色で。",
-    "en": "Add a scroll progress bar at the top of the article page, 4 px thick, in the brand orange."
+    "en": "Add a scroll progress bar at the top of the article page, 4 px thick, in the brand orange.",
+    "es": "Agrega una barra de progreso de lectura arriba de la página del artículo, de 4 px de alto, en el naranja de la marca."
    },
    "summary": {
     "ja": "記事を少しずつ読み進めるごとに、画面の上端の線が左から伸び、最後まで来ると端まで届く。",
@@ -4579,15 +4841,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "マーカーアニメーション",
-    "en": "Highlighter animation"
+    "en": "Highlighter animation",
+    "es": "Efecto resaltador"
    },
    "meaning": {
     "ja": "大事な言葉に蛍光ペンの線が引かれる",
-    "en": "A highlighter stroke is drawn under key words"
+    "en": "A highlighter stroke is drawn under key words",
+    "es": "Se dibuja un trazo de resaltador debajo de las palabras clave"
    },
    "ask": {
     "ja": "強調したい言葉に、スクロールで画面に入ったらマーカーアニメーションで黄色の線を引いて。0.8秒で左から。",
-    "en": "When the key phrase scrolls into view, draw a yellow highlighter animation under it, left to right in 0.8 s."
+    "en": "When the key phrase scrolls into view, draw a yellow highlighter animation under it, left to right in 0.8 s.",
+    "es": "Cuando la frase clave entre en la vista, dibuja debajo un resaltador amarillo de izquierda a derecha en 0,8 s."
    },
    "summary": {
     "ja": "スクロールで文章が画面に入ると、大事な言葉の下半分に黄色い蛍光ペンの線が左から引かれる。",
@@ -4634,15 +4899,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ホバーで浮き上がる",
-    "en": "Hover lift"
+    "en": "Hover lift",
+    "es": "Hover lift (elevación al pasar el cursor)"
    },
    "meaning": {
     "ja": "カーソルを乗せると影を付けて浮く",
-    "en": "On hover, the element rises with a deeper shadow"
+    "en": "On hover, the element rises with a deeper shadow",
+    "es": "Al pasar el cursor el elemento sube con una sombra más marcada"
    },
    "ask": {
     "ja": "カードにカーソルを乗せたら、ホバーで浮き上がるようにして。上に8px、影を濃く、0.3秒で。",
-    "en": "Give the cards a hover lift: up 8 px with a deeper shadow, over 0.3 s."
+    "en": "Give the cards a hover lift: up 8 px with a deeper shadow, over 0.3 s.",
+    "es": "Ponle hover lift a las tarjetas: que suban 8 px con una sombra más profunda, en 0,3 s."
    },
    "summary": {
     "ja": "カーソルが乗ったカードだけが少し上に持ち上がり、下の影が広がる。カーソルが離れると元に戻る。",
@@ -4687,15 +4955,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ホバーで画像ズーム",
-    "en": "Image zoom on hover"
+    "en": "Image zoom on hover",
+    "es": "Zoom de imagen al pasar el cursor"
    },
    "meaning": {
     "ja": "枠はそのままで写真だけ拡大する",
-    "en": "The photo enlarges inside a fixed frame"
+    "en": "The photo enlarges inside a fixed frame",
+    "es": "La foto crece dentro de un marco fijo"
    },
    "ask": {
     "ja": "実績の写真にホバーで画像ズームを付けて。枠は固定で、中身を1.1倍まで0.5秒で。",
-    "en": "Add an image zoom on hover to the work photos: fixed frame, content to 1.1× over 0.5 s."
+    "en": "Add an image zoom on hover to the work photos: fixed frame, content to 1.1× over 0.5 s.",
+    "es": "Agrega zoom al pasar el cursor a las fotos de trabajos: marco fijo y la imagen a 1,1× en 0,5 s."
    },
    "summary": {
     "ja": "カーソルが乗った写真だけが、枠の大きさは変えずに中身がゆっくり拡大し、離れると戻る。",
@@ -4738,15 +5009,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "マウスストーカー",
-    "en": "Cursor follower"
+    "en": "Cursor follower",
+    "es": "Seguidor del cursor"
    },
    "meaning": {
     "ja": "カーソルを丸が遅れて追いかける",
-    "en": "A shape trails the mouse pointer with a delay"
+    "en": "A shape trails the mouse pointer with a delay",
+    "es": "Una forma sigue al puntero con retraso"
    },
    "ask": {
     "ja": "サイト全体にマウスストーカーを付けて。直径30pxの朱色の丸が、少し遅れてカーソルを追うように。",
-    "en": "Add a cursor follower across the site: a 30 px orange circle that trails the pointer slightly."
+    "en": "Add a cursor follower across the site: a 30 px orange circle that trails the pointer slightly.",
+    "es": "Agrega un seguidor del cursor en todo el sitio: un círculo naranja de 30 px que sigue al puntero con un poco de retraso."
    },
    "summary": {
     "ja": "カーソルがページの上を動き回ると、朱色の丸が少し遅れてそのあとを追いかける。",
@@ -4791,15 +5065,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "マグネティックボタン",
-    "en": "Magnetic button"
+    "en": "Magnetic button",
+    "es": "Botón magnético"
    },
    "meaning": {
     "ja": "近づいたカーソルにボタンが吸い寄せられる",
-    "en": "The button is pulled toward a nearby cursor"
+    "en": "The button is pulled toward a nearby cursor",
+    "es": "El botón se acerca al cursor cuando está cerca"
    },
    "ask": {
     "ja": "問い合わせボタンをマグネティックボタンにして。カーソルとの差の0.3倍だけ寄って、離れたらぷるんと戻して。",
-    "en": "Make the contact button a magnetic button: move 0.3× toward the cursor, and spring back when it leaves."
+    "en": "Make the contact button a magnetic button: move 0.3× toward the cursor, and spring back when it leaves.",
+    "es": "Haz el botón de contacto magnético: que se mueva 0,3× hacia el cursor y vuelva con rebote cuando se va."
    },
    "summary": {
     "ja": "カーソルが近づくとボタンがカーソルの方へ引き寄せられてついていき、離れるとぷるんと揺れて元の位置に戻る。",
@@ -4844,15 +5121,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "リップルエフェクト",
-    "en": "Ripple effect"
+    "en": "Ripple effect",
+    "es": "Efecto ripple (onda)"
    },
    "meaning": {
     "ja": "押した場所から波紋が広がる",
-    "en": "A ripple spreads from the point that was pressed"
+    "en": "A ripple spreads from the point that was pressed",
+    "es": "Una onda se expande desde el punto que se tocó"
    },
    "ask": {
     "ja": "送信ボタンにリップルエフェクトを付けて。押した位置から白い円が0.6秒で広がって消えるように。",
-    "en": "Add a ripple effect to the submit button: a white circle spreads from the click point and fades in 0.6 s."
+    "en": "Add a ripple effect to the submit button: a white circle spreads from the click point and fades in 0.6 s.",
+    "es": "Agrega un efecto ripple al botón de enviar: un círculo blanco que crece desde el punto del clic y se desvanece en 0,6 s."
    },
    "summary": {
     "ja": "ボタンを押すたびに、押した場所を中心に白い円が広がってボタンの中を満たし、薄れて消える。",
@@ -4897,15 +5177,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "下線アニメーション",
-    "en": "Underline animation"
+    "en": "Underline animation",
+    "es": "Subrayado animado"
    },
    "meaning": {
     "ja": "乗せたリンクの下線が左から伸びる",
-    "en": "A link's underline grows from the left on hover"
+    "en": "A link's underline grows from the left on hover",
+    "es": "El subrayado de un enlace crece desde la izquierda al pasar el cursor"
    },
    "ask": {
     "ja": "メニューのリンクに下線アニメーションを付けて。乗せたら左から0.3秒で伸び、離れたら右へ抜けるように。",
-    "en": "Add an underline animation to the menu links: grow from the left in 0.3 s on hover, and exit to the right on leave."
+    "en": "Add an underline animation to the menu links: grow from the left in 0.3 s on hover, and exit to the right on leave.",
+    "es": "Agrega subrayado animado a los enlaces del menú: crece desde la izquierda en 0,3 s al pasar el cursor y sale por la derecha al quitarlo."
    },
    "summary": {
     "ja": "カーソルが乗ったリンクの下に、朱色の線が左から伸び、離れると線は右へ縮んで抜けていく。",
@@ -4950,15 +5233,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ビフォーアフタースライダー",
-    "en": "Before/after slider"
+    "en": "Before/after slider",
+    "es": "Slider antes/después"
    },
    "meaning": {
     "ja": "境目をドラッグして前と後を見比べる",
-    "en": "Drag a divider to compare before and after"
+    "en": "Drag a divider to compare before and after",
+    "es": "Se arrastra un divisor para comparar antes y después"
    },
    "ask": {
     "ja": "施工例の写真をビフォーアフタースライダーにして。真ん中の線をドラッグすると、左が施工前、右が施工後で見比べられるように。",
-    "en": "Show the project photos as a before/after slider: drag the middle line to compare before on the left and after on the right."
+    "en": "Show the project photos as a before/after slider: drag the middle line to compare before on the left and after on the right.",
+    "es": "Muestra las fotos del proyecto con un slider antes/después: arrastra la línea del medio para comparar el antes a la izquierda y el después a la derecha."
    },
    "summary": {
     "ja": "写真の真ん中の線をドラッグして左右に動かすと、左側は色のない「前」、右側は色のある「後」の範囲が入れ替わる。",
@@ -5003,15 +5289,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "離脱防止ポップアップ",
-    "en": "Exit-intent popup"
+    "en": "Exit-intent popup",
+    "es": "Popup de intención de salida"
    },
    "meaning": {
     "ja": "ページを離れそうな時に出す引き止めの小窓",
-    "en": "A popup shown when the visitor is about to leave"
+    "en": "A popup shown when the visitor is about to leave",
+    "es": "Una ventana que aparece cuando la persona está por irse"
    },
    "ask": {
     "ja": "LPに離脱防止ポップアップを付けて。カーソルが画面の上へ出たら、クーポンの小窓を1回だけ出して。",
-    "en": "Add an exit-intent popup to the landing page: when the cursor leaves through the top, show a coupon popup once."
+    "en": "Add an exit-intent popup to the landing page: when the cursor leaves through the top, show a coupon popup once.",
+    "es": "Agrega un popup de intención de salida a la landing: cuando el cursor sale por arriba, muestra una vez un popup con un cupón."
    },
    "summary": {
     "ja": "カーソルがページの上の方（タブや閉じるボタンのある所）へ出ていくと、背景が暗くなって「ちょっと待って！」の小窓が開く。×で閉じる。",
@@ -5058,15 +5347,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ローディング画面",
-    "en": "Preloader"
+    "en": "Preloader",
+    "es": "Preloader (pantalla de carga)"
    },
    "meaning": {
     "ja": "読み込み中に出す画面",
-    "en": "A screen shown while the page loads"
+    "en": "A screen shown while the page loads",
+    "es": "Una pantalla que se ve mientras carga la página"
    },
    "ask": {
     "ja": "サイトを開いたときのローディング画面を作って。ロゴと％の数字を出して、100%になったら幕が上がるように。",
-    "en": "Make a preloader for the site: logo and a percentage, and the screen lifts away at 100%."
+    "en": "Make a preloader for the site: logo and a percentage, and the screen lifts away at 100%.",
+    "es": "Haz un preloader para el sitio: logo y un porcentaje, y que la pantalla se levante al llegar a 100 %."
    },
    "summary": {
     "ja": "濃紺の画面でロゴの下の数字が0%から100%まで進み、終わると画面が上へ抜けて、下のページがふわっと現れる。",
@@ -5113,15 +5405,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "遅延読み込み",
-    "en": "Lazy loading"
+    "en": "Lazy loading",
+    "es": "Carga diferida (lazy loading)"
    },
    "meaning": {
     "ja": "画面に入った画像だけを読み込む",
-    "en": "Images load only when they come into view"
+    "en": "Images load only when they come into view",
+    "es": "Las imágenes cargan solo cuando entran en la vista"
    },
    "ask": {
     "ja": "ギャラリーの画像を遅延読み込みにして。読み込むまでは灰色の枠、届いたら0.3秒でフェードインして。",
-    "en": "Lazy load the gallery images: grey placeholders until loaded, then fade in over 0.3 s."
+    "en": "Lazy load the gallery images: grey placeholders until loaded, then fade in over 0.3 s.",
+    "es": "Carga diferida para las imágenes de la galería: espacios grises hasta que cargan y luego aparecen en 0,3 s."
    },
    "summary": {
     "ja": "スクロールで画面に入った灰色の枠に読み込み中の印が回り、画像が届くと順にフェードインする。上の段は最初から読み込み済み。",
@@ -5168,15 +5463,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "無限スクロール",
-    "en": "Infinite scroll"
+    "en": "Infinite scroll",
+    "es": "Scroll infinito"
    },
    "meaning": {
     "ja": "下まで来ると続きが自動で足される",
-    "en": "More items load automatically at the bottom"
+    "en": "More items load automatically at the bottom",
+    "es": "Más elementos cargan solos al llegar abajo"
    },
    "ask": {
     "ja": "お知らせの一覧を無限スクロールにして。下まで来たら読み込み表示を出して、10件ずつ足して。",
-    "en": "Make the news list an infinite scroll: show a spinner at the bottom and add ten items at a time."
+    "en": "Make the news list an infinite scroll: show a spinner at the bottom and add ten items at a time.",
+    "es": "Haz la lista de noticias con scroll infinito: un spinner abajo y diez elementos más cada vez."
    },
    "summary": {
     "ja": "一覧を下へスクロールして最後まで来ると、読み込み中の印が回り、新しい項目が3件足されて続きが読めるようになる。",
@@ -5221,15 +5519,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ページ遷移アニメーション",
-    "en": "Page transition"
+    "en": "Page transition",
+    "es": "Transición de página"
    },
    "meaning": {
     "ja": "ページを移るときの切り替えの演出",
-    "en": "An animation that bridges two pages"
+    "en": "An animation that bridges two pages",
+    "es": "Una animación que une dos páginas"
    },
    "ask": {
     "ja": "ページ遷移アニメーションを付けて。リンクを押したら朱色の幕が左から右へ横切って次のページに切り替わるように。",
-    "en": "Add a page transition: on link click, an orange panel sweeps across left to right and the next page appears."
+    "en": "Add a page transition: on link click, an orange panel sweeps across left to right and the next page appears.",
+    "es": "Agrega una transición de página: al tocar un enlace, un panel naranja barre de izquierda a derecha y aparece la página siguiente."
    },
    "summary": {
     "ja": "作品の一覧でカードを押すと朱色の幕が左から画面を覆い、URLが変わって幕が右へ抜けると詳しいページになっている。「一覧へ」で同じように戻る。",
@@ -5276,15 +5577,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "スムーススクロール",
-    "en": "Smooth scroll"
+    "en": "Smooth scroll",
+    "es": "Scroll suave"
    },
    "meaning": {
     "ja": "ページ内リンクでなめらかに移動する",
-    "en": "In-page links glide to their target instead of jumping"
+    "en": "In-page links glide to their target instead of jumping",
+    "es": "Los enlaces internos se deslizan hasta su destino en lugar de saltar"
    },
    "ask": {
     "ja": "メニューのページ内リンクをスムーススクロールにして。固定ヘッダーの高さ分ずらして止めて。",
-    "en": "Make the menu's in-page links smooth scroll, stopping below the fixed header."
+    "en": "Make the menu's in-page links smooth scroll, stopping below the fixed header.",
+    "es": "Haz que los enlaces internos del menú usen scroll suave y se detengan debajo del encabezado fijo."
    },
    "summary": {
     "ja": "メニューの「料金」を押すとページがなめらかに料金の欄まで動き、右下の上向きボタンを押すと同じように一番上へ戻る。",
@@ -5330,15 +5634,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "マーキー",
-    "en": "Marquee"
+    "en": "Marquee",
+    "es": "Marquesina (marquee)"
    },
    "meaning": {
     "ja": "文字や画像が帯で流れ続ける",
-    "en": "Text or logos scroll across in an endless band"
+    "en": "Text or logos scroll across in an endless band",
+    "es": "Texto o logos que pasan en una franja sin fin"
    },
    "ask": {
     "ja": "サービス名をマーキーで右から左へ流して。途切れずにループさせて、速さは1秒に80pxくらい。",
-    "en": "Run the service names in a marquee from right to left, looping without a gap, at about 80 px per second."
+    "en": "Run the service names in a marquee from right to left, looping without a gap, at about 80 px per second.",
+    "es": "Pasa los nombres de los servicios en una marquesina de derecha a izquierda, en bucle sin cortes, a unos 80 px por segundo."
    },
    "summary": {
     "ja": "濃紺の帯の中で、大きな英字のサービス名と朱色の点が、途切れずに左へ流れ続ける。",
@@ -5383,15 +5690,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "グラデーションアニメーション",
-    "en": "Animated gradient"
+    "en": "Animated gradient",
+    "es": "Degradado animado"
    },
    "meaning": {
     "ja": "背景の色の混ざり方が動き続ける",
-    "en": "Background colours keep drifting and blending"
+    "en": "Background colours keep drifting and blending",
+    "es": "Los colores del fondo se mueven y se mezclan sin parar"
    },
    "ask": {
     "ja": "ファーストビューの背景をグラデーションアニメーションにして。朱色と青がゆっくり混ざり合うように、10秒で1周。",
-    "en": "Give the hero an animated gradient background: orange and blue slowly blending, one loop every 10 s."
+    "en": "Give the hero an animated gradient background: orange and blue slowly blending, one loop every 10 s.",
+    "es": "Ponle al hero un fondo con degradado animado: naranja y azul mezclándose despacio, una vuelta cada 10 s."
    },
    "summary": {
     "ja": "見出しの後ろで、朱色・薄い朱色・青・薄い青のぼんやりした色の塊がゆっくり回り、混ざり方が変わり続ける。",
@@ -5436,15 +5746,18 @@
    "cycle": 4.8,
    "name": {
     "ja": "ふわふわアニメーション",
-    "en": "Floating animation"
+    "en": "Floating animation",
+    "es": "Animación flotante"
    },
    "meaning": {
     "ja": "飾りがゆっくり上下に浮き沈みする",
-    "en": "Elements bob gently up and down"
+    "en": "Elements bob gently up and down",
+    "es": "Los elementos suben y bajan suavemente"
    },
    "ask": {
     "ja": "ファーストビューのスマホの画像に、ふわふわアニメーションを付けて。上下8px、2.4秒で1往復。",
-    "en": "Give the phone image in the hero a floating animation: 8 px up and down, one bob every 2.4 s."
+    "en": "Give the phone image in the hero a floating animation: 8 px up and down, one bob every 2.4 s.",
+    "es": "Dale una animación flotante a la imagen del teléfono en el hero: 8 px arriba y abajo, una vez cada 2,4 s."
    },
    "summary": {
     "ja": "見出しの横で、スマホの画像とハートの丸・評価の札が、それぞれ少しずつずれてゆっくり上下し、スマホの下の影も伸び縮みする。",
@@ -5490,15 +5803,18 @@
    "cycle": 5,
    "name": {
     "ja": "逆光",
-    "en": "Backlighting"
+    "en": "Backlighting",
+    "es": "Contraluz"
    },
    "meaning": {
     "ja": "被写体の真後ろから光を当てる",
-    "en": "The light source sits behind the subject"
+    "en": "The light source sits behind the subject",
+    "es": "La fuente de luz está detrás del sujeto"
    },
    "ask": {
     "ja": "草原に立つ人物を逆光で。夕日を頭の真後ろに置き、髪の輪郭が光ってふんわりとかすむように。",
-    "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze."
+    "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze.",
+    "es": "Retrato a contraluz de una persona en un prado, con el sol bajo justo detrás de su cabeza, el contorno del pelo brillando y una bruma suave."
    },
    "summary": {
     "ja": "画面の外にあった太陽が人物の頭の真後ろへ回り込む。胸像の縁が細く光り、全体に淡い光の色がかかり、カメラ側の体は暗く沈む。",
@@ -5545,15 +5861,18 @@
    "cycle": 5,
    "name": {
     "ja": "リムライト",
-    "en": "Rim light"
+    "en": "Rim light",
+    "es": "Luz de recorte (rim light)"
    },
    "meaning": {
     "ja": "後ろからの光で輪郭だけを光らせる",
-    "en": "A light from behind that outlines the subject's edge"
+    "en": "A light from behind that outlines the subject's edge",
+    "es": "Una luz desde atrás que dibuja el borde del sujeto"
    },
    "ask": {
     "ja": "黒背景の人物に、斜め後ろ左右からリムライト。顔は暗いままで、頭と肩の輪郭だけ細く光らせて。",
-    "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows."
+    "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows.",
+    "es": "Retrato sobre fondo negro con luces de recorte desde ambos lados de atrás; la cara queda oscura y solo brilla el contorno de la cabeza y los hombros."
    },
    "summary": {
     "ja": "周りが暗く落ち、斜め後ろ左右の2灯で、暗い人物の頭と肩の両側にだけ細い光の縁が出る。右下の図で2灯の位置を示す。",
@@ -5600,15 +5919,18 @@
    "cycle": 5,
    "name": {
     "ja": "シルエット",
-    "en": "Silhouette"
+    "en": "Silhouette",
+    "es": "Silueta"
    },
    "meaning": {
     "ja": "明るい空を背に、被写体を黒い形だけで見せる",
-    "en": "The subject shows as a black shape against a bright sky"
+    "en": "The subject shows as a black shape against a bright sky",
+    "es": "El sujeto se ve como una forma negra contra un cielo claro"
    },
    "ask": {
     "ja": "夕焼けの浜辺でジャンプする人物をシルエットで。露出は空に合わせて、人物とヤシの木は真っ黒に。",
-    "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black."
+    "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black.",
+    "es": "Silueta de una persona saltando en una playa al atardecer; expone para el cielo para que la persona y la palmera queden negras."
    },
    "summary": {
     "ja": "露出を明るい夕空に合わせていくと、人物・建物・街灯・木が細部のない黒い形になり、空だけが明るく残る。",
@@ -5656,15 +5978,18 @@
    "cycle": 5,
    "name": {
     "ja": "スプリットライティング",
-    "en": "Split lighting"
+    "en": "Split lighting",
+    "es": "Luz dividida (split lighting)"
    },
    "meaning": {
     "ja": "真横からの光で顔を半分ずつ明暗に分ける",
-    "en": "Light from the side splits the face into lit and dark halves"
+    "en": "Light from the side splits the face into lit and dark halves",
+    "es": "Una luz lateral divide la cara en una mitad iluminada y otra oscura"
    },
    "ask": {
     "ja": "男性の横からスプリットライティングで。光は真横90°、鼻筋を境に顔の左半分は影に沈めて。",
-    "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow."
+    "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow.",
+    "es": "Retrato con luz dividida: la luz a 90° de lado, la cara partida por la nariz y la mitad lejana en sombra."
    },
    "summary": {
     "ja": "光が正面寄り（20°）から真横（90°）へ回り、頭の影が三日月から半分へ広がって、顔が鼻筋の位置で縦に明暗2つに分かれる。",
@@ -5710,15 +6035,18 @@
    "cycle": 5,
    "name": {
     "ja": "レンブラントライティング",
-    "en": "Rembrandt lighting"
+    "en": "Rembrandt lighting",
+    "es": "Luz Rembrandt"
    },
    "meaning": {
     "ja": "影側の頬に三角形の光が残る斜め上からの光",
-    "en": "High side light that leaves a lit triangle on the shadow cheek"
+    "en": "High side light that leaves a lit triangle on the shadow cheek",
+    "es": "Luz lateral alta que deja un triángulo iluminado en la mejilla en sombra"
    },
    "ask": {
     "ja": "老人の肖像をレンブラントライティングで。光は斜め45°・上から、影側の頬に小さな三角形の光を残して。",
-    "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek."
+    "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek.",
+    "es": "Retrato de un señor mayor con luz Rembrandt: luz a 45° de lado y desde arriba, dejando un pequeño triángulo de luz en la mejilla del lado en sombra."
    },
    "summary": {
     "ja": "斜め45°・上45°の光が入り、顔の右側が影に沈む中で、影側の頬にだけ小さな逆三角形の光が残る。",
@@ -5764,15 +6092,18 @@
    "cycle": 5,
    "name": {
     "ja": "バタフライライティング",
-    "en": "Butterfly lighting"
+    "en": "Butterfly lighting",
+    "es": "Luz mariposa (butterfly)"
    },
    "meaning": {
     "ja": "正面の高い位置から当て、鼻の下に蝶形の影",
-    "en": "High frontal light that casts a butterfly shadow under the nose"
+    "en": "High frontal light that casts a butterfly shadow under the nose",
+    "es": "Luz frontal alta que deja una sombra en forma de mariposa bajo la nariz"
    },
    "ask": {
     "ja": "女性のビューティーポートレートをバタフライライティングで。光は顔の正面・真上寄り45°、鼻の下に小さな蝶の形の影を。",
-    "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose."
+    "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose.",
+    "es": "Retrato de belleza con luz mariposa: la luz justo al frente y 45° arriba, con una pequeña sombra en forma de mariposa bajo la nariz."
    },
    "summary": {
     "ja": "顔の正面・高い位置からの光が入り、顔は左右対称に明るくなり、あごの下にだけ左右対称の小さな影が落ちる。",
@@ -5818,15 +6149,18 @@
    "cycle": 5,
    "name": {
     "ja": "ゴールデンアワー",
-    "en": "Golden hour"
+    "en": "Golden hour",
+    "es": "Hora dorada"
    },
    "meaning": {
     "ja": "日没前・日の出後の低く赤みのある光",
-    "en": "The low, warm light just after sunrise or before sunset"
+    "en": "The low, warm light just after sunrise or before sunset",
+    "es": "La luz baja y cálida justo después del amanecer o antes del atardecer"
    },
    "ask": {
     "ja": "草原の人物をゴールデンアワーの光で。太陽は地平線近く、影が長く伸びて全体が橙色に。",
-    "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange."
+    "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange.",
+    "es": "Una persona en un campo en la hora dorada: el sol cerca del horizonte, sombras largas y todo en naranja cálido."
    },
    "summary": {
     "ja": "太陽が地平線近くまで下り、空と地面が橙に染まり、人物の左側が光り、街灯と木の影が右へ長く伸びる。",
@@ -5874,15 +6208,18 @@
    "cycle": 5,
    "name": {
     "ja": "ブルーアワー",
-    "en": "Blue hour"
+    "en": "Blue hour",
+    "es": "Hora azul"
    },
    "meaning": {
     "ja": "日没後・日の出前の、空が深い青になる時間",
-    "en": "The time after sunset or before sunrise when the sky turns deep blue"
+    "en": "The time after sunset or before sunrise when the sky turns deep blue",
+    "es": "El rato después del atardecer o antes del amanecer en que el cielo se pone azul intenso"
    },
    "ask": {
     "ja": "港町の夜景をブルーアワーで。空は深い青、ビルの窓と街灯の暖かい光が水面に映るように。",
-    "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water."
+    "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water.",
+    "es": "Ciudad portuaria en la hora azul: cielo azul intenso, ventanas y faroles cálidos reflejados en el agua."
    },
    "summary": {
     "ja": "太陽が沈みきると、空が深い青の2段になり、建物の窓と街灯がアンバーに灯り、人物は青い影の形になる。",
@@ -5930,15 +6267,18 @@
    "cycle": 5,
    "name": {
     "ja": "ボケ",
-    "en": "Bokeh"
+    "en": "Bokeh",
+    "es": "Bokeh"
    },
    "meaning": {
     "ja": "ピントの外の点光源が丸くやわらかくぼける",
-    "en": "Out-of-focus points of light melt into soft discs"
+    "en": "Out-of-focus points of light melt into soft discs",
+    "es": "Los puntos de luz fuera de foco se vuelven discos suaves"
    },
    "ask": {
     "ja": "夜の街に立つ人物を、背景の街の灯りが大きな丸いボケになるように。f/1.4で、人物にはピントを合わせて。",
-    "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person."
+    "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person.",
+    "es": "Persona en la ciudad de noche con bokeh grande y redondo de los faroles detrás; f/1.4, enfoque en la persona."
    },
    "summary": {
     "ja": "絞りを開けていくと、ピントの合った人物はそのまま、背景の建物はぼけ、街灯と遠くの灯りが大きく薄い光の丸に広がる。",
@@ -5987,15 +6327,18 @@
    "cycle": 5,
    "name": {
     "ja": "ティルトシフト",
-    "en": "Tilt-shift"
+    "en": "Tilt-shift",
+    "es": "Tilt-shift (efecto miniatura)"
    },
    "meaning": {
     "ja": "上下をぼかして本物の町を模型のように見せる",
-    "en": "Blur top and bottom so a real scene looks like a miniature"
+    "en": "Blur top and bottom so a real scene looks like a miniature",
+    "es": "Desenfocar arriba y abajo para que una escena real parezca una maqueta"
    },
    "ask": {
     "ja": "高い所から見下ろした町をティルトシフトで。中央の帯だけピントを合わせて上下を強くぼかし、色を濃くしてミニチュア風に。",
-    "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model."
+    "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model.",
+    "es": "Vista desde lo alto de un pueblo con efecto tilt-shift: una franja nítida angosta al medio, mucho desenfoque arriba y abajo y color subido, como una maqueta."
    },
    "summary": {
     "ja": "街の上下の帯がぼけていき、道と車と小さな人たちの並ぶ中央の帯だけにピントが残って、模型の街のように見える。",
@@ -6042,15 +6385,18 @@
    "cycle": 5,
    "name": {
     "ja": "長時間露光",
-    "en": "Long exposure"
+    "en": "Long exposure",
+    "es": "Larga exposición"
    },
    "meaning": {
     "ja": "シャッターを長く開け、動く光を線にする",
-    "en": "Keep the shutter open long so moving lights become lines"
+    "en": "Keep the shutter open long so moving lights become lines",
+    "es": "El obturador abierto mucho tiempo convierte las luces en movimiento en líneas"
    },
    "ask": {
     "ja": "夜の道路を長時間露光で。シャッター8秒で、車の形は消えて、ヘッドライトとテールランプだけが白と赤の光の線になるように。",
-    "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails."
+    "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails.",
+    "es": "Carretera de noche en larga exposición, obturador de 8 segundos: los carros desaparecen y solo quedan sus luces como estelas blancas y rojas."
    },
    "summary": {
     "ja": "街が夜になり、走る車の本体は薄く消えていき、後ろに赤い尾灯の線が伸び、反対車線には白とアンバーの光の線が通る。",
@@ -6098,15 +6444,18 @@
    "cycle": 5,
    "name": {
     "ja": "流し撮り",
-    "en": "Panning shot"
+    "en": "Panning shot",
+    "es": "Barrido (panning)"
    },
    "meaning": {
     "ja": "動く被写体を追って撮り、背景だけ流す",
-    "en": "Follow a moving subject so only the background streaks"
+    "en": "Follow a moving subject so only the background streaks",
+    "es": "Seguir a un sujeto en movimiento para que solo el fondo se arrastre"
    },
    "ask": {
     "ja": "走る赤い車を流し撮りで。シャッター1/15秒、車はくっきり、背景の木や建物は横に流れるように。",
-    "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways."
+    "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways.",
+    "es": "Barrido de un carro rojo que pasa, obturador a 1/15 s: el carro nítido y los árboles y edificios detrás arrastrados de lado."
    },
    "summary": {
     "ja": "走る車をカメラが追い、車は画面の中央でくっきりしたまま、背景の建物や木や街灯だけが横に流れる。",
@@ -6154,15 +6503,18 @@
    "cycle": 5,
    "name": {
     "ja": "レンズフレア",
-    "en": "Lens flare"
+    "en": "Lens flare",
+    "es": "Destello de lente (lens flare)"
    },
    "meaning": {
     "ja": "強い光でレンズの中に光の輪や玉が出る",
-    "en": "Rings and spots of light from a bright source in the lens"
+    "en": "Rings and spots of light from a bright source in the lens",
+    "es": "Anillos y manchas de luz de una fuente brillante en el lente"
    },
    "ask": {
     "ja": "山の上の太陽を入れて、レンズフレアを。太陽から画面の中心をはさんで反対側へ、色のついた光の玉が並ぶように。",
-    "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side."
+    "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side.",
+    "es": "Paisaje de montaña con el sol en cuadro y destello de lente: reflejos de colores alineados desde el sol, pasando por el centro, hasta el lado opuesto."
    },
    "summary": {
     "ja": "太陽が建物の陰から空へ出ると、太陽に光の筋が出て、太陽から画面の中心をはさんだ反対側まで、光の玉と六角形と輪が一列に並ぶ。",
@@ -6210,15 +6562,18 @@
    "cycle": 5,
    "name": {
     "ja": "魚眼レンズ",
-    "en": "Fisheye lens"
+    "en": "Fisheye lens",
+    "es": "Ojo de pez"
    },
    "meaning": {
     "ja": "中心がふくらみ、直線が丸く曲がる超広角",
-    "en": "Ultra-wide lens that bulges the centre and bends straight lines"
+    "en": "Ultra-wide lens that bulges the centre and bends straight lines",
+    "es": "Lente ultra gran angular que abomba el centro y curva las líneas rectas"
    },
    "ask": {
     "ja": "街の通りを魚眼レンズで。画角180°で、ビルの縦の線が外側へ丸く曲がるように。",
-    "en": "City street through a fisheye lens, 180° view, the building edges bowing outward."
+    "en": "City street through a fisheye lens, 180° view, the building edges bowing outward.",
+    "es": "Calle de ciudad vista con un ojo de pez, 180°, con los bordes de los edificios curvándose hacia afuera."
    },
    "summary": {
     "ja": "街角の中心がふくらみ、建物の縦の線と道の横の線が外側へ丸く曲がり、四隅はそのまま残る。",
@@ -6266,15 +6621,18 @@
    "cycle": 5,
    "name": {
     "ja": "色収差",
-    "en": "Chromatic aberration"
+    "en": "Chromatic aberration",
+    "es": "Aberración cromática"
    },
    "meaning": {
     "ja": "明暗の境に赤や青紫の色ずれが出る",
-    "en": "Red and blue-violet colour fringes along high-contrast edges"
+    "en": "Red and blue-violet colour fringes along high-contrast edges",
+    "es": "Bordes de color rojo y azul violeta en los contornos con mucho contraste"
    },
    "ask": {
     "ja": "白い空と黒い枝の写真に、色収差を少し。画面の端に向かって、枝の縁に赤と青紫の色ずれが出るように。",
-    "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners."
+    "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners.",
+    "es": "Ramas negras contra un cielo blanco con una leve aberración cromática: bordes rojos y azul violeta, más fuertes hacia las esquinas."
    },
    "summary": {
     "ja": "街角の絵を赤・緑・青に分け、少しずつ違う大きさで重ねると、人物や建物や街灯の縁に赤と青緑のずれが出て、画面の端ほど大きくなる。",
@@ -6320,15 +6678,18 @@
    "cycle": 5,
    "name": {
     "ja": "周辺減光（ビネット）",
-    "en": "Vignette"
+    "en": "Vignette",
+    "es": "Viñeta"
    },
    "meaning": {
     "ja": "画面の四隅が暗くなり、中央に目が集まる",
-    "en": "The corners darken and draw the eye to the centre"
+    "en": "The corners darken and draw the eye to the centre",
+    "es": "Las esquinas se oscurecen y llevan la mirada al centro"
    },
    "ask": {
     "ja": "海辺の写真に、ビネットを強めに。四隅だけなだらかに暗くして、中央の人物に目が行くように。",
-    "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle."
+    "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle.",
+    "es": "Foto de playa con una viñeta marcada: las esquinas se oscurecen poco a poco para que la mirada vaya a la persona del centro."
    },
    "summary": {
     "ja": "画面の四隅からなだらかに暗くなり、中央の人物と道のあたりだけが明るく残る。",
@@ -6372,15 +6733,18 @@
    "cycle": 5,
    "name": {
     "ja": "ハイキー",
-    "en": "High-key"
+    "en": "High-key",
+    "es": "Clave alta (high-key)"
    },
    "meaning": {
     "ja": "明るい色だけで作る、白っぽく影の薄い写真",
-    "en": "A bright, white-toned image with very light shadows"
+    "en": "A bright, white-toned image with very light shadows",
+    "es": "Una imagen luminosa, en tonos blancos, con sombras muy suaves"
    },
    "ask": {
     "ja": "白い机の上のカップと瓶を、ハイキーで。背景は真っ白、影はごく薄く、全体を明るい色だけでまとめて。",
-    "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones."
+    "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones.",
+    "es": "Bodegón en clave alta de una taza y una botella sobre una mesa blanca: fondo blanco puro, sombras muy tenues, solo tonos claros."
    },
    "summary": {
     "ja": "風景と人物が白に近い明るい色だけになり、影はごく薄くなって、右下のヒストグラムの山が右端へ寄る。",
@@ -6424,15 +6788,18 @@
    "cycle": 5,
    "name": {
     "ja": "ローキー",
-    "en": "Low-key"
+    "en": "Low-key",
+    "es": "Clave baja (low-key)"
    },
    "meaning": {
     "ja": "暗い色が中心の、光の当たる所だけが浮かぶ写真",
-    "en": "A dark image where only the lit parts stand out"
+    "en": "A dark image where only the lit parts stand out",
+    "es": "Una imagen oscura donde solo resaltan las partes iluminadas"
    },
    "ask": {
     "ja": "黒背景のウイスキーの瓶をローキーで。横からの1灯だけで、光の当たる縁だけ浮かび、画面の大半は黒に沈めて。",
-    "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black."
+    "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black.",
+    "es": "Toma en clave baja de una botella de whisky sobre negro, una sola luz lateral, solo los bordes iluminados y casi todo el cuadro en negro profundo."
    },
    "summary": {
     "ja": "画面の大半が暗く沈み、太陽も消えて、横から日の当たる胸像の右の縁だけが光って浮かぶ。ヒストグラムの山は左端へ寄る。",
@@ -6479,15 +6846,18 @@
    "cycle": 5,
    "name": {
     "ja": "モノクロ",
-    "en": "Black and white"
+    "en": "Black and white",
+    "es": "Blanco y negro"
    },
    "meaning": {
     "ja": "色を抜いて明るさだけで見せる",
-    "en": "Remove colour and show brightness only"
+    "en": "Remove colour and show brightness only",
+    "es": "Quitar el color y mostrar solo el brillo"
    },
    "ask": {
     "ja": "海辺のスナップをモノクロで。コントラストは少し強めに、空と砂の明るさの差を残して。",
-    "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand."
+    "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand.",
+    "es": "Foto de playa en blanco y negro, con el contraste un poco subido, manteniendo la diferencia de brillo entre cielo y arena."
    },
    "summary": {
     "ja": "同じ風景から色が抜け、太陽も人物の縁の光も灰色になり、明るさの差だけで形が見える。",
@@ -6531,15 +6901,18 @@
    "cycle": 5,
    "name": {
     "ja": "デュオトーン",
-    "en": "Duotone"
+    "en": "Duotone",
+    "es": "Duotono"
    },
    "meaning": {
     "ja": "暗部と明部を2色だけで表す",
-    "en": "Show the image in two colours, one for darks and one for lights"
+    "en": "Show the image in two colours, one for darks and one for lights",
+    "es": "La imagen en dos colores, uno para las sombras y otro para las luces"
    },
    "ask": {
     "ja": "人物写真を濃い藍とピンクのデュオトーンに。暗い所は藍、明るい所はピンクの2色だけで。",
-    "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else."
+    "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else.",
+    "es": "Retrato en duotono azul marino y rosado: sombras en azul marino, luces en rosado, nada más."
    },
    "summary": {
     "ja": "同じ風景の色が、暗い所は藍、明るい所はピンクの2色の間だけに置き換わる。",
@@ -6583,15 +6956,18 @@
    "cycle": 5,
    "name": {
     "ja": "ティール＆オレンジ",
-    "en": "Teal and orange"
+    "en": "Teal and orange",
+    "es": "Teal and orange"
    },
    "meaning": {
     "ja": "影を青緑、肌や明部を橙に寄せる色調",
-    "en": "Pushes shadows to teal and skin and highlights to orange"
+    "en": "Pushes shadows to teal and skin and highlights to orange",
+    "es": "Lleva las sombras al verde azulado y la piel y las luces al naranja"
    },
    "ask": {
     "ja": "街を歩く人物を映画のようなティール＆オレンジで。影と空は青緑、肌と夕日は橙に寄せて。",
-    "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange."
+    "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange.",
+    "es": "Persona caminando en la ciudad con un etalonaje teal and orange de cine: sombras y cielo al verde azulado, piel y luz del sol al naranja."
    },
    "summary": {
     "ja": "同じ風景の空・丘・地面・人物の影が青緑へ、日の当たる人物の縁と太陽が橙へ寄り、補色の対比になる。",
@@ -6635,15 +7011,18 @@
    "cycle": 5,
    "name": {
     "ja": "フィルムグレイン",
-    "en": "Film grain"
+    "en": "Film grain",
+    "es": "Grano de película"
    },
    "meaning": {
     "ja": "フィルム写真のような細かい粒子を乗せる",
-    "en": "Fine, film-like grain over the image"
+    "en": "Fine, film-like grain over the image",
+    "es": "Grano fino, como de película, sobre la imagen"
    },
    "ask": {
     "ja": "海辺の写真にフィルムグレインを。細かい粒子を全体に、黒は少し浮かせて暖かい色に。",
-    "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm."
+    "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm.",
+    "es": "Agrega grano de película a la foto de playa: grano fino en toda la imagen, negros un poco levantados y cálidos."
    },
    "summary": {
     "ja": "同じ風景の全体に細かい粒が乗り、色が少し暖かいクリーム色に寄る。",
@@ -6690,15 +7069,18 @@
    "cycle": 5,
    "name": {
     "ja": "ライトリーク",
-    "en": "Light leak"
+    "en": "Light leak",
+    "es": "Fuga de luz (light leak)"
    },
    "meaning": {
     "ja": "フィルムに光がもれたような赤橙のにじみ",
-    "en": "Red-orange glow as if light leaked onto the film"
+    "en": "Red-orange glow as if light leaked onto the film",
+    "es": "Un resplandor rojo anaranjado, como si se hubiera colado luz en la película"
    },
    "ask": {
     "ja": "夏の思い出の写真に、ライトリークを右端から。赤と橙の光がにじみ込むように。",
-    "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in."
+    "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in.",
+    "es": "Foto de recuerdo de verano con una fuga de luz desde el borde derecho, luz roja y naranja colándose."
    },
    "summary": {
     "ja": "同じ風景の右端から、外側ほど淡い黄、端ほど赤い光のにじみが帯になって入り、ゆっくり揺れる。",
@@ -6742,15 +7124,18 @@
    "cycle": 5,
    "name": {
     "ja": "二重露光（多重露光）",
-    "en": "Double exposure"
+    "en": "Double exposure",
+    "es": "Doble exposición"
    },
    "meaning": {
     "ja": "2枚の写真を1枚に重ねて写し込む",
-    "en": "Two photos layered into one frame"
+    "en": "Two photos layered into one frame",
+    "es": "Dos fotos superpuestas en un mismo cuadro"
    },
    "ask": {
     "ja": "横顔のシルエットに森と山の風景を二重露光で重ねて。背景は白、顔の中にだけ風景が見えるように。",
-    "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head."
+    "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head.",
+    "es": "Doble exposición de una silueta de perfil y un paisaje de bosque y montaña sobre fondo blanco, con el paisaje visible solo dentro de la cabeza."
    },
    "summary": {
     "ja": "背景が白く飛び、胸像の形の中にだけ、縮めた丘・家・木・太陽の風景が写り込む。",

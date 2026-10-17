@@ -3,23 +3,27 @@
   "order": 5,
   "title": {
     "ja": "写真の表現・光と画風",
-    "en": "Photo looks, lighting & styles"
+    "en": "Photo looks, lighting & styles",
+    "es": "Looks de foto, iluminación y estilos"
   },
   "categories": [
     {
       "slug": "lighting",
       "ja": "光の当て方・時間帯",
-      "en": "Lighting & time of day"
+      "en": "Lighting & time of day",
+      "es": "Iluminación y hora del día"
     },
     {
       "slug": "lens-camera",
       "ja": "レンズ・カメラの効果",
-      "en": "Lens & camera effects"
+      "en": "Lens & camera effects",
+      "es": "Efectos de lente y cámara"
     },
     {
       "slug": "tone-finish",
       "ja": "仕上げ・画風",
-      "en": "Tones & finishing looks"
+      "en": "Tones & finishing looks",
+      "es": "Tonos y acabados"
     }
   ],
   "elements": [
@@ -29,15 +33,18 @@
       "category": "lighting",
       "name": {
         "ja": "逆光",
-        "en": "Backlighting"
+        "en": "Backlighting",
+        "es": "Contraluz"
       },
       "meaning": {
         "ja": "被写体の真後ろから光を当てる",
-        "en": "The light source sits behind the subject"
+        "en": "The light source sits behind the subject",
+        "es": "La fuente de luz está detrás del sujeto"
       },
       "ask": {
         "ja": "草原に立つ人物を逆光で。夕日を頭の真後ろに置き、髪の輪郭が光ってふんわりとかすむように。",
-        "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze."
+        "en": "Backlit portrait of a person in a meadow, the low sun right behind their head, glowing hair outline and soft haze.",
+        "es": "Retrato a contraluz de una persona en un prado, con el sol bajo justo detrás de su cabeza, el contorno del pelo brillando y una bruma suave."
       },
       "summary": {
         "ja": "画面の外にあった太陽が人物の頭の真後ろへ回り込む。胸像の縁が細く光り、全体に淡い光の色がかかり、カメラ側の体は暗く沈む。",
@@ -79,15 +86,18 @@
       "category": "lighting",
       "name": {
         "ja": "リムライト",
-        "en": "Rim light"
+        "en": "Rim light",
+        "es": "Luz de recorte (rim light)"
       },
       "meaning": {
         "ja": "後ろからの光で輪郭だけを光らせる",
-        "en": "A light from behind that outlines the subject's edge"
+        "en": "A light from behind that outlines the subject's edge",
+        "es": "Una luz desde atrás que dibuja el borde del sujeto"
       },
       "ask": {
         "ja": "黒背景の人物に、斜め後ろ左右からリムライト。顔は暗いままで、頭と肩の輪郭だけ細く光らせて。",
-        "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows."
+        "en": "Portrait on a black background with rim lights from both rear sides; the face stays dark and only the outline of the head and shoulders glows.",
+        "es": "Retrato sobre fondo negro con luces de recorte desde ambos lados de atrás; la cara queda oscura y solo brilla el contorno de la cabeza y los hombros."
       },
       "summary": {
         "ja": "周りが暗く落ち、斜め後ろ左右の2灯で、暗い人物の頭と肩の両側にだけ細い光の縁が出る。右下の図で2灯の位置を示す。",
@@ -129,15 +139,18 @@
       "category": "lighting",
       "name": {
         "ja": "シルエット",
-        "en": "Silhouette"
+        "en": "Silhouette",
+        "es": "Silueta"
       },
       "meaning": {
         "ja": "明るい空を背に、被写体を黒い形だけで見せる",
-        "en": "The subject shows as a black shape against a bright sky"
+        "en": "The subject shows as a black shape against a bright sky",
+        "es": "El sujeto se ve como una forma negra contra un cielo claro"
       },
       "ask": {
         "ja": "夕焼けの浜辺でジャンプする人物をシルエットで。露出は空に合わせて、人物とヤシの木は真っ黒に。",
-        "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black."
+        "en": "Silhouette of a person jumping on a beach at sunset; expose for the sky so the person and the palm tree turn pure black.",
+        "es": "Silueta de una persona saltando en una playa al atardecer; expone para el cielo para que la persona y la palmera queden negras."
       },
       "summary": {
         "ja": "露出を明るい夕空に合わせていくと、人物・建物・街灯・木が細部のない黒い形になり、空だけが明るく残る。",
@@ -180,15 +193,18 @@
       "category": "lighting",
       "name": {
         "ja": "スプリットライティング",
-        "en": "Split lighting"
+        "en": "Split lighting",
+        "es": "Luz dividida (split lighting)"
       },
       "meaning": {
         "ja": "真横からの光で顔を半分ずつ明暗に分ける",
-        "en": "Light from the side splits the face into lit and dark halves"
+        "en": "Light from the side splits the face into lit and dark halves",
+        "es": "Una luz lateral divide la cara en una mitad iluminada y otra oscura"
       },
       "ask": {
         "ja": "男性の横からスプリットライティングで。光は真横90°、鼻筋を境に顔の左半分は影に沈めて。",
-        "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow."
+        "en": "Portrait with split lighting: the light at 90° to the side, the face divided down the nose, the far half in shadow.",
+        "es": "Retrato con luz dividida: la luz a 90° de lado, la cara partida por la nariz y la mitad lejana en sombra."
       },
       "summary": {
         "ja": "光が正面寄り（20°）から真横（90°）へ回り、頭の影が三日月から半分へ広がって、顔が鼻筋の位置で縦に明暗2つに分かれる。",
@@ -229,15 +245,18 @@
       "category": "lighting",
       "name": {
         "ja": "レンブラントライティング",
-        "en": "Rembrandt lighting"
+        "en": "Rembrandt lighting",
+        "es": "Luz Rembrandt"
       },
       "meaning": {
         "ja": "影側の頬に三角形の光が残る斜め上からの光",
-        "en": "High side light that leaves a lit triangle on the shadow cheek"
+        "en": "High side light that leaves a lit triangle on the shadow cheek",
+        "es": "Luz lateral alta que deja un triángulo iluminado en la mejilla en sombra"
       },
       "ask": {
         "ja": "老人の肖像をレンブラントライティングで。光は斜め45°・上から、影側の頬に小さな三角形の光を残して。",
-        "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek."
+        "en": "Portrait of an old man in Rembrandt lighting: light from 45° to the side and above, leaving a small triangle of light on the shadow-side cheek.",
+        "es": "Retrato de un señor mayor con luz Rembrandt: luz a 45° de lado y desde arriba, dejando un pequeño triángulo de luz en la mejilla del lado en sombra."
       },
       "summary": {
         "ja": "斜め45°・上45°の光が入り、顔の右側が影に沈む中で、影側の頬にだけ小さな逆三角形の光が残る。",
@@ -278,15 +297,18 @@
       "category": "lighting",
       "name": {
         "ja": "バタフライライティング",
-        "en": "Butterfly lighting"
+        "en": "Butterfly lighting",
+        "es": "Luz mariposa (butterfly)"
       },
       "meaning": {
         "ja": "正面の高い位置から当て、鼻の下に蝶形の影",
-        "en": "High frontal light that casts a butterfly shadow under the nose"
+        "en": "High frontal light that casts a butterfly shadow under the nose",
+        "es": "Luz frontal alta que deja una sombra en forma de mariposa bajo la nariz"
       },
       "ask": {
         "ja": "女性のビューティーポートレートをバタフライライティングで。光は顔の正面・真上寄り45°、鼻の下に小さな蝶の形の影を。",
-        "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose."
+        "en": "Beauty portrait with butterfly lighting: light straight in front and 45° above, a small butterfly-shaped shadow under the nose.",
+        "es": "Retrato de belleza con luz mariposa: la luz justo al frente y 45° arriba, con una pequeña sombra en forma de mariposa bajo la nariz."
       },
       "summary": {
         "ja": "顔の正面・高い位置からの光が入り、顔は左右対称に明るくなり、あごの下にだけ左右対称の小さな影が落ちる。",
@@ -327,15 +349,18 @@
       "category": "lighting",
       "name": {
         "ja": "ゴールデンアワー",
-        "en": "Golden hour"
+        "en": "Golden hour",
+        "es": "Hora dorada"
       },
       "meaning": {
         "ja": "日没前・日の出後の低く赤みのある光",
-        "en": "The low, warm light just after sunrise or before sunset"
+        "en": "The low, warm light just after sunrise or before sunset",
+        "es": "La luz baja y cálida justo después del amanecer o antes del atardecer"
       },
       "ask": {
         "ja": "草原の人物をゴールデンアワーの光で。太陽は地平線近く、影が長く伸びて全体が橙色に。",
-        "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange."
+        "en": "A person in a field at golden hour: the sun near the horizon, long shadows, everything warm orange.",
+        "es": "Una persona en un campo en la hora dorada: el sol cerca del horizonte, sombras largas y todo en naranja cálido."
       },
       "summary": {
         "ja": "太陽が地平線近くまで下り、空と地面が橙に染まり、人物の左側が光り、街灯と木の影が右へ長く伸びる。",
@@ -378,15 +403,18 @@
       "category": "lighting",
       "name": {
         "ja": "ブルーアワー",
-        "en": "Blue hour"
+        "en": "Blue hour",
+        "es": "Hora azul"
       },
       "meaning": {
         "ja": "日没後・日の出前の、空が深い青になる時間",
-        "en": "The time after sunset or before sunrise when the sky turns deep blue"
+        "en": "The time after sunset or before sunrise when the sky turns deep blue",
+        "es": "El rato después del atardecer o antes del amanecer en que el cielo se pone azul intenso"
       },
       "ask": {
         "ja": "港町の夜景をブルーアワーで。空は深い青、ビルの窓と街灯の暖かい光が水面に映るように。",
-        "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water."
+        "en": "Harbour city at blue hour: deep blue sky, warm windows and streetlights reflected in the water.",
+        "es": "Ciudad portuaria en la hora azul: cielo azul intenso, ventanas y faroles cálidos reflejados en el agua."
       },
       "summary": {
         "ja": "太陽が沈みきると、空が深い青の2段になり、建物の窓と街灯がアンバーに灯り、人物は青い影の形になる。",
@@ -429,15 +457,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "ボケ",
-        "en": "Bokeh"
+        "en": "Bokeh",
+        "es": "Bokeh"
       },
       "meaning": {
         "ja": "ピントの外の点光源が丸くやわらかくぼける",
-        "en": "Out-of-focus points of light melt into soft discs"
+        "en": "Out-of-focus points of light melt into soft discs",
+        "es": "Los puntos de luz fuera de foco se vuelven discos suaves"
       },
       "ask": {
         "ja": "夜の街に立つ人物を、背景の街の灯りが大きな丸いボケになるように。f/1.4で、人物にはピントを合わせて。",
-        "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person."
+        "en": "Person in a city at night with big round bokeh from the street lights behind; f/1.4, focus on the person.",
+        "es": "Persona en la ciudad de noche con bokeh grande y redondo de los faroles detrás; f/1.4, enfoque en la persona."
       },
       "summary": {
         "ja": "絞りを開けていくと、ピントの合った人物はそのまま、背景の建物はぼけ、街灯と遠くの灯りが大きく薄い光の丸に広がる。",
@@ -481,15 +512,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "ティルトシフト",
-        "en": "Tilt-shift"
+        "en": "Tilt-shift",
+        "es": "Tilt-shift (efecto miniatura)"
       },
       "meaning": {
         "ja": "上下をぼかして本物の町を模型のように見せる",
-        "en": "Blur top and bottom so a real scene looks like a miniature"
+        "en": "Blur top and bottom so a real scene looks like a miniature",
+        "es": "Desenfocar arriba y abajo para que una escena real parezca una maqueta"
       },
       "ask": {
         "ja": "高い所から見下ろした町をティルトシフトで。中央の帯だけピントを合わせて上下を強くぼかし、色を濃くしてミニチュア風に。",
-        "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model."
+        "en": "High-angle view of a town with a tilt-shift look: a narrow sharp band across the middle, strong blur above and below, boosted colour, like a miniature model.",
+        "es": "Vista desde lo alto de un pueblo con efecto tilt-shift: una franja nítida angosta al medio, mucho desenfoque arriba y abajo y color subido, como una maqueta."
       },
       "summary": {
         "ja": "街の上下の帯がぼけていき、道と車と小さな人たちの並ぶ中央の帯だけにピントが残って、模型の街のように見える。",
@@ -531,15 +565,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "長時間露光",
-        "en": "Long exposure"
+        "en": "Long exposure",
+        "es": "Larga exposición"
       },
       "meaning": {
         "ja": "シャッターを長く開け、動く光を線にする",
-        "en": "Keep the shutter open long so moving lights become lines"
+        "en": "Keep the shutter open long so moving lights become lines",
+        "es": "El obturador abierto mucho tiempo convierte las luces en movimiento en líneas"
       },
       "ask": {
         "ja": "夜の道路を長時間露光で。シャッター8秒で、車の形は消えて、ヘッドライトとテールランプだけが白と赤の光の線になるように。",
-        "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails."
+        "en": "Night road as a long exposure, 8-second shutter: the cars disappear and only their headlights and tail lights remain as white and red trails.",
+        "es": "Carretera de noche en larga exposición, obturador de 8 segundos: los carros desaparecen y solo quedan sus luces como estelas blancas y rojas."
       },
       "summary": {
         "ja": "街が夜になり、走る車の本体は薄く消えていき、後ろに赤い尾灯の線が伸び、反対車線には白とアンバーの光の線が通る。",
@@ -582,15 +619,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "流し撮り",
-        "en": "Panning shot"
+        "en": "Panning shot",
+        "es": "Barrido (panning)"
       },
       "meaning": {
         "ja": "動く被写体を追って撮り、背景だけ流す",
-        "en": "Follow a moving subject so only the background streaks"
+        "en": "Follow a moving subject so only the background streaks",
+        "es": "Seguir a un sujeto en movimiento para que solo el fondo se arrastre"
       },
       "ask": {
         "ja": "走る赤い車を流し撮りで。シャッター1/15秒、車はくっきり、背景の木や建物は横に流れるように。",
-        "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways."
+        "en": "Panning shot of a red car driving past, 1/15 s shutter: the car sharp, the trees and buildings behind streaked sideways.",
+        "es": "Barrido de un carro rojo que pasa, obturador a 1/15 s: el carro nítido y los árboles y edificios detrás arrastrados de lado."
       },
       "summary": {
         "ja": "走る車をカメラが追い、車は画面の中央でくっきりしたまま、背景の建物や木や街灯だけが横に流れる。",
@@ -633,15 +673,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "レンズフレア",
-        "en": "Lens flare"
+        "en": "Lens flare",
+        "es": "Destello de lente (lens flare)"
       },
       "meaning": {
         "ja": "強い光でレンズの中に光の輪や玉が出る",
-        "en": "Rings and spots of light from a bright source in the lens"
+        "en": "Rings and spots of light from a bright source in the lens",
+        "es": "Anillos y manchas de luz de una fuente brillante en el lente"
       },
       "ask": {
         "ja": "山の上の太陽を入れて、レンズフレアを。太陽から画面の中心をはさんで反対側へ、色のついた光の玉が並ぶように。",
-        "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side."
+        "en": "Mountain landscape with the sun in frame and lens flare: coloured ghosts lined up from the sun through the centre to the opposite side.",
+        "es": "Paisaje de montaña con el sol en cuadro y destello de lente: reflejos de colores alineados desde el sol, pasando por el centro, hasta el lado opuesto."
       },
       "summary": {
         "ja": "太陽が建物の陰から空へ出ると、太陽に光の筋が出て、太陽から画面の中心をはさんだ反対側まで、光の玉と六角形と輪が一列に並ぶ。",
@@ -684,15 +727,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "魚眼レンズ",
-        "en": "Fisheye lens"
+        "en": "Fisheye lens",
+        "es": "Ojo de pez"
       },
       "meaning": {
         "ja": "中心がふくらみ、直線が丸く曲がる超広角",
-        "en": "Ultra-wide lens that bulges the centre and bends straight lines"
+        "en": "Ultra-wide lens that bulges the centre and bends straight lines",
+        "es": "Lente ultra gran angular que abomba el centro y curva las líneas rectas"
       },
       "ask": {
         "ja": "街の通りを魚眼レンズで。画角180°で、ビルの縦の線が外側へ丸く曲がるように。",
-        "en": "City street through a fisheye lens, 180° view, the building edges bowing outward."
+        "en": "City street through a fisheye lens, 180° view, the building edges bowing outward.",
+        "es": "Calle de ciudad vista con un ojo de pez, 180°, con los bordes de los edificios curvándose hacia afuera."
       },
       "summary": {
         "ja": "街角の中心がふくらみ、建物の縦の線と道の横の線が外側へ丸く曲がり、四隅はそのまま残る。",
@@ -735,15 +781,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "色収差",
-        "en": "Chromatic aberration"
+        "en": "Chromatic aberration",
+        "es": "Aberración cromática"
       },
       "meaning": {
         "ja": "明暗の境に赤や青紫の色ずれが出る",
-        "en": "Red and blue-violet colour fringes along high-contrast edges"
+        "en": "Red and blue-violet colour fringes along high-contrast edges",
+        "es": "Bordes de color rojo y azul violeta en los contornos con mucho contraste"
       },
       "ask": {
         "ja": "白い空と黒い枝の写真に、色収差を少し。画面の端に向かって、枝の縁に赤と青紫の色ずれが出るように。",
-        "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners."
+        "en": "Black branches against a white sky with slight chromatic aberration: red and blue-violet fringes on the edges, stronger toward the corners.",
+        "es": "Ramas negras contra un cielo blanco con una leve aberración cromática: bordes rojos y azul violeta, más fuertes hacia las esquinas."
       },
       "summary": {
         "ja": "街角の絵を赤・緑・青に分け、少しずつ違う大きさで重ねると、人物や建物や街灯の縁に赤と青緑のずれが出て、画面の端ほど大きくなる。",
@@ -784,15 +833,18 @@
       "category": "lens-camera",
       "name": {
         "ja": "周辺減光（ビネット）",
-        "en": "Vignette"
+        "en": "Vignette",
+        "es": "Viñeta"
       },
       "meaning": {
         "ja": "画面の四隅が暗くなり、中央に目が集まる",
-        "en": "The corners darken and draw the eye to the centre"
+        "en": "The corners darken and draw the eye to the centre",
+        "es": "Las esquinas se oscurecen y llevan la mirada al centro"
       },
       "ask": {
         "ja": "海辺の写真に、ビネットを強めに。四隅だけなだらかに暗くして、中央の人物に目が行くように。",
-        "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle."
+        "en": "Beach photo with a strong vignette: the corners darken gradually so the eye goes to the person in the middle.",
+        "es": "Foto de playa con una viñeta marcada: las esquinas se oscurecen poco a poco para que la mirada vaya a la persona del centro."
       },
       "summary": {
         "ja": "画面の四隅からなだらかに暗くなり、中央の人物と道のあたりだけが明るく残る。",
@@ -831,15 +883,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "ハイキー",
-        "en": "High-key"
+        "en": "High-key",
+        "es": "Clave alta (high-key)"
       },
       "meaning": {
         "ja": "明るい色だけで作る、白っぽく影の薄い写真",
-        "en": "A bright, white-toned image with very light shadows"
+        "en": "A bright, white-toned image with very light shadows",
+        "es": "Una imagen luminosa, en tonos blancos, con sombras muy suaves"
       },
       "ask": {
         "ja": "白い机の上のカップと瓶を、ハイキーで。背景は真っ白、影はごく薄く、全体を明るい色だけでまとめて。",
-        "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones."
+        "en": "High-key still life of a cup and a bottle on a white table: pure white background, very faint shadows, only light tones.",
+        "es": "Bodegón en clave alta de una taza y una botella sobre una mesa blanca: fondo blanco puro, sombras muy tenues, solo tonos claros."
       },
       "summary": {
         "ja": "風景と人物が白に近い明るい色だけになり、影はごく薄くなって、右下のヒストグラムの山が右端へ寄る。",
@@ -878,15 +933,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "ローキー",
-        "en": "Low-key"
+        "en": "Low-key",
+        "es": "Clave baja (low-key)"
       },
       "meaning": {
         "ja": "暗い色が中心の、光の当たる所だけが浮かぶ写真",
-        "en": "A dark image where only the lit parts stand out"
+        "en": "A dark image where only the lit parts stand out",
+        "es": "Una imagen oscura donde solo resaltan las partes iluminadas"
       },
       "ask": {
         "ja": "黒背景のウイスキーの瓶をローキーで。横からの1灯だけで、光の当たる縁だけ浮かび、画面の大半は黒に沈めて。",
-        "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black."
+        "en": "Low-key shot of a whisky bottle on black, a single side light, only the lit edges showing and most of the frame in deep black.",
+        "es": "Toma en clave baja de una botella de whisky sobre negro, una sola luz lateral, solo los bordes iluminados y casi todo el cuadro en negro profundo."
       },
       "summary": {
         "ja": "画面の大半が暗く沈み、太陽も消えて、横から日の当たる胸像の右の縁だけが光って浮かぶ。ヒストグラムの山は左端へ寄る。",
@@ -928,15 +986,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "モノクロ",
-        "en": "Black and white"
+        "en": "Black and white",
+        "es": "Blanco y negro"
       },
       "meaning": {
         "ja": "色を抜いて明るさだけで見せる",
-        "en": "Remove colour and show brightness only"
+        "en": "Remove colour and show brightness only",
+        "es": "Quitar el color y mostrar solo el brillo"
       },
       "ask": {
         "ja": "海辺のスナップをモノクロで。コントラストは少し強めに、空と砂の明るさの差を残して。",
-        "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand."
+        "en": "Beach snapshot in black and white, contrast slightly raised, keeping the difference in brightness between sky and sand.",
+        "es": "Foto de playa en blanco y negro, con el contraste un poco subido, manteniendo la diferencia de brillo entre cielo y arena."
       },
       "summary": {
         "ja": "同じ風景から色が抜け、太陽も人物の縁の光も灰色になり、明るさの差だけで形が見える。",
@@ -975,15 +1036,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "デュオトーン",
-        "en": "Duotone"
+        "en": "Duotone",
+        "es": "Duotono"
       },
       "meaning": {
         "ja": "暗部と明部を2色だけで表す",
-        "en": "Show the image in two colours, one for darks and one for lights"
+        "en": "Show the image in two colours, one for darks and one for lights",
+        "es": "La imagen en dos colores, uno para las sombras y otro para las luces"
       },
       "ask": {
         "ja": "人物写真を濃い藍とピンクのデュオトーンに。暗い所は藍、明るい所はピンクの2色だけで。",
-        "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else."
+        "en": "Portrait photo as a navy-and-pink duotone: darks in navy, lights in pink, nothing else.",
+        "es": "Retrato en duotono azul marino y rosado: sombras en azul marino, luces en rosado, nada más."
       },
       "summary": {
         "ja": "同じ風景の色が、暗い所は藍、明るい所はピンクの2色の間だけに置き換わる。",
@@ -1022,15 +1086,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "ティール＆オレンジ",
-        "en": "Teal and orange"
+        "en": "Teal and orange",
+        "es": "Teal and orange"
       },
       "meaning": {
         "ja": "影を青緑、肌や明部を橙に寄せる色調",
-        "en": "Pushes shadows to teal and skin and highlights to orange"
+        "en": "Pushes shadows to teal and skin and highlights to orange",
+        "es": "Lleva las sombras al verde azulado y la piel y las luces al naranja"
       },
       "ask": {
         "ja": "街を歩く人物を映画のようなティール＆オレンジで。影と空は青緑、肌と夕日は橙に寄せて。",
-        "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange."
+        "en": "Person walking in the city with a cinematic teal and orange grade: shadows and sky toward teal, skin and sunlight toward orange.",
+        "es": "Persona caminando en la ciudad con un etalonaje teal and orange de cine: sombras y cielo al verde azulado, piel y luz del sol al naranja."
       },
       "summary": {
         "ja": "同じ風景の空・丘・地面・人物の影が青緑へ、日の当たる人物の縁と太陽が橙へ寄り、補色の対比になる。",
@@ -1069,15 +1136,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "フィルムグレイン",
-        "en": "Film grain"
+        "en": "Film grain",
+        "es": "Grano de película"
       },
       "meaning": {
         "ja": "フィルム写真のような細かい粒子を乗せる",
-        "en": "Fine, film-like grain over the image"
+        "en": "Fine, film-like grain over the image",
+        "es": "Grano fino, como de película, sobre la imagen"
       },
       "ask": {
         "ja": "海辺の写真にフィルムグレインを。細かい粒子を全体に、黒は少し浮かせて暖かい色に。",
-        "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm."
+        "en": "Add film grain to the beach photo: fine grain all over, blacks slightly lifted and warm.",
+        "es": "Agrega grano de película a la foto de playa: grano fino en toda la imagen, negros un poco levantados y cálidos."
       },
       "summary": {
         "ja": "同じ風景の全体に細かい粒が乗り、色が少し暖かいクリーム色に寄る。",
@@ -1119,15 +1189,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "ライトリーク",
-        "en": "Light leak"
+        "en": "Light leak",
+        "es": "Fuga de luz (light leak)"
       },
       "meaning": {
         "ja": "フィルムに光がもれたような赤橙のにじみ",
-        "en": "Red-orange glow as if light leaked onto the film"
+        "en": "Red-orange glow as if light leaked onto the film",
+        "es": "Un resplandor rojo anaranjado, como si se hubiera colado luz en la película"
       },
       "ask": {
         "ja": "夏の思い出の写真に、ライトリークを右端から。赤と橙の光がにじみ込むように。",
-        "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in."
+        "en": "Summer memory photo with a light leak coming in from the right edge, red and orange light bleeding in.",
+        "es": "Foto de recuerdo de verano con una fuga de luz desde el borde derecho, luz roja y naranja colándose."
       },
       "summary": {
         "ja": "同じ風景の右端から、外側ほど淡い黄、端ほど赤い光のにじみが帯になって入り、ゆっくり揺れる。",
@@ -1166,15 +1239,18 @@
       "category": "tone-finish",
       "name": {
         "ja": "二重露光（多重露光）",
-        "en": "Double exposure"
+        "en": "Double exposure",
+        "es": "Doble exposición"
       },
       "meaning": {
         "ja": "2枚の写真を1枚に重ねて写し込む",
-        "en": "Two photos layered into one frame"
+        "en": "Two photos layered into one frame",
+        "es": "Dos fotos superpuestas en un mismo cuadro"
       },
       "ask": {
         "ja": "横顔のシルエットに森と山の風景を二重露光で重ねて。背景は白、顔の中にだけ風景が見えるように。",
-        "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head."
+        "en": "Double exposure of a profile silhouette and a forest-and-mountain landscape on a white background, the landscape visible only inside the head.",
+        "es": "Doble exposición de una silueta de perfil y un paisaje de bosque y montaña sobre fondo blanco, con el paisaje visible solo dentro de la cabeza."
       },
       "summary": {
         "ja": "背景が白く飛び、胸像の形の中にだけ、縮めた丘・家・木・太陽の風景が写り込む。",

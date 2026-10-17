@@ -1,18 +1,51 @@
 {
   "pack": "motion",
   "order": 1,
-  "title": { "ja": "モーショングラフィックスの動き", "en": "Motion graphics moves" },
+  "title": {
+    "ja": "モーショングラフィックスの動き",
+    "en": "Motion graphics moves",
+    "es": "Movimientos de motion graphics"
+  },
   "categories": [
-    { "slug": "entrances-text", "ja": "登場・文字の演出", "en": "Entrances & text" },
-    { "slug": "motion-polish", "ja": "動きの味付け", "en": "Motion polish" },
-    { "slug": "transitions-highlights", "ja": "切り替え・見せ場", "en": "Transitions & highlights" }
+    {
+      "slug": "entrances-text",
+      "ja": "登場・文字の演出",
+      "en": "Entrances & text",
+      "es": "Entradas y texto"
+    },
+    {
+      "slug": "motion-polish",
+      "ja": "動きの味付け",
+      "en": "Motion polish",
+      "es": "Acabado del movimiento"
+    },
+    {
+      "slug": "transitions-highlights",
+      "ja": "切り替え・見せ場",
+      "en": "Transitions & highlights",
+      "es": "Transiciones y realces"
+    }
   ],
   "elements": [
     {
-      "no": "01", "slug": "pop-in", "category": "entrances-text",
-      "name": { "ja": "ポップイン", "en": "Pop-in" },
-      "meaning": { "ja": "ポンと弾んで現れる", "en": "Pops into view with a small bounce" },
-      "ask": { "ja": "ロゴをポップインで出して。0.4秒で、行き過ぎは少しだけ。", "en": "Bring the logo in with a pop-in, about 0.4 s, with a slight overshoot." },
+      "no": "01",
+      "slug": "pop-in",
+      "category": "entrances-text",
+      "name": {
+        "ja": "ポップイン",
+        "en": "Pop-in",
+        "es": "Pop-in"
+      },
+      "meaning": {
+        "ja": "ポンと弾んで現れる",
+        "en": "Pops into view with a small bounce",
+        "es": "Aparece de golpe con un pequeño rebote"
+      },
+      "ask": {
+        "ja": "ロゴをポップインで出して。0.4秒で、行き過ぎは少しだけ。",
+        "en": "Bring the logo in with a pop-in, about 0.4 s, with a slight overshoot.",
+        "es": "Haz que el logo entre con un pop-in, de unos 0,4 s, con un leve overshoot."
+      },
       "summary": {
         "ja": "アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポンと出る。",
         "en": "An app icon pops in with a bounce, then a notification badge pops in a moment later."
@@ -39,13 +72,36 @@
         "ja": "アイコン・ボタン・バッジなど、小さな要素を軽く目立たせて出したいとき。",
         "en": "Use it to bring in a small element such as an icon, button or badge with a light accent."
       },
-      "tags": ["pop", "pop-in", "spring", "bounce", "scale", "icon", "badge", "entrance"]
+      "tags": [
+        "pop",
+        "pop-in",
+        "spring",
+        "bounce",
+        "scale",
+        "icon",
+        "badge",
+        "entrance"
+      ]
     },
     {
-      "no": "02", "slug": "stagger", "category": "entrances-text",
-      "name": { "ja": "スタガー", "en": "Stagger" },
-      "meaning": { "ja": "少しずつ時間をずらして順に出す", "en": "Items appear one after another, slightly offset in time" },
-      "ask": { "ja": "5枚のカードをスタガーで出して。左から0.08秒ずつずらして。", "en": "Bring in the five cards with a stagger, 0.08 s apart, left to right." },
+      "no": "02",
+      "slug": "stagger",
+      "category": "entrances-text",
+      "name": {
+        "ja": "スタガー",
+        "en": "Stagger",
+        "es": "Stagger (escalonado)"
+      },
+      "meaning": {
+        "ja": "少しずつ時間をずらして順に出す",
+        "en": "Items appear one after another, slightly offset in time",
+        "es": "Los elementos aparecen uno tras otro, con un pequeño desfase"
+      },
+      "ask": {
+        "ja": "5枚のカードをスタガーで出して。左から0.08秒ずつずらして。",
+        "en": "Bring in the five cards with a stagger, 0.08 s apart, left to right.",
+        "es": "Haz entrar las cinco tarjetas en stagger, con 0,08 s entre cada una, de izquierda a derecha."
+      },
       "summary": {
         "ja": "グラフの棒が、少しずつ時間をずらして左から順に立ち上がる。",
         "en": "Chart bars rise one after another from the left, each slightly delayed."
@@ -68,13 +124,35 @@
         "ja": "リスト・グラフ・カードなど、複数の要素を順番に出して視線を流したいとき。",
         "en": "Use it to bring in several items (list rows, chart bars, cards) in sequence and lead the eye across them."
       },
-      "tags": ["stagger", "sequence", "delay", "cascade", "bar-chart", "list", "entrance"]
+      "tags": [
+        "stagger",
+        "sequence",
+        "delay",
+        "cascade",
+        "bar-chart",
+        "list",
+        "entrance"
+      ]
     },
     {
-      "no": "03", "slug": "burst", "category": "entrances-text",
-      "name": { "ja": "バースト", "en": "Burst" },
-      "meaning": { "ja": "登場に合わせて線や粒が弾ける", "en": "Lines and dots burst outward as something appears" },
-      "ask": { "ja": "ハートが出る瞬間に、まわりへバーストを入れて。短い線を8本、0.3秒で消す。", "en": "Add a burst around the heart the moment it appears: 8 short lines that fade in 0.3 s." },
+      "no": "03",
+      "slug": "burst",
+      "category": "entrances-text",
+      "name": {
+        "ja": "バースト",
+        "en": "Burst",
+        "es": "Burst (estallido)"
+      },
+      "meaning": {
+        "ja": "登場に合わせて線や粒が弾ける",
+        "en": "Lines and dots burst outward as something appears",
+        "es": "Líneas y puntos salen disparados cuando algo aparece"
+      },
+      "ask": {
+        "ja": "ハートが出る瞬間に、まわりへバーストを入れて。短い線を8本、0.3秒で消す。",
+        "en": "Add a burst around the heart the moment it appears: 8 short lines that fade in 0.3 s.",
+        "es": "Agrega un burst alrededor del corazón cuando aparece: 8 líneas cortas que se desvanecen en 0,3 s."
+      },
       "summary": {
         "ja": "「いいね」のハートが点くと同時に、まわりに輪・線・粒が弾ける。",
         "en": "A like heart fills in, and a ring, lines and dots burst outward at the same moment."
@@ -101,13 +179,36 @@
         "ja": "いいね・達成・正解など、押した瞬間や決まった瞬間を強調したいとき。",
         "en": "Use it to mark the instant something is triggered or achieved, such as a like, a success or a correct answer."
       },
-      "tags": ["burst", "explosion", "radial", "like", "heart", "celebrate", "accent", "sparkle"]
+      "tags": [
+        "burst",
+        "explosion",
+        "radial",
+        "like",
+        "heart",
+        "celebrate",
+        "accent",
+        "sparkle"
+      ]
     },
     {
-      "no": "04", "slug": "line-draw", "category": "entrances-text",
-      "name": { "ja": "ラインドロー", "en": "Line draw" },
-      "meaning": { "ja": "線が描かれるように伸びる", "en": "A line extends as if it were being drawn" },
-      "ask": { "ja": "グラフの折れ線を、ラインドローで左から描いて。1.2秒かけて。", "en": "Reveal the chart line with a line draw from the left, over 1.2 s." },
+      "no": "04",
+      "slug": "line-draw",
+      "category": "entrances-text",
+      "name": {
+        "ja": "ラインドロー",
+        "en": "Line draw",
+        "es": "Line draw (trazo de línea)"
+      },
+      "meaning": {
+        "ja": "線が描かれるように伸びる",
+        "en": "A line extends as if it were being drawn",
+        "es": "Una línea se extiende como si se estuviera dibujando"
+      },
+      "ask": {
+        "ja": "グラフの折れ線を、ラインドローで左から描いて。1.2秒かけて。",
+        "en": "Reveal the chart line with a line draw from the left, over 1.2 s.",
+        "es": "Revela la línea del gráfico con un line draw desde la izquierda, en 1,2 s."
+      },
       "summary": {
         "ja": "グラフの線が描かれるように伸び、消えるときは後ろから追いかけて消える。",
         "en": "A chart line draws itself on, and is later erased from its starting end."
@@ -134,13 +235,35 @@
         "ja": "グラフ・経路・下線・囲み線など、線そのものを見せ場にしたいとき。",
         "en": "Use it when the stroke itself is the point: charts, routes, underlines, hand-drawn circles."
       },
-      "tags": ["line-draw", "trim-path", "stroke", "draw-on", "chart", "path", "write-on"]
+      "tags": [
+        "line-draw",
+        "trim-path",
+        "stroke",
+        "draw-on",
+        "chart",
+        "path",
+        "write-on"
+      ]
     },
     {
-      "no": "05", "slug": "mask-reveal", "category": "entrances-text",
-      "name": { "ja": "マスクリビール", "en": "Mask reveal" },
-      "meaning": { "ja": "見えない枠の中から文字がせり上がる", "en": "Text rises into view from behind an invisible edge" },
-      "ask": { "ja": "タイトルをマスクリビールで下からせり上げて。0.6秒、行ごとに少しずらして。", "en": "Bring the title in with a mask reveal from below, 0.6 s, each line slightly after the one before." },
+      "no": "05",
+      "slug": "mask-reveal",
+      "category": "entrances-text",
+      "name": {
+        "ja": "マスクリビール",
+        "en": "Mask reveal",
+        "es": "Mask reveal (revelado con máscara)"
+      },
+      "meaning": {
+        "ja": "見えない枠の中から文字がせり上がる",
+        "en": "Text rises into view from behind an invisible edge",
+        "es": "El texto sube desde detrás de un borde invisible"
+      },
+      "ask": {
+        "ja": "タイトルをマスクリビールで下からせり上げて。0.6秒、行ごとに少しずらして。",
+        "en": "Bring the title in with a mask reveal from below, 0.6 s, each line slightly after the one before.",
+        "es": "Haz entrar el título con un mask reveal desde abajo, en 0,6 s, cada línea un poco después de la anterior."
+      },
       "summary": {
         "ja": "1本の線を境に、見えない枠の向こうから見出しがせり上がる。",
         "en": "Headline text slides out from behind an invisible edge marked by a single line."
@@ -165,13 +288,36 @@
         "ja": "タイトルや見出しを、落ち着いた印象で出したいとき。",
         "en": "Use it for titles and headings that should appear in a clean, composed way."
       },
-      "tags": ["mask", "reveal", "clip", "wipe", "title", "text", "slide-up", "headline"]
+      "tags": [
+        "mask",
+        "reveal",
+        "clip",
+        "wipe",
+        "title",
+        "text",
+        "slide-up",
+        "headline"
+      ]
     },
     {
-      "no": "06", "slug": "typewriter", "category": "entrances-text",
-      "name": { "ja": "タイプライター", "en": "Typewriter" },
-      "meaning": { "ja": "1文字ずつ打たれるように出る", "en": "Text appears one character at a time, as if typed" },
-      "ask": { "ja": "この一文をタイプライターで出して。1文字0.05秒、末尾にカーソルを付けて。", "en": "Show this sentence with a typewriter effect, 0.05 s per character, with a cursor at the end." },
+      "no": "06",
+      "slug": "typewriter",
+      "category": "entrances-text",
+      "name": {
+        "ja": "タイプライター",
+        "en": "Typewriter",
+        "es": "Máquina de escribir"
+      },
+      "meaning": {
+        "ja": "1文字ずつ打たれるように出る",
+        "en": "Text appears one character at a time, as if typed",
+        "es": "El texto aparece letra por letra, como si se tecleara"
+      },
+      "ask": {
+        "ja": "この一文をタイプライターで出して。1文字0.05秒、末尾にカーソルを付けて。",
+        "en": "Show this sentence with a typewriter effect, 0.05 s per character, with a cursor at the end.",
+        "es": "Muestra esta frase con efecto máquina de escribir, 0,05 s por carácter, con un cursor al final."
+      },
       "summary": {
         "ja": "入力欄に1文字ずつ打たれ、打ち終わると送信ボタンが点いて押される。",
         "en": "Text is typed into an input field one character at a time, then the send button lights up and is pressed."
@@ -198,13 +344,36 @@
         "ja": "プロンプト入力・検索・チャットなど、文字を打つ操作を見せたいとき。",
         "en": "Use it to show someone typing: a prompt, a search query, a chat message."
       },
-      "tags": ["typewriter", "typing", "text", "cursor", "input", "prompt", "chat", "type-on"]
+      "tags": [
+        "typewriter",
+        "typing",
+        "text",
+        "cursor",
+        "input",
+        "prompt",
+        "chat",
+        "type-on"
+      ]
     },
     {
-      "no": "07", "slug": "count-up", "category": "entrances-text",
-      "name": { "ja": "カウントアップ", "en": "Count-up" },
-      "meaning": { "ja": "数字が勢いよく増えていく", "en": "A number runs up quickly to its final value" },
-      "ask": { "ja": "数字を0から1,280までカウントアップさせて。1.5秒で、最後はゆっくり止めて。", "en": "Count the figure up from 0 to 1,280 in 1.5 s, slowing down at the end." },
+      "no": "07",
+      "slug": "count-up",
+      "category": "entrances-text",
+      "name": {
+        "ja": "カウントアップ",
+        "en": "Count-up",
+        "es": "Contador (count-up)"
+      },
+      "meaning": {
+        "ja": "数字が勢いよく増えていく",
+        "en": "A number runs up quickly to its final value",
+        "es": "Un número sube rápido hasta su valor final"
+      },
+      "ask": {
+        "ja": "数字を0から1,280までカウントアップさせて。1.5秒で、最後はゆっくり止めて。",
+        "en": "Count the figure up from 0 to 1,280 in 1.5 s, slowing down at the end.",
+        "es": "Haz que la cifra suba de 0 a 1.280 en 1,5 s, frenando al final."
+      },
       "summary": {
         "ja": "数字が勢いよく増えて、最後にピタッと決まる。",
         "en": "A number races upward and locks onto its final value."
@@ -231,13 +400,35 @@
         "ja": "売上・人数・達成率など、数字の大きさや伸びを印象づけたいとき。",
         "en": "Use it to make a figure feel big or growing: revenue, user counts, completion rates."
       },
-      "tags": ["count-up", "counter", "number", "odometer", "stats", "kpi", "progress"]
+      "tags": [
+        "count-up",
+        "counter",
+        "number",
+        "odometer",
+        "stats",
+        "kpi",
+        "progress"
+      ]
     },
     {
-      "no": "08", "slug": "kinetic-typography", "category": "entrances-text",
-      "name": { "ja": "キネティックタイポグラフィ", "en": "Kinetic typography" },
-      "meaning": { "ja": "言葉に合わせて文字が動き回る", "en": "Words move, scale and turn in time with what is said" },
-      "ask": { "ja": "このナレーションをキネティックタイポグラフィにして。強調する語は大きく、拍に合わせて出して。", "en": "Turn this narration into kinetic typography: make the stressed words larger and land them on the beat." },
+      "no": "08",
+      "slug": "kinetic-typography",
+      "category": "entrances-text",
+      "name": {
+        "ja": "キネティックタイポグラフィ",
+        "en": "Kinetic typography",
+        "es": "Tipografía cinética"
+      },
+      "meaning": {
+        "ja": "言葉に合わせて文字が動き回る",
+        "en": "Words move, scale and turn in time with what is said",
+        "es": "Las palabras se mueven, crecen y giran al ritmo de lo que se dice"
+      },
+      "ask": {
+        "ja": "このナレーションをキネティックタイポグラフィにして。強調する語は大きく、拍に合わせて出して。",
+        "en": "Turn this narration into kinetic typography: make the stressed words larger and land them on the beat.",
+        "es": "Convierte esta narración en tipografía cinética: las palabras con énfasis más grandes y cayendo en el beat."
+      },
       "summary": {
         "ja": "言葉の意味に合わせて文字が動く（のびる／はねる／まわる／ドン！）。",
         "en": "Words move the way they mean: one stretches, one bounces, one spins, one slams down."
@@ -264,13 +455,36 @@
         "ja": "ナレーションや歌詞のキーワードを、意味ごと印象に残したいとき。",
         "en": "Use it to make key words from narration or lyrics memorable through how they move."
       },
-      "tags": ["kinetic-typography", "text", "typography", "lyric", "word", "bounce", "spin", "slam"]
+      "tags": [
+        "kinetic-typography",
+        "text",
+        "typography",
+        "lyric",
+        "word",
+        "bounce",
+        "spin",
+        "slam"
+      ]
     },
     {
-      "no": "09", "slug": "easing", "category": "motion-polish",
-      "name": { "ja": "イージング", "en": "Easing" },
-      "meaning": { "ja": "緩急をつけて気持ちよく動かす", "en": "Motion speeds up and slows down instead of moving at one speed" },
-      "ask": { "ja": "この移動にイージングをかけて。イーズアウトで、止まり際をゆっくりに。", "en": "Add easing to this move: ease-out, slowing down as it stops." },
+      "no": "09",
+      "slug": "easing",
+      "category": "motion-polish",
+      "name": {
+        "ja": "イージング",
+        "en": "Easing",
+        "es": "Easing (aceleración)"
+      },
+      "meaning": {
+        "ja": "緩急をつけて気持ちよく動かす",
+        "en": "Motion speeds up and slows down instead of moving at one speed",
+        "es": "El movimiento acelera y frena en lugar de ir a velocidad constante"
+      },
+      "ask": {
+        "ja": "この移動にイージングをかけて。イーズアウトで、止まり際をゆっくりに。",
+        "en": "Add easing to this move: ease-out, slowing down as it stops.",
+        "es": "Ponle easing a este movimiento: ease-out, que vaya frenando al detenerse."
+      },
       "summary": {
         "ja": "同じ距離を同じ時間で動く2つの四角。上は一定の速さ、下は緩急あり。",
         "en": "Two squares cover the same distance in the same time: the top one at constant speed, the bottom one eased."
@@ -297,13 +511,35 @@
         "ja": "移動・拡大・回転など、あらゆる動きに緩急を付けて機械的に見えないようにしたいとき。",
         "en": "Use it on any move, scale or rotation so the motion accelerates and decelerates instead of looking mechanical."
       },
-      "tags": ["easing", "ease-in-out", "cubic-bezier", "linear", "timing", "curve", "acceleration"]
+      "tags": [
+        "easing",
+        "ease-in-out",
+        "cubic-bezier",
+        "linear",
+        "timing",
+        "curve",
+        "acceleration"
+      ]
     },
     {
-      "no": "10", "slug": "overshoot", "category": "motion-polish",
-      "name": { "ja": "オーバーシュート", "en": "Overshoot" },
-      "meaning": { "ja": "行き過ぎてから戻って止まる", "en": "Goes a little past the target, then settles back" },
-      "ask": { "ja": "メーターの針をオーバーシュートさせて。目標を1割ほど越えてから戻して。", "en": "Give the gauge needle an overshoot: about 10% past the target, then back." },
+      "no": "10",
+      "slug": "overshoot",
+      "category": "motion-polish",
+      "name": {
+        "ja": "オーバーシュート",
+        "en": "Overshoot",
+        "es": "Overshoot (pasarse y volver)"
+      },
+      "meaning": {
+        "ja": "行き過ぎてから戻って止まる",
+        "en": "Goes a little past the target, then settles back",
+        "es": "Se pasa un poco del objetivo y luego se acomoda"
+      },
+      "ask": {
+        "ja": "メーターの針をオーバーシュートさせて。目標を1割ほど越えてから戻して。",
+        "en": "Give the gauge needle an overshoot: about 10% past the target, then back.",
+        "es": "Dale overshoot a la aguja del indicador: un 10 % más allá del objetivo y luego de vuelta."
+      },
       "summary": {
         "ja": "メーターの針が、目標を行き過ぎてから戻って止まる。",
         "en": "A gauge needle swings past its target, comes back and settles."
@@ -328,13 +564,36 @@
         "ja": "要素が到着する動きに勢いと弾力を出したいとき。",
         "en": "Use it to give an arriving element energy and a springy feel."
       },
-      "tags": ["overshoot", "spring", "bounce", "settle", "elastic", "gauge", "meter", "needle"]
+      "tags": [
+        "overshoot",
+        "spring",
+        "bounce",
+        "settle",
+        "elastic",
+        "gauge",
+        "meter",
+        "needle"
+      ]
     },
     {
-      "no": "11", "slug": "squash-and-stretch", "category": "motion-polish",
-      "name": { "ja": "スクワッシュ＆ストレッチ", "en": "Squash & stretch" },
-      "meaning": { "ja": "つぶれて伸びて弾力を出す", "en": "Squashes and stretches so that it feels elastic" },
-      "ask": { "ja": "ボールの着地にスクワッシュ＆ストレッチを入れて。つぶれは弱めに。", "en": "Add squash and stretch when the ball lands; keep the squash subtle." },
+      "no": "11",
+      "slug": "squash-and-stretch",
+      "category": "motion-polish",
+      "name": {
+        "ja": "スクワッシュ＆ストレッチ",
+        "en": "Squash & stretch",
+        "es": "Squash & stretch (aplastar y estirar)"
+      },
+      "meaning": {
+        "ja": "つぶれて伸びて弾力を出す",
+        "en": "Squashes and stretches so that it feels elastic",
+        "es": "Se aplasta y se estira para sentirse elástico"
+      },
+      "ask": {
+        "ja": "ボールの着地にスクワッシュ＆ストレッチを入れて。つぶれは弱めに。",
+        "en": "Add squash and stretch when the ball lands; keep the squash subtle.",
+        "es": "Agrega squash and stretch cuando la pelota cae; que el aplastamiento sea sutil."
+      },
       "summary": {
         "ja": "弾むキャラクターが、着地でつぶれ、飛ぶときに伸びる。",
         "en": "A bouncing character squashes on landing and stretches as it takes off."
@@ -359,13 +618,35 @@
         "ja": "キャラクターやロゴの動きに、重さとやわらかさを出したいとき。",
         "en": "Use it to give a character or logo weight and softness."
       },
-      "tags": ["squash", "stretch", "squash-and-stretch", "bounce", "character", "ball", "animation-principle"]
+      "tags": [
+        "squash",
+        "stretch",
+        "squash-and-stretch",
+        "bounce",
+        "character",
+        "ball",
+        "animation-principle"
+      ]
     },
     {
-      "no": "12", "slug": "shape-morph", "category": "motion-polish",
-      "name": { "ja": "モーフィング", "en": "Shape morph" },
-      "meaning": { "ja": "形が別の形に変わる", "en": "One shape turns smoothly into another" },
-      "ask": { "ja": "丸を星にモーフィングさせて。0.8秒で、途中で色も青から黄へ。", "en": "Morph the circle into a star in 0.8 s, changing the color from blue to yellow on the way." },
+      "no": "12",
+      "slug": "shape-morph",
+      "category": "motion-polish",
+      "name": {
+        "ja": "モーフィング",
+        "en": "Shape morph",
+        "es": "Morphing de formas"
+      },
+      "meaning": {
+        "ja": "形が別の形に変わる",
+        "en": "One shape turns smoothly into another",
+        "es": "Una forma se transforma suavemente en otra"
+      },
+      "ask": {
+        "ja": "丸を星にモーフィングさせて。0.8秒で、途中で色も青から黄へ。",
+        "en": "Morph the circle into a star in 0.8 s, changing the color from blue to yellow on the way.",
+        "es": "Transforma el círculo en estrella en 0,8 s, cambiando el color de azul a amarillo en el camino."
+      },
       "summary": {
         "ja": "丸 → 四角 → 星 → ハートと、形と色がなめらかに変わる。",
         "en": "A shape changes smoothly from circle to square to star to heart, with its colour."
@@ -392,13 +673,35 @@
         "ja": "アイコンやロゴを別の形へ、切らずにつなげて変えたいとき。",
         "en": "Use it to turn one icon or logo into another without a cut."
       },
-      "tags": ["morph", "morphing", "shape", "path", "interpolate", "transform", "icon"]
+      "tags": [
+        "morph",
+        "morphing",
+        "shape",
+        "path",
+        "interpolate",
+        "transform",
+        "icon"
+      ]
     },
     {
-      "no": "13", "slug": "liquid-motion", "category": "motion-polish",
-      "name": { "ja": "リキッドモーション", "en": "Liquid motion" },
-      "meaning": { "ja": "液体のようにぬるっと動く", "en": "Shapes move and merge like liquid" },
-      "ask": { "ja": "ロゴの登場をリキッドモーションにして。しずくが集まってロゴの形になるように。", "en": "Make the logo entrance a liquid motion: drops gather and form the shape." },
+      "no": "13",
+      "slug": "liquid-motion",
+      "category": "motion-polish",
+      "name": {
+        "ja": "リキッドモーション",
+        "en": "Liquid motion",
+        "es": "Movimiento líquido"
+      },
+      "meaning": {
+        "ja": "液体のようにぬるっと動く",
+        "en": "Shapes move and merge like liquid",
+        "es": "Las formas se mueven y se unen como un líquido"
+      },
+      "ask": {
+        "ja": "ロゴの登場をリキッドモーションにして。しずくが集まってロゴの形になるように。",
+        "en": "Make the logo entrance a liquid motion: drops gather and form the shape.",
+        "es": "Haz la entrada del logo con movimiento líquido: gotas que se juntan y forman la figura."
+      },
       "summary": {
         "ja": "しずくが伸びて、ちぎれて、ぬるっと1つにまとまる。",
         "en": "A blob stretches out, breaks into drops and merges back into one."
@@ -423,13 +726,36 @@
         "ja": "有機的でやわらかい印象を出したいとき。ロゴ・背景・切り替えのつなぎに。",
         "en": "Use it for an organic, soft look in logos, backgrounds and connecting moves."
       },
-      "tags": ["liquid", "blob", "goo", "gooey", "metaball", "fluid", "organic", "drip"]
+      "tags": [
+        "liquid",
+        "blob",
+        "goo",
+        "gooey",
+        "metaball",
+        "fluid",
+        "organic",
+        "drip"
+      ]
     },
     {
-      "no": "14", "slug": "motion-trail", "category": "motion-polish",
-      "name": { "ja": "モーショントレイル", "en": "Motion trail" },
-      "meaning": { "ja": "動いた跡に残像が尾を引く", "en": "A fading trail follows a moving object" },
-      "ask": { "ja": "飛んでいく丸にモーショントレイルを付けて。残像は5個、後ろほど薄く。", "en": "Add a motion trail to the flying circle: five copies that fade out behind it." },
+      "no": "14",
+      "slug": "motion-trail",
+      "category": "motion-polish",
+      "name": {
+        "ja": "モーショントレイル",
+        "en": "Motion trail",
+        "es": "Estela de movimiento (motion trail)"
+      },
+      "meaning": {
+        "ja": "動いた跡に残像が尾を引く",
+        "en": "A fading trail follows a moving object",
+        "es": "Una estela que se desvanece sigue al objeto en movimiento"
+      },
+      "ask": {
+        "ja": "飛んでいく丸にモーショントレイルを付けて。残像は5個、後ろほど薄く。",
+        "en": "Add a motion trail to the flying circle: five copies that fade out behind it.",
+        "es": "Agrega una estela al círculo que vuela: cinco copias que se desvanecen detrás."
+      },
       "summary": {
         "ja": "8の字に動く丸の跡に、残像が尾を引く。",
         "en": "A ball moving in a figure eight leaves a fading trail of copies behind it."
@@ -454,13 +780,35 @@
         "ja": "速さや軌道を見せたいとき。飛ぶ物・カーソル・光の点に。",
         "en": "Use it to show speed or a path: flying objects, cursors, points of light."
       },
-      "tags": ["trail", "motion-trail", "echo", "afterimage", "ghost", "path", "speed"]
+      "tags": [
+        "trail",
+        "motion-trail",
+        "echo",
+        "afterimage",
+        "ghost",
+        "path",
+        "speed"
+      ]
     },
     {
-      "no": "15", "slug": "particles", "category": "motion-polish",
-      "name": { "ja": "パーティクル", "en": "Particles" },
-      "meaning": { "ja": "粒が飛び散る", "en": "Many small pieces fly out and scatter" },
-      "ask": { "ja": "達成の瞬間に、下からパーティクルを噴き上げて。4色で、1.5秒で落ちきるように。", "en": "At the moment of success, shoot particles up from the bottom: four colors, all fallen within 1.5 s." },
+      "no": "15",
+      "slug": "particles",
+      "category": "motion-polish",
+      "name": {
+        "ja": "パーティクル",
+        "en": "Particles",
+        "es": "Partículas"
+      },
+      "meaning": {
+        "ja": "粒が飛び散る",
+        "en": "Many small pieces fly out and scatter",
+        "es": "Muchas piezas pequeñas salen volando y se dispersan"
+      },
+      "ask": {
+        "ja": "達成の瞬間に、下からパーティクルを噴き上げて。4色で、1.5秒で落ちきるように。",
+        "en": "At the moment of success, shoot particles up from the bottom: four colors, all fallen within 1.5 s.",
+        "es": "En el momento del éxito, lanza partículas desde abajo: cuatro colores, todas caídas en 1,5 s."
+      },
       "summary": {
         "ja": "粒が下の口から次々と噴き出して、飛び散って落ちる。",
         "en": "Particles keep shooting up from an emitter, spread out and fall."
@@ -485,13 +833,35 @@
         "ja": "お祝い・達成・にぎやかさを足したいとき。紙吹雪や火花の代わりに。",
         "en": "Use it to add celebration or liveliness, in place of confetti or sparks."
       },
-      "tags": ["particles", "confetti", "emitter", "fountain", "gravity", "celebration", "sparks"]
+      "tags": [
+        "particles",
+        "confetti",
+        "emitter",
+        "fountain",
+        "gravity",
+        "celebration",
+        "sparks"
+      ]
     },
     {
-      "no": "16", "slug": "parallax", "category": "motion-polish",
-      "name": { "ja": "パララックス", "en": "Parallax" },
-      "meaning": { "ja": "手前と奥をずらして動かし奥行きを出す", "en": "Near and far layers move at different speeds to show depth" },
-      "ask": { "ja": "この風景を3層に分けて、パララックスで横に流して。手前ほど速く。", "en": "Split this landscape into three layers and scroll them with parallax, nearer layers faster." },
+      "no": "16",
+      "slug": "parallax",
+      "category": "motion-polish",
+      "name": {
+        "ja": "パララックス",
+        "en": "Parallax",
+        "es": "Paralaje"
+      },
+      "meaning": {
+        "ja": "手前と奥をずらして動かし奥行きを出す",
+        "en": "Near and far layers move at different speeds to show depth",
+        "es": "Las capas cercanas y lejanas se mueven a distinta velocidad para dar profundidad"
+      },
+      "ask": {
+        "ja": "この風景を3層に分けて、パララックスで横に流して。手前ほど速く。",
+        "en": "Split this landscape into three layers and scroll them with parallax, nearer layers faster.",
+        "es": "Divide este paisaje en tres capas y desplázalas con paralaje, las más cercanas más rápido."
+      },
       "summary": {
         "ja": "横に動く景色。手前ほど大きく、奥ほど小さく動いて、奥行きが出る。",
         "en": "A landscape pans sideways; near layers move more and far layers move less, creating depth."
@@ -514,13 +884,35 @@
         "ja": "平面の絵や写真に奥行きを出したいとき。背景・風景・スクロール表現に。",
         "en": "Use it to give flat artwork or photos depth: backgrounds, landscapes, scrolling scenes."
       },
-      "tags": ["parallax", "depth", "layers", "pan", "2.5d", "background", "landscape"]
+      "tags": [
+        "parallax",
+        "depth",
+        "layers",
+        "pan",
+        "2.5d",
+        "background",
+        "landscape"
+      ]
     },
     {
-      "no": "17", "slug": "mask-transition", "category": "transitions-highlights",
-      "name": { "ja": "マスクトランジション", "en": "Mask transition" },
-      "meaning": { "ja": "形の中から次の画面が現れる", "en": "The next scene appears inside a growing shape" },
-      "ask": { "ja": "次の場面へはマスクトランジションで。中央の丸が0.7秒で広がって切り替わるように。", "en": "Go to the next scene with a mask transition: a circle grows from the center in 0.7 s." },
+      "no": "17",
+      "slug": "mask-transition",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "マスクトランジション",
+        "en": "Mask transition",
+        "es": "Transición con máscara"
+      },
+      "meaning": {
+        "ja": "形の中から次の画面が現れる",
+        "en": "The next scene appears inside a growing shape",
+        "es": "La escena siguiente aparece dentro de una forma que crece"
+      },
+      "ask": {
+        "ja": "次の場面へはマスクトランジションで。中央の丸が0.7秒で広がって切り替わるように。",
+        "en": "Go to the next scene with a mask transition: a circle grows from the center in 0.7 s.",
+        "es": "Pasa a la siguiente escena con una transición con máscara: un círculo que crece desde el centro en 0,7 s."
+      },
       "summary": {
         "ja": "丸や星の形の「窓」が広がり、その中に次の画面が見える。",
         "en": "A circle- or star-shaped window grows, showing the next scene inside it."
@@ -545,13 +937,35 @@
         "ja": "画面の中の物（太陽・ロゴ・ボタン）を起点に、次の場面へ切り替えたいとき。",
         "en": "Use it to change scenes starting from an object in the frame, such as a sun, logo or button."
       },
-      "tags": ["mask", "transition", "iris", "wipe", "shape-wipe", "reveal", "scene-change"]
+      "tags": [
+        "mask",
+        "transition",
+        "iris",
+        "wipe",
+        "shape-wipe",
+        "reveal",
+        "scene-change"
+      ]
     },
     {
-      "no": "18", "slug": "shape-transition", "category": "transitions-highlights",
-      "name": { "ja": "シェイプトランジション", "en": "Shape transition" },
-      "meaning": { "ja": "図形が画面を覆って切り替わる", "en": "Shapes cover the screen and uncover the next scene" },
-      "ask": { "ja": "場面の切り替えはシェイプトランジションで。4色の斜めの帯が左から覆うように。", "en": "Change scenes with a shape transition: four diagonal color bands sweep in from the left." },
+      "no": "18",
+      "slug": "shape-transition",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "シェイプトランジション",
+        "en": "Shape transition",
+        "es": "Transición de formas"
+      },
+      "meaning": {
+        "ja": "図形が画面を覆って切り替わる",
+        "en": "Shapes cover the screen and uncover the next scene",
+        "es": "Unas formas cubren la pantalla y descubren la escena siguiente"
+      },
+      "ask": {
+        "ja": "場面の切り替えはシェイプトランジションで。4色の斜めの帯が左から覆うように。",
+        "en": "Change scenes with a shape transition: four diagonal color bands sweep in from the left.",
+        "es": "Cambia de escena con una transición de formas: cuatro franjas diagonales de color que entran desde la izquierda."
+      },
       "summary": {
         "ja": "色のついた帯が画面を覆い隠し、抜けると次の画面になっている。",
         "en": "Coloured bands sweep across and cover the frame; when they leave, the next scene is there."
@@ -576,13 +990,35 @@
         "ja": "ブランドカラーの図形で場面を切り替えたいとき。章の区切りや話題の転換に。",
         "en": "Use it to change scenes with shapes in brand colours: chapter breaks, topic changes."
       },
-      "tags": ["shape-transition", "transition", "wipe", "bands", "stripes", "cover", "scene-change"]
+      "tags": [
+        "shape-transition",
+        "transition",
+        "wipe",
+        "bands",
+        "stripes",
+        "cover",
+        "scene-change"
+      ]
     },
     {
-      "no": "19", "slug": "liquid-transition", "category": "transitions-highlights",
-      "name": { "ja": "リキッドトランジション", "en": "Liquid transition" },
-      "meaning": { "ja": "液体が流れ込んで切り替わる", "en": "Liquid flows in and replaces the scene" },
-      "ask": { "ja": "ここはリキッドトランジションで。上から青いインクが垂れて画面を満たすように。", "en": "Use a liquid transition here: blue ink drips down from the top and fills the frame." },
+      "no": "19",
+      "slug": "liquid-transition",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "リキッドトランジション",
+        "en": "Liquid transition",
+        "es": "Transición líquida"
+      },
+      "meaning": {
+        "ja": "液体が流れ込んで切り替わる",
+        "en": "Liquid flows in and replaces the scene",
+        "es": "Un líquido entra y reemplaza la escena"
+      },
+      "ask": {
+        "ja": "ここはリキッドトランジションで。上から青いインクが垂れて画面を満たすように。",
+        "en": "Use a liquid transition here: blue ink drips down from the top and fills the frame.",
+        "es": "Usa aquí una transición líquida: tinta azul que gotea desde arriba y llena el cuadro."
+      },
       "summary": {
         "ja": "ペンキのような液体が上から垂れて流れ込み、次の画面になる。",
         "en": "Paint-like liquid drips down from the top and fills the frame, becoming the next scene."
@@ -607,13 +1043,36 @@
         "ja": "やわらかく有機的に場面を切り替えたいとき。食品・美容・クリエイティブ系の映像に。",
         "en": "Use it for a soft, organic scene change, for example in food, beauty or creative videos."
       },
-      "tags": ["liquid", "transition", "drip", "paint", "goo", "fluid", "wipe", "scene-change"]
+      "tags": [
+        "liquid",
+        "transition",
+        "drip",
+        "paint",
+        "goo",
+        "fluid",
+        "wipe",
+        "scene-change"
+      ]
     },
     {
-      "no": "20", "slug": "zoom-through", "category": "transitions-highlights",
-      "name": { "ja": "ズームスルー", "en": "Zoom through" },
-      "meaning": { "ja": "物の中へ突き抜けて次へ", "en": "Zooms into an object and passes through it into the next scene" },
-      "ask": { "ja": "ロゴの「O」の穴へズームスルーして、次の場面へ。0.6秒で、加速しながら。", "en": "Zoom through the hole of the \"O\" in the logo into the next scene, 0.6 s, accelerating." },
+      "no": "20",
+      "slug": "zoom-through",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "ズームスルー",
+        "en": "Zoom through",
+        "es": "Zoom through (zoom a través)"
+      },
+      "meaning": {
+        "ja": "物の中へ突き抜けて次へ",
+        "en": "Zooms into an object and passes through it into the next scene",
+        "es": "Hace zoom hacia un objeto y lo atraviesa hasta la escena siguiente"
+      },
+      "ask": {
+        "ja": "ロゴの「O」の穴へズームスルーして、次の場面へ。0.6秒で、加速しながら。",
+        "en": "Zoom through the hole of the \"O\" in the logo into the next scene, 0.6 s, accelerating.",
+        "es": "Haz un zoom through por el hueco de la \"O\" del logo hacia la siguiente escena, en 0,6 s, acelerando."
+      },
       "summary": {
         "ja": "文字の「O」の穴へ突っ込んで、その先の画面へ抜ける。",
         "en": "The camera pushes into the hole of a letter O and comes out in the next scene."
@@ -638,13 +1097,35 @@
         "ja": "ロゴや文字の中へ入り込んで、勢いよく次の場面へ進みたいとき。",
         "en": "Use it to dive into a logo or letter and move to the next scene with momentum."
       },
-      "tags": ["zoom", "zoom-through", "transition", "push-in", "scale", "tunnel", "scene-change"]
+      "tags": [
+        "zoom",
+        "zoom-through",
+        "transition",
+        "push-in",
+        "scale",
+        "tunnel",
+        "scene-change"
+      ]
     },
     {
-      "no": "21", "slug": "flip", "category": "transitions-highlights",
-      "name": { "ja": "フリップ", "en": "Flip" },
-      "meaning": { "ja": "カードのように裏返る", "en": "Turns over like a card to show the other side" },
-      "ask": { "ja": "料金カードをフリップで裏返して、裏に詳細を出して。0.5秒で。", "en": "Flip the pricing card to show the details on its back, in 0.5 s." },
+      "no": "21",
+      "slug": "flip",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "フリップ",
+        "en": "Flip",
+        "es": "Flip (volteo)"
+      },
+      "meaning": {
+        "ja": "カードのように裏返る",
+        "en": "Turns over like a card to show the other side",
+        "es": "Se da vuelta como una tarjeta para mostrar el otro lado"
+      },
+      "ask": {
+        "ja": "料金カードをフリップで裏返して、裏に詳細を出して。0.5秒で。",
+        "en": "Flip the pricing card to show the details on its back, in 0.5 s.",
+        "es": "Voltea la tarjeta de precios con un flip para mostrar los detalles al reverso, en 0,5 s."
+      },
       "summary": {
         "ja": "カードが縦の軸で回って裏返り、裏の面が出る。",
         "en": "A card turns over around its vertical axis and shows its other side."
@@ -669,13 +1150,35 @@
         "ja": "問いと答え、ビフォーとアフターなど、表と裏の関係にある2つを見せたいとき。",
         "en": "Use it for two things that are sides of one another: question and answer, before and after."
       },
-      "tags": ["flip", "card", "3d", "rotate", "turn", "reveal", "question-answer"]
+      "tags": [
+        "flip",
+        "card",
+        "3d",
+        "rotate",
+        "turn",
+        "reveal",
+        "question-answer"
+      ]
     },
     {
-      "no": "22", "slug": "light-sweep", "category": "transitions-highlights",
-      "name": { "ja": "ライトスイープ", "en": "Light sweep" },
-      "meaning": { "ja": "光が表面を横切る", "en": "A band of light crosses a surface" },
-      "ask": { "ja": "ロゴが止まったあとに、ライトスイープを1回。左上から右下へ、弱めに。", "en": "After the logo settles, add one light sweep from top-left to bottom-right, subtle." },
+      "no": "22",
+      "slug": "light-sweep",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "ライトスイープ",
+        "en": "Light sweep",
+        "es": "Barrido de luz (light sweep)"
+      },
+      "meaning": {
+        "ja": "光が表面を横切る",
+        "en": "A band of light crosses a surface",
+        "es": "Una franja de luz cruza una superficie"
+      },
+      "ask": {
+        "ja": "ロゴが止まったあとに、ライトスイープを1回。左上から右下へ、弱めに。",
+        "en": "After the logo settles, add one light sweep from top-left to bottom-right, subtle.",
+        "es": "Cuando el logo se acomode, agrega un barrido de luz de arriba a la izquierda hacia abajo a la derecha, sutil."
+      },
       "summary": {
         "ja": "ロゴの表面を、光の帯が斜めに横切る。",
         "en": "A band of light crosses the surface of a logo badge at an angle."
@@ -700,13 +1203,36 @@
         "ja": "ロゴ・バッジ・ボタンに上質な印象を足したいとき。",
         "en": "Use it to give a logo, badge or button a premium finish."
       },
-      "tags": ["light-sweep", "shine", "sheen", "glint", "highlight", "logo", "badge", "premium"]
+      "tags": [
+        "light-sweep",
+        "shine",
+        "sheen",
+        "glint",
+        "highlight",
+        "logo",
+        "badge",
+        "premium"
+      ]
     },
     {
-      "no": "23", "slug": "glitch", "category": "transitions-highlights",
-      "name": { "ja": "グリッチ", "en": "Glitch" },
-      "meaning": { "ja": "映像がバグったように乱れる", "en": "The picture breaks up as if it were malfunctioning" },
-      "ask": { "ja": "タイトルに一瞬だけグリッチを入れて。0.3秒、色ずれは弱めで、点滅はさせないで。", "en": "Add a brief glitch to the title: 0.3 s, a mild color split, no flashing." },
+      "no": "23",
+      "slug": "glitch",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "グリッチ",
+        "en": "Glitch",
+        "es": "Glitch"
+      },
+      "meaning": {
+        "ja": "映像がバグったように乱れる",
+        "en": "The picture breaks up as if it were malfunctioning",
+        "es": "La imagen se rompe como si fallara"
+      },
+      "ask": {
+        "ja": "タイトルに一瞬だけグリッチを入れて。0.3秒、色ずれは弱めで、点滅はさせないで。",
+        "en": "Add a brief glitch to the title: 0.3 s, a mild color split, no flashing.",
+        "es": "Agrega un glitch breve al título: 0,3 s, una separación de color leve, sin destellos."
+      },
       "summary": {
         "ja": "文字が横にずれ、色がずれ、帯が走る。明るさの点滅はさせない。",
         "en": "Text slices shift sideways, colours split and small bars appear, with no brightness flashing."
@@ -733,13 +1259,35 @@
         "ja": "デジタル感・エラー・不穏さを出したいとき。タイトルや場面転換のアクセントに。",
         "en": "Use it for a digital, error or uneasy feel, as an accent on titles and scene changes."
       },
-      "tags": ["glitch", "rgb-split", "chromatic-aberration", "distortion", "digital", "error", "slice"]
+      "tags": [
+        "glitch",
+        "rgb-split",
+        "chromatic-aberration",
+        "distortion",
+        "digital",
+        "error",
+        "slice"
+      ]
     },
     {
-      "no": "24", "slug": "impact-shake", "category": "transitions-highlights",
-      "name": { "ja": "インパクトシェイク", "en": "Impact shake" },
-      "meaning": { "ja": "着地の衝撃で画面が揺れる", "en": "The whole frame shakes when something lands" },
-      "ask": { "ja": "見出しがドンと落ちた瞬間に、インパクトシェイクを入れて。0.4秒で収まる程度に。", "en": "Add an impact shake when the headline lands; it should settle within 0.4 s." },
+      "no": "24",
+      "slug": "impact-shake",
+      "category": "transitions-highlights",
+      "name": {
+        "ja": "インパクトシェイク",
+        "en": "Impact shake",
+        "es": "Sacudida de impacto (impact shake)"
+      },
+      "meaning": {
+        "ja": "着地の衝撃で画面が揺れる",
+        "en": "The whole frame shakes when something lands",
+        "es": "Todo el cuadro tiembla cuando algo cae"
+      },
+      "ask": {
+        "ja": "見出しがドンと落ちた瞬間に、インパクトシェイクを入れて。0.4秒で収まる程度に。",
+        "en": "Add an impact shake when the headline lands; it should settle within 0.4 s.",
+        "es": "Agrega una sacudida de impacto cuando cae el titular; que se calme en 0,4 s."
+      },
       "summary": {
         "ja": "重い見出しの板がドンと落ち、その衝撃で画面ごと揺れる。",
         "en": "A heavy headline slab drops with a thud and the whole frame shakes from the impact."
@@ -766,7 +1314,16 @@
         "ja": "重要な見出しや数字を、重さと衝撃で強く印象づけたいとき。",
         "en": "Use it to land an important headline or number with weight and force."
       },
-      "tags": ["shake", "impact", "camera-shake", "slam", "drop", "thud", "headline", "emphasis"]
+      "tags": [
+        "shake",
+        "impact",
+        "camera-shake",
+        "slam",
+        "drop",
+        "thud",
+        "headline",
+        "emphasis"
+      ]
     }
   ]
 }

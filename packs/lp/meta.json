@@ -3,23 +3,27 @@
   "order": 4,
   "title": {
     "ja": "LP・Webサイトの演出",
-    "en": "Landing page & web effects"
+    "en": "Landing page & web effects",
+    "es": "Efectos de landing pages y sitios web"
   },
   "categories": [
     {
       "slug": "scroll",
       "ja": "スクロールで起きる演出",
-      "en": "Scroll effects"
+      "en": "Scroll effects",
+      "es": "Efectos al hacer scroll"
     },
     {
       "slug": "hover-click",
       "ja": "マウス・クリックへの反応",
-      "en": "Hover & click interactions"
+      "en": "Hover & click interactions",
+      "es": "Interacciones al pasar el cursor y al hacer clic"
     },
     {
       "slug": "loading-loops",
       "ja": "読み込み・移動・動き続ける演出",
-      "en": "Loading, navigation & ambient loops"
+      "en": "Loading, navigation & ambient loops",
+      "es": "Carga, navegación y bucles de ambiente"
     }
   ],
   "elements": [
@@ -29,15 +33,18 @@
       "category": "scroll",
       "name": {
         "ja": "パララックススクロール",
-        "en": "Parallax scrolling"
+        "en": "Parallax scrolling",
+        "es": "Scroll con paralaje"
       },
       "meaning": {
         "ja": "スクロールで奥の層ほどゆっくり動く",
-        "en": "On scroll, background layers move slower than the content"
+        "en": "On scroll, background layers move slower than the content",
+        "es": "Al hacer scroll, las capas de fondo se mueven más lento que el contenido"
       },
       "ask": {
         "ja": "ファーストビューの背景をパララックススクロールにして。背景はスクロール量の0.3倍で動かして。",
-        "en": "Make the hero background a parallax scroll: move it at 0.3× the scroll distance."
+        "en": "Make the hero background a parallax scroll: move it at 0.3× the scroll distance.",
+        "es": "Haz el fondo del hero con scroll con paralaje: que se mueva a 0,3× de lo que se desplaza la página."
       },
       "summary": {
         "ja": "ページを下へスクロールすると、見出しはふつうに上がり、空と太陽・遠い山・近い山はそれより遅く動く。",
@@ -79,15 +86,18 @@
       "category": "scroll",
       "name": {
         "ja": "スクロールでフェードイン",
-        "en": "Fade-in on scroll"
+        "en": "Fade-in on scroll",
+        "es": "Aparición al hacer scroll (fade-in)"
       },
       "meaning": {
         "ja": "画面に入った要素がふわっと現れる",
-        "en": "Elements fade in as they scroll into view"
+        "en": "Elements fade in as they scroll into view",
+        "es": "Los elementos aparecen al entrar en la vista"
       },
       "ask": {
         "ja": "各セクションの見出しとカードを、スクロールでフェードインさせて。下から30px、0.6秒で。",
-        "en": "Fade in each section's heading and cards on scroll: up from 30 px below, over 0.6 s."
+        "en": "Fade in each section's heading and cards on scroll: up from 30 px below, over 0.6 s.",
+        "es": "Haz que el título y las tarjetas de cada sección aparezcan al hacer scroll: subiendo desde 30 px abajo, en 0,6 s."
       },
       "summary": {
         "ja": "スクロールで画面に入った見出し・カード・本文が、それぞれ下から浮かび上がりながら現れる。",
@@ -129,15 +139,18 @@
       "category": "scroll",
       "name": {
         "ja": "追従ヘッダー",
-        "en": "Sticky header"
+        "en": "Sticky header",
+        "es": "Encabezado fijo (sticky header)"
       },
       "meaning": {
         "ja": "スクロールしてもヘッダーが上に残る",
-        "en": "The header stays at the top while the page scrolls"
+        "en": "The header stays at the top while the page scrolls",
+        "es": "El encabezado se queda arriba mientras la página se desplaza"
       },
       "ask": {
         "ja": "ヘッダーを追従ヘッダーにして。上に張り付いたら下に薄い影を付けて。",
-        "en": "Make the header a sticky header, with a soft shadow once it sticks to the top."
+        "en": "Make the header a sticky header, with a soft shadow once it sticks to the top.",
+        "es": "Haz el encabezado sticky, con una sombra suave cuando se pega arriba."
       },
       "summary": {
         "ja": "上のお知らせの帯はスクロールで消えるが、その下のヘッダーは画面の上端に来たところで止まり、本文がその下を通っていく。",
@@ -179,15 +192,18 @@
       "category": "scroll",
       "name": {
         "ja": "ピン留め",
-        "en": "Pinning"
+        "en": "Pinning",
+        "es": "Pinning (anclaje)"
       },
       "meaning": {
         "ja": "セクションを止めて中身だけ進める",
-        "en": "A section stays fixed while scrolling advances its content"
+        "en": "A section stays fixed while scrolling advances its content",
+        "es": "Una sección queda fija mientras el scroll avanza su contenido"
       },
       "ask": {
         "ja": "「3ステップ」のセクションをピン留めして、スクロールで1ステップずつ写真と番号を切り替えて。",
-        "en": "Pin the three-step section and switch the photo and number one step at a time as the user scrolls."
+        "en": "Pin the three-step section and switch the photo and number one step at a time as the user scrolls.",
+        "es": "Ancla la sección de los tres pasos y cambia la foto y el número de un paso al siguiente a medida que se hace scroll."
       },
       "summary": {
         "ja": "濃紺のセクションが画面いっぱいに来たところで止まり、スクロールし続けると番号と写真がステップ1→2→3と切り替わり、終わると再び流れていく。",
@@ -229,15 +245,18 @@
       "category": "scroll",
       "name": {
         "ja": "横スクロール",
-        "en": "Horizontal scroll"
+        "en": "Horizontal scroll",
+        "es": "Scroll horizontal"
       },
       "meaning": {
         "ja": "縦のスクロールで中身が横に流れる",
-        "en": "Scrolling down moves the content sideways"
+        "en": "Scrolling down moves the content sideways",
+        "es": "Al bajar, el contenido se mueve de lado"
       },
       "ask": {
         "ja": "実績のセクションを横スクロールにして。縦にスクロールした分だけ、カードを左へ流して。",
-        "en": "Turn the work section into a horizontal scroll: move the cards left as far as the user scrolls down."
+        "en": "Turn the work section into a horizontal scroll: move the cards left as far as the user scrolls down.",
+        "es": "Convierte la sección de trabajos en un scroll horizontal: que las tarjetas avancen a la izquierda tanto como se baje."
       },
       "summary": {
         "ja": "縦にスクロールすると、セクションが止まったまま、番号付きの作品カード4枚が左へ流れていく。",
@@ -279,15 +298,18 @@
       "category": "scroll",
       "name": {
         "ja": "スクロールスナップ",
-        "en": "Scroll snap"
+        "en": "Scroll snap",
+        "es": "Scroll snap"
       },
       "meaning": {
         "ja": "スクロールが区切りの位置にピタッと止まる",
-        "en": "Scrolling settles exactly on the next section"
+        "en": "Scrolling settles exactly on the next section",
+        "es": "El scroll se detiene justo en la sección siguiente"
       },
       "ask": {
         "ja": "セクションごとにスクロールスナップさせて。少し回しただけで次のセクションの頭に合わせて。",
-        "en": "Add scroll snap per section, so a small scroll lands on the top of the next section."
+        "en": "Add scroll snap per section, so a small scroll lands on the top of the next section.",
+        "es": "Agrega scroll snap por sección, para que un scroll corto caiga en el inicio de la siguiente."
       },
       "summary": {
         "ja": "少しだけスクロールすると、残りは自動で送られて、次のセクションの頭がちょうど画面の上にそろう。",
@@ -327,15 +349,18 @@
       "category": "scroll",
       "name": {
         "ja": "スクロールプログレスバー",
-        "en": "Scroll progress bar"
+        "en": "Scroll progress bar",
+        "es": "Barra de progreso de lectura"
       },
       "meaning": {
         "ja": "読み進めた割合を上の線で見せる",
-        "en": "A bar at the top shows how far you have read"
+        "en": "A bar at the top shows how far you have read",
+        "es": "Una barra arriba muestra cuánto has leído"
       },
       "ask": {
         "ja": "記事ページの上にスクロールプログレスバーを付けて。太さ4px、色はブランドの朱色で。",
-        "en": "Add a scroll progress bar at the top of the article page, 4 px thick, in the brand orange."
+        "en": "Add a scroll progress bar at the top of the article page, 4 px thick, in the brand orange.",
+        "es": "Agrega una barra de progreso de lectura arriba de la página del artículo, de 4 px de alto, en el naranja de la marca."
       },
       "summary": {
         "ja": "記事を少しずつ読み進めるごとに、画面の上端の線が左から伸び、最後まで来ると端まで届く。",
@@ -374,15 +399,18 @@
       "category": "scroll",
       "name": {
         "ja": "マーカーアニメーション",
-        "en": "Highlighter animation"
+        "en": "Highlighter animation",
+        "es": "Efecto resaltador"
       },
       "meaning": {
         "ja": "大事な言葉に蛍光ペンの線が引かれる",
-        "en": "A highlighter stroke is drawn under key words"
+        "en": "A highlighter stroke is drawn under key words",
+        "es": "Se dibuja un trazo de resaltador debajo de las palabras clave"
       },
       "ask": {
         "ja": "強調したい言葉に、スクロールで画面に入ったらマーカーアニメーションで黄色の線を引いて。0.8秒で左から。",
-        "en": "When the key phrase scrolls into view, draw a yellow highlighter animation under it, left to right in 0.8 s."
+        "en": "When the key phrase scrolls into view, draw a yellow highlighter animation under it, left to right in 0.8 s.",
+        "es": "Cuando la frase clave entre en la vista, dibuja debajo un resaltador amarillo de izquierda a derecha en 0,8 s."
       },
       "summary": {
         "ja": "スクロールで文章が画面に入ると、大事な言葉の下半分に黄色い蛍光ペンの線が左から引かれる。",
@@ -424,15 +452,18 @@
       "category": "hover-click",
       "name": {
         "ja": "ホバーで浮き上がる",
-        "en": "Hover lift"
+        "en": "Hover lift",
+        "es": "Hover lift (elevación al pasar el cursor)"
       },
       "meaning": {
         "ja": "カーソルを乗せると影を付けて浮く",
-        "en": "On hover, the element rises with a deeper shadow"
+        "en": "On hover, the element rises with a deeper shadow",
+        "es": "Al pasar el cursor el elemento sube con una sombra más marcada"
       },
       "ask": {
         "ja": "カードにカーソルを乗せたら、ホバーで浮き上がるようにして。上に8px、影を濃く、0.3秒で。",
-        "en": "Give the cards a hover lift: up 8 px with a deeper shadow, over 0.3 s."
+        "en": "Give the cards a hover lift: up 8 px with a deeper shadow, over 0.3 s.",
+        "es": "Ponle hover lift a las tarjetas: que suban 8 px con una sombra más profunda, en 0,3 s."
       },
       "summary": {
         "ja": "カーソルが乗ったカードだけが少し上に持ち上がり、下の影が広がる。カーソルが離れると元に戻る。",
@@ -472,15 +503,18 @@
       "category": "hover-click",
       "name": {
         "ja": "ホバーで画像ズーム",
-        "en": "Image zoom on hover"
+        "en": "Image zoom on hover",
+        "es": "Zoom de imagen al pasar el cursor"
       },
       "meaning": {
         "ja": "枠はそのままで写真だけ拡大する",
-        "en": "The photo enlarges inside a fixed frame"
+        "en": "The photo enlarges inside a fixed frame",
+        "es": "La foto crece dentro de un marco fijo"
       },
       "ask": {
         "ja": "実績の写真にホバーで画像ズームを付けて。枠は固定で、中身を1.1倍まで0.5秒で。",
-        "en": "Add an image zoom on hover to the work photos: fixed frame, content to 1.1× over 0.5 s."
+        "en": "Add an image zoom on hover to the work photos: fixed frame, content to 1.1× over 0.5 s.",
+        "es": "Agrega zoom al pasar el cursor a las fotos de trabajos: marco fijo y la imagen a 1,1× en 0,5 s."
       },
       "summary": {
         "ja": "カーソルが乗った写真だけが、枠の大きさは変えずに中身がゆっくり拡大し、離れると戻る。",
@@ -518,15 +552,18 @@
       "category": "hover-click",
       "name": {
         "ja": "マウスストーカー",
-        "en": "Cursor follower"
+        "en": "Cursor follower",
+        "es": "Seguidor del cursor"
       },
       "meaning": {
         "ja": "カーソルを丸が遅れて追いかける",
-        "en": "A shape trails the mouse pointer with a delay"
+        "en": "A shape trails the mouse pointer with a delay",
+        "es": "Una forma sigue al puntero con retraso"
       },
       "ask": {
         "ja": "サイト全体にマウスストーカーを付けて。直径30pxの朱色の丸が、少し遅れてカーソルを追うように。",
-        "en": "Add a cursor follower across the site: a 30 px orange circle that trails the pointer slightly."
+        "en": "Add a cursor follower across the site: a 30 px orange circle that trails the pointer slightly.",
+        "es": "Agrega un seguidor del cursor en todo el sitio: un círculo naranja de 30 px que sigue al puntero con un poco de retraso."
       },
       "summary": {
         "ja": "カーソルがページの上を動き回ると、朱色の丸が少し遅れてそのあとを追いかける。",
@@ -566,15 +603,18 @@
       "category": "hover-click",
       "name": {
         "ja": "マグネティックボタン",
-        "en": "Magnetic button"
+        "en": "Magnetic button",
+        "es": "Botón magnético"
       },
       "meaning": {
         "ja": "近づいたカーソルにボタンが吸い寄せられる",
-        "en": "The button is pulled toward a nearby cursor"
+        "en": "The button is pulled toward a nearby cursor",
+        "es": "El botón se acerca al cursor cuando está cerca"
       },
       "ask": {
         "ja": "問い合わせボタンをマグネティックボタンにして。カーソルとの差の0.3倍だけ寄って、離れたらぷるんと戻して。",
-        "en": "Make the contact button a magnetic button: move 0.3× toward the cursor, and spring back when it leaves."
+        "en": "Make the contact button a magnetic button: move 0.3× toward the cursor, and spring back when it leaves.",
+        "es": "Haz el botón de contacto magnético: que se mueva 0,3× hacia el cursor y vuelva con rebote cuando se va."
       },
       "summary": {
         "ja": "カーソルが近づくとボタンがカーソルの方へ引き寄せられてついていき、離れるとぷるんと揺れて元の位置に戻る。",
@@ -614,15 +654,18 @@
       "category": "hover-click",
       "name": {
         "ja": "リップルエフェクト",
-        "en": "Ripple effect"
+        "en": "Ripple effect",
+        "es": "Efecto ripple (onda)"
       },
       "meaning": {
         "ja": "押した場所から波紋が広がる",
-        "en": "A ripple spreads from the point that was pressed"
+        "en": "A ripple spreads from the point that was pressed",
+        "es": "Una onda se expande desde el punto que se tocó"
       },
       "ask": {
         "ja": "送信ボタンにリップルエフェクトを付けて。押した位置から白い円が0.6秒で広がって消えるように。",
-        "en": "Add a ripple effect to the submit button: a white circle spreads from the click point and fades in 0.6 s."
+        "en": "Add a ripple effect to the submit button: a white circle spreads from the click point and fades in 0.6 s.",
+        "es": "Agrega un efecto ripple al botón de enviar: un círculo blanco que crece desde el punto del clic y se desvanece en 0,6 s."
       },
       "summary": {
         "ja": "ボタンを押すたびに、押した場所を中心に白い円が広がってボタンの中を満たし、薄れて消える。",
@@ -662,15 +705,18 @@
       "category": "hover-click",
       "name": {
         "ja": "下線アニメーション",
-        "en": "Underline animation"
+        "en": "Underline animation",
+        "es": "Subrayado animado"
       },
       "meaning": {
         "ja": "乗せたリンクの下線が左から伸びる",
-        "en": "A link's underline grows from the left on hover"
+        "en": "A link's underline grows from the left on hover",
+        "es": "El subrayado de un enlace crece desde la izquierda al pasar el cursor"
       },
       "ask": {
         "ja": "メニューのリンクに下線アニメーションを付けて。乗せたら左から0.3秒で伸び、離れたら右へ抜けるように。",
-        "en": "Add an underline animation to the menu links: grow from the left in 0.3 s on hover, and exit to the right on leave."
+        "en": "Add an underline animation to the menu links: grow from the left in 0.3 s on hover, and exit to the right on leave.",
+        "es": "Agrega subrayado animado a los enlaces del menú: crece desde la izquierda en 0,3 s al pasar el cursor y sale por la derecha al quitarlo."
       },
       "summary": {
         "ja": "カーソルが乗ったリンクの下に、朱色の線が左から伸び、離れると線は右へ縮んで抜けていく。",
@@ -710,15 +756,18 @@
       "category": "hover-click",
       "name": {
         "ja": "ビフォーアフタースライダー",
-        "en": "Before/after slider"
+        "en": "Before/after slider",
+        "es": "Slider antes/después"
       },
       "meaning": {
         "ja": "境目をドラッグして前と後を見比べる",
-        "en": "Drag a divider to compare before and after"
+        "en": "Drag a divider to compare before and after",
+        "es": "Se arrastra un divisor para comparar antes y después"
       },
       "ask": {
         "ja": "施工例の写真をビフォーアフタースライダーにして。真ん中の線をドラッグすると、左が施工前、右が施工後で見比べられるように。",
-        "en": "Show the project photos as a before/after slider: drag the middle line to compare before on the left and after on the right."
+        "en": "Show the project photos as a before/after slider: drag the middle line to compare before on the left and after on the right.",
+        "es": "Muestra las fotos del proyecto con un slider antes/después: arrastra la línea del medio para comparar el antes a la izquierda y el después a la derecha."
       },
       "summary": {
         "ja": "写真の真ん中の線をドラッグして左右に動かすと、左側は色のない「前」、右側は色のある「後」の範囲が入れ替わる。",
@@ -758,15 +807,18 @@
       "category": "hover-click",
       "name": {
         "ja": "離脱防止ポップアップ",
-        "en": "Exit-intent popup"
+        "en": "Exit-intent popup",
+        "es": "Popup de intención de salida"
       },
       "meaning": {
         "ja": "ページを離れそうな時に出す引き止めの小窓",
-        "en": "A popup shown when the visitor is about to leave"
+        "en": "A popup shown when the visitor is about to leave",
+        "es": "Una ventana que aparece cuando la persona está por irse"
       },
       "ask": {
         "ja": "LPに離脱防止ポップアップを付けて。カーソルが画面の上へ出たら、クーポンの小窓を1回だけ出して。",
-        "en": "Add an exit-intent popup to the landing page: when the cursor leaves through the top, show a coupon popup once."
+        "en": "Add an exit-intent popup to the landing page: when the cursor leaves through the top, show a coupon popup once.",
+        "es": "Agrega un popup de intención de salida a la landing: cuando el cursor sale por arriba, muestra una vez un popup con un cupón."
       },
       "summary": {
         "ja": "カーソルがページの上の方（タブや閉じるボタンのある所）へ出ていくと、背景が暗くなって「ちょっと待って！」の小窓が開く。×で閉じる。",
@@ -808,15 +860,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "ローディング画面",
-        "en": "Preloader"
+        "en": "Preloader",
+        "es": "Preloader (pantalla de carga)"
       },
       "meaning": {
         "ja": "読み込み中に出す画面",
-        "en": "A screen shown while the page loads"
+        "en": "A screen shown while the page loads",
+        "es": "Una pantalla que se ve mientras carga la página"
       },
       "ask": {
         "ja": "サイトを開いたときのローディング画面を作って。ロゴと％の数字を出して、100%になったら幕が上がるように。",
-        "en": "Make a preloader for the site: logo and a percentage, and the screen lifts away at 100%."
+        "en": "Make a preloader for the site: logo and a percentage, and the screen lifts away at 100%.",
+        "es": "Haz un preloader para el sitio: logo y un porcentaje, y que la pantalla se levante al llegar a 100 %."
       },
       "summary": {
         "ja": "濃紺の画面でロゴの下の数字が0%から100%まで進み、終わると画面が上へ抜けて、下のページがふわっと現れる。",
@@ -858,15 +913,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "遅延読み込み",
-        "en": "Lazy loading"
+        "en": "Lazy loading",
+        "es": "Carga diferida (lazy loading)"
       },
       "meaning": {
         "ja": "画面に入った画像だけを読み込む",
-        "en": "Images load only when they come into view"
+        "en": "Images load only when they come into view",
+        "es": "Las imágenes cargan solo cuando entran en la vista"
       },
       "ask": {
         "ja": "ギャラリーの画像を遅延読み込みにして。読み込むまでは灰色の枠、届いたら0.3秒でフェードインして。",
-        "en": "Lazy load the gallery images: grey placeholders until loaded, then fade in over 0.3 s."
+        "en": "Lazy load the gallery images: grey placeholders until loaded, then fade in over 0.3 s.",
+        "es": "Carga diferida para las imágenes de la galería: espacios grises hasta que cargan y luego aparecen en 0,3 s."
       },
       "summary": {
         "ja": "スクロールで画面に入った灰色の枠に読み込み中の印が回り、画像が届くと順にフェードインする。上の段は最初から読み込み済み。",
@@ -908,15 +966,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "無限スクロール",
-        "en": "Infinite scroll"
+        "en": "Infinite scroll",
+        "es": "Scroll infinito"
       },
       "meaning": {
         "ja": "下まで来ると続きが自動で足される",
-        "en": "More items load automatically at the bottom"
+        "en": "More items load automatically at the bottom",
+        "es": "Más elementos cargan solos al llegar abajo"
       },
       "ask": {
         "ja": "お知らせの一覧を無限スクロールにして。下まで来たら読み込み表示を出して、10件ずつ足して。",
-        "en": "Make the news list an infinite scroll: show a spinner at the bottom and add ten items at a time."
+        "en": "Make the news list an infinite scroll: show a spinner at the bottom and add ten items at a time.",
+        "es": "Haz la lista de noticias con scroll infinito: un spinner abajo y diez elementos más cada vez."
       },
       "summary": {
         "ja": "一覧を下へスクロールして最後まで来ると、読み込み中の印が回り、新しい項目が3件足されて続きが読めるようになる。",
@@ -956,15 +1017,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "ページ遷移アニメーション",
-        "en": "Page transition"
+        "en": "Page transition",
+        "es": "Transición de página"
       },
       "meaning": {
         "ja": "ページを移るときの切り替えの演出",
-        "en": "An animation that bridges two pages"
+        "en": "An animation that bridges two pages",
+        "es": "Una animación que une dos páginas"
       },
       "ask": {
         "ja": "ページ遷移アニメーションを付けて。リンクを押したら朱色の幕が左から右へ横切って次のページに切り替わるように。",
-        "en": "Add a page transition: on link click, an orange panel sweeps across left to right and the next page appears."
+        "en": "Add a page transition: on link click, an orange panel sweeps across left to right and the next page appears.",
+        "es": "Agrega una transición de página: al tocar un enlace, un panel naranja barre de izquierda a derecha y aparece la página siguiente."
       },
       "summary": {
         "ja": "作品の一覧でカードを押すと朱色の幕が左から画面を覆い、URLが変わって幕が右へ抜けると詳しいページになっている。「一覧へ」で同じように戻る。",
@@ -1006,15 +1070,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "スムーススクロール",
-        "en": "Smooth scroll"
+        "en": "Smooth scroll",
+        "es": "Scroll suave"
       },
       "meaning": {
         "ja": "ページ内リンクでなめらかに移動する",
-        "en": "In-page links glide to their target instead of jumping"
+        "en": "In-page links glide to their target instead of jumping",
+        "es": "Los enlaces internos se deslizan hasta su destino en lugar de saltar"
       },
       "ask": {
         "ja": "メニューのページ内リンクをスムーススクロールにして。固定ヘッダーの高さ分ずらして止めて。",
-        "en": "Make the menu's in-page links smooth scroll, stopping below the fixed header."
+        "en": "Make the menu's in-page links smooth scroll, stopping below the fixed header.",
+        "es": "Haz que los enlaces internos del menú usen scroll suave y se detengan debajo del encabezado fijo."
       },
       "summary": {
         "ja": "メニューの「料金」を押すとページがなめらかに料金の欄まで動き、右下の上向きボタンを押すと同じように一番上へ戻る。",
@@ -1055,15 +1122,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "マーキー",
-        "en": "Marquee"
+        "en": "Marquee",
+        "es": "Marquesina (marquee)"
       },
       "meaning": {
         "ja": "文字や画像が帯で流れ続ける",
-        "en": "Text or logos scroll across in an endless band"
+        "en": "Text or logos scroll across in an endless band",
+        "es": "Texto o logos que pasan en una franja sin fin"
       },
       "ask": {
         "ja": "サービス名をマーキーで右から左へ流して。途切れずにループさせて、速さは1秒に80pxくらい。",
-        "en": "Run the service names in a marquee from right to left, looping without a gap, at about 80 px per second."
+        "en": "Run the service names in a marquee from right to left, looping without a gap, at about 80 px per second.",
+        "es": "Pasa los nombres de los servicios en una marquesina de derecha a izquierda, en bucle sin cortes, a unos 80 px por segundo."
       },
       "summary": {
         "ja": "濃紺の帯の中で、大きな英字のサービス名と朱色の点が、途切れずに左へ流れ続ける。",
@@ -1103,15 +1173,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "グラデーションアニメーション",
-        "en": "Animated gradient"
+        "en": "Animated gradient",
+        "es": "Degradado animado"
       },
       "meaning": {
         "ja": "背景の色の混ざり方が動き続ける",
-        "en": "Background colours keep drifting and blending"
+        "en": "Background colours keep drifting and blending",
+        "es": "Los colores del fondo se mueven y se mezclan sin parar"
       },
       "ask": {
         "ja": "ファーストビューの背景をグラデーションアニメーションにして。朱色と青がゆっくり混ざり合うように、10秒で1周。",
-        "en": "Give the hero an animated gradient background: orange and blue slowly blending, one loop every 10 s."
+        "en": "Give the hero an animated gradient background: orange and blue slowly blending, one loop every 10 s.",
+        "es": "Ponle al hero un fondo con degradado animado: naranja y azul mezclándose despacio, una vuelta cada 10 s."
       },
       "summary": {
         "ja": "見出しの後ろで、朱色・薄い朱色・青・薄い青のぼんやりした色の塊がゆっくり回り、混ざり方が変わり続ける。",
@@ -1151,15 +1224,18 @@
       "category": "loading-loops",
       "name": {
         "ja": "ふわふわアニメーション",
-        "en": "Floating animation"
+        "en": "Floating animation",
+        "es": "Animación flotante"
       },
       "meaning": {
         "ja": "飾りがゆっくり上下に浮き沈みする",
-        "en": "Elements bob gently up and down"
+        "en": "Elements bob gently up and down",
+        "es": "Los elementos suben y bajan suavemente"
       },
       "ask": {
         "ja": "ファーストビューのスマホの画像に、ふわふわアニメーションを付けて。上下8px、2.4秒で1往復。",
-        "en": "Give the phone image in the hero a floating animation: 8 px up and down, one bob every 2.4 s."
+        "en": "Give the phone image in the hero a floating animation: 8 px up and down, one bob every 2.4 s.",
+        "es": "Dale una animación flotante a la imagen del teléfono en el hero: 8 px arriba y abajo, una vez cada 2,4 s."
       },
       "summary": {
         "ja": "見出しの横で、スマホの画像とハートの丸・評価の札が、それぞれ少しずつずれてゆっくり上下し、スマホの下の影も伸び縮みする。",

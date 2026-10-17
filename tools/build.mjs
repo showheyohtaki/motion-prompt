@@ -422,6 +422,10 @@ const DOC = {
     intro: '名前を見つけたら、そのままAIに伝えてください。「何秒で」「どのくらい強く」「何が動くか」を添えると、思った通りに近づきます。',
     no: '番号', name: '名前', en: '英語名', meaning: 'ひとこと', ask: 'AIへの頼み方の例',
     more: '番号を押すと、ギャラリーの動く見本が開きます。1つの名前の秒数・イージングの数値・参考コード:', all: 'パックの一覧', preview: '見本' },
+  es: { gen: 'Generado por tools/build.mjs desde meta.json. Para corregir, edita meta.json, no este archivo.', names: 'nombres', pack: 'pack', langs: 'Idiomas',
+    intro: 'Encuentra el nombre y díselo a tu IA. Si agregas cuánto dura, con qué intensidad y qué se mueve, el resultado se acerca más a lo que imaginabas.',
+    no: '#', name: 'Nombre', en: 'Inglés', meaning: 'Qué es', ask: 'Cómo pedírselo a una IA',
+    more: 'Cada número abre la muestra en movimiento en la galería. Tiempos, valores de easing y código de referencia de un nombre:', all: 'Todos los packs', preview: 'muestra' },
 };
 const LANG_NAME = { en: 'English', ja: '日本語', zh: '中文', 'zh-Hans': '简体中文', 'zh-Hant': '繁體中文', ko: '한국어', es: 'Español', fr: 'Français', de: 'Deutsch', pt: 'Português', it: 'Italiano', id: 'Bahasa Indonesia', vi: 'Tiếng Việt', th: 'ไทย', hi: 'हिन्दी', ar: 'العربية', ru: 'Русский', tr: 'Türkçe' };
 const readmeName = lang => (lang === BASE_LANG ? 'README.md' : `README.${lang}.md`);

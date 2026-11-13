@@ -1,0 +1,21 @@
+// Motion Prompt #209 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#209
+//
+// ドット絵（ピクセルアート） / Pixel art
+// パック: artstyle (画像生成で使う画風の名前) · element 17 · カテゴリ: デジタル・立体・素材
+// 何が起きるか: 同じ線画が、マス目のドットでできた平らなゲーム風の絵に変わる。立体感はなく、1つ1つのドットがはっきり見える。
+// 動きの仕様:
+//   - 見た目: 1つ1つのドット（マス目）がはっきり見える低解像度
+//   - 視点: 正面から見た平らな絵。立体感はつけない（立方体で組むならボクセルアート #210）
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: ゲーム風・レトロな雰囲気のアイコンやバナーに。
+// タグ: pixel art, dot art, 8-bit, retro game, sprite, low resolution
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#209
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 17
+// ドット絵（ピクセルアート）: マス目のドットで描くゲーム風
+CELLS[16] = (k, w, h, u) => gafu(k, w, h, u, '17');

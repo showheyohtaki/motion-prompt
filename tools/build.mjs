@@ -121,7 +121,7 @@ function cutPack(src, where) {
 
 // ---------------------------------------------------------------- pack.js: read width/height/cycle/fonts
 // pack.js is browser code. Run its factory against inert stand-ins for the DOM, only to read the
-// returned { width, height, cycle, cells, fonts }. Nothing is drawn here (tools/check.mjs does that).
+// returned { width, height, cycle, cells, fonts, images?, ready? }. Nothing is drawn here (tools/check.mjs does that).
 function inert() {
   const target = function () {};
   const p = new Proxy(target, {
@@ -283,7 +283,14 @@ for (const dir of dirs) {
     }
     const fonts = Array.isArray(r.fonts) ? r.fonts.map(f => ({ family: String(f.family), url: String(f.url) })) : [];
     for (const f of fonts) if (!fs.existsSync(path.join(packsDir, dir, f.url))) err(`${where}/pack.js`, `font file "${f.url}" is declared but not in the pack folder`);
-    info = { width: r.width, height: r.height, cycle: r.cycle, fonts };
+    // A pack may ship its own images (packs/<pack>/img/). It declares them in `images` and returns `ready`, a promise that settles when they have loaded.
+    const images = Array.isArray(r.images) ? r.images.map(String) : [];
+    for (const f of images) {
+      if (!/^img\/[a-z0-9-]+\.(webp|png|jpg)$/.test(f)) err(`${where}/pack.js`, `image "${f}" must be a file in img/ (lowercase name, .webp, .png or .jpg)`);
+      else if (!fs.existsSync(path.join(packsDir, dir, f))) err(`${where}/pack.js`, `image file "${f}" is declared but not in the pack folder`);
+    }
+    if (images.length && !(r.ready && typeof r.ready.then === 'function')) err(`${where}/pack.js`, 'declares images but returns no ready promise');
+    info = { width: r.width, height: r.height, cycle: r.cycle, fonts, images };
   }
   if (errors.length === before && info) packs.push({ dir, meta, raw, cut, info, src, langs });
 }
@@ -332,7 +339,7 @@ for (const p of packs) {
   catalog.packs.push({
     pack: meta.pack, order: meta.order, title: meta.title, langs: p.langs, categories: meta.categories,
     count: meta.elements.length, first: pad3(first), last: pad3(n),
-    width: info.width, height: info.height, cycle: info.cycle, fonts: info.fonts,
+    width: info.width, height: info.height, cycle: info.cycle, fonts: info.fonts, ...(info.images.length ? { images: info.images } : {}),
     scalable: !PIXEL_BOUND.test(p.src),
   });
 }
@@ -383,6 +390,7 @@ function kitJs(p) {
     `Kit for pack "${p.pack}" (${p.title.en} / ${p.title.ja}): the constants and helpers its elements share.`,
     `Elements ${range} · ${W}x${H} px · cycle ${C} s. Element code: ${SITE}api/v1/en/e/<id>.txt (or /ja/).`,
     ...(p.fonts.length ? [`Fonts used: ${p.fonts.map(f => `${f.family} (${SITE}packs/${p.pack}/${f.url})`).join(', ')}. Load them before drawing.`] : []),
+    ...(p.images ? [`Images used: ${p.images.length} files under ${SITE}packs/${p.pack}/img/. The kit loads them itself (from the folder of pack.js, or from that URL when pasted on its own); \`ready\` resolves when they have arrived, and until then every cell draws a plain background.`] : []),
     '',
     'Run one element standalone in a browser:',
     '  1. paste this file into a <script>,',

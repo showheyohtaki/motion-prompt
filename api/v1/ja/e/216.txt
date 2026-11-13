@@ -1,0 +1,21 @@
+// Motion Prompt #216 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#216
+//
+// ブループリント（設計図風） / Blueprint
+// パック: artstyle (画像生成で使う画風の名前) · element 24 · カテゴリ: デジタル・立体・素材
+// 何が起きるか: 同じ線画が、青い地に白い細線で引いた設計図に変わる。寸法線や補助線が少し入る。
+// 動きの仕様:
+//   - 見た目: 青い地に白い細線の図面
+//   - 線: 寸法線や補助線を少し入れる（見本では数字や文字は入れていない）
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: 製品の仕組みや「計画中」の雰囲気を見せたいとき。
+// タグ: blueprint, technical drawing, schematic, plan, engineering, white lines
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#216
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 24
+// ブループリント（設計図風）: 青地に白い線の図面
+CELLS[23] = (k, w, h, u) => gafu(k, w, h, u, '24');

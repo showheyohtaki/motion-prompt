@@ -1,0 +1,22 @@
+// Motion Prompt #212 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#212
+//
+// ペーパークラフト / Papercraft
+// パック: artstyle (画像生成で使う画風の名前) · element 20 · カテゴリ: デジタル・立体・素材
+// 何が起きるか: 同じ線画が、色画用紙を折って組み立てた立体模型の写真に変わる。家は箱型、木と太陽は多面体で、折り目・のりしろ・紙の切り口が見える。
+// 動きの仕様:
+//   - 作り: 展開図から切り出して折り、のりで貼って組み立てた色画用紙の立体模型
+//   - 見た目: くっきりした折り目の稜線、はみ出したのりしろ、紙の切り口の白い断面。机の上で斜め前から撮った写真風
+//   - 注意: 白一色のレリーフや、重ね切り絵（#206）の平らな層にはしない
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: 手作り感のある立体の商品イメージや、工作・教材の見せ方に。
+// タグ: papercraft, paper model, folded paper, origami, craft, 3d
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#212
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 20
+// ペーパークラフト: 紙を折って組み立てた立体
+CELLS[19] = (k, w, h, u) => gafu(k, w, h, u, '20');

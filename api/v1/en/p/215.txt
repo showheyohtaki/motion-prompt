@@ -1,0 +1,15 @@
+Please use "Synthwave" (シンセウェイヴ), one of the names in "Art styles for image generation".
+Motion Prompt #215
+
+What it is: 1980s-style neon grid and striped sunset
+What the sample shows: The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines.
+Spec:
+- Color: purple, cyan and pink neon
+- Look: a neon grid for the ground, a big sunset with horizontal stripes, neon outlines
+- Feel: 1980s retro-futurism
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped taller so the grid on the ground shows)
+When to use it: For retro-futuristic music, game or event visuals.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/215.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,8 +1,8 @@
 {
- "version": "1.6950972783",
+ "version": "1.fe0481779b",
  "site": "https://showheyohtaki.github.io/motion-prompt/",
  "repo": "https://github.com/showheyohtaki/motion-prompt",
- "count": 192,
+ "count": 216,
  "packs": [
   {
    "pack": "motion",
@@ -419,6 +419,87 @@
    "cycle": 9.4,
    "fonts": [],
    "scalable": false
+  },
+  {
+   "pack": "artstyle",
+   "order": 9,
+   "title": {
+    "ja": "画像生成で使う画風の名前",
+    "en": "Art styles for image generation",
+    "es": "Estilos artísticos para generar imágenes",
+    "zh-Hans": "图像生成常用的画风名称",
+    "zh-Hant": "圖像生成常用的畫風名稱"
+   },
+   "langs": [
+    "en",
+    "es",
+    "ja",
+    "zh-Hans",
+    "zh-Hant"
+   ],
+   "categories": [
+    {
+     "slug": "painting-printmaking",
+     "ja": "絵画・版画",
+     "en": "Painting & printmaking",
+     "es": "Pintura y grabado",
+     "zh-Hans": "绘画与版画",
+     "zh-Hant": "繪畫與版畫"
+    },
+    {
+     "slug": "graphic",
+     "ja": "グラフィック",
+     "en": "Graphic styles",
+     "es": "Estilos gráficos",
+     "zh-Hans": "平面设计风格",
+     "zh-Hant": "平面設計風格"
+    },
+    {
+     "slug": "digital-3d-materials",
+     "ja": "デジタル・立体・素材",
+     "en": "Digital, 3D & materials",
+     "es": "Digital, 3D y materiales",
+     "zh-Hans": "数字、立体与材质",
+     "zh-Hant": "數位、立體與材質"
+    }
+   ],
+   "count": 24,
+   "first": "193",
+   "last": "216",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "fonts": [],
+   "images": [
+    "img/base.webp",
+    "img/base-08.webp",
+    "img/base-23.webp",
+    "img/style-01.webp",
+    "img/style-02.webp",
+    "img/style-03.webp",
+    "img/style-04.webp",
+    "img/style-05.webp",
+    "img/style-06.webp",
+    "img/style-07.webp",
+    "img/style-08.webp",
+    "img/style-09.webp",
+    "img/style-10.webp",
+    "img/style-11.webp",
+    "img/style-12.webp",
+    "img/style-13.webp",
+    "img/style-14.webp",
+    "img/style-15.webp",
+    "img/style-16.webp",
+    "img/style-17.webp",
+    "img/style-18.webp",
+    "img/style-19.webp",
+    "img/style-20.webp",
+    "img/style-21.webp",
+    "img/style-22.webp",
+    "img/style-23.webp",
+    "img/style-24.webp"
+   ],
+   "scalable": true
   }
  ],
  "elements": [
@@ -12616,6 +12697,1440 @@
     "time passing",
     "quick cuts",
     "edit"
+   ]
+  },
+  {
+   "id": "193",
+   "pack": "artstyle",
+   "no": "01",
+   "slug": "watercolor",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "水彩画",
+    "en": "Watercolor",
+    "es": "Acuarela",
+    "zh-Hans": "水彩画",
+    "zh-Hant": "水彩畫"
+   },
+   "meaning": {
+    "ja": "にじみと白い余白が残る淡い絵",
+    "en": "A pale painting with soft bleeds and white paper showing",
+    "es": "Pintura suave con manchas difuminadas y el blanco del papel a la vista",
+    "zh-Hans": "颜色晕染、留出纸白的淡雅画",
+    "zh-Hant": "顏色暈染、留下紙白的淡雅畫"
+   },
+   "ask": {
+    "ja": "猫が窓辺で眠るイラストを水彩画で。にじみと紙の白い余白を残して、淡い色だけで。",
+    "en": "A cat asleep on a windowsill as a watercolor, with soft bleeds, white paper left showing and only pale colors.",
+    "es": "Un gato dormido en el alféizar en acuarela, con manchas difuminadas, el blanco del papel a la vista y solo colores suaves.",
+    "zh-Hans": "用水彩画画一只在窗边睡觉的猫，保留晕染和纸的留白，只用淡色。",
+    "zh-Hant": "用水彩畫畫一隻在窗邊睡覺的貓，保留暈染和紙的留白，只用淡色。"
+   },
+   "summary": {
+    "ja": "線画の家・木・太陽が、淡い透明水彩の絵に変わる。色がにじんでたまり、紙の白が残る。",
+    "en": "The line drawing of a house, a tree and the sun becomes a pale transparent watercolor, with colors bleeding and pooling and the white paper left showing."
+   },
+   "spec": {
+    "ja": [
+     "画材: 紙に透明水彩",
+     "見た目: 色のにじみ・色のたまり・塗り残した紙の白い余白。全体に淡い色",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: transparent watercolor on paper",
+     "Look: colors that bleed and pool, white paper left unpainted, pale colors overall",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "絵本・挿絵・季節のカードなど、やわらかく手描きの温かさを出したいとき。",
+    "en": "For picture books, illustrations or seasonal cards that should feel soft and hand-painted."
+   },
+   "tags": [
+    "watercolor",
+    "painting",
+    "soft",
+    "bleed",
+    "hand-painted",
+    "paper"
+   ]
+  },
+  {
+   "id": "194",
+   "pack": "artstyle",
+   "no": "02",
+   "slug": "impasto-oil-painting",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "油絵（厚塗り）",
+    "en": "Impasto oil painting",
+    "es": "Óleo con empaste",
+    "zh-Hans": "厚涂油画",
+    "zh-Hant": "厚塗油畫"
+   },
+   "meaning": {
+    "ja": "絵の具を盛った筆跡が残る",
+    "en": "Thick paint with visible brush and knife marks",
+    "es": "Pintura espesa con pinceladas y marcas de espátula visibles",
+    "zh-Hans": "颜料堆厚，笔触清晰可见",
+    "zh-Hant": "顏料堆厚，筆觸清楚可見"
+   },
+   "ask": {
+    "ja": "ひまわりの花瓶を油絵の厚塗りで。絵の具を盛った筆跡とナイフの跡が見えるように。",
+    "en": "A vase of sunflowers as an impasto oil painting, with thick paint and visible brush and palette-knife marks.",
+    "es": "Un jarrón con girasoles en óleo con empaste, con pintura espesa y marcas visibles de pincel y espátula.",
+    "zh-Hans": "用厚涂油画画一瓶向日葵，让堆起的笔触和刮刀痕迹清晰可见。",
+    "zh-Hant": "用厚塗油畫畫一瓶向日葵，讓堆起的筆觸和刮刀痕跡清楚可見。"
+   },
+   "summary": {
+    "ja": "同じ線画が、絵の具を厚く盛った色の濃い油絵に変わる。筆跡とナイフの跡が凹凸になって見える。",
+    "en": "The same line drawing becomes a richly colored oil painting with thick paint; brush strokes and knife marks stand out as ridges."
+   },
+   "spec": {
+    "ja": [
+     "画材: 油絵の具を厚く盛る（インパスト）",
+     "見た目: 筆跡とペインティングナイフの跡が凹凸として残る。色は濃い",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: oil paint laid on thickly (impasto)",
+     "Look: brush strokes and palette-knife marks stay as raised ridges; strong, dense colors",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "重厚さや手仕事の力強さを出したいポスター・アート作品に。",
+    "en": "For posters and art pieces that should feel rich, heavy and hand-made."
+   },
+   "tags": [
+    "impasto",
+    "oil painting",
+    "thick paint",
+    "brush strokes",
+    "palette knife",
+    "painting"
+   ]
+  },
+  {
+   "id": "195",
+   "pack": "artstyle",
+   "no": "03",
+   "slug": "ink-wash-painting",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "水墨画",
+    "en": "Ink wash painting (sumi-e)",
+    "es": "Pintura a la tinta (sumi-e)",
+    "zh-Hans": "水墨画",
+    "zh-Hant": "水墨畫"
+   },
+   "meaning": {
+    "ja": "墨の濃淡とぼかしだけで描く",
+    "en": "Painted only with shades and washes of black ink",
+    "es": "Pintada solo con tonos y aguadas de tinta negra",
+    "zh-Hans": "只用墨色浓淡与晕染来画",
+    "zh-Hant": "只用墨色濃淡與暈染來畫"
+   },
+   "ask": {
+    "ja": "霧の山と小舟を水墨画で。墨1色の濃淡とにじみだけで、色は使わないで。",
+    "en": "Misty mountains and a small boat as an ink wash painting: one black ink in light and dark washes, no color.",
+    "es": "Montañas con niebla y una barca en pintura a la tinta: solo tinta negra en aguadas claras y oscuras, sin color.",
+    "zh-Hans": "用水墨画画雾中的山和小船，只用一种墨的浓淡和晕染，不用颜色。",
+    "zh-Hant": "用水墨畫畫霧中的山和小船，只用一種墨的濃淡和暈染，不用顏色。"
+   },
+   "summary": {
+    "ja": "同じ線画が、和紙に墨1色で描いた絵に変わる。濃い墨と薄い墨のにじみ・ぼかしだけで形を作る。",
+    "en": "The same line drawing becomes a picture in one black ink on washi paper, shaped only by dark and pale ink, bleeds and soft washes."
+   },
+   "spec": {
+    "ja": [
+     "画材: 和紙に墨1色",
+     "見た目: 墨の濃淡・にじみ・ぼかしだけで描く。色は使わない",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: one black ink on washi paper",
+     "Look: drawn only with dark and pale ink, bleeds and soft washes; no color",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "和の静けさや余白のある画面を作りたいとき。",
+    "en": "For a quiet, Japanese feel with plenty of empty space."
+   },
+   "tags": [
+    "ink wash",
+    "sumi-e",
+    "monochrome",
+    "japanese",
+    "brush",
+    "black ink"
+   ]
+  },
+  {
+   "id": "196",
+   "pack": "artstyle",
+   "no": "04",
+   "slug": "ukiyo-e",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "浮世絵",
+    "en": "Ukiyo-e woodblock print",
+    "es": "Ukiyo-e (grabado en madera)",
+    "zh-Hans": "浮世绘木版画",
+    "zh-Hant": "浮世繪木版畫"
+   },
+   "meaning": {
+    "ja": "輪郭線と平らな色の木版画",
+    "en": "A woodblock print with outlines and flat colors",
+    "es": "Grabado en madera con contornos y colores planos",
+    "zh-Hans": "轮廓线加平涂色块的木版画",
+    "zh-Hant": "輪廓線加平塗色塊的木版畫"
+   },
+   "ask": {
+    "ja": "港町の夕暮れを浮世絵の木版画で。細い墨の輪郭線と平らな色、空は上から薄くなるぼかしで。",
+    "en": "A harbor town at dusk as an ukiyo-e woodblock print: thin black outlines, flat colors, and a sky that fades from the top down.",
+    "es": "Un pueblo portuario al atardecer como grabado ukiyo-e: contornos negros finos, colores planos y un cielo que se aclara de arriba abajo.",
+    "zh-Hans": "用浮世绘木版画画傍晚的港口小镇：细墨轮廓线、平涂色块，天空从上往下渐淡。",
+    "zh-Hant": "用浮世繪木版畫畫黃昏的港口小鎮：細墨輪廓線、平塗色塊，天空由上往下漸淡。"
+   },
+   "summary": {
+    "ja": "同じ線画が、江戸の多色刷り木版画に変わる。家は瓦屋根の日本家屋、木は松になり、太陽は赤い丸、空は上から薄くなるぼかし摺り。",
+    "en": "The same line drawing becomes an Edo-period color woodblock print: the house turns into a tiled-roof Japanese house, the tree into a pine, the sun into a red circle, and the sky fades from deep indigo at the top."
+   },
+   "spec": {
+    "ja": [
+     "画材: 江戸時代の多色刷り木版画",
+     "見た目: 細く均一な墨の輪郭線、平らな色の面、版のわずかなずれ、和紙の繊維と摺りむら",
+     "空: 上の濃い藍から下へ薄くなるぼかし摺り、横切る霞の帯。太陽は赤い丸（見本では富士山・波・人物・文字は入れていない）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: Edo-period multi-color woodblock print",
+     "Look: thin, even black outlines, flat areas of color, slight misregistration between blocks, washi fibers and uneven printing",
+     "Sky: graded from deep indigo at the top to pale below, with a band of mist across it; the sun as a red circle (the sample leaves out Mount Fuji, waves, people and text)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "和の題材を、平らな色と線で印象的に見せたいとき。",
+    "en": "For Japanese subjects shown boldly with flat color and line."
+   },
+   "tags": [
+    "ukiyo-e",
+    "woodblock",
+    "japanese print",
+    "flat color",
+    "edo",
+    "printmaking"
+   ]
+  },
+  {
+   "id": "197",
+   "pack": "artstyle",
+   "no": "05",
+   "slug": "pointillism",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "点描",
+    "en": "Pointillism",
+    "es": "Puntillismo",
+    "zh-Hans": "点彩画",
+    "zh-Hant": "點描畫"
+   },
+   "meaning": {
+    "ja": "小さな色の点を並べて描く",
+    "en": "Painted with small dots of color placed side by side",
+    "es": "Pintado con pequeños puntos de color uno junto a otro",
+    "zh-Hans": "用一个个小色点排列成画",
+    "zh-Hant": "用一顆顆小色點排列成畫"
+   },
+   "ask": {
+    "ja": "公園のベンチと木を点描で。点ははっきり見える大きさで、線は使わないで。",
+    "en": "A park bench and trees in pointillism, with clearly visible dots and no lines.",
+    "es": "Un banco y árboles de un parque en puntillismo, con puntos bien visibles y sin líneas.",
+    "zh-Hans": "用点彩画画公园的长椅和树，点要大到看得清，不用线条。",
+    "zh-Hant": "用點描畫畫公園的長椅和樹，點要大到看得清楚，不用線條。"
+   },
+   "summary": {
+    "ja": "同じ線画が、色の点だけを並べた絵に変わる。空・家・木・地面のすべてが、はっきり見える大きめの点でできている。",
+    "en": "The same line drawing becomes a picture made only of dots of color; sky, house, tree and ground are all built from clearly visible, fairly large dots."
+   },
+   "spec": {
+    "ja": [
+     "描き方: 色の点だけを並べて描く。線や塗りの面は使わない",
+     "点の大きさ: 小さいカードでもつぶれない大きめの点（小さいと水彩に見える）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Technique: only dots of color placed side by side; no lines or filled areas",
+     "Dot size: large enough to stay visible on a small card (tiny dots read as watercolor)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "手作り感とリズムのある、明るい絵にしたいとき。",
+    "en": "For a bright picture with a hand-made, rhythmic texture."
+   },
+   "tags": [
+    "pointillism",
+    "dots",
+    "stipple",
+    "painting",
+    "texture",
+    "colorful"
+   ]
+  },
+  {
+   "id": "198",
+   "pack": "artstyle",
+   "no": "06",
+   "slug": "colored-pencil-drawing",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "色鉛筆画",
+    "en": "Colored pencil drawing",
+    "es": "Dibujo con lápices de colores",
+    "zh-Hans": "彩色铅笔画",
+    "zh-Hant": "色鉛筆畫"
+   },
+   "meaning": {
+    "ja": "紙の目に残る細い線の重なり",
+    "en": "Fine pencil strokes layered over textured paper",
+    "es": "Trazos finos superpuestos sobre papel con textura",
+    "zh-Hans": "细笔触层层叠加，可见纸纹",
+    "zh-Hant": "細筆觸層層疊加，看得見紙紋"
+   },
+   "ask": {
+    "ja": "朝食のパンとコーヒーを色鉛筆画で。紙の目が見えるように、細い線を重ねて塗って。",
+    "en": "Breakfast bread and coffee as a colored pencil drawing, built from layered fine strokes with the paper texture showing.",
+    "es": "Pan y café del desayuno como dibujo con lápices de colores, con trazos finos superpuestos y la textura del papel a la vista.",
+    "zh-Hans": "用彩色铅笔画画早餐的面包和咖啡，用细线层层叠涂，露出纸纹。",
+    "zh-Hant": "用色鉛筆畫畫早餐的麵包和咖啡，用細線層層疊塗，露出紙紋。"
+   },
+   "summary": {
+    "ja": "同じ線画が、色鉛筆で塗った手描きの絵に変わる。細い線の重なりと、白く残る紙の目が見える。",
+    "en": "The same line drawing becomes a hand-drawn colored pencil picture, with layered fine strokes and white paper grain showing through."
+   },
+   "spec": {
+    "ja": [
+     "画材: 紙に色鉛筆",
+     "見た目: 細い線を重ねて塗る。紙の凹凸（紙の目）が白く残る",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: colored pencils on paper",
+     "Look: color built up from layered fine strokes; the paper grain shows through in white",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "子ども向けや、親しみやすい手描きの挿絵に。",
+    "en": "For friendly, hand-drawn illustrations, including ones for children."
+   },
+   "tags": [
+    "colored pencil",
+    "pencil drawing",
+    "hand-drawn",
+    "paper texture",
+    "sketch",
+    "crayon"
+   ]
+  },
+  {
+   "id": "199",
+   "pack": "artstyle",
+   "no": "07",
+   "slug": "linocut",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "リノカット",
+    "en": "Linocut print",
+    "es": "Linograbado",
+    "zh-Hans": "麻胶版画",
+    "zh-Hant": "麻膠版畫"
+   },
+   "meaning": {
+    "ja": "彫った版の太い白黒の線",
+    "en": "Bold black-and-white lines cut into a block",
+    "es": "Líneas gruesas en blanco y negro talladas en una plancha",
+    "zh-Hans": "刻版印出的粗黑白线条",
+    "zh-Hant": "刻版印出的粗黑白線條"
+   },
+   "ask": {
+    "ja": "自転車に乗る人をリノカットで。白と黒だけ、灰色なしで、彫り跡のかすれを残して。",
+    "en": "A person riding a bicycle as a linocut print: black and white only, no gray, with rough marks from the carving.",
+    "es": "Una persona en bicicleta como linograbado: solo blanco y negro, sin grises, con las marcas ásperas del tallado.",
+    "zh-Hans": "用麻胶版画画骑自行车的人，只用黑白，不要灰色，保留粗糙的刻刀痕迹。",
+    "zh-Hant": "用麻膠版畫畫騎腳踏車的人，只用黑白，不要灰色，保留粗糙的刻刀痕跡。"
+   },
+   "summary": {
+    "ja": "同じ線画が、版を彫って刷った白黒の絵に変わる。太い線と面だけで、灰色やぼかしはない。",
+    "en": "The same line drawing becomes a black-and-white print from a carved block, made only of bold lines and shapes with no gray or blur."
+   },
+   "spec": {
+    "ja": [
+     "画材: リノリウムの版を彫って刷る",
+     "見た目: 太い線の白と黒だけ。彫り跡のかすれが残る",
+     "使わない: 灰色・ぼかし・グラデーション",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: a carved linoleum block, printed",
+     "Look: bold lines in pure black and white, with rough marks left by the carving",
+     "Avoid: gray, blur and gradients",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "ポスター・Tシャツ・ロゴなど、強い白黒の印象がほしいとき。",
+    "en": "For posters, T-shirts or logos that need a strong black-and-white look."
+   },
+   "tags": [
+    "linocut",
+    "block print",
+    "black and white",
+    "printmaking",
+    "carved",
+    "woodcut"
+   ]
+  },
+  {
+   "id": "200",
+   "pack": "artstyle",
+   "no": "08",
+   "slug": "stained-glass",
+   "category": "painting-printmaking",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ステンドグラス",
+    "en": "Stained glass",
+    "es": "Vitral",
+    "zh-Hans": "彩绘玻璃",
+    "zh-Hant": "彩繪玻璃"
+   },
+   "meaning": {
+    "ja": "黒い枠で区切った光る色ガラス",
+    "en": "Glowing colored glass divided by black lead lines",
+    "es": "Vidrio de color luminoso dividido por líneas negras de plomo",
+    "zh-Hans": "黑色铅条分隔的透光彩色玻璃",
+    "zh-Hant": "黑色鉛條分隔的透光彩色玻璃"
+   },
+   "ask": {
+    "ja": "羽を広げた鳥をステンドグラスで。太い黒い鉛の枠で区切り、光が透ける色ガラスに。",
+    "en": "A bird with spread wings as stained glass, divided by thick black lead lines, with light shining through the colored glass.",
+    "es": "Un pájaro con las alas abiertas como vitral, dividido por gruesas líneas negras de plomo y con luz que atraviesa el vidrio de color.",
+    "zh-Hans": "把一只展翅的鸟做成彩绘玻璃，用粗黑铅条分隔，光透过彩色玻璃。",
+    "zh-Hant": "把一隻展翅的鳥做成彩繪玻璃，用粗黑鉛條分隔，光穿透彩色玻璃。"
+   },
+   "summary": {
+    "ja": "同じ線画が、黒い鉛の枠で区切ったガラスの絵に変わる。空・丘・家・木がそれぞれ色ガラスの破片になり、光が透ける。",
+    "en": "The same line drawing becomes a glass picture divided by black lead lines; sky, hill, house and tree each turn into pieces of colored glass with light shining through."
+   },
+   "spec": {
+    "ja": [
+     "素材: 色ガラスを鉛の枠でつないだ窓",
+     "見た目: 太い黒い枠で区切った色面。光が透けて色が明るく光る",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）（この見本は丘の枠まで写すため、ほかより少し広く切り出している）"
+    ],
+    "en": [
+     "Material: pieces of colored glass joined by lead, as in a window",
+     "Look: areas of color divided by thick black lines, glowing as light passes through",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped slightly wider so the lead lines of the hill show)"
+    ]
+   },
+   "use": {
+    "ja": "荘厳さや、光を感じる華やかな装飾がほしいとき。",
+    "en": "For a solemn or festive decorative look that glows with light."
+   },
+   "tags": [
+    "stained glass",
+    "glass",
+    "lead lines",
+    "mosaic",
+    "window",
+    "glowing"
+   ]
+  },
+  {
+   "id": "201",
+   "pack": "artstyle",
+   "no": "09",
+   "slug": "pop-art",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ポップアート",
+    "en": "Pop art",
+    "es": "Arte pop",
+    "zh-Hans": "波普艺术",
+    "zh-Hant": "普普藝術"
+   },
+   "meaning": {
+    "ja": "原色の面と太い黒線、少しの網点",
+    "en": "Primary-color areas, bold black outlines and a few halftone dots",
+    "es": "Áreas de colores primarios, contornos negros gruesos y algo de trama de puntos",
+    "zh-Hans": "原色色块、粗黑轮廓加少量网点",
+    "zh-Hant": "原色色塊、粗黑輪廓加少量網點"
+   },
+   "ask": {
+    "ja": "ハンバーガーをポップアートで。原色の平らな面と太い黒い輪郭、背景に少しだけ網点を。",
+    "en": "A hamburger as pop art: flat primary colors, bold black outlines and a few halftone dots in the background.",
+    "es": "Una hamburguesa en arte pop: colores primarios planos, contornos negros gruesos y algo de trama de puntos en el fondo.",
+    "zh-Hans": "用波普艺术画一个汉堡：平涂原色、粗黑轮廓，背景加少量网点。",
+    "zh-Hant": "用普普藝術畫一個漢堡：平塗原色、粗黑輪廓，背景加少量網點。"
+   },
+   "summary": {
+    "ja": "同じ線画が、原色の平らな面と太い黒い輪郭の絵に変わる。ところどころに網点が入る。",
+    "en": "The same line drawing becomes flat primary colors with bold black outlines, with halftone dots here and there."
+   },
+   "spec": {
+    "ja": [
+     "見た目: 原色の平らな面と太い黒の輪郭。ところどころに少しだけ網点",
+     "雰囲気: 1960年代のシルクスクリーン風",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Look: flat areas of primary color with bold black outlines; a few halftone dots here and there",
+     "Feel: 1960s silkscreen prints",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "目を引く広告・SNS画像・グッズのデザインに。",
+    "en": "For eye-catching ads, social images or merchandise."
+   },
+   "tags": [
+    "pop art",
+    "halftone",
+    "comic",
+    "primary colors",
+    "bold outline",
+    "silkscreen"
+   ]
+  },
+  {
+   "id": "202",
+   "pack": "artstyle",
+   "no": "10",
+   "slug": "neon-sign",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ネオンサイン",
+    "en": "Neon sign",
+    "es": "Letrero de neón",
+    "zh-Hans": "霓虹灯招牌",
+    "zh-Hant": "霓虹燈招牌"
+   },
+   "meaning": {
+    "ja": "暗い壁に、光る管で形を描く",
+    "en": "Shapes drawn with glowing tubes on a dark wall",
+    "es": "Formas dibujadas con tubos luminosos sobre una pared oscura",
+    "zh-Hans": "在暗墙上用发光灯管勾出形状",
+    "zh-Hant": "在暗牆上用發光燈管勾出形狀"
+   },
+   "ask": {
+    "ja": "コーヒーカップの形をネオンサインで。暗いレンガの壁に、光る管の線だけで描いて、光をにじませて。",
+    "en": "A coffee cup as a neon sign: only glowing tube lines on a dark brick wall, with the light softly spilling.",
+    "es": "Una taza de café como letrero de neón: solo líneas de tubos luminosos sobre una pared de ladrillo oscura, con la luz difuminada.",
+    "zh-Hans": "把一个咖啡杯做成霓虹灯招牌：暗色砖墙上只用发光灯管的线条，让光晕开。",
+    "zh-Hant": "把一個咖啡杯做成霓虹燈招牌：暗色磚牆上只用發光燈管的線條，讓光暈開。"
+   },
+   "summary": {
+    "ja": "同じ線画が、暗いレンガの壁に光るネオン管の線だけで描いた絵に変わる。家・木・太陽・丘の稜線が光ってにじむ。",
+    "en": "The same line drawing becomes glowing neon tubes on a dark brick wall; the house, tree, sun and the line of the hill glow and bloom."
+   },
+   "spec": {
+    "ja": [
+     "素材: 暗いレンガの壁と、光るネオン管",
+     "見た目: 管の線だけで形を描き、光がにじむ。見本の管の色は赤・黄・緑寄り",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Material: a dark brick wall and glowing neon tubes",
+     "Look: shapes drawn only with tube lines, with the light blooming around them; the sample uses red, yellow and green tubes",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "夜の雰囲気や、お店・バーの看板のような見た目にしたいとき。",
+    "en": "For a night-time mood or a shop or bar sign look."
+   },
+   "tags": [
+    "neon",
+    "neon sign",
+    "glow",
+    "night",
+    "tube light",
+    "sign"
+   ]
+  },
+  {
+   "id": "203",
+   "pack": "artstyle",
+   "no": "11",
+   "slug": "art-deco",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "アールデコ",
+    "en": "Art Deco",
+    "es": "Art déco",
+    "zh-Hans": "装饰艺术（Art Deco）",
+    "zh-Hant": "裝飾藝術（Art Deco）"
+   },
+   "meaning": {
+    "ja": "金と黒、放射する直線と左右対称",
+    "en": "Gold and black, radiating straight lines and symmetry",
+    "es": "Oro y negro, líneas rectas radiales y simetría",
+    "zh-Hans": "金与黑、放射直线与左右对称",
+    "zh-Hant": "金與黑、放射直線與左右對稱"
+   },
+   "ask": {
+    "ja": "ホテルの入口をアールデコのポスターで。金と黒を主役に、放射状の直線と左右対称の装飾で、文字は入れないで。",
+    "en": "A hotel entrance as an Art Deco poster: mostly gold and black, radiating straight lines and symmetrical ornament, no text.",
+    "es": "La entrada de un hotel como cartel art déco: sobre todo oro y negro, líneas rectas radiales y ornamento simétrico, sin texto.",
+    "zh-Hans": "用装饰艺术风格画酒店入口海报：以金和黑为主，放射状直线和左右对称装饰，不放文字。",
+    "zh-Hant": "用裝飾藝術風格畫飯店入口海報：以金和黑為主，放射狀直線和左右對稱裝飾，不放文字。"
+   },
+   "summary": {
+    "ja": "同じ線画が、金と黒のポスターに変わる。太陽から直線の光が放射状に広がり、幾何学的な直線の装飾がほぼ左右対称に並ぶ。",
+    "en": "The same line drawing becomes a gold-and-black poster: straight rays spread out from the sun, and geometric straight-line ornament is arranged almost symmetrically."
+   },
+   "spec": {
+    "ja": [
+     "色: 金と黒が主役",
+     "見た目: 放射状に広がる直線の光、幾何学的な直線、左右対称に近い装飾",
+     "雰囲気: 1920年代のポスター（見本では文字なし）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Color: mostly gold and black",
+     "Look: radiating straight rays, geometric straight lines and near-symmetrical ornament",
+     "Feel: a 1920s poster (no text in the sample)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "高級感やクラシックな華やかさを出したいとき。",
+    "en": "For a luxurious, classic and glamorous look."
+   },
+   "tags": [
+    "art deco",
+    "1920s",
+    "gold",
+    "geometric",
+    "symmetry",
+    "poster"
+   ]
+  },
+  {
+   "id": "204",
+   "pack": "artstyle",
+   "no": "12",
+   "slug": "art-nouveau",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "アールヌーボー",
+    "en": "Art Nouveau",
+    "es": "Art nouveau",
+    "zh-Hans": "新艺术运动（Art Nouveau）",
+    "zh-Hant": "新藝術（Art Nouveau）"
+   },
+   "meaning": {
+    "ja": "草花の曲線で縁取る装飾",
+    "en": "Ornament framed by flowing curves of plants and flowers",
+    "es": "Ornamento enmarcado por curvas fluidas de plantas y flores",
+    "zh-Hans": "以花草曲线勾边的装饰风格",
+    "zh-Hant": "以花草曲線勾邊的裝飾風格"
+   },
+   "ask": {
+    "ja": "紅茶の缶のラベルをアールヌーボーで。つると花の流れる曲線で縁取り、くすんだ黄土とオリーブの色で。",
+    "en": "A tea tin label in Art Nouveau: framed with flowing curves of vines and flowers, in muted ochre and olive.",
+    "es": "La etiqueta de una lata de té en art nouveau: enmarcada con curvas fluidas de enredaderas y flores, en ocre y oliva apagados.",
+    "zh-Hans": "用新艺术运动风格设计茶叶罐标签：以藤蔓和花朵的流动曲线勾边，用暗土黄和橄榄绿。",
+    "zh-Hant": "用新藝術風格設計茶葉罐標籤：以藤蔓和花朵的流動曲線勾邊，用暗土黃和橄欖綠。"
+   },
+   "summary": {
+    "ja": "同じ線画が、1900年頃のポスターに変わる。輪郭は流れる太い曲線になり、葉・草・太陽の光がつると花の装飾になって家と木を囲む。",
+    "en": "The same line drawing becomes a poster from around 1900: outlines turn into flowing thick curves, and leaves, grass and sun rays become ornaments of vines and flowers around the house and tree."
+   },
+   "spec": {
+    "ja": [
+     "見た目: 流れるような太い曲線の輪郭。つると花の曲線の装飾で縁取る",
+     "色: 落ち着いた黄土・オリーブ・くすんだ朱",
+     "雰囲気: 1900年頃のポスター（見本では文字なし）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Look: thick, flowing curved outlines, framed with ornaments of curving vines and flowers",
+     "Color: muted ochre, olive and dusty vermilion",
+     "Feel: a poster from around 1900 (no text in the sample)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "上品で装飾的なパッケージ・ラベル・ポスターに。",
+    "en": "For elegant, decorative packaging, labels or posters."
+   },
+   "tags": [
+    "art nouveau",
+    "1900s",
+    "floral",
+    "ornament",
+    "curves",
+    "poster"
+   ]
+  },
+  {
+   "id": "205",
+   "pack": "artstyle",
+   "no": "13",
+   "slug": "risograph",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "リソグラフ",
+    "en": "Risograph print",
+    "es": "Risografía",
+    "zh-Hans": "Risograph 孔版印刷",
+    "zh-Hant": "Risograph 孔版印刷"
+   },
+   "meaning": {
+    "ja": "2〜3色のインクがずれて重なる",
+    "en": "Two or three inks overlapping slightly out of register",
+    "es": "Dos o tres tintas superpuestas y algo desalineadas",
+    "zh-Hans": "两三种油墨略微错位叠印",
+    "zh-Hant": "兩三種油墨略微錯位疊印"
+   },
+   "ask": {
+    "ja": "レコード店の告知をリソグラフで。黄と青緑の2色インクだけで、版のずれとインクの粒を見せて。",
+    "en": "A record shop flyer as a Risograph print: only yellow and teal ink, with visible misregistration and ink grain.",
+    "es": "Un volante de una tienda de discos como risografía: solo tinta amarilla y verde azulado, con desajuste de registro y grano de tinta visibles.",
+    "zh-Hans": "用 Risograph 孔版印刷做唱片店传单：只用黄色和青绿两种油墨，让版的错位和油墨颗粒看得见。",
+    "zh-Hant": "用 Risograph 孔版印刷做唱片行傳單：只用黃色和青綠兩種油墨，讓版的錯位和油墨顆粒看得見。"
+   },
+   "summary": {
+    "ja": "同じ線画が、黄と青緑の2色インクで刷った絵に変わる。2つの版が少しずれて重なり、インクの粒と紙の質感が見える。",
+    "en": "The same line drawing becomes a print in two inks, yellow and teal; the two layers overlap slightly out of register, with ink grain and paper texture visible."
+   },
+   "spec": {
+    "ja": [
+     "画材: 2〜3色のインクで刷る孔版印刷（リソグラフ）",
+     "見た目: 版のずれ、インクの粒、紙の質感が目立つ。見本は黄と青緑の2色",
+     "注意: 2色をなめらかに混ぜるとデュオトーン（#116）に見える。ずれと粒を残す",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: stencil printing with two or three inks (Risograph)",
+     "Look: misregistration between layers, ink grain and paper texture stand out; the sample uses yellow and teal",
+     "Note: two colors blended smoothly look like a duotone (#116); keep the offset and grain",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "ZINE・フライヤー・インディーなポスターの手触りを出したいとき。",
+    "en": "For the feel of zines, flyers and indie posters."
+   },
+   "tags": [
+    "risograph",
+    "riso",
+    "print",
+    "misregistration",
+    "grain",
+    "zine"
+   ]
+  },
+  {
+   "id": "206",
+   "pack": "artstyle",
+   "no": "14",
+   "slug": "layered-paper-art",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "重ね切り絵",
+    "en": "Layered paper art",
+    "es": "Arte en papel por capas",
+    "zh-Hans": "层叠纸雕",
+    "zh-Hant": "層疊紙雕"
+   },
+   "meaning": {
+    "ja": "色紙を切って重ね、段差の影で奥行き",
+    "en": "Cut colored paper stacked in layers, with shadows giving depth",
+    "es": "Papel de color recortado y apilado en capas, con sombras que dan profundidad",
+    "zh-Hans": "彩纸剪开层层叠放，靠阴影做出纵深",
+    "zh-Hant": "色紙剪開層層疊放，靠陰影做出深度"
+   },
+   "ask": {
+    "ja": "海の中の魚とサンゴを重ね切り絵で。色紙を何層も重ねて、段差の影で奥行きを出して。",
+    "en": "Fish and coral under the sea as layered paper art: many layers of cut colored paper, with the shadows between them giving depth.",
+    "es": "Peces y corales bajo el mar en arte en papel por capas: muchas capas de papel de color recortado, con sombras entre ellas que dan profundidad.",
+    "zh-Hans": "用层叠纸雕做海底的鱼和珊瑚：叠很多层剪好的彩纸，用层间阴影做出纵深。",
+    "zh-Hant": "用層疊紙雕做海底的魚和珊瑚：疊很多層剪好的色紙，用層間陰影做出深度。"
+   },
+   "summary": {
+    "ja": "同じ線画が、切り抜いた色紙を何層も重ねた絵に変わる。層の段差に影が落ち、奥行きが出る。",
+    "en": "The same line drawing becomes many layers of cut colored paper; shadows fall where the layers step, giving depth."
+   },
+   "spec": {
+    "ja": [
+     "素材: 切り抜いた色紙を何層にも重ねる",
+     "見た目: 層ごとの段差に影が落ち、奥行きが出る",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Material: cut colored paper stacked in many layers",
+     "Look: shadows fall at each step between layers, giving depth",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "温かみと立体感のある、絵本やカードのようなビジュアルに。",
+    "en": "For warm, dimensional visuals like a picture book or a card."
+   },
+   "tags": [
+    "paper cut",
+    "layered paper",
+    "papercut",
+    "shadow box",
+    "depth",
+    "craft"
+   ]
+  },
+  {
+   "id": "207",
+   "pack": "artstyle",
+   "no": "15",
+   "slug": "flat-illustration",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "フラットイラスト",
+    "en": "Flat illustration",
+    "es": "Ilustración plana",
+    "zh-Hans": "扁平插画",
+    "zh-Hant": "扁平插畫"
+   },
+   "meaning": {
+    "ja": "線も影もない平らな塗りだけの絵",
+    "en": "Flat fills only, with no outlines or shading",
+    "es": "Solo rellenos planos, sin contornos ni sombras",
+    "zh-Hans": "只有平涂色块，没有线条和阴影",
+    "zh-Hant": "只有平塗色塊，沒有線條和陰影"
+   },
+   "ask": {
+    "ja": "在宅で働く人をフラットイラストで。輪郭線・影・グラデーションなしで、平らな色の塗りだけで。",
+    "en": "A person working from home as a flat illustration: no outlines, no shadows, no gradients, only flat fills.",
+    "es": "Una persona trabajando desde casa como ilustración plana: sin contornos, sin sombras, sin degradados, solo rellenos planos.",
+    "zh-Hans": "用扁平插画画居家办公的人：不要轮廓线、阴影和渐变，只用平涂色块。",
+    "zh-Hant": "用扁平插畫畫在家工作的人：不要輪廓線、陰影和漸層，只用平塗色塊。"
+   },
+   "summary": {
+    "ja": "同じ線画が、輪郭線も影もない平らな色の面だけの絵に変わる。",
+    "en": "The same line drawing becomes a picture made only of flat areas of color, with no outlines and no shadows."
+   },
+   "spec": {
+    "ja": [
+     "見た目: 平らな色の塗りだけで形を作る",
+     "使わない: 輪郭線・影・グラデーション",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Look: shapes made only of flat fills of color",
+     "Avoid: outlines, shadows and gradients",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "Webサイト・アプリ・資料の、すっきりした挿絵に。",
+    "en": "For clean illustrations on websites, in apps or in slides."
+   },
+   "tags": [
+    "flat",
+    "flat design",
+    "vector",
+    "minimal",
+    "illustration",
+    "no outline"
+   ]
+  },
+  {
+   "id": "208",
+   "pack": "artstyle",
+   "no": "16",
+   "slug": "line-art",
+   "category": "graphic",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ラインアート",
+    "en": "Line art",
+    "es": "Line art",
+    "zh-Hans": "线稿",
+    "zh-Hant": "線稿"
+   },
+   "meaning": {
+    "ja": "塗りなしで1色の線だけで描く",
+    "en": "Drawn only with lines in one color, no fill",
+    "es": "Dibujado solo con líneas de un color, sin relleno",
+    "zh-Hans": "只用单色线条，不上色",
+    "zh-Hant": "只用單色線條，不上色"
+   },
+   "ask": {
+    "ja": "古い町並みをラインアートで。濃紺のペン1色の細い線だけで、塗りと陰影の面は入れないで。",
+    "en": "An old street as line art: only fine lines in one dark navy pen, with no fill and no shaded areas.",
+    "es": "Una calle antigua en line art: solo líneas finas con una pluma azul marino, sin relleno ni zonas sombreadas.",
+    "zh-Hans": "用线稿画老街景：只用一支深蓝色笔的细线，不上色，不画阴影面。",
+    "zh-Hant": "用線稿畫老街景：只用一支深藍色筆的細線，不上色，不畫陰影面。"
+   },
+   "summary": {
+    "ja": "同じ線画が、クリーム色の紙に濃紺のペン1色で描き込んだ細密な線画に変わる。瓦・葉・草・太陽の光まで線で描く。",
+    "en": "The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line."
+   },
+   "spec": {
+    "ja": [
+     "画材: クリーム色の紙に濃紺のペン1色",
+     "見た目: 細い線だけで細部まで描き込む。線の太さに強弱がある",
+     "使わない: 塗り・陰影の面",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Medium: one dark navy pen on cream paper",
+     "Look: fine lines only, with every detail drawn in; the line weight varies",
+     "Avoid: fills and shaded areas",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "ぬり絵・図鑑・パッケージなど、線の美しさを見せたいとき。",
+    "en": "For coloring pages, field guides or packaging where the beauty of the line should show."
+   },
+   "tags": [
+    "line art",
+    "pen drawing",
+    "ink",
+    "outline",
+    "monoline",
+    "drawing"
+   ]
+  },
+  {
+   "id": "209",
+   "pack": "artstyle",
+   "no": "17",
+   "slug": "pixel-art",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ドット絵（ピクセルアート）",
+    "en": "Pixel art",
+    "es": "Pixel art",
+    "zh-Hans": "像素画",
+    "zh-Hant": "像素畫"
+   },
+   "meaning": {
+    "ja": "マス目のドットで描くゲーム風",
+    "en": "Game-style pictures drawn in visible square pixels",
+    "es": "Imágenes de estilo videojuego dibujadas con píxeles cuadrados visibles",
+    "zh-Hans": "用方格像素画出的游戏风",
+    "zh-Hant": "用方格像素畫出的遊戲風"
+   },
+   "ask": {
+    "ja": "勇者と宝箱をドット絵で。正面から見た平らな絵で、マス目がはっきり見える低解像度に。",
+    "en": "A hero and a treasure chest as pixel art: a flat, front-facing picture at low resolution with clearly visible pixels.",
+    "es": "Un héroe y un cofre del tesoro en pixel art: una imagen plana y frontal en baja resolución, con píxeles bien visibles.",
+    "zh-Hans": "用像素画画勇者和宝箱：正面的平面画，低分辨率，方格清晰可见。",
+    "zh-Hant": "用像素畫畫勇者和寶箱：正面的平面畫，低解析度，方格清楚可見。"
+   },
+   "summary": {
+    "ja": "同じ線画が、マス目のドットでできた平らなゲーム風の絵に変わる。立体感はなく、1つ1つのドットがはっきり見える。",
+    "en": "The same line drawing becomes a flat, game-style picture made of square pixels, with no depth and every pixel clearly visible."
+   },
+   "spec": {
+    "ja": [
+     "見た目: 1つ1つのドット（マス目）がはっきり見える低解像度",
+     "視点: 正面から見た平らな絵。立体感はつけない（立方体で組むならボクセルアート #210）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Look: low resolution with every pixel (square) clearly visible",
+     "View: a flat picture seen from the front, with no depth (for a build of cubes, see Voxel art #210)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "ゲーム風・レトロな雰囲気のアイコンやバナーに。",
+    "en": "For game-like or retro icons and banners."
+   },
+   "tags": [
+    "pixel art",
+    "dot art",
+    "8-bit",
+    "retro game",
+    "sprite",
+    "low resolution"
+   ]
+  },
+  {
+   "id": "210",
+   "pack": "artstyle",
+   "no": "18",
+   "slug": "voxel-art",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ボクセルアート",
+    "en": "Voxel art",
+    "es": "Voxel art",
+    "zh-Hans": "体素艺术",
+    "zh-Hant": "體素藝術"
+   },
+   "meaning": {
+    "ja": "小さな立方体を積んだ3D",
+    "en": "3D built from small stacked cubes",
+    "es": "3D construido con pequeños cubos apilados",
+    "zh-Hans": "用小立方体堆成的3D",
+    "zh-Hant": "用小立方體堆成的3D"
+   },
+   "ask": {
+    "ja": "小さな島と灯台をボクセルアートで。すべて小さな立方体で組み、少し上から見下ろして、各面に光と影を。",
+    "en": "A small island with a lighthouse as voxel art: everything built from small cubes, seen slightly from above, with light and shade on each face.",
+    "es": "Una pequeña isla con un faro en voxel art: todo hecho de cubos pequeños, visto un poco desde arriba, con luz y sombra en cada cara.",
+    "zh-Hans": "用体素艺术做一座有灯塔的小岛：全部用小立方体搭成，稍微俯视，每个面都有明暗。",
+    "zh-Hant": "用體素藝術做一座有燈塔的小島：全部用小立方體搭成，稍微俯視，每個面都有明暗。"
+   },
+   "summary": {
+    "ja": "同じ線画が、小さな立方体を積んだ3Dのジオラマに変わる。家・木・太陽・丘のどれも立方体の集まりで、上面と側面に光と影がつく。",
+    "en": "The same line drawing becomes a 3D diorama of stacked small cubes; the house, tree, sun and hill are all made of cubes with light on top and shade on the sides."
+   },
+   "spec": {
+    "ja": [
+     "作り: すべてを小さな立方体のブロックを積んだ3Dの模型にする",
+     "見た目: 各立方体の上面・側面に光と影がつき、立体に見える。少し上から見下ろすレンダー",
+     "注意: 平らなドット絵（#209）にはしない",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Build: everything as a 3D model of small stacked cube blocks",
+     "Look: light and shade on the top and side faces of each cube so it reads as 3D; rendered slightly from above",
+     "Note: not a flat pixel-art picture (#209)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "ゲーム風の3Dやかわいいジオラマを見せたいとき。",
+    "en": "For game-like 3D or a cute diorama."
+   },
+   "tags": [
+    "voxel",
+    "voxel art",
+    "cubes",
+    "blocks",
+    "3d",
+    "diorama"
+   ]
+  },
+  {
+   "id": "211",
+   "pack": "artstyle",
+   "no": "19",
+   "slug": "low-poly",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ローポリ",
+    "en": "Low poly",
+    "es": "Low poly",
+    "zh-Hans": "低多边形（Low poly）",
+    "zh-Hant": "低多邊形（Low poly）"
+   },
+   "meaning": {
+    "ja": "三角形の面で組んだ3D",
+    "en": "3D built from flat triangular faces",
+    "es": "3D construido con caras triangulares planas",
+    "zh-Hans": "用三角面拼成的3D",
+    "zh-Hant": "用三角面拼成的3D"
+   },
+   "ask": {
+    "ja": "山と湖の風景をローポリで。継ぎ目のない三角形の面だけで組み、面ごとに明るさを変えて。",
+    "en": "A mountain lake landscape in low poly: only seamless triangular faces, each with its own shade.",
+    "es": "Un paisaje de montaña con lago en low poly: solo caras triangulares sin huecos, cada una con su propio tono.",
+    "zh-Hans": "用低多边形做山和湖的风景：只用无缝拼接的三角面，每个面明暗不同。",
+    "zh-Hant": "用低多邊形做山和湖的風景：只用無縫拼接的三角面，每個面明暗不同。"
+   },
+   "summary": {
+    "ja": "同じ線画が、三角形の面だけで組んだ3Dに変わる。面ごとに色の明るさが違い、角ばった立体に見える。",
+    "en": "The same line drawing becomes 3D made only of triangular faces; each face has its own shade, so the forms look faceted."
+   },
+   "spec": {
+    "ja": [
+     "作り: 継ぎ目のない三角形の面だけで組んだ3D",
+     "見た目: 面ごとに色の明暗が違う。角ばった立体",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Build: 3D made only of triangular faces with no gaps",
+     "Look: each face has its own shade of color; faceted forms",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "シンプルでモダンな3Dの背景やアイコンに。",
+    "en": "For simple, modern 3D backgrounds or icons."
+   },
+   "tags": [
+    "low poly",
+    "polygon",
+    "faceted",
+    "triangles",
+    "3d",
+    "geometric"
+   ]
+  },
+  {
+   "id": "212",
+   "pack": "artstyle",
+   "no": "20",
+   "slug": "papercraft",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ペーパークラフト",
+    "en": "Papercraft",
+    "es": "Papercraft",
+    "zh-Hans": "纸模型",
+    "zh-Hant": "紙模型"
+   },
+   "meaning": {
+    "ja": "紙を折って組み立てた立体",
+    "en": "Paper folded and glued into 3D models",
+    "es": "Papel doblado y pegado en modelos 3D",
+    "zh-Hans": "纸张折叠粘贴组成的立体模型",
+    "zh-Hant": "紙張摺疊黏貼組成的立體模型"
+   },
+   "ask": {
+    "ja": "小さな動物園をペーパークラフトで。色画用紙を折って組み立て、折り目とのりしろが見える写真風に。",
+    "en": "A small zoo in papercraft: folded and assembled from colored card stock, photographed so the folds and glue tabs show.",
+    "es": "Un pequeño zoológico en papercraft: cartulina de colores doblada y armada, fotografiada de modo que se vean los pliegues y las pestañas de pegado.",
+    "zh-Hans": "用纸模型做一个小动物园：用彩色卡纸折叠组装，拍成能看到折痕和粘贴边的照片风。",
+    "zh-Hant": "用紙模型做一個小動物園：用彩色卡紙摺疊組裝，拍成看得到摺痕和黏貼邊的照片風。"
+   },
+   "summary": {
+    "ja": "同じ線画が、色画用紙を折って組み立てた立体模型の写真に変わる。家は箱型、木と太陽は多面体で、折り目・のりしろ・紙の切り口が見える。",
+    "en": "The same line drawing becomes a photo of models folded from colored card stock: the house is a box, the tree and sun are polyhedra, and folds, glue tabs and cut edges show."
+   },
+   "spec": {
+    "ja": [
+     "作り: 展開図から切り出して折り、のりで貼って組み立てた色画用紙の立体模型",
+     "見た目: くっきりした折り目の稜線、はみ出したのりしろ、紙の切り口の白い断面。机の上で斜め前から撮った写真風",
+     "注意: 白一色のレリーフや、重ね切り絵（#206）の平らな層にはしない",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Build: 3D models of colored card stock, cut from a template, folded and glued",
+     "Look: crisp fold edges, small glue tabs sticking out, white cut edges of the paper; a photo taken on a desk from the front at an angle",
+     "Note: not a white-only relief, and not the flat stacked layers of Layered paper art (#206)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "手作り感のある立体の商品イメージや、工作・教材の見せ方に。",
+    "en": "For hand-made 3D product images, or to show crafts and teaching materials."
+   },
+   "tags": [
+    "papercraft",
+    "paper model",
+    "folded paper",
+    "origami",
+    "craft",
+    "3d"
+   ]
+  },
+  {
+   "id": "213",
+   "pack": "artstyle",
+   "no": "21",
+   "slug": "clay-animation-style",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "クレイアニメ風",
+    "en": "Clay animation style",
+    "es": "Estilo plastilina (claymation)",
+    "zh-Hans": "黏土动画风",
+    "zh-Hant": "黏土動畫風"
+   },
+   "meaning": {
+    "ja": "粘土で作った指あとの残る立体",
+    "en": "Clay models with fingerprints still visible",
+    "es": "Modelos de plastilina con las huellas de los dedos visibles",
+    "zh-Hans": "用黏土捏成、留着指纹的立体造型",
+    "zh-Hant": "用黏土捏成、留著指紋的立體造型"
+   },
+   "ask": {
+    "ja": "朝ごはんの食卓をクレイアニメ風に。粘土で作った模型で、指あとと粘土の質感を残して。",
+    "en": "A breakfast table in clay animation style: clay models with fingerprints and the texture of the clay left visible.",
+    "es": "Una mesa de desayuno en estilo plastilina: modelos de plastilina con las huellas y la textura del material a la vista.",
+    "zh-Hans": "把早餐餐桌做成黏土动画风：用黏土模型，保留指纹和黏土质感。",
+    "zh-Hant": "把早餐餐桌做成黏土動畫風：用黏土模型，保留指紋和黏土質感。"
+   },
+   "summary": {
+    "ja": "同じ線画が、粘土で作った立体の模型に変わる。表面に指あとと粘土の質感が残る。",
+    "en": "The same line drawing becomes 3D models made of clay, with fingerprints and clay texture on the surface."
+   },
+   "spec": {
+    "ja": [
+     "素材: 粘土で作った立体の模型",
+     "見た目: 指あとや粘土の質感が残る、丸みのある形",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Material: 3D models made of modeling clay",
+     "Look: rounded forms with fingerprints and clay texture left on the surface",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "親しみやすくユーモアのあるキャラクターや場面に。",
+    "en": "For friendly, playful characters and scenes."
+   },
+   "tags": [
+    "claymation",
+    "clay",
+    "plasticine",
+    "stop motion",
+    "handmade",
+    "3d"
+   ]
+  },
+  {
+   "id": "214",
+   "pack": "artstyle",
+   "no": "22",
+   "slug": "embroidery",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "刺繍",
+    "en": "Embroidery",
+    "es": "Bordado",
+    "zh-Hans": "刺绣",
+    "zh-Hant": "刺繡"
+   },
+   "meaning": {
+    "ja": "布に色糸を縫い込んで描く",
+    "en": "A picture stitched into fabric with colored thread",
+    "es": "Una imagen bordada en tela con hilos de colores",
+    "zh-Hans": "用彩线在布上绣出图案",
+    "zh-Hant": "用彩線在布上繡出圖案"
+   },
+   "ask": {
+    "ja": "季節の花のワッペンを刺繍で。布地に色糸で縫い込み、ステッチと布の織り目が見えるように。",
+    "en": "A seasonal flower patch in embroidery: colored thread stitched into fabric, with the stitches and the weave of the cloth visible.",
+    "es": "Un parche de flores de temporada en bordado: hilo de color bordado en la tela, con las puntadas y el tejido visibles.",
+    "zh-Hans": "用刺绣做一枚季节花朵的布章：用彩线绣在布上，让针脚和布纹看得见。",
+    "zh-Hant": "用刺繡做一枚季節花朵的繡章：用彩線繡在布上，讓針腳和布紋看得見。"
+   },
+   "summary": {
+    "ja": "同じ線画が、布地に色糸で縫い込んだ刺繍に変わる。糸のステッチと布の織り目が見える。",
+    "en": "The same line drawing becomes embroidery in colored thread on fabric, with the stitches and the weave of the cloth visible."
+   },
+   "spec": {
+    "ja": [
+     "素材: 布地と色糸",
+     "見た目: 糸のステッチの向きと、布の織り目が見える",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Material: fabric and colored thread",
+     "Look: the direction of each stitch and the weave of the cloth are visible",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "手仕事のぬくもりがほしいグッズ・パッケージ・季節の挨拶に。",
+    "en": "For merchandise, packaging or seasonal greetings that should feel warm and hand-made."
+   },
+   "tags": [
+    "embroidery",
+    "stitch",
+    "thread",
+    "fabric",
+    "textile",
+    "handmade"
+   ]
+  },
+  {
+   "id": "215",
+   "pack": "artstyle",
+   "no": "23",
+   "slug": "synthwave",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "シンセウェイヴ",
+    "en": "Synthwave",
+    "es": "Synthwave",
+    "zh-Hans": "合成器浪潮（Synthwave）",
+    "zh-Hant": "Synthwave 合成器浪潮"
+   },
+   "meaning": {
+    "ja": "80年代風のネオンの格子と縞の夕日",
+    "en": "1980s-style neon grid and striped sunset",
+    "es": "Cuadrícula de neón y sol rayado al estilo de los años 80",
+    "zh-Hans": "80年代风的霓虹网格与条纹夕阳",
+    "zh-Hant": "80年代風的霓虹網格與條紋夕陽"
+   },
+   "ask": {
+    "ja": "海沿いを走るスポーツカーをシンセウェイヴで。紫と水色のネオンの格子の地面と、横縞の入った大きな夕日を。",
+    "en": "A sports car on a coastal road in synthwave: a purple and cyan neon grid for the ground and a big sunset with horizontal stripes.",
+    "es": "Un auto deportivo en una carretera costera en synthwave: una cuadrícula de neón violeta y cian como suelo y un gran sol poniente con franjas horizontales.",
+    "zh-Hans": "用合成器浪潮风格画一辆在海边公路上的跑车：紫色和青色的霓虹网格地面，加一颗带横条纹的大夕阳。",
+    "zh-Hant": "用 Synthwave 合成器浪潮風格畫一輛在海邊公路上的跑車：紫色和青色的霓虹網格地面，加一顆帶橫條紋的大夕陽。"
+   },
+   "summary": {
+    "ja": "同じ線画が、80年代風のネオンの世界に変わる。地面は紫と水色の光る格子、太陽は横縞の入った大きな夕日、家と木はネオンの輪郭になる。",
+    "en": "The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines."
+   },
+   "spec": {
+    "ja": [
+     "色: 紫・水色・ピンクのネオン",
+     "見た目: ネオンの格子の地面、横縞の入った大きな夕日、ネオンの輪郭",
+     "雰囲気: 1980年代のレトロフューチャー",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）（この見本は地面の格子を写すため、ほかより縦に広く切り出している）"
+    ],
+    "en": [
+     "Color: purple, cyan and pink neon",
+     "Look: a neon grid for the ground, a big sunset with horizontal stripes, neon outlines",
+     "Feel: 1980s retro-futurism",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped taller so the grid on the ground shows)"
+    ]
+   },
+   "use": {
+    "ja": "レトロフューチャーな音楽・ゲーム・イベントのビジュアルに。",
+    "en": "For retro-futuristic music, game or event visuals."
+   },
+   "tags": [
+    "synthwave",
+    "retrowave",
+    "80s",
+    "neon grid",
+    "outrun",
+    "retro"
+   ]
+  },
+  {
+   "id": "216",
+   "pack": "artstyle",
+   "no": "24",
+   "slug": "blueprint",
+   "category": "digital-3d-materials",
+   "width": 539,
+   "height": 208,
+   "cycle": 4.7,
+   "name": {
+    "ja": "ブループリント（設計図風）",
+    "en": "Blueprint",
+    "es": "Blueprint (plano técnico)",
+    "zh-Hans": "蓝图",
+    "zh-Hant": "藍圖"
+   },
+   "meaning": {
+    "ja": "青地に白い線の図面",
+    "en": "A technical drawing in white lines on blue",
+    "es": "Un dibujo técnico de líneas blancas sobre azul",
+    "zh-Hans": "蓝底白线的设计图",
+    "zh-Hant": "藍底白線的設計圖"
+   },
+   "ask": {
+    "ja": "新しい椅子のアイデアをブループリントで。青い地に白い細線の図面で、寸法線と補助線を少し入れて。",
+    "en": "A new chair idea as a blueprint: fine white lines on blue, with a few dimension and construction lines.",
+    "es": "La idea de una silla nueva como blueprint (plano técnico): líneas blancas finas sobre azul, con algunas líneas de cota y de construcción.",
+    "zh-Hans": "把新椅子的构想画成蓝图：蓝底白色细线，加少量尺寸线和辅助线。",
+    "zh-Hant": "把新椅子的構想畫成藍圖：藍底白色細線，加少量尺寸線和輔助線。"
+   },
+   "summary": {
+    "ja": "同じ線画が、青い地に白い細線で引いた設計図に変わる。寸法線や補助線が少し入る。",
+    "en": "The same line drawing becomes a technical drawing in fine white lines on blue, with a few dimension and construction lines."
+   },
+   "spec": {
+    "ja": [
+     "見た目: 青い地に白い細線の図面",
+     "線: 寸法線や補助線を少し入れる（見本では数字や文字は入れていない）",
+     "見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）"
+    ],
+    "en": [
+     "Look: a drawing in fine white lines on a blue ground",
+     "Lines: a few dimension and construction lines (the sample has no numbers or text)",
+     "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
+    ]
+   },
+   "use": {
+    "ja": "製品の仕組みや「計画中」の雰囲気を見せたいとき。",
+    "en": "To show how a product works, or to give a \"being planned\" feel."
+   },
+   "tags": [
+    "blueprint",
+    "technical drawing",
+    "schematic",
+    "plan",
+    "engineering",
+    "white lines"
    ]
   }
  ]

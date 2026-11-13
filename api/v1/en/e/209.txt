@@ -1,0 +1,21 @@
+// Motion Prompt #209 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#209
+//
+// Pixel art / ドット絵（ピクセルアート）
+// Pack: artstyle (Art styles for image generation) · element 17 · Category: Digital, 3D & materials
+// What happens: The same line drawing becomes a flat, game-style picture made of square pixels, with no depth and every pixel clearly visible.
+// Motion spec:
+//   - Look: low resolution with every pixel (square) clearly visible
+//   - View: a flat picture seen from the front, with no depth (for a build of cubes, see Voxel art #210)
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+// When to use it: For game-like or retro icons and banners.
+// Tags: pixel art, dot art, 8-bit, retro game, sprite, low resolution
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#209
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 17
+// ドット絵（ピクセルアート）: マス目のドットで描くゲーム風
+CELLS[16] = (k, w, h, u) => gafu(k, w, h, u, '17');

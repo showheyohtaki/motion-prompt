@@ -1,0 +1,22 @@
+// Motion Prompt #212 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#212
+//
+// Papercraft / ペーパークラフト
+// Pack: artstyle (Art styles for image generation) · element 20 · Category: Digital, 3D & materials
+// What happens: The same line drawing becomes a photo of models folded from colored card stock: the house is a box, the tree and sun are polyhedra, and folds, glue tabs and cut edges show.
+// Motion spec:
+//   - Build: 3D models of colored card stock, cut from a template, folded and glued
+//   - Look: crisp fold edges, small glue tabs sticking out, white cut edges of the paper; a photo taken on a desk from the front at an angle
+//   - Note: not a white-only relief, and not the flat stacked layers of Layered paper art (#206)
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+// When to use it: For hand-made 3D product images, or to show crafts and teaching materials.
+// Tags: papercraft, paper model, folded paper, origami, craft, 3d
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#212
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 20
+// ペーパークラフト: 紙を折って組み立てた立体
+CELLS[19] = (k, w, h, u) => gafu(k, w, h, u, '20');

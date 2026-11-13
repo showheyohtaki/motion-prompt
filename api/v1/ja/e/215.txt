@@ -1,0 +1,22 @@
+// Motion Prompt #215 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#215
+//
+// シンセウェイヴ / Synthwave
+// パック: artstyle (画像生成で使う画風の名前) · element 23 · カテゴリ: デジタル・立体・素材
+// 何が起きるか: 同じ線画が、80年代風のネオンの世界に変わる。地面は紫と水色の光る格子、太陽は横縞の入った大きな夕日、家と木はネオンの輪郭になる。
+// 動きの仕様:
+//   - 色: 紫・水色・ピンクのネオン
+//   - 見た目: ネオンの格子の地面、横縞の入った大きな夕日、ネオンの輪郭
+//   - 雰囲気: 1980年代のレトロフューチャー
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）（この見本は地面の格子を写すため、ほかより縦に広く切り出している）
+// 使いどころ: レトロフューチャーな音楽・ゲーム・イベントのビジュアルに。
+// タグ: synthwave, retrowave, 80s, neon grid, outrun, retro
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#215
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 23
+// シンセウェイヴ: 80年代風のネオンの格子と縞の夕日（地面の格子を写すため、切り出し位置が違う下絵を使う）
+CELLS[22] = (k, w, h, u) => gafu(k, w, h, u, '23');

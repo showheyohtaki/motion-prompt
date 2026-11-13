@@ -9,7 +9,7 @@
     {
       "name": "motion-prompt",
       "source": "./",
-      "description": "A library of names to use with AI (motion-graphics moves, camera moves and transitions, UI components, landing-page and web effects, photo looks and lighting), each with a moving sample. Ask the agent to open the library, pick in the browser, and it applies your picks to your video, web or image project with the published timings and easing.",
+      "description": "A library of names to use with AI (motion-graphics moves, camera moves and transitions, UI components, landing-page and web effects, photo looks and lighting, art styles for image generation), each with a moving sample. Ask the agent to open the library, pick in the browser, and it applies your picks to your video, web or image project with the published timings and easing.",
       "category": "design"
     }
   ]

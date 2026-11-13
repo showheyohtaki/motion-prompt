@@ -14,5 +14,6 @@ A pack is one field's set of names. Each list below is readable here on GitHub; 
 | 121–144 | `motion2` — Motion graphics moves, part 2 | 24 | [English](motion2/README.md) · [Español](motion2/README.es.md) · [日本語](motion2/README.ja.md) · [简体中文](motion2/README.zh-Hans.md) · [繁體中文](motion2/README.zh-Hant.md) |
 | 145–168 | `lp2` — Landing page & web effects, part 2 | 24 | [English](lp2/README.md) · [Español](lp2/README.es.md) · [日本語](lp2/README.ja.md) · [简体中文](lp2/README.zh-Hans.md) · [繁體中文](lp2/README.zh-Hant.md) |
 | 169–192 | `camera2` — Camera moves & transitions, part 2 | 24 | [English](camera2/README.md) · [Español](camera2/README.es.md) · [日本語](camera2/README.ja.md) · [简体中文](camera2/README.zh-Hans.md) · [繁體中文](camera2/README.zh-Hant.md) |
+| 193–216 | `artstyle` — Art styles for image generation | 24 | [English](artstyle/README.md) · [Español](artstyle/README.es.md) · [日本語](artstyle/README.ja.md) · [简体中文](artstyle/README.zh-Hans.md) · [繁體中文](artstyle/README.zh-Hant.md) |
 
 To add a pack for your field, or a language to an existing pack, see [CONTRIBUTING.md](../CONTRIBUTING.md).

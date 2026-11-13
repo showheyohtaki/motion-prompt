@@ -7,7 +7,7 @@
 //   node tools/check.mjs --root <dir>     another tree (same layout as the repo)
 //
 // FAIL (exit 1)  exception while drawing · nothing drawn · every sampled frame is one flat colour ·
-//                cell count differs from meta.json · pack or font does not load
+//                cell count differs from meta.json · pack, font or pack image does not load
 // warn           nothing drawn at some sampled time · loop seam (the frame just before `cycle` differs from
 //                u = 0 far more than neighbouring frames do) · same u drawn twice gives different pixels
 //                (hidden state / randomness) · drawing changes when the context is scaled although the build
@@ -55,9 +55,11 @@ async function waitFor(url, ms) {
 async function probe({ pack, expect, scalable }) {
   const p = window.MotionPrompt.packs[pack];
   if (!p) return { fatal: `MotionPrompt.packs['${pack}'] is not registered` };
-  const out = { width: p.width, height: p.height, cycle: p.cycle, cells: p.cells.length, fontError: null, rows: [] };
+  const out = { width: p.width, height: p.height, cycle: p.cycle, cells: p.cells.length, fontError: null, readyError: null, rows: [] };
   try { await window.MotionPrompt.loadFonts(p, new URL(`packs/${pack}/`, location.origin + '/')); await document.fonts.ready; }
   catch (e) { out.fontError = String(e && e.message || e); }
+  // A pack that ships its own images returns `ready`, a promise that settles when they have loaded.
+  if (p.ready) { try { await p.ready; } catch (e) { out.readyError = String(e && e.message || e); } }
   const W = p.width, H = p.height, CYC = p.cycle, EPS = 1 / 60;
   const mk = s => { const c = document.createElement('canvas'); c.width = W * s; c.height = H * s; return c; };
   const c1 = mk(1), k1 = c1.getContext('2d', { willReadFrequently: true });
@@ -149,6 +151,7 @@ try {
     if (r.fatal) { console.log(`  FAIL  ${r.fatal}${pageErrors.length ? ` (${pageErrors.join(' | ')})` : ''}`); fails++; continue; }
     if (r.cells !== p.count) { console.log(`  FAIL  ${r.cells} cells but the catalog lists ${p.count}`); fails++; }
     if (r.fontError) { console.log(`  FAIL  font did not load: ${r.fontError}`); fails++; }
+    if (r.readyError) { console.log(`  FAIL  images did not load: ${r.readyError}`); fails++; }
     for (const e of pageErrors) { console.log(`  FAIL  page error: ${e}`); fails++; }
     const els = catalog.elements.filter(e => e.pack === p.pack);
     for (const row of r.rows) {

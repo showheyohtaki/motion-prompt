@@ -1,0 +1,22 @@
+// Motion Prompt #199 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#199
+//
+// リノカット / Linocut print
+// パック: artstyle (画像生成で使う画風の名前) · element 07 · カテゴリ: 絵画・版画
+// 何が起きるか: 同じ線画が、版を彫って刷った白黒の絵に変わる。太い線と面だけで、灰色やぼかしはない。
+// 動きの仕様:
+//   - 画材: リノリウムの版を彫って刷る
+//   - 見た目: 太い線の白と黒だけ。彫り跡のかすれが残る
+//   - 使わない: 灰色・ぼかし・グラデーション
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: ポスター・Tシャツ・ロゴなど、強い白黒の印象がほしいとき。
+// タグ: linocut, block print, black and white, printmaking, carved, woodcut
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#199
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 07
+// リノカット: 彫った版の太い白黒の線
+CELLS[6] = (k, w, h, u) => gafu(k, w, h, u, '07');

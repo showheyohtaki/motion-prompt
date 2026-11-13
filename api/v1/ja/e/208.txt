@@ -1,0 +1,22 @@
+// Motion Prompt #208 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#208
+//
+// ラインアート / Line art
+// パック: artstyle (画像生成で使う画風の名前) · element 16 · カテゴリ: グラフィック
+// 何が起きるか: 同じ線画が、クリーム色の紙に濃紺のペン1色で描き込んだ細密な線画に変わる。瓦・葉・草・太陽の光まで線で描く。
+// 動きの仕様:
+//   - 画材: クリーム色の紙に濃紺のペン1色
+//   - 見た目: 細い線だけで細部まで描き込む。線の太さに強弱がある
+//   - 使わない: 塗り・陰影の面
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: ぬり絵・図鑑・パッケージなど、線の美しさを見せたいとき。
+// タグ: line art, pen drawing, ink, outline, monoline, drawing
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#208
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 16
+// ラインアート: 塗りなしで1色の線だけで描く
+CELLS[15] = (k, w, h, u) => gafu(k, w, h, u, '16');

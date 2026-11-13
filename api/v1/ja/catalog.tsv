@@ -1,4 +1,4 @@
-# Motion Prompt catalog (ja) · 192 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
+# Motion Prompt catalog (ja) · 216 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
 001	motion	登場・文字の演出	ポップイン (Pop-in)	pop,pop-in,spring,bounce,scale,icon,badge,entrance	アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポンと出る。
 002	motion	登場・文字の演出	スタガー (Stagger)	stagger,sequence,delay,cascade,bar-chart,list,entrance	グラフの棒が、少しずつ時間をずらして左から順に立ち上がる。
 003	motion	登場・文字の演出	バースト (Burst)	burst,explosion,radial,like,heart,celebrate,accent,sparkle	「いいね」のハートが点くと同時に、まわりに輪・線・粒が弾ける。
@@ -191,3 +191,27 @@
 190	camera2	切り替え・編集	クロスカッティング (Cross-cutting)	cross-cutting,parallel editing,intercut,parallel action,chase,edit	同時に進む2つの場面（走る人物と走る車）を、だんだん短く交互に見せる。
 191	camera2	切り替え・編集	バレットタイム (Bullet time)	bullet time,time slice,frozen moment,orbit,slow motion,matrix,effect	跳躍の頂点で時間がほぼ止まり、その間にカメラが人物の周りを回り込む。
 192	camera2	切り替え・編集	モンタージュ (Montage)	montage,sequence,training montage,time passing,quick cuts,edit	7つの短いカットで30日分の練習を見せる。つなぎは直結で、右上の日付が飛ぶ。
+193	artstyle	絵画・版画	水彩画 (Watercolor)	watercolor,painting,soft,bleed,hand-painted,paper	線画の家・木・太陽が、淡い透明水彩の絵に変わる。色がにじんでたまり、紙の白が残る。
+194	artstyle	絵画・版画	油絵（厚塗り） (Impasto oil painting)	impasto,oil painting,thick paint,brush strokes,palette knife,painting	同じ線画が、絵の具を厚く盛った色の濃い油絵に変わる。筆跡とナイフの跡が凹凸になって見える。
+195	artstyle	絵画・版画	水墨画 (Ink wash painting (sumi-e))	ink wash,sumi-e,monochrome,japanese,brush,black ink	同じ線画が、和紙に墨1色で描いた絵に変わる。濃い墨と薄い墨のにじみ・ぼかしだけで形を作る。
+196	artstyle	絵画・版画	浮世絵 (Ukiyo-e woodblock print)	ukiyo-e,woodblock,japanese print,flat color,edo,printmaking	同じ線画が、江戸の多色刷り木版画に変わる。家は瓦屋根の日本家屋、木は松になり、太陽は赤い丸、空は上から薄くなるぼかし摺り。
+197	artstyle	絵画・版画	点描 (Pointillism)	pointillism,dots,stipple,painting,texture,colorful	同じ線画が、色の点だけを並べた絵に変わる。空・家・木・地面のすべてが、はっきり見える大きめの点でできている。
+198	artstyle	絵画・版画	色鉛筆画 (Colored pencil drawing)	colored pencil,pencil drawing,hand-drawn,paper texture,sketch,crayon	同じ線画が、色鉛筆で塗った手描きの絵に変わる。細い線の重なりと、白く残る紙の目が見える。
+199	artstyle	絵画・版画	リノカット (Linocut print)	linocut,block print,black and white,printmaking,carved,woodcut	同じ線画が、版を彫って刷った白黒の絵に変わる。太い線と面だけで、灰色やぼかしはない。
+200	artstyle	絵画・版画	ステンドグラス (Stained glass)	stained glass,glass,lead lines,mosaic,window,glowing	同じ線画が、黒い鉛の枠で区切ったガラスの絵に変わる。空・丘・家・木がそれぞれ色ガラスの破片になり、光が透ける。
+201	artstyle	グラフィック	ポップアート (Pop art)	pop art,halftone,comic,primary colors,bold outline,silkscreen	同じ線画が、原色の平らな面と太い黒い輪郭の絵に変わる。ところどころに網点が入る。
+202	artstyle	グラフィック	ネオンサイン (Neon sign)	neon,neon sign,glow,night,tube light,sign	同じ線画が、暗いレンガの壁に光るネオン管の線だけで描いた絵に変わる。家・木・太陽・丘の稜線が光ってにじむ。
+203	artstyle	グラフィック	アールデコ (Art Deco)	art deco,1920s,gold,geometric,symmetry,poster	同じ線画が、金と黒のポスターに変わる。太陽から直線の光が放射状に広がり、幾何学的な直線の装飾がほぼ左右対称に並ぶ。
+204	artstyle	グラフィック	アールヌーボー (Art Nouveau)	art nouveau,1900s,floral,ornament,curves,poster	同じ線画が、1900年頃のポスターに変わる。輪郭は流れる太い曲線になり、葉・草・太陽の光がつると花の装飾になって家と木を囲む。
+205	artstyle	グラフィック	リソグラフ (Risograph print)	risograph,riso,print,misregistration,grain,zine	同じ線画が、黄と青緑の2色インクで刷った絵に変わる。2つの版が少しずれて重なり、インクの粒と紙の質感が見える。
+206	artstyle	グラフィック	重ね切り絵 (Layered paper art)	paper cut,layered paper,papercut,shadow box,depth,craft	同じ線画が、切り抜いた色紙を何層も重ねた絵に変わる。層の段差に影が落ち、奥行きが出る。
+207	artstyle	グラフィック	フラットイラスト (Flat illustration)	flat,flat design,vector,minimal,illustration,no outline	同じ線画が、輪郭線も影もない平らな色の面だけの絵に変わる。
+208	artstyle	グラフィック	ラインアート (Line art)	line art,pen drawing,ink,outline,monoline,drawing	同じ線画が、クリーム色の紙に濃紺のペン1色で描き込んだ細密な線画に変わる。瓦・葉・草・太陽の光まで線で描く。
+209	artstyle	デジタル・立体・素材	ドット絵（ピクセルアート） (Pixel art)	pixel art,dot art,8-bit,retro game,sprite,low resolution	同じ線画が、マス目のドットでできた平らなゲーム風の絵に変わる。立体感はなく、1つ1つのドットがはっきり見える。
+210	artstyle	デジタル・立体・素材	ボクセルアート (Voxel art)	voxel,voxel art,cubes,blocks,3d,diorama	同じ線画が、小さな立方体を積んだ3Dのジオラマに変わる。家・木・太陽・丘のどれも立方体の集まりで、上面と側面に光と影がつく。
+211	artstyle	デジタル・立体・素材	ローポリ (Low poly)	low poly,polygon,faceted,triangles,3d,geometric	同じ線画が、三角形の面だけで組んだ3Dに変わる。面ごとに色の明るさが違い、角ばった立体に見える。
+212	artstyle	デジタル・立体・素材	ペーパークラフト (Papercraft)	papercraft,paper model,folded paper,origami,craft,3d	同じ線画が、色画用紙を折って組み立てた立体模型の写真に変わる。家は箱型、木と太陽は多面体で、折り目・のりしろ・紙の切り口が見える。
+213	artstyle	デジタル・立体・素材	クレイアニメ風 (Clay animation style)	claymation,clay,plasticine,stop motion,handmade,3d	同じ線画が、粘土で作った立体の模型に変わる。表面に指あとと粘土の質感が残る。
+214	artstyle	デジタル・立体・素材	刺繍 (Embroidery)	embroidery,stitch,thread,fabric,textile,handmade	同じ線画が、布地に色糸で縫い込んだ刺繍に変わる。糸のステッチと布の織り目が見える。
+215	artstyle	デジタル・立体・素材	シンセウェイヴ (Synthwave)	synthwave,retrowave,80s,neon grid,outrun,retro	同じ線画が、80年代風のネオンの世界に変わる。地面は紫と水色の光る格子、太陽は横縞の入った大きな夕日、家と木はネオンの輪郭になる。
+216	artstyle	デジタル・立体・素材	ブループリント（設計図風） (Blueprint)	blueprint,technical drawing,schematic,plan,engineering,white lines	同じ線画が、青い地に白い細線で引いた設計図に変わる。寸法線や補助線が少し入る。

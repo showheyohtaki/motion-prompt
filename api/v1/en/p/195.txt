@@ -1,0 +1,14 @@
+Please use "Ink wash painting (sumi-e)" (水墨画), one of the names in "Art styles for image generation".
+Motion Prompt #195
+
+What it is: Painted only with shades and washes of black ink
+What the sample shows: The same line drawing becomes a picture in one black ink on washi paper, shaped only by dark and pale ink, bleeds and soft washes.
+Spec:
+- Medium: one black ink on washi paper
+- Look: drawn only with dark and pale ink, bleeds and soft washes; no color
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+When to use it: For a quiet, Japanese feel with plenty of empty space.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/195.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

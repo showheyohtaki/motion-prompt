@@ -16,7 +16,7 @@ scripts with zero npm dependencies. Only `make-your-own/` (rendering your own vi
 
 ```
 index.html  assets/{runtime.js,site.css,site.js,catalog.js*}   the gallery site (* = generated)
-packs/<pack>/pack.js  packs/<pack>/meta.json  (optional fonts/)   source of truth
+packs/<pack>/pack.js  packs/<pack>/meta.json  (optional fonts/, img/)   source of truth
 packs/README.md  packs/<pack>/README.md  README.<lang>.md*   the name lists, readable on GitHub (* = generated)
 api/v1/…                                   generated static API (committed)
 tools/build.mjs  tools/check.mjs           generators / checks
@@ -38,6 +38,7 @@ Packs and their order (global IDs are assigned in this order, 3 digits; new pack
 | 6 | `motion2` | 24 | 121–144 | Motion graphics moves, part 2 / モーショングラフィックスの演出 第2弾 |
 | 7 | `lp2` | 24 | 145–168 | Landing page & web effects, part 2 / LP・Webサイトの演出 第2弾 |
 | 8 | `camera2` | 24 | 169–192 | Camera moves & transitions, part 2 / カメラワークと切り替え 第2弾 |
+| 9 | `artstyle` | 24 | 193–216 | Art styles for image generation / 画像生成で使う画風の名前 |
 
 **Once the repository is public, numbers are never renumbered and published names are not renamed.**
 A new pack takes the next `order` and the next free IDs. An element is added at the end of its pack
@@ -79,6 +80,14 @@ Rules:
 - An element draws only its own card: no page header, card frame, number or name label. The site adds those
   and applies its own per-tile phase offset.
 - No DOM access except creating offscreen canvases (`document.createElement('canvas')`). No network.
+- Images: a pack whose names are about pictures (`artstyle`: one base sketch redrawn in each art style) may ship
+  its own images in `packs/<pack>/img/` (lowercase file names, `.webp`/`.png`/`.jpg`). Only images the author made
+  and releases under MIT. Keep them small (`artstyle`: 27 WebP files at twice the card size, about 1 MB in all).
+  The kit loads them with `new Image()` from the folder of pack.js (`document.currentScript`), falling back to the
+  public site URL when the kit is pasted on its own, and the factory returns `images: ['img/x.webp', …]` and
+  `ready`, a promise that settles when they have loaded. Until then a cell draws a plain background and does not
+  throw; after that it is a pure function of `u` again. The site redraws when `ready` resolves and shows the tiles as
+  broken if it rejects; `tools/check.mjs` and `dev/preview.html` wait for it; `tools/build.mjs` checks the files exist.
 - Fonts: system stacks. A pack may ship font files in `packs/<pack>/fonts/` ONLY if the
   font's license clearly allows redistribution in a public repo; declare them in `fonts: [{family, url:'fonts/x.otf'}]`
   (url relative to the pack folder) and put the license text beside them.

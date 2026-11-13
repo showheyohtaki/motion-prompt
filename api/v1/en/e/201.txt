@@ -1,0 +1,21 @@
+// Motion Prompt #201 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#201
+//
+// Pop art / ポップアート
+// Pack: artstyle (Art styles for image generation) · element 09 · Category: Graphic styles
+// What happens: The same line drawing becomes flat primary colors with bold black outlines, with halftone dots here and there.
+// Motion spec:
+//   - Look: flat areas of primary color with bold black outlines; a few halftone dots here and there
+//   - Feel: 1960s silkscreen prints
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+// When to use it: For eye-catching ads, social images or merchandise.
+// Tags: pop art, halftone, comic, primary colors, bold outline, silkscreen
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#201
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 09
+// ポップアート: 原色の面と太い黒線、少しの網点
+CELLS[8] = (k, w, h, u) => gafu(k, w, h, u, '09');

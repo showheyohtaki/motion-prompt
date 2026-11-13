@@ -1,0 +1,21 @@
+// Motion Prompt #200 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#200
+//
+// ステンドグラス / Stained glass
+// パック: artstyle (画像生成で使う画風の名前) · element 08 · カテゴリ: 絵画・版画
+// 何が起きるか: 同じ線画が、黒い鉛の枠で区切ったガラスの絵に変わる。空・丘・家・木がそれぞれ色ガラスの破片になり、光が透ける。
+// 動きの仕様:
+//   - 素材: 色ガラスを鉛の枠でつないだ窓
+//   - 見た目: 太い黒い枠で区切った色面。光が透けて色が明るく光る
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）（この見本は丘の枠まで写すため、ほかより少し広く切り出している）
+// 使いどころ: 荘厳さや、光を感じる華やかな装飾がほしいとき。
+// タグ: stained glass, glass, lead lines, mosaic, window, glowing
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#200
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 08
+// ステンドグラス: 黒い枠で区切った光る色ガラス（丘の鉛の枠まで写すため、切り出し位置が違う下絵を使う）
+CELLS[7] = (k, w, h, u) => gafu(k, w, h, u, '08');

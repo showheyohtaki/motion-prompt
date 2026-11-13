@@ -18,6 +18,7 @@ s.onload = async () => {
   const p = MotionPrompt.packs[id];
   await MotionPrompt.loadFonts(p, new URL(`../packs/${id}/`, location.href));
   await document.fonts.ready;
+  if (p.ready) await p.ready; // a pack that ships its own images (artstyle)
   const meta = await fetch(`../packs/${id}/meta.json`).then(r => r.json()).catch(() => null);
   const only = +q.get('only') || 0, fixed = q.has('t') ? +q.get('t') : null;
   if (only) document.getElementById('g').style.gridTemplateColumns = '1fr';

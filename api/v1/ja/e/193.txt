@@ -1,0 +1,21 @@
+// Motion Prompt #193 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#193
+//
+// 水彩画 / Watercolor
+// パック: artstyle (画像生成で使う画風の名前) · element 01 · カテゴリ: 絵画・版画
+// 何が起きるか: 線画の家・木・太陽が、淡い透明水彩の絵に変わる。色がにじんでたまり、紙の白が残る。
+// 動きの仕様:
+//   - 画材: 紙に透明水彩
+//   - 見た目: 色のにじみ・色のたまり・塗り残した紙の白い余白。全体に淡い色
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: 絵本・挿絵・季節のカードなど、やわらかく手描きの温かさを出したいとき。
+// タグ: watercolor, painting, soft, bleed, hand-painted, paper
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#193
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 01
+// 水彩画: にじみと白い余白が残る淡い絵
+CELLS[0] = (k, w, h, u) => gafu(k, w, h, u, '01');

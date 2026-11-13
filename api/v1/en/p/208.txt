@@ -1,0 +1,15 @@
+Please use "Line art" (ラインアート), one of the names in "Art styles for image generation".
+Motion Prompt #208
+
+What it is: Drawn only with lines in one color, no fill
+What the sample shows: The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line.
+Spec:
+- Medium: one dark navy pen on cream paper
+- Look: fine lines only, with every detail drawn in; the line weight varies
+- Avoid: fills and shaded areas
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+When to use it: For coloring pages, field guides or packaging where the beauty of the line should show.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/208.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

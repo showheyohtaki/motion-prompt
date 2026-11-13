@@ -16,7 +16,7 @@
       themeToDark: 'ダークモードに切り替える', themeToLight: 'ライトモードに切り替える',
       eyebrow: 'AIに頼むための「名前」のライブラリ',
       h1: 'AIを<wbr>指揮する<wbr>クリエイティブ<wbr>ディレクターへ',
-      lead: 'モーショングラフィックス、カメラワーク、UIパーツ、LP・Webサイトの演出、写真の表現の名前を{n}個、動く見本つきで並べました。プロンプトをコピーすれば、動きの仕様と参考実装も一緒に渡せます。',
+      lead: 'モーショングラフィックス、カメラワーク、UIパーツ、LP・Webサイトの演出、写真の表現、画風の名前を{n}個、動く見本つきで並べました。プロンプトをコピーすれば、動きの仕様と参考実装も一緒に渡せます。',
       factMoves: '名前', factPacks: 'パック', factLicense: 'ライセンス',
       installSkillH: 'スキルで導入',
       installSkillP: 'ターミナルで実行します。入れたあとは、AIに「motion-prompt のライブラリ出して」と頼むと、このギャラリーが開きます。選んで「AIに渡す」を押すと、AIに届きます。',
@@ -76,7 +76,7 @@
       themeToDark: 'Switch to dark mode', themeToLight: 'Switch to light mode',
       eyebrow: 'A library of names to use with AI',
       h1: 'For the creative directors who direct AI.',
-      lead: '{n} names from motion graphics, camera work, UI components, landing pages and photography, each with a moving sample. Copy the prompt, and the motion spec and a reference implementation go with it.',
+      lead: '{n} names from motion graphics, camera work, UI components, landing pages, photography and art styles, each with a moving sample. Copy the prompt, and the motion spec and a reference implementation go with it.',
       factMoves: 'Names', factPacks: 'Packs', factLicense: 'License',
       installSkillH: 'Install as a skill',
       installSkillP: 'Run this in a terminal. After that, say "open the motion-prompt library" to your AI and this gallery opens. Pick what you want and press "Send to AI".',
@@ -191,6 +191,8 @@
       // Draw right away with fallback fonts; redraw once the pack's own fonts arrive.
       ready[p.pack] = 'ok'; markDirty(p.pack);
       fonts.catch(function () {}).then(function () { markDirty(p.pack); });
+      // A pack that ships its own images (artstyle) returns `ready`: redraw when they arrive, show the tiles as broken if they do not.
+      if (reg.ready && typeof reg.ready.then === 'function') reg.ready.then(function () { markDirty(p.pack); }, fail);
     };
     s.onerror = fail;
     function fail() { ready[p.pack] = 'failed'; tiles.forEach(function (tl) { if (tl.el.pack === p.pack) breakTile(tl); }); }

@@ -1,0 +1,21 @@
+// Motion Prompt #207 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#207
+//
+// Flat illustration / フラットイラスト
+// Pack: artstyle (Art styles for image generation) · element 15 · Category: Graphic styles
+// What happens: The same line drawing becomes a picture made only of flat areas of color, with no outlines and no shadows.
+// Motion spec:
+//   - Look: shapes made only of flat fills of color
+//   - Avoid: outlines, shadows and gradients
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+// When to use it: For clean illustrations on websites, in apps or in slides.
+// Tags: flat, flat design, vector, minimal, illustration, no outline
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#207
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 15
+// フラットイラスト: 線も影もない平らな塗りだけの絵
+CELLS[14] = (k, w, h, u) => gafu(k, w, h, u, '15');

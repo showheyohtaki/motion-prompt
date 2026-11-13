@@ -2,7 +2,7 @@
   "name": "motion-prompt",
   "displayName": "Motion Prompt",
   "version": "0.1.0",
-  "description": "A numbered library of the names of motion-graphics moves, camera moves and transitions, UI components, landing-page and web effects, and photo looks and lighting, each with a moving sample. Ask your agent to open the library, pick what you like in the browser, and it applies your picks to your video, web or image project with the published timings and easing.",
+  "description": "A numbered library of the names of motion-graphics moves, camera moves and transitions, UI components, landing-page and web effects, photo looks and lighting, and art styles for image generation, each with a moving sample. Ask your agent to open the library, pick what you like in the browser, and it applies your picks to your video, web or image project with the published timings and easing.",
   "author": {
     "name": "Shohei Ohtaki",
     "url": "https://x.com/showheyohtaki"

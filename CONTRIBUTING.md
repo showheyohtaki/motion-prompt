@@ -2,7 +2,7 @@
 
 **English** | [日本語](CONTRIBUTING.ja.md)
 
-This repository is a library of names: the words people in a field use for the things you can ask an AI to make. It started with two of the sets posted on X, motion graphics and camera moves, and UI component names, landing page and web effects, and photo looks have been added since. **Please add the common language of your own field, in your own language.**
+This repository is a library of names: the words people in a field use for the things you can ask an AI to make. It started with two of the sets posted on X, motion graphics and camera moves, and UI component names, landing page and web effects, photo looks and art styles for image generation have been added since. **Please add the common language of your own field, in your own language.**
 
 Fields outside video are welcome: lighting, sound, UI and interaction, photography, typography, illustration, cooking, architecture, fashion, music, dance, games. If people in a field say "do a ___" to each other and an outsider would not know the word, that word belongs here.
 
@@ -59,7 +59,7 @@ A sample is the small animation shown next to the name. The look is yours: color
 - **No flashing.** No fast switching of large areas between light and dark.
 - **A seamless loop.** The last frame leads into the first.
 - **Drawn from the time only.** The same time always gives the same picture: no clock, no unseeded randomness, no state between frames.
-- **Nothing from the network, nothing that belongs to someone else.** No web fonts, images, logos, characters or photos. Font files can be included only when their license clearly allows redistribution, with the license text beside them.
+- **Nothing from the network, nothing that belongs to someone else.** No web fonts, images, logos, characters or photos. Font files can be included only when their license clearly allows redistribution, with the license text beside them. A pack whose names are about pictures (such as art styles) may include images you made yourself and release under MIT; see "Images" in [FORMAT.md](FORMAT.md).
 
 ## Add a language to an existing pack
 

@@ -1,0 +1,15 @@
+Please use "Voxel art" (ボクセルアート), one of the names in "Art styles for image generation".
+Motion Prompt #210
+
+What it is: 3D built from small stacked cubes
+What the sample shows: The same line drawing becomes a 3D diorama of stacked small cubes; the house, tree, sun and hill are all made of cubes with light on top and shade on the sides.
+Spec:
+- Build: everything as a 3D model of small stacked cube blocks
+- Look: light and shade on the top and side faces of each cube so it reads as 3D; rendered slightly from above
+- Note: not a flat pixel-art picture (#209)
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+When to use it: For game-like 3D or a cute diorama.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/210.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

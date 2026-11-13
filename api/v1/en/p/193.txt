@@ -1,0 +1,14 @@
+Please use "Watercolor" (水彩画), one of the names in "Art styles for image generation".
+Motion Prompt #193
+
+What it is: A pale painting with soft bleeds and white paper showing
+What the sample shows: The line drawing of a house, a tree and the sun becomes a pale transparent watercolor, with colors bleeding and pooling and the white paper left showing.
+Spec:
+- Medium: transparent watercolor on paper
+- Look: colors that bleed and pool, white paper left unpainted, pale colors overall
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+When to use it: For picture books, illustrations or seasonal cards that should feel soft and hand-painted.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/193.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,22 @@
+// Motion Prompt #208 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#208
+//
+// Line art / ラインアート
+// Pack: artstyle (Art styles for image generation) · element 16 · Category: Graphic styles
+// What happens: The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line.
+// Motion spec:
+//   - Medium: one dark navy pen on cream paper
+//   - Look: fine lines only, with every detail drawn in; the line weight varies
+//   - Avoid: fills and shaded areas
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+// When to use it: For coloring pages, field guides or packaging where the beauty of the line should show.
+// Tags: line art, pen drawing, ink, outline, monoline, drawing
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#208
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 16
+// ラインアート: 塗りなしで1色の線だけで描く
+CELLS[15] = (k, w, h, u) => gafu(k, w, h, u, '16');

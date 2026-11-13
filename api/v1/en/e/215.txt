@@ -1,0 +1,22 @@
+// Motion Prompt #215 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#215
+//
+// Synthwave / シンセウェイヴ
+// Pack: artstyle (Art styles for image generation) · element 23 · Category: Digital, 3D & materials
+// What happens: The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines.
+// Motion spec:
+//   - Color: purple, cyan and pink neon
+//   - Look: a neon grid for the ground, a big sunset with horizontal stripes, neon outlines
+//   - Feel: 1980s retro-futurism
+//   - Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped taller so the grid on the ground shows)
+// When to use it: For retro-futuristic music, game or event visuals.
+// Tags: synthwave, retrowave, 80s, neon grid, outrun, retro
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#215
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 23
+// シンセウェイヴ: 80年代風のネオンの格子と縞の夕日（地面の格子を写すため、切り出し位置が違う下絵を使う）
+CELLS[22] = (k, w, h, u) => gafu(k, w, h, u, '23');

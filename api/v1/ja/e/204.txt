@@ -1,0 +1,22 @@
+// Motion Prompt #204 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#204
+//
+// アールヌーボー / Art Nouveau
+// パック: artstyle (画像生成で使う画風の名前) · element 12 · カテゴリ: グラフィック
+// 何が起きるか: 同じ線画が、1900年頃のポスターに変わる。輪郭は流れる太い曲線になり、葉・草・太陽の光がつると花の装飾になって家と木を囲む。
+// 動きの仕様:
+//   - 見た目: 流れるような太い曲線の輪郭。つると花の曲線の装飾で縁取る
+//   - 色: 落ち着いた黄土・オリーブ・くすんだ朱
+//   - 雰囲気: 1900年頃のポスター（見本では文字なし）
+//   - 見本: 共通の下絵（丘の上の家・木・太陽の線画）を参照画像として渡し、この画風で描き直させた生成画像。0.5〜1.35秒に斜めのワイプで下絵から切り替わり、4.0秒まで1.045倍へゆっくり寄り、4.0〜4.5秒で下絵へ戻る（1周4.7秒、3次のイーズインアウト）
+// 使いどころ: 上品で装飾的なパッケージ・ラベル・ポスターに。
+// タグ: art nouveau, 1900s, floral, ornament, curves, poster
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit artstyle -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#204
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 12
+// アールヌーボー: 草花の曲線で縁取る装飾
+CELLS[11] = (k, w, h, u) => gafu(k, w, h, u, '12');

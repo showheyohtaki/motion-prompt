@@ -1,0 +1,15 @@
+Please use "Risograph print" (リソグラフ), one of the names in "Art styles for image generation".
+Motion Prompt #205
+
+What it is: Two or three inks overlapping slightly out of register
+What the sample shows: The same line drawing becomes a print in two inks, yellow and teal; the two layers overlap slightly out of register, with ink grain and paper texture visible.
+Spec:
+- Medium: stencil printing with two or three inks (Risograph)
+- Look: misregistration between layers, ink grain and paper texture stand out; the sample uses yellow and teal
+- Note: two colors blended smoothly look like a duotone (#116); keep the offset and grain
+- Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)
+When to use it: For the feel of zines, flyers and indie posters.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/205.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/artstyle.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

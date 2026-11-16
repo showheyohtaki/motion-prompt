@@ -1,0 +1,45 @@
+// Motion Prompt #233 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#233
+//
+// ガントチャート / Gantt chart
+// パック: diagram (資料で使う図解・グラフの名前) · element 17 · カテゴリ: 流れと全体を見せる図
+// 何が起きるか: 上に日付の目盛り（1〜8）、左に作業A〜E。横棒が少しずつずれた位置から順に右へ伸びる。
+// 動きの仕様:
+//   - 目盛り: 上に1〜8の日付（幅52pxの列）と縦の薄い線。1周ずっと出したまま
+//   - 作業: 左にA〜Eの5行（間27px）。棒は高さ20px・角丸6px。開始と長さは列単位で A 0〜2・B 1.5〜3.5・C 3〜4.5・D 3.5〜6.5・E 6〜8
+//   - 動き: 0.4秒から0.3秒おきに、各棒が0.5秒で左端から右へ伸びる（easeOut）
+//   - 色: Dだけ濃い青、ほかは中くらいの青
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: プロジェクトの作業ごとの期間と、重なり・順番を見せるとき。
+// タグ: gantt, gantt chart, schedule, project plan, timeline bars, tasks, roadmap
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#233
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 17
+// 17 ガントチャート: date scale on top, bars start at staggered columns and grow to the right
+function gantt(k, w, h, u) {
+  bg(k, w, h);
+  const x0 = 84, cols = 8, cw = 52, yAxis = 44, f = fade(u);
+  // skeleton: date scale + grid (always visible)
+  for (let i = 0; i < cols; i++) txt(k, String(i + 1), x0 + cw * i + cw / 2, 34, `500 18px ${FONT}`, C.sub, 'center');
+  k.strokeStyle = C.g2; k.lineWidth = 2;
+  for (let i = 0; i <= cols; i++) { k.beginPath(); k.moveTo(x0 + cw * i, yAxis); k.lineTo(x0 + cw * i, 194); k.stroke(); }
+  k.strokeStyle = C.g4; k.lineWidth = 2.5; k.lineCap = 'round';
+  k.beginPath(); k.moveTo(x0, yAxis); k.lineTo(x0 + cw * cols, yAxis); k.stroke();
+  for (let i = 0; i <= cols; i++) { k.beginPath(); k.moveTo(x0 + cw * i, yAxis - 6); k.lineTo(x0 + cw * i, yAxis); k.stroke(); }
+  const T = [[0, 2], [1.5, 2], [3, 1.5], [3.5, 3], [6, 2]];
+  T.forEach(([s, len], i) => {
+    const y = 62 + i * 27;
+    txt(k, 'ABCDE'[i], 54, y + 1, `600 18px ${FONT}`, C.g4, 'center', 'middle');
+    const p = appear(u, 0.4 + i * 0.3, 0.5) * f;
+    if (p <= 0.001) return;
+    k.globalAlpha = Math.min(1, p * 3) * f;
+    k.fillStyle = i === 3 ? C.blue : C.blueM;
+    rr(k, x0 + cw * s + 3, y - 10, Math.max(6, (cw * len - 6) * appear(u, 0.4 + i * 0.3, 0.5)), 20, 6); k.fill();
+    k.globalAlpha = 1;
+  });
+}
+CELLS[16] = gantt;

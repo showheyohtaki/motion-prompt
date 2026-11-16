@@ -1,0 +1,90 @@
+// Motion Prompt #236 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#236
+//
+// カスタマージャーニーマップ / Customer journey map
+// パック: diagram (資料で使う図解・グラフの名前) · element 20 · カテゴリ: 流れと全体を見せる図
+// 何が起きるか: 5つの段階の見出しと行動のカードが並び、気持ちの線が左から右へ上下しながら引かれ、各点に笑顔・困り顔の印が出る。
+// 動きの仕様:
+//   - 枠: 5列（縦の区切り線）。上に段階の見出し（普通の角丸の箱。矢羽根にしない。真ん中だけグレー）が0.35秒から0.1秒おきに出る
+//   - 行動: 見出しの下に白いカード（文字は灰色の棒）が0.6秒から0.1秒おきに、8px上がりながら0.3秒で出る
+//   - 気持ち: y=150の点線を基準に、+0.35・+0.7・−0.6・+0.15・+0.85（×36px）を通るなめらかな曲線（青3.5px）を1.25〜2.25秒に左から引く
+//   - 印: 線が届いた点に半径12pxの顔が弾んで出る。基準より上は青い笑顔、下はグレーの困り顔
+//   - レーンをまたぐ矢印は無い（#238 スイムレーン図との違い）
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 顧客が段階ごとに何をして、どこで気持ちが下がるかを見つけるとき。
+// タグ: customer journey map, journey map, user journey, customer experience, touchpoints, emotions, ux
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#236
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 20
+// 20 カスタマージャーニーマップ: stage headers as plain boxes (columns), an action card under each,
+// then the feeling line goes up and down across the stages, with a smile / frown mark on each point
+const JV = [0.35, 0.7, -0.6, 0.15, 0.85];     // feeling per stage (+ up = good)
+function face(k, x, y, r, good, col) {
+  k.fillStyle = col; k.beginPath(); k.arc(x, y, r, 0, Math.PI * 2); k.fill();
+  k.fillStyle = '#FFFFFF';
+  k.beginPath(); k.arc(x - r * 0.36, y - r * 0.22, r * 0.13, 0, 7); k.fill();
+  k.beginPath(); k.arc(x + r * 0.36, y - r * 0.22, r * 0.13, 0, 7); k.fill();
+  k.strokeStyle = '#FFFFFF'; k.lineWidth = Math.max(1.6, r * 0.15); k.lineCap = 'round';
+  k.beginPath();
+  if (good) k.arc(x, y + r * 0.02, r * 0.42, Math.PI * 0.2, Math.PI * 0.8);
+  else k.arc(x, y + r * 0.62, r * 0.42, Math.PI * 1.2, Math.PI * 1.8);
+  k.stroke();
+}
+function journey(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), n = 5, xl = 22, xr = w - 22, cw = (xr - xl) / n;
+  const cx = i => xl + cw * (i + 0.5);
+  const yMid = 150, amp = 36;
+  // column separators and the neutral line stay as the frame
+  for (let i = 1; i < n; i++) seg(k, xl + cw * i, 14, xl + cw * i, h - 12, C.g2, 2);
+  k.globalAlpha = f;
+  // stage headers: plain rounded boxes (not arrows), the stage names as short bars
+  for (let i = 0; i < n; i++) {
+    const p = appear(u, 0.35 + i * 0.1, 0.3);
+    if (p <= 0) continue;
+    k.save(); k.globalAlpha = f * p;
+    rr(k, cx(i) - cw / 2 + 6, 14, cw - 12, 26, 7); k.fillStyle = i === 2 ? C.g3 : C.blueM; k.fill();
+    rr(k, cx(i) - 22, 25, 44, 5, 2.5); k.fillStyle = '#FFFFFF'; k.fill();
+    k.restore();
+  }
+  // action cards (what the customer does at each stage)
+  for (let i = 0; i < n; i++) {
+    const p = appear(u, 0.6 + i * 0.1, 0.3);
+    if (p <= 0) continue;
+    k.save(); k.globalAlpha = f * p;
+    const y = 50 + (1 - p) * 8;
+    rr(k, cx(i) - cw / 2 + 10, y, cw - 20, 38, 6); k.fillStyle = '#FFFFFF'; k.fill();
+    k.strokeStyle = C.g3; k.lineWidth = 1.5; k.stroke();
+    rr(k, cx(i) - cw / 2 + 18, y + 10, cw - 46, 6, 3); k.fillStyle = C.g3; k.fill();
+    rr(k, cx(i) - cw / 2 + 18, y + 22, cw - 60, 6, 3); k.fillStyle = C.g2; k.fill();
+    k.restore();
+  }
+  k.globalAlpha = 1;
+  seg(k, xl + 4, yMid, xr - 4, yMid, C.g3, 2, [5, 6]);
+  k.globalAlpha = f;
+  // feeling line (smooth through the 5 points), drawn left to right
+  const pts = JV.map((v, i) => [cx(i), yMid - v * amp]);
+  const pl = easeInOut(P(u, 1.25, 2.25));
+  if (pl > 0) {
+    k.save(); k.beginPath(); k.rect(0, 0, lerp(pts[0][0], pts[n - 1][0], pl) + 1, h); k.clip();
+    k.strokeStyle = C.blue; k.lineWidth = 3.5; k.lineJoin = 'round'; k.lineCap = 'round';
+    k.beginPath(); k.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 0; i < n - 1; i++) {
+      const [x0, y0] = pts[i], [x1, y1] = pts[i + 1], mx = (x0 + x1) / 2;
+      k.bezierCurveTo(mx, y0, mx, y1, x1, y1);
+    }
+    k.stroke(); k.restore();
+  }
+  pts.forEach(([x, y], i) => {
+    const tx = 1.25 + (i / (n - 1)) * 1.0, s = easeOutBack(P(u, tx - 0.05, tx + 0.2));
+    if (s <= 0.02) return;
+    const good = JV[i] >= 0;
+    face(k, x, y, 12 * s, good, good ? C.blue : C.g4);
+  });
+  k.globalAlpha = 1;
+}
+CELLS[19] = journey;

@@ -1,0 +1,16 @@
+Please use "Scatter plot" (散布図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #225
+
+What it is: Dots that show how two numbers relate
+What the sample shows: Small blue dots pop in from left to right on L-shaped axes, scattered upward to the right, and a dashed trend line follows.
+Spec:
+- Axes: L-shaped axes from x = 96 to 448 and y = 24 to 184 (gray, 2.5 px) with three light horizontal grid lines; they stay for the whole cycle
+- Dots: 52 dots (fixed seed) of radius 5 px in blue, scattered upward to the right, each popping in over 0.28 s (ease-out-back) from left to right between 0.4 s and 1.65 s according to its x
+- Trend line: a gray dashed line (7 px dash, 8 px gap) grows from bottom-left to top-right from 1.85 s to 2.5 s
+- Unlike #226 Bubble chart: many small dots, all the same size
+- End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+When to use it: To show whether two numbers are related, for example whether one rises when the other does.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/225.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,72 @@
+// Motion Prompt #238 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#238
+//
+// Swimlane diagram / スイムレーン図
+// Pack: diagram (Diagrams and charts for slides) · element 22 · Category: Diagrams of flow and the whole picture
+// What happens: Three lanes named on the left (顧客 customer, 営業 sales, 制作 production); step boxes appear one by one, moving between lanes, joined by elbow arrows.
+// Motion spec:
+//   - Lanes: three white lanes 60 px tall, with gray lane names (18 px) in a 62 px column on the left; they stay for the whole cycle
+//   - Boxes: five 56×30 px rounded boxes from x = 138 to 474, in the lanes customer → sales → production → sales → customer, popping in over 0.28 s (ease-out-back) from 0.4 s, 0.38 s apart; the last one dark blue
+//   - Arrows: from the right edge of the previous box, across and then up or down into the next (dark gray, 2.5 px, 9 px head), growing over 0.26 s from 0.24 s before each box
+//   - Unlike #233 Gantt chart: no date scale; the lane names and the arrows crossing lanes carry it
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show who does what, and when, in a process shared by several people or teams.
+// Tags: swimlane, swimlane diagram, cross-functional flowchart, lanes, process, responsibilities, workflow
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#238
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 22
+// 22 スイムレーン図: lane names on the left; boxes and arrows move across the lanes step by step
+function swimlane(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), X0 = 22, X1 = 517, HW = 62, Y0 = 13, LH = 60, NL = 3;
+  const NAMES = ['顧客', '営業', '制作'];
+  // skeleton: lanes
+  for (let i = 0; i < NL; i++) {
+    const y = Y0 + i * LH;
+    k.fillStyle = '#FFFFFF'; k.fillRect(X0 + HW, y, X1 - X0 - HW, LH);
+    k.fillStyle = C.g2; k.fillRect(X0, y, HW, LH);
+    txt(k, NAMES[i], X0 + HW / 2, y + LH / 2 + 1, `600 18px ${FONT}`, C.mark, 'center', 'middle');
+  }
+  k.strokeStyle = C.g3; k.lineWidth = 2;
+  for (let i = 1; i < NL; i++) { k.beginPath(); k.moveTo(X0, Y0 + i * LH); k.lineTo(X1, Y0 + i * LH); k.stroke(); }
+  k.beginPath(); k.moveTo(X0 + HW, Y0); k.lineTo(X0 + HW, Y0 + NL * LH); k.stroke();
+  rr(k, X0, Y0, X1 - X0, NL * LH, 6); k.stroke();
+  // steps
+  const BX = [138, 224, 310, 396, 474], BL = [0, 1, 2, 1, 0], bw = 56, bh = 30;
+  const cyOf = l => Y0 + l * LH + LH / 2;
+  k.globalAlpha = f;
+  for (let i = 0; i < BX.length; i++) {
+    const t0 = 0.4 + i * 0.38;
+    // arrow from previous box: right, then down/up into this box
+    if (i > 0) {
+      const pa = easeInOut(P(u, t0 - 0.24, t0 + 0.02));
+      if (pa > 0) {
+        const xs = BX[i - 1] + bw / 2, ys = cyOf(BL[i - 1]), xe = BX[i], ye0 = cyOf(BL[i]);
+        const down = ye0 > ys, ye = ye0 + (down ? -bh / 2 - 3 : bh / 2 + 3);
+        const l1 = xe - xs, l2 = Math.abs(ye - ys), tot = l1 + l2, d = pa * tot;
+        k.strokeStyle = C.mark; k.lineWidth = 2.5; k.lineCap = 'round'; k.lineJoin = 'round';
+        k.beginPath(); k.moveTo(xs, ys);
+        if (d <= l1) k.lineTo(xs + d, ys);
+        else { k.lineTo(xe, ys); k.lineTo(xe, ys + (down ? 1 : -1) * (d - l1)); }
+        k.stroke();
+        if (pa > 0.98) arrowTo(k, xe, ye, 0, down ? 1 : -1, 9, C.mark);
+      }
+    }
+    const pb = P(u, t0, t0 + 0.28);
+    if (pb > 0) {
+      const s = easeOutBack(pb), last = i === BX.length - 1, cy = cyOf(BL[i]);
+      k.save(); k.translate(BX[i], cy); k.scale(s, s);
+      k.fillStyle = last ? C.blue : C.blueL; k.strokeStyle = last ? C.blue : C.blueM; k.lineWidth = 2;
+      rr(k, -bw / 2, -bh / 2, bw, bh, 7); k.fill(); k.stroke();
+      k.fillStyle = last ? '#FFFFFF' : C.g4;
+      rr(k, -16, -3, 32, 6, 3); k.fill();
+      k.restore();
+    }
+  }
+  k.globalAlpha = 1;
+}
+CELLS[21] = swimlane;

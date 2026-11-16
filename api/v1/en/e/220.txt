@@ -1,0 +1,41 @@
+// Motion Prompt #220 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#220
+//
+// Pyramid diagram / ピラミッド図
+// Pack: diagram (Diagrams and charts for slides) · element 04 · Category: Diagrams that organize ideas
+// What happens: A triangle in four layers stacks up from the bottom, each layer dropping into place; only the top layer is dark blue.
+// Motion spec:
+//   - Shape: a triangle from y = 16 (apex) to y = 192 (base), 336 px wide at the base, cut into four layers with 6 px gaps
+//   - Colors from the bottom: light gray, light blue, mid blue, dark blue
+//   - Motion: from the bottom layer up, 0.32 s apart (0.4, 0.72, 1.04, 1.36 s), each layer drops 34 px into place over 0.4 s while fading in (ease-out)
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show stages that build on each other, or levels that get smaller toward the top.
+// Tags: pyramid, pyramid diagram, hierarchy, layers, levels, triangle, stack
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#220
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 04
+// 04 ピラミッド図: a triangle in four layers, stacked from the bottom up; the top layer is blue
+function pyramid(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const top = 16, base = 192, hwB = 168, n = 4, gp = 6, cx = w / 2;
+  const th = (base - top - gp * (n - 1)) / n, half = y => hwB * (y - top) / (base - top);
+  const cols = [C.g3, C.blueL, C.blueM, C.blue];
+  for (let i = 0; i < n; i++) {                       // i = 0 bottom
+    const p = easeOut(P(u, 0.4 + i * 0.32, 0.8 + i * 0.32));
+    if (p <= 0) continue;
+    const yb = base - i * (th + gp), yt = yb - th, dy = (1 - p) * -34;
+    k.save(); k.globalAlpha *= clamp(p * 1.6); k.translate(0, dy);
+    k.fillStyle = cols[i]; k.beginPath();
+    if (i === n - 1) { k.moveTo(cx, top); }
+    else { k.moveTo(cx - half(yt), yt); k.lineTo(cx + half(yt), yt); }
+    k.lineTo(cx + half(yb), yb); k.lineTo(cx - half(yb), yb); k.closePath(); k.fill();
+    k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[3] = pyramid;

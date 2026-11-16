@@ -1,0 +1,63 @@
+// Motion Prompt #222 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#222
+//
+// Flowchart / フローチャート
+// Pack: diagram (Diagrams and charts for slides) · element 06 · Category: Diagrams that organize ideas
+// What happens: Start → step → diamond decision → step → end appear in one row, with a loop arrow from the decision back to the first step; then a dot walks the path, loops back once and goes on to the end.
+// Motion spec:
+//   - Shapes: start and end are 66×36 px pills (gray), steps are 72×40 px boxes (light blue), the decision is a diamond 92 px wide and 72 px tall (blue, white "?"), all in one row at y = 80
+//   - Order: they pop in at 0.4, 0.8, 1.2, 1.6 and 1.95 s (0.3 s, ease-out-back); the arrows between them grow over 0.22 s from 0.6, 1.0, 1.4 and 1.75 s, with 10 px heads
+//   - Loop: an arrow from the bottom of the diamond down to y = 172 and back up into the first step draws from 2.0 s to 2.45 s
+//   - Marker: a dark gray dot (radius 8 px) follows start → step → decision → loop → step → decision → step → end from 2.6 s to 3.8 s (cubic ease-in-out), appearing 2.5–2.65 s and leaving 3.8–4.0 s
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show a procedure step by step, including where it branches on a condition.
+// Tags: flowchart, flow chart, process, decision, diamond, steps, procedure, yes no
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#222
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 06
+// 06 フローチャート: start -> step -> decision (diamond) -> step -> end, with a "No" loop back;
+// then a marker walks the path once (loops back once, then goes on to the end)
+function flow(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const y = 80, S = [64, y], A = [158, y], D = [262, y], B = [364, y], E = [460, y], LY = 172;
+  const dw = 46, dh = 36;                                   // diamond half sizes
+  const arrows = [
+    [[S[0] + 34, y], [A[0] - 36, y]],
+    [[A[0] + 36, y], [D[0] - dw, y]],
+    [[D[0] + dw, y], [B[0] - 36, y]],
+    [[B[0] + 36, y], [E[0] - 34, y]],
+  ];
+  const loop = [[D[0], y + dh], [D[0], LY], [A[0], LY], [A[0], y + 20]];
+  const tA = [0.6, 1.0, 1.4, 1.75];
+  pen(k, C.g4, 3);
+  arrows.forEach((pts, i) => trace(k, pts, easeInOut(P(u, tA[i], tA[i] + 0.22)), 10, C.g4));
+  trace(k, loop, easeInOut(P(u, 2.0, 2.45)), 10, C.g4);
+  // shapes
+  const pill = (c, s, col) => box(k, c[0], c[1], 66, 36, 18, s, col);
+  pill(S, pop(u, 0.4), C.g3);
+  box(k, A[0], A[1], 72, 40, 6, pop(u, 0.8), C.blueL);
+  const ds = pop(u, 1.2);
+  if (ds > 0.01) {
+    k.save(); k.translate(D[0], D[1]); k.scale(ds, ds); k.fillStyle = C.blue;
+    k.beginPath(); k.moveTo(0, -dh); k.lineTo(dw, 0); k.lineTo(0, dh); k.lineTo(-dw, 0); k.closePath(); k.fill();
+    txt(k, '?', 0, 2, `700 26px ${FONT}`, '#FFFFFF', 'center', 'middle');
+    k.restore();
+  }
+  box(k, B[0], B[1], 72, 40, 6, pop(u, 1.6), C.blueL);
+  pill(E, pop(u, 1.95), C.g3);
+  // marker: start -> A -> D -> (No) loop -> A -> D -> (Yes) -> B -> E
+  const path = [S, A, D, [D[0], LY], [A[0], LY], A, D, B, E];
+  const m = P(u, 2.6, 3.8);
+  const a = Math.min(P(u, 2.5, 2.65), 1 - P(u, 3.8, 4.0));
+  if (a > 0) {
+    const q = along(path, easeInOut(m) * pathLen(path));
+    k.save(); k.globalAlpha *= a; k.fillStyle = C.mark; k.beginPath(); k.arc(q.x, q.y, 8, 0, TAU); k.fill(); k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[5] = flow;

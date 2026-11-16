@@ -1,0 +1,62 @@
+// Motion Prompt #224 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#224
+//
+// Fishbone diagram / フィッシュボーン図（特性要因図）
+// Pack: diagram (Diagrams and charts for slides) · element 08 · Category: Diagrams that organize ideas
+// What happens: A spine runs right to the head (the result); slanted bones join it from above and below, each with small side bones (the causes).
+// Motion spec:
+//   - Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading "結果" (result), pops in at 0.95 s
+//   - Bones: six bones from x = 150, 258 and 366 on the spine, slanting up-left and down-left (62 px across, 80 px up or down, mid blue, 3 px), drawn over 0.35 s from 1.1 s, 0.14 s per column, the lower ones 0.07 s later
+//   - Side bones: at 36% and 68% along each bone, a 26 px horizontal line to the left (gray, 2.5 px), growing over 0.22 s just after the bone, 0.08 s apart
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To list the possible causes of one result, grouped by kind.
+// Tags: fishbone, fishbone diagram, ishikawa, cause and effect, root cause, causes, quality
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#224
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 08
+// 08 フィッシュボーン図: a spine runs right to the head (the result); slanted bones join it from above
+// and below, each with small side bones (the causes)
+function fishbone(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const y = h / 2, x0 = 52, x1 = 404, hx = 452;
+  // tail
+  const ta = easeOut(P(u, 0.35, 0.6));
+  if (ta > 0) {
+    k.save(); k.globalAlpha *= ta; pen(k, C.mark, 3);
+    k.beginPath(); k.moveTo(x0 - 26, y - 22); k.lineTo(x0, y); k.lineTo(x0 - 26, y + 22); k.stroke(); k.restore();
+  }
+  // spine
+  const sp = easeInOut(P(u, 0.45, 1.0));
+  if (sp > 0) { pen(k, C.mark, 3); trace(k, [[x0, y], [x1, y]], sp, 14, C.mark); }
+  // head
+  const hs = pop(u, 0.95);
+  if (hs > 0.01) {
+    k.save(); k.translate(hx, y); k.scale(hs, hs);
+    k.fillStyle = C.blue; rr(k, -38, -28, 92, 56, 12); k.fill();
+    txt(k, '結果', 8, 1, `700 20px ${FONT}`, '#FFFFFF', 'center', 'middle');
+    k.restore();
+  }
+  // big bones: root on the spine at bx, tip up-left / down-left
+  const bones = [[150, -1], [258, -1], [366, -1], [150, 1], [258, 1], [366, 1]];
+  bones.forEach(([bx, sd], i) => {
+    const a = 1.1 + (i % 3) * 0.14 + (sd > 0 ? 0.07 : 0);
+    const t = easeInOut(P(u, a, a + 0.35));
+    if (t <= 0) return;
+    const tip = [bx - 62, y + sd * 80];
+    pen(k, C.blueM, 3); trace(k, [[bx, y], tip], t);
+    // small bones (horizontal, pointing left) at 1/3 and 2/3 of the bone
+    [0.36, 0.68].forEach((f, j) => {
+      const st = easeOut(P(u, a + 0.38 + j * 0.08, a + 0.6 + j * 0.08));
+      if (st <= 0) return;
+      const px = lerp(tip[0], bx, f), py = lerp(tip[1], y, f);
+      pen(k, C.g4, 2.5); k.beginPath(); k.moveTo(px, py); k.lineTo(px - 26 * st, py); k.stroke();
+    });
+  });
+  k.globalAlpha = 1;
+}
+CELLS[7] = fishbone;

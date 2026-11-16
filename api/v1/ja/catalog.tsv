@@ -1,4 +1,4 @@
-# Motion Prompt catalog (ja) · 216 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
+# Motion Prompt catalog (ja) · 240 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
 001	motion	登場・文字の演出	ポップイン (Pop-in)	pop,pop-in,spring,bounce,scale,icon,badge,entrance	アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポンと出る。
 002	motion	登場・文字の演出	スタガー (Stagger)	stagger,sequence,delay,cascade,bar-chart,list,entrance	グラフの棒が、少しずつ時間をずらして左から順に立ち上がる。
 003	motion	登場・文字の演出	バースト (Burst)	burst,explosion,radial,like,heart,celebrate,accent,sparkle	「いいね」のハートが点くと同時に、まわりに輪・線・粒が弾ける。
@@ -215,3 +215,27 @@
 214	artstyle	デジタル・立体・素材	刺繍 (Embroidery)	embroidery,stitch,thread,fabric,textile,handmade	同じ線画が、布地に色糸で縫い込んだ刺繍に変わる。糸のステッチと布の織り目が見える。
 215	artstyle	デジタル・立体・素材	シンセウェイヴ (Synthwave)	synthwave,retrowave,80s,neon grid,outrun,retro	同じ線画が、80年代風のネオンの世界に変わる。地面は紫と水色の光る格子、太陽は横縞の入った大きな夕日、家と木はネオンの輪郭になる。
 216	artstyle	デジタル・立体・素材	ブループリント（設計図風） (Blueprint)	blueprint,technical drawing,schematic,plan,engineering,white lines	同じ線画が、青い地に白い細線で引いた設計図に変わる。寸法線や補助線が少し入る。
+217	diagram	整理する図	ベン図 (Venn diagram)	venn,venn diagram,overlap,intersection,compare,common ground,circles	2つの円が左右から寄って重なり、重なった部分だけが濃い青になる。
+218	diagram	整理する図	4象限マトリクス（2×2） (2x2 matrix)	2x2 matrix,quadrant,four quadrants,prioritization,positioning,axes,strategy	中央から縦横の軸が伸びて4つの区画ができ、点が置かれていく。右上の区画と点だけ青い。
+219	diagram	整理する図	ロジックツリー (Logic tree (issue tree))	logic tree,issue tree,tree diagram,breakdown,mece,problem solving,branches	左の「?」の箱から右へ、1→2→4と枝分かれしていく。枝はかぎ形の線でつながる。
+220	diagram	整理する図	ピラミッド図 (Pyramid diagram)	pyramid,pyramid diagram,hierarchy,layers,levels,triangle,stack	4段の三角形が、下の段から順に上から落ちてきて積み上がる。一番上の段だけ濃い青。
+221	diagram	整理する図	マインドマップ (Mind map)	mind map,brainstorm,ideas,radial,branches,central topic,mindmap	中央の「テーマ」から左右へ曲線の枝が6本伸び、その先からさらに細い枝と小さな語のノードが出る。
+222	diagram	整理する図	フローチャート (Flowchart)	flowchart,flow chart,process,decision,diamond,steps,procedure,yes no	開始→処理→ひし形の分岐→処理→終了が横1列に並び、分岐から前の処理へ戻る矢印が引かれる。最後に点が一度戻ってから終了まで進む。
+223	diagram	整理する図	サイクル図 (Cycle diagram)	cycle,cycle diagram,loop,pdca,circular process,ring,iteration	輪の上に1〜4の丸が並び、矢印が順に引かれて輪が閉じる。そのあと、青い強調が輪を1周する。
+224	diagram	整理する図	フィッシュボーン図（特性要因図） (Fishbone diagram)	fishbone,fishbone diagram,ishikawa,cause and effect,root cause,causes,quality	背骨が右の頭（結果）へ伸び、上下から斜めの大骨がつながり、それぞれに小骨（原因）が付く。
+225	diagram	数字を見せるグラフ	散布図 (Scatter plot)	scatter plot,scatter chart,correlation,dots,trend line,xy chart,data	L字の軸の上に、小さな青い点が左から右へ次々に現れて右上がりに散らばり、点線の傾向線が引かれる。
+226	diagram	数字を見せるグラフ	バブルチャート (Bubble chart)	bubble chart,bubble,three variables,circle size,portfolio,xy chart,data	L字の軸の上に、大きさの違う半透明の円が5つ、順に膨らんで出る。一番大きい円だけ濃い青。
+227	diagram	数字を見せるグラフ	ヒートマップ (Heatmap)	heatmap,heat map,matrix,color scale,table,density,calendar heatmap	12列×5行の表のマスが、左上から右下へ波のように青の濃淡で塗られ、最後に同じ向きでグレーへ戻る。
+228	diagram	数字を見せるグラフ	レーダーチャート (Radar chart)	radar chart,spider chart,web chart,polygon,compare,skills,balance	6本の軸のくもの巣の上に、グレーの多角形が中心から広がり、続いて青い多角形が少し行き過ぎながら広がる。
+229	diagram	数字を見せるグラフ	ゲージチャート (Gauge chart)	gauge,gauge chart,speedometer,dial,kpi,progress,needle	半円のメーターの針が振れて少し行き過ぎ、揺れながら72%で止まる。針に合わせて青い帯と数字が伸びる。
+230	diagram	数字を見せるグラフ	複合グラフ（棒＋折れ線） (Combo chart (bar + line))	combo chart,combination chart,bar and line,dual axis,secondary axis,chart,data	左の目盛り（グレー）で6本の棒が伸び、そのあと右の目盛り（青）で折れ線が左から右へ引かれる。
+231	diagram	数字を見せるグラフ	絵グラフ（ピクトグラム） (Pictogram chart (icon array))	pictogram,pictograph,icon array,isotype,people icons,percentage,infographic	人のアイコン10人が横1列にグレーで出て、左の3人が順に青くなり、「30%」が数え上がる。
+232	diagram	数字を見せるグラフ	帯グラフ（100%積み上げ） (100% stacked bar chart)	100% stacked bar,stacked bar chart,percentage bar,breakdown,composition,share,proportion	同じ長さの帯4本が左から右へ塗られ、帯どうしの区切りが点線でつながり、最初の区分に%が出る。
+233	diagram	流れと全体を見せる図	ガントチャート (Gantt chart)	gantt,gantt chart,schedule,project plan,timeline bars,tasks,roadmap	上に日付の目盛り（1〜8）、左に作業A〜E。横棒が少しずつずれた位置から順に右へ伸びる。
+234	diagram	流れと全体を見せる図	タイムライン (Timeline)	timeline,history,chronology,milestones,events,roadmap,time line	1本の線が左から右へ引かれ、線の先が届いた所に点と月のラベルが上下交互に出る。最後の点だけ青い。
+235	diagram	流れと全体を見せる図	ファネル図 (Funnel chart)	funnel,funnel chart,conversion,sales funnel,drop-off,stages,marketing	中央揃えの横棒4本が上から順に中央から左右へ伸び、下の段ほど短い。段の間を薄いグレーの台形がつなぐ。
+236	diagram	流れと全体を見せる図	カスタマージャーニーマップ (Customer journey map)	customer journey map,journey map,user journey,customer experience,touchpoints,emotions,ux	5つの段階の見出しと行動のカードが並び、気持ちの線が左から右へ上下しながら引かれ、各点に笑顔・困り顔の印が出る。
+237	diagram	流れと全体を見せる図	ツリーマップ (Treemap)	treemap,tree map,part to whole,breakdown,rectangles,hierarchy,share	点線の外枠の中が、大きい四角から順に、大きさの違う7つの四角で埋まっていく。
+238	diagram	流れと全体を見せる図	スイムレーン図 (Swimlane diagram)	swimlane,swimlane diagram,cross-functional flowchart,lanes,process,responsibilities,workflow	左にレーン名（顧客・営業・制作）の3レーン。手順の箱がレーンを行き来しながら順に出て、かぎ形の矢印でつながる。
+239	diagram	流れと全体を見せる図	矢羽根図（シェブロン） (Chevron process)	chevron,chevron process,process arrows,steps,phases,smartart,roadmap	矢羽根の形の工程1〜5が左から順にすべり込んで並び、それぞれの下に短いメモが出る。右へ行くほど濃い青。
+240	diagram	流れと全体を見せる図	同心円図 (Concentric circle diagram)	concentric circles,tam sam som,market size,nested circles,onion diagram,target market,layers	同じ中心から、外・中・内の円が順に広がって入れ子になり、TAM・SAM・SOMのラベルが出る。

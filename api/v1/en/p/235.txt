@@ -1,0 +1,17 @@
+Please use "Funnel chart" (ファネル図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #235
+
+What it is: Numbers narrowing stage by stage
+What the sample shows: Four centered bars grow out from the middle one after another from the top, each shorter than the one above, joined by light gray trapezoids.
+Spec:
+- Bars: 470, 350, 236 and 132 px wide, 34 px tall, 10 px apart, 7 px corners; light blue, mid blue, mid blue, dark blue
+- Motion: from the top, 0.36 s apart starting at 0.4 s, each bar grows out from the middle over 0.45 s (ease-out)
+- Joints: light gray trapezoids (opacity 0.8) narrowing from the bar above to the bar below fill the gaps
+- Numbers: 100, 58, 27 and 9 in the middle of the bars (20 px), fading in over 0.25 s from 0.3 s after each bar starts
+- The bars are separate and centered so they do not read as #220 Pyramid diagram upside down
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show how the count drops at each stage, such as visit → sign-up → purchase.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/235.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

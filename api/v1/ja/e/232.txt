@@ -1,0 +1,62 @@
+// Motion Prompt #232 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#232
+//
+// 帯グラフ（100%積み上げ） / 100% stacked bar chart
+// パック: diagram (資料で使う図解・グラフの名前) · element 16 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: 同じ長さの帯4本が左から右へ塗られ、帯どうしの区切りが点線でつながり、最初の区分に%が出る。
+// 動きの仕様:
+//   - 帯: 長さ390px・高さ28px・間16pxの帯を4本。中を4つに区切る（濃い青→中くらいの青→薄い青→グレー、区切りは2pxの隙間）
+//   - 動き: 上の帯から0.16秒おきに、0.7秒で左から右へ塗られる（3次のイーズインアウト）
+//   - 点線: 隣り合う帯の同じ区切りどうしを、グレーの点線（4px・間4px）でつなぐ。1.6〜2.0秒にフェードイン
+//   - %: 各帯の最初の区分の中央に白い数字（16px）。帯が塗られ始めて0.75秒後から0.25秒で出る
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 合計の大きさは気にせず、グループごとの内訳（割合）だけを比べるとき。
+// タグ: 100% stacked bar, stacked bar chart, percentage bar, breakdown, composition, share, proportion
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#232
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 16
+// 16 帯グラフ（100%積み上げ）: 4 bands of the same length fill from left to right; dashed lines join the borders
+const BD = [[38, 27, 22, 13], [30, 34, 20, 16], [46, 24, 18, 12], [25, 31, 28, 16]];
+function band(k, w, h, u) {
+  bg(k, w, h);
+  const COL = [C.blue, C.blueM, C.blueL, C.g3];
+  const x0 = 100, bwid = 390, bh = 28, gap = 16, y0 = (h - (4 * bh + 3 * gap)) / 2;
+  for (let j = 0; j < 4; j++) { rr(k, 46, y0 + j * (bh + gap) + bh / 2 - 4, 36, 8, 4); k.fillStyle = C.g3; k.fill(); }
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  const edges = BD.map(r => { let a = 0; return r.map(v => (a += v, x0 + bwid * a / 100)); });
+  // dashed lines joining the borders of neighbouring bands (the classic 帯グラフ guide lines)
+  const pg = easeInOut(P(u, 1.6, 2.0));
+  if (pg > 0) {
+    k.save(); k.globalAlpha = fo * pg;
+    for (let j = 0; j < 3; j++) for (let s = 0; s < 3; s++) {
+      seg(k, edges[j][s], y0 + j * (bh + gap) + bh + 2, edges[j + 1][s], y0 + (j + 1) * (bh + gap) - 2, C.g4, 1.8, [4, 4]);
+    }
+    k.restore();
+  }
+  BD.forEach((row, j) => {
+    const y = y0 + j * (bh + gap), t0 = 0.4 + j * 0.16, p = easeInOut(P(u, t0, t0 + 0.7));
+    if (p <= 0) return;
+    k.save(); k.beginPath(); k.rect(x0, y - 2, bwid * p, bh + 4); k.clip();
+    let a = x0;
+    row.forEach((v, s) => {
+      const ww = bwid * v / 100;
+      k.fillStyle = COL[s]; k.fillRect(a, y, ww, bh);
+      if (s) { k.fillStyle = C.stage; k.fillRect(a - 1, y, 2, bh); }
+      a += ww;
+    });
+    k.restore();
+    const pt = P(u, t0 + 0.75, t0 + 1.0);   // % on the first part of each band
+    if (pt > 0) {
+      k.save(); k.globalAlpha = fo * pt;
+      txt(k, `${row[0]}%`, x0 + bwid * row[0] / 200, y + bh / 2 + 1, `700 16px ${FONT}`, '#FFFFFF', 'center', 'middle');
+      k.restore();
+    }
+  });
+  k.restore();
+}
+CELLS[15] = band;

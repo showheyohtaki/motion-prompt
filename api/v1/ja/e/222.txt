@@ -1,0 +1,63 @@
+// Motion Prompt #222 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#222
+//
+// フローチャート / Flowchart
+// パック: diagram (資料で使う図解・グラフの名前) · element 06 · カテゴリ: 整理する図
+// 何が起きるか: 開始→処理→ひし形の分岐→処理→終了が横1列に並び、分岐から前の処理へ戻る矢印が引かれる。最後に点が一度戻ってから終了まで進む。
+// 動きの仕様:
+//   - 形: 開始と終了は66×36pxの丸い箱（グレー）、処理は72×40pxの箱（薄い青）、分岐は幅92・高さ72pxのひし形（青・白い「?」）。全部 y=80 の1列
+//   - 出る順: 0.4・0.8・1.2・1.6・1.95秒に弾んで出る（0.3秒・easeOutBack）。間の矢印は0.6・1.0・1.4・1.75秒から0.22秒で伸び、矢じり10px
+//   - 戻り: ひし形の下→y=172→最初の処理の下へ戻る矢印を2.0〜2.45秒に引く
+//   - 点: 半径8pxの濃いグレーの点が2.6〜3.8秒に 開始→処理→分岐→戻り→処理→分岐→処理→終了 とたどる（3次のイーズインアウト。2.5〜2.65秒で出て3.8〜4.0秒で消える）
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 手順と、条件によって分かれる道を順番どおりに見せるとき。
+// タグ: flowchart, flow chart, process, decision, diamond, steps, procedure, yes no
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#222
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 06
+// 06 フローチャート: start -> step -> decision (diamond) -> step -> end, with a "No" loop back;
+// then a marker walks the path once (loops back once, then goes on to the end)
+function flow(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const y = 80, S = [64, y], A = [158, y], D = [262, y], B = [364, y], E = [460, y], LY = 172;
+  const dw = 46, dh = 36;                                   // diamond half sizes
+  const arrows = [
+    [[S[0] + 34, y], [A[0] - 36, y]],
+    [[A[0] + 36, y], [D[0] - dw, y]],
+    [[D[0] + dw, y], [B[0] - 36, y]],
+    [[B[0] + 36, y], [E[0] - 34, y]],
+  ];
+  const loop = [[D[0], y + dh], [D[0], LY], [A[0], LY], [A[0], y + 20]];
+  const tA = [0.6, 1.0, 1.4, 1.75];
+  pen(k, C.g4, 3);
+  arrows.forEach((pts, i) => trace(k, pts, easeInOut(P(u, tA[i], tA[i] + 0.22)), 10, C.g4));
+  trace(k, loop, easeInOut(P(u, 2.0, 2.45)), 10, C.g4);
+  // shapes
+  const pill = (c, s, col) => box(k, c[0], c[1], 66, 36, 18, s, col);
+  pill(S, pop(u, 0.4), C.g3);
+  box(k, A[0], A[1], 72, 40, 6, pop(u, 0.8), C.blueL);
+  const ds = pop(u, 1.2);
+  if (ds > 0.01) {
+    k.save(); k.translate(D[0], D[1]); k.scale(ds, ds); k.fillStyle = C.blue;
+    k.beginPath(); k.moveTo(0, -dh); k.lineTo(dw, 0); k.lineTo(0, dh); k.lineTo(-dw, 0); k.closePath(); k.fill();
+    txt(k, '?', 0, 2, `700 26px ${FONT}`, '#FFFFFF', 'center', 'middle');
+    k.restore();
+  }
+  box(k, B[0], B[1], 72, 40, 6, pop(u, 1.6), C.blueL);
+  pill(E, pop(u, 1.95), C.g3);
+  // marker: start -> A -> D -> (No) loop -> A -> D -> (Yes) -> B -> E
+  const path = [S, A, D, [D[0], LY], [A[0], LY], A, D, B, E];
+  const m = P(u, 2.6, 3.8);
+  const a = Math.min(P(u, 2.5, 2.65), 1 - P(u, 3.8, 4.0));
+  if (a > 0) {
+    const q = along(path, easeInOut(m) * pathLen(path));
+    k.save(); k.globalAlpha *= a; k.fillStyle = C.mark; k.beginPath(); k.arc(q.x, q.y, 8, 0, TAU); k.fill(); k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[5] = flow;

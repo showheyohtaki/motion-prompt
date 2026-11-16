@@ -1,0 +1,16 @@
+Please use "Logic tree (issue tree)" (ロジックツリー), one of the names in "Diagrams and charts for slides".
+Motion Prompt #219
+
+What it is: One question broken down into branches
+What the sample shows: From the "?" box on the left, the tree branches to the right, 1 → 2 → 4, joined by elbow lines.
+Spec:
+- Root: a 66×50 px blue box with a white "?" at the left (x = 82), popping in at 0.4 s over 0.3 s (ease-out-back)
+- Level 2: two 76×34 px mid-blue boxes at x = 248; their elbow lines draw from 0.75 s to 1.15 s and the boxes pop in at 1.05 s and 1.13 s
+- Level 3: four 92×26 px light-blue boxes at x = 426; their lines draw over 0.4 s starting at 1.35 s, 0.06 s apart, and the boxes pop in from 1.65 s, 0.08 s apart
+- Lines: gray, 3 px, from the right edge of the parent, bending halfway down or up, into the left edge of the child (drawn with cubic ease-in-out)
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To break a problem or goal down completely and list causes or actions.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/219.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

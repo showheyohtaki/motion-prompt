@@ -1,0 +1,51 @@
+// Motion Prompt #225 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#225
+//
+// Scatter plot / 散布図
+// Pack: diagram (Diagrams and charts for slides) · element 09 · Category: Charts that show numbers
+// What happens: Small blue dots pop in from left to right on L-shaped axes, scattered upward to the right, and a dashed trend line follows.
+// Motion spec:
+//   - Axes: L-shaped axes from x = 96 to 448 and y = 24 to 184 (gray, 2.5 px) with three light horizontal grid lines; they stay for the whole cycle
+//   - Dots: 52 dots (fixed seed) of radius 5 px in blue, scattered upward to the right, each popping in over 0.28 s (ease-out-back) from left to right between 0.4 s and 1.65 s according to its x
+//   - Trend line: a gray dashed line (7 px dash, 8 px gap) grows from bottom-left to top-right from 1.85 s to 2.5 s
+//   - Unlike #226 Bubble chart: many small dots, all the same size
+//   - End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+// When to use it: To show whether two numbers are related, for example whether one rises when the other does.
+// Tags: scatter plot, scatter chart, correlation, dots, trend line, xy chart, data
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#225
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 09
+// 09 散布図: many small dots pop in from left to right, rising to the right; a dashed trend line follows
+const SCPTS = (() => {
+  const r = rand(907), pts = [];
+  for (let i = 0; i < 52; i++) {
+    const x = 0.04 + r() * 0.92;
+    const y = clamp(0.1 + 0.74 * x + (r() + r() - 1) * 0.2, 0.05, 0.95);
+    pts.push({ x, y });
+  }
+  return pts.sort((a, b) => a.x - b.x);
+})();
+function scatter(k, w, h, u) {
+  bg(k, w, h);
+  const A = SC; axes(k, A.x0, A.y0, A.x1, A.y1);
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  const X = x => lerp(A.x0 + 10, A.x1 - 8, x), Y = y => lerp(A.y1 - 8, A.y0 + 6, y);
+  // trend line (drawn after the dots)
+  const tl = easeInOut(P(u, 1.85, 2.5));
+  if (tl > 0) {
+    const xa = X(0.02), ya = Y(0.11), xb = X(0.98), yb = Y(0.83);
+    seg(k, xa, ya, lerp(xa, xb, tl), lerp(ya, yb, tl), C.g4, 2.5, [7, 8]);
+  }
+  for (const p of SCPTS) {
+    const t0 = 0.4 + p.x * 1.25;
+    const s = easeOutBack(P(u, t0, t0 + 0.28));
+    dot(k, X(p.x), Y(p.y), 5 * s, C.blue);
+  }
+  k.restore();
+}
+CELLS[8] = scatter;

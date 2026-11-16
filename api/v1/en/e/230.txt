@@ -1,0 +1,60 @@
+// Motion Prompt #230 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#230
+//
+// Combo chart (bar + line) / 複合グラフ（棒＋折れ線）
+// Pack: diagram (Diagrams and charts for slides) · element 14 · Category: Charts that show numbers
+// What happens: Six bars grow against the left scale (gray ticks), then a line is drawn left to right against the right scale (blue ticks).
+// Motion spec:
+//   - Axes: the left axis and its five ticks are gray, the right axis and its five ticks blue, with three light grid lines; they stay for the whole cycle
+//   - Bars: six light-blue bars 36 px wide grow up over 0.36 s (ease-out), from 0.4 s, 0.12 s apart
+//   - Line: a 3.5 px blue line joins six points from left to right between 1.3 s and 2.2 s at an even speed; the points are ring markers (radius 7 px) popping in from 1.25 s, 0.18 s apart
+//   - End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+// When to use it: To show two numbers with different units on one chart, such as sales and margin.
+// Tags: combo chart, combination chart, bar and line, dual axis, secondary axis, chart, data
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#230
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 14
+// 14 複合グラフ（棒＋折れ線）: bars on the left scale (gray ticks), a dotted line on the right scale (blue ticks)
+const CB = [42, 55, 50, 66, 74, 88];       // bars (left scale, % of height)
+const CL = [26, 34, 52, 46, 64, 80];       // line (right scale, % of height)
+function combo(k, w, h, u) {
+  bg(k, w, h);
+  const floor = 186, top = 24, sc = (floor - top) / 100, x0 = 86, x1 = 452, slot = (x1 - x0) / CB.length, bw = 36;
+  for (let i = 1; i <= 3; i++) { const y = lerp(floor, top, i / 3.4); seg(k, x0 + 4, y, x1 - 4, y, C.g2, 2); }
+  seg(k, x0, top, x0, floor, C.g4, 2.5);
+  seg(k, x1, top, x1, floor, C.blue, 2.5);
+  seg(k, x0, floor, x1, floor, C.g4, 2.5);
+  for (let i = 0; i <= 4; i++) {   // two different scales: gray ticks on the left, blue ticks on the right
+    const y = lerp(floor, top, i / 4);
+    seg(k, x0 - 10, y, x0, y, C.g4, 2.5);
+    seg(k, x1, y, x1 + 10, y, C.blue, 2.5);
+  }
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  CB.forEach((v, i) => {
+    const t0 = 0.4 + i * 0.12, p = easeOut(P(u, t0, t0 + 0.36));
+    if (p <= 0) return;
+    const hh = v * sc * p;
+    rr(k, x0 + slot * (i + 0.5) - bw / 2, floor - hh, bw, hh, 3); k.fillStyle = C.blueL; k.fill();
+  });
+  const pts = CL.map((v, i) => [x0 + slot * (i + 0.5), floor - v * sc]);
+  const pl = P(u, 1.3, 2.2) * (pts.length - 1);
+  if (pl > 0) {
+    k.strokeStyle = C.blue; k.lineWidth = 3.5; k.lineJoin = 'round'; k.lineCap = 'round';
+    k.beginPath(); k.moveTo(pts[0][0], pts[0][1]);
+    const n = Math.floor(pl);
+    for (let i = 1; i <= n; i++) k.lineTo(pts[i][0], pts[i][1]);
+    if (n < pts.length - 1) { const f = pl - n; k.lineTo(lerp(pts[n][0], pts[n + 1][0], f), lerp(pts[n][1], pts[n + 1][1], f)); }
+    k.stroke();
+  }
+  pts.forEach(([x, y], i) => {
+    const s = easeOutBack(P(u, 1.25 + i * 0.18, 1.45 + i * 0.18));
+    if (s > 0) { dot(k, x, y, 7 * s, C.blue); dot(k, x, y, 3 * s, C.stage); }
+  });
+  k.restore();
+}
+CELLS[13] = combo;

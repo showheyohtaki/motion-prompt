@@ -1,0 +1,39 @@
+// Motion Prompt #219 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#219
+//
+// Logic tree (issue tree) / ロジックツリー
+// Pack: diagram (Diagrams and charts for slides) · element 03 · Category: Diagrams that organize ideas
+// What happens: From the "?" box on the left, the tree branches to the right, 1 → 2 → 4, joined by elbow lines.
+// Motion spec:
+//   - Root: a 66×50 px blue box with a white "?" at the left (x = 82), popping in at 0.4 s over 0.3 s (ease-out-back)
+//   - Level 2: two 76×34 px mid-blue boxes at x = 248; their elbow lines draw from 0.75 s to 1.15 s and the boxes pop in at 1.05 s and 1.13 s
+//   - Level 3: four 92×26 px light-blue boxes at x = 426; their lines draw over 0.4 s starting at 1.35 s, 0.06 s apart, and the boxes pop in from 1.65 s, 0.08 s apart
+//   - Lines: gray, 3 px, from the right edge of the parent, bending halfway down or up, into the left edge of the child (drawn with cubic ease-in-out)
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To break a problem or goal down completely and list causes or actions.
+// Tags: logic tree, issue tree, tree diagram, breakdown, mece, problem solving, branches
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#219
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 03
+// 03 ロジックツリー: one box on the left branches to the right, 1 -> 2 -> 4, with elbow lines
+function tree(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const R = [82, h / 2], L2 = [[248, 56], [248, 152]], L3 = [[426, 28], [426, 84], [426, 124], [426, 180]];
+  const RW = 66, RH = 50, W2 = 76, H2 = 34, W3 = 92, H3 = 26;
+  const elbow = (p, c, pw, cw) => { const x0 = p[0] + pw / 2, x1 = c[0] - cw / 2, xm = (x0 + x1) / 2; return [[x0, p[1]], [xm, p[1]], [xm, c[1]], [x1, c[1]]]; };
+  pen(k, C.g4, 3);
+  L2.forEach(c => trace(k, elbow(R, c, RW, W2), easeInOut(P(u, 0.75, 1.15))));
+  L3.forEach((c, i) => trace(k, elbow(L2[i >> 1], c, W2, W3), easeInOut(P(u, 1.35 + i * 0.06, 1.75 + i * 0.06))));
+  const rs = pop(u, 0.4);
+  box(k, R[0], R[1], RW, RH, 10, rs, C.blue);
+  if (rs > 0.6) txt(k, '?', R[0], R[1] + 2, `700 30px ${FONT}`, '#FFFFFF', 'center', 'middle');
+  L2.forEach((c, i) => box(k, c[0], c[1], W2, H2, 9, pop(u, 1.05 + i * 0.08), C.blueM));
+  L3.forEach((c, i) => box(k, c[0], c[1], W3, H3, 8, pop(u, 1.65 + i * 0.08), C.blueL));
+  k.globalAlpha = 1;
+}
+CELLS[2] = tree;

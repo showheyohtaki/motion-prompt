@@ -1,0 +1,15 @@
+Please use "Combo chart (bar + line)" (複合グラフ（棒＋折れ線）), one of the names in "Diagrams and charts for slides".
+Motion Prompt #230
+
+What it is: Bars and a line on one chart, with two scales
+What the sample shows: Six bars grow against the left scale (gray ticks), then a line is drawn left to right against the right scale (blue ticks).
+Spec:
+- Axes: the left axis and its five ticks are gray, the right axis and its five ticks blue, with three light grid lines; they stay for the whole cycle
+- Bars: six light-blue bars 36 px wide grow up over 0.36 s (ease-out), from 0.4 s, 0.12 s apart
+- Line: a 3.5 px blue line joins six points from left to right between 1.3 s and 2.2 s at an even speed; the points are ring markers (radius 7 px) popping in from 1.25 s, 0.18 s apart
+- End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+When to use it: To show two numbers with different units on one chart, such as sales and margin.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/230.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

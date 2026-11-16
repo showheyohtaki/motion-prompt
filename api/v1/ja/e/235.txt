@@ -1,0 +1,51 @@
+// Motion Prompt #235 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#235
+//
+// ファネル図 / Funnel chart
+// パック: diagram (資料で使う図解・グラフの名前) · element 19 · カテゴリ: 流れと全体を見せる図
+// 何が起きるか: 中央揃えの横棒4本が上から順に中央から左右へ伸び、下の段ほど短い。段の間を薄いグレーの台形がつなぐ。
+// 動きの仕様:
+//   - 棒: 幅470・350・236・132px、高さ34px・間10px・角丸7px。色は薄い青→中くらいの青→中くらいの青→濃い青
+//   - 動き: 上の段から0.36秒おき（0.4秒から）に、0.45秒で中央から左右へ伸びる（easeOut）
+//   - つなぎ: 上の棒の幅から下の棒の幅へ細くなる薄いグレーの台形（不透明度0.8）で段の間を埋める
+//   - 数字: 100・58・27・9 を棒の中央に（20px）。棒が出始めて0.3秒後から0.25秒で出る
+//   - #220 ピラミッド図の逆さに見えないよう、棒は離して中央揃えにする
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 訪問→申込→購入のように、段階ごとに人数が減っていく様子を見せるとき。
+// タグ: funnel, funnel chart, conversion, sales funnel, drop-off, stages, marketing
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#235
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 19
+// 19 ファネル図: separate center-aligned bars, each shorter than the one above, with light funnel joints
+function funnel(k, w, h, u) {
+  bg(k, w, h);
+  const cx0 = w / 2, bh = 34, gap = 10, y0 = 21, f = fade(u);
+  const WD = [470, 350, 236, 132], NUM = ['100', '58', '27', '9'];
+  const COL = [C.blueL, C.blueM, C.blueM, C.blue];
+  WD.forEach((wd, i) => {
+    const t0 = 0.4 + i * 0.36, p = appear(u, t0, 0.45);
+    if (p <= 0) return;
+    const y = y0 + i * (bh + gap);
+    // joint from the bar above
+    if (i > 0) {
+      const wa = WD[i - 1], ya = y - gap;
+      k.globalAlpha = f * p * 0.8; k.fillStyle = C.g3;
+      k.beginPath(); k.moveTo(cx0 - wa / 2 + 6, ya); k.lineTo(cx0 + wa / 2 - 6, ya);
+      k.lineTo(cx0 + wd / 2 - 6, y); k.lineTo(cx0 - wd / 2 + 6, y); k.closePath(); k.fill();
+    }
+    k.globalAlpha = f;
+    const ww = wd * p;
+    k.fillStyle = COL[i]; rr(k, cx0 - ww / 2, y, ww, bh, 7); k.fill();
+    const pt = P(u, t0 + 0.3, t0 + 0.55);
+    if (pt > 0) {
+      k.globalAlpha = f * pt;
+      txt(k, NUM[i], cx0, y + bh / 2 + 1, `700 20px ${FONT}`, i === 3 ? '#FFFFFF' : C.mark, 'center', 'middle');
+    }
+  });
+  k.globalAlpha = 1;
+}
+CELLS[18] = funnel;

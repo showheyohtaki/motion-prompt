@@ -1,0 +1,55 @@
+// Motion Prompt #231 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#231
+//
+// Pictogram chart (icon array) / 絵グラフ（ピクトグラム）
+// Pack: diagram (Diagrams and charts for slides) · element 15 · Category: Charts that show numbers
+// What happens: Ten person icons appear in gray in one row, the first three turn blue one by one, and "30%" counts up.
+// Motion spec:
+//   - People: ten faceless person icons, 80 px tall and 32 px apart, in a single row (a grid would read as a heatmap)
+//   - Entrance: they pop in from 0.35 s, 0.06 s apart, over 0.3 s each (ease-out-back), all gray
+//   - Color: the first three turn from gray to blue over 0.25 s each, from 1.25 s, 0.22 s apart
+//   - Number: "30%" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with "10人中3人" (3 in 10 people) below
+//   - End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+// When to use it: To make a share feel like a count of people, for readers who do not like numbers.
+// Tags: pictogram, pictograph, icon array, isotype, people icons, percentage, infographic
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#231
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 15
+// 15 絵グラフ（ピクトグラム）: 10 people in one row pop in gray, then 3 of them turn blue and "30%" counts up
+// faceless pictogram person (the same parts as the camera packs). x,y = feet, h = height in px. o.col: color
+function person(k, x, y, h, o = {}) {
+  k.save(); k.translate(x, y); const s = h / 1.8; k.scale(s, -s); if (o.lean) k.rotate(o.lean);
+  k.fillStyle = o.col || C.blue;
+  const legs = o.legs || [0, 0], arms = o.arms || [0, 0];
+  [[-0.08, legs[0]], [0.08, legs[1]]].forEach(([lx, a]) => { k.save(); k.translate(lx, 0.86); k.rotate(a); rr(k, -0.075, -0.86, 0.15, 0.88, 0.07); k.fill(); k.restore(); });
+  [[-0.25, arms[0]], [0.25, arms[1]]].forEach(([ax, a]) => { k.save(); k.translate(ax, 1.38); k.rotate(a); rr(k, -0.06, -0.58, 0.12, 0.6, 0.06); k.fill(); k.restore(); });
+  rr(k, -0.23, 0.82, 0.46, 0.64, 0.12); k.fill();
+  k.beginPath(); k.arc(0, 1.63, 0.16, 0, 7); k.fill();
+  k.restore();
+}
+function picto(k, w, h, u) {
+  bg(k, w, h);
+  const fo = dataFade(u), n = 10, xs = 214, sp = 32, foot = 158, ph = 80, HI = 3;
+  k.save(); k.globalAlpha = fo;
+  for (let i = 0; i < n; i++) {
+    const t0 = 0.35 + i * 0.06, s = easeOutBack(P(u, t0, t0 + 0.3));
+    if (s <= 0.02) continue;
+    let col = C.g3;
+    if (i < HI) { const pc = easeInOut(P(u, 1.25 + i * 0.22, 1.5 + i * 0.22)); col = mix(C.g3, C.blue, pc); }
+    person(k, xs + i * sp, foot, ph * s, { col });
+  }
+  // the share, counting up while the people turn blue
+  const pc = easeInOut(P(u, 1.25, 1.94));
+  if (pc > 0) {
+    const v = Math.round(30 * pc);
+    txt(k, `${v}%`, 164, 112, `800 46px ${FONT}`, C.blue, 'right', 'middle');
+    txt(k, '10人中3人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
+  }
+  seg(k, xs - 22, foot + 6, xs + (n - 1) * sp + 18, foot + 6, C.g3, 2);
+  k.restore();
+}
+CELLS[14] = picto;

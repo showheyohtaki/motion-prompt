@@ -1,0 +1,16 @@
+Please use "100% stacked bar chart" (帯グラフ（100%積み上げ）), one of the names in "Diagrams and charts for slides".
+Motion Prompt #232
+
+What it is: Bars split by percentage to compare the breakdown
+What the sample shows: Four bars of the same length fill from left to right, dotted lines join the borders between neighbouring bars, and the first part shows its %.
+Spec:
+- Bars: four bars 390 px long, 28 px tall and 16 px apart, each cut into four parts (dark blue, mid blue, light blue, gray) with 2 px gaps
+- Motion: from the top bar down, 0.16 s apart, each fills from left to right over 0.7 s (cubic ease-in-out)
+- Dotted lines: gray dotted lines (4 px dash, 4 px gap) join the same border on neighbouring bars, fading in from 1.6 s to 2.0 s
+- Percent: a white number (16 px) in the middle of each first part, fading in over 0.25 s from 0.75 s after its bar starts
+- End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+When to use it: To compare only the breakdown (shares) of each group, not the totals.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/232.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

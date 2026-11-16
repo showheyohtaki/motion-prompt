@@ -1,0 +1,57 @@
+// Motion Prompt #221 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#221
+//
+// マインドマップ / Mind map
+// パック: diagram (資料で使う図解・グラフの名前) · element 05 · カテゴリ: 整理する図
+// 何が起きるか: 中央の「テーマ」から左右へ曲線の枝が6本伸び、その先からさらに細い枝と小さな語のノードが出る。
+// 動きの仕様:
+//   - 中心: 100×44pxの青い角丸の箱（白い文字「テーマ」19px）。0.4秒から0.3秒で弾んで出る（easeOutBack）
+//   - 枝: 左右に3本ずつ、計6本の3次ベジェ曲線（3px）。0.7秒から0.09秒ずつずらして0.5秒で伸び、先に54×24pxのノードが出る。中くらいの青とグレーを交互に
+//   - 小枝: 枝先から2.5pxの細い曲線を0.35秒で伸ばし（1.45秒から）、先に40×18pxの小さなノード
+//   - 形の違い: 曲線の枝と語のノード。放射状に円を重ねる #240 同心円図とは別の形
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: アイデア出しや、1つのテーマから連想を広げて整理するとき。
+// タグ: mind map, brainstorm, ideas, radial, branches, central topic, mindmap
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#221
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 05
+// 05 マインドマップ: a center word, curved branches out to both sides, then smaller twigs
+const MM = [
+  // [side, end dx, end dy, color, twigs [dx, dy]]
+  [1, 128, -52, C.blueM, [[204, -72], [204, -32]]],
+  [1, 142, 8, C.g4, []],
+  [1, 124, 56, C.blueM, [[204, 76]]],
+  [-1, 128, -52, C.g4, [[204, -70]]],
+  [-1, 140, 10, C.blueM, []],
+  [-1, 124, 56, C.g4, [[204, 36], [204, 76]]],
+];
+function mindmap(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const cx = w / 2, cy = h / 2;
+  MM.forEach(([sd, ex, ey, col, twigs], i) => {
+    const x0 = cx + sd * 40, x1 = cx + sd * ex, y1 = cy + ey;
+    const pts = bezPts([x0, cy], [cx + sd * 78, cy], [cx + sd * (ex - 50), y1], [x1 - sd * 26, y1]);
+    pen(k, col, 3); trace(k, pts, easeInOut(P(u, 0.7 + i * 0.09, 1.2 + i * 0.09)));
+    twigs.forEach(([tx, ty], j) => {
+      const a = [x1 + sd * 26, y1], b = [cx + sd * tx - sd * 20, cy + ty], t0 = 1.45 + i * 0.07 + j * 0.05;
+      const tp = bezPts(a, [a[0] + sd * 22, a[1]], [b[0] - sd * 26, b[1]], b, 16);
+      pen(k, col, 2.5); trace(k, tp, easeInOut(P(u, t0, t0 + 0.35)));
+      box(k, cx + sd * tx, cy + ty, 40, 18, 9, pop(u, t0 + 0.3, 0.25), col === C.g4 ? C.g3 : C.blueL);
+    });
+    box(k, x1, y1, 54, 24, 12, pop(u, 1.15 + i * 0.09, 0.28), col === C.g4 ? C.g4 : C.blueM);
+  });
+  const s = pop(u, 0.4);
+  if (s > 0.01) {
+    k.save(); k.translate(cx, cy); k.scale(s, s);
+    k.fillStyle = C.blue; rr(k, -50, -22, 100, 44, 22); k.fill();
+    txt(k, 'テーマ', 0, 1, `700 19px ${FONT}`, '#FFFFFF', 'center', 'middle');
+    k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[4] = mindmap;

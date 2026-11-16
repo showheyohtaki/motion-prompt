@@ -1,0 +1,16 @@
+Please use "Venn diagram" (ベン図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #217
+
+What it is: Overlapping circles that show what is shared
+What the sample shows: Two circles slide in from the sides and overlap, and only the shared part turns dark blue.
+Spec:
+- Circles: two circles of radius 78 px; A on the left in light blue with a blue outline, B on the right in light gray with a gray outline; only the overlap is filled dark blue
+- Motion: fade in from 0.3 s to 0.7 s (ease-out), then the centers move from ±150 px to ±44 px from the middle between 0.5 s and 1.6 s (cubic ease-in-out)
+- Labels: A and B (26 px) on the outer side of each circle
+- #240 Concentric circle diagram nests circles inside each other; a Venn diagram sets them side by side and overlaps only part
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show what two or more things share and where they differ, on one slide.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/217.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

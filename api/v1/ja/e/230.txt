@@ -1,0 +1,60 @@
+// Motion Prompt #230 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#230
+//
+// 複合グラフ（棒＋折れ線） / Combo chart (bar + line)
+// パック: diagram (資料で使う図解・グラフの名前) · element 14 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: 左の目盛り（グレー）で6本の棒が伸び、そのあと右の目盛り（青）で折れ線が左から右へ引かれる。
+// 動きの仕様:
+//   - 軸: 左の縦軸と目盛り5つはグレー、右の縦軸と目盛り5つは青。薄い横の目盛り線3本。1周ずっと出したまま
+//   - 棒: 幅36pxの薄い青の棒が6本。0.4秒から0.12秒おきに0.36秒で下から伸びる（easeOut）
+//   - 折れ線: 青3.5pxの線が1.3〜2.2秒に6つの点を左から順につなぐ（一定の速さ）。点は白抜きの丸（半径7px）で1.25秒から0.18秒おきに弾んで出る
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 売上と利益率のように、単位の違う2つの数字を1枚で見せるとき。
+// タグ: combo chart, combination chart, bar and line, dual axis, secondary axis, chart, data
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#230
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 14
+// 14 複合グラフ（棒＋折れ線）: bars on the left scale (gray ticks), a dotted line on the right scale (blue ticks)
+const CB = [42, 55, 50, 66, 74, 88];       // bars (left scale, % of height)
+const CL = [26, 34, 52, 46, 64, 80];       // line (right scale, % of height)
+function combo(k, w, h, u) {
+  bg(k, w, h);
+  const floor = 186, top = 24, sc = (floor - top) / 100, x0 = 86, x1 = 452, slot = (x1 - x0) / CB.length, bw = 36;
+  for (let i = 1; i <= 3; i++) { const y = lerp(floor, top, i / 3.4); seg(k, x0 + 4, y, x1 - 4, y, C.g2, 2); }
+  seg(k, x0, top, x0, floor, C.g4, 2.5);
+  seg(k, x1, top, x1, floor, C.blue, 2.5);
+  seg(k, x0, floor, x1, floor, C.g4, 2.5);
+  for (let i = 0; i <= 4; i++) {   // two different scales: gray ticks on the left, blue ticks on the right
+    const y = lerp(floor, top, i / 4);
+    seg(k, x0 - 10, y, x0, y, C.g4, 2.5);
+    seg(k, x1, y, x1 + 10, y, C.blue, 2.5);
+  }
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  CB.forEach((v, i) => {
+    const t0 = 0.4 + i * 0.12, p = easeOut(P(u, t0, t0 + 0.36));
+    if (p <= 0) return;
+    const hh = v * sc * p;
+    rr(k, x0 + slot * (i + 0.5) - bw / 2, floor - hh, bw, hh, 3); k.fillStyle = C.blueL; k.fill();
+  });
+  const pts = CL.map((v, i) => [x0 + slot * (i + 0.5), floor - v * sc]);
+  const pl = P(u, 1.3, 2.2) * (pts.length - 1);
+  if (pl > 0) {
+    k.strokeStyle = C.blue; k.lineWidth = 3.5; k.lineJoin = 'round'; k.lineCap = 'round';
+    k.beginPath(); k.moveTo(pts[0][0], pts[0][1]);
+    const n = Math.floor(pl);
+    for (let i = 1; i <= n; i++) k.lineTo(pts[i][0], pts[i][1]);
+    if (n < pts.length - 1) { const f = pl - n; k.lineTo(lerp(pts[n][0], pts[n + 1][0], f), lerp(pts[n][1], pts[n + 1][1], f)); }
+    k.stroke();
+  }
+  pts.forEach(([x, y], i) => {
+    const s = easeOutBack(P(u, 1.25 + i * 0.18, 1.45 + i * 0.18));
+    if (s > 0) { dot(k, x, y, 7 * s, C.blue); dot(k, x, y, 3 * s, C.stage); }
+  });
+  k.restore();
+}
+CELLS[13] = combo;

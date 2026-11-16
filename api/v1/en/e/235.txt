@@ -1,0 +1,51 @@
+// Motion Prompt #235 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#235
+//
+// Funnel chart / ファネル図
+// Pack: diagram (Diagrams and charts for slides) · element 19 · Category: Diagrams of flow and the whole picture
+// What happens: Four centered bars grow out from the middle one after another from the top, each shorter than the one above, joined by light gray trapezoids.
+// Motion spec:
+//   - Bars: 470, 350, 236 and 132 px wide, 34 px tall, 10 px apart, 7 px corners; light blue, mid blue, mid blue, dark blue
+//   - Motion: from the top, 0.36 s apart starting at 0.4 s, each bar grows out from the middle over 0.45 s (ease-out)
+//   - Joints: light gray trapezoids (opacity 0.8) narrowing from the bar above to the bar below fill the gaps
+//   - Numbers: 100, 58, 27 and 9 in the middle of the bars (20 px), fading in over 0.25 s from 0.3 s after each bar starts
+//   - The bars are separate and centered so they do not read as #220 Pyramid diagram upside down
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show how the count drops at each stage, such as visit → sign-up → purchase.
+// Tags: funnel, funnel chart, conversion, sales funnel, drop-off, stages, marketing
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#235
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 19
+// 19 ファネル図: separate center-aligned bars, each shorter than the one above, with light funnel joints
+function funnel(k, w, h, u) {
+  bg(k, w, h);
+  const cx0 = w / 2, bh = 34, gap = 10, y0 = 21, f = fade(u);
+  const WD = [470, 350, 236, 132], NUM = ['100', '58', '27', '9'];
+  const COL = [C.blueL, C.blueM, C.blueM, C.blue];
+  WD.forEach((wd, i) => {
+    const t0 = 0.4 + i * 0.36, p = appear(u, t0, 0.45);
+    if (p <= 0) return;
+    const y = y0 + i * (bh + gap);
+    // joint from the bar above
+    if (i > 0) {
+      const wa = WD[i - 1], ya = y - gap;
+      k.globalAlpha = f * p * 0.8; k.fillStyle = C.g3;
+      k.beginPath(); k.moveTo(cx0 - wa / 2 + 6, ya); k.lineTo(cx0 + wa / 2 - 6, ya);
+      k.lineTo(cx0 + wd / 2 - 6, y); k.lineTo(cx0 - wd / 2 + 6, y); k.closePath(); k.fill();
+    }
+    k.globalAlpha = f;
+    const ww = wd * p;
+    k.fillStyle = COL[i]; rr(k, cx0 - ww / 2, y, ww, bh, 7); k.fill();
+    const pt = P(u, t0 + 0.3, t0 + 0.55);
+    if (pt > 0) {
+      k.globalAlpha = f * pt;
+      txt(k, NUM[i], cx0, y + bh / 2 + 1, `700 20px ${FONT}`, i === 3 ? '#FFFFFF' : C.mark, 'center', 'middle');
+    }
+  });
+  k.globalAlpha = 1;
+}
+CELLS[18] = funnel;

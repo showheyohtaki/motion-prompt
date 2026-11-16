@@ -1,0 +1,16 @@
+Please use "Chevron process" (矢羽根図（シェブロン）), one of the names in "Diagrams and charts for slides".
+Motion Prompt #239
+
+What it is: Arrow-shaped steps in a row
+What the sample shows: Arrow-shaped steps 1 to 5 slide in from the left one after another, each with short notes below; the blue gets darker to the right.
+Spec:
+- Shape: five chevrons 104 px wide and 74 px tall (point depth 24 px, 6 px gaps); from the second on, the left side is notched to fit the one before
+- Colors: light blue, light blue, mid blue, mid blue, dark blue, with the numbers 1–5 (24 px) in the middle
+- Motion: from 0.4 s, 0.3 s apart, each slides in from 34 px to the left over 0.42 s while fading in (ease-out)
+- Notes: two gray bars (62 px and 44 px long) under each step, fading in over 0.3 s from 0.25 s after the step starts
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show steps that follow each other, such as a training schedule or a rollout, in one row.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/239.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

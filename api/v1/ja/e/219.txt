@@ -1,0 +1,39 @@
+// Motion Prompt #219 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#219
+//
+// ロジックツリー / Logic tree (issue tree)
+// パック: diagram (資料で使う図解・グラフの名前) · element 03 · カテゴリ: 整理する図
+// 何が起きるか: 左の「?」の箱から右へ、1→2→4と枝分かれしていく。枝はかぎ形の線でつながる。
+// 動きの仕様:
+//   - 根: 左端（x=82）に66×50pxの青い箱と白い「?」。0.4秒から0.3秒で弾んで出る（easeOutBack）
+//   - 2段目: x=248に76×34pxの中くらいの青の箱が2つ。かぎ形の線が0.75〜1.15秒に引かれ、箱は1.05秒・1.13秒に弾んで出る
+//   - 3段目: x=426に92×26pxの薄い青の箱が4つ。線は1.35秒から0.06秒ずつずらして0.4秒で引き、箱は1.65秒から0.08秒おきに出る
+//   - 線: グレー3px。親の右端→中間で折れて縦→子の左端（3次のイーズインアウトで伸びる）
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 問題や目標を漏れなく分解して、原因や打ち手を洗い出すとき。
+// タグ: logic tree, issue tree, tree diagram, breakdown, mece, problem solving, branches
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#219
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 03
+// 03 ロジックツリー: one box on the left branches to the right, 1 -> 2 -> 4, with elbow lines
+function tree(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const R = [82, h / 2], L2 = [[248, 56], [248, 152]], L3 = [[426, 28], [426, 84], [426, 124], [426, 180]];
+  const RW = 66, RH = 50, W2 = 76, H2 = 34, W3 = 92, H3 = 26;
+  const elbow = (p, c, pw, cw) => { const x0 = p[0] + pw / 2, x1 = c[0] - cw / 2, xm = (x0 + x1) / 2; return [[x0, p[1]], [xm, p[1]], [xm, c[1]], [x1, c[1]]]; };
+  pen(k, C.g4, 3);
+  L2.forEach(c => trace(k, elbow(R, c, RW, W2), easeInOut(P(u, 0.75, 1.15))));
+  L3.forEach((c, i) => trace(k, elbow(L2[i >> 1], c, W2, W3), easeInOut(P(u, 1.35 + i * 0.06, 1.75 + i * 0.06))));
+  const rs = pop(u, 0.4);
+  box(k, R[0], R[1], RW, RH, 10, rs, C.blue);
+  if (rs > 0.6) txt(k, '?', R[0], R[1] + 2, `700 30px ${FONT}`, '#FFFFFF', 'center', 'middle');
+  L2.forEach((c, i) => box(k, c[0], c[1], W2, H2, 9, pop(u, 1.05 + i * 0.08), C.blueM));
+  L3.forEach((c, i) => box(k, c[0], c[1], W3, H3, 8, pop(u, 1.65 + i * 0.08), C.blueL));
+  k.globalAlpha = 1;
+}
+CELLS[2] = tree;

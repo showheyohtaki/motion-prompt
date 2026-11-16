@@ -1,0 +1,64 @@
+// Motion Prompt #234 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#234
+//
+// Timeline / タイムライン
+// Pack: diagram (Diagrams and charts for slides) · element 18 · Category: Diagrams of flow and the whole picture
+// What happens: One line is drawn from left to right; as its tip passes each point, a dot and a month label appear, alternating above and below. The last one is blue.
+// Motion spec:
+//   - Line: from x = 36 to x = 503 at y = 106 (dark gray, 3 px), drawn from 0.4 s to 2.0 s (cubic ease-in-out), with an arrowhead at the right end
+//   - Dots: five (April, June, August, October, December: 4月 … 12月), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)
+//   - Labels: from each dot a 22 px stem grows up or down, alternating, to a 64×32 px rounded tag (white with the month in 18 px; the last one blue with white text), over 0.3 s
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show events in time order: a history, how something came about, or a plan.
+// Tags: timeline, history, chronology, milestones, events, roadmap, time line
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#234
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 18
+// 18 タイムライン: one line drawn left to right; dots and short marks appear in order, alternating up/down
+function timeline(k, w, h, u) {
+  bg(k, w, h);
+  const y = 106, xa = 36, xb = 503, f = fade(u);
+  const pl = easeInOut(P(u, 0.4, 2.0));
+  const tip = lerp(xa, xb, pl);
+  k.globalAlpha = f;
+  if (pl > 0) {
+    k.strokeStyle = C.mark; k.lineWidth = 3; k.lineCap = 'round';
+    k.beginPath(); k.moveTo(xa, y); k.lineTo(tip, y); k.stroke();
+    if (pl > 0.97) arrowTo(k, xb + 6, y, 1, 0, 11, C.mark);
+  }
+  const XS = [78, 166, 254, 342, 430], LB = ['4月', '6月', '8月', '10月', '12月'];
+  XS.forEach((x, i) => {
+    const t0 = 0.4 + 1.6 * tipT(i, XS, xa, xb);
+    const pd = P(u, t0, t0 + 0.25); if (pd <= 0) return;
+    const up = i % 2 === 0, last = i === XS.length - 1;
+    const s = easeOutBack(pd), r = last ? 10 : 7;
+    // short stem + small card
+    const ps = appear(u, t0 + 0.1, 0.3);
+    const dir = up ? -1 : 1, y1 = y + dir * (r + 4), y2 = y + dir * (r + 4 + 22 * ps);
+    k.strokeStyle = last ? C.blue : C.g4; k.lineWidth = 2.5;
+    k.beginPath(); k.moveTo(x, y1); k.lineTo(x, y2); k.stroke();
+    if (ps > 0) {
+      const cwid = 64, chh = 32, cy = up ? y - r - 26 - chh / 2 : y + r + 26 + chh / 2;
+      k.globalAlpha = f * ps;
+      k.fillStyle = last ? C.blue : '#FFFFFF'; k.strokeStyle = last ? C.blue : C.g3; k.lineWidth = 2;
+      rr(k, x - cwid / 2, cy - chh / 2, cwid, chh, 8); k.fill(); k.stroke();
+      txt(k, LB[i], x, cy + 1, `600 18px ${FONT}`, last ? '#FFFFFF' : C.mark, 'center', 'middle');
+      k.globalAlpha = f;
+    }
+    k.fillStyle = last ? C.blue : C.blueM;
+    k.beginPath(); k.arc(x, y, r * s, 0, 7); k.fill();
+    k.strokeStyle = C.stage; k.lineWidth = 2; k.stroke();
+  });
+  k.globalAlpha = 1;
+}
+// time at which the line tip (easeInOut over 0.4..2.0) reaches XS[i]
+function tipT(i, XS, xa, xb) {
+  const target = (XS[i] - xa) / (xb - xa);
+  let lo = 0, hi = 1; for (let n = 0; n < 24; n++) { const m = (lo + hi) / 2; if (easeInOut(m) < target) lo = m; else hi = m; }
+  return lo;
+}
+CELLS[17] = timeline;

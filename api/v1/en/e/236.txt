@@ -1,0 +1,90 @@
+// Motion Prompt #236 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#236
+//
+// Customer journey map / カスタマージャーニーマップ
+// Pack: diagram (Diagrams and charts for slides) · element 20 · Category: Diagrams of flow and the whole picture
+// What happens: Five stage headers and action cards line up, then a feeling line rises and falls from left to right, with a smiling or frowning mark on each point.
+// Motion spec:
+//   - Frame: five columns with vertical dividers; the stage headers on top are plain rounded boxes (not arrows; the middle one gray), appearing from 0.35 s, 0.1 s apart
+//   - Actions: a white card under each header (text as gray bars), rising 8 px while it appears over 0.3 s, from 0.6 s, 0.1 s apart
+//   - Feeling: against a dotted neutral line at y = 150, a smooth blue curve (3.5 px) through +0.35, +0.7, −0.6, +0.15 and +0.85 (× 36 px) is drawn from left to right between 1.25 s and 2.25 s
+//   - Marks: as the line reaches each point a face (radius 12 px) pops in: a blue smile above the neutral line, a gray frown below it
+//   - There are no arrows across lanes (unlike #238 Swimlane diagram)
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To see what customers do at each stage and where their mood drops.
+// Tags: customer journey map, journey map, user journey, customer experience, touchpoints, emotions, ux
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#236
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 20
+// 20 カスタマージャーニーマップ: stage headers as plain boxes (columns), an action card under each,
+// then the feeling line goes up and down across the stages, with a smile / frown mark on each point
+const JV = [0.35, 0.7, -0.6, 0.15, 0.85];     // feeling per stage (+ up = good)
+function face(k, x, y, r, good, col) {
+  k.fillStyle = col; k.beginPath(); k.arc(x, y, r, 0, Math.PI * 2); k.fill();
+  k.fillStyle = '#FFFFFF';
+  k.beginPath(); k.arc(x - r * 0.36, y - r * 0.22, r * 0.13, 0, 7); k.fill();
+  k.beginPath(); k.arc(x + r * 0.36, y - r * 0.22, r * 0.13, 0, 7); k.fill();
+  k.strokeStyle = '#FFFFFF'; k.lineWidth = Math.max(1.6, r * 0.15); k.lineCap = 'round';
+  k.beginPath();
+  if (good) k.arc(x, y + r * 0.02, r * 0.42, Math.PI * 0.2, Math.PI * 0.8);
+  else k.arc(x, y + r * 0.62, r * 0.42, Math.PI * 1.2, Math.PI * 1.8);
+  k.stroke();
+}
+function journey(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), n = 5, xl = 22, xr = w - 22, cw = (xr - xl) / n;
+  const cx = i => xl + cw * (i + 0.5);
+  const yMid = 150, amp = 36;
+  // column separators and the neutral line stay as the frame
+  for (let i = 1; i < n; i++) seg(k, xl + cw * i, 14, xl + cw * i, h - 12, C.g2, 2);
+  k.globalAlpha = f;
+  // stage headers: plain rounded boxes (not arrows), the stage names as short bars
+  for (let i = 0; i < n; i++) {
+    const p = appear(u, 0.35 + i * 0.1, 0.3);
+    if (p <= 0) continue;
+    k.save(); k.globalAlpha = f * p;
+    rr(k, cx(i) - cw / 2 + 6, 14, cw - 12, 26, 7); k.fillStyle = i === 2 ? C.g3 : C.blueM; k.fill();
+    rr(k, cx(i) - 22, 25, 44, 5, 2.5); k.fillStyle = '#FFFFFF'; k.fill();
+    k.restore();
+  }
+  // action cards (what the customer does at each stage)
+  for (let i = 0; i < n; i++) {
+    const p = appear(u, 0.6 + i * 0.1, 0.3);
+    if (p <= 0) continue;
+    k.save(); k.globalAlpha = f * p;
+    const y = 50 + (1 - p) * 8;
+    rr(k, cx(i) - cw / 2 + 10, y, cw - 20, 38, 6); k.fillStyle = '#FFFFFF'; k.fill();
+    k.strokeStyle = C.g3; k.lineWidth = 1.5; k.stroke();
+    rr(k, cx(i) - cw / 2 + 18, y + 10, cw - 46, 6, 3); k.fillStyle = C.g3; k.fill();
+    rr(k, cx(i) - cw / 2 + 18, y + 22, cw - 60, 6, 3); k.fillStyle = C.g2; k.fill();
+    k.restore();
+  }
+  k.globalAlpha = 1;
+  seg(k, xl + 4, yMid, xr - 4, yMid, C.g3, 2, [5, 6]);
+  k.globalAlpha = f;
+  // feeling line (smooth through the 5 points), drawn left to right
+  const pts = JV.map((v, i) => [cx(i), yMid - v * amp]);
+  const pl = easeInOut(P(u, 1.25, 2.25));
+  if (pl > 0) {
+    k.save(); k.beginPath(); k.rect(0, 0, lerp(pts[0][0], pts[n - 1][0], pl) + 1, h); k.clip();
+    k.strokeStyle = C.blue; k.lineWidth = 3.5; k.lineJoin = 'round'; k.lineCap = 'round';
+    k.beginPath(); k.moveTo(pts[0][0], pts[0][1]);
+    for (let i = 0; i < n - 1; i++) {
+      const [x0, y0] = pts[i], [x1, y1] = pts[i + 1], mx = (x0 + x1) / 2;
+      k.bezierCurveTo(mx, y0, mx, y1, x1, y1);
+    }
+    k.stroke(); k.restore();
+  }
+  pts.forEach(([x, y], i) => {
+    const tx = 1.25 + (i / (n - 1)) * 1.0, s = easeOutBack(P(u, tx - 0.05, tx + 0.2));
+    if (s <= 0.02) return;
+    const good = JV[i] >= 0;
+    face(k, x, y, 12 * s, good, good ? C.blue : C.g4);
+  });
+  k.globalAlpha = 1;
+}
+CELLS[19] = journey;

@@ -1,0 +1,15 @@
+Please use "Timeline" (タイムライン), one of the names in "Diagrams and charts for slides".
+Motion Prompt #234
+
+What it is: Events in order along one line
+What the sample shows: One line is drawn from left to right; as its tip passes each point, a dot and a month label appear, alternating above and below. The last one is blue.
+Spec:
+- Line: from x = 36 to x = 503 at y = 106 (dark gray, 3 px), drawn from 0.4 s to 2.0 s (cubic ease-in-out), with an arrowhead at the right end
+- Dots: five (April, June, August, October, December: 4月 … 12月), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)
+- Labels: from each dot a 22 px stem grows up or down, alternating, to a 64×32 px rounded tag (white with the month in 18 px; the last one blue with white text), over 0.3 s
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show events in time order: a history, how something came about, or a plan.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/234.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

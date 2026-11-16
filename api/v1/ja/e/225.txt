@@ -1,0 +1,51 @@
+// Motion Prompt #225 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#225
+//
+// 散布図 / Scatter plot
+// パック: diagram (資料で使う図解・グラフの名前) · element 09 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: L字の軸の上に、小さな青い点が左から右へ次々に現れて右上がりに散らばり、点線の傾向線が引かれる。
+// 動きの仕様:
+//   - 軸: x=96〜448・y=24〜184のL字の軸（グレー2.5px）と薄い横の目盛り線3本。1周ずっと出したまま
+//   - 点: 52個（固定の乱数）。右上がりに散らばる半径5pxの青い点が、x位置に合わせて0.4〜1.65秒に左から順に0.28秒で弾んで出る（easeOutBack）
+//   - 傾向線: グレーの点線（7px・間8px）が1.85〜2.5秒に左下から右上へ伸びる
+//   - #226 バブルチャートとの違い: 小さな同じ大きさの点をたくさん打つ
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 2つの数字に関係があるか（片方が増えるともう片方も増えるか）を見せるとき。
+// タグ: scatter plot, scatter chart, correlation, dots, trend line, xy chart, data
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#225
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 09
+// 09 散布図: many small dots pop in from left to right, rising to the right; a dashed trend line follows
+const SCPTS = (() => {
+  const r = rand(907), pts = [];
+  for (let i = 0; i < 52; i++) {
+    const x = 0.04 + r() * 0.92;
+    const y = clamp(0.1 + 0.74 * x + (r() + r() - 1) * 0.2, 0.05, 0.95);
+    pts.push({ x, y });
+  }
+  return pts.sort((a, b) => a.x - b.x);
+})();
+function scatter(k, w, h, u) {
+  bg(k, w, h);
+  const A = SC; axes(k, A.x0, A.y0, A.x1, A.y1);
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  const X = x => lerp(A.x0 + 10, A.x1 - 8, x), Y = y => lerp(A.y1 - 8, A.y0 + 6, y);
+  // trend line (drawn after the dots)
+  const tl = easeInOut(P(u, 1.85, 2.5));
+  if (tl > 0) {
+    const xa = X(0.02), ya = Y(0.11), xb = X(0.98), yb = Y(0.83);
+    seg(k, xa, ya, lerp(xa, xb, tl), lerp(ya, yb, tl), C.g4, 2.5, [7, 8]);
+  }
+  for (const p of SCPTS) {
+    const t0 = 0.4 + p.x * 1.25;
+    const s = easeOutBack(P(u, t0, t0 + 0.28));
+    dot(k, X(p.x), Y(p.y), 5 * s, C.blue);
+  }
+  k.restore();
+}
+CELLS[8] = scatter;

@@ -1,0 +1,15 @@
+Please use "Gauge chart" (ゲージチャート), one of the names in "Diagrams and charts for slides".
+Motion Prompt #229
+
+What it is: A half-circle dial and needle that show progress
+What the sample shows: The needle of a half-circle dial swings past, wobbles and settles at 72%; the blue band and the number follow the needle.
+Spec:
+- Dial: a half-circle band of radius 120 px and 30 px thick (gray), with ticks every 10% (longer at 0, 50 and 100%)
+- Needle: starts at 0.5 s and follows a damped spring 1 − e^(−3.2t)·cos(7.5t), swinging past and wobbling before it settles at 72%
+- Band and number: the band is blue up to the needle, and the percentage (26 px) below matches the needle
+- End: from 4.1 s to 4.5 s the needle, band and number go back to 0% (cubic ease-in-out; one pass = 4.7 s)
+When to use it: To show with one number how far you are toward a target.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/229.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

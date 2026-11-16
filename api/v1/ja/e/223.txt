@@ -1,0 +1,54 @@
+// Motion Prompt #223 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#223
+//
+// サイクル図 / Cycle diagram
+// パック: diagram (資料で使う図解・グラフの名前) · element 07 · カテゴリ: 整理する図
+// 何が起きるか: 輪の上に1〜4の丸が並び、矢印が順に引かれて輪が閉じる。そのあと、青い強調が輪を1周する。
+// 動きの仕様:
+//   - 配置: 横128px・縦70pxの楕円の上下左右に、半径26pxの薄い青の丸（番号1〜4）。0.4秒から0.32秒おきに弾んで出る
+//   - 矢印: 丸から次の丸へ楕円に沿った弧（中くらいの青・3px・矢じり13px）。0.7秒から0.32秒おきに0.28秒で引き、1.94秒で輪が閉じる
+//   - 強調: 2.2〜3.8秒に1段0.4秒で青く塗りつぶした丸が1→2→3→4と移る（前後はふわっと切り替え）
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: PDCAのように、終わると最初に戻って回り続ける流れを見せるとき。
+// タグ: cycle, cycle diagram, loop, pdca, circular process, ring, iteration
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#223
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 07
+// 07 サイクル図: four steps on a ring; arrows draw one after another until the ring closes,
+// then the highlight goes round the ring once
+function cycle(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const cx = w / 2, cy = h / 2, RX = 128, RY = 70, nr = 26, n = 4;
+  const ang = i => -Math.PI / 2 + i * TAU / n, pos = a => [cx + Math.cos(a) * RX, cy + Math.sin(a) * RY];
+  for (let i = 0; i < n; i++) {
+    const t = easeInOut(P(u, 0.7 + i * 0.32, 0.98 + i * 0.32));
+    if (t <= 0) continue;
+    const A = pos(ang(i)), B = pos(ang(i + 1)), pts = [];
+    for (let j = 0; j <= 60; j++) {
+      const q = pos(lerp(ang(i), ang(i + 1), j / 60));
+      if (Math.hypot(q[0] - A[0], q[1] - A[1]) > nr + 10 && Math.hypot(q[0] - B[0], q[1] - B[1]) > nr + 8) pts.push(q);
+    }
+    pen(k, C.blueM, 3); trace(k, pts, t, 13, C.blueM);
+  }
+  // highlight going round: 2.2s -> 3.8s, 0.4s per step, soft edges
+  const hp = P(u, 2.2, 3.8) * n;
+  for (let i = 0; i < n; i++) {
+    const s = pop(u, 0.4 + i * 0.32, 0.28);
+    if (s <= 0.01) continue;
+    const dd = hp - i;
+    const on = (u > 2.15 && u < 4.0 && dd > -0.25 && dd < 1.25) ? clamp(Math.min(dd + 0.25, 1.25 - dd) * 2.5) : 0;
+    const [x, y] = pos(ang(i));
+    k.save(); k.translate(x, y); k.scale(s, s);
+    k.fillStyle = C.blueL; k.beginPath(); k.arc(0, 0, nr, 0, TAU); k.fill();
+    if (on > 0) { k.save(); k.globalAlpha *= on; k.fillStyle = C.blue; k.beginPath(); k.arc(0, 0, nr, 0, TAU); k.fill(); k.restore(); }
+    txt(k, String(i + 1), 0, 1, `700 22px ${FONT}`, on > 0.5 ? '#FFFFFF' : C.blue, 'center', 'middle');
+    k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[6] = cycle;

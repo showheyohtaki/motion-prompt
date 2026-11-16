@@ -1,0 +1,1444 @@
+{
+ "pack": "diagram",
+ "order": 10,
+ "title": {
+  "ja": "資料で使う図解・グラフの名前",
+  "en": "Diagrams and charts for slides",
+  "es": "Diagramas y gráficos para presentaciones",
+  "zh-Hans": "资料中常用的图解与图表名称",
+  "zh-Hant": "資料中常用的圖解與圖表名稱"
+ },
+ "categories": [
+  {
+   "slug": "organize",
+   "ja": "整理する図",
+   "en": "Diagrams that organize ideas",
+   "es": "Diagramas para organizar ideas",
+   "zh-Hans": "整理思路的图",
+   "zh-Hant": "整理思路的圖"
+  },
+  {
+   "slug": "numbers",
+   "ja": "数字を見せるグラフ",
+   "en": "Charts that show numbers",
+   "es": "Gráficos para mostrar cifras",
+   "zh-Hans": "展示数字的图表",
+   "zh-Hant": "呈現數字的圖表"
+  },
+  {
+   "slug": "flow-overview",
+   "ja": "流れと全体を見せる図",
+   "en": "Diagrams of flow and the whole picture",
+   "es": "Diagramas de flujo y visión de conjunto",
+   "zh-Hans": "展示流程与全局的图",
+   "zh-Hant": "呈現流程與全局的圖"
+  }
+ ],
+ "elements": [
+  {
+   "no": "01",
+   "slug": "venn-diagram",
+   "category": "organize",
+   "name": {
+    "ja": "ベン図",
+    "en": "Venn diagram",
+    "es": "Diagrama de Venn",
+    "zh-Hans": "维恩图",
+    "zh-Hant": "文氏圖"
+   },
+   "meaning": {
+    "ja": "円を重ねて共通点を見せる",
+    "en": "Overlapping circles that show what is shared",
+    "es": "Círculos superpuestos que muestran lo que se comparte",
+    "zh-Hans": "用重叠的圆表示共同点",
+    "zh-Hant": "用重疊的圓表示共同點"
+   },
+   "ask": {
+    "ja": "オンライン講座と対面講座の違いをベン図で。円は2つ、重なった所に共通点を3つ書いて。",
+    "en": "Compare online and in-person courses in a Venn diagram: two circles, with three shared points where they overlap.",
+    "es": "Compara los cursos en línea y los presenciales en un diagrama de Venn: dos círculos y tres puntos en común en la intersección.",
+    "zh-Hans": "用维恩图比较线上课程和线下课程：两个圆，在重叠处写三个共同点。",
+    "zh-Hant": "用文氏圖比較線上課程和實體課程：兩個圓，在重疊處寫三個共同點。"
+   },
+   "summary": {
+    "ja": "2つの円が左右から寄って重なり、重なった部分だけが濃い青になる。",
+    "en": "Two circles slide in from the sides and overlap, and only the shared part turns dark blue."
+   },
+   "spec": {
+    "ja": [
+     "円: 半径78pxの円が2つ。左のAは薄い青に青い縁、右のBは薄いグレーにグレーの縁。重なった部分だけ濃い青で塗る",
+     "動き: 0.3〜0.7秒でフェードイン（easeOut）、0.5〜1.6秒で円の中心が左右±150px→±44pxまで寄る（3次のイーズインアウト）",
+     "文字: 各円の外寄りにA・B（26px）",
+     "#240 同心円図は円を入れ子にする。ベン図は横に並べて一部だけ重ねる",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Circles: two circles of radius 78 px; A on the left in light blue with a blue outline, B on the right in light gray with a gray outline; only the overlap is filled dark blue",
+     "Motion: fade in from 0.3 s to 0.7 s (ease-out), then the centers move from ±150 px to ±44 px from the middle between 0.5 s and 1.6 s (cubic ease-in-out)",
+     "Labels: A and B (26 px) on the outer side of each circle",
+     "#240 Concentric circle diagram nests circles inside each other; a Venn diagram sets them side by side and overlaps only part",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "2つ以上の物の共通点と違いを1枚で見せるとき。",
+    "en": "To show what two or more things share and where they differ, on one slide."
+   },
+   "tags": [
+    "venn",
+    "venn diagram",
+    "overlap",
+    "intersection",
+    "compare",
+    "common ground",
+    "circles"
+   ]
+  },
+  {
+   "no": "02",
+   "slug": "2x2-matrix",
+   "category": "organize",
+   "name": {
+    "ja": "4象限マトリクス（2×2）",
+    "en": "2x2 matrix",
+    "es": "Matriz 2x2",
+    "zh-Hans": "四象限矩阵（2×2）",
+    "zh-Hant": "四象限矩陣（2×2）"
+   },
+   "meaning": {
+    "ja": "縦横2つの軸で4つに分ける",
+    "en": "Two axes that split items into four quadrants",
+    "es": "Dos ejes que reparten los elementos en cuatro cuadrantes",
+    "zh-Hans": "用纵横两条轴分成四块",
+    "zh-Hant": "用縱橫兩條軸分成四塊"
+   },
+   "ask": {
+    "ja": "新規事業の候補10個を4象限マトリクスで。横軸は市場の大きさ、縦軸は実現しやすさ、右上を強調して。",
+    "en": "Place ten new business ideas on a 2x2 matrix: market size across, ease of delivery up, with the top-right quadrant highlighted.",
+    "es": "Coloca diez ideas de negocio en una matriz 2x2: tamaño del mercado en horizontal, facilidad de ejecución en vertical, y resalta el cuadrante superior derecho.",
+    "zh-Hans": "把 10 个新业务候选放进四象限矩阵：横轴是市场规模，纵轴是实现难易度，突出右上象限。",
+    "zh-Hant": "把 10 個新事業候選放進四象限矩陣：橫軸是市場規模，縱軸是實現難易度，強調右上象限。"
+   },
+   "summary": {
+    "ja": "中央から縦横の軸が伸びて4つの区画ができ、点が置かれていく。右上の区画と点だけ青い。",
+    "en": "Two axes grow out from the center, four areas appear and dots are placed; only the top-right area and its dot are blue."
+   },
+   "spec": {
+    "ja": [
+     "軸: 0.4〜1.0秒で中央から外へ伸びる（左右168px・上下86px、3次のイーズインアウト）。右端と上端に矢じり",
+     "区画: 154×78px・角丸10pxの4つ。軸から8px離す。右上→左上→左下→右下の順に1.0秒から0.08秒ずつずらして0.35秒でフェードイン。右上だけ薄い青、ほかは薄いグレー",
+     "点: 1.45秒から0.1秒おきに7つ、0.3秒で弾んで出る（easeOutBack・少し行き過ぎる）。右上の1つは青の半径12px、ほかはグレーの半径8px",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Axes: grow out from the center from 0.4 s to 1.0 s (168 px to each side, 86 px up and down, cubic ease-in-out), with arrowheads at the right and top ends",
+     "Areas: four 154×78 px boxes with 10 px corners, 8 px from the axes; they fade in over 0.35 s in the order top-right, top-left, bottom-left, bottom-right, starting at 1.0 s, 0.08 s apart. Top-right is light blue, the rest light gray",
+     "Dots: seven dots from 1.45 s, 0.1 s apart, each popping in over 0.3 s (ease-out-back, a slight overshoot); the one in the top-right is blue (radius 12 px), the others gray (radius 8 px)",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "候補を2つの基準で振り分けて、狙う所（右上）を決めるとき。",
+    "en": "To sort options by two criteria and point to the one to aim for (top right)."
+   },
+   "tags": [
+    "2x2 matrix",
+    "quadrant",
+    "four quadrants",
+    "prioritization",
+    "positioning",
+    "axes",
+    "strategy"
+   ]
+  },
+  {
+   "no": "03",
+   "slug": "logic-tree",
+   "category": "organize",
+   "name": {
+    "ja": "ロジックツリー",
+    "en": "Logic tree (issue tree)",
+    "es": "Árbol lógico",
+    "zh-Hans": "逻辑树",
+    "zh-Hant": "邏輯樹"
+   },
+   "meaning": {
+    "ja": "1つの問いを枝分かれで分解する",
+    "en": "One question broken down into branches",
+    "es": "Una pregunta desglosada en ramas",
+    "zh-Hans": "把一个问题按分支拆解",
+    "zh-Hant": "把一個問題按分支拆解"
+   },
+   "ask": {
+    "ja": "「売上が伸びない」をロジックツリーで分解して。3階層まで、左から右へ枝分かれさせて。",
+    "en": "Break down \"Why are sales flat?\" in a logic tree, three levels deep, branching from left to right.",
+    "es": "Desglosa «¿Por qué no crecen las ventas?» en un árbol lógico de tres niveles, ramificado de izquierda a derecha.",
+    "zh-Hans": "用逻辑树拆解“销售额为什么不增长”，分三层，从左向右分支。",
+    "zh-Hant": "用邏輯樹拆解「營收為什麼沒有成長」，分三層，從左往右分支。"
+   },
+   "summary": {
+    "ja": "左の「?」の箱から右へ、1→2→4と枝分かれしていく。枝はかぎ形の線でつながる。",
+    "en": "From the \"?\" box on the left, the tree branches to the right, 1 → 2 → 4, joined by elbow lines."
+   },
+   "spec": {
+    "ja": [
+     "根: 左端（x=82）に66×50pxの青い箱と白い「?」。0.4秒から0.3秒で弾んで出る（easeOutBack）",
+     "2段目: x=248に76×34pxの中くらいの青の箱が2つ。かぎ形の線が0.75〜1.15秒に引かれ、箱は1.05秒・1.13秒に弾んで出る",
+     "3段目: x=426に92×26pxの薄い青の箱が4つ。線は1.35秒から0.06秒ずつずらして0.4秒で引き、箱は1.65秒から0.08秒おきに出る",
+     "線: グレー3px。親の右端→中間で折れて縦→子の左端（3次のイーズインアウトで伸びる）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Root: a 66×50 px blue box with a white \"?\" at the left (x = 82), popping in at 0.4 s over 0.3 s (ease-out-back)",
+     "Level 2: two 76×34 px mid-blue boxes at x = 248; their elbow lines draw from 0.75 s to 1.15 s and the boxes pop in at 1.05 s and 1.13 s",
+     "Level 3: four 92×26 px light-blue boxes at x = 426; their lines draw over 0.4 s starting at 1.35 s, 0.06 s apart, and the boxes pop in from 1.65 s, 0.08 s apart",
+     "Lines: gray, 3 px, from the right edge of the parent, bending halfway down or up, into the left edge of the child (drawn with cubic ease-in-out)",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "問題や目標を漏れなく分解して、原因や打ち手を洗い出すとき。",
+    "en": "To break a problem or goal down completely and list causes or actions."
+   },
+   "tags": [
+    "logic tree",
+    "issue tree",
+    "tree diagram",
+    "breakdown",
+    "mece",
+    "problem solving",
+    "branches"
+   ]
+  },
+  {
+   "no": "04",
+   "slug": "pyramid-diagram",
+   "category": "organize",
+   "name": {
+    "ja": "ピラミッド図",
+    "en": "Pyramid diagram",
+    "es": "Diagrama de pirámide",
+    "zh-Hans": "金字塔图",
+    "zh-Hant": "金字塔圖"
+   },
+   "meaning": {
+    "ja": "下から上へ積み上げる階層",
+    "en": "Layers stacked from the base to the top",
+    "es": "Niveles que se apilan de la base a la cima",
+    "zh-Hans": "由下往上叠起的层级",
+    "zh-Hant": "由下往上堆疊的層級"
+   },
+   "ask": {
+    "ja": "マズローの欲求5段階をピラミッド図で。下から上へ積み上げて、一番上だけ色を濃く。",
+    "en": "Show Maslow's five levels of needs as a pyramid diagram, built from the bottom up, with only the top level in a darker color.",
+    "es": "Muestra los cinco niveles de necesidades de Maslow en un diagrama de pirámide, de abajo arriba, con solo el nivel superior en un color más oscuro.",
+    "zh-Hans": "用金字塔图展示马斯洛需求层次的五个层级，从下往上叠，只把最上层的颜色加深。",
+    "zh-Hant": "用金字塔圖呈現馬斯洛需求層次的五個層級，由下往上堆疊，只把最上層的顏色加深。"
+   },
+   "summary": {
+    "ja": "4段の三角形が、下の段から順に上から落ちてきて積み上がる。一番上の段だけ濃い青。",
+    "en": "A triangle in four layers stacks up from the bottom, each layer dropping into place; only the top layer is dark blue."
+   },
+   "spec": {
+    "ja": [
+     "形: 頂点y=16・底辺y=192・底辺の幅336pxの三角形を4段に分ける（段の間6px）",
+     "色: 下から薄いグレー→薄い青→中くらいの青→濃い青",
+     "動き: 下の段から0.32秒おき（0.4・0.72・1.04・1.36秒）に、34px上から0.4秒で落ちてきながらフェードイン（easeOut）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Shape: a triangle from y = 16 (apex) to y = 192 (base), 336 px wide at the base, cut into four layers with 6 px gaps",
+     "Colors from the bottom: light gray, light blue, mid blue, dark blue",
+     "Motion: from the bottom layer up, 0.32 s apart (0.4, 0.72, 1.04, 1.36 s), each layer drops 34 px into place over 0.4 s while fading in (ease-out)",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "土台から上へ積み上がる段階や、上ほど少ない階層を見せるとき。",
+    "en": "To show stages that build on each other, or levels that get smaller toward the top."
+   },
+   "tags": [
+    "pyramid",
+    "pyramid diagram",
+    "hierarchy",
+    "layers",
+    "levels",
+    "triangle",
+    "stack"
+   ]
+  },
+  {
+   "no": "05",
+   "slug": "mind-map",
+   "category": "organize",
+   "name": {
+    "ja": "マインドマップ",
+    "en": "Mind map",
+    "es": "Mapa mental",
+    "zh-Hans": "思维导图",
+    "zh-Hant": "心智圖"
+   },
+   "meaning": {
+    "ja": "中心から放射状に連想を広げる",
+    "en": "Ideas branching out from a central topic",
+    "es": "Ideas que se ramifican desde un tema central",
+    "zh-Hans": "从中心向四周发散联想",
+    "zh-Hant": "從中心向四周發散聯想"
+   },
+   "ask": {
+    "ja": "新商品の名前の案をマインドマップで。中心に商品、枝は6本、それぞれに2つずつ案を出して。",
+    "en": "Brainstorm names for a new product as a mind map: the product in the middle, six branches, two ideas on each.",
+    "es": "Haz una lluvia de nombres para un producto nuevo en un mapa mental: el producto en el centro, seis ramas y dos ideas en cada una.",
+    "zh-Hans": "用思维导图为新产品想名字：产品放在中心，分 6 个分支，每个分支 2 个方案。",
+    "zh-Hant": "用心智圖幫新產品想名字：產品放在中心，分 6 個分支，每個分支 2 個方案。"
+   },
+   "summary": {
+    "ja": "中央の「テーマ」から左右へ曲線の枝が6本伸び、その先からさらに細い枝と小さな語のノードが出る。",
+    "en": "Six curved branches grow from the central \"テーマ\" (topic) to both sides, then thinner twigs with small word nodes."
+   },
+   "spec": {
+    "ja": [
+     "中心: 100×44pxの青い角丸の箱（白い文字「テーマ」19px）。0.4秒から0.3秒で弾んで出る（easeOutBack）",
+     "枝: 左右に3本ずつ、計6本の3次ベジェ曲線（3px）。0.7秒から0.09秒ずつずらして0.5秒で伸び、先に54×24pxのノードが出る。中くらいの青とグレーを交互に",
+     "小枝: 枝先から2.5pxの細い曲線を0.35秒で伸ばし（1.45秒から）、先に40×18pxの小さなノード",
+     "形の違い: 曲線の枝と語のノード。放射状に円を重ねる #240 同心円図とは別の形",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Center: a 100×44 px blue rounded box with white text \"テーマ\" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)",
+     "Branches: six cubic Bézier curves (3 px), three to each side, growing over 0.5 s from 0.7 s, 0.09 s apart, each ending in a 54×24 px node; mid blue and gray alternate",
+     "Twigs: thinner 2.5 px curves grow from the branch ends over 0.35 s (from 1.45 s), each ending in a small 40×18 px node",
+     "Shape: curved branches and word nodes, unlike the nested rings of #240 Concentric circle diagram",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "アイデア出しや、1つのテーマから連想を広げて整理するとき。",
+    "en": "For brainstorming, or to spread out and organize ideas around one topic."
+   },
+   "tags": [
+    "mind map",
+    "brainstorm",
+    "ideas",
+    "radial",
+    "branches",
+    "central topic",
+    "mindmap"
+   ]
+  },
+  {
+   "no": "06",
+   "slug": "flowchart",
+   "category": "organize",
+   "name": {
+    "ja": "フローチャート",
+    "en": "Flowchart",
+    "es": "Diagrama de flujo",
+    "zh-Hans": "流程图",
+    "zh-Hant": "流程圖"
+   },
+   "meaning": {
+    "ja": "ひし形の分岐で手順をたどる",
+    "en": "Steps you follow, with diamond-shaped decisions",
+    "es": "Pasos que se siguen, con rombos en las decisiones",
+    "zh-Hans": "用菱形分支一步步走完流程",
+    "zh-Hant": "用菱形分支一步步走完流程"
+   },
+   "ask": {
+    "ja": "経費精算の手順をフローチャートで。上限を超えるかどうかの分岐をひし形で入れて、5ステップ以内に。",
+    "en": "Draw the expense claim process as a flowchart in five steps or fewer, with a diamond for \"Is it over the limit?\".",
+    "es": "Dibuja el proceso de reembolso de gastos como diagrama de flujo en cinco pasos o menos, con un rombo para «¿Supera el límite?».",
+    "zh-Hans": "把报销流程画成流程图，5 步以内，用菱形表示“是否超过上限”的分支。",
+    "zh-Hant": "把費用報銷流程畫成流程圖，5 步以內，用菱形表示「是否超過上限」的分支。"
+   },
+   "summary": {
+    "ja": "開始→処理→ひし形の分岐→処理→終了が横1列に並び、分岐から前の処理へ戻る矢印が引かれる。最後に点が一度戻ってから終了まで進む。",
+    "en": "Start → step → diamond decision → step → end appear in one row, with a loop arrow from the decision back to the first step; then a dot walks the path, loops back once and goes on to the end."
+   },
+   "spec": {
+    "ja": [
+     "形: 開始と終了は66×36pxの丸い箱（グレー）、処理は72×40pxの箱（薄い青）、分岐は幅92・高さ72pxのひし形（青・白い「?」）。全部 y=80 の1列",
+     "出る順: 0.4・0.8・1.2・1.6・1.95秒に弾んで出る（0.3秒・easeOutBack）。間の矢印は0.6・1.0・1.4・1.75秒から0.22秒で伸び、矢じり10px",
+     "戻り: ひし形の下→y=172→最初の処理の下へ戻る矢印を2.0〜2.45秒に引く",
+     "点: 半径8pxの濃いグレーの点が2.6〜3.8秒に 開始→処理→分岐→戻り→処理→分岐→処理→終了 とたどる（3次のイーズインアウト。2.5〜2.65秒で出て3.8〜4.0秒で消える）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Shapes: start and end are 66×36 px pills (gray), steps are 72×40 px boxes (light blue), the decision is a diamond 92 px wide and 72 px tall (blue, white \"?\"), all in one row at y = 80",
+     "Order: they pop in at 0.4, 0.8, 1.2, 1.6 and 1.95 s (0.3 s, ease-out-back); the arrows between them grow over 0.22 s from 0.6, 1.0, 1.4 and 1.75 s, with 10 px heads",
+     "Loop: an arrow from the bottom of the diamond down to y = 172 and back up into the first step draws from 2.0 s to 2.45 s",
+     "Marker: a dark gray dot (radius 8 px) follows start → step → decision → loop → step → decision → step → end from 2.6 s to 3.8 s (cubic ease-in-out), appearing 2.5–2.65 s and leaving 3.8–4.0 s",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "手順と、条件によって分かれる道を順番どおりに見せるとき。",
+    "en": "To show a procedure step by step, including where it branches on a condition."
+   },
+   "tags": [
+    "flowchart",
+    "flow chart",
+    "process",
+    "decision",
+    "diamond",
+    "steps",
+    "procedure",
+    "yes no"
+   ]
+  },
+  {
+   "no": "07",
+   "slug": "cycle-diagram",
+   "category": "organize",
+   "name": {
+    "ja": "サイクル図",
+    "en": "Cycle diagram",
+    "es": "Diagrama de ciclo",
+    "zh-Hans": "循环图",
+    "zh-Hant": "循環圖"
+   },
+   "meaning": {
+    "ja": "矢印が輪になって回り続ける",
+    "en": "Arrows in a ring that keeps going round",
+    "es": "Flechas en un anillo que no deja de girar",
+    "zh-Hans": "箭头连成一圈，循环往复",
+    "zh-Hant": "箭頭連成一圈，循環往復"
+   },
+   "ask": {
+    "ja": "PDCAをサイクル図で。4つの段階を輪にして、矢印で次の段階へつないで。",
+    "en": "Show PDCA as a cycle diagram: four stages in a ring, joined by arrows to the next stage.",
+    "es": "Muestra el ciclo PDCA en un diagrama de ciclo: cuatro etapas en un anillo, unidas con flechas a la siguiente.",
+    "zh-Hans": "用循环图展示 PDCA：4 个阶段排成一圈，用箭头连到下一个阶段。",
+    "zh-Hant": "用循環圖呈現 PDCA：4 個階段排成一圈，用箭頭連到下一個階段。"
+   },
+   "summary": {
+    "ja": "輪の上に1〜4の丸が並び、矢印が順に引かれて輪が閉じる。そのあと、青い強調が輪を1周する。",
+    "en": "Circles numbered 1 to 4 sit on a ring, arrows draw one after another until the ring closes, then a blue highlight goes round once."
+   },
+   "spec": {
+    "ja": [
+     "配置: 横128px・縦70pxの楕円の上下左右に、半径26pxの薄い青の丸（番号1〜4）。0.4秒から0.32秒おきに弾んで出る",
+     "矢印: 丸から次の丸へ楕円に沿った弧（中くらいの青・3px・矢じり13px）。0.7秒から0.32秒おきに0.28秒で引き、1.94秒で輪が閉じる",
+     "強調: 2.2〜3.8秒に1段0.4秒で青く塗りつぶした丸が1→2→3→4と移る（前後はふわっと切り替え）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Layout: four light-blue circles (radius 26 px, numbered 1–4) at the top, right, bottom and left of an ellipse 128 px wide and 70 px tall (radii), popping in from 0.4 s, 0.32 s apart",
+     "Arrows: arcs along the ellipse from each circle to the next (mid blue, 3 px, 13 px heads), drawn over 0.28 s from 0.7 s, 0.32 s apart; the ring closes at 1.94 s",
+     "Highlight: from 2.2 s to 3.8 s a solid blue fill moves 1 → 2 → 3 → 4, 0.4 s per step, with soft edges",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "PDCAのように、終わると最初に戻って回り続ける流れを見せるとき。",
+    "en": "To show a process that returns to the start and keeps repeating, such as PDCA."
+   },
+   "tags": [
+    "cycle",
+    "cycle diagram",
+    "loop",
+    "pdca",
+    "circular process",
+    "ring",
+    "iteration"
+   ]
+  },
+  {
+   "no": "08",
+   "slug": "fishbone-diagram",
+   "category": "organize",
+   "name": {
+    "ja": "フィッシュボーン図（特性要因図）",
+    "en": "Fishbone diagram",
+    "es": "Diagrama de espina de pescado",
+    "zh-Hans": "鱼骨图",
+    "zh-Hant": "魚骨圖"
+   },
+   "meaning": {
+    "ja": "魚の骨の形で原因を洗い出す",
+    "en": "Causes laid out like the bones of a fish",
+    "es": "Las causas dispuestas como la espina de un pez",
+    "zh-Hans": "以鱼骨的形状列出原因",
+    "zh-Hant": "以魚骨的形狀列出原因"
+   },
+   "ask": {
+    "ja": "解約が増えた原因をフィッシュボーン図で。頭に「解約の増加」、骨は人・商品・価格・サポートの4本で。",
+    "en": "Find why cancellations rose with a fishbone diagram: \"More cancellations\" at the head, and four bones for people, product, price and support.",
+    "es": "Analiza por qué aumentaron las bajas con un diagrama de espina de pescado: «Más bajas» en la cabeza y cuatro espinas: personas, producto, precio y soporte.",
+    "zh-Hans": "用鱼骨图找出解约增加的原因：鱼头写“解约增加”，鱼骨分为人员、产品、价格、客服 4 根。",
+    "zh-Hant": "用魚骨圖找出解約增加的原因：魚頭寫「解約增加」，魚骨分為人員、產品、價格、客服 4 根。"
+   },
+   "summary": {
+    "ja": "背骨が右の頭（結果）へ伸び、上下から斜めの大骨がつながり、それぞれに小骨（原因）が付く。",
+    "en": "A spine runs right to the head (the result); slanted bones join it from above and below, each with small side bones (the causes)."
+   },
+   "spec": {
+    "ja": [
+     "背骨: 尾（0.35〜0.6秒）のあと、x=52→404の線（濃いグレー3px・矢じり14px）が0.45〜1.0秒に伸びる。頭は92×56pxの青い箱「結果」で0.95秒に弾んで出る",
+     "大骨: 背骨のx=150・258・366から左上と左下へ6本（横62px・縦80px、中くらいの青3px）。1.1秒から列ごとに0.14秒、下側はさらに0.07秒遅れて0.35秒で引く",
+     "小骨: 各大骨の36%と68%の位置から左へ26pxの横線（グレー2.5px）。大骨のあと0.08秒ずらして0.22秒で伸びる",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading \"結果\" (result), pops in at 0.95 s",
+     "Bones: six bones from x = 150, 258 and 366 on the spine, slanting up-left and down-left (62 px across, 80 px up or down, mid blue, 3 px), drawn over 0.35 s from 1.1 s, 0.14 s per column, the lower ones 0.07 s later",
+     "Side bones: at 36% and 68% along each bone, a 26 px horizontal line to the left (gray, 2.5 px), growing over 0.22 s just after the bone, 0.08 s apart",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "1つの結果について、考えられる原因を種類別に洗い出すとき。",
+    "en": "To list the possible causes of one result, grouped by kind."
+   },
+   "tags": [
+    "fishbone",
+    "fishbone diagram",
+    "ishikawa",
+    "cause and effect",
+    "root cause",
+    "causes",
+    "quality"
+   ]
+  },
+  {
+   "no": "09",
+   "slug": "scatter-plot",
+   "category": "numbers",
+   "name": {
+    "ja": "散布図",
+    "en": "Scatter plot",
+    "es": "Diagrama de dispersión",
+    "zh-Hans": "散点图",
+    "zh-Hant": "散佈圖"
+   },
+   "meaning": {
+    "ja": "点の散らばりで2つの数字の関係を見る",
+    "en": "Dots that show how two numbers relate",
+    "es": "Puntos dispersos que muestran la relación entre dos cifras",
+    "zh-Hans": "用点的分布看两个数字的关系",
+    "zh-Hant": "用點的分布看兩個數字的關係"
+   },
+   "ask": {
+    "ja": "広告費と売上の関係を散布図で。12か月分を点で打って、傾向線を点線で重ねて。",
+    "en": "Plot ad spend against sales as a scatter plot: one dot per month for 12 months, with a dotted trend line.",
+    "es": "Representa la inversión en publicidad frente a las ventas en un diagrama de dispersión: un punto por mes durante 12 meses y una línea de tendencia punteada.",
+    "zh-Hans": "用散点图展示广告费和销售额的关系：12 个月每月一个点，再叠一条虚线趋势线。",
+    "zh-Hant": "用散佈圖呈現廣告費和營收的關係：12 個月每月一個點，再疊一條虛線趨勢線。"
+   },
+   "summary": {
+    "ja": "L字の軸の上に、小さな青い点が左から右へ次々に現れて右上がりに散らばり、点線の傾向線が引かれる。",
+    "en": "Small blue dots pop in from left to right on L-shaped axes, scattered upward to the right, and a dashed trend line follows."
+   },
+   "spec": {
+    "ja": [
+     "軸: x=96〜448・y=24〜184のL字の軸（グレー2.5px）と薄い横の目盛り線3本。1周ずっと出したまま",
+     "点: 52個（固定の乱数）。右上がりに散らばる半径5pxの青い点が、x位置に合わせて0.4〜1.65秒に左から順に0.28秒で弾んで出る（easeOutBack）",
+     "傾向線: グレーの点線（7px・間8px）が1.85〜2.5秒に左下から右上へ伸びる",
+     "#226 バブルチャートとの違い: 小さな同じ大きさの点をたくさん打つ",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "Axes: L-shaped axes from x = 96 to 448 and y = 24 to 184 (gray, 2.5 px) with three light horizontal grid lines; they stay for the whole cycle",
+     "Dots: 52 dots (fixed seed) of radius 5 px in blue, scattered upward to the right, each popping in over 0.28 s (ease-out-back) from left to right between 0.4 s and 1.65 s according to its x",
+     "Trend line: a gray dashed line (7 px dash, 8 px gap) grows from bottom-left to top-right from 1.85 s to 2.5 s",
+     "Unlike #226 Bubble chart: many small dots, all the same size",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "2つの数字に関係があるか（片方が増えるともう片方も増えるか）を見せるとき。",
+    "en": "To show whether two numbers are related, for example whether one rises when the other does."
+   },
+   "tags": [
+    "scatter plot",
+    "scatter chart",
+    "correlation",
+    "dots",
+    "trend line",
+    "xy chart",
+    "data"
+   ]
+  },
+  {
+   "no": "10",
+   "slug": "bubble-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "バブルチャート",
+    "en": "Bubble chart",
+    "es": "Gráfico de burbujas",
+    "zh-Hans": "气泡图",
+    "zh-Hant": "泡泡圖"
+   },
+   "meaning": {
+    "ja": "円の大きさで3つ目の数字を見せる",
+    "en": "Circle size shows a third number",
+    "es": "El tamaño del círculo muestra una tercera cifra",
+    "zh-Hans": "用圆的大小表示第三个数字",
+    "zh-Hant": "用圓的大小表示第三個數字"
+   },
+   "ask": {
+    "ja": "5つの商品をバブルチャートで。横軸は価格、縦軸は満足度、円の大きさは売上で。",
+    "en": "Show five products in a bubble chart: price across, satisfaction up, and bubble size for sales.",
+    "es": "Muestra cinco productos en un gráfico de burbujas: precio en horizontal, satisfacción en vertical y el tamaño de la burbuja según las ventas.",
+    "zh-Hans": "用气泡图展示 5 个商品：横轴是价格，纵轴是满意度，气泡大小代表销售额。",
+    "zh-Hant": "用泡泡圖呈現 5 個商品：橫軸是價格，縱軸是滿意度，泡泡大小代表營收。"
+   },
+   "summary": {
+    "ja": "L字の軸の上に、大きさの違う半透明の円が5つ、順に膨らんで出る。一番大きい円だけ濃い青。",
+    "en": "Five semi-transparent circles of different sizes grow one by one on L-shaped axes; only the largest is dark blue."
+   },
+   "spec": {
+    "ja": [
+     "軸: #225 散布図と同じL字の軸と目盛り線。1周ずっと出したまま",
+     "円: 半径14〜44pxの5つ。塗りは半透明（不透明度0.5、一番大きい円だけ濃い青で0.42）、縁は同じ色の2.5pxの線",
+     "動き: 0.45秒から0.24秒おきに、0.5秒で弾んで膨らむ（easeOutBack・少し行き過ぎて戻る）",
+     "#225 散布図との違い: 点の数は少なく、円の大きさで3つ目の数字を表す",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "Axes: the same L-shaped axes and grid lines as #225 Scatter plot; they stay for the whole cycle",
+     "Circles: five, radius 14–44 px, semi-transparent fill (opacity 0.5; the largest is dark blue at 0.42) with a 2.5 px outline in the same color",
+     "Motion: from 0.45 s, 0.24 s apart, each grows over 0.5 s with a small overshoot (ease-out-back)",
+     "Unlike #225 Scatter plot: only a few points, and the circle size carries a third number",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "縦・横・大きさの3つの数字を1枚で比べるとき。",
+    "en": "To compare three numbers at once: across, up and size."
+   },
+   "tags": [
+    "bubble chart",
+    "bubble",
+    "three variables",
+    "circle size",
+    "portfolio",
+    "xy chart",
+    "data"
+   ]
+  },
+  {
+   "no": "11",
+   "slug": "heatmap",
+   "category": "numbers",
+   "name": {
+    "ja": "ヒートマップ",
+    "en": "Heatmap",
+    "es": "Mapa de calor",
+    "zh-Hans": "热力图",
+    "zh-Hant": "熱力圖"
+   },
+   "meaning": {
+    "ja": "表のマスを色の濃さで塗る",
+    "en": "Table cells shaded by their value",
+    "es": "Celdas de una tabla coloreadas según su valor",
+    "zh-Hans": "用颜色深浅填充表格的格子",
+    "zh-Hant": "用顏色深淺填滿表格的格子"
+   },
+   "ask": {
+    "ja": "曜日と時間帯ごとの来店数をヒートマップで。7行×12列、多いほど濃い青で。",
+    "en": "Show store visits by weekday and hour as a heatmap: 7 rows by 12 columns, darker blue for busier times.",
+    "es": "Muestra las visitas a la tienda por día y franja horaria en un mapa de calor: 7 filas por 12 columnas, con un azul más oscuro cuantas más visitas haya.",
+    "zh-Hans": "用热力图展示按星期和时段统计的到店人数：7 行 × 12 列，人越多蓝色越深。",
+    "zh-Hant": "用熱力圖呈現依星期和時段統計的來店人數：7 列 × 12 欄，人越多藍色越深。"
+   },
+   "summary": {
+    "ja": "12列×5行の表のマスが、左上から右下へ波のように青の濃淡で塗られ、最後に同じ向きでグレーへ戻る。",
+    "en": "The cells of a 12 × 5 table fill with shades of blue in a wave from top-left to bottom-right, then turn back to gray the same way."
+   },
+   "spec": {
+    "ja": [
+     "表: 30×28px・角丸4px・間4pxのマスを12列×5行。左に行の見出し（グレーの短い棒）",
+     "色: 薄いグレーから、値に合わせた青の5段階（薄い→濃い）へ。値は固定の乱数で波の形に分布",
+     "出る: マスごとに 0.4秒＋列×0.075秒＋行×0.06秒 から0.32秒で色が付く（easeOut）。左上から右下へ斜めに広がる",
+     "戻る: 3.95秒＋列×0.025秒＋行×0.02秒 から0.22秒でグレーへ戻る（3次のイーズインアウト）",
+     "表の枠（マスと見出し）は1周ずっと出したまま"
+    ],
+    "en": [
+     "Table: 12 columns × 5 rows of 30×28 px cells (4 px corners, 4 px gaps), with short gray bars as row labels on the left",
+     "Colors: from light gray to one of five blues (light to dark) by value; the values (fixed seed) form a wave",
+     "Fill: each cell takes its color over 0.32 s (ease-out) starting at 0.4 s + column × 0.075 s + row × 0.06 s, so it spreads diagonally from top-left to bottom-right",
+     "Clear: from 3.95 s + column × 0.025 s + row × 0.02 s each cell goes back to gray over 0.22 s (cubic ease-in-out)",
+     "The table itself (cells and labels) stays for the whole cycle"
+    ]
+   },
+   "use": {
+    "ja": "曜日×時間帯のような表で、どこが多くどこが少ないかを一目で見せるとき。",
+    "en": "To show at a glance where a table, such as weekday by hour, is high or low."
+   },
+   "tags": [
+    "heatmap",
+    "heat map",
+    "matrix",
+    "color scale",
+    "table",
+    "density",
+    "calendar heatmap"
+   ]
+  },
+  {
+   "no": "12",
+   "slug": "radar-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "レーダーチャート",
+    "en": "Radar chart",
+    "es": "Gráfico de radar",
+    "zh-Hans": "雷达图",
+    "zh-Hant": "雷達圖"
+   },
+   "meaning": {
+    "ja": "くもの巣の形で項目を比べる",
+    "en": "A spider web that compares several items",
+    "es": "Una telaraña para comparar varios criterios",
+    "zh-Hans": "用蛛网的形状比较多个项目",
+    "zh-Hant": "用蛛網的形狀比較多個項目"
+   },
+   "ask": {
+    "ja": "自社と競合をレーダーチャートで比べて。価格・品質・サポートなど6項目、自社は青で重ねて。",
+    "en": "Compare us with a competitor in a radar chart: six items such as price, quality and support, with ours on top in blue.",
+    "es": "Compáranos con un competidor en un gráfico de radar: seis criterios como precio, calidad y soporte, con el nuestro encima en azul.",
+    "zh-Hans": "用雷达图比较本公司和竞争对手：价格、质量、服务等 6 个项目，本公司用蓝色叠在上面。",
+    "zh-Hant": "用雷達圖比較自家公司和競爭對手：價格、品質、服務等 6 個項目，自家用藍色疊在上面。"
+   },
+   "summary": {
+    "ja": "6本の軸のくもの巣の上に、グレーの多角形が中心から広がり、続いて青い多角形が少し行き過ぎながら広がる。",
+    "en": "On a six-axis spider web, a gray polygon spreads out from the center, then a blue one spreads with a slight overshoot."
+   },
+   "spec": {
+    "ja": [
+     "目盛り: 半径86pxの六角形を4重（外側だけ濃いグレー）と6本の軸。1周ずっと出したまま",
+     "比較の形: グレーの多角形（値0.46〜0.74、塗りは不透明度0.22）が0.4〜1.1秒に中心から広がる（easeOut）",
+     "主役の形: 青い多角形（値 0.92・0.58・0.84・0.4・0.76・0.52、塗りは不透明度0.28、縁3px、頂点に点）が0.95〜1.85秒に広がる。easeOut と easeOutBack を 55:45 で混ぜた少しの行き過ぎ",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "Scale: four nested hexagons up to radius 86 px (the outer one darker) and six spokes; they stay for the whole cycle",
+     "Comparison: a gray polygon (values 0.46–0.74, fill opacity 0.22) spreads out from the center from 0.4 s to 1.1 s (ease-out)",
+     "Main: a blue polygon (values 0.92, 0.58, 0.84, 0.4, 0.76, 0.52; fill opacity 0.28, 3 px outline, dots on the corners) spreads from 0.95 s to 1.85 s, a 55:45 blend of ease-out and ease-out-back for a slight overshoot",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "複数の項目のバランスや、2つの物の強み・弱みを比べるとき。",
+    "en": "To compare the balance of several items, or the strengths and weaknesses of two things."
+   },
+   "tags": [
+    "radar chart",
+    "spider chart",
+    "web chart",
+    "polygon",
+    "compare",
+    "skills",
+    "balance"
+   ]
+  },
+  {
+   "no": "13",
+   "slug": "gauge-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "ゲージチャート",
+    "en": "Gauge chart",
+    "es": "Gráfico de indicador",
+    "zh-Hans": "仪表图",
+    "zh-Hant": "儀表圖"
+   },
+   "meaning": {
+    "ja": "半円のメーターと針で達成率を見せる",
+    "en": "A half-circle dial and needle that show progress",
+    "es": "Un semicírculo con aguja que marca el avance",
+    "zh-Hans": "用半圆表盘和指针显示达成率",
+    "zh-Hant": "用半圓錶盤和指針顯示達成率"
+   },
+   "ask": {
+    "ja": "今月の売上目標の達成率をゲージチャートで。半円のメーターで、針は72%を指して。",
+    "en": "Show this month's progress toward the sales target as a gauge chart: a half-circle dial with the needle at 72%.",
+    "es": "Muestra el avance hacia el objetivo de ventas del mes en un gráfico de indicador: un semicírculo con la aguja en el 72 %.",
+    "zh-Hans": "用仪表图展示本月销售目标的达成率：半圆表盘，指针指向 72%。",
+    "zh-Hant": "用儀表圖呈現本月營收目標的達成率：半圓錶盤，指針指向 72%。"
+   },
+   "summary": {
+    "ja": "半円のメーターの針が振れて少し行き過ぎ、揺れながら72%で止まる。針に合わせて青い帯と数字が伸びる。",
+    "en": "The needle of a half-circle dial swings past, wobbles and settles at 72%; the blue band and the number follow the needle."
+   },
+   "spec": {
+    "ja": [
+     "メーター: 半径120px・太さ30pxの半円の帯（グレー）と、10%ごとの目盛り（50%と両端は長め）",
+     "針: 0.5秒から動き出し、減衰する振動 1 − e^(−3.2t)·cos(7.5t) で行き過ぎて揺れ、72%に止まる",
+     "帯と数字: 針の位置まで青く塗り、下に%を26pxで表示（針と同じ値）",
+     "終わり: 4.1〜4.5秒で針・帯・数字が0%へ戻る（3次のイーズインアウト。1周4.7秒）"
+    ],
+    "en": [
+     "Dial: a half-circle band of radius 120 px and 30 px thick (gray), with ticks every 10% (longer at 0, 50 and 100%)",
+     "Needle: starts at 0.5 s and follows a damped spring 1 − e^(−3.2t)·cos(7.5t), swinging past and wobbling before it settles at 72%",
+     "Band and number: the band is blue up to the needle, and the percentage (26 px) below matches the needle",
+     "End: from 4.1 s to 4.5 s the needle, band and number go back to 0% (cubic ease-in-out; one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "目標に対して今どこまで来ているか（達成率）を1つの数字で見せるとき。",
+    "en": "To show with one number how far you are toward a target."
+   },
+   "tags": [
+    "gauge",
+    "gauge chart",
+    "speedometer",
+    "dial",
+    "kpi",
+    "progress",
+    "needle"
+   ]
+  },
+  {
+   "no": "14",
+   "slug": "combo-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "複合グラフ（棒＋折れ線）",
+    "en": "Combo chart (bar + line)",
+    "es": "Gráfico combinado (barras y líneas)",
+    "zh-Hans": "组合图（柱形图＋折线图）",
+    "zh-Hant": "組合圖（直條圖＋折線圖）"
+   },
+   "meaning": {
+    "ja": "棒と折れ線で2つの数字を1枚に重ねる（左右に2つの目盛り）",
+    "en": "Bars and a line on one chart, with two scales",
+    "es": "Barras y una línea en un solo gráfico, con dos escalas",
+    "zh-Hans": "柱形和折线叠在一张图里（左右两个刻度）",
+    "zh-Hant": "直條和折線疊在一張圖裡（左右兩個刻度）"
+   },
+   "ask": {
+    "ja": "月ごとの売上と利益率を複合グラフで。売上は棒で左の目盛り、利益率は折れ線で右の目盛りに。",
+    "en": "Show monthly sales and profit margin in a combo chart: sales as bars on the left axis, margin as a line on the right axis.",
+    "es": "Muestra las ventas mensuales y el margen de beneficio en un gráfico combinado: las ventas en barras con el eje izquierdo y el margen en línea con el eje derecho.",
+    "zh-Hans": "用组合图展示每月销售额和利润率：销售额用柱形对应左侧坐标轴，利润率用折线对应右侧坐标轴。",
+    "zh-Hant": "用組合圖呈現每月營收和利潤率：營收用直條對應左側座標軸，利潤率用折線對應右側座標軸。"
+   },
+   "summary": {
+    "ja": "左の目盛り（グレー）で6本の棒が伸び、そのあと右の目盛り（青）で折れ線が左から右へ引かれる。",
+    "en": "Six bars grow against the left scale (gray ticks), then a line is drawn left to right against the right scale (blue ticks)."
+   },
+   "spec": {
+    "ja": [
+     "軸: 左の縦軸と目盛り5つはグレー、右の縦軸と目盛り5つは青。薄い横の目盛り線3本。1周ずっと出したまま",
+     "棒: 幅36pxの薄い青の棒が6本。0.4秒から0.12秒おきに0.36秒で下から伸びる（easeOut）",
+     "折れ線: 青3.5pxの線が1.3〜2.2秒に6つの点を左から順につなぐ（一定の速さ）。点は白抜きの丸（半径7px）で1.25秒から0.18秒おきに弾んで出る",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "Axes: the left axis and its five ticks are gray, the right axis and its five ticks blue, with three light grid lines; they stay for the whole cycle",
+     "Bars: six light-blue bars 36 px wide grow up over 0.36 s (ease-out), from 0.4 s, 0.12 s apart",
+     "Line: a 3.5 px blue line joins six points from left to right between 1.3 s and 2.2 s at an even speed; the points are ring markers (radius 7 px) popping in from 1.25 s, 0.18 s apart",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "売上と利益率のように、単位の違う2つの数字を1枚で見せるとき。",
+    "en": "To show two numbers with different units on one chart, such as sales and margin."
+   },
+   "tags": [
+    "combo chart",
+    "combination chart",
+    "bar and line",
+    "dual axis",
+    "secondary axis",
+    "chart",
+    "data"
+   ]
+  },
+  {
+   "no": "15",
+   "slug": "pictogram-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "絵グラフ（ピクトグラム）",
+    "en": "Pictogram chart (icon array)",
+    "es": "Pictograma (matriz de iconos)",
+    "zh-Hans": "象形图（图标阵列）",
+    "zh-Hant": "象形圖（圖示陣列）"
+   },
+   "meaning": {
+    "ja": "人やモノのアイコンの数で割合を見せる",
+    "en": "A count of people or icons that shows a share",
+    "es": "Iconos de personas u objetos que muestran una proporción",
+    "zh-Hans": "用人或物的图标数量表示比例",
+    "zh-Hant": "用人或物的圖示數量表示比例"
+   },
+   "ask": {
+    "ja": "副業をしている人の割合を絵グラフで。人のアイコンを横1列に10人並べて、3人だけ青にして。",
+    "en": "Show the share of people with a side job as a pictogram chart: ten person icons in one row, three of them in blue.",
+    "es": "Muestra la proporción de personas con un trabajo extra en un pictograma: diez iconos de personas en una fila, tres de ellos en azul.",
+    "zh-Hans": "用象形图展示有副业的人所占比例：一排 10 个人形图标，其中 3 个涂成蓝色。",
+    "zh-Hant": "用象形圖呈現有副業的人所占比例：一排 10 個人形圖示，其中 3 個塗成藍色。"
+   },
+   "summary": {
+    "ja": "人のアイコン10人が横1列にグレーで出て、左の3人が順に青くなり、「30%」が数え上がる。",
+    "en": "Ten person icons appear in gray in one row, the first three turn blue one by one, and \"30%\" counts up."
+   },
+   "spec": {
+    "ja": [
+     "人: 高さ80px・間隔32pxの顔のない人のアイコンを横1列に10人（マス目にするとヒートマップに見えるので1列）",
+     "出る: 0.35秒から0.06秒おきに0.3秒で弾んで出る（easeOutBack）。最初はグレー",
+     "色: 左の3人が1.25秒から0.22秒おきに0.25秒でグレー→青に変わる",
+     "数字: 左に「30%」（46px・青）が1.25〜1.94秒に0から数え上がり、下に「10人中3人」",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "People: ten faceless person icons, 80 px tall and 32 px apart, in a single row (a grid would read as a heatmap)",
+     "Entrance: they pop in from 0.35 s, 0.06 s apart, over 0.3 s each (ease-out-back), all gray",
+     "Color: the first three turn from gray to blue over 0.25 s each, from 1.25 s, 0.22 s apart",
+     "Number: \"30%\" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with \"10人中3人\" (3 in 10 people) below",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "割合を、数字の苦手な人にも人数の感覚で伝えるとき。",
+    "en": "To make a share feel like a count of people, for readers who do not like numbers."
+   },
+   "tags": [
+    "pictogram",
+    "pictograph",
+    "icon array",
+    "isotype",
+    "people icons",
+    "percentage",
+    "infographic"
+   ]
+  },
+  {
+   "no": "16",
+   "slug": "100-stacked-bar-chart",
+   "category": "numbers",
+   "name": {
+    "ja": "帯グラフ（100%積み上げ）",
+    "en": "100% stacked bar chart",
+    "es": "Gráfico de barras apiladas al 100 %",
+    "zh-Hans": "百分比堆积条形图",
+    "zh-Hant": "百分比堆疊橫條圖"
+   },
+   "meaning": {
+    "ja": "帯を割合で区切り、内訳を比べる",
+    "en": "Bars split by percentage to compare the breakdown",
+    "es": "Barras divididas en porcentajes para comparar el desglose",
+    "zh-Hans": "把条按比例分段，比较构成",
+    "zh-Hant": "把橫條按比例分段，比較組成"
+   },
+   "ask": {
+    "ja": "年代別の利用端末の内訳を帯グラフで。4つの年代を同じ長さの帯にして、区切りを点線でつないで。",
+    "en": "Compare the devices each age group uses in a 100% stacked bar chart: four bars of equal length, with dotted lines joining the borders.",
+    "es": "Compara los dispositivos que usa cada grupo de edad en un gráfico de barras apiladas al 100 %: cuatro barras de igual longitud, con líneas punteadas que unen los cortes.",
+    "zh-Hans": "用百分比堆积条形图比较各年龄段使用的设备：4 个年龄段画成等长的条，用虚线连接分界。",
+    "zh-Hant": "用百分比堆疊橫條圖比較各年齡層使用的裝置：4 個年齡層畫成等長的橫條，用虛線連接分界。"
+   },
+   "summary": {
+    "ja": "同じ長さの帯4本が左から右へ塗られ、帯どうしの区切りが点線でつながり、最初の区分に%が出る。",
+    "en": "Four bars of the same length fill from left to right, dotted lines join the borders between neighbouring bars, and the first part shows its %."
+   },
+   "spec": {
+    "ja": [
+     "帯: 長さ390px・高さ28px・間16pxの帯を4本。中を4つに区切る（濃い青→中くらいの青→薄い青→グレー、区切りは2pxの隙間）",
+     "動き: 上の帯から0.16秒おきに、0.7秒で左から右へ塗られる（3次のイーズインアウト）",
+     "点線: 隣り合う帯の同じ区切りどうしを、グレーの点線（4px・間4px）でつなぐ。1.6〜2.0秒にフェードイン",
+     "%: 各帯の最初の区分の中央に白い数字（16px）。帯が塗られ始めて0.75秒後から0.25秒で出る",
+     "終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）"
+    ],
+    "en": [
+     "Bars: four bars 390 px long, 28 px tall and 16 px apart, each cut into four parts (dark blue, mid blue, light blue, gray) with 2 px gaps",
+     "Motion: from the top bar down, 0.16 s apart, each fills from left to right over 0.7 s (cubic ease-in-out)",
+     "Dotted lines: gray dotted lines (4 px dash, 4 px gap) join the same border on neighbouring bars, fading in from 1.6 s to 2.0 s",
+     "Percent: a white number (16 px) in the middle of each first part, fading in over 0.25 s from 0.75 s after its bar starts",
+     "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
+    ]
+   },
+   "use": {
+    "ja": "合計の大きさは気にせず、グループごとの内訳（割合）だけを比べるとき。",
+    "en": "To compare only the breakdown (shares) of each group, not the totals."
+   },
+   "tags": [
+    "100% stacked bar",
+    "stacked bar chart",
+    "percentage bar",
+    "breakdown",
+    "composition",
+    "share",
+    "proportion"
+   ]
+  },
+  {
+   "no": "17",
+   "slug": "gantt-chart",
+   "category": "flow-overview",
+   "name": {
+    "ja": "ガントチャート",
+    "en": "Gantt chart",
+    "es": "Diagrama de Gantt",
+    "zh-Hans": "甘特图",
+    "zh-Hant": "甘特圖"
+   },
+   "meaning": {
+    "ja": "日付の目盛りに横棒で作業期間を並べる",
+    "en": "Bars on a date scale that show when each task runs",
+    "es": "Barras sobre una escala de fechas que muestran cada tarea",
+    "zh-Hans": "在日期刻度上用横条排出工作期间",
+    "zh-Hant": "在日期刻度上用橫條排出工作期間"
+   },
+   "ask": {
+    "ja": "サイト制作の工程をガントチャートで。8週間の目盛りに、5つの作業の期間を横棒で並べて。",
+    "en": "Plan a website project as a Gantt chart: an 8-week scale with five tasks as horizontal bars.",
+    "es": "Planifica un proyecto web en un diagrama de Gantt: una escala de 8 semanas con cinco tareas como barras horizontales.",
+    "zh-Hans": "用甘特图排网站制作的工期：8 周的时间刻度，用横条排出 5 项工作的时间段。",
+    "zh-Hant": "用甘特圖排網站製作的時程：8 週的時間刻度，用橫條排出 5 項工作的期間。"
+   },
+   "summary": {
+    "ja": "上に日付の目盛り（1〜8）、左に作業A〜E。横棒が少しずつずれた位置から順に右へ伸びる。",
+    "en": "A date scale (1–8) on top and tasks A–E on the left; bars start at staggered columns and grow to the right one after another."
+   },
+   "spec": {
+    "ja": [
+     "目盛り: 上に1〜8の日付（幅52pxの列）と縦の薄い線。1周ずっと出したまま",
+     "作業: 左にA〜Eの5行（間27px）。棒は高さ20px・角丸6px。開始と長さは列単位で A 0〜2・B 1.5〜3.5・C 3〜4.5・D 3.5〜6.5・E 6〜8",
+     "動き: 0.4秒から0.3秒おきに、各棒が0.5秒で左端から右へ伸びる（easeOut）",
+     "色: Dだけ濃い青、ほかは中くらいの青",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Scale: dates 1–8 across the top (52 px columns) with light vertical lines; they stay for the whole cycle",
+     "Tasks: five rows A–E on the left, 27 px apart; bars are 20 px tall with 6 px corners, running A 0–2, B 1.5–3.5, C 3–4.5, D 3.5–6.5 and E 6–8 (in columns)",
+     "Motion: from 0.4 s, 0.3 s apart, each bar grows from its left end to the right over 0.5 s (ease-out)",
+     "Color: D is dark blue, the others mid blue",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "プロジェクトの作業ごとの期間と、重なり・順番を見せるとき。",
+    "en": "To show how long each task in a project takes, and how the tasks overlap and follow each other."
+   },
+   "tags": [
+    "gantt",
+    "gantt chart",
+    "schedule",
+    "project plan",
+    "timeline bars",
+    "tasks",
+    "roadmap"
+   ]
+  },
+  {
+   "no": "18",
+   "slug": "timeline",
+   "category": "flow-overview",
+   "name": {
+    "ja": "タイムライン",
+    "en": "Timeline",
+    "es": "Línea de tiempo",
+    "zh-Hans": "时间轴",
+    "zh-Hant": "時間軸"
+   },
+   "meaning": {
+    "ja": "1本の線に出来事を時系列で並べる",
+    "en": "Events in order along one line",
+    "es": "Hechos en orden sobre una sola línea",
+    "zh-Hans": "在一条线上按时间顺序排列事件",
+    "zh-Hant": "在一條線上依時間順序排列事件"
+   },
+   "ask": {
+    "ja": "会社の沿革をタイムラインで。1本の横線に5つの出来事を年順に並べ、上下交互にラベルを置いて。",
+    "en": "Show the company's history as a timeline: five events in order along one horizontal line, with labels alternating above and below.",
+    "es": "Muestra la historia de la empresa en una línea de tiempo: cinco hechos en orden sobre una línea horizontal, con etiquetas alternadas arriba y abajo.",
+    "zh-Hans": "用时间轴展示公司沿革：在一条横线上按年份排 5 个事件，标签上下交替放置。",
+    "zh-Hant": "用時間軸呈現公司沿革：在一條橫線上依年份排 5 個事件，標籤上下交錯擺放。"
+   },
+   "summary": {
+    "ja": "1本の線が左から右へ引かれ、線の先が届いた所に点と月のラベルが上下交互に出る。最後の点だけ青い。",
+    "en": "One line is drawn from left to right; as its tip passes each point, a dot and a month label appear, alternating above and below. The last one is blue."
+   },
+   "spec": {
+    "ja": [
+     "線: x=36→503（y=106、濃いグレー3px）を0.4〜2.0秒に引く（3次のイーズインアウト）。右端に矢じり",
+     "点: 5つ（4月・6月・8月・10月・12月）。線の先が届いた時刻に0.25秒で弾んで出る（半径7px、最後だけ青の10px）",
+     "ラベル: 点から上下交互に22pxの軸を伸ばし、64×32pxの角丸の札（白に月名18px、最後だけ青に白字）を0.3秒で出す",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Line: from x = 36 to x = 503 at y = 106 (dark gray, 3 px), drawn from 0.4 s to 2.0 s (cubic ease-in-out), with an arrowhead at the right end",
+     "Dots: five (April, June, August, October, December: 4月 … 12月), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)",
+     "Labels: from each dot a 22 px stem grows up or down, alternating, to a 64×32 px rounded tag (white with the month in 18 px; the last one blue with white text), over 0.3 s",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "沿革・経緯・予定など、出来事を時間の順に見せるとき。",
+    "en": "To show events in time order: a history, how something came about, or a plan."
+   },
+   "tags": [
+    "timeline",
+    "history",
+    "chronology",
+    "milestones",
+    "events",
+    "roadmap",
+    "time line"
+   ]
+  },
+  {
+   "no": "19",
+   "slug": "funnel-chart",
+   "category": "flow-overview",
+   "name": {
+    "ja": "ファネル図",
+    "en": "Funnel chart",
+    "es": "Gráfico de embudo",
+    "zh-Hans": "漏斗图",
+    "zh-Hant": "漏斗圖"
+   },
+   "meaning": {
+    "ja": "段階ごとに人数が絞られていく漏斗",
+    "en": "Numbers narrowing stage by stage",
+    "es": "Cifras que se reducen etapa tras etapa",
+    "zh-Hans": "人数逐级减少的漏斗",
+    "zh-Hant": "人數逐層減少的漏斗"
+   },
+   "ask": {
+    "ja": "LPの訪問から購入までをファネル図で。4段階、各段の人数を入れて、中央揃えで短くしていって。",
+    "en": "Show landing-page visits down to purchases as a funnel chart: four stages with the count on each, centered and getting shorter.",
+    "es": "Muestra el paso de las visitas a las compras de la landing page en un gráfico de embudo: cuatro etapas con su cifra, centradas y cada vez más cortas.",
+    "zh-Hans": "用漏斗图展示落地页从访问到购买的过程：4 个阶段，每段写上人数，居中排列、逐级变短。",
+    "zh-Hant": "用漏斗圖呈現到達頁從造訪到購買的過程：4 個階段，每段寫上人數，置中排列、逐層變短。"
+   },
+   "summary": {
+    "ja": "中央揃えの横棒4本が上から順に中央から左右へ伸び、下の段ほど短い。段の間を薄いグレーの台形がつなぐ。",
+    "en": "Four centered bars grow out from the middle one after another from the top, each shorter than the one above, joined by light gray trapezoids."
+   },
+   "spec": {
+    "ja": [
+     "棒: 幅470・350・236・132px、高さ34px・間10px・角丸7px。色は薄い青→中くらいの青→中くらいの青→濃い青",
+     "動き: 上の段から0.36秒おき（0.4秒から）に、0.45秒で中央から左右へ伸びる（easeOut）",
+     "つなぎ: 上の棒の幅から下の棒の幅へ細くなる薄いグレーの台形（不透明度0.8）で段の間を埋める",
+     "数字: 100・58・27・9 を棒の中央に（20px）。棒が出始めて0.3秒後から0.25秒で出る",
+     "#220 ピラミッド図の逆さに見えないよう、棒は離して中央揃えにする",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Bars: 470, 350, 236 and 132 px wide, 34 px tall, 10 px apart, 7 px corners; light blue, mid blue, mid blue, dark blue",
+     "Motion: from the top, 0.36 s apart starting at 0.4 s, each bar grows out from the middle over 0.45 s (ease-out)",
+     "Joints: light gray trapezoids (opacity 0.8) narrowing from the bar above to the bar below fill the gaps",
+     "Numbers: 100, 58, 27 and 9 in the middle of the bars (20 px), fading in over 0.25 s from 0.3 s after each bar starts",
+     "The bars are separate and centered so they do not read as #220 Pyramid diagram upside down",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "訪問→申込→購入のように、段階ごとに人数が減っていく様子を見せるとき。",
+    "en": "To show how the count drops at each stage, such as visit → sign-up → purchase."
+   },
+   "tags": [
+    "funnel",
+    "funnel chart",
+    "conversion",
+    "sales funnel",
+    "drop-off",
+    "stages",
+    "marketing"
+   ]
+  },
+  {
+   "no": "20",
+   "slug": "customer-journey-map",
+   "category": "flow-overview",
+   "name": {
+    "ja": "カスタマージャーニーマップ",
+    "en": "Customer journey map",
+    "es": "Mapa del recorrido del cliente",
+    "zh-Hans": "客户旅程地图",
+    "zh-Hant": "顧客旅程地圖"
+   },
+   "meaning": {
+    "ja": "段階ごとの行動と気持ちの上下を並べる",
+    "en": "Actions and feelings at each stage",
+    "es": "Acciones y emociones en cada etapa",
+    "zh-Hans": "并列各阶段的行为和心情起伏",
+    "zh-Hant": "並列各階段的行為和心情起伏"
+   },
+   "ask": {
+    "ja": "オンライン英会話を申し込む人のカスタマージャーニーマップを作って。5つの段階ごとに行動と気持ちを書き、気持ちの上下を線で。",
+    "en": "Make a customer journey map for someone signing up for online English lessons: actions and feelings at five stages, with a line for the ups and downs.",
+    "es": "Haz un mapa del recorrido del cliente de alguien que se apunta a clases de inglés en línea: acciones y emociones en cinco etapas, con una línea para los altibajos.",
+    "zh-Hans": "为报名线上英语课的人做一张客户旅程地图：分 5 个阶段写出行为和心情，用一条线表示心情起伏。",
+    "zh-Hant": "為報名線上英語課的人做一張顧客旅程地圖：分 5 個階段寫出行為和心情，用一條線表示心情起伏。"
+   },
+   "summary": {
+    "ja": "5つの段階の見出しと行動のカードが並び、気持ちの線が左から右へ上下しながら引かれ、各点に笑顔・困り顔の印が出る。",
+    "en": "Five stage headers and action cards line up, then a feeling line rises and falls from left to right, with a smiling or frowning mark on each point."
+   },
+   "spec": {
+    "ja": [
+     "枠: 5列（縦の区切り線）。上に段階の見出し（普通の角丸の箱。矢羽根にしない。真ん中だけグレー）が0.35秒から0.1秒おきに出る",
+     "行動: 見出しの下に白いカード（文字は灰色の棒）が0.6秒から0.1秒おきに、8px上がりながら0.3秒で出る",
+     "気持ち: y=150の点線を基準に、+0.35・+0.7・−0.6・+0.15・+0.85（×36px）を通るなめらかな曲線（青3.5px）を1.25〜2.25秒に左から引く",
+     "印: 線が届いた点に半径12pxの顔が弾んで出る。基準より上は青い笑顔、下はグレーの困り顔",
+     "レーンをまたぐ矢印は無い（#238 スイムレーン図との違い）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Frame: five columns with vertical dividers; the stage headers on top are plain rounded boxes (not arrows; the middle one gray), appearing from 0.35 s, 0.1 s apart",
+     "Actions: a white card under each header (text as gray bars), rising 8 px while it appears over 0.3 s, from 0.6 s, 0.1 s apart",
+     "Feeling: against a dotted neutral line at y = 150, a smooth blue curve (3.5 px) through +0.35, +0.7, −0.6, +0.15 and +0.85 (× 36 px) is drawn from left to right between 1.25 s and 2.25 s",
+     "Marks: as the line reaches each point a face (radius 12 px) pops in: a blue smile above the neutral line, a gray frown below it",
+     "There are no arrows across lanes (unlike #238 Swimlane diagram)",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "顧客が段階ごとに何をして、どこで気持ちが下がるかを見つけるとき。",
+    "en": "To see what customers do at each stage and where their mood drops."
+   },
+   "tags": [
+    "customer journey map",
+    "journey map",
+    "user journey",
+    "customer experience",
+    "touchpoints",
+    "emotions",
+    "ux"
+   ]
+  },
+  {
+   "no": "21",
+   "slug": "treemap",
+   "category": "flow-overview",
+   "name": {
+    "ja": "ツリーマップ",
+    "en": "Treemap",
+    "es": "Treemap (mapa de árbol)",
+    "zh-Hans": "矩形树图",
+    "zh-Hant": "矩形樹狀圖"
+   },
+   "meaning": {
+    "ja": "四角の大きさで全体の内訳を見せる",
+    "en": "Rectangle sizes show the parts of a whole",
+    "es": "El tamaño de los rectángulos muestra las partes del total",
+    "zh-Hans": "用方块大小表示整体的构成",
+    "zh-Hant": "用方塊大小表示整體的組成"
+   },
+   "ask": {
+    "ja": "売上の内訳を商品別にツリーマップで。四角の大きさを売上に合わせ、一番大きい商品を濃い青に。",
+    "en": "Show sales by product as a treemap: rectangle size follows sales, with the biggest product in dark blue.",
+    "es": "Muestra las ventas por producto en un treemap: el tamaño de cada rectángulo según las ventas y el producto principal en azul oscuro.",
+    "zh-Hans": "用矩形树图展示按商品划分的销售额构成：方块大小对应销售额，最大的商品用深蓝色。",
+    "zh-Hant": "用矩形樹狀圖呈現依商品區分的營收組成：方塊大小對應營收，最大的商品用深藍色。"
+   },
+   "summary": {
+    "ja": "点線の外枠の中が、大きい四角から順に、大きさの違う7つの四角で埋まっていく。",
+    "en": "A dashed outer frame fills up with seven rectangles of different sizes, biggest first."
+   },
+   "spec": {
+    "ja": [
+     "外枠: 439×172pxの点線（6px・間6px）。1周ずっと出したまま",
+     "四角: 7つ（角丸5px）。左の大きいA（206×172px・濃い青）→B（140×96px）→C→D→小さい3つの順。色は濃い青→中くらいの青→薄い青→グレー",
+     "動き: 0.4秒から0.22秒おきに、0.4秒で0.55倍から弾んで広がる（easeOutBack）＋フェードイン",
+     "文字: A〜Dの左上に記号（Aは24pxの白、ほかは20px）",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Frame: a 439×172 px dashed outline (6 px dash, 6 px gap); it stays for the whole cycle",
+     "Rectangles: seven, with 5 px corners: the large A on the left (206×172 px, dark blue), then B (140×96 px), C, D and three small ones; dark blue, mid blue, light blue, gray",
+     "Motion: from 0.4 s, 0.22 s apart, each grows from 0.55× to full size over 0.4 s with an overshoot (ease-out-back) while fading in",
+     "Labels: letters at the top-left of A–D (A in 24 px white, the others 20 px)",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "全体の中で、どれがどのくらいの大きさを占めるかを一目で見せるとき。",
+    "en": "To show at a glance how much of the whole each part takes up."
+   },
+   "tags": [
+    "treemap",
+    "tree map",
+    "part to whole",
+    "breakdown",
+    "rectangles",
+    "hierarchy",
+    "share"
+   ]
+  },
+  {
+   "no": "22",
+   "slug": "swimlane-diagram",
+   "category": "flow-overview",
+   "name": {
+    "ja": "スイムレーン図",
+    "en": "Swimlane diagram",
+    "es": "Diagrama de carriles",
+    "zh-Hans": "泳道图",
+    "zh-Hant": "泳道圖"
+   },
+   "meaning": {
+    "ja": "担当ごとのレーンで手順を分ける",
+    "en": "Lanes for each person or team split the steps",
+    "es": "Carriles por responsable que dividen los pasos",
+    "zh-Hans": "按负责人分泳道排列步骤",
+    "zh-Hant": "依負責人分泳道排列步驟"
+   },
+   "ask": {
+    "ja": "問い合わせから納品までをスイムレーン図で。顧客・営業・制作の3レーンに分けて、手順を矢印でつないで。",
+    "en": "Draw the process from inquiry to delivery as a swimlane diagram: three lanes for customer, sales and production, with arrows between the steps.",
+    "es": "Dibuja el proceso de la consulta a la entrega en un diagrama de carriles: tres carriles para cliente, ventas y producción, con flechas entre los pasos.",
+    "zh-Hans": "用泳道图画出从咨询到交付的流程：分成客户、销售、制作 3 条泳道，用箭头连接各步骤。",
+    "zh-Hant": "用泳道圖畫出從詢問到交付的流程：分成客戶、業務、製作 3 條泳道，用箭頭連接各步驟。"
+   },
+   "summary": {
+    "ja": "左にレーン名（顧客・営業・制作）の3レーン。手順の箱がレーンを行き来しながら順に出て、かぎ形の矢印でつながる。",
+    "en": "Three lanes named on the left (顧客 customer, 営業 sales, 制作 production); step boxes appear one by one, moving between lanes, joined by elbow arrows."
+   },
+   "spec": {
+    "ja": [
+     "レーン: 高さ60pxの白いレーンを3本、左に幅62pxのグレーのレーン名（18px）。1周ずっと出したまま",
+     "箱: 56×30pxの角丸の箱を5つ、x=138〜474に、レーン 顧客→営業→制作→営業→顧客 の順で置く。0.4秒から0.38秒おきに0.28秒で弾んで出る（easeOutBack）。最後だけ濃い青",
+     "矢印: 前の箱の右端から横→縦に折れて次の箱へ（濃いグレー2.5px・矢じり9px）。各箱の0.24秒前から0.26秒で伸びる",
+     "#233 ガントチャートとの違い: 日付の目盛りは無く、レーン名とレーンをまたぐ矢印が主役",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Lanes: three white lanes 60 px tall, with gray lane names (18 px) in a 62 px column on the left; they stay for the whole cycle",
+     "Boxes: five 56×30 px rounded boxes from x = 138 to 474, in the lanes customer → sales → production → sales → customer, popping in over 0.28 s (ease-out-back) from 0.4 s, 0.38 s apart; the last one dark blue",
+     "Arrows: from the right edge of the previous box, across and then up or down into the next (dark gray, 2.5 px, 9 px head), growing over 0.26 s from 0.24 s before each box",
+     "Unlike #233 Gantt chart: no date scale; the lane names and the arrows crossing lanes carry it",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "複数の部署や担当がかかわる手順で、誰がいつ何をするかを見せるとき。",
+    "en": "To show who does what, and when, in a process shared by several people or teams."
+   },
+   "tags": [
+    "swimlane",
+    "swimlane diagram",
+    "cross-functional flowchart",
+    "lanes",
+    "process",
+    "responsibilities",
+    "workflow"
+   ]
+  },
+  {
+   "no": "23",
+   "slug": "chevron-process",
+   "category": "flow-overview",
+   "name": {
+    "ja": "矢羽根図（シェブロン）",
+    "en": "Chevron process",
+    "es": "Proceso de cheurón",
+    "zh-Hans": "V 形流程图",
+    "zh-Hant": "V 形流程圖"
+   },
+   "meaning": {
+    "ja": "矢羽根を横に並べて工程を見せる",
+    "en": "Arrow-shaped steps in a row",
+    "es": "Pasos en forma de flecha puestos en fila",
+    "zh-Hans": "横向排列箭头形状的步骤",
+    "zh-Hant": "橫向排列箭頭形狀的步驟"
+   },
+   "ask": {
+    "ja": "研修の5日間の流れを矢羽根図で。横に5つ並べて、それぞれの下に内容を2行ずつ。",
+    "en": "Show a five-day training program as a chevron process: five arrows in a row, with two lines of content under each.",
+    "es": "Muestra un programa de formación de cinco días como proceso de cheurón: cinco flechas en fila y dos líneas de contenido debajo de cada una.",
+    "zh-Hans": "用 V 形流程图展示 5 天培训的安排：横向排 5 个箭头，每个下面写两行内容。",
+    "zh-Hant": "用 V 形流程圖呈現 5 天訓練的安排：橫向排 5 個箭頭，每個下面寫兩行內容。"
+   },
+   "summary": {
+    "ja": "矢羽根の形の工程1〜5が左から順にすべり込んで並び、それぞれの下に短いメモが出る。右へ行くほど濃い青。",
+    "en": "Arrow-shaped steps 1 to 5 slide in from the left one after another, each with short notes below; the blue gets darker to the right."
+   },
+   "spec": {
+    "ja": [
+     "形: 幅104・高さ74pxの矢羽根を5つ（先のとがりの深さ24px、間6px）。2つ目からは左側が前の矢羽根の形にへこむ",
+     "色: 薄い青・薄い青・中くらいの青・中くらいの青・濃い青。中央に番号1〜5（24px）",
+     "動き: 0.4秒から0.3秒おきに、34px左から0.42秒ですべり込みながらフェードイン（easeOut）",
+     "メモ: 各工程の下にグレーの棒を2本（長さ62pxと44px）。工程が出始めて0.25秒後から0.3秒で出る",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Shape: five chevrons 104 px wide and 74 px tall (point depth 24 px, 6 px gaps); from the second on, the left side is notched to fit the one before",
+     "Colors: light blue, light blue, mid blue, mid blue, dark blue, with the numbers 1–5 (24 px) in the middle",
+     "Motion: from 0.4 s, 0.3 s apart, each slides in from 34 px to the left over 0.42 s while fading in (ease-out)",
+     "Notes: two gray bars (62 px and 44 px long) under each step, fading in over 0.3 s from 0.25 s after the step starts",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "研修の日程や導入の手順など、順に進む工程を1行で見せるとき。",
+    "en": "To show steps that follow each other, such as a training schedule or a rollout, in one row."
+   },
+   "tags": [
+    "chevron",
+    "chevron process",
+    "process arrows",
+    "steps",
+    "phases",
+    "smartart",
+    "roadmap"
+   ]
+  },
+  {
+   "no": "24",
+   "slug": "concentric-circle-diagram",
+   "category": "flow-overview",
+   "name": {
+    "ja": "同心円図",
+    "en": "Concentric circle diagram",
+    "es": "Diagrama de círculos concéntricos",
+    "zh-Hans": "同心圆图",
+    "zh-Hant": "同心圓圖"
+   },
+   "meaning": {
+    "ja": "円の入れ子で市場の範囲を絞る",
+    "en": "Nested circles that narrow down a market",
+    "es": "Círculos anidados que acotan un mercado",
+    "zh-Hans": "用嵌套的圆逐层缩小市场范围",
+    "zh-Hant": "用巢狀的圓逐層縮小市場範圍"
+   },
+   "ask": {
+    "ja": "オンライン学習の市場規模を同心円図で。外からTAM・SAM・SOMの3重にして、金額を書き込んで。",
+    "en": "Show the size of the online learning market as a concentric circle diagram: TAM, SAM and SOM from the outside in, with the amounts.",
+    "es": "Muestra el tamaño del mercado de formación en línea en un diagrama de círculos concéntricos: TAM, SAM y SOM de fuera hacia dentro, con las cifras.",
+    "zh-Hans": "用同心圆图展示线上学习的市场规模：从外到内分为 TAM、SAM、SOM 三层，并写上金额。",
+    "zh-Hant": "用同心圓圖呈現線上學習的市場規模：由外到內分為 TAM、SAM、SOM 三層，並寫上金額。"
+   },
+   "summary": {
+    "ja": "同じ中心から、外・中・内の円が順に広がって入れ子になり、TAM・SAM・SOMのラベルが出る。",
+    "en": "Outer, middle and inner circles grow from the same center one after another, nested inside each other, with the labels TAM, SAM and SOM."
+   },
+   "spec": {
+    "ja": [
+     "円: 半径91・61・31pxの塗りつぶした円を同じ中心に重ねる（外から薄い青・中くらいの青・濃い青）。外側に薄いグレーの円の下書きを出したまま",
+     "動き: 外の円から0.45秒おき（0.4・0.85・1.3秒）に、0.5秒で中心から広がる。easeOut と easeOutBack を 60:40 で混ぜた少しの行き過ぎ",
+     "ラベル: 円と円の間の帯にTAM・SAM、内側の円にSOM（18px）。それぞれの円が出始めて0.55秒後から0.3秒で出る",
+     "#217 ベン図との違い: 円を横にずらさず、内側に入れ子にする",
+     "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
+    ],
+    "en": [
+     "Circles: filled circles of radius 91, 61 and 31 px on one center (light blue, mid blue, dark blue from the outside), with a faint gray guide ring for the outer circle that stays",
+     "Motion: from the outer circle in, 0.45 s apart (0.4, 0.85, 1.3 s), each grows from the center over 0.5 s, a 60:40 blend of ease-out and ease-out-back for a slight overshoot",
+     "Labels: TAM and SAM in the bands between the circles, SOM in the inner circle (18 px), fading in over 0.3 s from 0.55 s after each circle starts",
+     "Unlike #217 Venn diagram: the circles are nested, not set side by side",
+     "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
+    ]
+   },
+   "use": {
+    "ja": "市場規模（TAM・SAM・SOM）のように、全体から狙う範囲へ絞り込む様子を見せるとき。",
+    "en": "To show how you narrow down from the whole to the part you target, as in TAM, SAM and SOM."
+   },
+   "tags": [
+    "concentric circles",
+    "tam sam som",
+    "market size",
+    "nested circles",
+    "onion diagram",
+    "target market",
+    "layers"
+   ]
+  }
+ ]
+}

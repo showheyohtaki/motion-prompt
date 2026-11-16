@@ -1,0 +1,45 @@
+// Motion Prompt #227 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#227
+//
+// Heatmap / ヒートマップ
+// Pack: diagram (Diagrams and charts for slides) · element 11 · Category: Charts that show numbers
+// What happens: The cells of a 12 × 5 table fill with shades of blue in a wave from top-left to bottom-right, then turn back to gray the same way.
+// Motion spec:
+//   - Table: 12 columns × 5 rows of 30×28 px cells (4 px corners, 4 px gaps), with short gray bars as row labels on the left
+//   - Colors: from light gray to one of five blues (light to dark) by value; the values (fixed seed) form a wave
+//   - Fill: each cell takes its color over 0.32 s (ease-out) starting at 0.4 s + column × 0.075 s + row × 0.06 s, so it spreads diagonally from top-left to bottom-right
+//   - Clear: from 3.95 s + column × 0.025 s + row × 0.02 s each cell goes back to gray over 0.22 s (cubic ease-in-out)
+//   - The table itself (cells and labels) stays for the whole cycle
+// When to use it: To show at a glance where a table, such as weekday by hour, is high or low.
+// Tags: heatmap, heat map, matrix, color scale, table, density, calendar heatmap
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#227
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 11
+// 11 ヒートマップ: a table of cells; shades of blue sweep across it like a wave
+const HM = (() => {
+  const r = rand(1103), cols = 12, rows = 5, v = [];
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+    const base = 0.5 + 0.42 * Math.sin(i * 0.62 - 0.4) * Math.cos(j * 0.85 - 1.1) + (r() - 0.5) * 0.28;
+    v.push(clamp(Math.floor(clamp(base, 0, 0.999) * 5), 0, 4));
+  }
+  return { cols, rows, v };
+})();
+const HMCOL = [mix(C.stage, C.blueL, 0.55), C.blueL, C.blueM, mix(C.blueM, C.blue, 0.55), C.blue];
+function heatmap(k, w, h, u) {
+  bg(k, w, h);
+  const { cols, rows, v } = HM;
+  const cw = 30, ch = 28, g = 4, gx = 96, gy = (h - (rows * (ch + g) - g)) / 2;
+  // row labels (short gray bars) so it reads as a table
+  for (let j = 0; j < rows; j++) { rr(k, 46, gy + j * (ch + g) + ch / 2 - 4, 36, 8, 4); k.fillStyle = C.g3; k.fill(); }
+  for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
+    const tin = 0.4 + i * 0.075 + j * 0.06;
+    const tout = 3.95 + i * 0.025 + j * 0.02;
+    const p = easeOut(P(u, tin, tin + 0.32)) * (1 - easeInOut(P(u, tout, tout + 0.22)));
+    rr(k, gx + i * (cw + g), gy + j * (ch + g), cw, ch, 4); k.fillStyle = mix(C.g2, HMCOL[v[j * cols + i]], p); k.fill();
+  }
+}
+CELLS[10] = heatmap;

@@ -1,0 +1,49 @@
+// Motion Prompt #237 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#237
+//
+// Treemap / ツリーマップ
+// Pack: diagram (Diagrams and charts for slides) · element 21 · Category: Diagrams of flow and the whole picture
+// What happens: A dashed outer frame fills up with seven rectangles of different sizes, biggest first.
+// Motion spec:
+//   - Frame: a 439×172 px dashed outline (6 px dash, 6 px gap); it stays for the whole cycle
+//   - Rectangles: seven, with 5 px corners: the large A on the left (206×172 px, dark blue), then B (140×96 px), C, D and three small ones; dark blue, mid blue, light blue, gray
+//   - Motion: from 0.4 s, 0.22 s apart, each grows from 0.55× to full size over 0.4 s with an overshoot (ease-out-back) while fading in
+//   - Labels: letters at the top-left of A–D (A in 24 px white, the others 20 px)
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show at a glance how much of the whole each part takes up.
+// Tags: treemap, tree map, part to whole, breakdown, rectangles, hierarchy, share
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#237
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 21
+// 21 ツリーマップ: one outer rectangle gets filled by rectangles of different sizes, biggest first
+function treemap(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u);
+  const X0 = 50, Y0 = 18, X1 = 489, Y1 = 190;
+  k.strokeStyle = C.g3; k.lineWidth = 2; k.setLineDash([6, 6]);
+  rr(k, X0, Y0, X1 - X0, Y1 - Y0, 6); k.stroke(); k.setLineDash([]);
+  const RS = [                                  // x, y, w, h, color, label
+    [50, 18, 206, 172, C.blue, 'A'],
+    [260, 18, 140, 96, C.blueM, 'B'],
+    [404, 18, 85, 96, C.blueL, 'C'],
+    [260, 118, 98, 72, C.blueL, 'D'],
+    [362, 118, 70, 72, C.g3, ''],
+    [436, 118, 53, 34, C.g3, ''],
+    [436, 156, 53, 34, C.g4, ''],
+  ];
+  RS.forEach(([x, y, ww, hh, col, lb], i) => {
+    const p = P(u, 0.4 + i * 0.22, 0.8 + i * 0.22);
+    if (p <= 0) return;
+    const s = lerp(0.55, 1, easeOutBack(p));
+    k.save(); k.globalAlpha = f * Math.min(1, p * 2.5);
+    k.translate(x + ww / 2, y + hh / 2); k.scale(s, s);
+    k.fillStyle = col; rr(k, -ww / 2, -hh / 2, ww, hh, 5); k.fill();
+    if (lb) txt(k, lb, -ww / 2 + 12, -hh / 2 + 26, `700 ${i === 0 ? 24 : 20}px ${FONT}`, i === 0 ? '#FFFFFF' : C.mark, 'left');
+    k.restore();
+  });
+}
+CELLS[20] = treemap;

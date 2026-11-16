@@ -1,0 +1,55 @@
+// Motion Prompt #218 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#218
+//
+// 4象限マトリクス（2×2） / 2x2 matrix
+// パック: diagram (資料で使う図解・グラフの名前) · element 02 · カテゴリ: 整理する図
+// 何が起きるか: 中央から縦横の軸が伸びて4つの区画ができ、点が置かれていく。右上の区画と点だけ青い。
+// 動きの仕様:
+//   - 軸: 0.4〜1.0秒で中央から外へ伸びる（左右168px・上下86px、3次のイーズインアウト）。右端と上端に矢じり
+//   - 区画: 154×78px・角丸10pxの4つ。軸から8px離す。右上→左上→左下→右下の順に1.0秒から0.08秒ずつずらして0.35秒でフェードイン。右上だけ薄い青、ほかは薄いグレー
+//   - 点: 1.45秒から0.1秒おきに7つ、0.3秒で弾んで出る（easeOutBack・少し行き過ぎる）。右上の1つは青の半径12px、ほかはグレーの半径8px
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 候補を2つの基準で振り分けて、狙う所（右上）を決めるとき。
+// タグ: 2x2 matrix, quadrant, four quadrants, prioritization, positioning, axes, strategy
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#218
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 02
+// 02 4象限マトリクス: two axes cross in the middle, four areas appear, items are placed; top-right is the target
+const MDOTS = [[0.55, -0.55, 1], [0.25, -0.3, 0], [-0.5, -0.45, 0], [-0.3, 0.5, 0], [-0.62, 0.22, 0], [0.45, 0.4, 0], [0.7, 0.62, 0]];
+function matrix(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const cx = w / 2, cy = h / 2, hw = 168, hh = 86, gap = 8;
+  // four areas
+  [[1, -1], [-1, -1], [-1, 1], [1, 1]].forEach(([sx, sy], i) => {
+    const a = easeOut(P(u, 1.0 + i * 0.08, 1.35 + i * 0.08));
+    if (a <= 0) return;
+    k.save(); k.globalAlpha *= a;
+    k.fillStyle = i === 0 ? C.blueL : C.g2;
+    const x = sx > 0 ? cx + gap : cx - gap - (hw - 14), y = sy > 0 ? cy + gap : cy - gap - (hh - 8);
+    rr(k, x, y, hw - 14, hh - 8, 10); k.fill(); k.restore();
+  });
+  // axes grow from the center out
+  const g = easeInOut(P(u, 0.4, 1.0));
+  if (g > 0) {
+    pen(k, C.mark, 3);
+    k.beginPath(); k.moveTo(cx - hw * g, cy); k.lineTo(cx + (hw - 6) * g, cy); k.stroke();
+    k.beginPath(); k.moveTo(cx, cy + hh * g); k.lineTo(cx, cy - (hh - 6) * g); k.stroke();
+    const hs = 11 * clamp((g - 0.15) * 3);
+    if (hs > 1) { arrowAt(k, cx + hw * g + 2, cy, 0, hs, C.mark); arrowAt(k, cx, cy - hh * g - 2, -Math.PI / 2, hs, C.mark); }
+  }
+  // items
+  MDOTS.forEach(([dx, dy, hot], i) => {
+    const s = pop(u, 1.45 + i * 0.1, 0.3);
+    if (s <= 0) return;
+    const x = cx + dx * (hw - 20), y = cy + dy * (hh - 6), r = hot ? 12 : 8;
+    k.fillStyle = hot ? C.blue : C.g4;
+    k.beginPath(); k.arc(x, y, r * s, 0, TAU); k.fill();
+  });
+  k.globalAlpha = 1;
+}
+CELLS[1] = matrix;

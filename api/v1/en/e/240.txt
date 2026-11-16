@@ -1,0 +1,44 @@
+// Motion Prompt #240 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#240
+//
+// Concentric circle diagram / 同心円図
+// Pack: diagram (Diagrams and charts for slides) · element 24 · Category: Diagrams of flow and the whole picture
+// What happens: Outer, middle and inner circles grow from the same center one after another, nested inside each other, with the labels TAM, SAM and SOM.
+// Motion spec:
+//   - Circles: filled circles of radius 91, 61 and 31 px on one center (light blue, mid blue, dark blue from the outside), with a faint gray guide ring for the outer circle that stays
+//   - Motion: from the outer circle in, 0.45 s apart (0.4, 0.85, 1.3 s), each grows from the center over 0.5 s, a 60:40 blend of ease-out and ease-out-back for a slight overshoot
+//   - Labels: TAM and SAM in the bands between the circles, SOM in the inner circle (18 px), fading in over 0.3 s from 0.55 s after each circle starts
+//   - Unlike #217 Venn diagram: the circles are nested, not set side by side
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show how you narrow down from the whole to the part you target, as in TAM, SAM and SOM.
+// Tags: concentric circles, tam sam som, market size, nested circles, onion diagram, target market, layers
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#240
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 24
+// 24 同心円図: circles appear one inside another around the same center (TAM > SAM > SOM)
+function concentric(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), cx0 = w / 2, cy0 = h / 2 + 2;
+  const RR = [91, 61, 31], COL = [C.blueL, C.blueM, C.blue], LB = ['TAM', 'SAM', 'SOM'];
+  // skeleton: faint outer ring guide
+  k.strokeStyle = C.g2; k.lineWidth = 2; k.beginPath(); k.arc(cx0, cy0, RR[0], 0, 7); k.stroke();
+  k.globalAlpha = f;
+  RR.forEach((r, i) => {
+    const t0 = 0.4 + i * 0.45, p = P(u, t0, t0 + 0.5);
+    if (p <= 0) return;
+    k.fillStyle = COL[i]; k.beginPath(); k.arc(cx0, cy0, r * lerp(easeOut(p), easeOutBack(p), 0.4), 0, 7); k.fill();
+  });
+  RR.forEach((r, i) => {
+    const t0 = 0.4 + i * 0.45, pt = P(u, t0 + 0.55, t0 + 0.85);
+    if (pt <= 0) return;
+    k.globalAlpha = f * pt;
+    const ly = i < 2 ? cy0 - (r + RR[i + 1]) / 2 : cy0;
+    txt(k, LB[i], cx0, ly + 1, `700 18px ${FONT}`, i === 2 ? '#FFFFFF' : C.mark, 'center', 'middle');
+  });
+  k.globalAlpha = 1;
+}
+CELLS[23] = concentric;

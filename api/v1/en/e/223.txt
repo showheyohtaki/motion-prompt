@@ -1,0 +1,54 @@
+// Motion Prompt #223 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#223
+//
+// Cycle diagram / サイクル図
+// Pack: diagram (Diagrams and charts for slides) · element 07 · Category: Diagrams that organize ideas
+// What happens: Circles numbered 1 to 4 sit on a ring, arrows draw one after another until the ring closes, then a blue highlight goes round once.
+// Motion spec:
+//   - Layout: four light-blue circles (radius 26 px, numbered 1–4) at the top, right, bottom and left of an ellipse 128 px wide and 70 px tall (radii), popping in from 0.4 s, 0.32 s apart
+//   - Arrows: arcs along the ellipse from each circle to the next (mid blue, 3 px, 13 px heads), drawn over 0.28 s from 0.7 s, 0.32 s apart; the ring closes at 1.94 s
+//   - Highlight: from 2.2 s to 3.8 s a solid blue fill moves 1 → 2 → 3 → 4, 0.4 s per step, with soft edges
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To show a process that returns to the start and keeps repeating, such as PDCA.
+// Tags: cycle, cycle diagram, loop, pdca, circular process, ring, iteration
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#223
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 07
+// 07 サイクル図: four steps on a ring; arrows draw one after another until the ring closes,
+// then the highlight goes round the ring once
+function cycle(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const cx = w / 2, cy = h / 2, RX = 128, RY = 70, nr = 26, n = 4;
+  const ang = i => -Math.PI / 2 + i * TAU / n, pos = a => [cx + Math.cos(a) * RX, cy + Math.sin(a) * RY];
+  for (let i = 0; i < n; i++) {
+    const t = easeInOut(P(u, 0.7 + i * 0.32, 0.98 + i * 0.32));
+    if (t <= 0) continue;
+    const A = pos(ang(i)), B = pos(ang(i + 1)), pts = [];
+    for (let j = 0; j <= 60; j++) {
+      const q = pos(lerp(ang(i), ang(i + 1), j / 60));
+      if (Math.hypot(q[0] - A[0], q[1] - A[1]) > nr + 10 && Math.hypot(q[0] - B[0], q[1] - B[1]) > nr + 8) pts.push(q);
+    }
+    pen(k, C.blueM, 3); trace(k, pts, t, 13, C.blueM);
+  }
+  // highlight going round: 2.2s -> 3.8s, 0.4s per step, soft edges
+  const hp = P(u, 2.2, 3.8) * n;
+  for (let i = 0; i < n; i++) {
+    const s = pop(u, 0.4 + i * 0.32, 0.28);
+    if (s <= 0.01) continue;
+    const dd = hp - i;
+    const on = (u > 2.15 && u < 4.0 && dd > -0.25 && dd < 1.25) ? clamp(Math.min(dd + 0.25, 1.25 - dd) * 2.5) : 0;
+    const [x, y] = pos(ang(i));
+    k.save(); k.translate(x, y); k.scale(s, s);
+    k.fillStyle = C.blueL; k.beginPath(); k.arc(0, 0, nr, 0, TAU); k.fill();
+    if (on > 0) { k.save(); k.globalAlpha *= on; k.fillStyle = C.blue; k.beginPath(); k.arc(0, 0, nr, 0, TAU); k.fill(); k.restore(); }
+    txt(k, String(i + 1), 0, 1, `700 22px ${FONT}`, on > 0.5 ? '#FFFFFF' : C.blue, 'center', 'middle');
+    k.restore();
+  }
+  k.globalAlpha = 1;
+}
+CELLS[6] = cycle;

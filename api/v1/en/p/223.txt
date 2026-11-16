@@ -1,0 +1,15 @@
+Please use "Cycle diagram" (サイクル図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #223
+
+What it is: Arrows in a ring that keeps going round
+What the sample shows: Circles numbered 1 to 4 sit on a ring, arrows draw one after another until the ring closes, then a blue highlight goes round once.
+Spec:
+- Layout: four light-blue circles (radius 26 px, numbered 1–4) at the top, right, bottom and left of an ellipse 128 px wide and 70 px tall (radii), popping in from 0.4 s, 0.32 s apart
+- Arrows: arcs along the ellipse from each circle to the next (mid blue, 3 px, 13 px heads), drawn over 0.28 s from 0.7 s, 0.32 s apart; the ring closes at 1.94 s
+- Highlight: from 2.2 s to 3.8 s a solid blue fill moves 1 → 2 → 3 → 4, 0.4 s per step, with soft edges
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show a process that returns to the start and keeps repeating, such as PDCA.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/223.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

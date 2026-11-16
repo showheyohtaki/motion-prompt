@@ -1,0 +1,68 @@
+// Motion Prompt #228 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#228
+//
+// レーダーチャート / Radar chart
+// パック: diagram (資料で使う図解・グラフの名前) · element 12 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: 6本の軸のくもの巣の上に、グレーの多角形が中心から広がり、続いて青い多角形が少し行き過ぎながら広がる。
+// 動きの仕様:
+//   - 目盛り: 半径86pxの六角形を4重（外側だけ濃いグレー）と6本の軸。1周ずっと出したまま
+//   - 比較の形: グレーの多角形（値0.46〜0.74、塗りは不透明度0.22）が0.4〜1.1秒に中心から広がる（easeOut）
+//   - 主役の形: 青い多角形（値 0.92・0.58・0.84・0.4・0.76・0.52、塗りは不透明度0.28、縁3px、頂点に点）が0.95〜1.85秒に広がる。easeOut と easeOutBack を 55:45 で混ぜた少しの行き過ぎ
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 複数の項目のバランスや、2つの物の強み・弱みを比べるとき。
+// タグ: radar chart, spider chart, web chart, polygon, compare, skills, balance
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#228
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 12
+// 12 レーダーチャート: a spider-web scale; a gray polygon, then the blue polygon spreads out from the center
+const RA = [0.92, 0.58, 0.84, 0.4, 0.76, 0.52];
+const RB = [0.55, 0.74, 0.46, 0.72, 0.5, 0.66];
+function radarPath(k, cx, cy, R, vals, s) {
+  k.beginPath();
+  vals.forEach((v, i) => {
+    const a = -Math.PI / 2 + i / vals.length * Math.PI * 2, r = R * v * s;
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r;
+    i ? k.lineTo(x, y) : k.moveTo(x, y);
+  });
+  k.closePath();
+}
+function radar(k, w, h, u) {
+  bg(k, w, h);
+  const cx = w / 2, cy = h / 2 + 2, R = 86, n = 6;
+  k.lineJoin = 'round';
+  for (let ring = 1; ring <= 4; ring++) {
+    radarPath(k, cx, cy, R, Array(n).fill(ring / 4), 1);
+    k.strokeStyle = ring === 4 ? C.g4 : C.g3; k.lineWidth = 2; k.stroke();
+  }
+  for (let i = 0; i < n; i++) {
+    const a = -Math.PI / 2 + i / n * Math.PI * 2;
+    seg(k, cx, cy, cx + Math.cos(a) * R, cy + Math.sin(a) * R, C.g3, 2);
+    dot(k, cx + Math.cos(a) * R, cy + Math.sin(a) * R, 4, C.g4);
+  }
+  const fo = dataFade(u);
+  const sb = easeOut(P(u, 0.4, 1.1));
+  if (sb > 0.01) {
+    k.save(); k.globalAlpha = fo;
+    radarPath(k, cx, cy, R, RB, sb);
+    k.fillStyle = 'rgba(169,168,165,0.22)'; k.fill();
+    k.strokeStyle = C.g4; k.lineWidth = 2.5; k.stroke();
+    k.restore();
+  }
+  const qa = P(u, 0.95, 1.85), sa = lerp(easeOut(qa), easeOutBack(qa), 0.45);   // mild overshoot, stays near the web
+  if (sa > 0.01) {
+    k.save(); k.globalAlpha = fo;
+    radarPath(k, cx, cy, R, RA, sa);
+    k.fillStyle = 'rgba(47,107,235,0.28)'; k.fill();
+    k.strokeStyle = C.blue; k.lineWidth = 3; k.stroke();
+    RA.forEach((v, i) => {
+      const a = -Math.PI / 2 + i / n * Math.PI * 2, r = R * v * sa;
+      dot(k, cx + Math.cos(a) * r, cy + Math.sin(a) * r, 4.5, C.blue);
+    });
+    k.restore();
+  }
+}
+CELLS[11] = radar;

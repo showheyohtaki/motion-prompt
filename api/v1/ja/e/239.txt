@@ -1,0 +1,51 @@
+// Motion Prompt #239 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#239
+//
+// 矢羽根図（シェブロン） / Chevron process
+// パック: diagram (資料で使う図解・グラフの名前) · element 23 · カテゴリ: 流れと全体を見せる図
+// 何が起きるか: 矢羽根の形の工程1〜5が左から順にすべり込んで並び、それぞれの下に短いメモが出る。右へ行くほど濃い青。
+// 動きの仕様:
+//   - 形: 幅104・高さ74pxの矢羽根を5つ（先のとがりの深さ24px、間6px）。2つ目からは左側が前の矢羽根の形にへこむ
+//   - 色: 薄い青・薄い青・中くらいの青・中くらいの青・濃い青。中央に番号1〜5（24px）
+//   - 動き: 0.4秒から0.3秒おきに、34px左から0.42秒ですべり込みながらフェードイン（easeOut）
+//   - メモ: 各工程の下にグレーの棒を2本（長さ62pxと44px）。工程が出始めて0.25秒後から0.3秒で出る
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 研修の日程や導入の手順など、順に進む工程を1行で見せるとき。
+// タグ: chevron, chevron process, process arrows, steps, phases, smartart, roadmap
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#239
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 23
+// 23 矢羽根図（シェブロン）: arrow-shaped steps line up from left to right, each with short notes below
+function chevron(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), n = 5, cw = 104, dp = 24, gp = 6, step = cw - dp + gp;
+  const tot = n * step - gp + dp, x0 = (w - tot) / 2, y0 = 40, ch = 74, ym = y0 + ch / 2;
+  const COL = [C.blueL, C.blueL, C.blueM, C.blueM, C.blue];
+  for (let i = 0; i < n; i++) {
+    const t0 = 0.4 + i * 0.3, p = appear(u, t0, 0.42);
+    if (p <= 0) continue;
+    const x = x0 + i * step - (1 - p) * 34;
+    k.globalAlpha = f * Math.min(1, p * 1.6);
+    k.fillStyle = COL[i];
+    k.beginPath();
+    k.moveTo(x, y0); k.lineTo(x + cw - dp, y0); k.lineTo(x + cw, ym); k.lineTo(x + cw - dp, y0 + ch); k.lineTo(x, y0 + ch);
+    if (i > 0) k.lineTo(x + dp, ym);
+    k.closePath(); k.fill();
+    const tx = x + (i > 0 ? dp : 0) / 2 + (cw - dp) / 2 + (i > 0 ? 0 : -2);
+    txt(k, String(i + 1), tx + 4, ym + 1, `700 24px ${FONT}`, i === n - 1 ? '#FFFFFF' : C.mark, 'center', 'middle');
+    // short notes under each step
+    const pn = P(u, t0 + 0.25, t0 + 0.55);
+    if (pn > 0) {
+      k.globalAlpha = f * pn; k.fillStyle = C.g3;
+      const bx = x0 + i * step + (i > 0 ? dp : 0) + 4;
+      rr(k, bx, y0 + ch + 20, 62, 8, 4); k.fill();
+      rr(k, bx, y0 + ch + 36, 44, 8, 4); k.fill();
+    }
+  }
+  k.globalAlpha = 1;
+}
+CELLS[22] = chevron;

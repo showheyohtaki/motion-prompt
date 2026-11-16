@@ -1,0 +1,17 @@
+Please use "Customer journey map" (カスタマージャーニーマップ), one of the names in "Diagrams and charts for slides".
+Motion Prompt #236
+
+What it is: Actions and feelings at each stage
+What the sample shows: Five stage headers and action cards line up, then a feeling line rises and falls from left to right, with a smiling or frowning mark on each point.
+Spec:
+- Frame: five columns with vertical dividers; the stage headers on top are plain rounded boxes (not arrows; the middle one gray), appearing from 0.35 s, 0.1 s apart
+- Actions: a white card under each header (text as gray bars), rising 8 px while it appears over 0.3 s, from 0.6 s, 0.1 s apart
+- Feeling: against a dotted neutral line at y = 150, a smooth blue curve (3.5 px) through +0.35, +0.7, −0.6, +0.15 and +0.85 (× 36 px) is drawn from left to right between 1.25 s and 2.25 s
+- Marks: as the line reaches each point a face (radius 12 px) pops in: a blue smile above the neutral line, a gray frown below it
+- There are no arrows across lanes (unlike #238 Swimlane diagram)
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To see what customers do at each stage and where their mood drops.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/236.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

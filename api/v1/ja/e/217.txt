@@ -1,0 +1,40 @@
+// Motion Prompt #217 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#217
+//
+// ベン図 / Venn diagram
+// パック: diagram (資料で使う図解・グラフの名前) · element 01 · カテゴリ: 整理する図
+// 何が起きるか: 2つの円が左右から寄って重なり、重なった部分だけが濃い青になる。
+// 動きの仕様:
+//   - 円: 半径78pxの円が2つ。左のAは薄い青に青い縁、右のBは薄いグレーにグレーの縁。重なった部分だけ濃い青で塗る
+//   - 動き: 0.3〜0.7秒でフェードイン（easeOut）、0.5〜1.6秒で円の中心が左右±150px→±44pxまで寄る（3次のイーズインアウト）
+//   - 文字: 各円の外寄りにA・B（26px）
+//   - #240 同心円図は円を入れ子にする。ベン図は横に並べて一部だけ重ねる
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 2つ以上の物の共通点と違いを1枚で見せるとき。
+// タグ: venn, venn diagram, overlap, intersection, compare, common ground, circles
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#217
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 01
+// 01 ベン図: two circles slide in from the sides and overlap; only the shared part turns blue
+function venn(k, w, h, u) {
+  bg(k, w, h);
+  const app = easeOut(P(u, 0.3, 0.7)), m = easeInOut(P(u, 0.5, 1.6));
+  if (app <= 0) return;
+  const r = 78, cy = h / 2, d = lerp(150, 44, m), ax = w / 2 - d, bx = w / 2 + d;
+  k.save(); k.globalAlpha = fade(u) * app;
+  k.fillStyle = C.blueL; k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.fill();
+  k.fillStyle = C.g2; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill();
+  // shared part: B inside A
+  k.save(); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.clip();
+  k.fillStyle = C.blue; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill(); k.restore();
+  pen(k, C.blueM, 3); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.stroke();
+  pen(k, C.g4, 3); k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.stroke();
+  txt(k, 'A', ax - 38, cy + 1, `600 26px ${FONT}`, C.blue, 'center', 'middle');
+  txt(k, 'B', bx + 38, cy + 1, `600 26px ${FONT}`, C.mark, 'center', 'middle');
+  k.restore();
+}
+CELLS[0] = venn;

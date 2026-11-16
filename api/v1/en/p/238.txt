@@ -1,0 +1,16 @@
+Please use "Swimlane diagram" (スイムレーン図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #238
+
+What it is: Lanes for each person or team split the steps
+What the sample shows: Three lanes named on the left (顧客 customer, 営業 sales, 制作 production); step boxes appear one by one, moving between lanes, joined by elbow arrows.
+Spec:
+- Lanes: three white lanes 60 px tall, with gray lane names (18 px) in a 62 px column on the left; they stay for the whole cycle
+- Boxes: five 56×30 px rounded boxes from x = 138 to 474, in the lanes customer → sales → production → sales → customer, popping in over 0.28 s (ease-out-back) from 0.4 s, 0.38 s apart; the last one dark blue
+- Arrows: from the right edge of the previous box, across and then up or down into the next (dark gray, 2.5 px, 9 px head), growing over 0.26 s from 0.24 s before each box
+- Unlike #233 Gantt chart: no date scale; the lane names and the arrows crossing lanes carry it
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show who does what, and when, in a process shared by several people or teams.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/238.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,16 @@
+Please use "Flowchart" (フローチャート), one of the names in "Diagrams and charts for slides".
+Motion Prompt #222
+
+What it is: Steps you follow, with diamond-shaped decisions
+What the sample shows: Start → step → diamond decision → step → end appear in one row, with a loop arrow from the decision back to the first step; then a dot walks the path, loops back once and goes on to the end.
+Spec:
+- Shapes: start and end are 66×36 px pills (gray), steps are 72×40 px boxes (light blue), the decision is a diamond 92 px wide and 72 px tall (blue, white "?"), all in one row at y = 80
+- Order: they pop in at 0.4, 0.8, 1.2, 1.6 and 1.95 s (0.3 s, ease-out-back); the arrows between them grow over 0.22 s from 0.6, 1.0, 1.4 and 1.75 s, with 10 px heads
+- Loop: an arrow from the bottom of the diamond down to y = 172 and back up into the first step draws from 2.0 s to 2.45 s
+- Marker: a dark gray dot (radius 8 px) follows start → step → decision → loop → step → decision → step → end from 2.6 s to 3.8 s (cubic ease-in-out), appearing 2.5–2.65 s and leaving 3.8–4.0 s
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show a procedure step by step, including where it branches on a condition.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/222.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

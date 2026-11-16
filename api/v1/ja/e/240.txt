@@ -1,0 +1,44 @@
+// Motion Prompt #240 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#240
+//
+// 同心円図 / Concentric circle diagram
+// パック: diagram (資料で使う図解・グラフの名前) · element 24 · カテゴリ: 流れと全体を見せる図
+// 何が起きるか: 同じ中心から、外・中・内の円が順に広がって入れ子になり、TAM・SAM・SOMのラベルが出る。
+// 動きの仕様:
+//   - 円: 半径91・61・31pxの塗りつぶした円を同じ中心に重ねる（外から薄い青・中くらいの青・濃い青）。外側に薄いグレーの円の下書きを出したまま
+//   - 動き: 外の円から0.45秒おき（0.4・0.85・1.3秒）に、0.5秒で中心から広がる。easeOut と easeOutBack を 60:40 で混ぜた少しの行き過ぎ
+//   - ラベル: 円と円の間の帯にTAM・SAM、内側の円にSOM（18px）。それぞれの円が出始めて0.55秒後から0.3秒で出る
+//   - #217 ベン図との違い: 円を横にずらさず、内側に入れ子にする
+//   - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
+// 使いどころ: 市場規模（TAM・SAM・SOM）のように、全体から狙う範囲へ絞り込む様子を見せるとき。
+// タグ: concentric circles, tam sam som, market size, nested circles, onion diagram, target market, layers
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#240
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 24
+// 24 同心円図: circles appear one inside another around the same center (TAM > SAM > SOM)
+function concentric(k, w, h, u) {
+  bg(k, w, h);
+  const f = fade(u), cx0 = w / 2, cy0 = h / 2 + 2;
+  const RR = [91, 61, 31], COL = [C.blueL, C.blueM, C.blue], LB = ['TAM', 'SAM', 'SOM'];
+  // skeleton: faint outer ring guide
+  k.strokeStyle = C.g2; k.lineWidth = 2; k.beginPath(); k.arc(cx0, cy0, RR[0], 0, 7); k.stroke();
+  k.globalAlpha = f;
+  RR.forEach((r, i) => {
+    const t0 = 0.4 + i * 0.45, p = P(u, t0, t0 + 0.5);
+    if (p <= 0) return;
+    k.fillStyle = COL[i]; k.beginPath(); k.arc(cx0, cy0, r * lerp(easeOut(p), easeOutBack(p), 0.4), 0, 7); k.fill();
+  });
+  RR.forEach((r, i) => {
+    const t0 = 0.4 + i * 0.45, pt = P(u, t0 + 0.55, t0 + 0.85);
+    if (pt <= 0) return;
+    k.globalAlpha = f * pt;
+    const ly = i < 2 ? cy0 - (r + RR[i + 1]) / 2 : cy0;
+    txt(k, LB[i], cx0, ly + 1, `700 18px ${FONT}`, i === 2 ? '#FFFFFF' : C.mark, 'center', 'middle');
+  });
+  k.globalAlpha = 1;
+}
+CELLS[23] = concentric;

@@ -1,0 +1,44 @@
+// Motion Prompt #226 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#226
+//
+// バブルチャート / Bubble chart
+// パック: diagram (資料で使う図解・グラフの名前) · element 10 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: L字の軸の上に、大きさの違う半透明の円が5つ、順に膨らんで出る。一番大きい円だけ濃い青。
+// 動きの仕様:
+//   - 軸: #225 散布図と同じL字の軸と目盛り線。1周ずっと出したまま
+//   - 円: 半径14〜44pxの5つ。塗りは半透明（不透明度0.5、一番大きい円だけ濃い青で0.42）、縁は同じ色の2.5pxの線
+//   - 動き: 0.45秒から0.24秒おきに、0.5秒で弾んで膨らむ（easeOutBack・少し行き過ぎて戻る）
+//   - #225 散布図との違い: 点の数は少なく、円の大きさで3つ目の数字を表す
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 縦・横・大きさの3つの数字を1枚で比べるとき。
+// タグ: bubble chart, bubble, three variables, circle size, portfolio, xy chart, data
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#226
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 10
+// 10 バブルチャート: a few semi-transparent circles of different sizes grow on the axes
+const BB = [   // x, y (0..1 in the plot), radius px, emphasized
+  [0.16, 0.30, 18, 0], [0.34, 0.64, 34, 0], [0.53, 0.34, 25, 0], [0.67, 0.6, 44, 1], [0.89, 0.30, 14, 0],
+];
+function bubble(k, w, h, u) {
+  bg(k, w, h);
+  const A = SC; axes(k, A.x0, A.y0, A.x1, A.y1);
+  const fo = dataFade(u);
+  const X = x => lerp(A.x0 + 10, A.x1 - 8, x), Y = y => lerp(A.y1 - 8, A.y0 + 6, y);
+  BB.forEach(([bx, by, br, em], i) => {
+    const t0 = 0.45 + i * 0.24;
+    const r = br * easeOutBack(P(u, t0, t0 + 0.5));
+    if (r <= 0.3) return;
+    const col = em ? C.blue : C.blueM;
+    k.save(); k.globalAlpha = fo * (em ? 0.42 : 0.5);
+    dot(k, X(bx), Y(by), r, col);
+    k.restore();
+    k.save(); k.globalAlpha = fo; k.strokeStyle = col; k.lineWidth = 2.5;
+    k.beginPath(); k.arc(X(bx), Y(by), r, 0, Math.PI * 2); k.stroke();
+    k.restore();
+  });
+}
+CELLS[9] = bubble;

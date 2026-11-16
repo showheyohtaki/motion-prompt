@@ -1,0 +1,16 @@
+Please use "Pictogram chart (icon array)" (絵グラフ（ピクトグラム）), one of the names in "Diagrams and charts for slides".
+Motion Prompt #231
+
+What it is: A count of people or icons that shows a share
+What the sample shows: Ten person icons appear in gray in one row, the first three turn blue one by one, and "30%" counts up.
+Spec:
+- People: ten faceless person icons, 80 px tall and 32 px apart, in a single row (a grid would read as a heatmap)
+- Entrance: they pop in from 0.35 s, 0.06 s apart, over 0.3 s each (ease-out-back), all gray
+- Color: the first three turn from gray to blue over 0.25 s each, from 1.25 s, 0.22 s apart
+- Number: "30%" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with "10人中3人" (3 in 10 people) below
+- End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+When to use it: To make a share feel like a count of people, for readers who do not like numbers.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/231.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

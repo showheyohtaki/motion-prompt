@@ -1,0 +1,15 @@
+Please use "Pyramid diagram" (ピラミッド図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #220
+
+What it is: Layers stacked from the base to the top
+What the sample shows: A triangle in four layers stacks up from the bottom, each layer dropping into place; only the top layer is dark blue.
+Spec:
+- Shape: a triangle from y = 16 (apex) to y = 192 (base), 336 px wide at the base, cut into four layers with 6 px gaps
+- Colors from the bottom: light gray, light blue, mid blue, dark blue
+- Motion: from the bottom layer up, 0.32 s apart (0.4, 0.72, 1.04, 1.36 s), each layer drops 34 px into place over 0.4 s while fading in (ease-out)
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show stages that build on each other, or levels that get smaller toward the top.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/220.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

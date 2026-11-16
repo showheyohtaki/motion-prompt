@@ -1,0 +1,62 @@
+// Motion Prompt #232 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#232
+//
+// 100% stacked bar chart / 帯グラフ（100%積み上げ）
+// Pack: diagram (Diagrams and charts for slides) · element 16 · Category: Charts that show numbers
+// What happens: Four bars of the same length fill from left to right, dotted lines join the borders between neighbouring bars, and the first part shows its %.
+// Motion spec:
+//   - Bars: four bars 390 px long, 28 px tall and 16 px apart, each cut into four parts (dark blue, mid blue, light blue, gray) with 2 px gaps
+//   - Motion: from the top bar down, 0.16 s apart, each fills from left to right over 0.7 s (cubic ease-in-out)
+//   - Dotted lines: gray dotted lines (4 px dash, 4 px gap) join the same border on neighbouring bars, fading in from 1.6 s to 2.0 s
+//   - Percent: a white number (16 px) in the middle of each first part, fading in over 0.25 s from 0.75 s after its bar starts
+//   - End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)
+// When to use it: To compare only the breakdown (shares) of each group, not the totals.
+// Tags: 100% stacked bar, stacked bar chart, percentage bar, breakdown, composition, share, proportion
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#232
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 16
+// 16 帯グラフ（100%積み上げ）: 4 bands of the same length fill from left to right; dashed lines join the borders
+const BD = [[38, 27, 22, 13], [30, 34, 20, 16], [46, 24, 18, 12], [25, 31, 28, 16]];
+function band(k, w, h, u) {
+  bg(k, w, h);
+  const COL = [C.blue, C.blueM, C.blueL, C.g3];
+  const x0 = 100, bwid = 390, bh = 28, gap = 16, y0 = (h - (4 * bh + 3 * gap)) / 2;
+  for (let j = 0; j < 4; j++) { rr(k, 46, y0 + j * (bh + gap) + bh / 2 - 4, 36, 8, 4); k.fillStyle = C.g3; k.fill(); }
+  const fo = dataFade(u);
+  k.save(); k.globalAlpha = fo;
+  const edges = BD.map(r => { let a = 0; return r.map(v => (a += v, x0 + bwid * a / 100)); });
+  // dashed lines joining the borders of neighbouring bands (the classic 帯グラフ guide lines)
+  const pg = easeInOut(P(u, 1.6, 2.0));
+  if (pg > 0) {
+    k.save(); k.globalAlpha = fo * pg;
+    for (let j = 0; j < 3; j++) for (let s = 0; s < 3; s++) {
+      seg(k, edges[j][s], y0 + j * (bh + gap) + bh + 2, edges[j + 1][s], y0 + (j + 1) * (bh + gap) - 2, C.g4, 1.8, [4, 4]);
+    }
+    k.restore();
+  }
+  BD.forEach((row, j) => {
+    const y = y0 + j * (bh + gap), t0 = 0.4 + j * 0.16, p = easeInOut(P(u, t0, t0 + 0.7));
+    if (p <= 0) return;
+    k.save(); k.beginPath(); k.rect(x0, y - 2, bwid * p, bh + 4); k.clip();
+    let a = x0;
+    row.forEach((v, s) => {
+      const ww = bwid * v / 100;
+      k.fillStyle = COL[s]; k.fillRect(a, y, ww, bh);
+      if (s) { k.fillStyle = C.stage; k.fillRect(a - 1, y, 2, bh); }
+      a += ww;
+    });
+    k.restore();
+    const pt = P(u, t0 + 0.75, t0 + 1.0);   // % on the first part of each band
+    if (pt > 0) {
+      k.save(); k.globalAlpha = fo * pt;
+      txt(k, `${row[0]}%`, x0 + bwid * row[0] / 200, y + bh / 2 + 1, `700 16px ${FONT}`, '#FFFFFF', 'center', 'middle');
+      k.restore();
+    }
+  });
+  k.restore();
+}
+CELLS[15] = band;

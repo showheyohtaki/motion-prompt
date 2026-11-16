@@ -1,0 +1,55 @@
+// Motion Prompt #218 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#218
+//
+// 2x2 matrix / 4象限マトリクス（2×2）
+// Pack: diagram (Diagrams and charts for slides) · element 02 · Category: Diagrams that organize ideas
+// What happens: Two axes grow out from the center, four areas appear and dots are placed; only the top-right area and its dot are blue.
+// Motion spec:
+//   - Axes: grow out from the center from 0.4 s to 1.0 s (168 px to each side, 86 px up and down, cubic ease-in-out), with arrowheads at the right and top ends
+//   - Areas: four 154×78 px boxes with 10 px corners, 8 px from the axes; they fade in over 0.35 s in the order top-right, top-left, bottom-left, bottom-right, starting at 1.0 s, 0.08 s apart. Top-right is light blue, the rest light gray
+//   - Dots: seven dots from 1.45 s, 0.1 s apart, each popping in over 0.3 s (ease-out-back, a slight overshoot); the one in the top-right is blue (radius 12 px), the others gray (radius 8 px)
+//   - End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+// When to use it: To sort options by two criteria and point to the one to aim for (top right).
+// Tags: 2x2 matrix, quadrant, four quadrants, prioritization, positioning, axes, strategy
+// Size: 539x208 px · Cycle: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#218
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 02
+// 02 4象限マトリクス: two axes cross in the middle, four areas appear, items are placed; top-right is the target
+const MDOTS = [[0.55, -0.55, 1], [0.25, -0.3, 0], [-0.5, -0.45, 0], [-0.3, 0.5, 0], [-0.62, 0.22, 0], [0.45, 0.4, 0], [0.7, 0.62, 0]];
+function matrix(k, w, h, u) {
+  bg(k, w, h);
+  k.globalAlpha = fade(u);
+  const cx = w / 2, cy = h / 2, hw = 168, hh = 86, gap = 8;
+  // four areas
+  [[1, -1], [-1, -1], [-1, 1], [1, 1]].forEach(([sx, sy], i) => {
+    const a = easeOut(P(u, 1.0 + i * 0.08, 1.35 + i * 0.08));
+    if (a <= 0) return;
+    k.save(); k.globalAlpha *= a;
+    k.fillStyle = i === 0 ? C.blueL : C.g2;
+    const x = sx > 0 ? cx + gap : cx - gap - (hw - 14), y = sy > 0 ? cy + gap : cy - gap - (hh - 8);
+    rr(k, x, y, hw - 14, hh - 8, 10); k.fill(); k.restore();
+  });
+  // axes grow from the center out
+  const g = easeInOut(P(u, 0.4, 1.0));
+  if (g > 0) {
+    pen(k, C.mark, 3);
+    k.beginPath(); k.moveTo(cx - hw * g, cy); k.lineTo(cx + (hw - 6) * g, cy); k.stroke();
+    k.beginPath(); k.moveTo(cx, cy + hh * g); k.lineTo(cx, cy - (hh - 6) * g); k.stroke();
+    const hs = 11 * clamp((g - 0.15) * 3);
+    if (hs > 1) { arrowAt(k, cx + hw * g + 2, cy, 0, hs, C.mark); arrowAt(k, cx, cy - hh * g - 2, -Math.PI / 2, hs, C.mark); }
+  }
+  // items
+  MDOTS.forEach(([dx, dy, hot], i) => {
+    const s = pop(u, 1.45 + i * 0.1, 0.3);
+    if (s <= 0) return;
+    const x = cx + dx * (hw - 20), y = cy + dy * (hh - 6), r = hot ? 12 : 8;
+    k.fillStyle = hot ? C.blue : C.g4;
+    k.beginPath(); k.arc(x, y, r * s, 0, TAU); k.fill();
+  });
+  k.globalAlpha = 1;
+}
+CELLS[1] = matrix;

@@ -1,0 +1,16 @@
+Please use "Concentric circle diagram" (同心円図), one of the names in "Diagrams and charts for slides".
+Motion Prompt #240
+
+What it is: Nested circles that narrow down a market
+What the sample shows: Outer, middle and inner circles grow from the same center one after another, nested inside each other, with the labels TAM, SAM and SOM.
+Spec:
+- Circles: filled circles of radius 91, 61 and 31 px on one center (light blue, mid blue, dark blue from the outside), with a faint gray guide ring for the outer circle that stays
+- Motion: from the outer circle in, 0.45 s apart (0.4, 0.85, 1.3 s), each grows from the center over 0.5 s, a 60:40 blend of ease-out and ease-out-back for a slight overshoot
+- Labels: TAM and SAM in the bands between the circles, SOM in the inner circle (18 px), fading in over 0.3 s from 0.55 s after each circle starts
+- Unlike #217 Venn diagram: the circles are nested, not set side by side
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show how you narrow down from the whole to the part you target, as in TAM, SAM and SOM.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/240.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

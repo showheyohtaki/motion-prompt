@@ -1,0 +1,15 @@
+Please use "Fishbone diagram" (フィッシュボーン図（特性要因図）), one of the names in "Diagrams and charts for slides".
+Motion Prompt #224
+
+What it is: Causes laid out like the bones of a fish
+What the sample shows: A spine runs right to the head (the result); slanted bones join it from above and below, each with small side bones (the causes).
+Spec:
+- Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading "結果" (result), pops in at 0.95 s
+- Bones: six bones from x = 150, 258 and 366 on the spine, slanting up-left and down-left (62 px across, 80 px up or down, mid blue, 3 px), drawn over 0.35 s from 1.1 s, 0.14 s per column, the lower ones 0.07 s later
+- Side bones: at 36% and 68% along each bone, a 26 px horizontal line to the left (gray, 2.5 px), growing over 0.22 s just after the bone, 0.08 s apart
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To list the possible causes of one result, grouped by kind.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/224.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,16 @@
+Please use "Heatmap" (ヒートマップ), one of the names in "Diagrams and charts for slides".
+Motion Prompt #227
+
+What it is: Table cells shaded by their value
+What the sample shows: The cells of a 12 × 5 table fill with shades of blue in a wave from top-left to bottom-right, then turn back to gray the same way.
+Spec:
+- Table: 12 columns × 5 rows of 30×28 px cells (4 px corners, 4 px gaps), with short gray bars as row labels on the left
+- Colors: from light gray to one of five blues (light to dark) by value; the values (fixed seed) form a wave
+- Fill: each cell takes its color over 0.32 s (ease-out) starting at 0.4 s + column × 0.075 s + row × 0.06 s, so it spreads diagonally from top-left to bottom-right
+- Clear: from 3.95 s + column × 0.025 s + row × 0.02 s each cell goes back to gray over 0.22 s (cubic ease-in-out)
+- The table itself (cells and labels) stays for the whole cycle
+When to use it: To show at a glance where a table, such as weekday by hour, is high or low.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/227.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

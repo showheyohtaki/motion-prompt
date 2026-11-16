@@ -1,0 +1,16 @@
+Please use "Gantt chart" (ガントチャート), one of the names in "Diagrams and charts for slides".
+Motion Prompt #233
+
+What it is: Bars on a date scale that show when each task runs
+What the sample shows: A date scale (1–8) on top and tasks A–E on the left; bars start at staggered columns and grow to the right one after another.
+Spec:
+- Scale: dates 1–8 across the top (52 px columns) with light vertical lines; they stay for the whole cycle
+- Tasks: five rows A–E on the left, 27 px apart; bars are 20 px tall with 6 px corners, running A 0–2, B 1.5–3.5, C 3–4.5, D 3.5–6.5 and E 6–8 (in columns)
+- Motion: from 0.4 s, 0.3 s apart, each bar grows from its left end to the right over 0.5 s (ease-out)
+- Color: D is dark blue, the others mid blue
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show how long each task in a project takes, and how the tasks overlap and follow each other.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/233.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

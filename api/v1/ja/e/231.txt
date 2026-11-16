@@ -1,0 +1,55 @@
+// Motion Prompt #231 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#231
+//
+// 絵グラフ（ピクトグラム） / Pictogram chart (icon array)
+// パック: diagram (資料で使う図解・グラフの名前) · element 15 · カテゴリ: 数字を見せるグラフ
+// 何が起きるか: 人のアイコン10人が横1列にグレーで出て、左の3人が順に青くなり、「30%」が数え上がる。
+// 動きの仕様:
+//   - 人: 高さ80px・間隔32pxの顔のない人のアイコンを横1列に10人（マス目にするとヒートマップに見えるので1列）
+//   - 出る: 0.35秒から0.06秒おきに0.3秒で弾んで出る（easeOutBack）。最初はグレー
+//   - 色: 左の3人が1.25秒から0.22秒おきに0.25秒でグレー→青に変わる
+//   - 数字: 左に「30%」（46px・青）が1.25〜1.94秒に0から数え上がり、下に「10人中3人」
+//   - 終わり: 軸と目盛り線は出したまま、データだけ4.15〜4.55秒でフェードアウト（1周4.7秒）
+// 使いどころ: 割合を、数字の苦手な人にも人数の感覚で伝えるとき。
+// タグ: pictogram, pictograph, icon array, isotype, people icons, percentage, infographic
+// サイズ: 539x208 px · 1周: 4.7 s
+// Needs: kit diagram -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#231
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 15
+// 15 絵グラフ（ピクトグラム）: 10 people in one row pop in gray, then 3 of them turn blue and "30%" counts up
+// faceless pictogram person (the same parts as the camera packs). x,y = feet, h = height in px. o.col: color
+function person(k, x, y, h, o = {}) {
+  k.save(); k.translate(x, y); const s = h / 1.8; k.scale(s, -s); if (o.lean) k.rotate(o.lean);
+  k.fillStyle = o.col || C.blue;
+  const legs = o.legs || [0, 0], arms = o.arms || [0, 0];
+  [[-0.08, legs[0]], [0.08, legs[1]]].forEach(([lx, a]) => { k.save(); k.translate(lx, 0.86); k.rotate(a); rr(k, -0.075, -0.86, 0.15, 0.88, 0.07); k.fill(); k.restore(); });
+  [[-0.25, arms[0]], [0.25, arms[1]]].forEach(([ax, a]) => { k.save(); k.translate(ax, 1.38); k.rotate(a); rr(k, -0.06, -0.58, 0.12, 0.6, 0.06); k.fill(); k.restore(); });
+  rr(k, -0.23, 0.82, 0.46, 0.64, 0.12); k.fill();
+  k.beginPath(); k.arc(0, 1.63, 0.16, 0, 7); k.fill();
+  k.restore();
+}
+function picto(k, w, h, u) {
+  bg(k, w, h);
+  const fo = dataFade(u), n = 10, xs = 214, sp = 32, foot = 158, ph = 80, HI = 3;
+  k.save(); k.globalAlpha = fo;
+  for (let i = 0; i < n; i++) {
+    const t0 = 0.35 + i * 0.06, s = easeOutBack(P(u, t0, t0 + 0.3));
+    if (s <= 0.02) continue;
+    let col = C.g3;
+    if (i < HI) { const pc = easeInOut(P(u, 1.25 + i * 0.22, 1.5 + i * 0.22)); col = mix(C.g3, C.blue, pc); }
+    person(k, xs + i * sp, foot, ph * s, { col });
+  }
+  // the share, counting up while the people turn blue
+  const pc = easeInOut(P(u, 1.25, 1.94));
+  if (pc > 0) {
+    const v = Math.round(30 * pc);
+    txt(k, `${v}%`, 164, 112, `800 46px ${FONT}`, C.blue, 'right', 'middle');
+    txt(k, '10人中3人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
+  }
+  seg(k, xs - 22, foot + 6, xs + (n - 1) * sp + 18, foot + 6, C.g3, 2);
+  k.restore();
+}
+CELLS[14] = picto;

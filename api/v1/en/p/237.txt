@@ -1,0 +1,16 @@
+Please use "Treemap" (ツリーマップ), one of the names in "Diagrams and charts for slides".
+Motion Prompt #237
+
+What it is: Rectangle sizes show the parts of a whole
+What the sample shows: A dashed outer frame fills up with seven rectangles of different sizes, biggest first.
+Spec:
+- Frame: a 439×172 px dashed outline (6 px dash, 6 px gap); it stays for the whole cycle
+- Rectangles: seven, with 5 px corners: the large A on the left (206×172 px, dark blue), then B (140×96 px), C, D and three small ones; dark blue, mid blue, light blue, gray
+- Motion: from 0.4 s, 0.22 s apart, each grows from 0.55× to full size over 0.4 s with an overshoot (ease-out-back) while fading in
+- Labels: letters at the top-left of A–D (A in 24 px white, the others 20 px)
+- End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop
+When to use it: To show at a glance how much of the whole each part takes up.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/237.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

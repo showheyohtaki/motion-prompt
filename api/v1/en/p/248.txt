@@ -1,0 +1,16 @@
+Please use "Infinite canvas" (無限キャンバス), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #248
+
+What it is: Drag in any direction, it never ends
+What the sample shows: Project tiles sit on a grid; grabbing and dragging moves the whole wall up-left or left. However far it goes there is no edge; the same arrangement keeps coming back.
+Spec:
+- A 511 × 170 viewport. Tile grid: 96 across, 84 down, every other row shifted by 48 px; tiles come in three sizes (74 × 58, 64 × 52, 70 × 46). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Two drags: 288 px left and 168 px up over 0.3–1.9 s, then 288 px left over 2.5–4.2 s (bulging 14 px vertically on the way); cubic ease-in-out.
+- Tile art and size repeat every 6 × 2 cells. One pass moves exactly a multiple of that (576 × 168), so there is no seam.
+- While grabbing, the round handle shows a ring; after letting go it moves back to where the next drag starts. A 24 px grid moves along behind.
+- #091 Infinite scroll loads more content downward; an infinite canvas lets you move around a 2D surface in any direction.
+When to use it: Use it for portfolios or exhibitions with many pieces, when browsing should feel like exploring.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/248.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

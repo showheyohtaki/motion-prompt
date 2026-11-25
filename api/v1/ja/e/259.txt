@@ -1,0 +1,53 @@
+// Motion Prompt #259 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#259
+//
+// リキッドメタル / Liquid metal
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 19 · カテゴリ: 背景・質感
+// 何が起きるか: 明るい地の大きな文字 FLOW と球の中を、黒・青・白の映り込みが、うねりながら流れ続ける。
+// 動きの仕様:
+//   - 表示域 511×170。明るい地（白→#F1F0EE）に文字 FLOW（84px）と球（半径52）。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 模様の値 v = sin(0.03x + 2.3·sin(0.045y + a) + a) + 0.55·sin(0.08y − 0.018x + 2a) + 0.3·sin(0.05(x+y) − a)、a = 2πt/4.7
+//   - 色は v×0.22 + y×0.002 を 黒 #1E1E21 → 青 #2F6BEB → #C9D8FB → 白 → #9DB8F6 → 白 → #E4ECFE → #2F6BEB → #1E1E21 の帯に当てる（くり返し）
+//   - 128×43 のマス目で計算して引き伸ばし、文字と球の形で切り抜く。球には左上の白い光と右下の影を重ね、全体に青い光（不透明度0.25・ぼかし14）
+//   - #022 ライトスイープは1本の光が横切る。リキッドメタルは表面全体の映り込みがゆがみながら動く
+// 使いどころ: AI・テック・音楽などの、未来的で手ざわりのある見出しやロゴに。
+// タグ: liquid-metal, chrome, metallic, shader, reflection, typography
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#259
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 19
+// 19 リキッドメタル（見出しの文字と球の中を、溶けた金属のような映り込みがうねりながら流れ続ける）
+CELLS[18] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  // 金属の色の並び（黒→青→薄い青→白→中間の青→白→ごく薄い青→青→黒）
+  const RAMP = [C.ink, C.blue, C.blueL, '#FFFFFF', C.blueM, '#FFFFFF', C.blueXL, C.blue, C.ink].map(hex);
+  const ramp = t => { t = mod(t, 1) * (RAMP.length - 1); const i = Math.floor(t), f = t - i, a = RAMP[i], b = RAMP[Math.min(i + 1, RAMP.length - 1)];
+    return `rgb(${lerp(a[0], b[0], f) | 0},${lerp(a[1], b[1], f) | 0},${lerp(a[2], b[2], f) | 0})`; };
+  view(k, () => {
+    const bg = k.createLinearGradient(0, 0, 0, VH); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, C.desk); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    const ph = W1 * u;
+    const [c, g] = layer(k, 'metal', VW, VH);
+    field(g, 'metal-f', 0, 0, VW, VH, 128, 43, (i, j) => {
+      const x = i * 4, y = j * 4;
+      const v = Math.sin(x * 0.03 + 2.3 * Math.sin(y * 0.045 + ph) + ph) + 0.55 * Math.sin(y * 0.08 - x * 0.018 + 2 * ph) + 0.3 * Math.sin((x + y) * 0.05 - ph);
+      return ramp(v * 0.22 + y * 0.002);
+    });
+    // 形だけ残す（文字と球を1枚の型にまとめてから切り抜く）
+    const [mc, mg] = layer(k, 'metal-m', VW, VH);
+    txt(mg, 'FLOW', 30, 112, `900 84px ${EN}`, '#000', 'left', 'alphabetic', '2px');
+    mg.beginPath(); mg.arc(414, 80, 52, 0, 7); mg.fill(); mg.restore();
+    g.globalCompositeOperation = 'destination-in'; g.drawImage(mc, 0, 0, VW, VH);
+    g.globalCompositeOperation = 'source-over';
+    // 球の立体感
+    const sg = g.createRadialGradient(396, 60, 6, 414, 80, 56); sg.addColorStop(0, 'rgba(255,255,255,.55)'); sg.addColorStop(0.55, 'rgba(255,255,255,0)'); sg.addColorStop(1, 'rgba(30,30,33,.55)');
+    g.fillStyle = sg; g.beginPath(); g.arc(414, 80, 52, 0, 7); g.fill();
+    g.restore();
+    k.save(); k.shadowColor = rgba(C.blue, 0.25); k.shadowBlur = 14; k.drawImage(c, 0, 0, VW, VH); k.restore();
+    txt(k, 'Liquid metal type & objects', 32, 140, `600 11px ${EN}`, C.sub);
+    k.fillStyle = 'rgba(30,30,33,.08)'; k.beginPath(); k.ellipse(414, 150, 46, 6, 0, 0, 7); k.fill();
+  });
+};

@@ -1,0 +1,68 @@
+// Motion Prompt #250 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#250
+//
+// ホログラムカード / Holographic card
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 10 · カテゴリ: 触れると反応する
+// 何が起きるか: 明るい地の上のカードが、まわりを回るカーソルの方へ傾く。表面の箔（見本では青の濃淡、実物では虹色）と細かい斜線、白い反射がカーソルに合わせて流れ、角度で色が替わって見える。
+// 動きの仕様:
+//   - 表示域 511×170。暗い地にカード 172×112（角丸10）。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - カーソルは8の字: x = 255 + 112·sin(2πt/4.7)、y = 86 + 40·sin(4πt/4.7)。nx, ny = カーソルの位置を −1〜1 にした値
+//   - 傾き: 横 ry = nx×0.42 rad（約24°）、縦 rx = −ny×0.3 rad。描くときは 横を cos(ry)、縦を cos(rx) に縮め、sin×0.16 の斜めずれで遠近を付ける。影は逆へ14px
+//   - 箔: 青・薄い青・白・中間の青の線形グラデーションを、青い台紙（#9DB8F6→#2F6BEB）に overlay（0.95）で重ね、帯の位置を nx×70 + ny×30 px ずらす。5px 間隔の斜線を soft-light で
+//   - 反射: カーソル側（中心から nx×70, ny×40）に半径90の白い光を screen で。#153 3Dチルトと違い、主役は角度で動く箔の光（実物は虹色。ここでは青の濃淡で描く）
+// 使いどころ: 会員証・チケット・限定品のカードなど、特別感を出したい1枚に。
+// タグ: holographic, holo, foil, card, tilt, rainbow, hover
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#250
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 10
+// 10 ホログラムカード（カーソルの向きにカードが傾き、表面の虹色の箔と光の反射がカーソルを追って走る）
+CELLS[9] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const cx = 255 + 112 * Math.sin(W1 * u), cy = 86 + 40 * Math.sin(2 * W1 * u);     // カーソル（8の字）
+  const nx = (cx - 255) / 112, ny = (cy - 86) / 40;                                  // -1〜1
+  const ry = nx * 0.42, rx = -ny * 0.3;                                              // 傾き（ラジアン）
+  view(k, () => {
+    const bg = k.createRadialGradient(255, 80, 10, 255, 80, 300); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, C.blueXL); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    const CWd = 172, CHd = 112;
+    const [c, g, sc] = layer(k, 'holo', CWd, CHd);
+    // 台紙
+    const base = g.createLinearGradient(0, 0, CWd, CHd); base.addColorStop(0, C.blueM); base.addColorStop(1, C.blue); g.fillStyle = base; rr(g, 0, 0, CWd, CHd, 10); g.fill();
+    // 虹色の箔（帯の位置がカーソルの横位置で流れる）
+    g.save(); rr(g, 0, 0, CWd, CHd, 10); g.clip();
+    const off = nx * 70 + ny * 30;
+    const fo = g.createLinearGradient(-60 + off, -40, 120 + off, 150);
+    [C.blue, C.blueL, '#FFFFFF', C.blueM, C.blue, C.blueXL, C.blueL].forEach((col, i) => fo.addColorStop(i / 6, col));
+    g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.95; g.fillStyle = fo; g.fillRect(0, 0, CWd, CHd);
+    // 箔の細かい斜線（光の当たる帯だけ濃く見える）
+    g.globalCompositeOperation = 'soft-light'; g.globalAlpha = 0.7; g.strokeStyle = '#fff'; g.lineWidth = 1;
+    for (let i = -CHd; i < CWd; i += 5) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i + CHd, CHd); g.stroke(); }
+    g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
+    // 絵柄: 星のキャラクター
+    g.save(); g.translate(CWd / 2, 52); g.fillStyle = C.blueL; g.beginPath();
+    for (let i = 0; i < 10; i++) { const r = i % 2 ? 13 : 30, a = -Math.PI / 2 + i * Math.PI / 5; g.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
+    g.closePath(); g.fill(); g.fillStyle = C.ink; [-7, 7].forEach(ex => { g.beginPath(); g.arc(ex, 0, 2.6, 0, 7); g.fill(); }); g.restore();
+    g.fillStyle = C.blue; rr(g, 10, 10, 44, 15, 7.5); g.fill(); txt(g, '★ RARE', 32, 18, `800 8.5px ${EN}`, '#fff', 'center', 'middle');
+    txt(g, 'No.241', 12, CHd - 12, `700 9px ${MONO}`, 'rgba(255,255,255,.85)');
+    txt(g, 'STARLING', CWd - 12, CHd - 12, `800 11px ${EN}`, '#fff', 'right', 'alphabetic', '1.5px');
+    // 光の反射（カーソルの側に白い光）
+    const gx = CWd / 2 + nx * 70, gy = CHd / 2 + ny * 40;
+    const gl = g.createRadialGradient(gx, gy, 2, gx, gy, 90); gl.addColorStop(0, 'rgba(255,255,255,.55)'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+    g.globalCompositeOperation = 'screen'; g.fillStyle = gl; g.fillRect(0, 0, CWd, CHd); g.globalCompositeOperation = 'source-over';
+    g.restore(); g.restore();
+    // 影
+    k.save(); k.fillStyle = 'rgba(30,30,33,.16)'; k.filter = 'none';
+    k.beginPath(); k.ellipse(255 - nx * 14, 160, 78, 6, 0, 0, 7); k.fill(); k.restore();
+    // 傾けて描く（奥へ倒れた側が少し細くなる、簡易の遠近）
+    k.save(); k.translate(255, 84);
+    k.transform(Math.cos(ry), Math.sin(ry) * 0.16, -Math.sin(rx) * 0.16, Math.cos(rx), 0, 0);
+    k.drawImage(c, -CWd / 2, -CHd / 2, CWd, CHd);
+    k.strokeStyle = 'rgba(255,255,255,.45)'; k.lineWidth = 1; rr(k, -CWd / 2 + 0.5, -CHd / 2 + 0.5, CWd - 1, CHd - 1, 10); k.stroke();
+    k.restore();
+    cursor(k, cx, cy, 0, C.ink);
+  });
+};

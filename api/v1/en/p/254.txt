@@ -1,0 +1,16 @@
+Please use "Swipe cards" (スワイプカード), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #254
+
+What it is: Flick a card left or right to send it away
+What the sample shows: The top card of a stack of recipe cards is dragged right, shows a "LIKE" stamp and flies off tilting while the card below moves up; the next one is flicked left with "NOPE".
+Spec:
+- A 511 × 170 viewport: three 156 × 144 cards (radius 14) stacked, each one back 6% smaller and 9 px lower. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Card 1: dragged 90 px right over 0.3–1.1 s (ease-in-out), then flies 320 px further over 1.1–1.45 s (cubic ease-in). Card 2: the same to the left over 2.4–3.2 s.
+- Rotation = horizontal offset × 0.0016 rad (about 8° at 90 px). The stamp is fully visible at 60 px: blue "LIKE" on the right, gray "NOPE" on the left.
+- After a card flies, the ones below move forward one step over 1.1–1.5 s (3.2–3.6 s, cubic ease-out) and a new card fades in at the back.
+- The grab handle moves with the card while dragging and returns to the middle after release.
+When to use it: Use it for recommendations, quizzes or preference setup where people decide one card at a time.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/254.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

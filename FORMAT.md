@@ -40,6 +40,7 @@ Packs and their order (global IDs are assigned in this order, 3 digits; new pack
 | 8 | `camera2` | 24 | 169–192 | Camera moves & transitions, part 2 / カメラワークと切り替え 第2弾 |
 | 9 | `artstyle` | 24 | 193–216 | Art styles for image generation / 画像生成で使う画風の名前 |
 | 10 | `diagram` | 24 | 217–240 | Diagrams and charts for slides / 資料で使う図解・グラフの名前 |
+| 11 | `lp3` | 24 | 241–264 | Landing page & web effects, part 3 / LP・Webサイトの演出 第3弾 |
 
 **Once the repository is public, numbers are never renumbered and published names are not renamed.**
 A new pack takes the next `order` and the next free IDs. An element is added at the end of its pack

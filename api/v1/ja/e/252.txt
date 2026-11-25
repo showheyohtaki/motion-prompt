@@ -1,0 +1,56 @@
+// Motion Prompt #252 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#252
+//
+// 流体シミュレーション / Fluid simulation
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 12 · カテゴリ: 触れると反応する
+// 何が起きるか: ごく薄い青の地の上でカーソルを動かすと、通った所から濃淡の違う青の煙が湧き、渦を巻いて広がりながら薄れていく。
+// 動きの仕様:
+//   - 表示域 511×170。ごく薄い青の地（#F1F5FF）。4.7秒でひと回り（パックの周期9.4秒で2回）。絵は 128×43 のマス目で計算してなめらかに引き伸ばす
+//   - カーソルは8の字: x = 255 + 170·sin(2πt/4.7)、y = 86 + 48·sin(4πt/4.7)。0.1175秒ごとにその位置へ煙の粒を1つ出す。色は 青・中間の青・青・薄い青・中間の青 を順に
+//   - 粒: 寿命1.4秒、半径 12 + 30×経過秒、濃さ exp(−2.1×経過秒)（最初の0.1秒で 0→1）。中心は経過に合わせて回りながら 26px/秒 で離れ、10px/秒 で上がる
+//   - 各マスで 重み e = 粒の濃さ×exp(−距離²/半径²) を足し、地の色から「重なった粒の色の平均」へ min(1, Σe×1.6) だけ寄せる。マスの座標を sin・cos でずらして流れを付ける（振れ幅 7px と 6px）
+//   - 本物の流体計算（速度場を毎フレーム解く）を、時間の関数に置きかえた見本。#013 リキッドモーションは形がぬるっと動く、こちらは色の煙が混ざる
+// 使いどころ: 音楽・アート・テック系の、触ること自体を楽しんでほしいトップ画面に。
+// タグ: fluid, simulation, webgl, cursor, smoke, ink, interactive-background
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#252
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 12
+// 12 流体シミュレーション（カーソルの通った所から色の煙が湧き、渦を巻いて広がりながら薄れていく）
+CELLS[11] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const pos = t => [255 + 170 * Math.sin(W1 * t), 86 + 48 * Math.sin(2 * W1 * t)];   // カーソル（8の字）
+  const DT = CYC / 40, LIFE = 1.4;
+  const COL = [C.blue, C.blueM, C.blue, C.blueL, C.blueM].map(hex);
+  // 生きている煙の粒（0.1175秒ごとに1つ、1.4秒で消える）
+  const B = [];
+  for (let n = Math.floor(u / DT) - Math.ceil(LIFE / DT); n <= Math.floor(u / DT); n++) {
+    const t0 = n * DT, age = u - t0; if (age < 0 || age > LIFE) continue;
+    const m = mod(n, 40), [x, y] = pos(t0), a = m * 0.9 + age * 2.4;
+    const r = 12 + 30 * age, wgt = Math.exp(-age * 2.1) * clamp(age / 0.1);
+    B.push([x + Math.cos(a) * 26 * age, y + Math.sin(a) * 26 * age - 10 * age, r, wgt, COL[mod(m, 5)]]);
+  }
+  view(k, () => {
+    const NX = 128, NY = 43, sx = VW / NX, sy = VH / NY, ph = W1 * u;
+    const bg = hex(C.blueBg);
+    field(k, 'fluid', 0, 0, VW, VH, NX, NY, (i, j) => {
+      let px = (i + 0.5) * sx, py = (j + 0.5) * sy;
+      // うずの歪み（流れて見えるように座標をずらす）
+      px += 7 * Math.sin(py * 0.07 + ph * 2); py += 6 * Math.cos(px * 0.05 - ph);
+      let r = 0, g = 0, b = 0, sw = 0;
+      for (const [bx, by, br, bw, c] of B) {
+        const dx = px - bx, dy = py - by, e = bw * Math.exp(-(dx * dx + dy * dy) / (br * br));
+        if (e < 0.003) continue; r += c[0] * e; g += c[1] * e; b += c[2] * e; sw += e;
+      }
+      if (sw <= 0) return `rgb(${bg[0]},${bg[1]},${bg[2]})`;
+      const q = Math.min(1, sw * 1.6);                                  // 煙の濃さ。煙の色は重なった粒の色の平均
+      return `rgb(${lerp(bg[0], r / sw, q) | 0},${lerp(bg[1], g / sw, q) | 0},${lerp(bg[2], b / sw, q) | 0})`;
+    });
+    txt(k, 'Touch the color.', 30, 150, `800 15px ${EN}`, C.ink);
+    const [cx, cy] = pos(u); cursor(k, cx, cy, 0, C.ink);
+  });
+};

@@ -1,0 +1,47 @@
+// Motion Prompt #251 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#251
+//
+// Image trail / イメージトレイル
+// Pack: lp3 (Landing page & web effects, part 3) · element 11 · Category: Pointer interactions
+// What happens: Moving the cursor over a big heading leaves project photos one after another along its path; the oldest shrink away first.
+// Motion spec:
+//   - A 511 × 170 viewport, over the heading PORTFOLIO (54 px). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The cursor moves in a figure eight: x = 255 + 185·sin(2πt/4.7), y = 88 + 46·sin(4πt/4.7 + 0.6).
+//   - Every 0.1175 s (1/40 of 4.7 s) a photo is dropped at the cursor's position: 58 × 72 with a white border, tilted between −0.125 and 0.125 rad.
+//   - Each photo pops in over the first 12% of its life (backOut 0 → 1) and shrinks away over 55–100% (cubic ease-in); it lives 0.85 s. Newer photos sit on top.
+//   - #083 Cursor follower is one dot chasing the cursor and #157 Hover image reveal shows the photo of a list row; an image trail leaves many photos along the path.
+// When to use it: Use it on photographer, designer or studio portfolios to show the amount of work in a playful way.
+// Tags: image-trail, cursor, mouse-trail, portfolio, hover, gallery
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#251
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 11
+// 11 イメージトレイル（カーソルを動かすと、通った所に写真が次々に置かれ、古い物から縮んで消えていく）
+CELLS[10] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const pos = t => [255 + 185 * Math.sin(W1 * t), 88 + 46 * Math.sin(2 * W1 * t + 0.6)];   // カーソルの通り道（8の字）
+  const DT = CYC / 40, LIFE = 0.85;                                     // 0.1175秒ごとに1枚、0.85秒で消える
+  view(k, () => {
+    k.fillStyle = C.blueBg; k.fillRect(0, 0, VW, VH);
+    txt(k, 'PORTFOLIO', VW / 2, 98, `900 54px ${EN}`, rgba(C.ink, 0.92), 'center', 'alphabetic', '4px');
+    txt(k, 'Photo / Art / Motion — 2026', VW / 2, 124, `600 11px ${EN}`, C.sub, 'center');
+    const n0 = Math.floor(u / DT);
+    for (let j = Math.ceil(LIFE / DT); j >= 0; j--) {
+      const n = n0 - j, t0 = n * DT, age = u - t0;
+      if (age < 0 || age > LIFE) continue;
+      const [x, y] = pos(t0), q = age / LIFE;
+      const s = (q < 0.12 ? eBack(q / 0.12) : 1) * (1 - eIn(clamp((q - 0.55) / 0.45)));
+      const m = mod(n, 40), rot = (mod(m * 37, 11) - 5) * 0.025;     // 1周で40枚。番号は40で回す（継ぎ目なし）
+      k.save(); k.translate(x, y); k.rotate(rot); k.scale(s, s);
+      k.shadowColor = 'rgba(30,30,33,.25)'; k.shadowBlur = 8; k.shadowOffsetY = 3;
+      k.fillStyle = '#fff'; k.fillRect(-29, -36, 58, 72); k.shadowColor = 'transparent';
+      art(k, -25, -32, 50, 64, mod(m, 6), 2);
+      k.restore();
+    }
+    const [cx, cy] = pos(u); cursor(k, cx, cy);
+  });
+};

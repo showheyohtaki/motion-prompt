@@ -1,0 +1,16 @@
+Please use "FLIP animation" (FLIPアニメーション), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #256
+
+What it is: Filter, and the cards slide into their new places
+What the sample shows: Pressing "写真" shrinks the illustration cards away and the remaining photo cards slide from their old spots into the gaps. "すべて" plays it back in reverse.
+Spec:
+- A 511 × 170 viewport: 106 × 52 cards (radius 7) in 4 columns × 2 rows, 118 across and 62 down, with three filter buttons on top. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- At 0.6 s "写真" is pressed: over 0.6–0.85 s the four illustrations shrink 1 → 0.75 and fade 1 → 0 (cubic ease-out); over 0.75–1.4 s the four photos move from their old spots to the packed ones (cubic ease-in-out).
+- At 2.6 s "すべて" is pressed: the photos return over 2.6–3.2 s and the illustrations reappear over 3.0–3.35 s. The count reads 8 件 ↔ 4 件.
+- While cards move, a dashed outline stays at each old spot (First) to show where they came from.
+- FLIP = First (old position), Last (new position), Invert (cancel the difference with a transform), Play (animate the transform back to 0): the way to animate a layout change by its position difference.
+When to use it: Use it whenever filtering, sorting, adding or removing changes a layout, so people can see where each item went.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/256.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

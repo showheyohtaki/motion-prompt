@@ -1,0 +1,54 @@
+// Motion Prompt #263 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#263
+//
+// Halftone / ハーフトーン
+// Pack: lp3 (Landing page & web effects, part 3) · element 23 · Category: Backgrounds & textures
+// What happens: On a pale blue page, a sun in blue dots and waves in mid-blue dots. As the sun moves and the waves flow, the dots grow and shrink and the shapes appear to move.
+// Motion spec:
+//   - A 511 × 170 viewport on pale blue (#F1F5FF), with the heading POP / PRINT on the left. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The source picture (0–1): sun = 1.15 − distance/70 (center x = 360 + 20·sin a, y = 70 − 10·cos a); waves go 0 → 1 over 40 px below the line 118 + 12·sin(0.028x − a) + 6·sin(0.06x + 2a). a = 2πt/4.7.
+//   - Dots on an 8 px grid with radius 8 × 0.58 × √brightness (up to about 4.6 px). The sun is screened in blue #2F6BEB at 15°, the waves in mid blue #9DB8F6 at 75° and their overlap in blue at 45°, combined with multiply.
+//   - At the left edge (x = 180–250) the dots shrink to blend in.
+//   - Unlike #197 Pointillism (an art style of painted dots), halftone uses a regular print grid and turns brightness into dot size.
+// When to use it: Use it in pop, retro or magazine-style designs to give photos and illustrations a printed feel.
+// Tags: halftone, dots, print, screen, retro, pop-art
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#263
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 23
+// 23 ハーフトーン（印刷の網点のように、絵の明るさを点の大きさに置きかえて描く。下の絵が動くと点が育ったり縮んだりする）
+CELLS[22] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  // 下の絵（0〜1）: 右から昇る大きな太陽と、流れる波
+  const sun = (x, y) => { const cx = 360 + 20 * Math.sin(ph), cy = 70 - 10 * Math.cos(ph); return clamp(1.15 - Math.hypot(x - cx, y - cy) / 70); };
+  const wave = (x, y) => clamp((y - (118 + 12 * Math.sin(x * 0.028 - ph) + 6 * Math.sin(x * 0.06 + 2 * ph))) / 40 + 0.15);
+  view(k, () => {
+    k.fillStyle = C.blueBg; k.fillRect(0, 0, VW, VH);
+    const S = 8;
+    const screen = (fn, col, ang, ox, oy) => {
+      k.save(); k.fillStyle = col;
+      const ca = Math.cos(ang), sa = Math.sin(ang);
+      for (let a = -30; a < 50; a++) for (let b = -10; b < 80; b++) {
+        const x = ox + (a * ca - b * sa) * S, y = oy + (a * sa + b * ca) * S;
+        if (x < 180 || x > VW + 4 || y < -4 || y > VH + 4) continue;
+        const fade = clamp((x - 180) / 70);
+        const r = S * 0.58 * Math.sqrt(fn(x, y)) * fade;
+        if (r > 0.35) { k.beginPath(); k.arc(x, y, r, 0, 7); k.fill(); }
+      }
+      k.restore();
+    };
+    k.save(); k.globalCompositeOperation = 'multiply';
+    screen(sun, C.blue, 0.26, 200, -40);
+    screen(wave, C.blueM, 1.31, 400, -60);
+    screen((x, y) => 0.35 * sun(x, y) * wave(x + 30, y - 30), C.blue, 0.79, 300, -50);
+    k.restore();
+    txt(k, 'POP', 30, 82, `900 50px ${EN}`, C.ink, 'left', 'alphabetic', '3px');
+    txt(k, 'PRINT', 30, 128, `900 50px ${EN}`, C.ink, 'left', 'alphabetic', '3px');
+    k.fillStyle = C.blue; k.beginPath(); k.arc(186, 66, 8, 0, 7); k.fill();
+  });
+};

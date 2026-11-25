@@ -1,0 +1,16 @@
+Please use "Velocity skew" (ベロシティスキュー), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #243
+
+What it is: Images lean while you scroll fast
+What the sample shows: Three columns of images scroll up. The faster the scroll, the more the images lean; when it stops they straighten. The current angle shows at the bottom right.
+Spec:
+- A 511 × 170 viewport: images of 130 × 96 (radius 8) in three columns, 120 px apart vertically. One pass takes 4.7 s (twice per 9.4 s pack cycle). Each pass moves 720 px (six rows) and lands on the same layout.
+- Scroll: +240 px over 0.25–1.25 s, +240 px over 1.95–2.55 s, +240 px over 3.25–4.45 s (cubic ease-in-out); the second move is the fast one.
+- Speed v (px/s) is taken from the difference 1/60 s before and after; the tilt is clamp(v / 130, 0, 9)°, a skewY around each image's center. As the speed drops the angle returns to 0 by the same formula.
+- Peaks (cubic ease-in-out peaks at 3× the average speed): about 720 px/s → about 5.5° on the first move, about 1200 px/s → 9° (the cap) on the second, about 600 px/s → about 4.6° on the third. A label at the bottom right shows the angle.
+- The usual build measures the scroll speed every frame, feeds it to the skew and eases back to 0 (as in the GSAP Velocity Skew demo).
+When to use it: Use it on portfolio, fashion or photo sites where a list of images should feel fast and physical.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/243.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

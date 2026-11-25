@@ -1,0 +1,50 @@
+// Motion Prompt #258 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#258
+//
+// フルーテッドガラス / Fluted glass
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 18 · カテゴリ: 背景・質感
+// 何が起きるか: 縦の溝が並んだガラスの板の向こうで、動く色の丸と白い輪、見出しの文字が、溝ごとに細く縮んで並んで見える。板はゆっくり左右に動く。
+// 動きの仕様:
+//   - 表示域 511×170。背景は 青→中間の青 に、動く丸3つ（白・薄い青・ごく薄い青）と白い輪、見出し SOFT / FOCUS。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - ガラスの左の端 x = 200 + 50·sin(2πt/4.7)。そこから右の端まで、溝1本 16px
+//   - 溝1本には、うしろの 40px 分（溝の位置の 12px 左から）を、少しぼかして（2.5px）左右反転し、16px に縮めて映す
+//   - 溝ごとに横のグラデーション: 左の端 白34% → 25% で白6% → 70% で0 → 右の端 黒18%。板全体に白8%、左の端に白い線（1.5px）
+//   - 溝の幅と、映す幅の比（ここでは 2.5倍）で歪みの強さが決まる。リブガラス・モールガラスとも呼ばれる
+// 使いどころ: 写真や色の上に柔らかい質感を足したい、インテリア・コスメ・ホテルなどのサイトに。
+// タグ: fluted-glass, reeded-glass, ribbed, glass, distortion, background
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#258
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 18
+// 18 フルーテッドガラス（縦の溝が並んだガラスの板の向こうで、色と文字がにじみ、溝ごとに細く縮んで並ぶ。板はゆっくり左右に動く）
+CELLS[17] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  view(k, () => {
+    const blobs = g => {
+      const base = g.createLinearGradient(0, 0, VW, VH); base.addColorStop(0, C.blue); base.addColorStop(1, C.blueM); g.fillStyle = base; g.fillRect(0, 0, VW, VH);
+      [['#FFFFFF', 330 + 70 * Math.sin(W1 * u), 70 + 30 * Math.cos(W1 * u), 52], [C.blueL, 420 + 40 * Math.cos(W1 * u + 1), 130, 40], [C.blueXL, 250, 20 + 20 * Math.sin(2 * W1 * u), 34]]
+        .forEach(([col, x, y, r]) => { g.fillStyle = col; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); });
+      g.strokeStyle = 'rgba(255,255,255,.85)'; g.lineWidth = 7; g.beginPath(); g.arc(400 - 30 * Math.sin(W1 * u), 88, 46, 0, 7); g.stroke();
+      txt(g, 'SOFT', 32, 80, `900 50px ${EN}`, '#fff', 'left', 'alphabetic', '3px');
+      txt(g, 'FOCUS', 32, 128, `900 50px ${EN}`, C.blueXL, 'left', 'alphabetic', '3px');
+    };
+    const [bc, bg] = layer(k, 'fl-bg', VW, VH); blobs(bg); bg.restore();
+    const [cc, cg, s] = layer(k, 'fl-blur', VW, VH); cg.filter = `blur(${2.5 * s}px)`; blobs(cg); cg.filter = 'none'; cg.restore();
+    k.drawImage(bc, 0, 0, VW, VH);
+    // ガラスの板: 左の端が 150〜250 を往復。溝 1本 16px は、うしろの 40px ぶんを左右反転して縮めて映す
+    const PX = 200 + 50 * Math.sin(W1 * u), RW = 16;
+    for (let x = PX; x < VW; x += RW) {
+      const src = clamp(x - RW * 0.75, 0, VW - RW * 2.5);
+      k.save(); k.translate(x + RW, 0); k.scale(-1, 1); k.drawImage(cc, src * s, 0, RW * 2.5 * s, VH * s, 0, 0, RW, VH); k.restore();
+      const sh = k.createLinearGradient(x, 0, x + RW, 0);
+      sh.addColorStop(0, 'rgba(255,255,255,.34)'); sh.addColorStop(0.25, 'rgba(255,255,255,.06)'); sh.addColorStop(0.7, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(30,30,33,.18)');
+      k.fillStyle = sh; k.fillRect(x, 0, RW, VH);
+    }
+    k.fillStyle = 'rgba(255,255,255,.08)'; k.fillRect(PX, 0, VW - PX, VH);
+    k.fillStyle = 'rgba(255,255,255,.7)'; k.fillRect(PX, 0, 1.5, VH);
+  });
+};

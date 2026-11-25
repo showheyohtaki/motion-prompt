@@ -1,0 +1,16 @@
+Please use "Caustics" (コースティクス), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #260
+
+What it is: A shimmering net of light on the bottom of water
+What the sample shows: On a blue to light-blue water floor, a net of white light gathered by the waves keeps shimmering, with a heading on top and a bobbing float and its shadow.
+Spec:
+- A 511 × 170 viewport; water color #2F6BEB at the top → #9DB8F6 at the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The net of light: three waves with different directions (0.35, 2.45, 4.15 rad) and scales (0.050, 0.043, 0.057), each sin(f·u + m·a + 1.6·sin(0.6f·v + n·a)), are summed, and points where the sum is near 0 are bright: brightness = (1 − |sum| / 1.6)^6 (u and v are the coordinates along and across each wave).
+- a = 2πt/4.7. m and n are whole numbers (1 and −1, −1 and 2, 2 and 1), so the pattern comes back after 4.7 s. Computed on a 128 × 43 grid and stretched.
+- Brightness v pulls the water color toward white. A float (radius 38, eight blue and white segments) bobs ±10 in x and ±5 in y, tilts 0.15 rad and casts a shadow on the floor.
+- Usually computed per pixel in a WebGL shader. Summing waves into a web of bright lines imitates where light gathers on a real pool floor.
+When to use it: Use it as the background on pool, beach, resort or drink sites that should feel like cool water.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/260.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,48 @@
+// Motion Prompt #246 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#246
+//
+// Reveal footer / 下から現れるフッター
+// Pack: lp3 (Landing page & web effects, part 3) · element 06 · Category: Scroll & drag effects
+// What happens: At the end of the page the white content rises with a shadow and uncovers a blue footer that was fixed underneath; the footer content slides up a little as it appears.
+// Motion spec:
+//   - A 511 × 170 viewport; the footer (130 px high, blue #2F6BEB) is fixed to the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Scroll: 0→130 px over 0.35–2.0 s, 130→0 over 3.0–4.35 s (cubic ease-in-out). The white content sits above the footer and moves up by the scroll amount.
+//   - Bottom edge of the content: radius 0 → 14 (reaching full at q × 3), shadow blur 18, offset 6 down, opacity 0 → 0.35 (q × 4), with q = scroll / 130.
+//   - Footer content slides from 26 × (1 − q) px below to its place: a two-line heading (28 px, the second line light blue #C9D8FB), four links and a white round button with a blue arrow.
+//   - In CSS: make the footer position: sticky; bottom: 0 (or fixed) and give the main content a background and a higher z-index.
+// When to use it: Use it to give the closing call to action (contact, hiring, newsletter) a memorable last screen.
+// Tags: footer, reveal, sticky-footer, curtain, scroll, parallax
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#246
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 06
+// 06 下から現れるフッター（フッターは画面の下に固定され、本文の下に隠れている。最後までスクロールすると本文がめくれるように上がり、フッターが現れる）
+CELLS[5] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const y = steps([[0.35, 0], [2.0, 130], [3.0, 130], [4.35, 0]], u);   // スクロール量。130px でフッターが全部見える
+  const q = y / 130;
+  view(k, () => {
+    // フッター（固定。中身は少し下から上がってくる）
+    const FY = VH - 130;
+    k.fillStyle = C.blue; k.fillRect(0, FY, VW, 130);
+    const fy = FY + 26 * (1 - q);
+    txt(k, "Let's make", 28, fy + 48, `900 28px ${EN}`, '#fff');
+    txt(k, 'something.', 28, fy + 80, `900 28px ${EN}`, C.blueL);
+    [['Work', 'About'], ['Blog', 'Contact']].forEach((col, i) => col.forEach((s, j) => txt(k, s, 290 + i * 80, fy + 44 + j * 22, `600 12px ${EN}`, 'rgba(255,255,255,.85)')));
+    k.fillStyle = '#FFFFFF'; k.beginPath(); k.arc(462, fy + 66, 16, 0, 7); k.fill();
+    k.strokeStyle = C.blue; k.lineWidth = 2.2; k.beginPath(); k.moveTo(456, fy + 66); k.lineTo(468, fy + 66); k.moveTo(463, fy + 61); k.lineTo(468, fy + 66); k.lineTo(463, fy + 71); k.stroke();
+    // 本文（フッターの上に重なり、スクロールで上がる）
+    k.save(); k.translate(0, -y);
+    k.shadowColor = `rgba(30,30,33,${0.35 * Math.min(1, q * 4)})`; k.shadowBlur = 18; k.shadowOffsetY = 6;
+    k.fillStyle = '#fff'; rr(k, 0, -10, VW, VH + 10, [0, 0, 14 * Math.min(1, q * 3), 14 * Math.min(1, q * 3)]); k.fill();
+    k.shadowColor = 'transparent';
+    txt(k, 'WORKS', 28, 40, `800 11px ${EN}`, C.blue, 'left', 'alphabetic', '2px');
+    for (let i = 0; i < 3; i++) { art(k, 28 + i * 156, 54, 142, 78, i + 1, 8); bars(k, 28 + i * 156, 142, 110, 2); }
+    k.restore();
+    sbar(k, q, 0.55);
+  });
+};

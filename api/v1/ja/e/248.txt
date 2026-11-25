@@ -1,0 +1,52 @@
+// Motion Prompt #248 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#248
+//
+// 無限キャンバス / Infinite canvas
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 08 · カテゴリ: スクロール・ドラッグで見せる
+// 何が起きるか: 方眼の上に作品のタイルが並び、つかんでドラッグすると壁ごと左上や左へ動く。何度動かしても端が来ず、同じ並びが繰り返し出てくる。
+// 動きの仕様:
+//   - 表示域 511×170。タイルの格子は横96・縦84、1段おきに48px ずらす。タイルは3種の大きさ（74×58・64×52・70×46）。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - ドラッグ2回: 0.3〜1.9秒で 左へ288px・上へ168px、2.5〜4.2秒で 左へ288px（途中で14px だけ縦にふくらむ）。easeInOut 3乗
+//   - タイルの絵と大きさは 横6×縦2 の格子ごとに繰り返す。1周の移動（576×168）がちょうどその倍数なので、つなぎ目が出ない
+//   - つかんでいる間は丸い印に輪が付き、離した後は次につかむ位置へ戻る。うしろに24px の方眼が一緒に動く
+//   - #091 無限スクロールは下へ続きを読み込む。無限キャンバスは2次元の面をどこへでも動かして見る
+// 使いどころ: 作品やアイデアがたくさんあるポートフォリオ・展示ページを、探検するように見せたいときに。
+// タグ: infinite-canvas, drag, pan, grid, portfolio, explore
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#248
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 08
+// 08 無限キャンバス（上下左右に途切れなく続く作品の壁を、つかんでドラッグして見て回る。端が来ない）
+CELLS[7] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  // ドラッグは2回。1回目は左上へ、2回目は左へ。1周で横に6枚・縦に2段ぶん進む（タイルは 6×2 で繰り返すので継ぎ目なし）
+  const TX = 96, TY = 84;
+  const d1 = eIO(P(u, 0.3, 1.9)), d2 = eIO(P(u, 2.5, 4.2));
+  const ox = -(TX * 3) * d1 - (TX * 3) * d2, oy = -(TY * 2) * d1 + 0 * d2 + 14 * Math.sin(Math.PI * d2);
+  view(k, () => {
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
+    // うすい方眼
+    k.strokeStyle = rgba(C.blue, 0.08); k.lineWidth = 1;
+    for (let x = mod(ox, 24); x < VW; x += 24) { k.beginPath(); k.moveTo(x, 0); k.lineTo(x, VH); k.stroke(); }
+    for (let y = mod(oy, 24); y < VH; y += 24) { k.beginPath(); k.moveTo(0, y); k.lineTo(VW, y); k.stroke(); }
+    const i0 = Math.floor(-ox / TX) - 1, j0 = Math.floor(-oy / TY) - 1;
+    for (let j = j0; j < j0 + 4; j++) for (let i = i0; i < i0 + 7; i++) {
+      const x = ox + i * TX + (mod(j, 2) ? 48 : 0) + 10, y = oy + j * TY + 12;
+      const v = mod(i * 5 + j * 3, 6), sz = mod(i + j * 3, 3);
+      const tw = [74, 64, 70][sz], th = [58, 52, 46][sz];
+      k.save(); k.shadowColor = 'rgba(30,30,33,.14)'; k.shadowBlur = 8; k.shadowOffsetY = 3; art(k, x, y, tw, th, v, 6); k.restore();
+    }
+    // つかむ印: ドラッグ中は押した輪、間は離して元の位置へ戻る
+    const on = (u > 0.3 && u < 1.9) || (u > 2.5 && u < 4.2);
+    const gx = on ? (u < 2 ? 380 - 120 * d1 : 400 - 150 * d2) : (u >= 1.9 && u < 2.5 ? lerp(260, 400, eIO(P(u, 1.9, 2.5))) : u >= 4.2 ? lerp(250, 380, eIO(P(u, 4.2, 4.7))) : 380);
+    const gy = on ? (u < 2 ? 120 - 60 * d1 : 90 + 14 * Math.sin(Math.PI * d2)) : (u >= 1.9 && u < 2.5 ? lerp(60, 90, eIO(P(u, 1.9, 2.5))) : u >= 4.2 ? lerp(90, 120, eIO(P(u, 4.2, 4.7))) : 120);
+    grabber(k, gx, gy, on);
+    // 右上の札
+    k.fillStyle = 'rgba(30,30,33,.82)'; rr(k, 392, 10, 106, 20, 10); k.fill();
+    txt(k, 'DRAG TO EXPLORE', 445, 20.5, `700 8.5px ${EN}`, '#fff', 'center', 'middle', '1px');
+  });
+};

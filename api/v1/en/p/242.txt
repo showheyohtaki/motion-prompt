@@ -1,0 +1,16 @@
+Please use "Image sequence on scroll" (連番アニメーション), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #242
+
+What it is: The product turns as you scroll
+What the sample shows: Scrolling turns a lemon soda can and scrolling back turns it the other way. The motion is a swap between 36 frames; the frame number and a progress line show where it is.
+Spec:
+- A 511 × 170 viewport: product copy and a 150 px progress line on the left, a can (radius 36, height 118) on the right. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Scroll s: 0→1 over 0.3–2.3 s, 1→0 over 2.9–4.4 s (cubic ease-in-out). Frame f = floor(s × 36): 36 frames per turn, 10° per frame.
+- No interpolation between frames: the picture only changes when f changes, so slow scrolling reads as stepping through frames.
+- The can's label, dots and lettering sit at longitudes φ: x = 36·sin(φ + f × 10°), shown only on the side where cos is positive and squeezed by cos. Shading on both edges.
+- A "frame 004 / 36" readout and the progress line follow f; the scrollbar on the right follows the scroll.
+When to use it: Use it to show a product all the way round, or to let the scroll drive a video-like sequence as on Apple product pages.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/242.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

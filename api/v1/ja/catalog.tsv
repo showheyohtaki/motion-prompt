@@ -1,4 +1,4 @@
-# Motion Prompt catalog (ja) · 240 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
+# Motion Prompt catalog (ja) · 264 elements · https://showheyohtaki.github.io/motion-prompt/ · columns: id	pack	category	title	tags	summary
 001	motion	登場・文字の演出	ポップイン (Pop-in)	pop,pop-in,spring,bounce,scale,icon,badge,entrance	アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポンと出る。
 002	motion	登場・文字の演出	スタガー (Stagger)	stagger,sequence,delay,cascade,bar-chart,list,entrance	グラフの棒が、少しずつ時間をずらして左から順に立ち上がる。
 003	motion	登場・文字の演出	バースト (Burst)	burst,explosion,radial,like,heart,celebrate,accent,sparkle	「いいね」のハートが点くと同時に、まわりに輪・線・粒が弾ける。
@@ -239,3 +239,27 @@
 238	diagram	流れと全体を見せる図	スイムレーン図 (Swimlane diagram)	swimlane,swimlane diagram,cross-functional flowchart,lanes,process,responsibilities,workflow	左にレーン名（顧客・営業・制作）の3レーン。手順の箱がレーンを行き来しながら順に出て、かぎ形の矢印でつながる。
 239	diagram	流れと全体を見せる図	矢羽根図（シェブロン） (Chevron process)	chevron,chevron process,process arrows,steps,phases,smartart,roadmap	矢羽根の形の工程1〜5が左から順にすべり込んで並び、それぞれの下に短いメモが出る。右へ行くほど濃い青。
 240	diagram	流れと全体を見せる図	同心円図 (Concentric circle diagram)	concentric circles,tam sam som,market size,nested circles,onion diagram,target market,layers	同じ中心から、外・中・内の円が順に広がって入れ子になり、TAM・SAM・SOMのラベルが出る。
+241	lp3	スクロール・ドラッグで見せる	スクローリーテリング (Scrollytelling)	scrollytelling,scroll,sticky,storytelling,scroll-driven,pinned-graphic	左の文章の列をスクロールすると、右に固定した空の絵が、読んでいる段に合わせて朝から昼、夜へと色と太陽・月・星ごと変わっていく。
+242	lp3	スクロール・ドラッグで見せる	連番アニメーション (Image sequence on scroll)	image-sequence,scroll,frames,product,360,scrub,canvas	スクロールするとレモンソーダの缶が回り、戻すと逆に回る。動きは36コマの絵の差し替えで、今のコマ番号と進み具合の線が出る。
+243	lp3	スクロール・ドラッグで見せる	ベロシティスキュー (Velocity skew)	velocity,skew,scroll,gallery,gsap,speed	作品の画像が3列で上へ流れる。速くスクロールするほど画像が斜めに傾き、止まるとまっすぐに戻る。右下に今の傾きの角度が出る。
+244	lp3	スクロール・ドラッグで見せる	マルチスクロール (Multi-scroll (split scrolling))	multiscroll,split-scrolling,opposite,columns,scroll,fullpage	画面が左右2列に分かれ、スクロールすると左の色の見出しは上へ、右の絵は下へ動いて、3組が順にそろう。最後に一気に最初の組へ戻る。
+245	lp3	スクロール・ドラッグで見せる	縮むヘッダー (Shrinking header)	header,shrink,navbar,scroll,sticky,pill,floating-nav	ページを下へスクロールすると、幅いっぱいの白いヘッダーが縮み、角の丸い細い黒のバーになって上に浮く。カートのボタンは文字が消えて印だけになる。上へ戻すと元に広がる。
+246	lp3	スクロール・ドラッグで見せる	下から現れるフッター (Reveal footer)	footer,reveal,sticky-footer,curtain,scroll,parallax	最後までスクロールすると、白い本文が影を付けて上がっていき、その下に固定されていた青いフッターが現れる。フッターの中身は少し下から上がってくる。
+247	lp3	スクロール・ドラッグで見せる	カバーフロー (Cover Flow)	cover-flow,carousel,3d,gallery,album,reflection,coverflow	暗い地に正方形のジャケットが並び、正面の1枚以外は斜めに傾いて重なる。送ると次の1枚が回り込みながら正面に来て、曲名が替わる。床に映り込み。
+248	lp3	スクロール・ドラッグで見せる	無限キャンバス (Infinite canvas)	infinite-canvas,drag,pan,grid,portfolio,explore	方眼の上に作品のタイルが並び、つかんでドラッグすると壁ごと左上や左へ動く。何度動かしても端が来ず、同じ並びが繰り返し出てくる。
+249	lp3	触れると反応する	ドック風メニュー (Dock magnification)	dock,magnification,macos,hover,menu,icons	下に並んだ7つのアイコンの上をカーソルが横切ると、近いアイコンほど大きくなって持ち上がり、台も一緒に伸びる。いちばん大きいアイコンには名前が出る。
+250	lp3	触れると反応する	ホログラムカード (Holographic card)	holographic,holo,foil,card,tilt,rainbow,hover	明るい地の上のカードが、まわりを回るカーソルの方へ傾く。表面の箔（見本では青の濃淡、実物では虹色）と細かい斜線、白い反射がカーソルに合わせて流れ、角度で色が替わって見える。
+251	lp3	触れると反応する	イメージトレイル (Image trail)	image-trail,cursor,mouse-trail,portfolio,hover,gallery	大きな見出しの上でカーソルを動かすと、通った所に作品の写真が次々に置かれていき、古い物から縮んで消える。
+252	lp3	触れると反応する	流体シミュレーション (Fluid simulation)	fluid,simulation,webgl,cursor,smoke,ink,interactive-background	ごく薄い青の地の上でカーソルを動かすと、通った所から濃淡の違う青の煙が湧き、渦を巻いて広がりながら薄れていく。
+253	lp3	触れると反応する	スクラッチカード (Scratch to reveal)	scratch-card,reveal,coupon,canvas,drag,gamification	カードの表面の膜をコインがジグザグにこすり、削った跡から下の「当たり！30% OFF」が見えてくる。こすり終えると膜がすっと消えて、文字が少し弾む。
+254	lp3	触れると反応する	スワイプカード (Swipe cards)	swipe,cards,tinder,drag,stack,mobile,gesture	重なったレシピのカードのいちばん上をつかんで右へ引くと「LIKE」の印が出て、傾きながら飛んでいき、下のカードが前に出る。次は左へ払って「NOPE」。
+255	lp3	触れると反応する	パタパタ表示 (Split-flap display)	split-flap,solari,flip,departure-board,text,retro	黒い板に並んだ11枚の文字の板が、上下に割れてめくれ、途中の文字を何枚か経て、TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 と替わる。
+256	lp3	触れると反応する	FLIPアニメーション (FLIP animation)	flip,layout-animation,filter,shuffle,grid,transition	「写真」を押すと、イラストのカードが縮んで消え、残った写真のカードが元の場所から詰めた場所へ滑って並び直す。「すべて」で逆の順に戻る。
+257	lp3	背景・質感	リキッドグラス (Liquid glass)	liquid-glass,glass,refraction,lens,navbar,apple	カラフルな見出しの上を、丸いガラスのバーが左右に動く。バーの中では下の色と文字がふくらんで見え、ふちほど強く曲がる。上のふちに白い光。
+258	lp3	背景・質感	フルーテッドガラス (Fluted glass)	fluted-glass,reeded-glass,ribbed,glass,distortion,background	縦の溝が並んだガラスの板の向こうで、動く色の丸と白い輪、見出しの文字が、溝ごとに細く縮んで並んで見える。板はゆっくり左右に動く。
+259	lp3	背景・質感	リキッドメタル (Liquid metal)	liquid-metal,chrome,metallic,shader,reflection,typography	明るい地の大きな文字 FLOW と球の中を、黒・青・白の映り込みが、うねりながら流れ続ける。
+260	lp3	背景・質感	コースティクス (Caustics)	caustics,water,shader,webgl,pool,light,background	青から水色の水の底に、波で集まった白い光の網目がゆらめき続ける。上に見出しと、ゆれる浮き輪とその影。
+261	lp3	背景・質感	木漏れ日 (Dappled light)	dappled-light,leaf-shadow,komorebi,sunlight,shadow-overlay,background	薄いグレーから薄い青の壁に、窓から差す斜めの白い光が当たり、その上でぼけた葉の影がゆっくり揺れる。手前に見出しと花びん。
+262	lp3	背景・質感	トポグラフィック (Topographic contour lines)	topographic,contour-lines,terrain,pattern,background,map	明るい地に、山の高さを表す青の濃淡の等高線が何重にも描かれ、山ごとゆっくり動いて線の形が変わり続ける。上に見出しの札。
+263	lp3	背景・質感	ハーフトーン (Halftone)	halftone,dots,print,screen,retro,pop-art	ごく薄い青の地に、青い網点の太陽と、中間の青の網点の波が描かれる。太陽が動き波が流れると、点が育ったり縮んだりして形が動いて見える。
+264	lp3	背景・質感	CRTエフェクト (CRT effect)	crt,scanlines,retro,vhs,arcade,chromatic-aberration	角の丸い黒い画面の中で、光る文字 PLAY が青と薄い青に少しずれてにじむ。横の走査線と細い青の縦縞が重なり、明るい帯が上から下へ流れ、四隅は暗い。

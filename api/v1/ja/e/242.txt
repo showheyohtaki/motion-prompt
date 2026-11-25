@@ -1,0 +1,66 @@
+// Motion Prompt #242 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#242
+//
+// 連番アニメーション / Image sequence on scroll
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 02 · カテゴリ: スクロール・ドラッグで見せる
+// 何が起きるか: スクロールするとレモンソーダの缶が回り、戻すと逆に回る。動きは36コマの絵の差し替えで、今のコマ番号と進み具合の線が出る。
+// 動きの仕様:
+//   - 表示域 511×170。左に商品名と進み具合の線（150px）、右に缶（半径36・高さ118）。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - スクロール量 s: 0.3〜2.3秒で 0→1、2.9〜4.4秒で 1→0（easeInOut 3乗）。コマ番号 f = floor(s×36)（36コマで1回転、1コマ10°）
+//   - 絵はなめらかに補間しない。f が変わった時だけ次の絵に差し替わるので、ゆっくり動かすとコマ送りに見える
+//   - 缶の柄（ラベル・水玉・文字）は経度 φ の位置に置き、x = 36·sin(φ + f×10°)、cos が正の側だけ見せて幅を cos で縮める。左右に影
+//   - 「frame 004 / 36」の表示と線が f に合わせて伸びる。右端のスクロールバーも連動
+// 使いどころ: 商品を360°見せたい、Apple の製品ページのように動画をスクロールで操作させたいときに。
+// タグ: image-sequence, scroll, frames, product, 360, scrub, canvas
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#242
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 02
+// 02 連番アニメーション（スクロール量に合わせて、商品の写真を1コマずつ差し替え、缶が回って見える）
+CELLS[1] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const s = steps([[0.3, 0], [2.3, 1], [2.9, 1], [4.4, 0]], u);       // スクロール量（0〜1）
+  const N = 36, f = Math.min(N - 1, Math.floor(s * N + 1e-6));           // いま見せているコマ（36コマで1回転）
+  const ang = f / N * TAU;
+  view(k, () => {
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
+    txt(k, 'NEW FLAVOR', 32, 50, `800 11px ${EN}`, C.blue, 'left', 'alphabetic', '2px');
+    txt(k, 'レモンソーダ', 32, 80, `800 22px ${JP}`, C.ink);
+    bars(k, 32, 96, 150, 3);
+    // 進み具合とコマ番号
+    k.fillStyle = C.faint; rr(k, 32, 136, 150, 5, 2.5); k.fill();
+    k.fillStyle = C.blue; rr(k, 32, 136, 150 * (f + 1) / N, 5, 2.5); k.fill();
+    txt(k, `frame ${String(f + 1).padStart(3, '0')} / ${N}`, 32, 158, `600 10px ${MONO}`, C.sub);
+    // 舞台
+    const X = 330, Y = 86;
+    const st = k.createRadialGradient(X, Y + 10, 10, X, Y + 10, 130); st.addColorStop(0, C.blueBg); st.addColorStop(1, rgba(C.blueBg, 0)); k.fillStyle = st; k.fillRect(200, 0, 311, VH);
+    k.fillStyle = 'rgba(30,30,33,.14)'; k.beginPath(); k.ellipse(X, Y + 66, 52, 8, 0, 0, 7); k.fill();
+    // 缶（円柱）。ラベルの柄を回転角に合わせて横へ送る
+    const R = 36, H0 = Y - 56, H1 = Y + 62;
+    k.save(); k.beginPath(); k.moveTo(X - R, H0); k.lineTo(X - R, H1); k.ellipse(X, H1, R, 7, 0, Math.PI, 0, true); k.lineTo(X + R, H0); k.closePath(); k.clip();
+    k.fillStyle = C.blueL; k.fillRect(X - R, H0 - 8, R * 2, H1 - H0 + 16);
+    // 帯（青）と水玉・ロゴ: 経度 phi にある物は x = R sin(phi + ang)、見えるのは cos > 0 の側
+    for (let i = 0; i < 12; i++) {
+      const phi = i / 12 * TAU + ang, cz = Math.cos(phi);
+      if (cz <= 0) continue;
+      const x = X + R * Math.sin(phi);
+      k.fillStyle = i % 2 ? C.blue : '#FFFFFF'; k.beginPath(); k.ellipse(x, H0 + 22, 5 * cz, 5, 0, 0, 7); k.fill();
+      k.fillStyle = C.blueM; k.beginPath(); k.ellipse(x, H1 - 20, 3.5 * cz, 3.5, 0, 0, 7); k.fill();
+    }
+    k.fillStyle = C.blue; k.fillRect(X - R, Y - 18, R * 2, 36);
+    const lc = Math.cos(ang);
+    if (lc > 0.05) { const lx = X + R * Math.sin(ang); k.save(); k.translate(lx, Y); k.scale(lc, 1); txt(k, 'LEMON', 0, 1, `900 15px ${EN}`, '#fff', 'center', 'middle', '1px'); k.restore(); }
+    const bc = Math.cos(ang + Math.PI);
+    if (bc > 0.05) { const bx = X + R * Math.sin(ang + Math.PI); k.save(); k.translate(bx, Y); k.scale(bc, 1); txt(k, 'SODA', 0, 1, `900 15px ${EN}`, C.blueL, 'center', 'middle', '1px'); k.restore(); }
+    // 立体の陰
+    const sh = k.createLinearGradient(X - R, 0, X + R, 0); sh.addColorStop(0, 'rgba(30,30,33,.28)'); sh.addColorStop(0.35, 'rgba(255,255,255,.28)'); sh.addColorStop(0.55, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(30,30,33,.3)');
+    k.fillStyle = sh; k.fillRect(X - R, H0 - 8, R * 2, H1 - H0 + 16); k.restore();
+    // ふた
+    k.fillStyle = C.faint; k.beginPath(); k.ellipse(X, H0, R, 7, 0, 0, 7); k.fill(); k.strokeStyle = C.g3; k.lineWidth = 1.5; k.beginPath(); k.ellipse(X, H0, R - 4, 5, 0, 0, 7); k.stroke();
+    sbar(k, s, 0.3);
+  });
+};

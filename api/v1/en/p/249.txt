@@ -1,0 +1,16 @@
+Please use "Dock magnification" (ドック風メニュー), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #249
+
+What it is: Icons grow the closer the cursor gets
+What the sample shows: As the cursor sweeps across seven icons along the bottom, the nearest ones grow and rise and the shelf stretches with them. The largest icon shows its name.
+Spec:
+- A 511 × 170 viewport: seven 34 × 34 icons (radius 24%) 8 px apart on a translucent white shelf. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Cursor: enters from the right over 0–0.5 s, x = 470 → 110 over 0.5–2.2 s, 110 → 470 over 2.6–4.2 s, out over 4.2–4.7 s (cubic ease-in-out).
+- Scale = 1 + 0.85·exp(−(d/46)²) × in, where d is the horizontal distance from the icon's rest center to the cursor and in goes 0→1 over 0.35–0.65 s and 1→0 over 4.15–4.45 s.
+- Icons are laid out again at their new sizes, so neighbors spread and the shelf widens; bottoms stay aligned and the icons grow upward.
+- Above an icon past 1.55× a dark label shows its name.
+When to use it: Use it for a row of app or section links that should be fun to sweep across.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/249.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

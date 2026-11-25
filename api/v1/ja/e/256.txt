@@ -1,0 +1,57 @@
+// Motion Prompt #256 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#256
+//
+// FLIPアニメーション / FLIP animation
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 16 · カテゴリ: 触れると反応する
+// 何が起きるか: 「写真」を押すと、イラストのカードが縮んで消え、残った写真のカードが元の場所から詰めた場所へ滑って並び直す。「すべて」で逆の順に戻る。
+// 動きの仕様:
+//   - 表示域 511×170。カード 106×52（角丸7）を4列×2段、横118・縦62 の間隔。上に絞り込みのボタン3つ。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 0.6秒に「写真」を押す: 0.6〜0.85秒でイラスト4枚が 縮み 1→0.75・不透明度 1→0（easeOut 3乗）、0.75〜1.4秒で写真4枚が元の場所から詰めた場所へ（easeInOut 3乗）
+//   - 2.6秒に「すべて」を押す: 2.6〜3.2秒で写真が元の場所へ戻り、3.0〜3.35秒でイラストが現れる。件数の表示 8件↔4件
+//   - 動いている間だけ、元の場所（First）に点線の枠を残して、どこからどこへ動いたか見せる
+//   - FLIP＝First（前の位置）・Last（後の位置）・Invert（差を transform で打ち消す）・Play（transform を0へ戻す）。レイアウトが変わる時に位置の差だけを動かす作り方
+// 使いどころ: 絞り込み・並べ替え・追加・削除で一覧のレイアウトが変わるとき、どれがどこへ行ったか分かるように。
+// タグ: flip, layout-animation, filter, shuffle, grid, transition
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#256
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 16
+// 16 FLIPアニメーション（絞り込みのボタンを押すと、外れたカードが縮んで消え、残ったカードが元の場所から新しい場所へ滑って並び直す）
+CELLS[15] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const TYPE = [0, 1, 0, 1, 1, 0, 0, 1], V = [1, 0, 4, 2, 3, 1, 4, 5];   // 0＝写真（山の絵）、1＝イラスト（丸・しま）
+  const slot = n => [24 + (n % 4) * 118, 44 + Math.floor(n / 4) * 62];
+  const after = []; let c = 0; TYPE.forEach((t, i) => { after[i] = t === 0 ? c++ : -1; });
+  // 写真で絞る: 0.6 押す → 0.6〜0.85 イラストが消える → 0.75〜1.4 写真が滑る。すべてに戻す: 2.6 押す → 2.6〜3.2 戻る → 3.0〜3.35 イラストが出る
+  const mv = eIO(P(u, 0.75, 1.4)) * (1 - eIO(P(u, 2.6, 3.2)));
+  const gone = eOut(P(u, 0.6, 0.85)) * (1 - eOut(P(u, 3.0, 3.35)));
+  const [cx, cy] = path([[0, 430, 140], [0.45, 130, 26], [1.4, 130, 26], [2.0, 320, 150], [2.45, 62, 26], [3.4, 62, 26], [4.4, 430, 140]], u);
+  const press = Math.max(clamp(1 - Math.abs(u - 0.6) / 0.08), clamp(1 - Math.abs(u - 2.6) / 0.08));
+  const sel = u >= 0.6 && u < 2.6 ? 1 : 0;
+  view(k, () => {
+    k.fillStyle = '#fff'; k.fillRect(0, 0, VW, VH);
+    ['すべて', '写真', 'イラスト'].forEach((s, i) => {
+      const x = 24 + i * 72, on = i === (sel ? 1 : 0);
+      k.fillStyle = on ? C.ink : C.soft; rr(k, x, 12, 64, 22, 11); k.fill();
+      txt(k, s, x + 32, 23.5, `700 10.5px ${JP}`, on ? '#fff' : C.ink, 'center', 'middle');
+    });
+    txt(k, `${sel ? 4 : 8} 件`, 487, 23.5, `600 10px ${JP}`, C.sub, 'right', 'middle');
+    for (let i = 0; i < 8; i++) {
+      const [x0, y0] = slot(i);
+      if (TYPE[i] === 1) {
+        if (gone >= 1) continue;
+        const s = 1 - 0.25 * gone; k.save(); k.globalAlpha = 1 - gone; k.translate(x0 + 53, y0 + 26); k.scale(s, s); art(k, -53, -26, 106, 52, V[i], 7); k.restore();
+        continue;
+      }
+      const [x1, y1] = slot(after[i]), x = lerp(x0, x1, mv), y = lerp(y0, y1, mv);
+      // First（元の場所）の点線の枠: 動いている間だけ
+      if (mv > 0.02 && mv < 0.98 && (x0 !== x1 || y0 !== y1)) { k.save(); k.setLineDash([4, 4]); k.strokeStyle = rgba(C.blue, 0.45); k.lineWidth = 1.2; rr(k, x0 + 0.5, y0 + 0.5, 105, 51, 7); k.stroke(); k.restore(); }
+      k.save(); k.shadowColor = 'rgba(30,30,33,.16)'; k.shadowBlur = 8; k.shadowOffsetY = 3; art(k, x, y, 106, 52, V[i], 7); k.restore();
+    }
+    cursor(k, cx, cy, press);
+  });
+};

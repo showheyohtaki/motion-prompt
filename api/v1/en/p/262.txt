@@ -1,0 +1,16 @@
+Please use "Topographic contour lines" (トポグラフィック), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #262
+
+What it is: Contour lines slowly change shape
+What the sample shows: Contour lines of a terrain, in shades of blue, fill a light page in many rings; the hills drift slowly so the lines keep changing shape. A heading card sits on top.
+Spec:
+- A 511 × 170 viewport; the ground goes white → #F1F5FF. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Height = four hills (Gaussians centered at (150,70), (340,110), (470,30), (60,150), radii 70, 80, 60, 55, heights 1, 0.9, 0.7, 0.6) + 0.12·sin(0.02x + a)·cos(0.03y − a). Each hill center circles 22 across and 14 down (a = 2πt/4.7, phases differ per hill).
+- Heights are sampled on a 7 px grid and contours drawn with marching squares: 11 levels from −0.08 in steps of 0.1, line width 1.3.
+- Line colors run #C9D8FB → #9DB8F6 → #2F6BEB from low to high, opacity 0.55–1. The heading sits on a white card.
+- With lines only and no map symbols, it works as a background pattern.
+When to use it: Use it behind outdoor, travel, map or real-estate sites that should suggest land and terrain.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/262.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,59 @@
+// Motion Prompt #254 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#254
+//
+// Swipe cards / スワイプカード
+// Pack: lp3 (Landing page & web effects, part 3) · element 14 · Category: Pointer interactions
+// What happens: The top card of a stack of recipe cards is dragged right, shows a "LIKE" stamp and flies off tilting while the card below moves up; the next one is flicked left with "NOPE".
+// Motion spec:
+//   - A 511 × 170 viewport: three 156 × 144 cards (radius 14) stacked, each one back 6% smaller and 9 px lower. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Card 1: dragged 90 px right over 0.3–1.1 s (ease-in-out), then flies 320 px further over 1.1–1.45 s (cubic ease-in). Card 2: the same to the left over 2.4–3.2 s.
+//   - Rotation = horizontal offset × 0.0016 rad (about 8° at 90 px). The stamp is fully visible at 60 px: blue "LIKE" on the right, gray "NOPE" on the left.
+//   - After a card flies, the ones below move forward one step over 1.1–1.5 s (3.2–3.6 s, cubic ease-out) and a new card fades in at the back.
+//   - The grab handle moves with the card while dragging and returns to the middle after release.
+// When to use it: Use it for recommendations, quizzes or preference setup where people decide one card at a time.
+// Tags: swipe, cards, tinder, drag, stack, mobile, gesture
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#254
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 14
+// 14 スワイプカード（いちばん上のカードをつかんで右へ払うと「いいね」、左へ払うと「パス」。カードは傾きながら飛んでいき、下のカードが前に出る）
+CELLS[13] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const CARDS = [['レモンのタルト', '★ 4.8 ・ 保存 1,204', 3], ['ミントのモヒート', '★ 4.6 ・ 保存 862', 2]];   // 交互に出てくる2枚（おすすめのレシピ）
+  // 1枚目: 0.3〜1.1 右へ引く → 1.1〜1.45 飛ぶ。2枚目: 2.4〜3.2 左へ引く → 3.2〜3.55 飛ぶ
+  const sw = (t0) => { const d = 90 * eIO(P(u, t0, t0 + 0.8)), f = eIn(P(u, t0 + 0.8, t0 + 1.15)); return d + f * 320; };
+  const out1 = sw(0.3), out2 = -sw(2.4);
+  const up1 = eOut(P(u, 1.1, 1.5)), up2 = eOut(P(u, 3.2, 3.6));       // 下のカードが前に出る
+  view(k, () => {
+    k.fillStyle = C.blueXL; k.fillRect(0, 0, VW, VH);
+    txt(k, 'TODAY\'S RECIPES', 26, 30, `800 10px ${EN}`, C.blue, 'left', 'middle', '2px');
+    txt(k, '← パス', 70, 150, `700 11px ${JP}`, rgba(C.sub, 0.45 + 0.55 * clamp(-out2 / 90)), 'center', 'middle');
+    txt(k, 'いいね →', 440, 150, `700 11px ${JP}`, rgba(C.blue, 0.45 + 0.55 * clamp(out1 / 90) * (u < 2 ? 1 : 0)), 'center', 'middle');
+    const card = (idx, dx, depth, stamp, al = 1) => {
+      if (al <= 0) return;
+      const [ttl, sub, v] = CARDS[idx], s = 1 - depth * 0.06, dy = depth * 9;
+      k.save(); k.globalAlpha = al; k.translate(255 + dx, 86 + dy); k.rotate(dx * 0.0016); k.scale(s, s);
+      k.shadowColor = 'rgba(30,30,33,.18)'; k.shadowBlur = 12; k.shadowOffsetY = 4; k.fillStyle = '#fff'; rr(k, -78, -72, 156, 144, 14); k.fill(); k.shadowColor = 'transparent';
+      art(k, -70, -64, 140, 86, v, 9);
+      txt(k, ttl, -68, 40, `800 12.5px ${JP}`, C.ink); txt(k, sub, -68, 58, `500 10px ${JP}`, C.sub);
+      if (stamp) { const [lb, col, a] = stamp; if (a > 0) { k.save(); k.globalAlpha = a; k.rotate(lb === 'LIKE' ? -0.25 : 0.25); k.fillStyle = 'rgba(255,255,255,.92)'; rr(k, -36, -44, 72, 28, 6); k.fill(); k.strokeStyle = col; k.lineWidth = 3; k.stroke(); txt(k, lb, 0, -29.5, `900 15px ${EN}`, col, 'center', 'middle', '2px'); k.restore(); } }
+      k.restore();
+    };
+    // 奥から: 3枚目・2枚目・いちばん上
+    if (u < 2.0) {
+      card(1, 0, 3 - up1, null, up1); card(0, 0, 2 - up1, null); card(1, 0, 1 - up1, null);
+      card(0, out1, 0, ['LIKE', C.blue, clamp(out1 / 60)]);
+    } else {
+      card(0, 0, 3 - up2, null, up2); card(1, 0, 2 - up2, null); card(0, 0, 1 - up2, null);
+      card(1, out2, 0, ['NOPE', C.sub, clamp(-out2 / 60)]);
+    }
+    // つかむ印
+    const on1 = u > 0.3 && u < 1.1, on2 = u > 2.4 && u < 3.2;
+    const gx = 270 + (on1 ? out1 : on2 ? out2 : u < 2.4 && u >= 1.1 ? lerp(90, 0, eIO(P(u, 1.1, 1.7))) : u >= 3.2 ? lerp(-90, 0, eIO(P(u, 3.2, 3.8))) : 0);
+    grabber(k, gx, 110, on1 || on2);
+  });
+};

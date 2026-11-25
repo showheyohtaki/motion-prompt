@@ -1,0 +1,60 @@
+// Motion Prompt #261 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#261
+//
+// Dappled light / 木漏れ日
+// Pack: lp3 (Landing page & web effects, part 3) · element 21 · Category: Backgrounds & textures
+// What happens: Slanted white window light falls on a pale gray to pale blue wall and blurred leaf shadows sway slowly across it, with a heading and a vase in front.
+// Motion spec:
+//   - A 511 × 170 viewport; the wall goes #F1F0EE → #F1F5FF. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Sunlight: a trapezoid (top edge 170–470, bottom edge 60–380) filled with a white gradient (opacity 0–0.95) in screen.
+//   - Leaf shadows: three branches (230 long) with five or six pairs of leaves (17 × 7 ellipses). Branches sway ±0.06 rad and leaves ±0.22 rad, at 2πt/4.7 and twice that, each with its own phase.
+//   - The shadows are drawn offscreen in blue (#2F6BEB), blurred 4.5 px and laid over at 0.3 opacity. Blue rather than gray shadows keep a bright palette looking sunlit.
+//   - With photos, a PNG or video of real branches can be laid over instead.
+// When to use it: Use it behind ceramics, furniture, skincare or cafe sites that should feel calm and naturally lit.
+// Tags: dappled-light, leaf-shadow, komorebi, sunlight, shadow-overlay, background
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#261
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 21
+// 21 木漏れ日（壁に差す光の中で、葉の影がぼけたままゆっくり揺れる。光の当たる所だけ少し明るく暖かい）
+CELLS[20] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  view(k, () => {
+    const wall = k.createLinearGradient(0, 0, VW, VH); wall.addColorStop(0, C.desk); wall.addColorStop(1, C.blueBg); k.fillStyle = wall; k.fillRect(0, 0, VW, VH);
+    // 窓から差す光（斜めの明るい帯）
+    k.save(); k.globalCompositeOperation = 'screen';
+    const lg = k.createLinearGradient(150, 0, 420, VH); lg.addColorStop(0, 'rgba(255,255,255,0)'); lg.addColorStop(0.35, 'rgba(255,255,255,.95)'); lg.addColorStop(0.75, 'rgba(255,255,255,.7)'); lg.addColorStop(1, 'rgba(255,255,255,0)');
+    k.fillStyle = lg; k.beginPath(); k.moveTo(170, 0); k.lineTo(470, 0); k.lineTo(380, VH); k.lineTo(60, VH); k.fill(); k.restore();
+    // 葉の影（画面外に描いてぼかし、青で重ねる）
+    const [c, g, s] = layer(k, 'leaf', VW, VH);
+    g.filter = `blur(${4.5 * s}px)`; g.fillStyle = C.blue; g.strokeStyle = C.blue;
+    const BR = [[520, -20, 2.55, 6, 0], [470, 190, 3.55, 5, 1.7], [-20, -10, 0.75, 5, 3.1]];
+    for (const [bx, by, ang0, n, o] of BR) {
+      const ang = ang0 + 0.06 * Math.sin(W1 * u + o);
+      g.lineWidth = 2.5; g.beginPath(); g.moveTo(bx, by); g.lineTo(bx + Math.cos(ang) * 230, by + Math.sin(ang) * 230); g.stroke();
+      for (let i = 0; i < n * 2; i++) {
+        const d = 40 + i * 18, side = i % 2 ? 1 : -1;
+        const lx = bx + Math.cos(ang) * d + Math.cos(ang + side * 1.2) * 16, ly = by + Math.sin(ang) * d + Math.sin(ang + side * 1.2) * 16;
+        const rot = ang + side * 0.9 + 0.22 * Math.sin(2 * W1 * u + i * 1.3 + o);
+        g.beginPath(); g.ellipse(lx, ly, 17, 7, rot, 0, 7); g.fill();
+      }
+    }
+    g.filter = 'none'; g.restore();
+    k.save(); k.globalAlpha = 0.3; k.drawImage(c, 0, 0, VW, VH); k.restore();
+    // ページの中身
+    txt(k, 'MORNING CERAMICS', 30, 50, `800 10px ${EN}`, C.blue, 'left', 'alphabetic', '3px');
+    txt(k, 'ひだまりの器', 28, 86, `900 26px ${JP}`, C.ink);
+    bars(k, 30, 100, 160, 2, 'rgba(30,30,33,.15)');
+    k.fillStyle = C.ink; rr(k, 30, 126, 92, 26, 13); k.fill(); txt(k, 'SHOP', 76, 139.5, `800 11px ${EN}`, '#fff', 'center', 'middle', '2px');
+    // 花びん
+    k.fillStyle = 'rgba(30,30,33,.12)'; k.beginPath(); k.ellipse(330, 156, 40, 7, 0, 0, 7); k.fill();
+    k.fillStyle = C.blueM; k.beginPath(); k.moveTo(312, 70); k.bezierCurveTo(292, 110, 296, 156, 330, 156); k.bezierCurveTo(364, 156, 368, 110, 348, 70); k.closePath(); k.fill();
+    k.fillStyle = 'rgba(255,255,255,.35)'; k.beginPath(); k.ellipse(316, 112, 5, 22, 0.1, 0, 7); k.fill();
+    k.strokeStyle = C.blue; k.lineWidth = 2; k.beginPath(); k.moveTo(330, 72); k.quadraticCurveTo(338, 40, 352, 26); k.moveTo(326, 72); k.quadraticCurveTo(314, 46, 300, 36); k.stroke();
+    k.fillStyle = C.blue; k.beginPath(); k.arc(352, 26, 6, 0, 7); k.arc(300, 36, 5, 0, 7); k.fill();
+  });
+};

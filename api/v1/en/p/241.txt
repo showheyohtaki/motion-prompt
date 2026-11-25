@@ -1,0 +1,16 @@
+Please use "Scrollytelling" (スクローリーテリング), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #241
+
+What it is: The pinned picture changes as you read on
+What the sample shows: Scrolling the text column on the left changes the pinned sky picture on the right from morning to noon to night, colors, sun, moon and stars included, to match the step being read.
+Spec:
+- A 511 × 170 viewport: three text steps on the left (120 px apart) and a pinned picture on the right (252 × 146, radius 10). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Scroll: step 0→1 over 0.25–1.05 s, 1→2 over 1.85–2.65 s, 2→0 over 3.6–4.4 s (cubic ease-in-out). The picture does not scroll (sticky).
+- The picture is a continuous function of the scroll position s (0–2): sky top #E4ECFE → #9DB8F6 → #2F6BEB, bottom white → #E4ECFE → #9DB8F6, the hills (#C9D8FB, #9DB8F6, #2F6BEB) interpolated the same way. A white sun rises and sets along an arc (gone by s = 1.25–1.7), the moon appears over s = 1.45–1.95 and the stars over s = 1.35–1.95.
+- The heading of the step being read is black and the others fade to pale gray (mixed by |s − step| × 1.4). A time label (07:00 / 12:00 / 21:00) sits at the top left of the picture.
+- #076 Pinning names the mechanism (holding a section in place). Scrollytelling names the storytelling pattern: the pinned graphic is redrawn for each step of the text.
+When to use it: Use it for "a day at", "how it is made" or a data story, where text and a graphic should be read step by step together.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/241.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

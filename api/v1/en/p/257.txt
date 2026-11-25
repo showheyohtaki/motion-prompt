@@ -1,0 +1,16 @@
+Please use "Liquid glass" (リキッドグラス), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #257
+
+What it is: Bends what is behind it like a lens of water
+What the sample shows: A rounded glass bar glides back and forth over a colorful heading. Inside it, the colors and letters underneath swell and bend more toward the edges; a white highlight runs along the top edge.
+Spec:
+- A 511 × 170 viewport. The background is a blue → mid blue gradient (#2F6BEB → #9DB8F6) with three blurred circles (light blue, white, pale blue; 22 px blur) and the heading LIGHT / IN MOTION. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Bar 176 × 58 (radius 29), centered at x = 255 + 140·sin(2πt/4.7), y = 64 + 16·sin(4πt/4.7).
+- Bending: the background is redrawn magnified around the bar's center: 1.7× in the outer ring, 1.38× from 7 px in and 1.22× from 13 px in, so it swells more toward the edges (standing in for refraction).
+- Finish: a 10% white film, white lines along the top and bottom edges (gradient opacity 0.95 and 0.6), a thin mid-blue inner line and an outer shadow (blur 18, 6 down). Three icons inside.
+- Unlike glassmorphism (frosted blur), it does not blur: it bends like a lens. It is also the name of the design language Apple announced in 2025.
+When to use it: Use it for navigation, tabs or buttons that float over photos and color, to make them feel light and current.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/257.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

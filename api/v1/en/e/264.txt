@@ -1,0 +1,61 @@
+// Motion Prompt #264 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#264
+//
+// CRT effect / CRTエフェクト
+// Pack: lp3 (Landing page & web effects, part 3) · element 24 · Category: Backgrounds & textures
+// What happens: On a dark screen with rounded corners, the glowing word PLAY bleeds slightly into blue and light blue. Horizontal scanlines and fine blue stripes cover it, a bright band rolls down, and the corners are dark.
+// Motion spec:
+//   - A 511 × 170 viewport; the screen is 479 × 146 (radius 24). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The text (PLAY, 64 px) is drawn in blue #2F6BEB shifted 1.6 px left and mid blue #9DB8F6 shifted 1.6 px right with lighter, then in white; glow blur 10. Overall brightness flickers between 0.93 and 1 at twelve times 2πt/4.7.
+//   - Stripes: 1 px lines every 3 px in three blues (#2F6BEB, #9DB8F6, #E4ECFE; opacity 0.05–0.1). Red, green and blue stripes are closer to a real tube. Scanlines: a 1 px line of 32% black every 3 px.
+//   - Rolling band: 48 px tall (8% white at its center), moving from above to below the screen over 4.7 s. Corners: 0 → 65% black between radii SH × 0.45 and SW × 0.62. "PRESS START" shows while sin(4 · 2πt/4.7) > −0.2.
+//   - #023 Glitch is a brief breakdown and #118 Film grain is film texture; the CRT effect overlays the look of the tube itself, all the time.
+// When to use it: Use it for game, music or event announcements that should feel retro and loud.
+// Tags: crt, scanlines, retro, vhs, arcade, chromatic-aberration
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#264
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 24
+// 24 CRTエフェクト（ブラウン管のように、横の走査線・赤緑青の細い縞・文字の色ずれとにじみ・上から下へ流れる明るい帯・四隅の暗さを重ねる）
+CELLS[23] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  view(k, () => {
+    k.fillStyle = C.desk; k.fillRect(0, 0, VW, VH);
+    const X = 16, Y = 12, SW = VW - 32, SH = VH - 24;
+    k.save(); rr(k, X, Y, SW, SH, 24); k.clip();
+    const sg = k.createRadialGradient(X + SW / 2, Y + SH / 2, 10, X + SW / 2, Y + SH / 2, SW * 0.6); sg.addColorStop(0, C.mark); sg.addColorStop(1, C.ink); k.fillStyle = sg; k.fillRect(X, Y, SW, SH);
+    // 中身（色ずれ: 赤みと青みを左右に1.6pxずらして重ねる）
+    const flick = 0.93 + 0.07 * (0.5 + 0.5 * Math.sin(12 * ph));
+    const draw = (dx, col, a) => {
+      k.save(); k.globalAlpha = a * flick; k.shadowColor = col; k.shadowBlur = 10;
+      txt(k, 'PLAY', X + SW / 2 + dx, Y + 74, `900 64px ${MONO}`, col, 'center', 'middle', '6px');
+      if (dx === 0) { k.shadowColor = C.blueM; k.shadowBlur = 4; txt(k, 'HI-SCORE 024100', X + SW / 2, Y + 26, `700 11px ${MONO}`, C.blueM, 'center', 'middle', '2px'); }
+      k.restore();
+    };
+    k.globalCompositeOperation = 'lighter';
+    draw(-1.6, C.blue, 0.9); draw(1.6, C.blueM, 0.8);
+    k.globalCompositeOperation = 'source-over';
+    draw(0, '#fff', 0.9);
+    if (Math.sin(4 * ph) > -0.2) txt(k, '▶ PRESS START', X + SW / 2, Y + 122, `700 12px ${MONO}`, C.blueL, 'center', 'middle', '2px');
+    // 赤緑青の縦の縞
+    const RGB = [rgba(C.blue, 0.1), rgba(C.blueM, 0.06), rgba(C.blueXL, 0.05)];
+    for (let x = X; x < X + SW; x += 3) for (let c = 0; c < 3; c++) { k.fillStyle = RGB[c]; k.fillRect(x + c, Y, 1, SH); }
+    // 走査線
+    k.fillStyle = 'rgba(0,0,0,.32)'; for (let y = Y; y < Y + SH; y += 3) k.fillRect(X, y + 2, SW, 1);
+    // 流れる明るい帯（4.7秒で上から下へ1回）
+    const by = Y - 40 + (SH + 80) * (u / CYC);
+    const bg2 = k.createLinearGradient(0, by - 24, 0, by + 24); bg2.addColorStop(0, 'rgba(255,255,255,0)'); bg2.addColorStop(0.5, 'rgba(255,255,255,.08)'); bg2.addColorStop(1, 'rgba(255,255,255,0)');
+    k.fillStyle = bg2; k.fillRect(X, by - 24, SW, 48);
+    // 四隅の暗さとガラスの反射
+    const vg = k.createRadialGradient(X + SW / 2, Y + SH / 2, SH * 0.45, X + SW / 2, Y + SH / 2, SW * 0.62); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.65)');
+    k.fillStyle = vg; k.fillRect(X, Y, SW, SH);
+    k.fillStyle = 'rgba(255,255,255,.05)'; k.beginPath(); k.ellipse(X + SW * 0.3, Y + 10, SW * 0.32, 20, -0.05, 0, 7); k.fill();
+    k.restore();
+    k.strokeStyle = C.g3; k.lineWidth = 2; rr(k, X, Y, SW, SH, 24); k.stroke();
+  });
+};

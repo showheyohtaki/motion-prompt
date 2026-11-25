@@ -1,0 +1,16 @@
+Please use "Cover Flow" (カバーフロー), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #247
+
+What it is: Angled covers swing round into the center
+What the sample shows: Square covers line up on a dark background; all but the center one are turned and overlapping. Each step swings the next cover round to the front and the title changes. Reflections on the floor.
+Spec:
+- A 511 × 170 viewport: covers of 88 × 88 on a light background (white → #F1F0EE). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Front index p: 0→1 over 0.25–0.75 s, 1→2 over 1.05–1.55 s, 2→3 over 1.85–2.35 s, 3→0 over 3.0–4.3 s (cubic ease-in-out).
+- Cover i has rel = i − p. Horizontal offset: rel × 74 px while |rel| < 1, then 74 + (|rel| − 1) × 30 px. Rotation = clamp(|rel|) × 62° (mirrored on each side); turned covers are washed out with white (up to 45%).
+- Drawn far to near, the front one last. A flipped reflection (opacity 0.22) fades into the floor gradient. The front title shows only while p is near a whole number.
+- Unlike #058 Carousel (slide sideways one by one), the covers on both sides are turned away and stacked like a 3D shelf.
+When to use it: Use it to browse albums, books or packaging, anything with a cover people pick by sight.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/247.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,16 @@
+Please use "Scratch to reveal" (スクラッチカード), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #253
+
+What it is: Rub it and what is underneath appears
+What the sample shows: A coin rubs across the card's coating in a zigzag and "当たり！30% OFF" shows through the scratched path. When it is done the rest of the coating fades and the text gives a small bounce.
+Spec:
+- A 511 × 170 viewport: a 211 × 106 card (radius 12); underneath, a white panel with blue confetti, "当たり！" and "30% OFF". One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Coin: a zigzag over 0.45–2.45 s. x is a triangle wave (one round trip per 0.84 s) from edge to edge 24 px inside the card; y goes from top to bottom over 2 s.
+- The coating (blue diagonal gradient #9DB8F6 → #C9D8FB → #9DB8F6 with white stripes) is drawn offscreen; the coin's path is stroked in destination-out with width 24 and round caps, so holes open only where it rubbed.
+- Over 2.55–2.9 s the rest of the coating fades 1 → 0; the prize text bounces 1 → 1.08 → 1 over 2.6–2.95 s. A fresh coating fades back in over 4.1–4.55 s.
+- A real build counts the share of scratched area (say 50%) and clears the rest once it passes.
+When to use it: Use it for campaigns, coupons and prize draws where people should uncover the result themselves.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/253.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

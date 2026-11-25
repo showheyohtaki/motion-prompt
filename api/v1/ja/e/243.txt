@@ -1,0 +1,50 @@
+// Motion Prompt #243 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#243
+//
+// ベロシティスキュー / Velocity skew
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 03 · カテゴリ: スクロール・ドラッグで見せる
+// 何が起きるか: 作品の画像が3列で上へ流れる。速くスクロールするほど画像が斜めに傾き、止まるとまっすぐに戻る。右下に今の傾きの角度が出る。
+// 動きの仕様:
+//   - 表示域 511×170。画像 130×96（角丸8）を3列、縦の間隔120。4.7秒でひと回り（パックの周期9.4秒で2回）。1周で720px（6段）進み、元の並びに戻る
+//   - スクロール: 0.25〜1.25秒で +240px、1.95〜2.55秒で +240px、3.25〜4.45秒で +240px（easeInOut 3乗）。2回目が速い
+//   - 速さ v（px/秒）を前後1/60秒の差から求め、傾き = clamp(v / 130, 0, 9)°。画像ごとに中心を軸に skewY する。速さが落ちると角度も同じ式で0に戻る
+//   - 速さの山（easeInOut 3乗は平均の3倍）: 1回目 約720px/秒で約5.5°、2回目 約1200px/秒で9°（上限）、3回目 約600px/秒で約4.6°。右下の札に角度を表示
+//   - ふつうの作り方は、スクロールの速さを毎フレーム測って傾きに入れ、0へ戻すときは短いイージングをかける（GSAP の Velocity Skew の例と同じ）
+// 使いどころ: 作品・写真の一覧を勢いよく見せたい、ポートフォリオやファッションのサイトで。
+// タグ: velocity, skew, scroll, gallery, gsap, speed
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#243
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 03
+// 03 ベロシティスキュー（速くスクロールするほど画像が斜めに傾き、止まるとまっすぐに戻る）
+CELLS[2] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const Y = t => steps([[0.25, 0], [1.25, 240], [1.95, 240], [2.55, 480], [3.25, 480], [4.45, 720]], t);   // スクロール量。1周で720px（＝6段）進む
+  const y = Y(u), dt = 1 / 60;
+  const Ys = t => Y(t) + 720 * Math.floor(t / CYC);                    // 周期をまたいでもつながるスクロール量
+  const v = (Ys(u + dt) - Ys(u - dt)) / (2 * dt);                       // 速さ（px/秒）
+  const sk = clamp(v / 130, 0, 9) * Math.PI / 180;                      // 傾き（速さ130px/秒ごとに1°、最大9°）
+  view(k, () => {
+    k.fillStyle = '#fff'; k.fillRect(0, 0, VW, VH);
+    const COLS = [40, 190, 340], TW = 130, TH = 96, PITCH = 120;
+    for (let c = 0; c < 3; c++) {
+      const off = mod(y + c * 40, PITCH * 6);
+      for (let r = -1; r < 3; r++) {
+        const row = r + Math.floor(off / PITCH), ty = r * PITCH - mod(off, PITCH) + 14;
+        const v2 = mod(row * 3 + c, 6);
+        k.save(); k.translate(COLS[c] + TW / 2, ty + TH / 2); k.transform(1, Math.tan(sk), 0, 1, 0, 0);
+        art(k, -TW / 2, -TH / 2, TW, TH, v2, 8);
+        k.restore();
+      }
+    }
+    // 速さの目盛り（右下）
+    k.fillStyle = 'rgba(30,30,33,.82)'; rr(k, 380, 136, 112, 24, 12); k.fill();
+    txt(k, 'skew', 394, 148.5, `600 10px ${MONO}`, 'rgba(255,255,255,.7)', 'left', 'middle');
+    txt(k, `${(sk * 180 / Math.PI).toFixed(1)}°`, 478, 148.5, `700 11px ${MONO}`, C.blueL, 'right', 'middle');
+    sbar(k, mod(y, 720) / 720, 0.25);
+  });
+};

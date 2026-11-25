@@ -1,0 +1,65 @@
+// Motion Prompt #249 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#249
+//
+// Dock magnification / ドック風メニュー
+// Pack: lp3 (Landing page & web effects, part 3) · element 09 · Category: Pointer interactions
+// What happens: As the cursor sweeps across seven icons along the bottom, the nearest ones grow and rise and the shelf stretches with them. The largest icon shows its name.
+// Motion spec:
+//   - A 511 × 170 viewport: seven 34 × 34 icons (radius 24%) 8 px apart on a translucent white shelf. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Cursor: enters from the right over 0–0.5 s, x = 470 → 110 over 0.5–2.2 s, 110 → 470 over 2.6–4.2 s, out over 4.2–4.7 s (cubic ease-in-out).
+//   - Scale = 1 + 0.85·exp(−(d/46)²) × in, where d is the horizontal distance from the icon's rest center to the cursor and in goes 0→1 over 0.35–0.65 s and 1→0 over 4.15–4.45 s.
+//   - Icons are laid out again at their new sizes, so neighbors spread and the shelf widens; bottoms stay aligned and the icons grow upward.
+//   - Above an icon past 1.55× a dark label shows its name.
+// When to use it: Use it for a row of app or section links that should be fun to sweep across.
+// Tags: dock, magnification, macos, hover, menu, icons
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#249
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 09
+// 09 ドック風メニュー（下に並んだアイコンの上をカーソルが通ると、近いアイコンほど大きくなって持ち上がり、まわりが押し広がる）
+CELLS[8] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const [cx, cy] = path([[0, 560, 150], [0.5, 470, 136], [2.2, 110, 136], [2.6, 110, 136], [4.2, 470, 136], [4.7, 560, 150]], u);
+  view(k, () => {
+    const bg = k.createLinearGradient(0, 0, VW, VH); bg.addColorStop(0, C.blueBg); bg.addColorStop(0.55, C.blueXL); bg.addColorStop(1, C.blueL); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    k.fillStyle = 'rgba(255,255,255,.55)'; k.beginPath(); k.arc(90, 30, 60, 0, 7); k.fill();
+    txt(k, '10:24', 482, 46, `200 30px ${EN}`, C.ink, 'right');
+    txt(k, 'Tuesday, Nov 24', 481, 62, `600 10px ${EN}`, C.sub, 'right');
+    // アイコンの大きさ: 1 + 0.85·exp(−(d/46)²)（d＝カーソルとの横の距離）。カーソルが外ならゆっくり 1 に戻る
+    const N = 7, BASE = 34, GAP = 8, ICONS = [C.blue, C.blueM, C.blue, C.blueM, C.blue, C.blueM, C.blue];
+    const lab = ['ホーム', '写真', 'メモ', '音楽', '地図', '設定', 'ゴミ箱'];
+    let in1 = clamp(P(u, 0.35, 0.65)) * (1 - clamp(P(u, 4.15, 4.45)));
+    const base0 = (VW - (N * BASE + (N - 1) * GAP)) / 2;
+    const sc = [];
+    for (let i = 0; i < N; i++) { const bx = base0 + i * (BASE + GAP) + BASE / 2, d = (cx - bx); sc.push(1 + 0.85 * Math.exp(-(d / 46) * (d / 46)) * in1); }
+    const total = sc.reduce((a, s) => a + s * BASE, 0) + (N - 1) * GAP;
+    // ドックの台（中身に合わせて伸びる）
+    const DY = 152;
+    k.fillStyle = 'rgba(255,255,255,.55)'; k.strokeStyle = 'rgba(255,255,255,.9)'; k.lineWidth = 1;
+    rr(k, (VW - total) / 2 - 10, DY - BASE - 12, total + 20, BASE + 20, 14); k.fill(); k.stroke();
+    let x = (VW - total) / 2, hov = -1, best = 0;
+    for (let i = 0; i < N; i++) {
+      const s = sc[i] * BASE; if (sc[i] > best) { best = sc[i]; hov = i; }
+      const ix = x, iy = DY - 4 - s;
+      k.save(); k.shadowColor = 'rgba(30,30,33,.2)'; k.shadowBlur = 6; k.shadowOffsetY = 2;
+      k.fillStyle = ICONS[i]; rr(k, ix, iy, s, s, s * 0.24); k.fill(); k.restore();
+      // 中の印
+      k.fillStyle = 'rgba(255,255,255,.9)'; const m = s / 2;
+      if (i % 3 === 0) { k.beginPath(); k.arc(ix + m, iy + m, s * 0.2, 0, 7); k.fill(); }
+      else if (i % 3 === 1) { k.beginPath(); k.moveTo(ix + s * 0.28, iy + s * 0.7); k.lineTo(ix + m, iy + s * 0.3); k.lineTo(ix + s * 0.72, iy + s * 0.7); k.fill(); }
+      else { rr(k, ix + s * 0.3, iy + s * 0.3, s * 0.4, s * 0.4, s * 0.06); k.fill(); }
+      x += s + GAP;
+    }
+    // いちばん大きいアイコンの名前
+    if (best > 1.55) {
+      let lx = (VW - total) / 2; for (let i = 0; i < hov; i++) lx += sc[i] * BASE + GAP; lx += sc[hov] * BASE / 2;
+      const a = clamp((best - 1.55) / 0.2), ty = DY - 10 - sc[hov] * BASE - 14;
+      k.globalAlpha = a; k.fillStyle = 'rgba(30,30,33,.85)'; rr(k, lx - 26, ty - 10, 52, 19, 9.5); k.fill(); txt(k, lab[hov], lx, ty + 0.5, `700 10px ${JP}`, '#fff', 'center', 'middle'); k.globalAlpha = 1;
+    }
+    cursor(k, cx, cy);
+  });
+};

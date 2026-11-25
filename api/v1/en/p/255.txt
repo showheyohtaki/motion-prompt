@@ -1,0 +1,16 @@
+Please use "Split-flap display" (パタパタ表示), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #255
+
+What it is: Letters flip over like a departure board
+What the sample shows: Eleven letter tiles on a black board split and flip, passing through a few letters on the way, to change TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40.
+Spec:
+- A 511 × 170 viewport: eleven 34 × 54 letter tiles (radius 5) 4 px apart. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Changes start at 0.5, 2.0 and 3.5 s (TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 → back). Letter i starts i × 0.045 s later.
+- Each flip takes 0.09 s. Letters that stay the same do not move; others flip 3 to 5 times through intermediate letters and stop on the new one.
+- One flip f (0–1): behind, the top half shows the next letter and the bottom half the current one. While f < 0.5 the current top half folds down by scaling vertically around the middle (darkening); from 0.5 the next bottom half unfolds downward.
+- #156 Text roll on hover rolls letters over and #129 Text scramble swaps random letters; a split-flap display shows the split tiles physically falling.
+When to use it: Use it for travel, events or countdowns, to change places, times or numbers with a mechanical feel.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/255.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

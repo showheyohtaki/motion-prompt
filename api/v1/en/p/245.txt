@@ -1,0 +1,16 @@
+Please use "Shrinking header" (縮むヘッダー), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #245
+
+What it is: On scroll it shrinks into a slim floating pill
+What the sample shows: Scrolling down shrinks the full-width white header into a slim, rounded black bar floating at the top; the cart button loses its label and keeps only the icon. Scrolling back up restores it.
+Spec:
+- A 511 × 170 viewport. One pass takes 4.7 s (twice per 9.4 s pack cycle). Scroll: 0→150 px over 0.4–1.9 s, 150→0 over 2.9–4.3 s (cubic ease-in-out).
+- Shrink amount q = easeInOut(scroll / 70): fully shrunk after 70 px, then it stays.
+- With q: width 511 → 310, height 46 → 34, top gap 0 → 10, radius 0 → 17, color white → black (#1E1E21 at 92%), shadow blur 6 → 16; text 13 → 11 px, nav spacing 56 → 40 px.
+- The cart button goes from 82 to 30 px wide: the label fades out and a bag icon fades in. Text color goes from black to white.
+- #075 Sticky header only stays on top and #149 Hide-on-scroll header hides on the way down; a shrinking header stays and changes its shape and size.
+When to use it: Use it when a large hero should have room at first, but the navigation should stay at hand in a compact form.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/245.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,16 @@
+Please use "Multi-scroll (split scrolling)" (マルチスクロール), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #244
+
+What it is: Two columns scroll in opposite directions
+What the sample shows: The screen is split into two columns. On scroll, the colored headings on the left move up and the pictures on the right move down, so three pairs line up in turn, then it runs back to the first pair.
+Spec:
+- A 511 × 170 viewport split into two 255.5 px columns; each pair is one screen high (170). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Pair index s: 0→1 over 0.35–1.15 s, 1→2 over 1.95–2.75 s, 2→0 over 3.6–4.45 s (cubic ease-in-out).
+- The left column places pair i at y = (i − s) × 170, the right column at y = (s − i) × 170 (its pairs are stacked bottom-up, so it moves the other way). Each change moves both columns by 170 px.
+- Pairs: 01 COLOR (blue #2F6BEB), 02 SHAPE (light blue #C9D8FB), 03 MOTION (mid blue #9DB8F6). A white divider in the middle, three dots for the current pair, and opposite arrows while it moves.
+- Not the same as #144 Split screen (showing parts side by side). Multi-scroll moves the split columns in opposite directions on scroll.
+When to use it: Use it for brand or project pages that pair one image with one heading per screen and want a striking change between them.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/244.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

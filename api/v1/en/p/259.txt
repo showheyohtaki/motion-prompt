@@ -1,0 +1,16 @@
+Please use "Liquid metal" (リキッドメタル), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #259
+
+What it is: Reflections flow like molten metal
+What the sample shows: Inside the big word FLOW and a sphere on a light page, black, blue and white reflections keep flowing and rippling.
+Spec:
+- A 511 × 170 viewport on a light gradient (white → #F1F0EE), with the word FLOW (84 px) and a sphere (radius 52). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Pattern value v = sin(0.03x + 2.3·sin(0.045y + a) + a) + 0.55·sin(0.08y − 0.018x + 2a) + 0.3·sin(0.05(x+y) − a), with a = 2πt/4.7.
+- Color maps v × 0.22 + y × 0.002 onto a repeating band: black #1E1E21 → blue #2F6BEB → #C9D8FB → white → #9DB8F6 → white → #E4ECFE → #2F6BEB → #1E1E21.
+- Computed on a 128 × 43 grid, stretched and cut to the shapes of the word and the sphere. The sphere gets a white highlight at the top left and shade at the bottom right; a blue glow (opacity 0.25, blur 14) around everything.
+- #022 Light sweep is one band of light crossing; liquid metal is the whole surface's reflection warping and moving.
+When to use it: Use it for futuristic, tactile headings and logos on AI, tech or music sites.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/259.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

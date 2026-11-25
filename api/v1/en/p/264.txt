@@ -1,0 +1,16 @@
+Please use "CRT effect" (CRTエフェクト), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #264
+
+What it is: Scanlines and glow make it look like an old CRT
+What the sample shows: On a dark screen with rounded corners, the glowing word PLAY bleeds slightly into blue and light blue. Horizontal scanlines and fine blue stripes cover it, a bright band rolls down, and the corners are dark.
+Spec:
+- A 511 × 170 viewport; the screen is 479 × 146 (radius 24). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The text (PLAY, 64 px) is drawn in blue #2F6BEB shifted 1.6 px left and mid blue #9DB8F6 shifted 1.6 px right with lighter, then in white; glow blur 10. Overall brightness flickers between 0.93 and 1 at twelve times 2πt/4.7.
+- Stripes: 1 px lines every 3 px in three blues (#2F6BEB, #9DB8F6, #E4ECFE; opacity 0.05–0.1). Red, green and blue stripes are closer to a real tube. Scanlines: a 1 px line of 32% black every 3 px.
+- Rolling band: 48 px tall (8% white at its center), moving from above to below the screen over 4.7 s. Corners: 0 → 65% black between radii SH × 0.45 and SW × 0.62. "PRESS START" shows while sin(4 · 2πt/4.7) > −0.2.
+- #023 Glitch is a brief breakdown and #118 Film grain is film texture; the CRT effect overlays the look of the tube itself, all the time.
+When to use it: Use it for game, music or event announcements that should feel retro and loud.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/264.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

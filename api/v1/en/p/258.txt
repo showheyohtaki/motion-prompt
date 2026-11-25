@@ -1,0 +1,16 @@
+Please use "Fluted glass" (フルーテッドガラス), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #258
+
+What it is: Colors ripple through ribbed glass
+What the sample shows: Behind a panel of vertically ribbed glass, moving color circles, a white ring and the heading appear as narrow squeezed slices, one per rib. The panel drifts slowly left and right.
+Spec:
+- A 511 × 170 viewport. The background is a blue → mid blue gradient with three moving circles (white, light blue, pale blue), a white ring and the heading SOFT / FOCUS. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The glass's left edge is at x = 200 + 50·sin(2πt/4.7); ribs 16 px wide run from there to the right edge.
+- Each rib shows a 40 px slice of what is behind (starting 12 px to its left), slightly blurred (2.5 px), mirrored left to right and squeezed into 16 px.
+- A horizontal gradient on each rib: 34% white at the left edge → 6% at 25% → 0 at 70% → 18% black at the right edge. The whole panel gets 8% white and a 1.5 px white line on its left edge.
+- The rib width and the slice ratio (2.5× here) set how strong the distortion is. Also called reeded glass.
+When to use it: Use it to add a soft, tactile layer over photos or color on interior, beauty or hotel sites.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/258.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

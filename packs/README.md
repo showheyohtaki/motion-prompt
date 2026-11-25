@@ -16,5 +16,6 @@ A pack is one field's set of names. Each list below is readable here on GitHub; 
 | 169–192 | `camera2` — Camera moves & transitions, part 2 | 24 | [English](camera2/README.md) · [Español](camera2/README.es.md) · [日本語](camera2/README.ja.md) · [简体中文](camera2/README.zh-Hans.md) · [繁體中文](camera2/README.zh-Hant.md) |
 | 193–216 | `artstyle` — Art styles for image generation | 24 | [English](artstyle/README.md) · [Español](artstyle/README.es.md) · [日本語](artstyle/README.ja.md) · [简体中文](artstyle/README.zh-Hans.md) · [繁體中文](artstyle/README.zh-Hant.md) |
 | 217–240 | `diagram` — Diagrams and charts for slides | 24 | [English](diagram/README.md) · [Español](diagram/README.es.md) · [日本語](diagram/README.ja.md) · [简体中文](diagram/README.zh-Hans.md) · [繁體中文](diagram/README.zh-Hant.md) |
+| 241–264 | `lp3` — Landing page & web effects, part 3 | 24 | [English](lp3/README.md) · [Español](lp3/README.es.md) · [日本語](lp3/README.ja.md) · [简体中文](lp3/README.zh-Hans.md) · [繁體中文](lp3/README.zh-Hant.md) |
 
 To add a pack for your field, or a language to an existing pack, see [CONTRIBUTING.md](../CONTRIBUTING.md).

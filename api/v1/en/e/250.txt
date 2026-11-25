@@ -1,0 +1,68 @@
+// Motion Prompt #250 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#250
+//
+// Holographic card / ホログラムカード
+// Pack: lp3 (Landing page & web effects, part 3) · element 10 · Category: Pointer interactions
+// What happens: On a light page, a card tilts toward a cursor circling round it. The foil (shades of blue in this sample, rainbow on a real card), the fine diagonal lines and a white glare move with the cursor, so the colors shift with the angle.
+// Motion spec:
+//   - A 511 × 170 viewport: a 172 × 112 card (radius 10) on a dark page. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The cursor moves in a figure eight: x = 255 + 112·sin(2πt/4.7), y = 86 + 40·sin(4πt/4.7); nx and ny are its position mapped to −1…1.
+//   - Tilt: ry = nx × 0.42 rad (about 24°) across, rx = −ny × 0.3 rad up and down. Drawn squeezed by cos(ry) and cos(rx) with a sin × 0.16 shear for perspective; the shadow moves 14 px the other way.
+//   - Foil: a linear gradient of blues and white laid in overlay (0.95) on a blue base (#9DB8F6 → #2F6BEB), its bands shifted by nx × 70 + ny × 30 px, plus diagonal lines every 5 px in soft-light.
+//   - Glare: a white radial light of radius 90 on the cursor side (nx × 70, ny × 40 from the center) in screen. Unlike #153 3D tilt, the point is the foil light that moves with the angle (rainbow on a real card; drawn here in shades of blue).
+// When to use it: Use it on a member card, a ticket or a limited item, anything that should feel special and collectible.
+// Tags: holographic, holo, foil, card, tilt, rainbow, hover
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#250
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 10
+// 10 ホログラムカード（カーソルの向きにカードが傾き、表面の虹色の箔と光の反射がカーソルを追って走る）
+CELLS[9] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const cx = 255 + 112 * Math.sin(W1 * u), cy = 86 + 40 * Math.sin(2 * W1 * u);     // カーソル（8の字）
+  const nx = (cx - 255) / 112, ny = (cy - 86) / 40;                                  // -1〜1
+  const ry = nx * 0.42, rx = -ny * 0.3;                                              // 傾き（ラジアン）
+  view(k, () => {
+    const bg = k.createRadialGradient(255, 80, 10, 255, 80, 300); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, C.blueXL); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    const CWd = 172, CHd = 112;
+    const [c, g, sc] = layer(k, 'holo', CWd, CHd);
+    // 台紙
+    const base = g.createLinearGradient(0, 0, CWd, CHd); base.addColorStop(0, C.blueM); base.addColorStop(1, C.blue); g.fillStyle = base; rr(g, 0, 0, CWd, CHd, 10); g.fill();
+    // 虹色の箔（帯の位置がカーソルの横位置で流れる）
+    g.save(); rr(g, 0, 0, CWd, CHd, 10); g.clip();
+    const off = nx * 70 + ny * 30;
+    const fo = g.createLinearGradient(-60 + off, -40, 120 + off, 150);
+    [C.blue, C.blueL, '#FFFFFF', C.blueM, C.blue, C.blueXL, C.blueL].forEach((col, i) => fo.addColorStop(i / 6, col));
+    g.globalCompositeOperation = 'overlay'; g.globalAlpha = 0.95; g.fillStyle = fo; g.fillRect(0, 0, CWd, CHd);
+    // 箔の細かい斜線（光の当たる帯だけ濃く見える）
+    g.globalCompositeOperation = 'soft-light'; g.globalAlpha = 0.7; g.strokeStyle = '#fff'; g.lineWidth = 1;
+    for (let i = -CHd; i < CWd; i += 5) { g.beginPath(); g.moveTo(i, 0); g.lineTo(i + CHd, CHd); g.stroke(); }
+    g.globalCompositeOperation = 'source-over'; g.globalAlpha = 1;
+    // 絵柄: 星のキャラクター
+    g.save(); g.translate(CWd / 2, 52); g.fillStyle = C.blueL; g.beginPath();
+    for (let i = 0; i < 10; i++) { const r = i % 2 ? 13 : 30, a = -Math.PI / 2 + i * Math.PI / 5; g.lineTo(Math.cos(a) * r, Math.sin(a) * r); }
+    g.closePath(); g.fill(); g.fillStyle = C.ink; [-7, 7].forEach(ex => { g.beginPath(); g.arc(ex, 0, 2.6, 0, 7); g.fill(); }); g.restore();
+    g.fillStyle = C.blue; rr(g, 10, 10, 44, 15, 7.5); g.fill(); txt(g, '★ RARE', 32, 18, `800 8.5px ${EN}`, '#fff', 'center', 'middle');
+    txt(g, 'No.241', 12, CHd - 12, `700 9px ${MONO}`, 'rgba(255,255,255,.85)');
+    txt(g, 'STARLING', CWd - 12, CHd - 12, `800 11px ${EN}`, '#fff', 'right', 'alphabetic', '1.5px');
+    // 光の反射（カーソルの側に白い光）
+    const gx = CWd / 2 + nx * 70, gy = CHd / 2 + ny * 40;
+    const gl = g.createRadialGradient(gx, gy, 2, gx, gy, 90); gl.addColorStop(0, 'rgba(255,255,255,.55)'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+    g.globalCompositeOperation = 'screen'; g.fillStyle = gl; g.fillRect(0, 0, CWd, CHd); g.globalCompositeOperation = 'source-over';
+    g.restore(); g.restore();
+    // 影
+    k.save(); k.fillStyle = 'rgba(30,30,33,.16)'; k.filter = 'none';
+    k.beginPath(); k.ellipse(255 - nx * 14, 160, 78, 6, 0, 0, 7); k.fill(); k.restore();
+    // 傾けて描く（奥へ倒れた側が少し細くなる、簡易の遠近）
+    k.save(); k.translate(255, 84);
+    k.transform(Math.cos(ry), Math.sin(ry) * 0.16, -Math.sin(rx) * 0.16, Math.cos(rx), 0, 0);
+    k.drawImage(c, -CWd / 2, -CHd / 2, CWd, CHd);
+    k.strokeStyle = 'rgba(255,255,255,.45)'; k.lineWidth = 1; rr(k, -CWd / 2 + 0.5, -CHd / 2 + 0.5, CWd - 1, CHd - 1, 10); k.stroke();
+    k.restore();
+    cursor(k, cx, cy, 0, C.ink);
+  });
+};

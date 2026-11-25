@@ -1,0 +1,56 @@
+// Motion Prompt #252 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#252
+//
+// Fluid simulation / 流体シミュレーション
+// Pack: lp3 (Landing page & web effects, part 3) · element 12 · Category: Pointer interactions
+// What happens: Moving the cursor over a pale page releases smoke in several shades of blue along its path, which swirls, spreads and fades.
+// Motion spec:
+//   - A 511 × 170 viewport on a pale blue ground (#F1F5FF). One pass takes 4.7 s (twice per 9.4 s pack cycle). The picture is computed on a 128 × 43 grid and stretched smoothly.
+//   - The cursor moves in a figure eight: x = 255 + 170·sin(2πt/4.7), y = 86 + 48·sin(4πt/4.7). Every 0.1175 s a smoke puff is released there, cycling through blue, mid blue, blue, light blue and mid blue.
+//   - Puffs live 1.4 s: radius 12 + 30 × age, strength exp(−2.1 × age) (0 → 1 over the first 0.1 s). Their centers drift outward in a spiral at 26 px/s and rise at 10 px/s.
+//   - Each cell sums the weights e = strength × exp(−distance² / radius²) and moves from the ground color toward the weighted average color of the puffs by min(1, Σe × 1.6). Cell coordinates are warped with sin and cos (7 px and 6 px) to make it flow.
+//   - A real fluid simulation solves a velocity field every frame; this sample replaces it with a function of time. #013 Liquid motion is a shape moving softly; here colored smoke mixes.
+// When to use it: Use it on music, art or tech landing pages where touching the hero should be the fun part.
+// Tags: fluid, simulation, webgl, cursor, smoke, ink, interactive-background
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#252
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 12
+// 12 流体シミュレーション（カーソルの通った所から色の煙が湧き、渦を巻いて広がりながら薄れていく）
+CELLS[11] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const pos = t => [255 + 170 * Math.sin(W1 * t), 86 + 48 * Math.sin(2 * W1 * t)];   // カーソル（8の字）
+  const DT = CYC / 40, LIFE = 1.4;
+  const COL = [C.blue, C.blueM, C.blue, C.blueL, C.blueM].map(hex);
+  // 生きている煙の粒（0.1175秒ごとに1つ、1.4秒で消える）
+  const B = [];
+  for (let n = Math.floor(u / DT) - Math.ceil(LIFE / DT); n <= Math.floor(u / DT); n++) {
+    const t0 = n * DT, age = u - t0; if (age < 0 || age > LIFE) continue;
+    const m = mod(n, 40), [x, y] = pos(t0), a = m * 0.9 + age * 2.4;
+    const r = 12 + 30 * age, wgt = Math.exp(-age * 2.1) * clamp(age / 0.1);
+    B.push([x + Math.cos(a) * 26 * age, y + Math.sin(a) * 26 * age - 10 * age, r, wgt, COL[mod(m, 5)]]);
+  }
+  view(k, () => {
+    const NX = 128, NY = 43, sx = VW / NX, sy = VH / NY, ph = W1 * u;
+    const bg = hex(C.blueBg);
+    field(k, 'fluid', 0, 0, VW, VH, NX, NY, (i, j) => {
+      let px = (i + 0.5) * sx, py = (j + 0.5) * sy;
+      // うずの歪み（流れて見えるように座標をずらす）
+      px += 7 * Math.sin(py * 0.07 + ph * 2); py += 6 * Math.cos(px * 0.05 - ph);
+      let r = 0, g = 0, b = 0, sw = 0;
+      for (const [bx, by, br, bw, c] of B) {
+        const dx = px - bx, dy = py - by, e = bw * Math.exp(-(dx * dx + dy * dy) / (br * br));
+        if (e < 0.003) continue; r += c[0] * e; g += c[1] * e; b += c[2] * e; sw += e;
+      }
+      if (sw <= 0) return `rgb(${bg[0]},${bg[1]},${bg[2]})`;
+      const q = Math.min(1, sw * 1.6);                                  // 煙の濃さ。煙の色は重なった粒の色の平均
+      return `rgb(${lerp(bg[0], r / sw, q) | 0},${lerp(bg[1], g / sw, q) | 0},${lerp(bg[2], b / sw, q) | 0})`;
+    });
+    txt(k, 'Touch the color.', 30, 150, `800 15px ${EN}`, C.ink);
+    const [cx, cy] = pos(u); cursor(k, cx, cy, 0, C.ink);
+  });
+};

@@ -1,0 +1,60 @@
+// Motion Prompt #262 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#262
+//
+// トポグラフィック / Topographic contour lines
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 22 · カテゴリ: 背景・質感
+// 何が起きるか: 明るい地に、山の高さを表す青の濃淡の等高線が何重にも描かれ、山ごとゆっくり動いて線の形が変わり続ける。上に見出しの札。
+// 動きの仕様:
+//   - 表示域 511×170。地は 白 → #F1F5FF。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 高さ = 4つの山（中心 (150,70)・(340,110)・(470,30)・(60,150)、半径 70・80・60・55、高さ 1・0.9・0.7・0.6 のガウス）＋ 0.12·sin(0.02x + a)·cos(0.03y − a)。山の中心は 横22・縦14 の円を回る（a = 2πt/4.7、山ごとに位相をずらす）
+//   - 7px のマス目で高さを測り、マーチングスクエアで等高線を引く。高さ −0.08 から 0.1 おきに11本、線幅1.3
+//   - 線の色は低い方から #C9D8FB → #9DB8F6 → #2F6BEB、不透明度 0.55〜1。見出しは白い札
+//   - 地図記号を足さず線だけにすると、模様として背景に使える
+// 使いどころ: アウトドア・旅・地図・不動産など、土地や地形を感じさせたいサイトの背景に。
+// タグ: topographic, contour-lines, terrain, pattern, background, map
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#262
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 22
+// 22 トポグラフィック（山の高さを等高線で描いた模様が、地形ごとゆっくりうねって形を変え続ける）
+CELLS[21] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  // 高さ: 動く4つの山 ＋ ゆるい波
+  const HILL = [[150, 70, 70, 1.0, 0], [340, 110, 80, 0.9, 1.6], [470, 30, 60, 0.7, 3.2], [60, 150, 55, 0.6, 4.4]];
+  const H = (x, y) => {
+    let v = 0.12 * Math.sin(x * 0.02 + ph) * Math.cos(y * 0.03 - ph);
+    for (const [hx, hy, r, a, o] of HILL) { const cx = hx + 22 * Math.cos(ph + o), cy = hy + 14 * Math.sin(ph + o); v += a * Math.exp(-((x - cx) ** 2 + (y - cy) ** 2) / (r * r)); }
+    return v;
+  };
+  view(k, () => {
+    const bg = k.createLinearGradient(0, 0, VW, VH); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, C.blueBg); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    const G = 7, NX = Math.ceil(VW / G) + 1, NY = Math.ceil(VH / G) + 1, Z = [];
+    for (let j = 0; j < NY; j++) { Z.push([]); for (let i = 0; i < NX; i++) Z[j].push(H(i * G, j * G)); }
+    const LV = 11, COLS = [C.blueL, C.blueM, C.blue];
+    k.lineWidth = 1.3; k.lineCap = 'round';
+    for (let l = 0; l < LV; l++) {
+      const iso = -0.08 + l * 0.1, cf = l / (LV - 1) * (COLS.length - 1), ci = Math.floor(cf);
+      k.strokeStyle = mix(COLS[ci], COLS[Math.min(ci + 1, COLS.length - 1)], cf - ci); k.globalAlpha = 0.55 + 0.45 * (l / LV);
+      k.beginPath();
+      for (let j = 0; j < NY - 1; j++) for (let i = 0; i < NX - 1; i++) {
+        const a = Z[j][i], b = Z[j][i + 1], c = Z[j + 1][i + 1], d = Z[j + 1][i];
+        const pts = [];
+        const ed = (p, q, x1, y1, x2, y2) => { if ((p < iso) !== (q < iso)) { const t = (iso - p) / (q - p); pts.push([x1 + (x2 - x1) * t, y1 + (y2 - y1) * t]); } };
+        const x = i * G, y = j * G;
+        ed(a, b, x, y, x + G, y); ed(b, c, x + G, y, x + G, y + G); ed(c, d, x + G, y + G, x, y + G); ed(d, a, x, y + G, x, y);
+        for (let p = 0; p + 1 < pts.length; p += 2) { k.moveTo(pts[p][0], pts[p][1]); k.lineTo(pts[p + 1][0], pts[p + 1][1]); }
+      }
+      k.stroke();
+    }
+    k.globalAlpha = 1;
+    k.save(); k.shadowColor = 'rgba(30,30,33,.12)'; k.shadowBlur = 10; k.shadowOffsetY = 3; k.fillStyle = '#FFFFFF'; rr(k, 24, 44, 196, 84, 12); k.fill(); k.restore();
+    txt(k, 'GEO LAB OPEN DAY', 40, 68, `800 10px ${EN}`, C.blue, 'left', 'alphabetic', '2px');
+    txt(k, '地図にない線を描く', 40, 98, `900 21px ${JP}`, C.ink);
+    txt(k, '12.6 Sat ・ 研究所の公開日', 40, 116, `600 10px ${JP}`, C.sub);
+  });
+};

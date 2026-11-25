@@ -1,0 +1,54 @@
+// Motion Prompt #263 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#263
+//
+// ハーフトーン / Halftone
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 23 · カテゴリ: 背景・質感
+// 何が起きるか: ごく薄い青の地に、青い網点の太陽と、中間の青の網点の波が描かれる。太陽が動き波が流れると、点が育ったり縮んだりして形が動いて見える。
+// 動きの仕様:
+//   - 表示域 511×170。ごく薄い青（#F1F5FF）の地、左に見出し POP / PRINT。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 下の絵（0〜1）: 太陽 = 1.15 − 距離/70（中心 x = 360 + 20·sin a、y = 70 − 10·cos a）、波 = 波の線（118 + 12·sin(0.028x − a) + 6·sin(0.06x + 2a)）から下へ40px で 0→1。a = 2πt/4.7
+//   - 網点は 8px 間隔。半径 = 8×0.58×√明るさ（最大約4.6px）。太陽は青 #2F6BEB で15°、波は中間の青 #9DB8F6 で75°、重なる所は青で45°に並べ、multiply で重ねる
+//   - 左の端（x = 180〜250）は点を小さくしてなじませる
+//   - #197 点描（絵の具の点で描く画風）と違い、印刷の網点のように規則正しい格子で、明るさを点の大きさに置きかえる
+// 使いどころ: ポップ・レトロ・雑誌風のデザインで、写真や絵を印刷物の手ざわりで見せたいときに。
+// タグ: halftone, dots, print, screen, retro, pop-art
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#263
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 23
+// 23 ハーフトーン（印刷の網点のように、絵の明るさを点の大きさに置きかえて描く。下の絵が動くと点が育ったり縮んだりする）
+CELLS[22] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  // 下の絵（0〜1）: 右から昇る大きな太陽と、流れる波
+  const sun = (x, y) => { const cx = 360 + 20 * Math.sin(ph), cy = 70 - 10 * Math.cos(ph); return clamp(1.15 - Math.hypot(x - cx, y - cy) / 70); };
+  const wave = (x, y) => clamp((y - (118 + 12 * Math.sin(x * 0.028 - ph) + 6 * Math.sin(x * 0.06 + 2 * ph))) / 40 + 0.15);
+  view(k, () => {
+    k.fillStyle = C.blueBg; k.fillRect(0, 0, VW, VH);
+    const S = 8;
+    const screen = (fn, col, ang, ox, oy) => {
+      k.save(); k.fillStyle = col;
+      const ca = Math.cos(ang), sa = Math.sin(ang);
+      for (let a = -30; a < 50; a++) for (let b = -10; b < 80; b++) {
+        const x = ox + (a * ca - b * sa) * S, y = oy + (a * sa + b * ca) * S;
+        if (x < 180 || x > VW + 4 || y < -4 || y > VH + 4) continue;
+        const fade = clamp((x - 180) / 70);
+        const r = S * 0.58 * Math.sqrt(fn(x, y)) * fade;
+        if (r > 0.35) { k.beginPath(); k.arc(x, y, r, 0, 7); k.fill(); }
+      }
+      k.restore();
+    };
+    k.save(); k.globalCompositeOperation = 'multiply';
+    screen(sun, C.blue, 0.26, 200, -40);
+    screen(wave, C.blueM, 1.31, 400, -60);
+    screen((x, y) => 0.35 * sun(x, y) * wave(x + 30, y - 30), C.blue, 0.79, 300, -50);
+    k.restore();
+    txt(k, 'POP', 30, 82, `900 50px ${EN}`, C.ink, 'left', 'alphabetic', '3px');
+    txt(k, 'PRINT', 30, 128, `900 50px ${EN}`, C.ink, 'left', 'alphabetic', '3px');
+    k.fillStyle = C.blue; k.beginPath(); k.arc(186, 66, 8, 0, 7); k.fill();
+  });
+};

@@ -1,0 +1,54 @@
+// Motion Prompt #260 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#260
+//
+// Caustics / コースティクス
+// Pack: lp3 (Landing page & web effects, part 3) · element 20 · Category: Backgrounds & textures
+// What happens: On a blue to light-blue water floor, a net of white light gathered by the waves keeps shimmering, with a heading on top and a bobbing float and its shadow.
+// Motion spec:
+//   - A 511 × 170 viewport; water color #2F6BEB at the top → #9DB8F6 at the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The net of light: three waves with different directions (0.35, 2.45, 4.15 rad) and scales (0.050, 0.043, 0.057), each sin(f·u + m·a + 1.6·sin(0.6f·v + n·a)), are summed, and points where the sum is near 0 are bright: brightness = (1 − |sum| / 1.6)^6 (u and v are the coordinates along and across each wave).
+//   - a = 2πt/4.7. m and n are whole numbers (1 and −1, −1 and 2, 2 and 1), so the pattern comes back after 4.7 s. Computed on a 128 × 43 grid and stretched.
+//   - Brightness v pulls the water color toward white. A float (radius 38, eight blue and white segments) bobs ±10 in x and ±5 in y, tilts 0.15 rad and casts a shadow on the floor.
+//   - Usually computed per pixel in a WebGL shader. Summing waves into a web of bright lines imitates where light gathers on a real pool floor.
+// When to use it: Use it as the background on pool, beach, resort or drink sites that should feel like cool water.
+// Tags: caustics, water, shader, webgl, pool, light, background
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#260
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 20
+// 20 コースティクス（水の底に、波で集まった光の網目がゆらめき続ける。プールの見出しと浮き輪が上に乗る）
+CELLS[19] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  const A = hex(C.blue), B = hex(C.blueM), L = hex('#FFFFFF');
+  view(k, () => {
+    // 光の網目（自前の式）: 向きと細かさの違う3つの波 w = sin(f·(向きの座標) + m·a + 1.6·sin(0.6f·(直角の座標) + n·a)) を足し、
+    // 和が0に近い所ほど明るくする（明るさ = (1 − |和| / 1.6)^6）。a = 2πt/4.7、m・n は整数なので4.7秒で元に戻る
+    const WV = [[0.35, 0.050, 1, -1], [2.45, 0.043, -1, 2], [4.15, 0.057, 2, 1]].map(([th, f, m, n]) => [Math.cos(th), Math.sin(th), f, m, n]);
+    const NX = 128, NY = 43;
+    field(k, 'caustic', 0, 0, VW, VH, NX, NY, (i, j) => {
+      const px = (i + 0.5) * VW / NX, py = (j + 0.5) * VH / NY;
+      let sum = 0;
+      for (const [c, s2, f, m, n] of WV) { const u1 = px * c + py * s2, u2 = -px * s2 + py * c; sum += Math.sin(f * u1 + m * ph + 1.6 * Math.sin(0.6 * f * u2 + n * ph)); }
+      const v = Math.pow(clamp(1 - Math.abs(sum) / 1.6), 6);
+      const d = j / NY;
+      const r = lerp(A[0], B[0], d), g = lerp(A[1], B[1], d), bb = lerp(A[2], B[2], d);
+      return `rgb(${lerp(r, L[0], v) | 0},${lerp(g, L[1], v) | 0},${lerp(bb, L[2], v) | 0})`;
+    });
+    // 浮き輪（影は水の底に落ちる）
+    const fx = 400 + 10 * Math.sin(W1 * u), fy = 70 + 5 * Math.sin(2 * W1 * u);
+    k.fillStyle = 'rgba(30,30,33,.18)'; k.beginPath(); k.ellipse(fx + 18, fy + 44, 44, 16, 0, 0, 7); k.fill();
+    k.save(); k.translate(fx, fy); k.rotate(0.15 * Math.sin(W1 * u));
+    for (let i = 0; i < 8; i++) { k.fillStyle = i % 2 ? '#fff' : C.blue; k.beginPath(); k.arc(0, 0, 38, i * Math.PI / 4, (i + 1) * Math.PI / 4); k.arc(0, 0, 18, (i + 1) * Math.PI / 4, i * Math.PI / 4, true); k.fill(); }
+    k.fillStyle = 'rgba(255,255,255,.35)'; k.beginPath(); k.ellipse(-14, -22, 12, 5, -0.6, 0, 7); k.fill();
+    k.restore();
+    k.save(); k.shadowColor = 'rgba(30,30,33,.3)'; k.shadowBlur = 8;
+    txt(k, 'POOL DAYS', 30, 58, `800 11px ${EN}`, 'rgba(255,255,255,.9)', 'left', 'alphabetic', '3px');
+    txt(k, '夏の、水の底で。', 28, 96, `900 28px ${JP}`, '#fff'); k.restore();
+    k.fillStyle = '#fff'; rr(k, 30, 116, 96, 26, 13); k.fill(); txt(k, '予約する', 78, 129.5, `800 11px ${JP}`, C.blue, 'center', 'middle');
+  });
+};

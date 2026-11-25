@@ -1,0 +1,16 @@
+Please use "Reveal footer" (下から現れるフッター), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #246
+
+What it is: The page lifts away to uncover a fixed footer
+What the sample shows: At the end of the page the white content rises with a shadow and uncovers a blue footer that was fixed underneath; the footer content slides up a little as it appears.
+Spec:
+- A 511 × 170 viewport; the footer (130 px high, blue #2F6BEB) is fixed to the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Scroll: 0→130 px over 0.35–2.0 s, 130→0 over 3.0–4.35 s (cubic ease-in-out). The white content sits above the footer and moves up by the scroll amount.
+- Bottom edge of the content: radius 0 → 14 (reaching full at q × 3), shadow blur 18, offset 6 down, opacity 0 → 0.35 (q × 4), with q = scroll / 130.
+- Footer content slides from 26 × (1 − q) px below to its place: a two-line heading (28 px, the second line light blue #C9D8FB), four links and a white round button with a blue arrow.
+- In CSS: make the footer position: sticky; bottom: 0 (or fixed) and give the main content a background and a higher z-index.
+When to use it: Use it to give the closing call to action (contact, hiring, newsletter) a memorable last screen.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/246.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

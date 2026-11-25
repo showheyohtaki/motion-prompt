@@ -1,0 +1,66 @@
+// Motion Prompt #253 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#253
+//
+// スクラッチカード / Scratch to reveal
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 13 · カテゴリ: 触れると反応する
+// 何が起きるか: カードの表面の膜をコインがジグザグにこすり、削った跡から下の「当たり！30% OFF」が見えてくる。こすり終えると膜がすっと消えて、文字が少し弾む。
+// 動きの仕様:
+//   - 表示域 511×170。カード 211×106（角丸12）。下は白の地に青い紙吹雪と「当たり！」「30% OFF」。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - コイン: 0.45〜2.45秒にジグザグ。x は 0.84秒で1往復の三角波でカードの端から端（24px 内側）、y は2秒かけて上から下へ
+//   - 膜（青の斜めグラデーション #9DB8F6→#C9D8FB→#9DB8F6＋白い斜線）を画面外に描き、コインの通り道を 線幅24・丸い端 で destination-out にして消す（こすった所だけ穴があく）
+//   - 2.55〜2.9秒に残りの膜を不透明度 1→0。当たりの文字は 2.6〜2.95秒で 1→1.08→1 に弾む。4.1〜4.55秒に新しい膜が出て最初に戻る
+//   - 本物では、削った面積の割合を数え（たとえば50%）、超えたら残りを消す
+// 使いどころ: キャンペーン・クーポン・抽選など、結果を自分の手で開けさせたいときに。
+// タグ: scratch-card, reveal, coupon, canvas, drag, gamification
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#253
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 13
+// 13 スクラッチカード（カードの表面の膜をコインでこすった所だけ削れて、下の当たりが見えてくる。ある程度削ると膜がすっと消える）
+CELLS[12] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const X = 150, Y = 30, CWd = 211, CHd = 106;
+  const tri = x => 1 - Math.abs(mod(x, 2) - 1);                        // 0→1→0 の三角波
+  const coin = t => [X + 24 + (CWd - 48) * tri((t - 0.45) / 0.42), Y + 20 + (CHd - 40) * clamp((t - 0.45) / 2.0)];
+  view(k, () => {
+    k.fillStyle = C.blueBg; k.fillRect(0, 0, VW, VH);
+    txt(k, 'LUCKY DRAW', VW / 2, 20, `800 10px ${EN}`, C.blue, 'center', 'middle', '3px');
+    // 下の当たり
+    const pop = eBack(clamp((u - 2.6) / 0.35)) * (u < 4.1 ? 1 : 1);
+    k.save(); k.shadowColor = 'rgba(30,30,33,.18)'; k.shadowBlur = 12; k.shadowOffsetY = 4; k.fillStyle = '#FFFFFF'; rr(k, X, Y, CWd, CHd, 12); k.fill(); k.restore();
+    const R = rng(13);
+    for (let i = 0; i < 26; i++) { k.fillStyle = PAL[i % 5]; const x = X + 8 + R() * (CWd - 16), y = Y + 8 + R() * (CHd - 16); k.save(); k.translate(x, y); k.rotate(R() * 3); k.fillRect(-3, -1.5, 6, 3); k.restore(); }
+    k.save(); k.translate(X + CWd / 2, Y + CHd / 2); const ps = 1 + 0.08 * Math.sin(Math.PI * clamp((u - 2.6) / 0.35)); k.scale(ps, ps);
+    txt(k, '当たり！', 0, -14, `900 20px ${JP}`, C.ink, 'center', 'middle');
+    txt(k, '30% OFF', 0, 16, `900 26px ${EN}`, C.blue, 'center', 'middle', '1px'); k.restore();
+    // 表面の膜（画面外に描き、こすった跡を消す）
+    const fadeOut = clamp((u - 2.55) / 0.35), fadeIn = clamp((u - 4.1) / 0.45);
+    const showFresh = u >= 4.1;
+    const alpha = showFresh ? fadeIn : 1 - fadeOut;
+    if (alpha > 0) {
+      const [c, g] = layer(k, 'scratch', CWd, CHd);
+      const fg = g.createLinearGradient(0, 0, CWd, CHd); fg.addColorStop(0, C.blueM); fg.addColorStop(0.5, C.blueL); fg.addColorStop(1, C.blueM); g.fillStyle = fg; rr(g, 0, 0, CWd, CHd, 12); g.fill();
+      g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 6; for (let i = -CHd; i < CWd; i += 16) { g.beginPath(); g.moveTo(i, CHd); g.lineTo(i + CHd, 0); g.stroke(); }
+      txt(g, 'ここをこすってね', CWd / 2, CHd / 2 + 1, `800 14px ${JP}`, '#fff', 'center', 'middle', '1px');
+      if (!showFresh && u > 0.45) {
+        g.globalCompositeOperation = 'destination-out'; g.strokeStyle = '#000'; g.lineWidth = 24; g.lineCap = 'round'; g.lineJoin = 'round';
+        g.beginPath(); const t1 = Math.min(u, 2.45);
+        for (let t = 0.45; t <= t1 + 1e-9; t += 1 / 60) { const [x, y] = coin(Math.min(t, t1)); t === 0.45 ? g.moveTo(x - X, y - Y) : g.lineTo(x - X, y - Y); }
+        const [ex, ey] = coin(t1); g.lineTo(ex - X, ey - Y); g.stroke(); g.globalCompositeOperation = 'source-over';
+      }
+      g.restore();
+      k.globalAlpha = alpha; k.drawImage(c, X, Y, CWd, CHd); k.globalAlpha = 1;
+    }
+    // コイン（こすっている間だけカードの上。それ以外は右下で待つ）
+    const on = u > 0.45 && u < 2.45;
+    const [qx, qy] = on ? coin(u) : u <= 0.45 ? [lerp(420, coin(0.45)[0], eIO(P(u, 0.05, 0.45))), lerp(140, coin(0.45)[1], eIO(P(u, 0.05, 0.45)))] : [lerp(coin(2.45)[0], 420, eIO(P(u, 2.45, 2.9))), lerp(coin(2.45)[1], 140, eIO(P(u, 2.45, 2.9)))];
+    k.save(); k.shadowColor = 'rgba(30,30,33,.3)'; k.shadowBlur = 6; k.shadowOffsetY = 2;
+    k.fillStyle = '#FFFFFF'; k.beginPath(); k.arc(qx, qy, 13, 0, 7); k.fill(); k.restore();
+    k.strokeStyle = C.blue; k.lineWidth = 2; k.beginPath(); k.arc(qx, qy, 9.5, 0, 7); k.stroke();
+    txt(k, '★', qx, qy + 0.5, `700 10px ${EN}`, C.blue, 'center', 'middle');
+  });
+};

@@ -1,0 +1,61 @@
+// Motion Prompt #264 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#264
+//
+// CRTエフェクト / CRT effect
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 24 · カテゴリ: 背景・質感
+// 何が起きるか: 角の丸い黒い画面の中で、光る文字 PLAY が青と薄い青に少しずれてにじむ。横の走査線と細い青の縦縞が重なり、明るい帯が上から下へ流れ、四隅は暗い。
+// 動きの仕様:
+//   - 表示域 511×170。画面 479×146（角丸24）。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 文字（PLAY 64px）を 青 #2F6BEB（左へ1.6px）・中間の青 #9DB8F6（右へ1.6px）を lighter で重ねてから白で描く。光のにじみはぼかし10。全体の明るさは 0.93〜1 を 2πt/4.7 の12倍の速さでちらつかせる
+//   - 縦縞: 3px ごとに 3段の青（#2F6BEB・#9DB8F6・#E4ECFE）の1px の線（不透明度 0.05〜0.1）。赤・緑・青の縞にすると本物に近い。走査線: 3px ごとに黒32% の1px
+//   - 明るい帯: 高さ48（中心で白8%）が 4.7秒で画面の上の外から下の外まで動く。四隅: 中心から半径 SH×0.45〜SW×0.62 で 0→黒65%。「PRESS START」は sin(4·2πt/4.7) > −0.2 の間だけ見える
+//   - #023 グリッチは画面が乱れる一瞬の事故、#118 フィルムグレインはフィルムの粒子。CRT エフェクトはブラウン管そのものの見え方を常に重ねる
+// 使いどころ: ゲーム・音楽・イベントなど、レトロでにぎやかな告知に。
+// タグ: crt, scanlines, retro, vhs, arcade, chromatic-aberration
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#264
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 24
+// 24 CRTエフェクト（ブラウン管のように、横の走査線・赤緑青の細い縞・文字の色ずれとにじみ・上から下へ流れる明るい帯・四隅の暗さを重ねる）
+CELLS[23] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  view(k, () => {
+    k.fillStyle = C.desk; k.fillRect(0, 0, VW, VH);
+    const X = 16, Y = 12, SW = VW - 32, SH = VH - 24;
+    k.save(); rr(k, X, Y, SW, SH, 24); k.clip();
+    const sg = k.createRadialGradient(X + SW / 2, Y + SH / 2, 10, X + SW / 2, Y + SH / 2, SW * 0.6); sg.addColorStop(0, C.mark); sg.addColorStop(1, C.ink); k.fillStyle = sg; k.fillRect(X, Y, SW, SH);
+    // 中身（色ずれ: 赤みと青みを左右に1.6pxずらして重ねる）
+    const flick = 0.93 + 0.07 * (0.5 + 0.5 * Math.sin(12 * ph));
+    const draw = (dx, col, a) => {
+      k.save(); k.globalAlpha = a * flick; k.shadowColor = col; k.shadowBlur = 10;
+      txt(k, 'PLAY', X + SW / 2 + dx, Y + 74, `900 64px ${MONO}`, col, 'center', 'middle', '6px');
+      if (dx === 0) { k.shadowColor = C.blueM; k.shadowBlur = 4; txt(k, 'HI-SCORE 024100', X + SW / 2, Y + 26, `700 11px ${MONO}`, C.blueM, 'center', 'middle', '2px'); }
+      k.restore();
+    };
+    k.globalCompositeOperation = 'lighter';
+    draw(-1.6, C.blue, 0.9); draw(1.6, C.blueM, 0.8);
+    k.globalCompositeOperation = 'source-over';
+    draw(0, '#fff', 0.9);
+    if (Math.sin(4 * ph) > -0.2) txt(k, '▶ PRESS START', X + SW / 2, Y + 122, `700 12px ${MONO}`, C.blueL, 'center', 'middle', '2px');
+    // 赤緑青の縦の縞
+    const RGB = [rgba(C.blue, 0.1), rgba(C.blueM, 0.06), rgba(C.blueXL, 0.05)];
+    for (let x = X; x < X + SW; x += 3) for (let c = 0; c < 3; c++) { k.fillStyle = RGB[c]; k.fillRect(x + c, Y, 1, SH); }
+    // 走査線
+    k.fillStyle = 'rgba(0,0,0,.32)'; for (let y = Y; y < Y + SH; y += 3) k.fillRect(X, y + 2, SW, 1);
+    // 流れる明るい帯（4.7秒で上から下へ1回）
+    const by = Y - 40 + (SH + 80) * (u / CYC);
+    const bg2 = k.createLinearGradient(0, by - 24, 0, by + 24); bg2.addColorStop(0, 'rgba(255,255,255,0)'); bg2.addColorStop(0.5, 'rgba(255,255,255,.08)'); bg2.addColorStop(1, 'rgba(255,255,255,0)');
+    k.fillStyle = bg2; k.fillRect(X, by - 24, SW, 48);
+    // 四隅の暗さとガラスの反射
+    const vg = k.createRadialGradient(X + SW / 2, Y + SH / 2, SH * 0.45, X + SW / 2, Y + SH / 2, SW * 0.62); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, 'rgba(0,0,0,.65)');
+    k.fillStyle = vg; k.fillRect(X, Y, SW, SH);
+    k.fillStyle = 'rgba(255,255,255,.05)'; k.beginPath(); k.ellipse(X + SW * 0.3, Y + 10, SW * 0.32, 20, -0.05, 0, 7); k.fill();
+    k.restore();
+    k.strokeStyle = C.g3; k.lineWidth = 2; rr(k, X, Y, SW, SH, 24); k.stroke();
+  });
+};

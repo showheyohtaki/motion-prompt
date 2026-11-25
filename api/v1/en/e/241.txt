@@ -1,0 +1,65 @@
+// Motion Prompt #241 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#241
+//
+// Scrollytelling / スクローリーテリング
+// Pack: lp3 (Landing page & web effects, part 3) · element 01 · Category: Scroll & drag effects
+// What happens: Scrolling the text column on the left changes the pinned sky picture on the right from morning to noon to night, colors, sun, moon and stars included, to match the step being read.
+// Motion spec:
+//   - A 511 × 170 viewport: three text steps on the left (120 px apart) and a pinned picture on the right (252 × 146, radius 10). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Scroll: step 0→1 over 0.25–1.05 s, 1→2 over 1.85–2.65 s, 2→0 over 3.6–4.4 s (cubic ease-in-out). The picture does not scroll (sticky).
+//   - The picture is a continuous function of the scroll position s (0–2): sky top #E4ECFE → #9DB8F6 → #2F6BEB, bottom white → #E4ECFE → #9DB8F6, the hills (#C9D8FB, #9DB8F6, #2F6BEB) interpolated the same way. A white sun rises and sets along an arc (gone by s = 1.25–1.7), the moon appears over s = 1.45–1.95 and the stars over s = 1.35–1.95.
+//   - The heading of the step being read is black and the others fade to pale gray (mixed by |s − step| × 1.4). A time label (07:00 / 12:00 / 21:00) sits at the top left of the picture.
+//   - #076 Pinning names the mechanism (holding a section in place). Scrollytelling names the storytelling pattern: the pinned graphic is redrawn for each step of the text.
+// When to use it: Use it for "a day at", "how it is made" or a data story, where text and a graphic should be read step by step together.
+// Tags: scrollytelling, scroll, sticky, storytelling, scroll-driven, pinned-graphic
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#241
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 01
+// 01 スクローリーテリング（左の文章を読み進めると、右に固定した空の絵が 朝→昼→夜 と切り替わる）
+CELLS[0] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const s = steps([[0.25, 0], [1.05, 1], [1.85, 1], [2.65, 2], [3.6, 2], [4.4, 0]], u);   // 読んでいる段（0〜2）
+  const STEP = [['07:00', '朝', '日がのぼる'], ['12:00', '昼', '空が高くなる'], ['21:00', '夜', '星が出てくる']];
+  view(k, () => {
+    // 左: 文章の列（1段 120px ずつスクロール）
+    k.save(); k.translate(0, -s * 120);
+    STEP.forEach(([tm, a, b], i) => {
+      const on = clamp(1 - Math.abs(s - i) * 1.4), y = 46 + i * 120;
+      txt(k, `0${i + 1}`, 28, y, `700 11px ${MONO}`, mix(C.g3, C.blue, on));
+      txt(k, `${a}  ${b}`, 28, y + 26, `800 19px ${JP}`, mix(C.g3, C.ink, on));
+      bars(k, 28, y + 40, 178, 3, mix(C.soft, C.faint, on));
+    });
+    k.restore();
+    // 右: 固定した絵（スクロールしても動かない）
+    const X = 236, Y = 12, PW = 252, PH = 146;
+    k.save(); rr(k, X, Y, PW, PH, 10); k.clip();
+    const top = s < 1 ? mix(C.blueXL, C.blueM, s) : mix(C.blueM, C.blue, s - 1);
+    const bot = s < 1 ? mix('#FFFFFF', C.blueXL, s) : mix(C.blueXL, C.blueM, s - 1);
+    const g = k.createLinearGradient(0, Y, 0, Y + PH); g.addColorStop(0, top); g.addColorStop(1, bot); k.fillStyle = g; k.fillRect(X, Y, PW, PH);
+    // 星（夜）
+    const st = clamp((s - 1.35) / 0.6), R = rng(241);
+    for (let i = 0; i < 22; i++) { const sx = X + R() * PW, sy = Y + R() * 80, a = st * (0.5 + 0.5 * R()); k.fillStyle = `rgba(255,255,255,${a})`; k.beginPath(); k.arc(sx, sy, 1 + R() * 1.2, 0, 7); k.fill(); }
+    // 太陽（朝は左下 → 昼は真上 → 夕方に右へ沈む）と月
+    const th = Math.PI * (0.92 - 0.42 * Math.min(s, 1) - 0.5 * clamp(s - 1));
+    const sunA = 1 - clamp((s - 1.25) / 0.45);
+    k.fillStyle = rgba('#FFFFFF', sunA); k.beginPath(); k.arc(X + PW / 2 + Math.cos(th) * 104, Y + 118 - Math.sin(th) * 92, 17, 0, 7); k.fill();
+    k.fillStyle = rgba('#FFFFFF', sunA * 0.45); k.beginPath(); k.arc(X + PW / 2 + Math.cos(th) * 104, Y + 118 - Math.sin(th) * 92, 25, 0, 7); k.fill();
+    const mo = clamp((s - 1.45) / 0.5);
+    if (mo > 0) { const mx = X + 192, my = Y + 40 + (1 - mo) * 30; k.fillStyle = rgba('#FFFFFF', mo * 0.25); k.beginPath(); k.arc(mx, my, 22, 0, 7); k.fill(); k.fillStyle = rgba('#FFFFFF', mo); k.beginPath(); k.arc(mx, my, 13, 0, 7); k.fill(); k.fillStyle = rgba(C.blueL, mo); k.beginPath(); k.arc(mx - 4, my - 3, 3, 0, 7); k.arc(mx + 4, my + 4, 2, 0, 7); k.fill(); }
+    // 丘（色も時間で変わる）
+    const h1 = s < 1 ? mix(C.blueL, C.blueM, s) : mix(C.blueM, C.blueL, s - 1), h2 = s < 1 ? mix(C.blueM, C.blue, s) : mix(C.blue, C.blueM, s - 1);
+    k.fillStyle = h1; k.beginPath(); k.moveTo(X, Y + PH); k.quadraticCurveTo(X + 70, Y + 96, X + 150, Y + 116); k.quadraticCurveTo(X + 210, Y + 128, X + PW, Y + 104); k.lineTo(X + PW, Y + PH); k.fill();
+    k.fillStyle = h2; k.beginPath(); k.moveTo(X, Y + 128); k.quadraticCurveTo(X + 110, Y + 112, X + PW, Y + 136); k.lineTo(X + PW, Y + PH); k.lineTo(X, Y + PH); k.fill();
+    // 時刻のラベル（近い段の時刻）
+    const near = Math.round(s), la = clamp(1 - Math.abs(s - near) * 3);
+    k.fillStyle = `rgba(255,255,255,${0.88 * la})`; rr(k, X + 12, Y + 12, 58, 22, 11); k.fill();
+    txt(k, STEP[near][0], X + 41, Y + 23.5, `700 11px ${MONO}`, rgba(C.ink, la), 'center', 'middle');
+    k.restore();
+    sbar(k, s / 2, 0.42);
+  });
+};

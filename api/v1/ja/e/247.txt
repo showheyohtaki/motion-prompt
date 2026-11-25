@@ -1,0 +1,61 @@
+// Motion Prompt #247 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#247
+//
+// カバーフロー / Cover Flow
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 07 · カテゴリ: スクロール・ドラッグで見せる
+// 何が起きるか: 暗い地に正方形のジャケットが並び、正面の1枚以外は斜めに傾いて重なる。送ると次の1枚が回り込みながら正面に来て、曲名が替わる。床に映り込み。
+// 動きの仕様:
+//   - 表示域 511×170。明るい地（白→#F1F0EE）にジャケット 88×88。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 正面の番号 p: 0.25〜0.75秒で 0→1、1.05〜1.55秒で 1→2、1.85〜2.35秒で 2→3、3.0〜4.3秒で 3→0（easeInOut 3乗）
+//   - 番号 i のジャケットは rel = i − p。横の位置: |rel| < 1 なら rel×74px、その先は 74 + (|rel|−1)×30px。回転 = clamp(|rel|)×62°（左右で逆向き）、横を向いた分だけ白く薄める（最大45%）
+//   - 遠い物から描き、正面が最後。下に上下反転の映り込み（不透明度0.22）を床のグラデーションで消す。正面の曲名は p が整数に近い時だけ出る
+//   - #058 カルーセル（横に送って順番に見せる）と違い、両側の物を奥へ傾けて重ね、3Dの棚のように見せる
+// 使いどころ: アルバム・本・商品のパッケージなど、正方形や縦長の表紙を並べて選ばせたいときに。
+// タグ: cover-flow, carousel, 3d, gallery, album, reflection, coverflow
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#247
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 07
+// 07 カバーフロー（正面に1枚、左右のジャケットは斜めに傾いて重なる。送ると次の1枚が回り込んで正面に来る。床に映り込み）
+CELLS[6] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const p = steps([[0.25, 0], [0.75, 1], [1.05, 1], [1.55, 2], [1.85, 2], [2.35, 3], [3.0, 3], [4.3, 0]], u);   // 正面にある番号（0〜3）
+  const NAMES = ['Sunset Club', 'Lemon Tree', 'Mint Night', 'Pink Noise', 'Blue Hour', 'Deep Sea'];
+  view(k, () => {
+    const bg = k.createLinearGradient(0, 0, 0, VH); bg.addColorStop(0, '#FFFFFF'); bg.addColorStop(1, C.desk); k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
+    const CX = 255, CY = 70, S = 88;
+    const items = [];
+    for (let i = Math.floor(p) - 5; i <= Math.ceil(p) + 5; i++) items.push(i);
+    items.sort((a, b) => Math.abs(b - p) - Math.abs(a - p));            // 遠い物から描く
+    for (const i of items) {
+      const rel = i - p, ar = Math.abs(rel), sg = Math.sign(rel);
+      const x = CX + (ar < 1 ? rel * 74 : sg * (74 + (ar - 1) * 30));    // 正面から1つ目は74px、その先は30pxずつ
+      const a = clamp(ar) * 62 * Math.PI / 180 * sg;                     // 回転（最大62°）
+      if (Math.abs(x - CX) > 300) continue;
+      const sx = Math.cos(a), skw = Math.sin(a) * 0.28;
+      const draw = (flip) => {
+        k.save(); k.translate(x, CY + (flip ? S : 0)); k.transform(sx, -skw, 0, flip ? -1 : 1, 0, 0);
+        art(k, -S / 2, flip ? -S : -S / 2, S, S, mod(i, 6), 3);
+        if (!flip) { txt(k, String(mod(i, 6) + 1).padStart(2, '0'), -S / 2 + 8, -S / 2 + 16, `800 10px ${MONO}`, rgba(C.ink, 0.55)); }
+        k.restore();
+      };
+      k.globalAlpha = 0.22; draw(true); k.globalAlpha = 1;
+      draw(false);
+      k.fillStyle = `rgba(255,255,255,${0.45 * clamp(ar)})`;                // 横を向いた物は暗く
+      k.save(); k.translate(x, CY); k.transform(sx, -skw, 0, 1, 0, 0); k.fillRect(-S / 2, -S / 2, S, S); k.restore();
+    }
+    // 映り込みを床でぼかす
+    const fl = k.createLinearGradient(0, CY + S / 2, 0, VH); fl.addColorStop(0, rgba(C.desk, 0.35)); fl.addColorStop(0.6, rgba(C.desk, 1)); k.fillStyle = fl; k.fillRect(0, CY + S / 2, VW, VH);
+    // 曲名（正面の1枚）
+    const near = Math.round(p), la = clamp(1 - Math.abs(p - near) * 3);
+    txt(k, NAMES[mod(near, 6)], CX, 140, `800 13px ${EN}`, rgba(C.ink, la), 'center');
+    txt(k, 'LP3 Records', CX, 156, `500 10px ${EN}`, rgba(C.sub, la), 'center');
+    // 送りのつまみ
+    k.fillStyle = C.faint; rr(k, 150, 162, 210, 4, 2); k.fill();
+    k.fillStyle = C.blue; rr(k, 150 + 210 * p / 5, 160, 36, 8, 4); k.fill();
+  });
+};

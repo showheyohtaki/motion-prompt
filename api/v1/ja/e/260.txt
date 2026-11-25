@@ -1,0 +1,54 @@
+// Motion Prompt #260 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#260
+//
+// コースティクス / Caustics
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 20 · カテゴリ: 背景・質感
+// 何が起きるか: 青から水色の水の底に、波で集まった白い光の網目がゆらめき続ける。上に見出しと、ゆれる浮き輪とその影。
+// 動きの仕様:
+//   - 表示域 511×170。水の色は上 #2F6BEB → 下 #9DB8F6。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 光の網目: 向き（0.35・2.45・4.15 rad）と細かさ（0.050・0.043・0.057）の違う3つの波 sin(f·u + m·a + 1.6·sin(0.6f·v + n·a)) を足し、和が0に近い所ほど明るくする: 明るさ = (1 − |和| / 1.6)^6（u・v は波の向きとその直角の座標）
+//   - a = 2πt/4.7。m・n は整数（1と−1、−1と2、2と1）なので、4.7秒で元の模様に戻る。128×43 のマス目で計算して引き伸ばす
+//   - 明るさ v で水の色を白へ寄せる。浮き輪（半径38・青と白の8色分け）は x を ±10、y を ±5 ゆらし、0.15 rad 傾け、水の底に影
+//   - ふつうは WebGL のシェーダーで画素ごとに計算する。波を重ねて明るい線の網を作る考え方は、本物の水の底で光が集まる所（焦線）のまね
+// 使いどころ: プール・海・リゾート・飲み物など、水の涼しさを感じさせたいサイトの背景に。
+// タグ: caustics, water, shader, webgl, pool, light, background
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#260
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 20
+// 20 コースティクス（水の底に、波で集まった光の網目がゆらめき続ける。プールの見出しと浮き輪が上に乗る）
+CELLS[19] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  const ph = W1 * u;
+  const A = hex(C.blue), B = hex(C.blueM), L = hex('#FFFFFF');
+  view(k, () => {
+    // 光の網目（自前の式）: 向きと細かさの違う3つの波 w = sin(f·(向きの座標) + m·a + 1.6·sin(0.6f·(直角の座標) + n·a)) を足し、
+    // 和が0に近い所ほど明るくする（明るさ = (1 − |和| / 1.6)^6）。a = 2πt/4.7、m・n は整数なので4.7秒で元に戻る
+    const WV = [[0.35, 0.050, 1, -1], [2.45, 0.043, -1, 2], [4.15, 0.057, 2, 1]].map(([th, f, m, n]) => [Math.cos(th), Math.sin(th), f, m, n]);
+    const NX = 128, NY = 43;
+    field(k, 'caustic', 0, 0, VW, VH, NX, NY, (i, j) => {
+      const px = (i + 0.5) * VW / NX, py = (j + 0.5) * VH / NY;
+      let sum = 0;
+      for (const [c, s2, f, m, n] of WV) { const u1 = px * c + py * s2, u2 = -px * s2 + py * c; sum += Math.sin(f * u1 + m * ph + 1.6 * Math.sin(0.6 * f * u2 + n * ph)); }
+      const v = Math.pow(clamp(1 - Math.abs(sum) / 1.6), 6);
+      const d = j / NY;
+      const r = lerp(A[0], B[0], d), g = lerp(A[1], B[1], d), bb = lerp(A[2], B[2], d);
+      return `rgb(${lerp(r, L[0], v) | 0},${lerp(g, L[1], v) | 0},${lerp(bb, L[2], v) | 0})`;
+    });
+    // 浮き輪（影は水の底に落ちる）
+    const fx = 400 + 10 * Math.sin(W1 * u), fy = 70 + 5 * Math.sin(2 * W1 * u);
+    k.fillStyle = 'rgba(30,30,33,.18)'; k.beginPath(); k.ellipse(fx + 18, fy + 44, 44, 16, 0, 0, 7); k.fill();
+    k.save(); k.translate(fx, fy); k.rotate(0.15 * Math.sin(W1 * u));
+    for (let i = 0; i < 8; i++) { k.fillStyle = i % 2 ? '#fff' : C.blue; k.beginPath(); k.arc(0, 0, 38, i * Math.PI / 4, (i + 1) * Math.PI / 4); k.arc(0, 0, 18, (i + 1) * Math.PI / 4, i * Math.PI / 4, true); k.fill(); }
+    k.fillStyle = 'rgba(255,255,255,.35)'; k.beginPath(); k.ellipse(-14, -22, 12, 5, -0.6, 0, 7); k.fill();
+    k.restore();
+    k.save(); k.shadowColor = 'rgba(30,30,33,.3)'; k.shadowBlur = 8;
+    txt(k, 'POOL DAYS', 30, 58, `800 11px ${EN}`, 'rgba(255,255,255,.9)', 'left', 'alphabetic', '3px');
+    txt(k, '夏の、水の底で。', 28, 96, `900 28px ${JP}`, '#fff'); k.restore();
+    k.fillStyle = '#fff'; rr(k, 30, 116, 96, 26, 13); k.fill(); txt(k, '予約する', 78, 129.5, `800 11px ${JP}`, C.blue, 'center', 'middle');
+  });
+};

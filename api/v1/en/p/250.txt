@@ -1,0 +1,16 @@
+Please use "Holographic card" (ホログラムカード), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #250
+
+What it is: Tilt it and a rainbow sheen runs across
+What the sample shows: On a light page, a card tilts toward a cursor circling round it. The foil (shades of blue in this sample, rainbow on a real card), the fine diagonal lines and a white glare move with the cursor, so the colors shift with the angle.
+Spec:
+- A 511 × 170 viewport: a 172 × 112 card (radius 10) on a dark page. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The cursor moves in a figure eight: x = 255 + 112·sin(2πt/4.7), y = 86 + 40·sin(4πt/4.7); nx and ny are its position mapped to −1…1.
+- Tilt: ry = nx × 0.42 rad (about 24°) across, rx = −ny × 0.3 rad up and down. Drawn squeezed by cos(ry) and cos(rx) with a sin × 0.16 shear for perspective; the shadow moves 14 px the other way.
+- Foil: a linear gradient of blues and white laid in overlay (0.95) on a blue base (#9DB8F6 → #2F6BEB), its bands shifted by nx × 70 + ny × 30 px, plus diagonal lines every 5 px in soft-light.
+- Glare: a white radial light of radius 90 on the cursor side (nx × 70, ny × 40 from the center) in screen. Unlike #153 3D tilt, the point is the foil light that moves with the angle (rainbow on a real card; drawn here in shades of blue).
+When to use it: Use it on a member card, a ticket or a limited item, anything that should feel special and collectible.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/250.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

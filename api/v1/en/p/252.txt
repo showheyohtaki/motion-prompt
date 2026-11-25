@@ -1,0 +1,16 @@
+Please use "Fluid simulation" (流体シミュレーション), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #252
+
+What it is: The cursor stirs up swirling colored smoke
+What the sample shows: Moving the cursor over a pale page releases smoke in several shades of blue along its path, which swirls, spreads and fades.
+Spec:
+- A 511 × 170 viewport on a pale blue ground (#F1F5FF). One pass takes 4.7 s (twice per 9.4 s pack cycle). The picture is computed on a 128 × 43 grid and stretched smoothly.
+- The cursor moves in a figure eight: x = 255 + 170·sin(2πt/4.7), y = 86 + 48·sin(4πt/4.7). Every 0.1175 s a smoke puff is released there, cycling through blue, mid blue, blue, light blue and mid blue.
+- Puffs live 1.4 s: radius 12 + 30 × age, strength exp(−2.1 × age) (0 → 1 over the first 0.1 s). Their centers drift outward in a spiral at 26 px/s and rise at 10 px/s.
+- Each cell sums the weights e = strength × exp(−distance² / radius²) and moves from the ground color toward the weighted average color of the puffs by min(1, Σe × 1.6). Cell coordinates are warped with sin and cos (7 px and 6 px) to make it flow.
+- A real fluid simulation solves a velocity field every frame; this sample replaces it with a function of time. #013 Liquid motion is a shape moving softly; here colored smoke mixes.
+When to use it: Use it on music, art or tech landing pages where touching the hero should be the fun part.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/252.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

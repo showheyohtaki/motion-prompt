@@ -1,0 +1,16 @@
+Please use "Dappled light" (木漏れ日), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #261
+
+What it is: Leaf shadows and sunlight sway on a wall
+What the sample shows: Slanted white window light falls on a pale gray to pale blue wall and blurred leaf shadows sway slowly across it, with a heading and a vase in front.
+Spec:
+- A 511 × 170 viewport; the wall goes #F1F0EE → #F1F5FF. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- Sunlight: a trapezoid (top edge 170–470, bottom edge 60–380) filled with a white gradient (opacity 0–0.95) in screen.
+- Leaf shadows: three branches (230 long) with five or six pairs of leaves (17 × 7 ellipses). Branches sway ±0.06 rad and leaves ±0.22 rad, at 2πt/4.7 and twice that, each with its own phase.
+- The shadows are drawn offscreen in blue (#2F6BEB), blurred 4.5 px and laid over at 0.3 opacity. Blue rather than gray shadows keep a bright palette looking sunlit.
+- With photos, a PNG or video of real branches can be laid over instead.
+When to use it: Use it behind ceramics, furniture, skincare or cafe sites that should feel calm and naturally lit.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/261.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

@@ -1,0 +1,52 @@
+// Motion Prompt #245 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#245
+//
+// Shrinking header / 縮むヘッダー
+// Pack: lp3 (Landing page & web effects, part 3) · element 05 · Category: Scroll & drag effects
+// What happens: Scrolling down shrinks the full-width white header into a slim, rounded black bar floating at the top; the cart button loses its label and keeps only the icon. Scrolling back up restores it.
+// Motion spec:
+//   - A 511 × 170 viewport. One pass takes 4.7 s (twice per 9.4 s pack cycle). Scroll: 0→150 px over 0.4–1.9 s, 150→0 over 2.9–4.3 s (cubic ease-in-out).
+//   - Shrink amount q = easeInOut(scroll / 70): fully shrunk after 70 px, then it stays.
+//   - With q: width 511 → 310, height 46 → 34, top gap 0 → 10, radius 0 → 17, color white → black (#1E1E21 at 92%), shadow blur 6 → 16; text 13 → 11 px, nav spacing 56 → 40 px.
+//   - The cart button goes from 82 to 30 px wide: the label fades out and a bag icon fades in. Text color goes from black to white.
+//   - #075 Sticky header only stays on top and #149 Hide-on-scroll header hides on the way down; a shrinking header stays and changes its shape and size.
+// When to use it: Use it when a large hero should have room at first, but the navigation should stay at hand in a compact form.
+// Tags: header, shrink, navbar, scroll, sticky, pill, floating-nav
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#245
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 05
+// 05 縮むヘッダー（ページの上の幅いっぱいのヘッダーが、スクロールすると細い角丸のピル形に縮んで上に浮く。戻ると元に広がる）
+CELLS[4] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const y = steps([[0.4, 0], [1.9, 150], [2.9, 150], [4.3, 0]], u);     // スクロール量
+  const q = eIO(clamp(y / 70));                                         // 縮み具合（70px スクロールで縮みきる）
+  view(k, () => {
+    // ページ
+    k.save(); k.translate(0, -y);
+    art(k, 0, 0, VW, 150, 0, 0);
+    txt(k, 'SUMMER', 30, 98, `900 38px ${EN}`, '#fff', 'left', 'alphabetic', '2px');
+    txt(k, 'COLLECTION', 32, 120, `800 14px ${EN}`, 'rgba(255,255,255,.85)', 'left', 'alphabetic', '3px');
+    for (let i = 0; i < 4; i++) { art(k, 24 + i * 120, 170, 106, 84, i + 2, 8); bars(k, 24 + i * 120, 262, 90, 2); }
+    art(k, 24, 300, 466, 70, 4, 8);
+    k.restore();
+    // ヘッダー: 幅 511→310、高さ 46→34、上の余白 0→10、角丸 0→17、白→黒
+    const hw = lerp(VW, 310, q), hh = lerp(46, 34, q), hx = (VW - hw) / 2, hy = lerp(0, 10, q), r = lerp(0, 17, q);
+    k.save(); k.shadowColor = `rgba(30,30,33,${0.08 + 0.22 * q})`; k.shadowBlur = 6 + 10 * q; k.shadowOffsetY = 2 + 3 * q;
+    k.fillStyle = mix('#FFFFFF', C.ink, q * 0.92); rr(k, hx, hy, hw, hh, r); k.fill(); k.restore();
+    const ink = mix(C.ink, '#FFFFFF', q), cy = hy + hh / 2;
+    k.fillStyle = C.blue; k.beginPath(); k.arc(hx + lerp(22, 20, q), cy, lerp(7, 6, q), 0, 7); k.fill();
+    txt(k, 'PALETTE', hx + lerp(34, 31, q), cy + 0.5, `800 ${lerp(13, 11, q)}px ${EN}`, ink, 'left', 'middle', '1px');
+    const nav = ['Shop', 'Story', 'Blog'];
+    nav.forEach((s, i) => txt(k, s, hx + hw - lerp(232, 168, q) + i * lerp(56, 40, q), cy + 0.5, `600 ${lerp(12, 10.5, q)}px ${EN}`, ink, 'left', 'middle'));
+    const bw = lerp(82, 30, q), bh = lerp(28, 24, q);
+    k.fillStyle = C.blue; rr(k, hx + hw - bw - lerp(14, 6, q), cy - bh / 2, bw, bh, bh / 2); k.fill();
+    k.globalAlpha = 1 - q; txt(k, 'カート', hx + hw - bw / 2 - lerp(14, 6, q), cy + 0.5, `700 11px ${JP}`, '#fff', 'center', 'middle'); k.globalAlpha = 1;
+    if (q > 0) { k.globalAlpha = q; k.strokeStyle = '#fff'; k.lineWidth = 1.8; const bx = hx + hw - bw / 2 - 6, by = cy; k.beginPath(); k.moveTo(bx - 6, by - 4); k.lineTo(bx - 4, by + 4); k.lineTo(bx + 5, by + 4); k.lineTo(bx + 6, by - 2); k.lineTo(bx - 5, by - 2); k.stroke(); k.globalAlpha = 1; }
+    sbar(k, y / 150, 0.45);
+  });
+};

@@ -1,0 +1,69 @@
+// Motion Prompt #255 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#255
+//
+// パタパタ表示 / Split-flap display
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 15 · カテゴリ: 触れると反応する
+// 何が起きるか: 黒い板に並んだ11枚の文字の板が、上下に割れてめくれ、途中の文字を何枚か経て、TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 と替わる。
+// 動きの仕様:
+//   - 表示域 511×170。文字の板 34×54（角丸5）を間隔4で11枚。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 切り替えは 0.5・2.0・3.5秒に始まる（TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 → 最初へ）。文字 i は i×0.045秒遅れて始まる
+//   - 1回めくるのに0.09秒。同じ文字は動かない。違う文字は途中の文字を含めて 3〜5回めくり、最後に次の文字で止まる
+//   - 1回のめくり f（0〜1）: うしろは上半分に次の字、下半分に今の字。f < 0.5 は今の字の上半分が真ん中を軸に縦に縮んで倒れ（暗くなる）、f ≥ 0.5 は次の字の下半分が縦に伸びて下りる
+//   - #156 テキストロールは文字が回って入れ替わる、#129 テキストスクランブルはランダムな字が入れ替わる。パタパタ表示は割れた板が倒れる形そのものを見せる
+// 使いどころ: 旅行・イベント・カウントダウンなど、行き先や時刻・数字を、機械が切り替えるような手ざわりで見せたいときに。
+// タグ: split-flap, solari, flip, departure-board, text, retro
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#255
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 15
+// 15 パタパタ表示（駅の発車標のように、1文字ずつの板が上下に割れてめくれ、何枚か途中の文字を経て次の文字に止まる。左から少しずつずれて始まる）
+CELLS[14] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 1);
+  const WORDS = ['TOKYO 09:30', 'PARIS 11:05', 'SEOUL 13:40'];
+  const START = [0.5, 2.0, 3.5];                                        // 0→1, 1→2, 2→0 の切り替え開始
+  const CH = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:';
+  const FL = 0.09, STAG = 0.045;                                        // 1回めくるのに0.09秒、1文字ごとに0.045秒ずつ遅れる
+  // 文字 i の、時刻 u での [今の文字, 次の文字, めくれ具合 0〜1]
+  const state = i => {
+    let seg = 2; for (let s = 0; s < 3; s++) if (u >= START[s] + i * STAG) seg = s;
+    if (u < START[0] + i * STAG) seg = 2;
+    const from = WORDS[seg][i], to = WORDS[(seg + 1) % 3][i];
+    const t = u - START[seg] - i * STAG + (u < START[0] + i * STAG ? CYC : 0);
+    if (from === to) return [to, to, 0];
+    const nf = 3 + mod(i * 5 + seg, 3);                                // 途中の文字を含めて3〜5回めくる
+    const seq = [from]; for (let j = 1; j < nf; j++) seq.push(CH[mod(CH.indexOf(from) + j * 7 + i, CH.length)]); seq.push(to);
+    const step = Math.floor(t / FL);
+    if (step >= nf) return [to, to, 0];
+    return [seq[step], seq[step + 1], (t - step * FL) / FL];
+  };
+  view(k, () => {
+    k.fillStyle = C.blueBg; k.fillRect(0, 0, VW, VH);
+    k.fillStyle = C.ink; rr(k, 24, 30, 463, 110, 14); k.fill();
+    txt(k, 'DEPARTURES', 44, 52, `800 10px ${EN}`, C.blue, 'left', 'middle', '3px');
+    txt(k, '出発', 467, 52, `800 11px ${JP}`, 'rgba(255,255,255,.7)', 'right', 'middle');
+    const N = 11, FW = 34, FH = 54, G = 4, x0 = (VW - (N * FW + (N - 1) * G)) / 2, y0 = 66, mid = y0 + FH / 2;
+    const glyph = (c, x, i) => txt(k, c, x + FW / 2, mid + 1.5, `800 30px ${MONO}`, i >= 6 ? C.blueL : '#fff', 'center', 'middle');
+    const half = (c, x, i, top, sy = 1) => {       // 上半分 or 下半分（sy で真ん中を軸に縮める）
+      k.save(); k.beginPath(); k.rect(x, top ? y0 : mid, FW, FH / 2); k.clip();
+      k.translate(0, mid); k.scale(1, sy); k.translate(0, -mid);
+      k.fillStyle = C.mark; rr(k, x, y0, FW, FH, 5); k.fill(); glyph(c, x, i);
+      if (sy < 1) { k.fillStyle = `rgba(0,0,0,${0.35 * (1 - sy)})`; k.fillRect(x, y0, FW, FH); }
+      k.restore();
+    };
+    for (let i = 0; i < N; i++) {
+      const x = x0 + i * (FW + G), [a, b, f] = state(i);
+      if (f <= 0) { half(a, x, i, true); half(a, x, i, false); }
+      else {
+        half(b, x, i, true); half(a, x, i, false);                     // うしろ: 上は次の字、下は今の字
+        if (f < 0.5) half(a, x, i, true, 1 - f * 2);                   // 今の字の上半分が倒れてくる
+        else half(b, x, i, false, f * 2 - 1);                          // 次の字の下半分が下りてくる
+      }
+      k.fillStyle = C.ink; k.fillRect(x, mid - 0.75, FW, 1.5);
+    }
+    bars(k, 44, 128, 120, 1, 'rgba(255,255,255,.18)', 4);
+  });
+};

@@ -1,0 +1,66 @@
+// Motion Prompt #242 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#242
+//
+// Image sequence on scroll / 連番アニメーション
+// Pack: lp3 (Landing page & web effects, part 3) · element 02 · Category: Scroll & drag effects
+// What happens: Scrolling turns a lemon soda can and scrolling back turns it the other way. The motion is a swap between 36 frames; the frame number and a progress line show where it is.
+// Motion spec:
+//   - A 511 × 170 viewport: product copy and a 150 px progress line on the left, a can (radius 36, height 118) on the right. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Scroll s: 0→1 over 0.3–2.3 s, 1→0 over 2.9–4.4 s (cubic ease-in-out). Frame f = floor(s × 36): 36 frames per turn, 10° per frame.
+//   - No interpolation between frames: the picture only changes when f changes, so slow scrolling reads as stepping through frames.
+//   - The can's label, dots and lettering sit at longitudes φ: x = 36·sin(φ + f × 10°), shown only on the side where cos is positive and squeezed by cos. Shading on both edges.
+//   - A "frame 004 / 36" readout and the progress line follow f; the scrollbar on the right follows the scroll.
+// When to use it: Use it to show a product all the way round, or to let the scroll drive a video-like sequence as on Apple product pages.
+// Tags: image-sequence, scroll, frames, product, 360, scrub, canvas
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#242
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 02
+// 02 連番アニメーション（スクロール量に合わせて、商品の写真を1コマずつ差し替え、缶が回って見える）
+CELLS[1] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const s = steps([[0.3, 0], [2.3, 1], [2.9, 1], [4.4, 0]], u);       // スクロール量（0〜1）
+  const N = 36, f = Math.min(N - 1, Math.floor(s * N + 1e-6));           // いま見せているコマ（36コマで1回転）
+  const ang = f / N * TAU;
+  view(k, () => {
+    k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
+    txt(k, 'NEW FLAVOR', 32, 50, `800 11px ${EN}`, C.blue, 'left', 'alphabetic', '2px');
+    txt(k, 'レモンソーダ', 32, 80, `800 22px ${JP}`, C.ink);
+    bars(k, 32, 96, 150, 3);
+    // 進み具合とコマ番号
+    k.fillStyle = C.faint; rr(k, 32, 136, 150, 5, 2.5); k.fill();
+    k.fillStyle = C.blue; rr(k, 32, 136, 150 * (f + 1) / N, 5, 2.5); k.fill();
+    txt(k, `frame ${String(f + 1).padStart(3, '0')} / ${N}`, 32, 158, `600 10px ${MONO}`, C.sub);
+    // 舞台
+    const X = 330, Y = 86;
+    const st = k.createRadialGradient(X, Y + 10, 10, X, Y + 10, 130); st.addColorStop(0, C.blueBg); st.addColorStop(1, rgba(C.blueBg, 0)); k.fillStyle = st; k.fillRect(200, 0, 311, VH);
+    k.fillStyle = 'rgba(30,30,33,.14)'; k.beginPath(); k.ellipse(X, Y + 66, 52, 8, 0, 0, 7); k.fill();
+    // 缶（円柱）。ラベルの柄を回転角に合わせて横へ送る
+    const R = 36, H0 = Y - 56, H1 = Y + 62;
+    k.save(); k.beginPath(); k.moveTo(X - R, H0); k.lineTo(X - R, H1); k.ellipse(X, H1, R, 7, 0, Math.PI, 0, true); k.lineTo(X + R, H0); k.closePath(); k.clip();
+    k.fillStyle = C.blueL; k.fillRect(X - R, H0 - 8, R * 2, H1 - H0 + 16);
+    // 帯（青）と水玉・ロゴ: 経度 phi にある物は x = R sin(phi + ang)、見えるのは cos > 0 の側
+    for (let i = 0; i < 12; i++) {
+      const phi = i / 12 * TAU + ang, cz = Math.cos(phi);
+      if (cz <= 0) continue;
+      const x = X + R * Math.sin(phi);
+      k.fillStyle = i % 2 ? C.blue : '#FFFFFF'; k.beginPath(); k.ellipse(x, H0 + 22, 5 * cz, 5, 0, 0, 7); k.fill();
+      k.fillStyle = C.blueM; k.beginPath(); k.ellipse(x, H1 - 20, 3.5 * cz, 3.5, 0, 0, 7); k.fill();
+    }
+    k.fillStyle = C.blue; k.fillRect(X - R, Y - 18, R * 2, 36);
+    const lc = Math.cos(ang);
+    if (lc > 0.05) { const lx = X + R * Math.sin(ang); k.save(); k.translate(lx, Y); k.scale(lc, 1); txt(k, 'LEMON', 0, 1, `900 15px ${EN}`, '#fff', 'center', 'middle', '1px'); k.restore(); }
+    const bc = Math.cos(ang + Math.PI);
+    if (bc > 0.05) { const bx = X + R * Math.sin(ang + Math.PI); k.save(); k.translate(bx, Y); k.scale(bc, 1); txt(k, 'SODA', 0, 1, `900 15px ${EN}`, C.blueL, 'center', 'middle', '1px'); k.restore(); }
+    // 立体の陰
+    const sh = k.createLinearGradient(X - R, 0, X + R, 0); sh.addColorStop(0, 'rgba(30,30,33,.28)'); sh.addColorStop(0.35, 'rgba(255,255,255,.28)'); sh.addColorStop(0.55, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(30,30,33,.3)');
+    k.fillStyle = sh; k.fillRect(X - R, H0 - 8, R * 2, H1 - H0 + 16); k.restore();
+    // ふた
+    k.fillStyle = C.faint; k.beginPath(); k.ellipse(X, H0, R, 7, 0, 0, 7); k.fill(); k.strokeStyle = C.g3; k.lineWidth = 1.5; k.beginPath(); k.ellipse(X, H0, R - 4, 5, 0, 0, 7); k.stroke();
+    sbar(k, s, 0.3);
+  });
+};

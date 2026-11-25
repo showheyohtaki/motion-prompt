@@ -1,0 +1,16 @@
+Please use "Image trail" (イメージトレイル), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #251
+
+What it is: Photos pile up along the cursor's path
+What the sample shows: Moving the cursor over a big heading leaves project photos one after another along its path; the oldest shrink away first.
+Spec:
+- A 511 × 170 viewport, over the heading PORTFOLIO (54 px). One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The cursor moves in a figure eight: x = 255 + 185·sin(2πt/4.7), y = 88 + 46·sin(4πt/4.7 + 0.6).
+- Every 0.1175 s (1/40 of 4.7 s) a photo is dropped at the cursor's position: 58 × 72 with a white border, tilted between −0.125 and 0.125 rad.
+- Each photo pops in over the first 12% of its life (backOut 0 → 1) and shrinks away over 55–100% (cubic ease-in); it lives 0.85 s. Newer photos sit on top.
+- #083 Cursor follower is one dot chasing the cursor and #157 Hover image reveal shows the photo of a list row; an image trail leaves many photos along the path.
+When to use it: Use it on photographer, designer or studio portfolios to show the amount of work in a playful way.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/251.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

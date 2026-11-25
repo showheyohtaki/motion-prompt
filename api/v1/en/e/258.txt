@@ -1,0 +1,50 @@
+// Motion Prompt #258 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#258
+//
+// Fluted glass / フルーテッドガラス
+// Pack: lp3 (Landing page & web effects, part 3) · element 18 · Category: Backgrounds & textures
+// What happens: Behind a panel of vertically ribbed glass, moving color circles, a white ring and the heading appear as narrow squeezed slices, one per rib. The panel drifts slowly left and right.
+// Motion spec:
+//   - A 511 × 170 viewport. The background is a blue → mid blue gradient with three moving circles (white, light blue, pale blue), a white ring and the heading SOFT / FOCUS. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - The glass's left edge is at x = 200 + 50·sin(2πt/4.7); ribs 16 px wide run from there to the right edge.
+//   - Each rib shows a 40 px slice of what is behind (starting 12 px to its left), slightly blurred (2.5 px), mirrored left to right and squeezed into 16 px.
+//   - A horizontal gradient on each rib: 34% white at the left edge → 6% at 25% → 0 at 70% → 18% black at the right edge. The whole panel gets 8% white and a 1.5 px white line on its left edge.
+//   - The rib width and the slice ratio (2.5× here) set how strong the distortion is. Also called reeded glass.
+// When to use it: Use it to add a soft, tactile layer over photos or color on interior, beauty or hotel sites.
+// Tags: fluted-glass, reeded-glass, ribbed, glass, distortion, background
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#258
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 18
+// 18 フルーテッドガラス（縦の溝が並んだガラスの板の向こうで、色と文字がにじみ、溝ごとに細く縮んで並ぶ。板はゆっくり左右に動く）
+CELLS[17] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  view(k, () => {
+    const blobs = g => {
+      const base = g.createLinearGradient(0, 0, VW, VH); base.addColorStop(0, C.blue); base.addColorStop(1, C.blueM); g.fillStyle = base; g.fillRect(0, 0, VW, VH);
+      [['#FFFFFF', 330 + 70 * Math.sin(W1 * u), 70 + 30 * Math.cos(W1 * u), 52], [C.blueL, 420 + 40 * Math.cos(W1 * u + 1), 130, 40], [C.blueXL, 250, 20 + 20 * Math.sin(2 * W1 * u), 34]]
+        .forEach(([col, x, y, r]) => { g.fillStyle = col; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); });
+      g.strokeStyle = 'rgba(255,255,255,.85)'; g.lineWidth = 7; g.beginPath(); g.arc(400 - 30 * Math.sin(W1 * u), 88, 46, 0, 7); g.stroke();
+      txt(g, 'SOFT', 32, 80, `900 50px ${EN}`, '#fff', 'left', 'alphabetic', '3px');
+      txt(g, 'FOCUS', 32, 128, `900 50px ${EN}`, C.blueXL, 'left', 'alphabetic', '3px');
+    };
+    const [bc, bg] = layer(k, 'fl-bg', VW, VH); blobs(bg); bg.restore();
+    const [cc, cg, s] = layer(k, 'fl-blur', VW, VH); cg.filter = `blur(${2.5 * s}px)`; blobs(cg); cg.filter = 'none'; cg.restore();
+    k.drawImage(bc, 0, 0, VW, VH);
+    // ガラスの板: 左の端が 150〜250 を往復。溝 1本 16px は、うしろの 40px ぶんを左右反転して縮めて映す
+    const PX = 200 + 50 * Math.sin(W1 * u), RW = 16;
+    for (let x = PX; x < VW; x += RW) {
+      const src = clamp(x - RW * 0.75, 0, VW - RW * 2.5);
+      k.save(); k.translate(x + RW, 0); k.scale(-1, 1); k.drawImage(cc, src * s, 0, RW * 2.5 * s, VH * s, 0, 0, RW, VH); k.restore();
+      const sh = k.createLinearGradient(x, 0, x + RW, 0);
+      sh.addColorStop(0, 'rgba(255,255,255,.34)'); sh.addColorStop(0.25, 'rgba(255,255,255,.06)'); sh.addColorStop(0.7, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(30,30,33,.18)');
+      k.fillStyle = sh; k.fillRect(x, 0, RW, VH);
+    }
+    k.fillStyle = 'rgba(255,255,255,.08)'; k.fillRect(PX, 0, VW - PX, VH);
+    k.fillStyle = 'rgba(255,255,255,.7)'; k.fillRect(PX, 0, 1.5, VH);
+  });
+};

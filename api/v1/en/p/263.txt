@@ -1,0 +1,16 @@
+Please use "Halftone" (ハーフトーン), one of the names in "Landing page & web effects, part 3".
+Motion Prompt #263
+
+What it is: The picture is drawn by the size of dots
+What the sample shows: On a pale blue page, a sun in blue dots and waves in mid-blue dots. As the sun moves and the waves flow, the dots grow and shrink and the shapes appear to move.
+Spec:
+- A 511 × 170 viewport on pale blue (#F1F5FF), with the heading POP / PRINT on the left. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+- The source picture (0–1): sun = 1.15 − distance/70 (center x = 360 + 20·sin a, y = 70 − 10·cos a); waves go 0 → 1 over 40 px below the line 118 + 12·sin(0.028x − a) + 6·sin(0.06x + 2a). a = 2πt/4.7.
+- Dots on an 8 px grid with radius 8 × 0.58 × √brightness (up to about 4.6 px). The sun is screened in blue #2F6BEB at 15°, the waves in mid blue #9DB8F6 at 75° and their overlap in blue at 45°, combined with multiply.
+- At the left edge (x = 180–250) the dots shrink to blend in.
+- Unlike #197 Pointillism (an art style of painted dots), halftone uses a regular print grid and turns brightness into dot size.
+When to use it: Use it in pop, retro or magazine-style designs to give photos and illustrations a printed feel.
+
+Reference implementation (Canvas 2D, a function whose picture depends only on the time): https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/263.txt
+Shared helper code: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+Keep the shapes, timing and easing values of the reference implementation as they are, and change only the text, colours and assets to fit what I am making.

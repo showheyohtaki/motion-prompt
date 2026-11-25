@@ -1,0 +1,50 @@
+// Motion Prompt #243 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#243
+//
+// Velocity skew / ベロシティスキュー
+// Pack: lp3 (Landing page & web effects, part 3) · element 03 · Category: Scroll & drag effects
+// What happens: Three columns of images scroll up. The faster the scroll, the more the images lean; when it stops they straighten. The current angle shows at the bottom right.
+// Motion spec:
+//   - A 511 × 170 viewport: images of 130 × 96 (radius 8) in three columns, 120 px apart vertically. One pass takes 4.7 s (twice per 9.4 s pack cycle). Each pass moves 720 px (six rows) and lands on the same layout.
+//   - Scroll: +240 px over 0.25–1.25 s, +240 px over 1.95–2.55 s, +240 px over 3.25–4.45 s (cubic ease-in-out); the second move is the fast one.
+//   - Speed v (px/s) is taken from the difference 1/60 s before and after; the tilt is clamp(v / 130, 0, 9)°, a skewY around each image's center. As the speed drops the angle returns to 0 by the same formula.
+//   - Peaks (cubic ease-in-out peaks at 3× the average speed): about 720 px/s → about 5.5° on the first move, about 1200 px/s → 9° (the cap) on the second, about 600 px/s → about 4.6° on the third. A label at the bottom right shows the angle.
+//   - The usual build measures the scroll speed every frame, feeds it to the skew and eases back to 0 (as in the GSAP Velocity Skew demo).
+// When to use it: Use it on portfolio, fashion or photo sites where a list of images should feel fast and physical.
+// Tags: velocity, skew, scroll, gallery, gsap, speed
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#243
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 03
+// 03 ベロシティスキュー（速くスクロールするほど画像が斜めに傾き、止まるとまっすぐに戻る）
+CELLS[2] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const Y = t => steps([[0.25, 0], [1.25, 240], [1.95, 240], [2.55, 480], [3.25, 480], [4.45, 720]], t);   // スクロール量。1周で720px（＝6段）進む
+  const y = Y(u), dt = 1 / 60;
+  const Ys = t => Y(t) + 720 * Math.floor(t / CYC);                    // 周期をまたいでもつながるスクロール量
+  const v = (Ys(u + dt) - Ys(u - dt)) / (2 * dt);                       // 速さ（px/秒）
+  const sk = clamp(v / 130, 0, 9) * Math.PI / 180;                      // 傾き（速さ130px/秒ごとに1°、最大9°）
+  view(k, () => {
+    k.fillStyle = '#fff'; k.fillRect(0, 0, VW, VH);
+    const COLS = [40, 190, 340], TW = 130, TH = 96, PITCH = 120;
+    for (let c = 0; c < 3; c++) {
+      const off = mod(y + c * 40, PITCH * 6);
+      for (let r = -1; r < 3; r++) {
+        const row = r + Math.floor(off / PITCH), ty = r * PITCH - mod(off, PITCH) + 14;
+        const v2 = mod(row * 3 + c, 6);
+        k.save(); k.translate(COLS[c] + TW / 2, ty + TH / 2); k.transform(1, Math.tan(sk), 0, 1, 0, 0);
+        art(k, -TW / 2, -TH / 2, TW, TH, v2, 8);
+        k.restore();
+      }
+    }
+    // 速さの目盛り（右下）
+    k.fillStyle = 'rgba(30,30,33,.82)'; rr(k, 380, 136, 112, 24, 12); k.fill();
+    txt(k, 'skew', 394, 148.5, `600 10px ${MONO}`, 'rgba(255,255,255,.7)', 'left', 'middle');
+    txt(k, `${(sk * 180 / Math.PI).toFixed(1)}°`, 478, 148.5, `700 11px ${MONO}`, C.blueL, 'right', 'middle');
+    sbar(k, mod(y, 720) / 720, 0.25);
+  });
+};

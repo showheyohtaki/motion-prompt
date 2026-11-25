@@ -1,0 +1,56 @@
+// Motion Prompt #257 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#257
+//
+// Liquid glass / リキッドグラス
+// Pack: lp3 (Landing page & web effects, part 3) · element 17 · Category: Backgrounds & textures
+// What happens: A rounded glass bar glides back and forth over a colorful heading. Inside it, the colors and letters underneath swell and bend more toward the edges; a white highlight runs along the top edge.
+// Motion spec:
+//   - A 511 × 170 viewport. The background is a blue → mid blue gradient (#2F6BEB → #9DB8F6) with three blurred circles (light blue, white, pale blue; 22 px blur) and the heading LIGHT / IN MOTION. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - Bar 176 × 58 (radius 29), centered at x = 255 + 140·sin(2πt/4.7), y = 64 + 16·sin(4πt/4.7).
+//   - Bending: the background is redrawn magnified around the bar's center: 1.7× in the outer ring, 1.38× from 7 px in and 1.22× from 13 px in, so it swells more toward the edges (standing in for refraction).
+//   - Finish: a 10% white film, white lines along the top and bottom edges (gradient opacity 0.95 and 0.6), a thin mid-blue inner line and an outer shadow (blur 18, 6 down). Three icons inside.
+//   - Unlike glassmorphism (frosted blur), it does not blur: it bends like a lens. It is also the name of the design language Apple announced in 2025.
+// When to use it: Use it for navigation, tabs or buttons that float over photos and color, to make them feel light and current.
+// Tags: liquid-glass, glass, refraction, lens, navbar, apple
+// Size: 539x208 px · Cycle: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// Live demo: https://showheyohtaki.github.io/motion-prompt/#257
+//
+// cells[i](k, w, h, u): k = CanvasRenderingContext2D (already cleared and wrapped in save/restore by the caller), w,h = size, u = seconds in [0, cycle). The picture depends only on u.
+// Element code starts here. CELLS, constants and helpers live in the kit.
+
+// @element 17
+// 17 リキッドグラス（カラフルな見出しの上を、ガラスのレンズのような丸いバーが動き、下の絵と文字をふくらませて曲げる）
+CELLS[16] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 2);
+  view(k, () => {
+    // 背景（レンズで曲げるので、見出しまで画面外の1枚に描いておく）
+    const [bgc, g, sc] = layer(k, 'lg-bg', VW, VH);
+    const base = g.createLinearGradient(0, 0, VW, VH); base.addColorStop(0, C.blue); base.addColorStop(1, C.blueM); g.fillStyle = base; g.fillRect(0, 0, VW, VH);
+    g.filter = `blur(${22 * sc}px)`;
+    [[C.blueL, 110 + 40 * Math.sin(W1 * u), 40 + 14 * Math.cos(W1 * u), 62], ['#FFFFFF', 400 + 30 * Math.cos(W1 * u), 140, 70], [C.blueXL, 280, 10 + 12 * Math.sin(2 * W1 * u), 54]]
+      .forEach(([col, x, y, r]) => { g.fillStyle = col; g.beginPath(); g.arc(x, y, r, 0, 7); g.fill(); });
+    g.filter = 'none';
+    txt(g, 'LIGHT', 30, 74, `900 46px ${EN}`, '#fff', 'left', 'alphabetic', '2px');
+    txt(g, 'IN MOTION', 30, 112, `900 34px ${EN}`, 'rgba(255,255,255,.92)', 'left', 'alphabetic', '2px');
+    g.fillStyle = 'rgba(255,255,255,.55)'; for (let i = 0; i < 2; i++) { rr(g, 32, 128 + i * 11, i ? 120 : 190, 5, 2.5); g.fill(); }
+    g.fillStyle = '#fff'; rr(g, 380, 22, 100, 26, 13); g.fill(); txt(g, 'JOIN NOW', 430, 35.5, `800 11px ${EN}`, C.blue, 'center', 'middle', '1px');
+    g.restore();
+    k.drawImage(bgc, 0, 0, VW, VH);
+    // レンズ（丸いバー）の位置: 左右に往復し、少し上下する
+    const LW = 176, LH = 58, lx = 255 + 140 * Math.sin(W1 * u) - LW / 2, ly = 64 + 16 * Math.sin(2 * W1 * u) - LH / 2;
+    const ccx = lx + LW / 2, ccy = ly + LH / 2;
+    const lens = (inset, z) => { k.save(); rr(k, lx + inset, ly + inset, LW - inset * 2, LH - inset * 2, LH / 2 - inset); k.clip();
+      k.translate(ccx, ccy); k.scale(z, z); k.translate(-ccx, -ccy); k.drawImage(bgc, 0, 0, VW, VH); k.restore(); };
+    k.save(); k.shadowColor = 'rgba(30,30,33,.35)'; k.shadowBlur = 18; k.shadowOffsetY = 6; k.fillStyle = 'rgba(255,255,255,.01)'; rr(k, lx, ly, LW, LH, LH / 2); k.fill(); k.restore();
+    // ふちほど強く曲げる: 外側の輪は大きく拡大、内側はやや拡大
+    lens(0, 1.7); lens(7, 1.38); lens(13, 1.22);
+    // 白いうすい膜と、上のふちの光、下のふちの色のにじみ
+    k.fillStyle = 'rgba(255,255,255,.10)'; rr(k, lx, ly, LW, LH, LH / 2); k.fill();
+    const hl = k.createLinearGradient(0, ly, 0, ly + LH); hl.addColorStop(0, 'rgba(255,255,255,.95)'); hl.addColorStop(0.35, 'rgba(255,255,255,0)'); hl.addColorStop(0.8, 'rgba(255,255,255,0)'); hl.addColorStop(1, 'rgba(255,255,255,.6)');
+    k.strokeStyle = hl; k.lineWidth = 2; rr(k, lx + 1, ly + 1, LW - 2, LH - 2, LH / 2 - 1); k.stroke();
+    k.strokeStyle = rgba(C.blueM, 0.5); k.lineWidth = 1; rr(k, lx + 3, ly + 3.5, LW - 6, LH - 6, LH / 2 - 3); k.stroke();
+    // バーの中のアイコン3つ（ナビの形）
+    for (let i = 0; i < 3; i++) { k.fillStyle = i === 1 ? '#fff' : 'rgba(255,255,255,.7)'; k.beginPath(); k.arc(ccx + (i - 1) * 46, ccy, i === 1 ? 8 : 6, 0, 7); k.fill(); }
+  });
+};

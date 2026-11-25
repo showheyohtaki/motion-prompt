@@ -1,8 +1,8 @@
 {
- "version": "1.ad009aeac3",
+ "version": "1.e0c91c6ecb",
  "site": "https://showheyohtaki.github.io/motion-prompt/",
  "repo": "https://github.com/showheyohtaki/motion-prompt",
- "count": 240,
+ "count": 264,
  "packs": [
   {
    "pack": "motion",
@@ -550,6 +550,58 @@
    "width": 539,
    "height": 208,
    "cycle": 4.7,
+   "fonts": [],
+   "scalable": true
+  },
+  {
+   "pack": "lp3",
+   "order": 11,
+   "title": {
+    "ja": "LP・Webサイトの演出 第3弾",
+    "en": "Landing page & web effects, part 3",
+    "es": "Efectos de landing pages y sitios web, parte 3",
+    "zh-Hans": "落地页与网页效果（第 3 弹）",
+    "zh-Hant": "Landing Page 與網站效果 第 3 彈"
+   },
+   "langs": [
+    "en",
+    "es",
+    "ja",
+    "zh-Hans",
+    "zh-Hant"
+   ],
+   "categories": [
+    {
+     "slug": "scroll-drag",
+     "ja": "スクロール・ドラッグで見せる",
+     "en": "Scroll & drag effects",
+     "es": "Efectos con scroll y arrastre",
+     "zh-Hans": "滚动与拖拽效果",
+     "zh-Hant": "捲動與拖曳效果"
+    },
+    {
+     "slug": "touch",
+     "ja": "触れると反応する",
+     "en": "Pointer interactions",
+     "es": "Interacciones con el puntero",
+     "zh-Hans": "指针交互",
+     "zh-Hant": "游標互動效果"
+    },
+    {
+     "slug": "texture",
+     "ja": "背景・質感",
+     "en": "Backgrounds & textures",
+     "es": "Fondos y texturas",
+     "zh-Hans": "背景与质感",
+     "zh-Hant": "背景與質感"
+    }
+   ],
+   "count": 24,
+   "first": "241",
+   "last": "264",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
    "fonts": [],
    "scalable": true
   }
@@ -15708,6 +15760,1525 @@
     "onion diagram",
     "target market",
     "layers"
+   ]
+  },
+  {
+   "id": "241",
+   "pack": "lp3",
+   "no": "01",
+   "slug": "scrollytelling",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "スクローリーテリング",
+    "en": "Scrollytelling",
+    "es": "Scrollytelling",
+    "zh-Hans": "滚动叙事",
+    "zh-Hant": "捲動敘事"
+   },
+   "meaning": {
+    "ja": "読み進めると横の図が切り替わる",
+    "en": "The pinned picture changes as you read on",
+    "es": "La imagen fija cambia a medida que sigues leyendo",
+    "zh-Hans": "往下阅读时，固定在旁边的图随之切换",
+    "zh-Hant": "往下讀時，固定在旁邊的圖跟著切換"
+   },
+   "ask": {
+    "ja": "サービスの1日の流れをスクローリーテリングで見せて。左の文章が3段進むごとに、右に固定したイラストを朝・昼・夜と切り替えて。",
+    "en": "Tell the service's day as scrollytelling: as the text on the left moves through three steps, switch the pinned illustration on the right from morning to noon to night.",
+    "es": "Cuenta el día del servicio con scrollytelling: mientras el texto de la izquierda avanza en tres pasos, cambia la ilustración fija de la derecha de mañana a mediodía y a noche.",
+    "zh-Hans": "用滚动叙事展示服务的一天：左侧文字每推进一段，右侧固定的插画就依次切换为早上、中午、夜晚。",
+    "zh-Hant": "服務的一天請用捲動敘事呈現：左邊的文字每往下走一段，右邊固定的插圖就依序切換成早上、中午、晚上。"
+   },
+   "summary": {
+    "ja": "左の文章の列をスクロールすると、右に固定した空の絵が、読んでいる段に合わせて朝から昼、夜へと色と太陽・月・星ごと変わっていく。",
+    "en": "Scrolling the text column on the left changes the pinned sky picture on the right from morning to noon to night, colors, sun, moon and stars included, to match the step being read."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。左に文章3段（120px 間隔）、右に固定した絵（252×146・角丸10）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "スクロール: 0.25〜1.05秒で 0→1段、1.85〜2.65秒で 1→2段、3.6〜4.4秒で 2→0段（easeInOut 3乗）。絵はスクロールしても動かない（sticky）",
+     "絵はスクロール量 s（0〜2）の連続した関数: 空の上の色 #E4ECFE→#9DB8F6→#2F6BEB、下の色 白→#E4ECFE→#9DB8F6、丘（#C9D8FB・#9DB8F6・#2F6BEB）も同じく補間。白い太陽は弧に沿って昇って沈み（s=1.25〜1.7で消える）、月は s=1.45〜1.95、星は s=1.35〜1.95 で現れる",
+     "読んでいる段の見出しは黒、離れた段は薄い灰色（|s−段|×1.4 で混ぜる）。絵の左上に今の時刻の札（07:00／12:00／21:00）",
+     "#076 ピン留めは仕組み（セクションを止める）の名前。スクローリーテリングは、文章の段ごとに固定した図を描き替えて話を進める見せ方の名前"
+    ],
+    "en": [
+     "A 511 × 170 viewport: three text steps on the left (120 px apart) and a pinned picture on the right (252 × 146, radius 10). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Scroll: step 0→1 over 0.25–1.05 s, 1→2 over 1.85–2.65 s, 2→0 over 3.6–4.4 s (cubic ease-in-out). The picture does not scroll (sticky).",
+     "The picture is a continuous function of the scroll position s (0–2): sky top #E4ECFE → #9DB8F6 → #2F6BEB, bottom white → #E4ECFE → #9DB8F6, the hills (#C9D8FB, #9DB8F6, #2F6BEB) interpolated the same way. A white sun rises and sets along an arc (gone by s = 1.25–1.7), the moon appears over s = 1.45–1.95 and the stars over s = 1.35–1.95.",
+     "The heading of the step being read is black and the others fade to pale gray (mixed by |s − step| × 1.4). A time label (07:00 / 12:00 / 21:00) sits at the top left of the picture.",
+     "#076 Pinning names the mechanism (holding a section in place). Scrollytelling names the storytelling pattern: the pinned graphic is redrawn for each step of the text."
+    ]
+   },
+   "use": {
+    "ja": "会社の1日、製品ができるまで、データの変化など、文章と図を並べて順に読ませたいとき。",
+    "en": "Use it for \"a day at\", \"how it is made\" or a data story, where text and a graphic should be read step by step together."
+   },
+   "tags": [
+    "scrollytelling",
+    "scroll",
+    "sticky",
+    "storytelling",
+    "scroll-driven",
+    "pinned-graphic"
+   ]
+  },
+  {
+   "id": "242",
+   "pack": "lp3",
+   "no": "02",
+   "slug": "image-sequence-on-scroll",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "連番アニメーション",
+    "en": "Image sequence on scroll",
+    "es": "Secuencia de imágenes con scroll",
+    "zh-Hans": "滚动序列帧动画",
+    "zh-Hant": "捲動序列幀動畫"
+   },
+   "meaning": {
+    "ja": "スクロールに合わせて商品が回る",
+    "en": "The product turns as you scroll",
+    "es": "El producto gira a medida que haces scroll",
+    "zh-Hans": "产品随着滚动旋转",
+    "zh-Hant": "商品跟著捲動旋轉"
+   },
+   "ask": {
+    "ja": "新商品の缶を連番アニメーションで回して。36枚の画像をスクロール量に合わせて切り替え、下まで読むとちょうど1回転するように。",
+    "en": "Spin the new can with an image sequence on scroll: swap 36 frames by scroll position so it makes exactly one turn by the end of the section.",
+    "es": "Haz girar la lata nueva con una secuencia de imágenes con scroll: cambia 36 fotogramas según el scroll para que dé exactamente una vuelta al final de la sección.",
+    "zh-Hans": "用滚动序列帧动画让新品易拉罐旋转：按滚动量切换36张图片，滚到区块底部时正好转一圈。",
+    "zh-Hant": "新商品的罐子請用捲動序列幀動畫轉動：依捲動量切換36張圖片，捲到區塊最下面時剛好轉一圈。"
+   },
+   "summary": {
+    "ja": "スクロールするとレモンソーダの缶が回り、戻すと逆に回る。動きは36コマの絵の差し替えで、今のコマ番号と進み具合の線が出る。",
+    "en": "Scrolling turns a lemon soda can and scrolling back turns it the other way. The motion is a swap between 36 frames; the frame number and a progress line show where it is."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。左に商品名と進み具合の線（150px）、右に缶（半径36・高さ118）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "スクロール量 s: 0.3〜2.3秒で 0→1、2.9〜4.4秒で 1→0（easeInOut 3乗）。コマ番号 f = floor(s×36)（36コマで1回転、1コマ10°）",
+     "絵はなめらかに補間しない。f が変わった時だけ次の絵に差し替わるので、ゆっくり動かすとコマ送りに見える",
+     "缶の柄（ラベル・水玉・文字）は経度 φ の位置に置き、x = 36·sin(φ + f×10°)、cos が正の側だけ見せて幅を cos で縮める。左右に影",
+     "「frame 004 / 36」の表示と線が f に合わせて伸びる。右端のスクロールバーも連動"
+    ],
+    "en": [
+     "A 511 × 170 viewport: product copy and a 150 px progress line on the left, a can (radius 36, height 118) on the right. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Scroll s: 0→1 over 0.3–2.3 s, 1→0 over 2.9–4.4 s (cubic ease-in-out). Frame f = floor(s × 36): 36 frames per turn, 10° per frame.",
+     "No interpolation between frames: the picture only changes when f changes, so slow scrolling reads as stepping through frames.",
+     "The can's label, dots and lettering sit at longitudes φ: x = 36·sin(φ + f × 10°), shown only on the side where cos is positive and squeezed by cos. Shading on both edges.",
+     "A \"frame 004 / 36\" readout and the progress line follow f; the scrollbar on the right follows the scroll."
+    ]
+   },
+   "use": {
+    "ja": "商品を360°見せたい、Apple の製品ページのように動画をスクロールで操作させたいときに。",
+    "en": "Use it to show a product all the way round, or to let the scroll drive a video-like sequence as on Apple product pages."
+   },
+   "tags": [
+    "image-sequence",
+    "scroll",
+    "frames",
+    "product",
+    "360",
+    "scrub",
+    "canvas"
+   ]
+  },
+  {
+   "id": "243",
+   "pack": "lp3",
+   "no": "03",
+   "slug": "velocity-skew",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "ベロシティスキュー",
+    "en": "Velocity skew",
+    "es": "Velocity skew (inclinación por velocidad)",
+    "zh-Hans": "滚动速度倾斜",
+    "zh-Hant": "捲動速度傾斜"
+   },
+   "meaning": {
+    "ja": "速くスクロールすると傾いて流れる",
+    "en": "Images lean while you scroll fast",
+    "es": "Las imágenes se inclinan cuando haces scroll rápido",
+    "zh-Hans": "快速滚动时图片倾斜着流过",
+    "zh-Hant": "捲得越快，圖片越傾斜"
+   },
+   "ask": {
+    "ja": "作品一覧にベロシティスキューを入れて。スクロールの速さに合わせて画像を最大9°傾け、止まったらまっすぐに戻して。",
+    "en": "Add velocity skew to the work grid: tilt the images up to 9° with the scroll speed and let them settle back straight when the scroll stops.",
+    "es": "Agrega velocity skew a la cuadrícula de trabajos: inclina las imágenes hasta 9° según la velocidad del scroll y que vuelvan a quedar rectas cuando el scroll se detenga.",
+    "zh-Hans": "给作品列表加上滚动速度倾斜：图片按滚动速度最多倾斜9°，停止滚动后回正。",
+    "zh-Hant": "作品列表請加上捲動速度傾斜：圖片依捲動速度最多傾斜9°，停止捲動後再回正。"
+   },
+   "summary": {
+    "ja": "作品の画像が3列で上へ流れる。速くスクロールするほど画像が斜めに傾き、止まるとまっすぐに戻る。右下に今の傾きの角度が出る。",
+    "en": "Three columns of images scroll up. The faster the scroll, the more the images lean; when it stops they straighten. The current angle shows at the bottom right."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。画像 130×96（角丸8）を3列、縦の間隔120。4.7秒でひと回り（パックの周期9.4秒で2回）。1周で720px（6段）進み、元の並びに戻る",
+     "スクロール: 0.25〜1.25秒で +240px、1.95〜2.55秒で +240px、3.25〜4.45秒で +240px（easeInOut 3乗）。2回目が速い",
+     "速さ v（px/秒）を前後1/60秒の差から求め、傾き = clamp(v / 130, 0, 9)°。画像ごとに中心を軸に skewY する。速さが落ちると角度も同じ式で0に戻る",
+     "速さの山（easeInOut 3乗は平均の3倍）: 1回目 約720px/秒で約5.5°、2回目 約1200px/秒で9°（上限）、3回目 約600px/秒で約4.6°。右下の札に角度を表示",
+     "ふつうの作り方は、スクロールの速さを毎フレーム測って傾きに入れ、0へ戻すときは短いイージングをかける（GSAP の Velocity Skew の例と同じ）"
+    ],
+    "en": [
+     "A 511 × 170 viewport: images of 130 × 96 (radius 8) in three columns, 120 px apart vertically. One pass takes 4.7 s (twice per 9.4 s pack cycle). Each pass moves 720 px (six rows) and lands on the same layout.",
+     "Scroll: +240 px over 0.25–1.25 s, +240 px over 1.95–2.55 s, +240 px over 3.25–4.45 s (cubic ease-in-out); the second move is the fast one.",
+     "Speed v (px/s) is taken from the difference 1/60 s before and after; the tilt is clamp(v / 130, 0, 9)°, a skewY around each image's center. As the speed drops the angle returns to 0 by the same formula.",
+     "Peaks (cubic ease-in-out peaks at 3× the average speed): about 720 px/s → about 5.5° on the first move, about 1200 px/s → 9° (the cap) on the second, about 600 px/s → about 4.6° on the third. A label at the bottom right shows the angle.",
+     "The usual build measures the scroll speed every frame, feeds it to the skew and eases back to 0 (as in the GSAP Velocity Skew demo)."
+    ]
+   },
+   "use": {
+    "ja": "作品・写真の一覧を勢いよく見せたい、ポートフォリオやファッションのサイトで。",
+    "en": "Use it on portfolio, fashion or photo sites where a list of images should feel fast and physical."
+   },
+   "tags": [
+    "velocity",
+    "skew",
+    "scroll",
+    "gallery",
+    "gsap",
+    "speed"
+   ]
+  },
+  {
+   "id": "244",
+   "pack": "lp3",
+   "no": "04",
+   "slug": "multi-scroll",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "マルチスクロール",
+    "en": "Multi-scroll (split scrolling)",
+    "es": "Multi-scroll (scroll dividido)",
+    "zh-Hans": "分屏反向滚动",
+    "zh-Hant": "分割畫面反向捲動"
+   },
+   "meaning": {
+    "ja": "左右の列が逆向きに流れる",
+    "en": "Two columns scroll in opposite directions",
+    "es": "Dos columnas se desplazan en direcciones opuestas",
+    "zh-Hans": "左右两栏朝相反方向滚动",
+    "zh-Hant": "左右兩欄往相反方向捲動"
+   },
+   "ask": {
+    "ja": "サービス紹介をマルチスクロールにして。左に見出し、右に写真の2列で、1回のスクロールで左は上へ、右は下へ動いて次の組がそろうように。",
+    "en": "Make the service intro a multi-scroll: headings on the left, photos on the right, and each scroll moves the left column up and the right column down until the next pair lines up.",
+    "es": "Haz la presentación del servicio con multi-scroll: títulos a la izquierda y fotos a la derecha; cada scroll sube la columna izquierda y baja la derecha hasta que se alinee el siguiente par.",
+    "zh-Hans": "把服务介绍做成分屏反向滚动：左栏标题、右栏照片，每滚动一次左栏向上、右栏向下，直到下一组对齐。",
+    "zh-Hant": "服務介紹請做成分割畫面反向捲動：左欄標題、右欄照片，每捲一次左欄往上、右欄往下，直到下一組對齊。"
+   },
+   "summary": {
+    "ja": "画面が左右2列に分かれ、スクロールすると左の色の見出しは上へ、右の絵は下へ動いて、3組が順にそろう。最後に一気に最初の組へ戻る。",
+    "en": "The screen is split into two columns. On scroll, the colored headings on the left move up and the pictures on the right move down, so three pairs line up in turn, then it runs back to the first pair."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。左右に 255.5px ずつ2列。どちらの列も1組＝画面の高さ170。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "組の番号 s: 0.35〜1.15秒で 0→1、1.95〜2.75秒で 1→2、3.6〜4.45秒で 2→0（easeInOut 3乗）",
+     "左の列は組 i を y = (i − s)×170、右の列は y = (s − i)×170 に置く（右は下から順に並ぶので逆向きに動く）。1回の切り替えで両列とも170px 動く",
+     "組: 01 COLOR（青 #2F6BEB）・02 SHAPE（薄い青 #C9D8FB）・03 MOTION（中間の青 #9DB8F6）。真ん中に白い境目と、今の組を示す点3つ、動いている間だけ左右逆向きの矢印",
+     "#144 スプリットスクリーン（画面を分けて同時に見せる）とは別。マルチスクロールは分けた列をスクロールで逆向きに動かす"
+    ],
+    "en": [
+     "A 511 × 170 viewport split into two 255.5 px columns; each pair is one screen high (170). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Pair index s: 0→1 over 0.35–1.15 s, 1→2 over 1.95–2.75 s, 2→0 over 3.6–4.45 s (cubic ease-in-out).",
+     "The left column places pair i at y = (i − s) × 170, the right column at y = (s − i) × 170 (its pairs are stacked bottom-up, so it moves the other way). Each change moves both columns by 170 px.",
+     "Pairs: 01 COLOR (blue #2F6BEB), 02 SHAPE (light blue #C9D8FB), 03 MOTION (mid blue #9DB8F6). A white divider in the middle, three dots for the current pair, and opposite arrows while it moves.",
+     "Not the same as #144 Split screen (showing parts side by side). Multi-scroll moves the split columns in opposite directions on scroll."
+    ]
+   },
+   "use": {
+    "ja": "写真と見出しを1対1で見せたい、ブランド・作品紹介のページを印象的に切り替えたいときに。",
+    "en": "Use it for brand or project pages that pair one image with one heading per screen and want a striking change between them."
+   },
+   "tags": [
+    "multiscroll",
+    "split-scrolling",
+    "opposite",
+    "columns",
+    "scroll",
+    "fullpage"
+   ]
+  },
+  {
+   "id": "245",
+   "pack": "lp3",
+   "no": "05",
+   "slug": "shrinking-header",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "縮むヘッダー",
+    "en": "Shrinking header",
+    "es": "Header que se encoge",
+    "zh-Hans": "收缩式页眉",
+    "zh-Hant": "縮小式頁首"
+   },
+   "meaning": {
+    "ja": "スクロールで細いピル形にまとまる",
+    "en": "On scroll it shrinks into a slim floating pill",
+    "es": "Al hacer scroll se encoge en una píldora flotante",
+    "zh-Hans": "滚动时缩成细长的悬浮胶囊形",
+    "zh-Hant": "捲動時縮成細長的懸浮膠囊形"
+   },
+   "ask": {
+    "ja": "ヘッダーを縮むヘッダーにして。70pxスクロールするまでに、幅いっぱいの白い帯から、上に浮く細い黒のピル形に変わるように。",
+    "en": "Make it a shrinking header: within the first 70 px of scroll, turn the full-width white bar into a slim floating black pill.",
+    "es": "Haz un header que se encoge: en los primeros 70 px de scroll, que la barra blanca de ancho completo se convierta en una píldora negra delgada y flotante.",
+    "zh-Hans": "把页眉做成收缩式页眉：滚动前70px内，从通栏白色横条变成悬浮的细长黑色胶囊。",
+    "zh-Hant": "頁首請做成縮小式頁首：捲動前70px內，從整排白色橫條變成浮在上方的細長黑色膠囊。"
+   },
+   "summary": {
+    "ja": "ページを下へスクロールすると、幅いっぱいの白いヘッダーが縮み、角の丸い細い黒のバーになって上に浮く。カートのボタンは文字が消えて印だけになる。上へ戻すと元に広がる。",
+    "en": "Scrolling down shrinks the full-width white header into a slim, rounded black bar floating at the top; the cart button loses its label and keeps only the icon. Scrolling back up restores it."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。4.7秒でひと回り（パックの周期9.4秒で2回）。スクロール: 0.4〜1.9秒で 0→150px、2.9〜4.3秒で 150→0（easeInOut 3乗）",
+     "縮み具合 q = easeInOut(スクロール量 / 70)。70px で縮みきり、その後はそのまま",
+     "q に合わせて: 幅 511→310、高さ 46→34、上の余白 0→10、角丸 0→17、色 白→黒（#1E1E21 を92%）、影 ぼかし6→16。文字の大きさ 13→11px、ナビの間隔 56→40px",
+     "カートのボタンは幅 82→30、文字「カート」が消えて袋の印が出る。文字の色は黒→白",
+     "#075 追従ヘッダーは上に残るだけ、#149 隠れるヘッダーは下へで隠れる。縮むヘッダーは残ったまま形と大きさが変わる"
+    ],
+    "en": [
+     "A 511 × 170 viewport. One pass takes 4.7 s (twice per 9.4 s pack cycle). Scroll: 0→150 px over 0.4–1.9 s, 150→0 over 2.9–4.3 s (cubic ease-in-out).",
+     "Shrink amount q = easeInOut(scroll / 70): fully shrunk after 70 px, then it stays.",
+     "With q: width 511 → 310, height 46 → 34, top gap 0 → 10, radius 0 → 17, color white → black (#1E1E21 at 92%), shadow blur 6 → 16; text 13 → 11 px, nav spacing 56 → 40 px.",
+     "The cart button goes from 82 to 30 px wide: the label fades out and a bag icon fades in. Text color goes from black to white.",
+     "#075 Sticky header only stays on top and #149 Hide-on-scroll header hides on the way down; a shrinking header stays and changes its shape and size."
+    ]
+   },
+   "use": {
+    "ja": "写真の大きいファーストビューを見せたあと、ナビだけは小さく残したいサイトに。",
+    "en": "Use it when a large hero should have room at first, but the navigation should stay at hand in a compact form."
+   },
+   "tags": [
+    "header",
+    "shrink",
+    "navbar",
+    "scroll",
+    "sticky",
+    "pill",
+    "floating-nav"
+   ]
+  },
+  {
+   "id": "246",
+   "pack": "lp3",
+   "no": "06",
+   "slug": "reveal-footer",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "下から現れるフッター",
+    "en": "Reveal footer",
+    "es": "Footer revelado (reveal footer)",
+    "zh-Hans": "揭示式页脚",
+    "zh-Hant": "揭露式頁尾"
+   },
+   "meaning": {
+    "ja": "本文がめくれて固定のフッターが出る",
+    "en": "The page lifts away to uncover a fixed footer",
+    "es": "La página se levanta y deja ver un footer fijo",
+    "zh-Hans": "正文上移，露出固定在底部的页脚",
+    "zh-Hant": "內文往上移開，露出固定在底部的頁尾"
+   },
+   "ask": {
+    "ja": "フッターを下から現れるフッターにして。フッターは画面の下に固定して本文の下に隠し、最後までスクロールすると本文が上がってフッターが見えるように。",
+    "en": "Make the footer a reveal footer: fix it to the bottom of the viewport behind the page, so that scrolling to the end lifts the page off it.",
+    "es": "Haz un footer revelado: fíjalo al fondo de la pantalla detrás de la página, para que al llegar al final la página se levante y lo deje ver.",
+    "zh-Hans": "把页脚做成揭示式页脚：页脚固定在视口底部并藏在正文后面，滚到最后时正文上移，露出页脚。",
+    "zh-Hant": "頁尾請做成揭露式頁尾：頁尾固定在畫面底部、藏在內文後面，捲到最後時內文往上移開，露出頁尾。"
+   },
+   "summary": {
+    "ja": "最後までスクロールすると、白い本文が影を付けて上がっていき、その下に固定されていた青いフッターが現れる。フッターの中身は少し下から上がってくる。",
+    "en": "At the end of the page the white content rises with a shadow and uncovers a blue footer that was fixed underneath; the footer content slides up a little as it appears."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。フッター（高さ130・青 #2F6BEB）は画面の下に固定。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "スクロール: 0.35〜2.0秒で 0→130px、3.0〜4.35秒で 130→0（easeInOut 3乗）。本文は白でフッターの上に重なり、スクロール分だけ上がる",
+     "本文の下の端: 角丸 0→14（q×3 で効く）、影 ぼかし18・下へ6・不透明度 0→0.35（q×4）。q＝スクロール量 / 130",
+     "フッターの中身は 26×(1−q) px 下から元の位置へ。見出し2行（28px、2行目は薄い青 #C9D8FB）、リンク4つ、白い丸に青い矢印のボタン",
+     "CSS なら フッターを position: sticky; bottom: 0（または fixed）にして、本文に背景色と z-index を付けて前に出す"
+    ],
+    "en": [
+     "A 511 × 170 viewport; the footer (130 px high, blue #2F6BEB) is fixed to the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Scroll: 0→130 px over 0.35–2.0 s, 130→0 over 3.0–4.35 s (cubic ease-in-out). The white content sits above the footer and moves up by the scroll amount.",
+     "Bottom edge of the content: radius 0 → 14 (reaching full at q × 3), shadow blur 18, offset 6 down, opacity 0 → 0.35 (q × 4), with q = scroll / 130.",
+     "Footer content slides from 26 × (1 − q) px below to its place: a two-line heading (28 px, the second line light blue #C9D8FB), four links and a white round button with a blue arrow.",
+     "In CSS: make the footer position: sticky; bottom: 0 (or fixed) and give the main content a background and a higher z-index."
+    ]
+   },
+   "use": {
+    "ja": "お問い合わせや採用への誘導を、ページの最後に印象よく見せたいときに。",
+    "en": "Use it to give the closing call to action (contact, hiring, newsletter) a memorable last screen."
+   },
+   "tags": [
+    "footer",
+    "reveal",
+    "sticky-footer",
+    "curtain",
+    "scroll",
+    "parallax"
+   ]
+  },
+  {
+   "id": "247",
+   "pack": "lp3",
+   "no": "07",
+   "slug": "cover-flow",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "カバーフロー",
+    "en": "Cover Flow",
+    "es": "Cover Flow",
+    "zh-Hans": "封面流（Cover Flow）",
+    "zh-Hant": "Cover Flow 封面流"
+   },
+   "meaning": {
+    "ja": "傾いたジャケットが回り込んで並ぶ",
+    "en": "Angled covers swing round into the center",
+    "es": "Las portadas inclinadas giran hacia el centro",
+    "zh-Hans": "倾斜的封面旋转到正中",
+    "zh-Hant": "傾斜的封面轉到正中央"
+   },
+   "ask": {
+    "ja": "新作アルバムの一覧をカバーフローにして。正面に1枚、左右は62°傾けて重ね、送ると次の1枚が回り込んで正面に来るように。床に映り込みも付けて。",
+    "en": "Show the new albums as a Cover Flow: one cover facing front, the rest turned 62° and overlapping on both sides; each step swings the next one round to the front. Add a reflection on the floor.",
+    "es": "Muestra los álbumes nuevos como Cover Flow: una portada de frente y las demás giradas 62° y superpuestas a los lados; cada paso trae la siguiente al frente. Agrega un reflejo en el piso.",
+    "zh-Hans": "用封面流展示新专辑：正中一张朝前，两侧的封面转62°叠在一起，每翻一步下一张就转到正面。地面加上倒影。",
+    "zh-Hant": "新專輯請用 Cover Flow 封面流呈現：正中一張朝前，兩側封面轉62°疊在一起，每翻一步下一張就轉到正面。地面加上倒影。"
+   },
+   "summary": {
+    "ja": "暗い地に正方形のジャケットが並び、正面の1枚以外は斜めに傾いて重なる。送ると次の1枚が回り込みながら正面に来て、曲名が替わる。床に映り込み。",
+    "en": "Square covers line up on a dark background; all but the center one are turned and overlapping. Each step swings the next cover round to the front and the title changes. Reflections on the floor."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。明るい地（白→#F1F0EE）にジャケット 88×88。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "正面の番号 p: 0.25〜0.75秒で 0→1、1.05〜1.55秒で 1→2、1.85〜2.35秒で 2→3、3.0〜4.3秒で 3→0（easeInOut 3乗）",
+     "番号 i のジャケットは rel = i − p。横の位置: |rel| < 1 なら rel×74px、その先は 74 + (|rel|−1)×30px。回転 = clamp(|rel|)×62°（左右で逆向き）、横を向いた分だけ白く薄める（最大45%）",
+     "遠い物から描き、正面が最後。下に上下反転の映り込み（不透明度0.22）を床のグラデーションで消す。正面の曲名は p が整数に近い時だけ出る",
+     "#058 カルーセル（横に送って順番に見せる）と違い、両側の物を奥へ傾けて重ね、3Dの棚のように見せる"
+    ],
+    "en": [
+     "A 511 × 170 viewport: covers of 88 × 88 on a light background (white → #F1F0EE). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Front index p: 0→1 over 0.25–0.75 s, 1→2 over 1.05–1.55 s, 2→3 over 1.85–2.35 s, 3→0 over 3.0–4.3 s (cubic ease-in-out).",
+     "Cover i has rel = i − p. Horizontal offset: rel × 74 px while |rel| < 1, then 74 + (|rel| − 1) × 30 px. Rotation = clamp(|rel|) × 62° (mirrored on each side); turned covers are washed out with white (up to 45%).",
+     "Drawn far to near, the front one last. A flipped reflection (opacity 0.22) fades into the floor gradient. The front title shows only while p is near a whole number.",
+     "Unlike #058 Carousel (slide sideways one by one), the covers on both sides are turned away and stacked like a 3D shelf."
+    ]
+   },
+   "use": {
+    "ja": "アルバム・本・商品のパッケージなど、正方形や縦長の表紙を並べて選ばせたいときに。",
+    "en": "Use it to browse albums, books or packaging, anything with a cover people pick by sight."
+   },
+   "tags": [
+    "cover-flow",
+    "carousel",
+    "3d",
+    "gallery",
+    "album",
+    "reflection",
+    "coverflow"
+   ]
+  },
+  {
+   "id": "248",
+   "pack": "lp3",
+   "no": "08",
+   "slug": "infinite-canvas",
+   "category": "scroll-drag",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "無限キャンバス",
+    "en": "Infinite canvas",
+    "es": "Lienzo infinito",
+    "zh-Hans": "无限画布",
+    "zh-Hant": "無限畫布"
+   },
+   "meaning": {
+    "ja": "どの方向へもドラッグで見て回れる",
+    "en": "Drag in any direction, it never ends",
+    "es": "Arrastra en cualquier dirección, nunca termina",
+    "zh-Hans": "向任意方向拖动浏览，没有尽头",
+    "zh-Hant": "往任何方向拖曳瀏覽，沒有盡頭"
+   },
+   "ask": {
+    "ja": "作品の一覧を無限キャンバスにして。上下左右どこへでもドラッグで動かせて、端が来ないように作品のタイルを繰り返し並べて。",
+    "en": "Make the portfolio an infinite canvas: drag it in any direction, with the project tiles repeating so there is never an edge.",
+    "es": "Haz el portafolio como un lienzo infinito: que se pueda arrastrar en cualquier dirección y que las fichas de proyectos se repitan para que nunca haya un borde.",
+    "zh-Hans": "把作品集做成无限画布：可以向上下左右任意方向拖动，作品卡片重复排列，永远没有边界。",
+    "zh-Hant": "作品集請做成無限畫布：可以往上下左右任意方向拖曳，作品卡片重複排列，永遠沒有邊界。"
+   },
+   "summary": {
+    "ja": "方眼の上に作品のタイルが並び、つかんでドラッグすると壁ごと左上や左へ動く。何度動かしても端が来ず、同じ並びが繰り返し出てくる。",
+    "en": "Project tiles sit on a grid; grabbing and dragging moves the whole wall up-left or left. However far it goes there is no edge; the same arrangement keeps coming back."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。タイルの格子は横96・縦84、1段おきに48px ずらす。タイルは3種の大きさ（74×58・64×52・70×46）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "ドラッグ2回: 0.3〜1.9秒で 左へ288px・上へ168px、2.5〜4.2秒で 左へ288px（途中で14px だけ縦にふくらむ）。easeInOut 3乗",
+     "タイルの絵と大きさは 横6×縦2 の格子ごとに繰り返す。1周の移動（576×168）がちょうどその倍数なので、つなぎ目が出ない",
+     "つかんでいる間は丸い印に輪が付き、離した後は次につかむ位置へ戻る。うしろに24px の方眼が一緒に動く",
+     "#091 無限スクロールは下へ続きを読み込む。無限キャンバスは2次元の面をどこへでも動かして見る"
+    ],
+    "en": [
+     "A 511 × 170 viewport. Tile grid: 96 across, 84 down, every other row shifted by 48 px; tiles come in three sizes (74 × 58, 64 × 52, 70 × 46). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Two drags: 288 px left and 168 px up over 0.3–1.9 s, then 288 px left over 2.5–4.2 s (bulging 14 px vertically on the way); cubic ease-in-out.",
+     "Tile art and size repeat every 6 × 2 cells. One pass moves exactly a multiple of that (576 × 168), so there is no seam.",
+     "While grabbing, the round handle shows a ring; after letting go it moves back to where the next drag starts. A 24 px grid moves along behind.",
+     "#091 Infinite scroll loads more content downward; an infinite canvas lets you move around a 2D surface in any direction."
+    ]
+   },
+   "use": {
+    "ja": "作品やアイデアがたくさんあるポートフォリオ・展示ページを、探検するように見せたいときに。",
+    "en": "Use it for portfolios or exhibitions with many pieces, when browsing should feel like exploring."
+   },
+   "tags": [
+    "infinite-canvas",
+    "drag",
+    "pan",
+    "grid",
+    "portfolio",
+    "explore"
+   ]
+  },
+  {
+   "id": "249",
+   "pack": "lp3",
+   "no": "09",
+   "slug": "dock-magnification",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "ドック風メニュー",
+    "en": "Dock magnification",
+    "es": "Dock con magnificación",
+    "zh-Hans": "Dock 放大效果",
+    "zh-Hant": "Dock 放大效果"
+   },
+   "meaning": {
+    "ja": "近いアイコンほど大きくなる",
+    "en": "Icons grow the closer the cursor gets",
+    "es": "Los íconos crecen cuanto más cerca está el cursor",
+    "zh-Hans": "离光标越近的图标越大",
+    "zh-Hant": "離游標越近的圖示越大"
+   },
+   "ask": {
+    "ja": "下のメニューをドック風メニューにして。カーソルに近いアイコンほど最大1.85倍に大きくして、まわりのアイコンを押し広げて。",
+    "en": "Turn the bottom menu into dock magnification: icons near the cursor grow up to 1.85× and push their neighbors aside.",
+    "es": "Convierte el menú inferior en un dock con magnificación: los íconos cerca del cursor crecen hasta 1.85× y empujan a los vecinos.",
+    "zh-Hans": "把底部菜单做成 Dock 放大效果：靠近光标的图标最多放大到1.85倍，并把旁边的图标推开。",
+    "zh-Hant": "底部選單請做成 Dock 放大效果：靠近游標的圖示最多放大到1.85倍，並把旁邊的圖示推開。"
+   },
+   "summary": {
+    "ja": "下に並んだ7つのアイコンの上をカーソルが横切ると、近いアイコンほど大きくなって持ち上がり、台も一緒に伸びる。いちばん大きいアイコンには名前が出る。",
+    "en": "As the cursor sweeps across seven icons along the bottom, the nearest ones grow and rise and the shelf stretches with them. The largest icon shows its name."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。アイコン 34×34（角丸24%）を間隔8で7つ、半透明の白い台の上に。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "カーソル: 0〜0.5秒で右から入り、0.5〜2.2秒で x=470→110、2.6〜4.2秒で 110→470、4.2〜4.7秒で外へ（easeInOut 3乗）",
+     "大きさ = 1 + 0.85·exp(−(d/46)²)×in（d＝アイコンの元の中心とカーソルの横の距離、in は 0.35〜0.65秒で 0→1、4.15〜4.45秒で 1→0）",
+     "大きさに合わせて並べ直すので、まわりは押し広がり、台の幅も合わせて伸びる。下の端はそろえたまま上へ伸びる",
+     "大きさが1.55倍を超えたアイコンの上に、黒い札で名前（ホーム・写真…）"
+    ],
+    "en": [
+     "A 511 × 170 viewport: seven 34 × 34 icons (radius 24%) 8 px apart on a translucent white shelf. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Cursor: enters from the right over 0–0.5 s, x = 470 → 110 over 0.5–2.2 s, 110 → 470 over 2.6–4.2 s, out over 4.2–4.7 s (cubic ease-in-out).",
+     "Scale = 1 + 0.85·exp(−(d/46)²) × in, where d is the horizontal distance from the icon's rest center to the cursor and in goes 0→1 over 0.35–0.65 s and 1→0 over 4.15–4.45 s.",
+     "Icons are laid out again at their new sizes, so neighbors spread and the shelf widens; bottoms stay aligned and the icons grow upward.",
+     "Above an icon past 1.55× a dark label shows its name."
+    ]
+   },
+   "use": {
+    "ja": "アプリやサービスへのリンクを横一列に並べるメニューを、触って楽しくしたいときに。",
+    "en": "Use it for a row of app or section links that should be fun to sweep across."
+   },
+   "tags": [
+    "dock",
+    "magnification",
+    "macos",
+    "hover",
+    "menu",
+    "icons"
+   ]
+  },
+  {
+   "id": "250",
+   "pack": "lp3",
+   "no": "10",
+   "slug": "holographic-card",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "ホログラムカード",
+    "en": "Holographic card",
+    "es": "Tarjeta holográfica",
+    "zh-Hans": "全息卡片",
+    "zh-Hant": "全像卡片"
+   },
+   "meaning": {
+    "ja": "傾けると虹色の光が走る",
+    "en": "Tilt it and a rainbow sheen runs across",
+    "es": "Al inclinarla la recorre un brillo de arcoíris",
+    "zh-Hans": "倾斜时彩虹光泽在表面流动",
+    "zh-Hant": "傾斜時彩虹光澤在表面流動"
+   },
+   "ask": {
+    "ja": "会員証をホログラムカードにして。カーソルの向きに最大24°傾け、虹色の箔と白い反射がカーソルを追って表面を流れるように。",
+    "en": "Make the member card a holographic card: tilt it up to 24° toward the cursor, with a rainbow foil and a white glare that follow the cursor across the surface.",
+    "es": "Haz la tarjeta de miembro holográfica: que se incline hasta 24° hacia el cursor, con un foil de arcoíris y un reflejo blanco que siguen al cursor por la superficie.",
+    "zh-Hans": "把会员卡做成全息卡片：朝光标方向最多倾斜24°，彩虹箔和白色反光随光标在表面流动。",
+    "zh-Hant": "會員卡請做成全像卡片：朝游標方向最多傾斜24°，彩虹箔和白色反光跟著游標在表面流動。"
+   },
+   "summary": {
+    "ja": "明るい地の上のカードが、まわりを回るカーソルの方へ傾く。表面の箔（見本では青の濃淡、実物では虹色）と細かい斜線、白い反射がカーソルに合わせて流れ、角度で色が替わって見える。",
+    "en": "On a light page, a card tilts toward a cursor circling round it. The foil (shades of blue in this sample, rainbow on a real card), the fine diagonal lines and a white glare move with the cursor, so the colors shift with the angle."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。暗い地にカード 172×112（角丸10）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "カーソルは8の字: x = 255 + 112·sin(2πt/4.7)、y = 86 + 40·sin(4πt/4.7)。nx, ny = カーソルの位置を −1〜1 にした値",
+     "傾き: 横 ry = nx×0.42 rad（約24°）、縦 rx = −ny×0.3 rad。描くときは 横を cos(ry)、縦を cos(rx) に縮め、sin×0.16 の斜めずれで遠近を付ける。影は逆へ14px",
+     "箔: 青・薄い青・白・中間の青の線形グラデーションを、青い台紙（#9DB8F6→#2F6BEB）に overlay（0.95）で重ね、帯の位置を nx×70 + ny×30 px ずらす。5px 間隔の斜線を soft-light で",
+     "反射: カーソル側（中心から nx×70, ny×40）に半径90の白い光を screen で。#153 3Dチルトと違い、主役は角度で動く箔の光（実物は虹色。ここでは青の濃淡で描く）"
+    ],
+    "en": [
+     "A 511 × 170 viewport: a 172 × 112 card (radius 10) on a dark page. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The cursor moves in a figure eight: x = 255 + 112·sin(2πt/4.7), y = 86 + 40·sin(4πt/4.7); nx and ny are its position mapped to −1…1.",
+     "Tilt: ry = nx × 0.42 rad (about 24°) across, rx = −ny × 0.3 rad up and down. Drawn squeezed by cos(ry) and cos(rx) with a sin × 0.16 shear for perspective; the shadow moves 14 px the other way.",
+     "Foil: a linear gradient of blues and white laid in overlay (0.95) on a blue base (#9DB8F6 → #2F6BEB), its bands shifted by nx × 70 + ny × 30 px, plus diagonal lines every 5 px in soft-light.",
+     "Glare: a white radial light of radius 90 on the cursor side (nx × 70, ny × 40 from the center) in screen. Unlike #153 3D tilt, the point is the foil light that moves with the angle (rainbow on a real card; drawn here in shades of blue)."
+    ]
+   },
+   "use": {
+    "ja": "会員証・チケット・限定品のカードなど、特別感を出したい1枚に。",
+    "en": "Use it on a member card, a ticket or a limited item, anything that should feel special and collectible."
+   },
+   "tags": [
+    "holographic",
+    "holo",
+    "foil",
+    "card",
+    "tilt",
+    "rainbow",
+    "hover"
+   ]
+  },
+  {
+   "id": "251",
+   "pack": "lp3",
+   "no": "11",
+   "slug": "image-trail",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "イメージトレイル",
+    "en": "Image trail",
+    "es": "Rastro de imágenes (image trail)",
+    "zh-Hans": "图片拖尾",
+    "zh-Hant": "圖片拖尾"
+   },
+   "meaning": {
+    "ja": "カーソルの通り道に写真が並ぶ",
+    "en": "Photos pile up along the cursor's path",
+    "es": "Las fotos se acumulan a lo largo del recorrido del cursor",
+    "zh-Hans": "光标经过的地方排出一串照片",
+    "zh-Hant": "游標經過的地方排出一串照片"
+   },
+   "ask": {
+    "ja": "トップの見出しの上にイメージトレイルを入れて。カーソルを動かすと0.12秒ごとに作品の写真を置き、0.85秒で縮めて消して。",
+    "en": "Add an image trail over the hero heading: as the cursor moves, drop a project photo every 0.12 s and shrink it away over 0.85 s.",
+    "es": "Agrega un rastro de imágenes sobre el título principal: al mover el cursor, deja una foto de un proyecto cada 0.12 s y que se encoja y desaparezca en 0.85 s.",
+    "zh-Hans": "在首屏标题上加入图片拖尾：移动光标时每0.12秒放下一张作品照片，0.85秒内缩小消失。",
+    "zh-Hant": "首頁標題上請加入圖片拖尾：移動游標時每0.12秒放下一張作品照片，0.85秒內縮小消失。"
+   },
+   "summary": {
+    "ja": "大きな見出しの上でカーソルを動かすと、通った所に作品の写真が次々に置かれていき、古い物から縮んで消える。",
+    "en": "Moving the cursor over a big heading leaves project photos one after another along its path; the oldest shrink away first."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。見出し PORTFOLIO（54px）の上で。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "カーソルは8の字: x = 255 + 185·sin(2πt/4.7)、y = 88 + 46·sin(4πt/4.7 + 0.6)",
+     "0.1175秒（4.7秒の1/40）ごとに、その時のカーソルの位置へ写真を1枚置く。写真は白い縁付き 58×72、−0.125〜0.125 rad 傾ける",
+     "置いた写真: 最初の12%（約0.1秒）で backOut で 0→1 に開き、55%〜100% で easeIn 3乗で縮んで消える。寿命0.85秒。新しい物ほど上",
+     "#083 マウスストーカーは1つの丸が追いかける、#157 ホバーで画像プレビューはリストの行の写真を出す。イメージトレイルは通り道に何枚も残す"
+    ],
+    "en": [
+     "A 511 × 170 viewport, over the heading PORTFOLIO (54 px). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The cursor moves in a figure eight: x = 255 + 185·sin(2πt/4.7), y = 88 + 46·sin(4πt/4.7 + 0.6).",
+     "Every 0.1175 s (1/40 of 4.7 s) a photo is dropped at the cursor's position: 58 × 72 with a white border, tilted between −0.125 and 0.125 rad.",
+     "Each photo pops in over the first 12% of its life (backOut 0 → 1) and shrinks away over 55–100% (cubic ease-in); it lives 0.85 s. Newer photos sit on top.",
+     "#083 Cursor follower is one dot chasing the cursor and #157 Hover image reveal shows the photo of a list row; an image trail leaves many photos along the path."
+    ]
+   },
+   "use": {
+    "ja": "写真家・デザイナー・スタジオのポートフォリオで、作品の多さを遊びながら見せたいときに。",
+    "en": "Use it on photographer, designer or studio portfolios to show the amount of work in a playful way."
+   },
+   "tags": [
+    "image-trail",
+    "cursor",
+    "mouse-trail",
+    "portfolio",
+    "hover",
+    "gallery"
+   ]
+  },
+  {
+   "id": "252",
+   "pack": "lp3",
+   "no": "12",
+   "slug": "fluid-simulation",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "流体シミュレーション",
+    "en": "Fluid simulation",
+    "es": "Simulación de fluidos",
+    "zh-Hans": "流体模拟",
+    "zh-Hant": "流體模擬"
+   },
+   "meaning": {
+    "ja": "カーソルで色の煙が渦を巻く",
+    "en": "The cursor stirs up swirling colored smoke",
+    "es": "El cursor levanta humo de colores que se arremolina",
+    "zh-Hans": "光标搅起旋转的彩色烟雾",
+    "zh-Hant": "游標攪起旋轉的彩色煙霧"
+   },
+   "ask": {
+    "ja": "トップの背景に流体シミュレーションを入れて。カーソルが通った所から5色の煙が湧いて、渦を巻きながら1.4秒で薄れて消えるように。",
+    "en": "Put a fluid simulation behind the hero: colored smoke in five colors rises where the cursor passes and swirls away over 1.4 s.",
+    "es": "Pon una simulación de fluidos detrás del hero: humo de cinco colores que surge donde pasa el cursor y se arremolina hasta desaparecer en 1.4 s.",
+    "zh-Hans": "在首屏背景加入流体模拟：光标经过的地方冒出五种颜色的烟雾，旋转着在1.4秒内淡出。",
+    "zh-Hant": "首頁背景請加入流體模擬：游標經過的地方冒出五種顏色的煙霧，旋轉著在1.4秒內淡出。"
+   },
+   "summary": {
+    "ja": "ごく薄い青の地の上でカーソルを動かすと、通った所から濃淡の違う青の煙が湧き、渦を巻いて広がりながら薄れていく。",
+    "en": "Moving the cursor over a pale page releases smoke in several shades of blue along its path, which swirls, spreads and fades."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。ごく薄い青の地（#F1F5FF）。4.7秒でひと回り（パックの周期9.4秒で2回）。絵は 128×43 のマス目で計算してなめらかに引き伸ばす",
+     "カーソルは8の字: x = 255 + 170·sin(2πt/4.7)、y = 86 + 48·sin(4πt/4.7)。0.1175秒ごとにその位置へ煙の粒を1つ出す。色は 青・中間の青・青・薄い青・中間の青 を順に",
+     "粒: 寿命1.4秒、半径 12 + 30×経過秒、濃さ exp(−2.1×経過秒)（最初の0.1秒で 0→1）。中心は経過に合わせて回りながら 26px/秒 で離れ、10px/秒 で上がる",
+     "各マスで 重み e = 粒の濃さ×exp(−距離²/半径²) を足し、地の色から「重なった粒の色の平均」へ min(1, Σe×1.6) だけ寄せる。マスの座標を sin・cos でずらして流れを付ける（振れ幅 7px と 6px）",
+     "本物の流体計算（速度場を毎フレーム解く）を、時間の関数に置きかえた見本。#013 リキッドモーションは形がぬるっと動く、こちらは色の煙が混ざる"
+    ],
+    "en": [
+     "A 511 × 170 viewport on a pale blue ground (#F1F5FF). One pass takes 4.7 s (twice per 9.4 s pack cycle). The picture is computed on a 128 × 43 grid and stretched smoothly.",
+     "The cursor moves in a figure eight: x = 255 + 170·sin(2πt/4.7), y = 86 + 48·sin(4πt/4.7). Every 0.1175 s a smoke puff is released there, cycling through blue, mid blue, blue, light blue and mid blue.",
+     "Puffs live 1.4 s: radius 12 + 30 × age, strength exp(−2.1 × age) (0 → 1 over the first 0.1 s). Their centers drift outward in a spiral at 26 px/s and rise at 10 px/s.",
+     "Each cell sums the weights e = strength × exp(−distance² / radius²) and moves from the ground color toward the weighted average color of the puffs by min(1, Σe × 1.6). Cell coordinates are warped with sin and cos (7 px and 6 px) to make it flow.",
+     "A real fluid simulation solves a velocity field every frame; this sample replaces it with a function of time. #013 Liquid motion is a shape moving softly; here colored smoke mixes."
+    ]
+   },
+   "use": {
+    "ja": "音楽・アート・テック系の、触ること自体を楽しんでほしいトップ画面に。",
+    "en": "Use it on music, art or tech landing pages where touching the hero should be the fun part."
+   },
+   "tags": [
+    "fluid",
+    "simulation",
+    "webgl",
+    "cursor",
+    "smoke",
+    "ink",
+    "interactive-background"
+   ]
+  },
+  {
+   "id": "253",
+   "pack": "lp3",
+   "no": "13",
+   "slug": "scratch-to-reveal",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "スクラッチカード",
+    "en": "Scratch to reveal",
+    "es": "Raspa y descubre",
+    "zh-Hans": "刮刮卡",
+    "zh-Hant": "刮刮卡"
+   },
+   "meaning": {
+    "ja": "こすると下の絵柄が出てくる",
+    "en": "Rub it and what is underneath appears",
+    "es": "Raspa y aparece lo que hay debajo",
+    "zh-Hans": "刮开后露出下面的图案",
+    "zh-Hant": "刮開後露出下面的圖案"
+   },
+   "ask": {
+    "ja": "クーポンをスクラッチカードにして。表面の膜をドラッグでこすった所だけ消し、ある程度削ったら膜を全部消して「30% OFF」を大きく見せて。",
+    "en": "Make the coupon a scratch to reveal card: wipe the coating only where it is dragged over, and once enough is gone clear it all and show \"30% OFF\" big.",
+    "es": "Haz el cupón como \"raspa y descubre\": que la capa se borre solo donde se arrastra y, cuando se haya raspado suficiente, que desaparezca toda y se vea grande \"30% OFF\".",
+    "zh-Hans": "把优惠券做成刮刮卡：拖动刮过的地方才去掉表层，刮到一定程度后整层消失，大大地显示“30% OFF”。",
+    "zh-Hant": "優惠券請做成刮刮卡：拖曳刮過的地方才去掉表層，刮到一定程度後整層消失，大大顯示「30% OFF」。"
+   },
+   "summary": {
+    "ja": "カードの表面の膜をコインがジグザグにこすり、削った跡から下の「当たり！30% OFF」が見えてくる。こすり終えると膜がすっと消えて、文字が少し弾む。",
+    "en": "A coin rubs across the card's coating in a zigzag and \"当たり！30% OFF\" shows through the scratched path. When it is done the rest of the coating fades and the text gives a small bounce."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。カード 211×106（角丸12）。下は白の地に青い紙吹雪と「当たり！」「30% OFF」。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "コイン: 0.45〜2.45秒にジグザグ。x は 0.84秒で1往復の三角波でカードの端から端（24px 内側）、y は2秒かけて上から下へ",
+     "膜（青の斜めグラデーション #9DB8F6→#C9D8FB→#9DB8F6＋白い斜線）を画面外に描き、コインの通り道を 線幅24・丸い端 で destination-out にして消す（こすった所だけ穴があく）",
+     "2.55〜2.9秒に残りの膜を不透明度 1→0。当たりの文字は 2.6〜2.95秒で 1→1.08→1 に弾む。4.1〜4.55秒に新しい膜が出て最初に戻る",
+     "本物では、削った面積の割合を数え（たとえば50%）、超えたら残りを消す"
+    ],
+    "en": [
+     "A 511 × 170 viewport: a 211 × 106 card (radius 12); underneath, a white panel with blue confetti, \"当たり！\" and \"30% OFF\". One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Coin: a zigzag over 0.45–2.45 s. x is a triangle wave (one round trip per 0.84 s) from edge to edge 24 px inside the card; y goes from top to bottom over 2 s.",
+     "The coating (blue diagonal gradient #9DB8F6 → #C9D8FB → #9DB8F6 with white stripes) is drawn offscreen; the coin's path is stroked in destination-out with width 24 and round caps, so holes open only where it rubbed.",
+     "Over 2.55–2.9 s the rest of the coating fades 1 → 0; the prize text bounces 1 → 1.08 → 1 over 2.6–2.95 s. A fresh coating fades back in over 4.1–4.55 s.",
+     "A real build counts the share of scratched area (say 50%) and clears the rest once it passes."
+    ]
+   },
+   "use": {
+    "ja": "キャンペーン・クーポン・抽選など、結果を自分の手で開けさせたいときに。",
+    "en": "Use it for campaigns, coupons and prize draws where people should uncover the result themselves."
+   },
+   "tags": [
+    "scratch-card",
+    "reveal",
+    "coupon",
+    "canvas",
+    "drag",
+    "gamification"
+   ]
+  },
+  {
+   "id": "254",
+   "pack": "lp3",
+   "no": "14",
+   "slug": "swipe-cards",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "スワイプカード",
+    "en": "Swipe cards",
+    "es": "Tarjetas deslizables (swipe)",
+    "zh-Hans": "滑动卡片",
+    "zh-Hant": "滑動卡片"
+   },
+   "meaning": {
+    "ja": "左右に払ってカードを送る",
+    "en": "Flick a card left or right to send it away",
+    "es": "Desliza la tarjeta a la izquierda o la derecha para descartarla",
+    "zh-Hans": "向左或向右甩出卡片",
+    "zh-Hant": "往左或往右甩出卡片"
+   },
+   "ask": {
+    "ja": "おすすめのレシピをスワイプカードにして。右に払ったら「LIKE」、左なら「NOPE」の印を出して、傾けながら画面の外へ飛ばし、下のカードを前に出して。",
+    "en": "Show the suggested recipes as swipe cards: a \"LIKE\" stamp when flicked right and \"NOPE\" when flicked left, the card tilting off screen while the next one moves up.",
+    "es": "Muestra las recetas sugeridas como tarjetas deslizables: un sello \"LIKE\" al deslizar a la derecha y \"NOPE\" a la izquierda, la tarjeta sale inclinada de la pantalla y la siguiente pasa al frente.",
+    "zh-Hans": "把推荐食谱做成滑动卡片：向右甩出现“LIKE”印章，向左甩出现“NOPE”，卡片倾斜着飞出画面，下面的卡片移到最前。",
+    "zh-Hant": "推薦食譜請做成滑動卡片：往右甩出現「LIKE」印章、往左甩出現「NOPE」，卡片傾斜著飛出畫面，下面的卡片移到最前面。"
+   },
+   "summary": {
+    "ja": "重なったレシピのカードのいちばん上をつかんで右へ引くと「LIKE」の印が出て、傾きながら飛んでいき、下のカードが前に出る。次は左へ払って「NOPE」。",
+    "en": "The top card of a stack of recipe cards is dragged right, shows a \"LIKE\" stamp and flies off tilting while the card below moves up; the next one is flicked left with \"NOPE\"."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。カード 156×144（角丸14）を3枚重ね、奥の物は1段ごとに 6% 小さく 9px 下。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "1枚目: 0.3〜1.1秒で右へ90px 引く（easeInOut）、1.1〜1.45秒で さらに320px 飛ぶ（easeIn 3乗）。2枚目: 2.4〜3.2秒で左へ同じ動き",
+     "回転 = 横のずれ×0.0016 rad（90px で約8°）。印は横のずれ60px で不透明度1。右は 青の「LIKE」、左は グレーの「NOPE」",
+     "飛んだ後、1.1〜1.5秒（3.2〜3.6秒）に下のカードが1段ずつ前へ（easeOut 3乗）、いちばん奥に新しいカードが現れる",
+     "つかむ印は引いている間カードと一緒に動き、離すと中央へ戻る"
+    ],
+    "en": [
+     "A 511 × 170 viewport: three 156 × 144 cards (radius 14) stacked, each one back 6% smaller and 9 px lower. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Card 1: dragged 90 px right over 0.3–1.1 s (ease-in-out), then flies 320 px further over 1.1–1.45 s (cubic ease-in). Card 2: the same to the left over 2.4–3.2 s.",
+     "Rotation = horizontal offset × 0.0016 rad (about 8° at 90 px). The stamp is fully visible at 60 px: blue \"LIKE\" on the right, gray \"NOPE\" on the left.",
+     "After a card flies, the ones below move forward one step over 1.1–1.5 s (3.2–3.6 s, cubic ease-out) and a new card fades in at the back.",
+     "The grab handle moves with the card while dragging and returns to the middle after release."
+    ]
+   },
+   "use": {
+    "ja": "おすすめ・診断・好みの登録など、1枚ずつ素早く選ばせたいときに。",
+    "en": "Use it for recommendations, quizzes or preference setup where people decide one card at a time."
+   },
+   "tags": [
+    "swipe",
+    "cards",
+    "tinder",
+    "drag",
+    "stack",
+    "mobile",
+    "gesture"
+   ]
+  },
+  {
+   "id": "255",
+   "pack": "lp3",
+   "no": "15",
+   "slug": "split-flap-display",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "パタパタ表示",
+    "en": "Split-flap display",
+    "es": "Pantalla split-flap (de paletas)",
+    "zh-Hans": "翻牌显示（Split-flap）",
+    "zh-Hant": "翻牌顯示（Split-flap）"
+   },
+   "meaning": {
+    "ja": "文字の板がめくれて替わる",
+    "en": "Letters flip over like a departure board",
+    "es": "Las letras giran como en un tablero de salidas",
+    "zh-Hans": "像车站时刻牌一样逐字翻转更换",
+    "zh-Hant": "像車站時刻牌一樣逐字翻轉更換"
+   },
+   "ask": {
+    "ja": "トップの行き先と時刻をパタパタ表示にして。1文字ずつの板が上下に割れて3〜5回めくれ、左から0.045秒ずつずれて次の文字に止まるように。",
+    "en": "Show the destination and time in the hero as a split-flap display: each letter tile splits and flips 3 to 5 times and lands on the next letter, starting 0.045 s later per letter from the left.",
+    "es": "Muestra el destino y la hora del hero como una pantalla split-flap: cada letra se parte y gira de 3 a 5 veces hasta quedar en la siguiente, empezando 0.045 s más tarde por cada letra desde la izquierda.",
+    "zh-Hans": "把首屏的目的地和时间做成翻牌显示：每个字的牌上下分开翻转3到5次后停在下一个字，从左边起每个字晚0.045秒开始。",
+    "zh-Hant": "首頁的目的地和時間請做成翻牌顯示：每個字的牌上下分開翻轉3到5次後停在下一個字，從左邊起每個字晚0.045秒開始。"
+   },
+   "summary": {
+    "ja": "黒い板に並んだ11枚の文字の板が、上下に割れてめくれ、途中の文字を何枚か経て、TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 と替わる。",
+    "en": "Eleven letter tiles on a black board split and flip, passing through a few letters on the way, to change TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。文字の板 34×54（角丸5）を間隔4で11枚。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "切り替えは 0.5・2.0・3.5秒に始まる（TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 → 最初へ）。文字 i は i×0.045秒遅れて始まる",
+     "1回めくるのに0.09秒。同じ文字は動かない。違う文字は途中の文字を含めて 3〜5回めくり、最後に次の文字で止まる",
+     "1回のめくり f（0〜1）: うしろは上半分に次の字、下半分に今の字。f < 0.5 は今の字の上半分が真ん中を軸に縦に縮んで倒れ（暗くなる）、f ≥ 0.5 は次の字の下半分が縦に伸びて下りる",
+     "#156 テキストロールは文字が回って入れ替わる、#129 テキストスクランブルはランダムな字が入れ替わる。パタパタ表示は割れた板が倒れる形そのものを見せる"
+    ],
+    "en": [
+     "A 511 × 170 viewport: eleven 34 × 54 letter tiles (radius 5) 4 px apart. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Changes start at 0.5, 2.0 and 3.5 s (TOKYO 09:30 → PARIS 11:05 → SEOUL 13:40 → back). Letter i starts i × 0.045 s later.",
+     "Each flip takes 0.09 s. Letters that stay the same do not move; others flip 3 to 5 times through intermediate letters and stop on the new one.",
+     "One flip f (0–1): behind, the top half shows the next letter and the bottom half the current one. While f < 0.5 the current top half folds down by scaling vertically around the middle (darkening); from 0.5 the next bottom half unfolds downward.",
+     "#156 Text roll on hover rolls letters over and #129 Text scramble swaps random letters; a split-flap display shows the split tiles physically falling."
+    ]
+   },
+   "use": {
+    "ja": "旅行・イベント・カウントダウンなど、行き先や時刻・数字を、機械が切り替えるような手ざわりで見せたいときに。",
+    "en": "Use it for travel, events or countdowns, to change places, times or numbers with a mechanical feel."
+   },
+   "tags": [
+    "split-flap",
+    "solari",
+    "flip",
+    "departure-board",
+    "text",
+    "retro"
+   ]
+  },
+  {
+   "id": "256",
+   "pack": "lp3",
+   "no": "16",
+   "slug": "flip-animation",
+   "category": "touch",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "FLIPアニメーション",
+    "en": "FLIP animation",
+    "es": "Animación FLIP",
+    "zh-Hans": "FLIP 动画",
+    "zh-Hant": "FLIP 動畫"
+   },
+   "meaning": {
+    "ja": "絞り込むとカードが滑って並び直す",
+    "en": "Filter, and the cards slide into their new places",
+    "es": "Al filtrar, las tarjetas se deslizan a sus nuevos lugares",
+    "zh-Hans": "筛选后卡片滑动到新的位置重新排列",
+    "zh-Hant": "篩選後卡片滑到新的位置重新排列"
+   },
+   "ask": {
+    "ja": "作品一覧の絞り込みを FLIP アニメーションにして。外れたカードは縮んで消し、残ったカードは今の場所から新しい場所へ0.65秒で滑らせて。",
+    "en": "Animate the portfolio filter with FLIP: cards that drop out shrink away, and the remaining cards slide from where they were to their new places in 0.65 s.",
+    "es": "Anima el filtro del portafolio con FLIP: las tarjetas que salen se encogen y desaparecen, y las que quedan se deslizan desde donde estaban a sus nuevos lugares en 0.65 s.",
+    "zh-Hans": "用 FLIP 动画做作品筛选：被筛掉的卡片缩小消失，留下的卡片在0.65秒内从原位置滑到新位置。",
+    "zh-Hant": "作品篩選請用 FLIP 動畫：被篩掉的卡片縮小消失，留下的卡片在0.65秒內從原位置滑到新位置。"
+   },
+   "summary": {
+    "ja": "「写真」を押すと、イラストのカードが縮んで消え、残った写真のカードが元の場所から詰めた場所へ滑って並び直す。「すべて」で逆の順に戻る。",
+    "en": "Pressing \"写真\" shrinks the illustration cards away and the remaining photo cards slide from their old spots into the gaps. \"すべて\" plays it back in reverse."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。カード 106×52（角丸7）を4列×2段、横118・縦62 の間隔。上に絞り込みのボタン3つ。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "0.6秒に「写真」を押す: 0.6〜0.85秒でイラスト4枚が 縮み 1→0.75・不透明度 1→0（easeOut 3乗）、0.75〜1.4秒で写真4枚が元の場所から詰めた場所へ（easeInOut 3乗）",
+     "2.6秒に「すべて」を押す: 2.6〜3.2秒で写真が元の場所へ戻り、3.0〜3.35秒でイラストが現れる。件数の表示 8件↔4件",
+     "動いている間だけ、元の場所（First）に点線の枠を残して、どこからどこへ動いたか見せる",
+     "FLIP＝First（前の位置）・Last（後の位置）・Invert（差を transform で打ち消す）・Play（transform を0へ戻す）。レイアウトが変わる時に位置の差だけを動かす作り方"
+    ],
+    "en": [
+     "A 511 × 170 viewport: 106 × 52 cards (radius 7) in 4 columns × 2 rows, 118 across and 62 down, with three filter buttons on top. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "At 0.6 s \"写真\" is pressed: over 0.6–0.85 s the four illustrations shrink 1 → 0.75 and fade 1 → 0 (cubic ease-out); over 0.75–1.4 s the four photos move from their old spots to the packed ones (cubic ease-in-out).",
+     "At 2.6 s \"すべて\" is pressed: the photos return over 2.6–3.2 s and the illustrations reappear over 3.0–3.35 s. The count reads 8 件 ↔ 4 件.",
+     "While cards move, a dashed outline stays at each old spot (First) to show where they came from.",
+     "FLIP = First (old position), Last (new position), Invert (cancel the difference with a transform), Play (animate the transform back to 0): the way to animate a layout change by its position difference."
+    ]
+   },
+   "use": {
+    "ja": "絞り込み・並べ替え・追加・削除で一覧のレイアウトが変わるとき、どれがどこへ行ったか分かるように。",
+    "en": "Use it whenever filtering, sorting, adding or removing changes a layout, so people can see where each item went."
+   },
+   "tags": [
+    "flip",
+    "layout-animation",
+    "filter",
+    "shuffle",
+    "grid",
+    "transition"
+   ]
+  },
+  {
+   "id": "257",
+   "pack": "lp3",
+   "no": "17",
+   "slug": "liquid-glass",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "リキッドグラス",
+    "en": "Liquid glass",
+    "es": "Liquid glass (vidrio líquido)",
+    "zh-Hans": "液态玻璃",
+    "zh-Hant": "液態玻璃"
+   },
+   "meaning": {
+    "ja": "水のレンズのように背景を曲げる",
+    "en": "Bends what is behind it like a lens of water",
+    "es": "Curva lo que hay detrás como una lente de agua",
+    "zh-Hans": "像水做的透镜一样弯曲背后的画面",
+    "zh-Hant": "像水做的透鏡一樣彎曲背後的畫面"
+   },
+   "ask": {
+    "ja": "下のメニューをリキッドグラスにして。丸いバーの中で背景を1.2倍に、ふちほど1.7倍まで強く曲げて、上のふちに白い光を入れて。",
+    "en": "Make the bottom menu liquid glass: inside the rounded bar, magnify the background 1.2× and bend it harder toward the edges up to 1.7×, with a white highlight along the top edge.",
+    "es": "Haz el menú inferior de liquid glass: dentro de la barra redondeada, amplía el fondo 1.2× y cúrvalo más hacia los bordes hasta 1.7×, con un brillo blanco en el borde superior.",
+    "zh-Hans": "把底部菜单做成液态玻璃：圆角条内把背景放大1.2倍，越靠边缘弯曲越强，最多1.7倍，上边缘加白色高光。",
+    "zh-Hant": "底部選單請做成液態玻璃：圓角條內把背景放大1.2倍，越靠邊緣彎得越強，最多1.7倍，上緣加上白色高光。"
+   },
+   "summary": {
+    "ja": "カラフルな見出しの上を、丸いガラスのバーが左右に動く。バーの中では下の色と文字がふくらんで見え、ふちほど強く曲がる。上のふちに白い光。",
+    "en": "A rounded glass bar glides back and forth over a colorful heading. Inside it, the colors and letters underneath swell and bend more toward the edges; a white highlight runs along the top edge."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。背景は 青→中間の青（#2F6BEB→#9DB8F6）のグラデーションに、ぼかした丸3つ（薄い青・白・ごく薄い青、ぼかし22px）と見出し LIGHT / IN MOTION。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "バー 176×58（角丸29）: 中心 x = 255 + 140·sin(2πt/4.7)、y = 64 + 16·sin(4πt/4.7)",
+     "曲げ: 背景をバーの中心を軸に拡大して重ねる。外のふち（全体）1.7倍、7px 内側から1.38倍、13px 内側から1.22倍。ふちほど強くふくらむ（屈折の代わり）",
+     "仕上げ: 白10% の膜、上のふちと下のふちに白い線（不透明度 0.95 と 0.6 のグラデーション）、内側に中間の青の細い線、外に影（ぼかし18・下へ6）。中にアイコン3つ",
+     "グラスモーフィズム（すりガラスでぼかす）と違い、ぼかさずにレンズのように曲げる。Apple が2025年に発表したデザインの名前でもある"
+    ],
+    "en": [
+     "A 511 × 170 viewport. The background is a blue → mid blue gradient (#2F6BEB → #9DB8F6) with three blurred circles (light blue, white, pale blue; 22 px blur) and the heading LIGHT / IN MOTION. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Bar 176 × 58 (radius 29), centered at x = 255 + 140·sin(2πt/4.7), y = 64 + 16·sin(4πt/4.7).",
+     "Bending: the background is redrawn magnified around the bar's center: 1.7× in the outer ring, 1.38× from 7 px in and 1.22× from 13 px in, so it swells more toward the edges (standing in for refraction).",
+     "Finish: a 10% white film, white lines along the top and bottom edges (gradient opacity 0.95 and 0.6), a thin mid-blue inner line and an outer shadow (blur 18, 6 down). Three icons inside.",
+     "Unlike glassmorphism (frosted blur), it does not blur: it bends like a lens. It is also the name of the design language Apple announced in 2025."
+    ]
+   },
+   "use": {
+    "ja": "ナビゲーション・タブ・ボタンなど、写真や色の上に重ねる部品を、軽く新しく見せたいときに。",
+    "en": "Use it for navigation, tabs or buttons that float over photos and color, to make them feel light and current."
+   },
+   "tags": [
+    "liquid-glass",
+    "glass",
+    "refraction",
+    "lens",
+    "navbar",
+    "apple"
+   ]
+  },
+  {
+   "id": "258",
+   "pack": "lp3",
+   "no": "18",
+   "slug": "fluted-glass",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "フルーテッドガラス",
+    "en": "Fluted glass",
+    "es": "Vidrio acanalado (fluted glass)",
+    "zh-Hans": "长虹玻璃效果",
+    "zh-Hant": "長虹玻璃效果"
+   },
+   "meaning": {
+    "ja": "縦溝のガラス越しに色が揺れる",
+    "en": "Colors ripple through ribbed glass",
+    "es": "Los colores ondulan a través del vidrio acanalado",
+    "zh-Hans": "透过竖纹玻璃看到晃动的色彩",
+    "zh-Hant": "透過直紋玻璃看到晃動的色彩"
+   },
+   "ask": {
+    "ja": "ファーストビューの右半分にフルーテッドガラスを重ねて。幅16pxの縦の溝ごとに、うしろの色と文字を細く縮めて映し、溝の左に光、右に影を入れて。",
+    "en": "Lay fluted glass over the right half of the hero: each 16 px vertical rib shows a squeezed slice of the colors and text behind it, with light on its left edge and shade on its right.",
+    "es": "Pon vidrio acanalado sobre la mitad derecha del hero: cada estría vertical de 16 px muestra una franja comprimida de los colores y el texto de atrás, con luz en su borde izquierdo y sombra en el derecho.",
+    "zh-Hans": "在首屏右半边叠一层长虹玻璃：每条16px宽的竖纹里，把后面的颜色和文字压窄映出，竖纹左侧加高光、右侧加阴影。",
+    "zh-Hant": "首頁右半邊請疊上長虹玻璃：每條16px寬的直紋裡，把後面的顏色和文字壓窄映出，直紋左側加高光、右側加陰影。"
+   },
+   "summary": {
+    "ja": "縦の溝が並んだガラスの板の向こうで、動く色の丸と白い輪、見出しの文字が、溝ごとに細く縮んで並んで見える。板はゆっくり左右に動く。",
+    "en": "Behind a panel of vertically ribbed glass, moving color circles, a white ring and the heading appear as narrow squeezed slices, one per rib. The panel drifts slowly left and right."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。背景は 青→中間の青 に、動く丸3つ（白・薄い青・ごく薄い青）と白い輪、見出し SOFT / FOCUS。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "ガラスの左の端 x = 200 + 50·sin(2πt/4.7)。そこから右の端まで、溝1本 16px",
+     "溝1本には、うしろの 40px 分（溝の位置の 12px 左から）を、少しぼかして（2.5px）左右反転し、16px に縮めて映す",
+     "溝ごとに横のグラデーション: 左の端 白34% → 25% で白6% → 70% で0 → 右の端 黒18%。板全体に白8%、左の端に白い線（1.5px）",
+     "溝の幅と、映す幅の比（ここでは 2.5倍）で歪みの強さが決まる。リブガラス・モールガラスとも呼ばれる"
+    ],
+    "en": [
+     "A 511 × 170 viewport. The background is a blue → mid blue gradient with three moving circles (white, light blue, pale blue), a white ring and the heading SOFT / FOCUS. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The glass's left edge is at x = 200 + 50·sin(2πt/4.7); ribs 16 px wide run from there to the right edge.",
+     "Each rib shows a 40 px slice of what is behind (starting 12 px to its left), slightly blurred (2.5 px), mirrored left to right and squeezed into 16 px.",
+     "A horizontal gradient on each rib: 34% white at the left edge → 6% at 25% → 0 at 70% → 18% black at the right edge. The whole panel gets 8% white and a 1.5 px white line on its left edge.",
+     "The rib width and the slice ratio (2.5× here) set how strong the distortion is. Also called reeded glass."
+    ]
+   },
+   "use": {
+    "ja": "写真や色の上に柔らかい質感を足したい、インテリア・コスメ・ホテルなどのサイトに。",
+    "en": "Use it to add a soft, tactile layer over photos or color on interior, beauty or hotel sites."
+   },
+   "tags": [
+    "fluted-glass",
+    "reeded-glass",
+    "ribbed",
+    "glass",
+    "distortion",
+    "background"
+   ]
+  },
+  {
+   "id": "259",
+   "pack": "lp3",
+   "no": "19",
+   "slug": "liquid-metal",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "リキッドメタル",
+    "en": "Liquid metal",
+    "es": "Metal líquido",
+    "zh-Hans": "液态金属",
+    "zh-Hant": "液態金屬"
+   },
+   "meaning": {
+    "ja": "溶けた金属のように光が流れる",
+    "en": "Reflections flow like molten metal",
+    "es": "Los reflejos fluyen como metal fundido",
+    "zh-Hans": "反光像熔化的金属一样流动",
+    "zh-Hant": "反光像熔化的金屬一樣流動"
+   },
+   "ask": {
+    "ja": "見出しの文字をリキッドメタルにして。銀と白と青の映り込みが、溶けた金属のようにうねりながら流れ続けるように。",
+    "en": "Give the heading a liquid metal look: silver, white and blue reflections that keep flowing and rippling like molten metal.",
+    "es": "Dale al título un aspecto de metal líquido: reflejos plateados, blancos y azules que fluyan y ondulen sin parar como metal fundido.",
+    "zh-Hans": "把标题文字做成液态金属：银色、白色和蓝色的反光像熔化的金属一样不断起伏流动。",
+    "zh-Hant": "標題文字請做成液態金屬：銀色、白色和藍色的反光像熔化的金屬一樣不斷起伏流動。"
+   },
+   "summary": {
+    "ja": "明るい地の大きな文字 FLOW と球の中を、黒・青・白の映り込みが、うねりながら流れ続ける。",
+    "en": "Inside the big word FLOW and a sphere on a light page, black, blue and white reflections keep flowing and rippling."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。明るい地（白→#F1F0EE）に文字 FLOW（84px）と球（半径52）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "模様の値 v = sin(0.03x + 2.3·sin(0.045y + a) + a) + 0.55·sin(0.08y − 0.018x + 2a) + 0.3·sin(0.05(x+y) − a)、a = 2πt/4.7",
+     "色は v×0.22 + y×0.002 を 黒 #1E1E21 → 青 #2F6BEB → #C9D8FB → 白 → #9DB8F6 → 白 → #E4ECFE → #2F6BEB → #1E1E21 の帯に当てる（くり返し）",
+     "128×43 のマス目で計算して引き伸ばし、文字と球の形で切り抜く。球には左上の白い光と右下の影を重ね、全体に青い光（不透明度0.25・ぼかし14）",
+     "#022 ライトスイープは1本の光が横切る。リキッドメタルは表面全体の映り込みがゆがみながら動く"
+    ],
+    "en": [
+     "A 511 × 170 viewport on a light gradient (white → #F1F0EE), with the word FLOW (84 px) and a sphere (radius 52). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Pattern value v = sin(0.03x + 2.3·sin(0.045y + a) + a) + 0.55·sin(0.08y − 0.018x + 2a) + 0.3·sin(0.05(x+y) − a), with a = 2πt/4.7.",
+     "Color maps v × 0.22 + y × 0.002 onto a repeating band: black #1E1E21 → blue #2F6BEB → #C9D8FB → white → #9DB8F6 → white → #E4ECFE → #2F6BEB → #1E1E21.",
+     "Computed on a 128 × 43 grid, stretched and cut to the shapes of the word and the sphere. The sphere gets a white highlight at the top left and shade at the bottom right; a blue glow (opacity 0.25, blur 14) around everything.",
+     "#022 Light sweep is one band of light crossing; liquid metal is the whole surface's reflection warping and moving."
+    ]
+   },
+   "use": {
+    "ja": "AI・テック・音楽などの、未来的で手ざわりのある見出しやロゴに。",
+    "en": "Use it for futuristic, tactile headings and logos on AI, tech or music sites."
+   },
+   "tags": [
+    "liquid-metal",
+    "chrome",
+    "metallic",
+    "shader",
+    "reflection",
+    "typography"
+   ]
+  },
+  {
+   "id": "260",
+   "pack": "lp3",
+   "no": "20",
+   "slug": "caustics",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "コースティクス",
+    "en": "Caustics",
+    "es": "Cáusticas",
+    "zh-Hans": "焦散",
+    "zh-Hant": "焦散"
+   },
+   "meaning": {
+    "ja": "水の底でゆらめく光の網目",
+    "en": "A shimmering net of light on the bottom of water",
+    "es": "Una red de luz que tiembla en el fondo del agua",
+    "zh-Hans": "水底摇曳的光网",
+    "zh-Hant": "水底搖曳的光網"
+   },
+   "ask": {
+    "ja": "プールのページの背景をコースティクスにして。青から水色の水の底に、白い光の網目がゆらめき続けるように。",
+    "en": "Make the pool page background caustics: a whitish net of light that keeps shimmering on a blue to light-blue water floor.",
+    "es": "Haz el fondo de la página de la piscina con cáusticas: una red de luz blanquecina que tiembla sin parar sobre un fondo de agua de azul a celeste.",
+    "zh-Hans": "把泳池页面的背景做成焦散：在蓝色到浅蓝色的水底，泛白的光网不停摇曳。",
+    "zh-Hant": "泳池頁面的背景請做成焦散：在藍色到淺藍色的水底，泛白的光網不停搖曳。"
+   },
+   "summary": {
+    "ja": "青から水色の水の底に、波で集まった白い光の網目がゆらめき続ける。上に見出しと、ゆれる浮き輪とその影。",
+    "en": "On a blue to light-blue water floor, a net of white light gathered by the waves keeps shimmering, with a heading on top and a bobbing float and its shadow."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。水の色は上 #2F6BEB → 下 #9DB8F6。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "光の網目: 向き（0.35・2.45・4.15 rad）と細かさ（0.050・0.043・0.057）の違う3つの波 sin(f·u + m·a + 1.6·sin(0.6f·v + n·a)) を足し、和が0に近い所ほど明るくする: 明るさ = (1 − |和| / 1.6)^6（u・v は波の向きとその直角の座標）",
+     "a = 2πt/4.7。m・n は整数（1と−1、−1と2、2と1）なので、4.7秒で元の模様に戻る。128×43 のマス目で計算して引き伸ばす",
+     "明るさ v で水の色を白へ寄せる。浮き輪（半径38・青と白の8色分け）は x を ±10、y を ±5 ゆらし、0.15 rad 傾け、水の底に影",
+     "ふつうは WebGL のシェーダーで画素ごとに計算する。波を重ねて明るい線の網を作る考え方は、本物の水の底で光が集まる所（焦線）のまね"
+    ],
+    "en": [
+     "A 511 × 170 viewport; water color #2F6BEB at the top → #9DB8F6 at the bottom. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The net of light: three waves with different directions (0.35, 2.45, 4.15 rad) and scales (0.050, 0.043, 0.057), each sin(f·u + m·a + 1.6·sin(0.6f·v + n·a)), are summed, and points where the sum is near 0 are bright: brightness = (1 − |sum| / 1.6)^6 (u and v are the coordinates along and across each wave).",
+     "a = 2πt/4.7. m and n are whole numbers (1 and −1, −1 and 2, 2 and 1), so the pattern comes back after 4.7 s. Computed on a 128 × 43 grid and stretched.",
+     "Brightness v pulls the water color toward white. A float (radius 38, eight blue and white segments) bobs ±10 in x and ±5 in y, tilts 0.15 rad and casts a shadow on the floor.",
+     "Usually computed per pixel in a WebGL shader. Summing waves into a web of bright lines imitates where light gathers on a real pool floor."
+    ]
+   },
+   "use": {
+    "ja": "プール・海・リゾート・飲み物など、水の涼しさを感じさせたいサイトの背景に。",
+    "en": "Use it as the background on pool, beach, resort or drink sites that should feel like cool water."
+   },
+   "tags": [
+    "caustics",
+    "water",
+    "shader",
+    "webgl",
+    "pool",
+    "light",
+    "background"
+   ]
+  },
+  {
+   "id": "261",
+   "pack": "lp3",
+   "no": "21",
+   "slug": "dappled-light",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "木漏れ日",
+    "en": "Dappled light",
+    "es": "Luz moteada (sombras de hojas)",
+    "zh-Hans": "树影光斑",
+    "zh-Hant": "樹影光斑"
+   },
+   "meaning": {
+    "ja": "葉の影と光が壁でゆれる",
+    "en": "Leaf shadows and sunlight sway on a wall",
+    "es": "Sombras de hojas y luz del sol se mecen sobre una pared",
+    "zh-Hans": "叶影和阳光在墙上摇曳",
+    "zh-Hant": "葉影和陽光在牆上搖曳"
+   },
+   "ask": {
+    "ja": "商品ページの背景に木漏れ日を入れて。壁に斜めの日差しを当て、ぼけた葉の影を4.7秒周期でゆっくり揺らして。",
+    "en": "Add dappled light behind the product page: slanted sunlight on the wall with blurred leaf shadows swaying slowly on a 4.7 s cycle.",
+    "es": "Agrega luz moteada detrás de la página del producto: luz del sol inclinada sobre la pared con sombras de hojas desenfocadas que se mecen despacio en un ciclo de 4.7 s.",
+    "zh-Hans": "在商品页背景加入树影光斑：墙上斜照着阳光，模糊的叶影以4.7秒为周期缓缓摇曳。",
+    "zh-Hant": "商品頁背景請加入樹影光斑：牆上斜照著陽光，模糊的葉影以4.7秒為週期慢慢搖曳。"
+   },
+   "summary": {
+    "ja": "薄いグレーから薄い青の壁に、窓から差す斜めの白い光が当たり、その上でぼけた葉の影がゆっくり揺れる。手前に見出しと花びん。",
+    "en": "Slanted white window light falls on a pale gray to pale blue wall and blurred leaf shadows sway slowly across it, with a heading and a vase in front."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。壁は #F1F0EE → #F1F5FF。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "日差し: 台形（上辺 170〜470、下辺 60〜380）に白のグラデーション（不透明度 0〜0.95）を screen で重ねる",
+     "葉の影: 枝3本（長さ230）に葉（半径 17×7 の楕円）を5〜6組。枝は ±0.06 rad、葉は ±0.22 rad、それぞれ 2πt/4.7 とその2倍で揺れる（枝ごと・葉ごとに位相をずらす）",
+     "影は画面外に青（#2F6BEB）で描き、4.5px ぼかして不透明度0.3で重ねる。影を灰色でなく青にすると、明るい配色のまま光らしく見える",
+     "写真なら木の枝を写したPNG・動画を重ねる作り方もある"
+    ],
+    "en": [
+     "A 511 × 170 viewport; the wall goes #F1F0EE → #F1F5FF. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Sunlight: a trapezoid (top edge 170–470, bottom edge 60–380) filled with a white gradient (opacity 0–0.95) in screen.",
+     "Leaf shadows: three branches (230 long) with five or six pairs of leaves (17 × 7 ellipses). Branches sway ±0.06 rad and leaves ±0.22 rad, at 2πt/4.7 and twice that, each with its own phase.",
+     "The shadows are drawn offscreen in blue (#2F6BEB), blurred 4.5 px and laid over at 0.3 opacity. Blue rather than gray shadows keep a bright palette looking sunlit.",
+     "With photos, a PNG or video of real branches can be laid over instead."
+    ]
+   },
+   "use": {
+    "ja": "器・家具・コスメ・カフェなど、自然光の穏やかさを出したいサイトの背景に。",
+    "en": "Use it behind ceramics, furniture, skincare or cafe sites that should feel calm and naturally lit."
+   },
+   "tags": [
+    "dappled-light",
+    "leaf-shadow",
+    "komorebi",
+    "sunlight",
+    "shadow-overlay",
+    "background"
+   ]
+  },
+  {
+   "id": "262",
+   "pack": "lp3",
+   "no": "22",
+   "slug": "topographic-contour-lines",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "トポグラフィック",
+    "en": "Topographic contour lines",
+    "es": "Curvas de nivel (topográfico)",
+    "zh-Hans": "等高线纹理",
+    "zh-Hant": "等高線紋理"
+   },
+   "meaning": {
+    "ja": "等高線がゆっくり形を変える",
+    "en": "Contour lines slowly change shape",
+    "es": "Las curvas de nivel cambian de forma despacio",
+    "zh-Hans": "等高线缓缓变换形状",
+    "zh-Hant": "等高線慢慢變換形狀"
+   },
+   "ask": {
+    "ja": "研究所のイベントページの背景をトポグラフィックにして。明るい地に青の濃淡の等高線を11本、地形ごとゆっくりうねらせて。",
+    "en": "Give the research lab's event page a topographic background: eleven contour lines in shades of blue on a light ground, the terrain slowly shifting.",
+    "es": "Ponle a la página del evento del laboratorio un fondo topográfico: once curvas de nivel en tonos de azul sobre un fondo claro, con el terreno moviéndose despacio.",
+    "zh-Hans": "把研究所活动页面的背景做成等高线纹理：浅色底上画11条深浅不同的蓝色等高线，地形缓缓起伏变化。",
+    "zh-Hant": "研究所活動頁面的背景請做成等高線紋理：淺色底上畫11條深淺不同的藍色等高線，地形慢慢起伏變化。"
+   },
+   "summary": {
+    "ja": "明るい地に、山の高さを表す青の濃淡の等高線が何重にも描かれ、山ごとゆっくり動いて線の形が変わり続ける。上に見出しの札。",
+    "en": "Contour lines of a terrain, in shades of blue, fill a light page in many rings; the hills drift slowly so the lines keep changing shape. A heading card sits on top."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。地は 白 → #F1F5FF。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "高さ = 4つの山（中心 (150,70)・(340,110)・(470,30)・(60,150)、半径 70・80・60・55、高さ 1・0.9・0.7・0.6 のガウス）＋ 0.12·sin(0.02x + a)·cos(0.03y − a)。山の中心は 横22・縦14 の円を回る（a = 2πt/4.7、山ごとに位相をずらす）",
+     "7px のマス目で高さを測り、マーチングスクエアで等高線を引く。高さ −0.08 から 0.1 おきに11本、線幅1.3",
+     "線の色は低い方から #C9D8FB → #9DB8F6 → #2F6BEB、不透明度 0.55〜1。見出しは白い札",
+     "地図記号を足さず線だけにすると、模様として背景に使える"
+    ],
+    "en": [
+     "A 511 × 170 viewport; the ground goes white → #F1F5FF. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "Height = four hills (Gaussians centered at (150,70), (340,110), (470,30), (60,150), radii 70, 80, 60, 55, heights 1, 0.9, 0.7, 0.6) + 0.12·sin(0.02x + a)·cos(0.03y − a). Each hill center circles 22 across and 14 down (a = 2πt/4.7, phases differ per hill).",
+     "Heights are sampled on a 7 px grid and contours drawn with marching squares: 11 levels from −0.08 in steps of 0.1, line width 1.3.",
+     "Line colors run #C9D8FB → #9DB8F6 → #2F6BEB from low to high, opacity 0.55–1. The heading sits on a white card.",
+     "With lines only and no map symbols, it works as a background pattern."
+    ]
+   },
+   "use": {
+    "ja": "アウトドア・旅・地図・不動産など、土地や地形を感じさせたいサイトの背景に。",
+    "en": "Use it behind outdoor, travel, map or real-estate sites that should suggest land and terrain."
+   },
+   "tags": [
+    "topographic",
+    "contour-lines",
+    "terrain",
+    "pattern",
+    "background",
+    "map"
+   ]
+  },
+  {
+   "id": "263",
+   "pack": "lp3",
+   "no": "23",
+   "slug": "halftone",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "ハーフトーン",
+    "en": "Halftone",
+    "es": "Semitono (halftone)",
+    "zh-Hans": "半色调",
+    "zh-Hant": "半色調"
+   },
+   "meaning": {
+    "ja": "網点の大きさで絵が浮かぶ",
+    "en": "The picture is drawn by the size of dots",
+    "es": "La imagen se forma con el tamaño de los puntos",
+    "zh-Hans": "用网点的大小呈现画面",
+    "zh-Hant": "用網點的大小呈現畫面"
+   },
+   "ask": {
+    "ja": "キービジュアルをハーフトーンにして。8px 間隔の網点を、明るさに合わせた大きさで描き、濃い青と中間の青の2色を別の角度で重ねて。",
+    "en": "Render the key visual as halftone: dots on an 8 px grid sized by brightness, with blue and mid-blue screens laid at different angles.",
+    "es": "Haz la imagen principal en semitono: puntos en una cuadrícula de 8 px con tamaño según el brillo, y dos tramas, una azul y otra azul medio, superpuestas en ángulos distintos.",
+    "zh-Hans": "把主视觉做成半色调：8px间距的网点按亮度决定大小，深蓝和中蓝两层网点以不同角度叠加。",
+    "zh-Hant": "主視覺請做成半色調：8px間距的網點依亮度決定大小，深藍和中藍兩層網點以不同角度疊加。"
+   },
+   "summary": {
+    "ja": "ごく薄い青の地に、青い網点の太陽と、中間の青の網点の波が描かれる。太陽が動き波が流れると、点が育ったり縮んだりして形が動いて見える。",
+    "en": "On a pale blue page, a sun in blue dots and waves in mid-blue dots. As the sun moves and the waves flow, the dots grow and shrink and the shapes appear to move."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。ごく薄い青（#F1F5FF）の地、左に見出し POP / PRINT。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "下の絵（0〜1）: 太陽 = 1.15 − 距離/70（中心 x = 360 + 20·sin a、y = 70 − 10·cos a）、波 = 波の線（118 + 12·sin(0.028x − a) + 6·sin(0.06x + 2a)）から下へ40px で 0→1。a = 2πt/4.7",
+     "網点は 8px 間隔。半径 = 8×0.58×√明るさ（最大約4.6px）。太陽は青 #2F6BEB で15°、波は中間の青 #9DB8F6 で75°、重なる所は青で45°に並べ、multiply で重ねる",
+     "左の端（x = 180〜250）は点を小さくしてなじませる",
+     "#197 点描（絵の具の点で描く画風）と違い、印刷の網点のように規則正しい格子で、明るさを点の大きさに置きかえる"
+    ],
+    "en": [
+     "A 511 × 170 viewport on pale blue (#F1F5FF), with the heading POP / PRINT on the left. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The source picture (0–1): sun = 1.15 − distance/70 (center x = 360 + 20·sin a, y = 70 − 10·cos a); waves go 0 → 1 over 40 px below the line 118 + 12·sin(0.028x − a) + 6·sin(0.06x + 2a). a = 2πt/4.7.",
+     "Dots on an 8 px grid with radius 8 × 0.58 × √brightness (up to about 4.6 px). The sun is screened in blue #2F6BEB at 15°, the waves in mid blue #9DB8F6 at 75° and their overlap in blue at 45°, combined with multiply.",
+     "At the left edge (x = 180–250) the dots shrink to blend in.",
+     "Unlike #197 Pointillism (an art style of painted dots), halftone uses a regular print grid and turns brightness into dot size."
+    ]
+   },
+   "use": {
+    "ja": "ポップ・レトロ・雑誌風のデザインで、写真や絵を印刷物の手ざわりで見せたいときに。",
+    "en": "Use it in pop, retro or magazine-style designs to give photos and illustrations a printed feel."
+   },
+   "tags": [
+    "halftone",
+    "dots",
+    "print",
+    "screen",
+    "retro",
+    "pop-art"
+   ]
+  },
+  {
+   "id": "264",
+   "pack": "lp3",
+   "no": "24",
+   "slug": "crt-effect",
+   "category": "texture",
+   "width": 539,
+   "height": 208,
+   "cycle": 9.4,
+   "name": {
+    "ja": "CRTエフェクト",
+    "en": "CRT effect",
+    "es": "Efecto CRT",
+    "zh-Hans": "CRT 显像管效果",
+    "zh-Hant": "CRT 映像管效果"
+   },
+   "meaning": {
+    "ja": "走査線とにじみでブラウン管風に",
+    "en": "Scanlines and glow make it look like an old CRT",
+    "es": "Líneas de escaneo y resplandor le dan aspecto de pantalla CRT",
+    "zh-Hans": "用扫描线和光晕做出老式显像管的感觉",
+    "zh-Hant": "用掃描線和光暈做出老式映像管的感覺"
+   },
+   "ask": {
+    "ja": "ゲームの告知ページを CRT エフェクトにして。3px おきの走査線、赤と青の色ずれ、上から下へ流れる明るい帯、四隅を暗くして。",
+    "en": "Give the game announcement page a CRT effect: scanlines every 3 px, a red and blue color offset, a bright band rolling down and darker corners.",
+    "es": "Dale a la página de anuncio del juego un efecto CRT: líneas de escaneo cada 3 px, desfase de rojo y azul, una banda brillante que baja y esquinas más oscuras.",
+    "zh-Hans": "把游戏发布页面做成CRT显像管效果：每3px一条扫描线，红蓝色差，一条亮带从上往下滚动，四角变暗。",
+    "zh-Hant": "遊戲公告頁面請做成CRT映像管效果：每3px一條掃描線，紅藍色差，一條亮帶由上往下捲動，四角變暗。"
+   },
+   "summary": {
+    "ja": "角の丸い黒い画面の中で、光る文字 PLAY が青と薄い青に少しずれてにじむ。横の走査線と細い青の縦縞が重なり、明るい帯が上から下へ流れ、四隅は暗い。",
+    "en": "On a dark screen with rounded corners, the glowing word PLAY bleeds slightly into blue and light blue. Horizontal scanlines and fine blue stripes cover it, a bright band rolls down, and the corners are dark."
+   },
+   "spec": {
+    "ja": [
+     "表示域 511×170。画面 479×146（角丸24）。4.7秒でひと回り（パックの周期9.4秒で2回）",
+     "文字（PLAY 64px）を 青 #2F6BEB（左へ1.6px）・中間の青 #9DB8F6（右へ1.6px）を lighter で重ねてから白で描く。光のにじみはぼかし10。全体の明るさは 0.93〜1 を 2πt/4.7 の12倍の速さでちらつかせる",
+     "縦縞: 3px ごとに 3段の青（#2F6BEB・#9DB8F6・#E4ECFE）の1px の線（不透明度 0.05〜0.1）。赤・緑・青の縞にすると本物に近い。走査線: 3px ごとに黒32% の1px",
+     "明るい帯: 高さ48（中心で白8%）が 4.7秒で画面の上の外から下の外まで動く。四隅: 中心から半径 SH×0.45〜SW×0.62 で 0→黒65%。「PRESS START」は sin(4·2πt/4.7) > −0.2 の間だけ見える",
+     "#023 グリッチは画面が乱れる一瞬の事故、#118 フィルムグレインはフィルムの粒子。CRT エフェクトはブラウン管そのものの見え方を常に重ねる"
+    ],
+    "en": [
+     "A 511 × 170 viewport; the screen is 479 × 146 (radius 24). One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "The text (PLAY, 64 px) is drawn in blue #2F6BEB shifted 1.6 px left and mid blue #9DB8F6 shifted 1.6 px right with lighter, then in white; glow blur 10. Overall brightness flickers between 0.93 and 1 at twelve times 2πt/4.7.",
+     "Stripes: 1 px lines every 3 px in three blues (#2F6BEB, #9DB8F6, #E4ECFE; opacity 0.05–0.1). Red, green and blue stripes are closer to a real tube. Scanlines: a 1 px line of 32% black every 3 px.",
+     "Rolling band: 48 px tall (8% white at its center), moving from above to below the screen over 4.7 s. Corners: 0 → 65% black between radii SH × 0.45 and SW × 0.62. \"PRESS START\" shows while sin(4 · 2πt/4.7) > −0.2.",
+     "#023 Glitch is a brief breakdown and #118 Film grain is film texture; the CRT effect overlays the look of the tube itself, all the time."
+    ]
+   },
+   "use": {
+    "ja": "ゲーム・音楽・イベントなど、レトロでにぎやかな告知に。",
+    "en": "Use it for game, music or event announcements that should feel retro and loud."
+   },
+   "tags": [
+    "crt",
+    "scanlines",
+    "retro",
+    "vhs",
+    "arcade",
+    "chromatic-aberration"
    ]
   }
  ]

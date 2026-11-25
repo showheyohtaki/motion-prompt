@@ -1,0 +1,62 @@
+// Motion Prompt #244 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#244
+//
+// マルチスクロール / Multi-scroll (split scrolling)
+// パック: lp3 (LP・Webサイトの演出 第3弾) · element 04 · カテゴリ: スクロール・ドラッグで見せる
+// 何が起きるか: 画面が左右2列に分かれ、スクロールすると左の色の見出しは上へ、右の絵は下へ動いて、3組が順にそろう。最後に一気に最初の組へ戻る。
+// 動きの仕様:
+//   - 表示域 511×170。左右に 255.5px ずつ2列。どちらの列も1組＝画面の高さ170。4.7秒でひと回り（パックの周期9.4秒で2回）
+//   - 組の番号 s: 0.35〜1.15秒で 0→1、1.95〜2.75秒で 1→2、3.6〜4.45秒で 2→0（easeInOut 3乗）
+//   - 左の列は組 i を y = (i − s)×170、右の列は y = (s − i)×170 に置く（右は下から順に並ぶので逆向きに動く）。1回の切り替えで両列とも170px 動く
+//   - 組: 01 COLOR（青 #2F6BEB）・02 SHAPE（薄い青 #C9D8FB）・03 MOTION（中間の青 #9DB8F6）。真ん中に白い境目と、今の組を示す点3つ、動いている間だけ左右逆向きの矢印
+//   - #144 スプリットスクリーン（画面を分けて同時に見せる）とは別。マルチスクロールは分けた列をスクロールで逆向きに動かす
+// 使いどころ: 写真と見出しを1対1で見せたい、ブランド・作品紹介のページを印象的に切り替えたいときに。
+// タグ: multiscroll, split-scrolling, opposite, columns, scroll, fullpage
+// サイズ: 539x208 px · 1周: 9.4 s
+// Needs: kit lp3 -> https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp3.js
+// 動く見本: https://showheyohtaki.github.io/motion-prompt/#244
+//
+// cells[i](k, w, h, u) … k = CanvasRenderingContext2D（呼ぶ側でクリアと save/restore 済み）、w・h = サイズ、u = 秒（0 以上 1周 未満）。u だけで絵が決まる。
+// ここから要素のコード。CELLS や定数・補助関数は kit にある。
+
+// @element 04
+// 04 マルチスクロール（画面を左右2列に分け、1回のスクロールで左の列は上へ、右の列は下へ動いて、次の組がそろう）
+CELLS[3] = (k, w, h, u) => {
+  u = snapU(u);
+  frame(k, 0);
+  const s = steps([[0.35, 0], [1.15, 1], [1.95, 1], [2.75, 2], [3.6, 2], [4.45, 0]], u);   // いまの組（0〜2）
+  const HW = VW / 2;
+  const SEC = [[C.blue, '01', 'COLOR', 0], [C.blueL, '02', 'SHAPE', 1], [C.blueM, '03', 'MOTION', 3]];
+  view(k, () => {
+    // 左の列: 0,1,2 の順に上から並び、上へ流れる
+    k.save(); k.beginPath(); k.rect(0, 0, HW, VH); k.clip();
+    SEC.forEach(([col, no, word], i) => {
+      const y = (i - s) * VH;
+      if (y > VH || y < -VH) return;
+      k.fillStyle = col; k.fillRect(0, y, HW, VH);
+      const dark = col === C.blueL || col === C.blueM;
+      txt(k, no, 28, y + 44, `700 12px ${MONO}`, dark ? C.ink : 'rgba(255,255,255,.75)');
+      txt(k, word, 26, y + 96, `900 40px ${EN}`, dark ? C.ink : '#fff', 'left', 'alphabetic', '1px');
+      bars(k, 28, y + 116, 150, 2, dark ? 'rgba(30,30,33,.25)' : 'rgba(255,255,255,.45)');
+    });
+    k.restore();
+    // 右の列: 2,1,0 の順に上から並び（組 i は下から i 番目）、下へ流れる
+    k.save(); k.beginPath(); k.rect(HW, 0, HW, VH); k.clip();
+    SEC.forEach(([col, no, word, v], i) => {
+      const y = (s - i) * VH;
+      if (y > VH || y < -VH) return;
+      art(k, HW, y, HW, VH, v, 0);
+    });
+    k.restore();
+    // 真ん中の境目と、組の目印
+    k.fillStyle = '#fff'; k.fillRect(HW - 1, 0, 2, VH);
+    for (let i = 0; i < 3; i++) { const on = clamp(1 - Math.abs(s - i) * 1.5); k.fillStyle = `rgba(255,255,255,${0.45 + 0.55 * on})`; k.beginPath(); k.arc(HW, 58 + i * 27, 3.5 + 2 * on, 0, 7); k.fill(); k.strokeStyle = 'rgba(30,30,33,.25)'; k.lineWidth = 1; k.stroke(); }
+    // 矢印（動いている間だけ。左右は逆向き）
+    const ds = steps([[0.35, 0], [1.15, 1], [1.95, 1], [2.75, 2], [3.6, 2], [4.45, 0]], u + 0.02) - s;
+    if (Math.abs(ds) > 1e-4) {
+      const d = ds > 0 ? 1 : -1;
+      k.fillStyle = '#fff';
+      const tri = (x, y, up) => { k.beginPath(); k.moveTo(x, y + (up ? -7 : 7)); k.lineTo(x - 8, y + (up ? 5 : -5)); k.lineTo(x + 8, y + (up ? 5 : -5)); k.fill(); };
+      tri(HW - 22, 146, d > 0); tri(HW + 22, 146, d < 0);
+    }
+  });
+};
